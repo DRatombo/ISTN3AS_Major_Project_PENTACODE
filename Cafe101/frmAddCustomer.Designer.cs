@@ -90,7 +90,7 @@
             // lblAddress
             // 
             this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(65, 384);
+            this.lblAddress.Location = new System.Drawing.Point(65, 388);
             this.lblAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(74, 13);
@@ -100,7 +100,7 @@
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(65, 423);
+            this.lblPassword.Location = new System.Drawing.Point(65, 430);
             this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(90, 13);
@@ -141,7 +141,7 @@
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(218, 376);
+            this.txtAddress.Location = new System.Drawing.Point(218, 381);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(198, 20);
@@ -159,7 +159,7 @@
             // 
             this.btnSaveCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveCust.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSaveCust.Location = new System.Drawing.Point(34, 491);
+            this.btnSaveCust.Location = new System.Drawing.Point(42, 491);
             this.btnSaveCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSaveCust.Name = "btnSaveCust";
             this.btnSaveCust.Size = new System.Drawing.Size(188, 33);
@@ -182,7 +182,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Cafe101.Properties.Resources.d0efcd1d_c672_4c86_8a95_731e22ada3a3;
-            this.pictureBox1.Location = new System.Drawing.Point(143, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(143, 21);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(186, 119);
@@ -194,7 +194,7 @@
             // 
             this.lblAddNewCust.AutoSize = true;
             this.lblAddNewCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddNewCust.Location = new System.Drawing.Point(121, 155);
+            this.lblAddNewCust.Location = new System.Drawing.Point(117, 160);
             this.lblAddNewCust.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAddNewCust.Name = "lblAddNewCust";
             this.lblAddNewCust.Size = new System.Drawing.Size(227, 24);

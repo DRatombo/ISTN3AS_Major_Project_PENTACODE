@@ -51,7 +51,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsCafe101.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Form1.cs" />
     <Compile Include="dsLogin.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -91,6 +91,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmNewOrder.resx">
       <DependentUpon>frmNewOrder.cs</DependentUpon>
     </EmbeddedResource>
@@ -114,6 +115,7 @@
     </None>
     <None Include="dsCafe101.xss">
       <DependentUpon>dsCafe101.xsd</DependentUpon>
+    </None>
     <None Include="dsLogin.xsc">
       <DependentUpon>dsLogin.xsd</DependentUpon>
     </None>

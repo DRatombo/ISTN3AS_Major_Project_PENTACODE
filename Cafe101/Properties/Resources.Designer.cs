@@ -76,6 +76,9 @@ namespace Cafe101.Properties {
         internal static System.Drawing.Bitmap Cafe101_logo_design {
             get {
                 object obj = ResourceManager.GetObject("Cafe101 logo design", resourceCulture);
+        internal static System.Drawing.Bitmap d0efcd1d_c672_4c86_8a95_731e22ada3a3 {
+            get {
+                object obj = ResourceManager.GetObject("d0efcd1d-c672-4c86-8a95-731e22ada3a3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

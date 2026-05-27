@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dsCafe101.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsCafe101.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
     <Compile Include="dsLogin.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -63,6 +69,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAddCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddCustomer.Designer.cs">
+      <DependentUpon>frmAddCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNewOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +83,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAddCustomer.resx">
+      <DependentUpon>frmAddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -89,6 +104,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="dsCafe101.xsc">
+      <DependentUpon>dsCafe101.xsd</DependentUpon>
+    </None>
+    <None Include="dsCafe101.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsCafe101.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dsCafe101.xss">
+      <DependentUpon>dsCafe101.xsd</DependentUpon>
     <None Include="dsLogin.xsc">
       <DependentUpon>dsLogin.xsd</DependentUpon>
     </None>
@@ -114,6 +139,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\d0efcd1d-c672-4c86-8a95-731e22ada3a3.jpeg" />
     <None Include="Resources\Cafe101 logo design.jpg" />
   </ItemGroup>
   <ItemGroup>

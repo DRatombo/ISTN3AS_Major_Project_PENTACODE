@@ -1,0 +1,5 @@
+SELECT TOP (1000) [OrderID]
+      ,[MenuItemID]
+      ,[QuantityOrdered]
+      ,[SubTotal]
+  FROM [GroupWst22].[dbo].[ItemOrder]

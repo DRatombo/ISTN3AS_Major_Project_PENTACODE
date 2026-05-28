@@ -52,7 +52,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsCafe101.xsd</DependentUpon>
     </Compile>
-   
     <Compile Include="dsLogin.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -88,6 +87,12 @@
     <Compile Include="frmNewOrder.Designer.cs">
       <DependentUpon>frmNewOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReceipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReceipt.Designer.cs">
+      <DependentUpon>frmReceipt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAddCustomer.resx">
@@ -104,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNewOrder.resx">
       <DependentUpon>frmNewOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReceipt.resx">
+      <DependentUpon>frmReceipt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

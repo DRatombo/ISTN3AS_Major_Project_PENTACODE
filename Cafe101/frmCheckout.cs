@@ -17,7 +17,7 @@ namespace Cafe101
         private int _orderID;
         private decimal _orderTotal;
 
-        // Constructor - receives OrderID and OrderTotal from Mandilakhe's frmNewOrder
+        // Constructor - receives OrderID and OrderTotal from Dudu's frmNewOrder
         public frmCheckout(int orderID, decimal orderTotal)
         {
             InitializeComponent();
@@ -36,7 +36,7 @@ namespace Cafe101
         private void frmCheckout_Load(object sender, EventArgs e)
         {
         }
-        // ── CASH SELECTED ──────────────────────────────────────────
+        //CASH SELECTED
         private void rbCash_CheckedChanged(object sender, EventArgs e)
         {
             if (rbCash.Checked)
@@ -46,7 +46,7 @@ namespace Cafe101
                 changeTextBox.Text = "R 0.00";
             }
         }
-        // ── CARD SELECTED ──────────────────────────────────────────
+        //CARD SELECTED
         private void rbCard_CheckedChanged(object sender, EventArgs e)
         {
             if (rbCard.Checked)
@@ -139,7 +139,10 @@ namespace Cafe101
                     "Payment Successful",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
-                this.Close();
+                frmReceipt formR = new frmReceipt(_orderID, _orderTotal, amountTendered, change, paymentMethod);
+                formR.ShowDialog();
+
+                //this.Close();
             }
             catch (Exception ex)
             {
@@ -147,7 +150,7 @@ namespace Cafe101
                     "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        // ── CANCEL BUTTON 
+        // CANCEL BUTTON 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(

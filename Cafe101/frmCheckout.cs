@@ -167,6 +167,12 @@ namespace Cafe101
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmTodaysOrders orders = new frmTodaysOrders();
+            orders.ShowDialog();
+        }
+
         /* private void rbCash_CheckedChanged_1(object sender, EventArgs e)
          {
 

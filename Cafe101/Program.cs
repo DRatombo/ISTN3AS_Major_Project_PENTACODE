@@ -18,7 +18,8 @@ namespace Cafe101
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
             Application.Run(new frmNewOrder());
-            Application.Run(new frmLogin());
+            //Application.Run(new frmLogin());
+            //Application.Run(new frmTodaysOrders());
             //Application.Run(new frmCheckout(orderID , orderTotal));
         }
     }

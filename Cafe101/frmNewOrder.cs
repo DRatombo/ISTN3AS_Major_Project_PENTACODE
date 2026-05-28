@@ -383,7 +383,13 @@ namespace Cafe101
                 }
 
                 DeductStock();
-                MessageBox.Show("Order #" + newOrderID + " saved successfully!\nTotal: R " + orderTotal.ToString("0.00"));
+                MessageBox.Show("Order #" + newOrderID + " saved successfully!\nTotal: R " + orderTotal.ToString("0.00") + "\nHandling payment in Checkout...");
+
+                // Uncomment when frmCheckout is ready
+
+                // frmCheckout checkout = new frmCheckout();
+                // checkout.OrderID = newOrderID;
+                // checkout.ShowDialog();
 
                 // Reset the form for the next order
                 dgvCart.Rows.Clear();

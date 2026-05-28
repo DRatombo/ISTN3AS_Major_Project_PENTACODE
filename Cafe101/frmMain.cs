@@ -19,7 +19,8 @@ namespace Cafe101
 
         private void ordersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmNewOrder newOrder = new frmNewOrder();
+            newOrder.Show();
         }
     }
 }

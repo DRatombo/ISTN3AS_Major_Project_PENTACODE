@@ -42,8 +42,8 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnSaveCust = new System.Windows.Forms.Button();
             this.btnCanel = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblAddNewCust = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -179,17 +179,6 @@
             this.btnCanel.Text = "CANCEL";
             this.btnCanel.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cafe101.Properties.Resources.d0efcd1d_c672_4c86_8a95_731e22ada3a3;
-            this.pictureBox1.Location = new System.Drawing.Point(143, 21);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(186, 119);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
-            // 
             // lblAddNewCust
             // 
             this.lblAddNewCust.AutoSize = true;
@@ -201,14 +190,22 @@
             this.lblAddNewCust.TabIndex = 15;
             this.lblAddNewCust.Text = "ADD NEW CUSTOMER";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(167, 62);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmAddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(483, 559);
-            this.Controls.Add(this.lblAddNewCust);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.lblAddNewCust);
             this.Controls.Add(this.btnCanel);
             this.Controls.Add(this.btnSaveCust);
             this.Controls.Add(this.txtPassword);
@@ -251,7 +248,7 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnSaveCust;
         private System.Windows.Forms.Button btnCanel;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblAddNewCust;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

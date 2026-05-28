@@ -7,7 +7,6 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
 namespace Cafe101.Properties {
     using System;
     

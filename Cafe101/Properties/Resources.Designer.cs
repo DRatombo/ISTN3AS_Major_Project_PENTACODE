@@ -63,9 +63,9 @@ namespace Cafe101.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Blue_White_Simple_Aesthetic_Book_Cafe_Logo {
+        internal static System.Drawing.Bitmap Login_jpg {
             get {
-                object obj = ResourceManager.GetObject("Blue White Simple Aesthetic Book Cafe Logo", resourceCulture);
+                object obj = ResourceManager.GetObject("Login.jpg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,12 +73,9 @@ namespace Cafe101.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Cafe101_logo_design {
+        internal static System.Drawing.Bitmap Logo_jpg {
             get {
-                object obj = ResourceManager.GetObject("Cafe101 logo design", resourceCulture);
-        internal static System.Drawing.Bitmap d0efcd1d_c672_4c86_8a95_731e22ada3a3 {
-            get {
-                object obj = ResourceManager.GetObject("d0efcd1d-c672-4c86-8a95-731e22ada3a3", resourceCulture);
+                object obj = ResourceManager.GetObject("Logo.jpg", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

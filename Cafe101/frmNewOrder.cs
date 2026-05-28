@@ -387,9 +387,8 @@ namespace Cafe101
 
                 // Uncomment when frmCheckout is ready
 
-                // frmCheckout checkout = new frmCheckout();
-                // checkout.OrderID = newOrderID;
-                // checkout.ShowDialog();
+                frmCheckout checkout = new frmCheckout(newOrderID, orderTotal);
+                checkout.ShowDialog();
 
                 // Reset the form for the next order
                 dgvCart.Rows.Clear();

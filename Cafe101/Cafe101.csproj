@@ -193,6 +193,7 @@
   <ItemGroup>
     <Content Include="Resources\Login.jpg.jpeg" />
     <Content Include="Resources\Logo.jpg.jpeg" />
+    <Content Include="Resources\Show password.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

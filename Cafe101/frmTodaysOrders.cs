@@ -54,7 +54,7 @@ namespace Cafe101
                     orderDataGridView.AllowUserToAddRows = false;
                     orderDataGridView.ReadOnly = true;
 
-                     orderDataGridView.ClearSelection();
+                     //orderDataGridView.ClearSelection();
 
                     numOrders.Text = "Date: " + DateTime.Now.ToString("dd MMM yyyy") +
                     "     Total Orders: " + dt.Rows.Count;

@@ -35,16 +35,15 @@
             this.orderTableAdapter = new Cafe101.dsCafe101TableAdapters.OrderTableAdapter();
             this.tableAdapterManager = new Cafe101.dsCafe101TableAdapters.TableAdapterManager();
             this.orderDataGridView = new System.Windows.Forms.DataGridView();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.numOrders = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.numOrders = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderDataGridView)).BeginInit();
@@ -96,7 +95,6 @@
             this.Customer,
             this.OrderDateTime,
             this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn5});
             this.orderDataGridView.DataSource = this.orderBindingSource;
@@ -106,6 +104,41 @@
             this.orderDataGridView.RowTemplate.Height = 24;
             this.orderDataGridView.Size = new System.Drawing.Size(1061, 235);
             this.orderDataGridView.TabIndex = 2;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnRefresh.Location = new System.Drawing.Point(208, 356);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(159, 36);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "REFRESH";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnClose.Location = new System.Drawing.Point(533, 356);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(158, 36);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.Text = "CLOSE";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // numOrders
+            // 
+            this.numOrders.AutoSize = true;
+            this.numOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numOrders.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.numOrders.Location = new System.Drawing.Point(223, 289);
+            this.numOrders.Name = "numOrders";
+            this.numOrders.Size = new System.Drawing.Size(144, 29);
+            this.numOrders.TabIndex = 6;
+            this.numOrders.Text = "orderCount";
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -139,14 +172,6 @@
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.Width = 125;
             // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "TotalChangeDue";
-            this.dataGridViewTextBoxColumn8.HeaderText = "TotalChangeDue";
-            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.Width = 125;
-            // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "PaymentMethod";
@@ -162,41 +187,6 @@
             this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.Width = 125;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRefresh.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnRefresh.Location = new System.Drawing.Point(228, 356);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(159, 36);
-            this.btnRefresh.TabIndex = 3;
-            this.btnRefresh.Text = "REFRESH";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnClose.Location = new System.Drawing.Point(533, 356);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(158, 36);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.Text = "CLOSE";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // numOrders
-            // 
-            this.numOrders.AutoSize = true;
-            this.numOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numOrders.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.numOrders.Location = new System.Drawing.Point(223, 289);
-            this.numOrders.Name = "numOrders";
-            this.numOrders.Size = new System.Drawing.Size(144, 29);
-            this.numOrders.TabIndex = 6;
-            this.numOrders.Text = "orderCount";
             // 
             // frmTodaysOrders
             // 
@@ -231,13 +221,12 @@
         private System.Windows.Forms.DataGridView orderDataGridView;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label numOrders;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Customer;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderDateTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.Label numOrders;
     }
 }

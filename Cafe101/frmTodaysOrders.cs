@@ -45,13 +45,26 @@ namespace Cafe101
                     conn.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
+                    
                     adapter.Fill(dt);
                     orderDataGridView.DataSource = dt;
+
+                    orderDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    orderDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+                    orderDataGridView.AllowUserToAddRows = false;
+                    orderDataGridView.ReadOnly = true;
+
+                     orderDataGridView.ClearSelection();
+
+                    numOrders.Text = "Date: " + DateTime.Now.ToString("dd MMM yyyy") +
+                    "     Total Orders: " + dt.Rows.Count;
+                   
+
                 }
 
                 // Show total count
-                numOrders.Text = "Date: " + DateTime.Now.ToString("dd MMM yyyy") +
-                               "     Total Orders: " + orderDataGridView.Rows.Count;
+                //numOrders.Text = "Date: " + DateTime.Now.ToString("dd MMM yyyy") +
+                              // "     Total Orders: " + (orderDataGridView.Rows.Count-1);
             }
             catch (Exception ex)
             {

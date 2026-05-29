@@ -129,7 +129,7 @@
             // 
             this.btnLogin.BackColor = System.Drawing.SystemColors.Control;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnLogin.ForeColor = System.Drawing.Color.MidnightBlue;
+            this.btnLogin.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnLogin.Location = new System.Drawing.Point(348, 535);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnLogin.Name = "btnLogin";

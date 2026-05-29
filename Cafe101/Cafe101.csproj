@@ -32,6 +32,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -52,7 +56,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsCafe101.xsd</DependentUpon>
     </Compile>
-   
     <Compile Include="dsLogin.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -82,6 +85,30 @@
     <Compile Include="frmAddCustomer.Designer.cs">
       <DependentUpon>frmAddCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmManageCashiers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageCashiers.Designer.cs">
+      <DependentUpon>frmManageCashiers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageIngredients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageIngredients.Designer.cs">
+      <DependentUpon>frmManageIngredients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageMenuItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageMenuItems.Designer.cs">
+      <DependentUpon>frmManageMenuItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageRecipes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageRecipes.Designer.cs">
+      <DependentUpon>frmManageRecipes.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNewOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -101,6 +128,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageCashiers.resx">
+      <DependentUpon>frmManageCashiers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageIngredients.resx">
+      <DependentUpon>frmManageIngredients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageMenuItems.resx">
+      <DependentUpon>frmManageMenuItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageRecipes.resx">
+      <DependentUpon>frmManageRecipes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNewOrder.resx">
       <DependentUpon>frmNewOrder.cs</DependentUpon>

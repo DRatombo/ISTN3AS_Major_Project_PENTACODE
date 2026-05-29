@@ -84,5 +84,11 @@ namespace Cafe101
           //  frmCash.MdiParent = this;
             frmCash.Show();
         }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLogin backlogin = new frmLogin();
+            backlogin.Show();
+        }
     }
 }

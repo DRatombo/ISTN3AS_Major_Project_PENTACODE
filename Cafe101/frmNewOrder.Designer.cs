@@ -39,21 +39,21 @@
             this.btnSearchItem = new System.Windows.Forms.Button();
             this.btnAddToCart = new System.Windows.Forms.Button();
             this.dgvMenuItems = new System.Windows.Forms.DataGridView();
+            this.menuItemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MenuItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prepTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemQty = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.menuItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsCafe101BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsCafe101 = new Cafe101.dsCafe101();
             this.dgvCart = new System.Windows.Forms.DataGridView();
             this.lblTotalPrice = new System.Windows.Forms.Label();
             this.lblAmount = new System.Windows.Forms.Label();
             this.btnConfirmOrder = new System.Windows.Forms.Button();
             this.btnDecreaseQuantity = new System.Windows.Forms.Button();
             this.btnRemoveItem = new System.Windows.Forms.Button();
-            this.menuItemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prepTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dsCafe101BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dsCafe101 = new Cafe101.dsCafe101();
             this.orderTableAdapter = new Cafe101.dsCafe101TableAdapters.OrderTableAdapter();
             this.menuItemsTableAdapter1 = new Cafe101.dsCafe101TableAdapters.MenuItemsTableAdapter();
             this.customerTableAdapter1 = new Cafe101.dsCafe101TableAdapters.CustomerTableAdapter();
@@ -61,11 +61,13 @@
             this.itemOrderTableAdapter1 = new Cafe101.dsCafe101TableAdapters.ItemOrderTableAdapter();
             this.recipeItemTableAdapter1 = new Cafe101.dsCafe101TableAdapters.RecipeItemTableAdapter();
             this.ingredientTableAdapter1 = new Cafe101.dsCafe101TableAdapters.IngredientTableAdapter();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSearchCust
@@ -186,12 +188,40 @@
             this.dgvMenuItems.Size = new System.Drawing.Size(690, 181);
             this.dgvMenuItems.TabIndex = 11;
             // 
+            // menuItemNameDataGridViewTextBoxColumn
+            // 
+            this.menuItemNameDataGridViewTextBoxColumn.DataPropertyName = "MenuItemName";
+            this.menuItemNameDataGridViewTextBoxColumn.HeaderText = "Item Name";
+            this.menuItemNameDataGridViewTextBoxColumn.Name = "menuItemNameDataGridViewTextBoxColumn";
+            this.menuItemNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // MenuItemID
             // 
             this.MenuItemID.DataPropertyName = "MenuItemID";
             this.MenuItemID.HeaderText = "Item ID";
             this.MenuItemID.Name = "MenuItemID";
             this.MenuItemID.ReadOnly = true;
+            // 
+            // priceDataGridViewTextBoxColumn
+            // 
+            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
+            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
+            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
+            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // categoryDataGridViewTextBoxColumn
+            // 
+            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
+            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
+            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
+            this.categoryDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // prepTimeDataGridViewTextBoxColumn
+            // 
+            this.prepTimeDataGridViewTextBoxColumn.DataPropertyName = "PrepTime";
+            this.prepTimeDataGridViewTextBoxColumn.HeaderText = "PrepTime";
+            this.prepTimeDataGridViewTextBoxColumn.Name = "prepTimeDataGridViewTextBoxColumn";
+            this.prepTimeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // ItemQty
             // 
@@ -214,6 +244,16 @@
             // 
             this.menuItemsBindingSource.DataMember = "MenuItems";
             this.menuItemsBindingSource.DataSource = this.dsCafe101BindingSource;
+            // 
+            // dsCafe101BindingSource
+            // 
+            this.dsCafe101BindingSource.DataSource = this.dsCafe101;
+            this.dsCafe101BindingSource.Position = 0;
+            // 
+            // dsCafe101
+            // 
+            this.dsCafe101.DataSetName = "dsCafe101";
+            this.dsCafe101.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // dgvCart
             // 
@@ -285,44 +325,6 @@
             this.btnRemoveItem.UseVisualStyleBackColor = true;
             this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click_1);
             // 
-            // menuItemNameDataGridViewTextBoxColumn
-            // 
-            this.menuItemNameDataGridViewTextBoxColumn.DataPropertyName = "MenuItemName";
-            this.menuItemNameDataGridViewTextBoxColumn.HeaderText = "Item Name";
-            this.menuItemNameDataGridViewTextBoxColumn.Name = "menuItemNameDataGridViewTextBoxColumn";
-            this.menuItemNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // priceDataGridViewTextBoxColumn
-            // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // categoryDataGridViewTextBoxColumn
-            // 
-            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
-            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
-            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
-            this.categoryDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // prepTimeDataGridViewTextBoxColumn
-            // 
-            this.prepTimeDataGridViewTextBoxColumn.DataPropertyName = "PrepTime";
-            this.prepTimeDataGridViewTextBoxColumn.HeaderText = "PrepTime";
-            this.prepTimeDataGridViewTextBoxColumn.Name = "prepTimeDataGridViewTextBoxColumn";
-            this.prepTimeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // dsCafe101BindingSource
-            // 
-            this.dsCafe101BindingSource.DataSource = this.dsCafe101;
-            this.dsCafe101BindingSource.Position = 0;
-            // 
-            // dsCafe101
-            // 
-            this.dsCafe101.DataSetName = "dsCafe101";
-            this.dsCafe101.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // orderTableAdapter
             // 
             this.orderTableAdapter.ClearBeforeFill = true;
@@ -351,12 +353,23 @@
             // 
             this.ingredientTableAdapter1.ClearBeforeFill = true;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
+            this.pictureBox1.Location = new System.Drawing.Point(26, 560);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(120, 109);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmNewOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(1066, 691);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnRemoveItem);
             this.Controls.Add(this.btnDecreaseQuantity);
             this.Controls.Add(this.btnConfirmOrder);
@@ -381,9 +394,10 @@
             this.Load += new System.EventHandler(this.frmNewOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -423,5 +437,6 @@
         private dsCafe101TableAdapters.ItemOrderTableAdapter itemOrderTableAdapter1;
         private dsCafe101TableAdapters.RecipeItemTableAdapter recipeItemTableAdapter1;
         private dsCafe101TableAdapters.IngredientTableAdapter ingredientTableAdapter1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

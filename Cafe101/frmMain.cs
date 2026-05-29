@@ -89,6 +89,7 @@ namespace Cafe101
         {
             frmLogin backlogin = new frmLogin();
             backlogin.Show();
+            this.Hide();
         }
     }
 }

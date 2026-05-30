@@ -192,5 +192,15 @@ namespace Cafe101
             main.Show();
             this.Hide();
         }
+
+        private void btnSaveCust_Click(object sender, EventArgs e)
+        {
+            //save information to database here
+
+
+            frmMain main = new frmMain();
+            main.Show();
+            this.Hide();
+        }
     }
 }

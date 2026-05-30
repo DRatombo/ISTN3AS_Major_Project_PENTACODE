@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cafe101.dsCafe101TestTableAdapters;
+using System;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
@@ -18,6 +19,12 @@ namespace Cafe101
 
         private void frmNewOrder_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dsCafe101Test.TestOrder' table. You can move, or remove it, as needed.
+            this.testOrderTableAdapter.Fill(this.dsCafe101Test.TestOrder);
+            // TODO: This line of code loads data into the 'dsCafe101Test.TestMenuItems' table. You can move, or remove it, as needed.
+            this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
+            // TODO: This line of code loads data into the 'dsCafe101Test.TestCustomer' table. You can move, or remove it, as needed.
+            this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
             try
             {
                 // Setup cart columns manually - cart is not bound to database
@@ -29,9 +36,16 @@ namespace Cafe101
                 dgvCart.Columns.Add("Subtotal", "Subtotal");
                 dgvCart.Columns["MenuItemID"].Visible = false; // Hide ID column from user
 
+                cmbOrderType.SelectedIndex = 0; // Default to Regular
+                dtpEventDate.Visible = false;
+                dtpEventTime.Visible = false;
+                lblEventDate.Visible = false;
+                lblEventTime.Visible = false;
+
+
                 // Load all menu items from database into the grid
-                this.menuItemsTableAdapter1.Fill(this.dsCafe101.MenuItems);
-                dgvMenuItems.DataSource = this.dsCafe101.MenuItems;
+                this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
+                dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;
                 RebuildQtyColumn();
 
                 // Reset total label
@@ -78,41 +92,38 @@ namespace Cafe101
                     row.Cells["ItemQty"].Value = "0";
             }
         }
-
         private void btnSearchCust_Click(object sender, EventArgs e)
         {
             try
             {
-                // Check if search box is empty before searching
                 if (string.IsNullOrEmpty(txtSearchedCust.Text))
                 {
                     MessageBox.Show("Please enter a customer name to search for.");
                     return;
                 }
 
-                // Load all customers from database into dataset
-                this.customerTableAdapter1.Fill(this.dsCafe101.Customer);
+                this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
 
-                // Search through customers - match by first name OR surname
-                // ToLower() makes search case insensitive
-                var results = this.dsCafe101.Customer.Where(c =>
+                var results = this.dsCafe101Test.TestCustomer.Where(c =>
                     c.FirstName.ToLower().Contains(txtSearchedCust.Text.ToLower()) ||
                     c.Surname.ToLower().Contains(txtSearchedCust.Text.ToLower()));
 
-                if (results.Any()) // At least one customer found
+                if (results.Any())
                 {
-                    // Take the first matching customer
                     var customer = results.First();
-
-                    // Store customer ID so we can link it to the order later
                     selectedCustomerID = customer.CustomerID;
-
-                    // Display customer full name in the NAME textbox
                     txtSearchedName.Text = customer.FirstName + " " + customer.Surname;
+
+                    // Hide grid once customer is selected
+                    dgvCustomers.DataSource = null;
+                    dgvCustomers.Visible = false;
                 }
-                else // No customer found
+                else
                 {
-                    // Ask if user wants to add a new customer
+                    // Show grid with all customers so cashier can browse
+                    dgvCustomers.DataSource = this.dsCafe101Test.TestCustomer;
+                    dgvCustomers.Visible = true;
+
                     DialogResult result = MessageBox.Show(
                         "Customer not found. Do you want to create a new customer?",
                         "Customer Not Found",
@@ -120,9 +131,8 @@ namespace Cafe101
 
                     if (result == DialogResult.Yes)
                     {
-                        // Open the Add Customer form
                         frmAddCustomer addCust = new frmAddCustomer();
-                        addCust.ShowDialog(); // Wait for form to close before continuing
+                        addCust.ShowDialog();
                     }
                 }
             }
@@ -131,7 +141,6 @@ namespace Cafe101
                 MessageBox.Show("An error occurred while searching for the customer: " + ex.Message);
             }
         }
-
         private void btnSearchItem_Click(object sender, EventArgs e)
         {
             try
@@ -139,14 +148,14 @@ namespace Cafe101
                 // If search box is empty - show all menu items
                 if (string.IsNullOrWhiteSpace(textItemSearch.Text))
                 {
-                    this.menuItemsTableAdapter1.Fill(this.dsCafe101.MenuItems);
-                    dgvMenuItems.DataSource = this.dsCafe101.MenuItems;
+                    this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
+                    dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;
                     return;
                 }
 
                 // Use the FillByMenuItem query to filter by name
-                this.menuItemsTableAdapter1.FillByMenuItem(this.dsCafe101.MenuItems, textItemSearch.Text);
-                dgvMenuItems.DataSource = this.dsCafe101.MenuItems;
+                this.testMenuItemsTableAdapter.FillByMenuItems(this.dsCafe101Test.TestMenuItems, textItemSearch.Text);
+                dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;
 
                 // Reset quantity dropdown to 1 after search
                 foreach (DataGridViewRow row in dgvMenuItems.Rows)
@@ -161,39 +170,36 @@ namespace Cafe101
             }
         }
 
-        private void textItemSearch_TextChanged(object sender, EventArgs e)
+        private void txtSearchedCust_TextChanged(object sender, EventArgs e)
         {
-            try
+            if (string.IsNullOrWhiteSpace(txtSearchedCust.Text))
             {
-                // If search box is empty - reload and show all menu items
-                if (string.IsNullOrWhiteSpace(textItemSearch.Text))
-                {
-                    this.menuItemsTableAdapter1.Fill(this.dsCafe101.MenuItems);
-                    dgvMenuItems.DataSource = this.dsCafe101.MenuItems;
-
-                    // Reset quantity to 1 for all rows
-                    foreach (DataGridViewRow row in dgvMenuItems.Rows)
-                    {
-                        if (!row.IsNewRow)
-                            row.Cells["ItemQty"].Value = 1;
-                    }
-                    return;
-                }
-
-                // Filter as user types using the custom query
-                this.menuItemsTableAdapter1.FillByMenuItem(this.dsCafe101.MenuItems, textItemSearch.Text);
-                dgvMenuItems.DataSource = this.dsCafe101.MenuItems;
-
-                // Reset quantity to 1 after filtering
-                foreach (DataGridViewRow row in dgvMenuItems.Rows)
-                {
-                    if (!row.IsNewRow)
-                        row.Cells["ItemQty"].Value = 1;
-                }
+                dgvCustomers.Visible = false;
+                dgvCustomers.DataSource = null;
+                return;
             }
-            catch (Exception ex)
+
+            this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
+
+            var results = this.dsCafe101Test.TestCustomer.Where(c =>
+                c.FirstName.ToLower().Contains(txtSearchedCust.Text.ToLower()) ||
+                c.Surname.ToLower().Contains(txtSearchedCust.Text.ToLower()))
+                .Select(c => new {
+                    c.CustomerID,
+                    c.FirstName,
+                    c.Surname,
+                    c.Email
+                }).ToList();
+
+            if (results.Any())
             {
-                MessageBox.Show("Error filtering menu items: " + ex.Message);
+                dgvCustomers.DataSource = results;
+                dgvCustomers.Visible = true;
+            }
+            else
+            {
+                dgvCustomers.DataSource = null;
+                dgvCustomers.Visible = false;
             }
         }
 
@@ -227,8 +233,8 @@ namespace Cafe101
                      quantity = Convert.ToInt32(dgvMenuItems.SelectedRows[0].Cells["ItemQty"].Value);*/
 
                 int menuItemID = Convert.ToInt32(dgvMenuItems.SelectedRows[0].Cells[1].Value);
-                string itemName = dgvMenuItems.SelectedRows[0].Cells[0].Value.ToString();
-                decimal price = Convert.ToDecimal(dgvMenuItems.SelectedRows[0].Cells[2].Value.ToString().Replace(",", "."), System.Globalization.CultureInfo.InvariantCulture);
+                string itemName = dgvMenuItems.SelectedRows[0].Cells[2].Value.ToString();
+                decimal price = Convert.ToDecimal(dgvMenuItems.SelectedRows[0].Cells[3].Value.ToString().Replace(",", "."), System.Globalization.CultureInfo.InvariantCulture);
 
                 int quantity = 0;
                 if (dgvMenuItems.SelectedRows[0].Cells["ItemQty"].Value != null &&
@@ -357,15 +363,16 @@ namespace Cafe101
                     return;
 
                 // Insert the order and get the new OrderID back
-                object result = orderTableAdapter1.InsertOrder(
-                    selectedCustomerID,
-                    1,
-                    DateTime.Now,
-                    "Pending",
-                    "Cash",
-                    orderTotal,
-                    0,
-                    0);
+                object result = testOrderTableAdapter.InsertOrder(
+                     selectedCustomerID,
+                     1,
+                     cmbOrderType.SelectedItem.ToString(),
+                     DateTime.Now,
+                     cmbOrderType.SelectedItem.ToString() == "Event" ? dtpEventDate.Value.ToString("yyyy-MM-dd") : null,
+                     cmbOrderType.SelectedItem.ToString() == "Event" ? dtpEventTime.Value.ToString("HH:mm:ss") : null, "Pending",
+                     "Cash",
+                     orderTotal,
+                     0);
 
                 if (result == null)
                 {
@@ -386,7 +393,7 @@ namespace Cafe101
                     int qty = Convert.ToInt32(row.Cells["Qty"].Value);
                     decimal subtotal = Convert.ToDecimal(row.Cells["Subtotal"].Value.ToString().Replace("R ", "").Trim());
 
-                    itemOrderTableAdapter1.InsertItemOrder(newOrderID, menuItemID, qty, subtotal);
+                    testOrderItemTableAdapter1.InsertItemOrder(newOrderID, menuItemID, qty, subtotal);
                 }
 
                 DeductStock();
@@ -420,33 +427,32 @@ namespace Cafe101
                 int menuItemID = Convert.ToInt32(row.Cells["MenuItemID"].Value);
                 int qtyOrdered = Convert.ToInt32(row.Cells["Qty"].Value);
 
-                // Get ingredients for this menu item using GetData and filter manually
-                DataTable allRecipes = recipeItemTableAdapter1.GetData();
+                DataTable allRecipes = testRecipeTableAdapter1.GetData();
 
                 foreach (DataRow recipe in allRecipes.Rows)
                 {
                     if (Convert.ToInt32(recipe["MenuItemID"]) != menuItemID) continue;
 
                     int ingredientID = Convert.ToInt32(recipe["IngredientID"]);
-                    decimal proportion = Convert.ToDecimal(recipe["Proportion"].ToString().Replace(",", "."), System.Globalization.CultureInfo.InvariantCulture);
-                    decimal amountNeeded = proportion * qtyOrdered;
+                    int quantityNeeded = Convert.ToInt32(recipe["QuantityNeeded"]);
+                    int amountNeeded = quantityNeeded * qtyOrdered;
 
-                    DataTable allStock = ingredientTableAdapter1.GetData();
+                    DataTable allStock = testIngredientTableAdapter1.GetData();
 
                     foreach (DataRow stockRow in allStock.Rows)
                     {
                         if (Convert.ToInt32(stockRow["IngredientID"]) != ingredientID) continue;
 
-                        decimal quantityInStock = Convert.ToDecimal(stockRow["QuantityInStock"]);
+                        int quantityOnHand = Convert.ToInt32(stockRow["QuantityOnHand"]);
 
-                        if (quantityInStock < amountNeeded)
+                        if (quantityOnHand < amountNeeded)
                         {
-                            string itemName = row.Cells["Item"].Value.ToString();
+                            string itemName = row.Cells["ItemName"].Value.ToString();
                             MessageBox.Show(
                                 "Not enough stock to complete this order.\n" +
                                 "Item: " + itemName + "\n" +
                                 "Required: " + amountNeeded + "\n" +
-                                "In Stock: " + quantityInStock,
+                                "In Stock: " + quantityOnHand,
                                 "Insufficient Stock",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
@@ -467,17 +473,17 @@ namespace Cafe101
                 int menuItemID = Convert.ToInt32(row.Cells["MenuItemID"].Value);
                 int qtyOrdered = Convert.ToInt32(row.Cells["Qty"].Value);
 
-                DataTable allRecipes = recipeItemTableAdapter1.GetData();
+                DataTable allRecipes = testRecipeTableAdapter1.GetData();
 
                 foreach (DataRow recipe in allRecipes.Rows)
                 {
                     if (Convert.ToInt32(recipe["MenuItemID"]) != menuItemID) continue;
 
                     int ingredientID = Convert.ToInt32(recipe["IngredientID"]);
-                    decimal proportion = Convert.ToDecimal(recipe["Proportion"].ToString().Replace(",", "."), System.Globalization.CultureInfo.InvariantCulture);
-                    decimal amountToDeduct = proportion * qtyOrdered;
+                    int quantityNeeded = Convert.ToInt32(recipe["QuantityNeeded"]);
+                    int amountToDeduct = quantityNeeded * qtyOrdered;
 
-                    ingredientTableAdapter1.DeductStock(amountToDeduct, ingredientID);
+                    testIngredientTableAdapter1.DeductStock(amountToDeduct, ingredientID);
                 }
             }
         }
@@ -485,10 +491,10 @@ namespace Cafe101
         private int GetNewOrderID()
         {
             int orderID = 0;
-            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(orderTableAdapter1.Connection.ConnectionString))
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(testOrderTableAdapter.Connection.ConnectionString))
             {
                 conn.Open();
-                System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand("SELECT MAX(OrderID) FROM [Order]", conn);
+                System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand("SELECT MAX(OrderID) FROM TestOrder", conn);
                 object result = cmd.ExecuteScalar();
                 if (result != null)
                     orderID = Convert.ToInt32(result);
@@ -518,6 +524,59 @@ namespace Cafe101
             frmMain backMain = new frmMain();
             backMain.Show();
             this.Hide();
+        }
+
+        private void dgvCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            selectedCustomerID = Convert.ToInt32(dgvCustomers.Rows[e.RowIndex].Cells[0].Value);
+            string firstName = dgvCustomers.Rows[e.RowIndex].Cells[1].Value.ToString();
+            string surname = dgvCustomers.Rows[e.RowIndex].Cells[2].Value.ToString();
+
+            txtSearchedName.Text = firstName + " " + surname;
+            dgvCustomers.DataSource = null;
+            dgvCustomers.Visible = false;
+        }
+
+        private void textItemSearch_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(textItemSearch.Text))
+                {
+                    this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
+                    dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;
+                    RebuildQtyColumn();
+                    return;
+                }
+
+                this.testMenuItemsTableAdapter.FillByMenuItems(this.dsCafe101Test.TestMenuItems, textItemSearch.Text);
+                dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;
+                RebuildQtyColumn();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error filtering menu items: " + ex.Message);
+            }
+        }
+
+        private void cmbOrderType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbOrderType.SelectedItem.ToString() == "Event")
+            {
+                dtpEventDate.Visible = true;
+                dtpEventTime.Visible = true;
+                lblEventDate.Visible = true;
+                lblEventTime.Visible = true;
+            }
+            else
+            {
+                dtpEventDate.Visible = false;
+                dtpEventTime.Visible = false;
+                lblEventDate.Visible = false;
+                lblEventTime.Visible = false;
+            }
         }
     }
 }

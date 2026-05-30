@@ -61,7 +61,7 @@
             this.lblFirstName.Location = new System.Drawing.Point(82, 240);
             this.lblFirstName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFirstName.Name = "lblFirstName";
-            this.lblFirstName.Size = new System.Drawing.Size(90, 16);
+            this.lblFirstName.Size = new System.Drawing.Size(95, 16);
             this.lblFirstName.TabIndex = 0;
             this.lblFirstName.Text = "First Name :";
             // 
@@ -72,7 +72,7 @@
             this.lblSurname.Location = new System.Drawing.Point(82, 282);
             this.lblSurname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSurname.Name = "lblSurname";
-            this.lblSurname.Size = new System.Drawing.Size(76, 16);
+            this.lblSurname.Size = new System.Drawing.Size(79, 16);
             this.lblSurname.TabIndex = 1;
             this.lblSurname.Text = "Surname :";
             // 
@@ -83,7 +83,7 @@
             this.lblPhoneNum.Location = new System.Drawing.Point(82, 320);
             this.lblPhoneNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPhoneNum.Name = "lblPhoneNum";
-            this.lblPhoneNum.Size = new System.Drawing.Size(117, 16);
+            this.lblPhoneNum.Size = new System.Drawing.Size(122, 16);
             this.lblPhoneNum.TabIndex = 2;
             this.lblPhoneNum.Text = "Phone Number :";
             // 
@@ -94,7 +94,7 @@
             this.lblEmail.Location = new System.Drawing.Point(82, 367);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(62, 16);
+            this.lblEmail.Size = new System.Drawing.Size(67, 16);
             this.lblEmail.TabIndex = 3;
             this.lblEmail.Text = "Email :  ";
             // 
@@ -105,7 +105,7 @@
             this.lblAddress.Location = new System.Drawing.Point(85, 411);
             this.lblAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(73, 16);
+            this.lblAddress.Size = new System.Drawing.Size(76, 16);
             this.lblAddress.TabIndex = 4;
             this.lblAddress.Text = "Address :";
             // 
@@ -116,7 +116,7 @@
             this.lblPassword.Location = new System.Drawing.Point(82, 522);
             this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(87, 16);
+            this.lblPassword.Size = new System.Drawing.Size(91, 16);
             this.lblPassword.TabIndex = 5;
             this.lblPassword.Text = "Password : ";
             // 
@@ -195,6 +195,7 @@
             this.btnSaveCust.TabIndex = 12;
             this.btnSaveCust.Text = "Save Customer";
             this.btnSaveCust.UseVisualStyleBackColor = true;
+            this.btnSaveCust.Click += new System.EventHandler(this.btnSaveCust_Click);
             // 
             // btnCanel
             // 

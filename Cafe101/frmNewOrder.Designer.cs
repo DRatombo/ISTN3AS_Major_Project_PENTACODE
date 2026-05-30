@@ -39,12 +39,17 @@
             this.btnSearchItem = new System.Windows.Forms.Button();
             this.btnAddToCart = new System.Windows.Forms.Button();
             this.dgvMenuItems = new System.Windows.Forms.DataGridView();
-            this.menuItemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MenuItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prepTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ItemQty = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.menuItemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menuItemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sellingPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costToMakeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.preparationTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testMenuItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsCafe101TestBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsCafe101Test = new Cafe101.dsCafe101Test();
             this.menuItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101 = new Cafe101.dsCafe101();
@@ -60,17 +65,53 @@
             this.orderTableAdapter1 = new Cafe101.dsCafe101TableAdapters.OrderTableAdapter();
             this.itemOrderTableAdapter1 = new Cafe101.dsCafe101TableAdapters.ItemOrderTableAdapter();
             this.recipeItemTableAdapter1 = new Cafe101.dsCafe101TableAdapters.RecipeItemTableAdapter();
-            this.ingredientTableAdapter1 = new Cafe101.dsCafe101TableAdapters.IngredientTableAdapter();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvCustomers = new System.Windows.Forms.DataGridView();
+            this.customerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.surnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testCustomerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.btnBack = new System.Windows.Forms.Button();
+            this.testCustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.testOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customerIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eventDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eventTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paymentMethodDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalAmountDueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalChangeDueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testCustomerTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestCustomerTableAdapter();
+            this.testMenuItemsTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestMenuItemsTableAdapter();
+            this.testOrderTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestOrderTableAdapter();
+            this.testOrderItemTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestOrderItemTableAdapter();
+            this.testRecipeTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestRecipeTableAdapter();
+            this.testIngredientTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestIngredientTableAdapter();
+            this.cmbOrderType = new System.Windows.Forms.ComboBox();
+            this.lblOrderType = new System.Windows.Forms.Label();
+            this.dtpEventDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpEventTime = new System.Windows.Forms.DateTimePicker();
+            this.lblEventDate = new System.Windows.Forms.Label();
+            this.lblEventTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testMenuItemsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101TestBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testOrderBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSearchCust
@@ -78,7 +119,7 @@
             this.lblSearchCust.AutoSize = true;
             this.lblSearchCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearchCust.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblSearchCust.Location = new System.Drawing.Point(261, 18);
+            this.lblSearchCust.Location = new System.Drawing.Point(379, 18);
             this.lblSearchCust.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearchCust.Name = "lblSearchCust";
             this.lblSearchCust.Size = new System.Drawing.Size(145, 18);
@@ -87,17 +128,18 @@
             // 
             // txtSearchedCust
             // 
-            this.txtSearchedCust.Location = new System.Drawing.Point(433, 19);
+            this.txtSearchedCust.Location = new System.Drawing.Point(551, 19);
             this.txtSearchedCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearchedCust.Name = "txtSearchedCust";
             this.txtSearchedCust.Size = new System.Drawing.Size(204, 20);
             this.txtSearchedCust.TabIndex = 1;
+            this.txtSearchedCust.TextChanged += new System.EventHandler(this.txtSearchedCust_TextChanged);
             // 
             // btnSearchCust
             // 
             this.btnSearchCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchCust.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSearchCust.Location = new System.Drawing.Point(677, 12);
+            this.btnSearchCust.Location = new System.Drawing.Point(795, 12);
             this.btnSearchCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSearchCust.Name = "btnSearchCust";
             this.btnSearchCust.Size = new System.Drawing.Size(88, 30);
@@ -111,7 +153,7 @@
             this.lblCustName.AutoSize = true;
             this.lblCustName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCustName.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblCustName.Location = new System.Drawing.Point(353, 75);
+            this.lblCustName.Location = new System.Drawing.Point(471, 75);
             this.lblCustName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCustName.Name = "lblCustName";
             this.lblCustName.Size = new System.Drawing.Size(136, 18);
@@ -120,7 +162,7 @@
             // 
             // txtSearchedName
             // 
-            this.txtSearchedName.Location = new System.Drawing.Point(511, 76);
+            this.txtSearchedName.Location = new System.Drawing.Point(629, 76);
             this.txtSearchedName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearchedName.Name = "txtSearchedName";
             this.txtSearchedName.Size = new System.Drawing.Size(195, 20);
@@ -131,7 +173,7 @@
             this.lblSearchItems.AutoSize = true;
             this.lblSearchItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearchItems.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblSearchItems.Location = new System.Drawing.Point(261, 364);
+            this.lblSearchItems.Location = new System.Drawing.Point(379, 363);
             this.lblSearchItems.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearchItems.Name = "lblSearchItems";
             this.lblSearchItems.Size = new System.Drawing.Size(149, 18);
@@ -140,7 +182,7 @@
             // 
             // textItemSearch
             // 
-            this.textItemSearch.Location = new System.Drawing.Point(438, 365);
+            this.textItemSearch.Location = new System.Drawing.Point(556, 364);
             this.textItemSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textItemSearch.Name = "textItemSearch";
             this.textItemSearch.Size = new System.Drawing.Size(199, 20);
@@ -151,7 +193,7 @@
             // 
             this.btnSearchItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchItem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSearchItem.Location = new System.Drawing.Point(690, 357);
+            this.btnSearchItem.Location = new System.Drawing.Point(808, 356);
             this.btnSearchItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSearchItem.Name = "btnSearchItem";
             this.btnSearchItem.Size = new System.Drawing.Size(88, 33);
@@ -164,7 +206,7 @@
             // 
             this.btnAddToCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddToCart.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnAddToCart.Location = new System.Drawing.Point(433, 619);
+            this.btnAddToCart.Location = new System.Drawing.Point(556, 616);
             this.btnAddToCart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddToCart.Name = "btnAddToCart";
             this.btnAddToCart.Size = new System.Drawing.Size(187, 28);
@@ -178,27 +220,22 @@
             this.dgvMenuItems.AutoGenerateColumns = false;
             this.dgvMenuItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMenuItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.menuItemNameDataGridViewTextBoxColumn,
             this.MenuItemID,
-            this.priceDataGridViewTextBoxColumn,
+            this.ItemQty,
+            this.menuItemIDDataGridViewTextBoxColumn,
+            this.menuItemNameDataGridViewTextBoxColumn,
+            this.sellingPriceDataGridViewTextBoxColumn,
+            this.costToMakeDataGridViewTextBoxColumn,
             this.categoryDataGridViewTextBoxColumn,
-            this.prepTimeDataGridViewTextBoxColumn,
-            this.ItemQty});
-            this.dgvMenuItems.DataSource = this.menuItemsBindingSource;
+            this.preparationTimeDataGridViewTextBoxColumn});
+            this.dgvMenuItems.DataSource = this.testMenuItemsBindingSource;
             this.dgvMenuItems.Location = new System.Drawing.Point(219, 414);
             this.dgvMenuItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvMenuItems.Name = "dgvMenuItems";
             this.dgvMenuItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMenuItems.Size = new System.Drawing.Size(654, 181);
+            this.dgvMenuItems.Size = new System.Drawing.Size(894, 181);
             this.dgvMenuItems.TabIndex = 11;
             this.dgvMenuItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMenuItems_CellContentClick);
-            // 
-            // menuItemNameDataGridViewTextBoxColumn
-            // 
-            this.menuItemNameDataGridViewTextBoxColumn.DataPropertyName = "MenuItemName";
-            this.menuItemNameDataGridViewTextBoxColumn.HeaderText = "Item Name";
-            this.menuItemNameDataGridViewTextBoxColumn.Name = "menuItemNameDataGridViewTextBoxColumn";
-            this.menuItemNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // MenuItemID
             // 
@@ -206,27 +243,6 @@
             this.MenuItemID.HeaderText = "Item ID";
             this.MenuItemID.Name = "MenuItemID";
             this.MenuItemID.ReadOnly = true;
-            // 
-            // priceDataGridViewTextBoxColumn
-            // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // categoryDataGridViewTextBoxColumn
-            // 
-            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
-            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
-            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
-            this.categoryDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // prepTimeDataGridViewTextBoxColumn
-            // 
-            this.prepTimeDataGridViewTextBoxColumn.DataPropertyName = "PrepTime";
-            this.prepTimeDataGridViewTextBoxColumn.HeaderText = "PrepTime";
-            this.prepTimeDataGridViewTextBoxColumn.Name = "prepTimeDataGridViewTextBoxColumn";
-            this.prepTimeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // ItemQty
             // 
@@ -244,6 +260,58 @@
             "10"});
             this.ItemQty.Name = "ItemQty";
             this.ItemQty.ReadOnly = true;
+            // 
+            // menuItemIDDataGridViewTextBoxColumn
+            // 
+            this.menuItemIDDataGridViewTextBoxColumn.DataPropertyName = "MenuItemID";
+            this.menuItemIDDataGridViewTextBoxColumn.HeaderText = "MenuItemID";
+            this.menuItemIDDataGridViewTextBoxColumn.Name = "menuItemIDDataGridViewTextBoxColumn";
+            this.menuItemIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // menuItemNameDataGridViewTextBoxColumn
+            // 
+            this.menuItemNameDataGridViewTextBoxColumn.DataPropertyName = "MenuItemName";
+            this.menuItemNameDataGridViewTextBoxColumn.HeaderText = "MenuItemName";
+            this.menuItemNameDataGridViewTextBoxColumn.Name = "menuItemNameDataGridViewTextBoxColumn";
+            // 
+            // sellingPriceDataGridViewTextBoxColumn
+            // 
+            this.sellingPriceDataGridViewTextBoxColumn.DataPropertyName = "SellingPrice";
+            this.sellingPriceDataGridViewTextBoxColumn.HeaderText = "SellingPrice";
+            this.sellingPriceDataGridViewTextBoxColumn.Name = "sellingPriceDataGridViewTextBoxColumn";
+            // 
+            // costToMakeDataGridViewTextBoxColumn
+            // 
+            this.costToMakeDataGridViewTextBoxColumn.DataPropertyName = "CostToMake";
+            this.costToMakeDataGridViewTextBoxColumn.HeaderText = "CostToMake";
+            this.costToMakeDataGridViewTextBoxColumn.Name = "costToMakeDataGridViewTextBoxColumn";
+            // 
+            // categoryDataGridViewTextBoxColumn
+            // 
+            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
+            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
+            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
+            // 
+            // preparationTimeDataGridViewTextBoxColumn
+            // 
+            this.preparationTimeDataGridViewTextBoxColumn.DataPropertyName = "PreparationTime";
+            this.preparationTimeDataGridViewTextBoxColumn.HeaderText = "PreparationTime";
+            this.preparationTimeDataGridViewTextBoxColumn.Name = "preparationTimeDataGridViewTextBoxColumn";
+            // 
+            // testMenuItemsBindingSource
+            // 
+            this.testMenuItemsBindingSource.DataMember = "TestMenuItems";
+            this.testMenuItemsBindingSource.DataSource = this.dsCafe101TestBindingSource;
+            // 
+            // dsCafe101TestBindingSource
+            // 
+            this.dsCafe101TestBindingSource.DataSource = this.dsCafe101Test;
+            this.dsCafe101TestBindingSource.Position = 0;
+            // 
+            // dsCafe101Test
+            // 
+            this.dsCafe101Test.DataSetName = "dsCafe101Test";
+            this.dsCafe101Test.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // menuItemsBindingSource
             // 
@@ -263,10 +331,10 @@
             // dgvCart
             // 
             this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCart.Location = new System.Drawing.Point(185, 664);
+            this.dgvCart.Location = new System.Drawing.Point(219, 673);
             this.dgvCart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvCart.Name = "dgvCart";
-            this.dgvCart.Size = new System.Drawing.Size(702, 158);
+            this.dgvCart.Size = new System.Drawing.Size(524, 158);
             this.dgvCart.TabIndex = 12;
             // 
             // lblTotalPrice
@@ -274,7 +342,7 @@
             this.lblTotalPrice.AutoSize = true;
             this.lblTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPrice.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblTotalPrice.Location = new System.Drawing.Point(408, 921);
+            this.lblTotalPrice.Location = new System.Drawing.Point(523, 947);
             this.lblTotalPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotalPrice.Name = "lblTotalPrice";
             this.lblTotalPrice.Size = new System.Drawing.Size(60, 18);
@@ -286,7 +354,7 @@
             this.lblAmount.AutoSize = true;
             this.lblAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAmount.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblAmount.Location = new System.Drawing.Point(540, 921);
+            this.lblAmount.Location = new System.Drawing.Point(655, 947);
             this.lblAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAmount.Name = "lblAmount";
             this.lblAmount.Size = new System.Drawing.Size(57, 18);
@@ -297,7 +365,7 @@
             // 
             this.btnConfirmOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmOrder.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnConfirmOrder.Location = new System.Drawing.Point(642, 912);
+            this.btnConfirmOrder.Location = new System.Drawing.Point(757, 938);
             this.btnConfirmOrder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnConfirmOrder.Name = "btnConfirmOrder";
             this.btnConfirmOrder.Size = new System.Drawing.Size(191, 28);
@@ -310,7 +378,7 @@
             // 
             this.btnDecreaseQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDecreaseQuantity.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnDecreaseQuantity.Location = new System.Drawing.Point(239, 843);
+            this.btnDecreaseQuantity.Location = new System.Drawing.Point(354, 869);
             this.btnDecreaseQuantity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDecreaseQuantity.Name = "btnDecreaseQuantity";
             this.btnDecreaseQuantity.Size = new System.Drawing.Size(242, 28);
@@ -323,7 +391,7 @@
             // 
             this.btnRemoveItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemoveItem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnRemoveItem.Location = new System.Drawing.Point(655, 843);
+            this.btnRemoveItem.Location = new System.Drawing.Point(770, 869);
             this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnRemoveItem.Name = "btnRemoveItem";
             this.btnRemoveItem.Size = new System.Drawing.Size(187, 28);
@@ -356,10 +424,6 @@
             // 
             this.recipeItemTableAdapter1.ClearBeforeFill = true;
             // 
-            // ingredientTableAdapter1
-            // 
-            this.ingredientTableAdapter1.ClearBeforeFill = true;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
@@ -371,20 +435,64 @@
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // dataGridView1
+            // dgvCustomers
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(197, 115);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(699, 222);
-            this.dataGridView1.TabIndex = 19;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dgvCustomers.AutoGenerateColumns = false;
+            this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.customerIDDataGridViewTextBoxColumn,
+            this.firstNameDataGridViewTextBoxColumn,
+            this.surnameDataGridViewTextBoxColumn,
+            this.addressDataGridViewTextBoxColumn,
+            this.emailDataGridViewTextBoxColumn});
+            this.dgvCustomers.DataSource = this.testCustomerBindingSource1;
+            this.dgvCustomers.Location = new System.Drawing.Point(334, 117);
+            this.dgvCustomers.Name = "dgvCustomers";
+            this.dgvCustomers.Size = new System.Drawing.Size(665, 222);
+            this.dgvCustomers.TabIndex = 19;
+            this.dgvCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellClick);
+            // 
+            // customerIDDataGridViewTextBoxColumn
+            // 
+            this.customerIDDataGridViewTextBoxColumn.DataPropertyName = "CustomerID";
+            this.customerIDDataGridViewTextBoxColumn.HeaderText = "CustomerID";
+            this.customerIDDataGridViewTextBoxColumn.Name = "customerIDDataGridViewTextBoxColumn";
+            this.customerIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // firstNameDataGridViewTextBoxColumn
+            // 
+            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
+            // 
+            // surnameDataGridViewTextBoxColumn
+            // 
+            this.surnameDataGridViewTextBoxColumn.DataPropertyName = "Surname";
+            this.surnameDataGridViewTextBoxColumn.HeaderText = "Surname";
+            this.surnameDataGridViewTextBoxColumn.Name = "surnameDataGridViewTextBoxColumn";
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            // 
+            // testCustomerBindingSource1
+            // 
+            this.testCustomerBindingSource1.DataMember = "TestCustomer";
+            this.testCustomerBindingSource1.DataSource = this.dsCafe101TestBindingSource;
             // 
             // btnBack
             // 
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnBack.Location = new System.Drawing.Point(251, 916);
+            this.btnBack.Location = new System.Drawing.Point(366, 942);
             this.btnBack.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(100, 28);
@@ -393,15 +501,184 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // testCustomerBindingSource
+            // 
+            this.testCustomerBindingSource.DataMember = "TestCustomer";
+            this.testCustomerBindingSource.DataSource = this.dsCafe101TestBindingSource;
+            // 
+            // testOrderBindingSource
+            // 
+            this.testOrderBindingSource.DataMember = "TestOrder";
+            this.testOrderBindingSource.DataSource = this.dsCafe101TestBindingSource;
+            // 
+            // orderIDDataGridViewTextBoxColumn
+            // 
+            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn.HeaderText = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
+            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // customerIDDataGridViewTextBoxColumn1
+            // 
+            this.customerIDDataGridViewTextBoxColumn1.DataPropertyName = "CustomerID";
+            this.customerIDDataGridViewTextBoxColumn1.HeaderText = "CustomerID";
+            this.customerIDDataGridViewTextBoxColumn1.Name = "customerIDDataGridViewTextBoxColumn1";
+            // 
+            // employeeIDDataGridViewTextBoxColumn
+            // 
+            this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
+            this.employeeIDDataGridViewTextBoxColumn.HeaderText = "EmployeeID";
+            this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
+            // 
+            // orderTypeDataGridViewTextBoxColumn
+            // 
+            this.orderTypeDataGridViewTextBoxColumn.DataPropertyName = "OrderType";
+            this.orderTypeDataGridViewTextBoxColumn.HeaderText = "OrderType";
+            this.orderTypeDataGridViewTextBoxColumn.Name = "orderTypeDataGridViewTextBoxColumn";
+            // 
+            // orderDateTimeDataGridViewTextBoxColumn
+            // 
+            this.orderDateTimeDataGridViewTextBoxColumn.DataPropertyName = "OrderDateTime";
+            this.orderDateTimeDataGridViewTextBoxColumn.HeaderText = "OrderDateTime";
+            this.orderDateTimeDataGridViewTextBoxColumn.Name = "orderDateTimeDataGridViewTextBoxColumn";
+            // 
+            // eventDateDataGridViewTextBoxColumn
+            // 
+            this.eventDateDataGridViewTextBoxColumn.DataPropertyName = "EventDate";
+            this.eventDateDataGridViewTextBoxColumn.HeaderText = "EventDate";
+            this.eventDateDataGridViewTextBoxColumn.Name = "eventDateDataGridViewTextBoxColumn";
+            // 
+            // eventTimeDataGridViewTextBoxColumn
+            // 
+            this.eventTimeDataGridViewTextBoxColumn.DataPropertyName = "EventTime";
+            this.eventTimeDataGridViewTextBoxColumn.HeaderText = "EventTime";
+            this.eventTimeDataGridViewTextBoxColumn.Name = "eventTimeDataGridViewTextBoxColumn";
+            // 
+            // orderStatusDataGridViewTextBoxColumn
+            // 
+            this.orderStatusDataGridViewTextBoxColumn.DataPropertyName = "OrderStatus";
+            this.orderStatusDataGridViewTextBoxColumn.HeaderText = "OrderStatus";
+            this.orderStatusDataGridViewTextBoxColumn.Name = "orderStatusDataGridViewTextBoxColumn";
+            // 
+            // paymentMethodDataGridViewTextBoxColumn
+            // 
+            this.paymentMethodDataGridViewTextBoxColumn.DataPropertyName = "PaymentMethod";
+            this.paymentMethodDataGridViewTextBoxColumn.HeaderText = "PaymentMethod";
+            this.paymentMethodDataGridViewTextBoxColumn.Name = "paymentMethodDataGridViewTextBoxColumn";
+            // 
+            // totalAmountDueDataGridViewTextBoxColumn
+            // 
+            this.totalAmountDueDataGridViewTextBoxColumn.DataPropertyName = "TotalAmountDue";
+            this.totalAmountDueDataGridViewTextBoxColumn.HeaderText = "TotalAmountDue";
+            this.totalAmountDueDataGridViewTextBoxColumn.Name = "totalAmountDueDataGridViewTextBoxColumn";
+            // 
+            // totalChangeDueDataGridViewTextBoxColumn
+            // 
+            this.totalChangeDueDataGridViewTextBoxColumn.DataPropertyName = "TotalChangeDue";
+            this.totalChangeDueDataGridViewTextBoxColumn.HeaderText = "TotalChangeDue";
+            this.totalChangeDueDataGridViewTextBoxColumn.Name = "totalChangeDueDataGridViewTextBoxColumn";
+            // 
+            // testCustomerTableAdapter
+            // 
+            this.testCustomerTableAdapter.ClearBeforeFill = true;
+            // 
+            // testMenuItemsTableAdapter
+            // 
+            this.testMenuItemsTableAdapter.ClearBeforeFill = true;
+            // 
+            // testOrderTableAdapter
+            // 
+            this.testOrderTableAdapter.ClearBeforeFill = true;
+            // 
+            // testOrderItemTableAdapter1
+            // 
+            this.testOrderItemTableAdapter1.ClearBeforeFill = true;
+            // 
+            // testRecipeTableAdapter1
+            // 
+            this.testRecipeTableAdapter1.ClearBeforeFill = true;
+            // 
+            // testIngredientTableAdapter1
+            // 
+            this.testIngredientTableAdapter1.ClearBeforeFill = true;
+            // 
+            // cmbOrderType
+            // 
+            this.cmbOrderType.FormattingEnabled = true;
+            this.cmbOrderType.Items.AddRange(new object[] {
+            "Regular",
+            "Event"});
+            this.cmbOrderType.Location = new System.Drawing.Point(1010, 687);
+            this.cmbOrderType.Name = "cmbOrderType";
+            this.cmbOrderType.Size = new System.Drawing.Size(204, 21);
+            this.cmbOrderType.TabIndex = 21;
+            this.cmbOrderType.SelectedIndexChanged += new System.EventHandler(this.cmbOrderType_SelectedIndexChanged);
+            // 
+            // lblOrderType
+            // 
+            this.lblOrderType.AutoSize = true;
+            this.lblOrderType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrderType.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblOrderType.Location = new System.Drawing.Point(792, 686);
+            this.lblOrderType.Name = "lblOrderType";
+            this.lblOrderType.Size = new System.Drawing.Size(149, 18);
+            this.lblOrderType.TabIndex = 22;
+            this.lblOrderType.Text = "Select Order Type:";
+            // 
+            // dtpEventDate
+            // 
+            this.dtpEventDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEventDate.Location = new System.Drawing.Point(1014, 743);
+            this.dtpEventDate.Name = "dtpEventDate";
+            this.dtpEventDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpEventDate.TabIndex = 23;
+            // 
+            // dtpEventTime
+            // 
+            this.dtpEventTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpEventTime.Location = new System.Drawing.Point(1014, 797);
+            this.dtpEventTime.Name = "dtpEventTime";
+            this.dtpEventTime.ShowUpDown = true;
+            this.dtpEventTime.Size = new System.Drawing.Size(200, 20);
+            this.dtpEventTime.TabIndex = 24;
+            // 
+            // lblEventDate
+            // 
+            this.lblEventDate.AutoSize = true;
+            this.lblEventDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEventDate.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblEventDate.Location = new System.Drawing.Point(841, 745);
+            this.lblEventDate.Name = "lblEventDate";
+            this.lblEventDate.Size = new System.Drawing.Size(95, 18);
+            this.lblEventDate.TabIndex = 25;
+            this.lblEventDate.Text = "Event Date:";
+            // 
+            // lblEventTime
+            // 
+            this.lblEventTime.AutoSize = true;
+            this.lblEventTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEventTime.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblEventTime.Location = new System.Drawing.Point(841, 799);
+            this.lblEventTime.Name = "lblEventTime";
+            this.lblEventTime.Size = new System.Drawing.Size(97, 18);
+            this.lblEventTime.TabIndex = 26;
+            this.lblEventTime.Text = "Event Time:";
+            // 
             // frmNewOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(1066, 999);
+            this.ClientSize = new System.Drawing.Size(1312, 999);
+            this.Controls.Add(this.lblEventTime);
+            this.Controls.Add(this.lblEventDate);
+            this.Controls.Add(this.dtpEventTime);
+            this.Controls.Add(this.dtpEventDate);
+            this.Controls.Add(this.lblOrderType);
+            this.Controls.Add(this.cmbOrderType);
             this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvCustomers);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnRemoveItem);
             this.Controls.Add(this.btnDecreaseQuantity);
@@ -427,12 +704,18 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmNewOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testMenuItemsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101TestBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testOrderBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -460,20 +743,56 @@
         private dsCafe101TableAdapters.OrderTableAdapter orderTableAdapter;
         private dsCafe101TableAdapters.MenuItemsTableAdapter menuItemsTableAdapter1;
         private dsCafe101TableAdapters.CustomerTableAdapter customerTableAdapter1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn menuItemNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn MenuItemID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prepTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn ItemQty;
         private System.Windows.Forms.Button btnDecreaseQuantity;
         private System.Windows.Forms.Button btnRemoveItem;
         private dsCafe101TableAdapters.OrderTableAdapter orderTableAdapter1;
         private dsCafe101TableAdapters.ItemOrderTableAdapter itemOrderTableAdapter1;
         private dsCafe101TableAdapters.RecipeItemTableAdapter recipeItemTableAdapter1;
-        private dsCafe101TableAdapters.IngredientTableAdapter ingredientTableAdapter1;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvCustomers;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.BindingSource dsCafe101TestBindingSource;
+        private dsCafe101Test dsCafe101Test;
+        private System.Windows.Forms.BindingSource testCustomerBindingSource;
+        private dsCafe101TestTableAdapters.TestCustomerTableAdapter testCustomerTableAdapter;
+        private System.Windows.Forms.BindingSource testMenuItemsBindingSource;
+        private dsCafe101TestTableAdapters.TestMenuItemsTableAdapter testMenuItemsTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn menuItemIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn menuItemNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sellingPriceDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn costToMakeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn preparationTimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource testOrderBindingSource;
+        private dsCafe101TestTableAdapters.TestOrderTableAdapter testOrderTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customerIDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderDateTimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn eventDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn eventTimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderStatusDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn paymentMethodDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalAmountDueDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalChangeDueDataGridViewTextBoxColumn;
+        private dsCafe101TestTableAdapters.TestOrderItemTableAdapter testOrderItemTableAdapter1;
+        private dsCafe101TestTableAdapters.TestRecipeTableAdapter testRecipeTableAdapter1;
+        private dsCafe101TestTableAdapters.TestIngredientTableAdapter testIngredientTableAdapter1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customerIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn surnameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource testCustomerBindingSource1;
+        private System.Windows.Forms.ComboBox cmbOrderType;
+        private System.Windows.Forms.Label lblOrderType;
+        private System.Windows.Forms.DateTimePicker dtpEventDate;
+        private System.Windows.Forms.DateTimePicker dtpEventTime;
+        private System.Windows.Forms.Label lblEventDate;
+        private System.Windows.Forms.Label lblEventTime;
     }
 }

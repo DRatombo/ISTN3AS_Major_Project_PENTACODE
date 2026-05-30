@@ -1,6 +1,6 @@
 ﻿namespace Cafe101
 {
-    partial class ManageCustomers
+    partial class frmProductPopularity
     {
         /// <summary>
         /// Required designer variable.
@@ -30,13 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // ManageCustomers
+            // frmProductPopularity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "ManageCustomers";
-            this.Text = "Manage Customers";
+            this.Name = "frmProductPopularity";
+            this.Text = "Product Popularity";
             this.ResumeLayout(false);
 
         }

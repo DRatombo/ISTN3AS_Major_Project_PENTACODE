@@ -16,5 +16,12 @@ namespace Cafe101
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmMain mainForm = new frmMain();
+            mainForm.Show();
+            this.Hide();
+        }
     }
 }

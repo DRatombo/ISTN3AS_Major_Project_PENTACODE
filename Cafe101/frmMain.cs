@@ -91,5 +91,33 @@ namespace Cafe101
             backlogin.Show();
             this.Hide();
         }
+
+        private void manageCustomersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageCustomers frmCust = new frmManageCustomers();
+            frmCust.Show();
+            this.Hide();
+        }
+
+        private void salesReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSalesReport frmReport = new frmSalesReport();
+            frmReport.Show();
+            this.Hide();
+        }
+
+        private void popularityAnalyticsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmPopularProduct frmAnalytics = new frmPopularProduct(); 
+            frmAnalytics.Show();
+            this.Hide();
+        }
+
+        private void lowStockReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmLowStock stock = new frmLowStock();  
+            stock.Show();
+            this.Hide();
+        }
     }
 }

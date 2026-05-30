@@ -367,6 +367,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(1066, 691);
             this.Controls.Add(this.pictureBox1);
@@ -391,6 +392,7 @@
             this.Name = "frmNewOrder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Order";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmNewOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsBindingSource)).EndInit();

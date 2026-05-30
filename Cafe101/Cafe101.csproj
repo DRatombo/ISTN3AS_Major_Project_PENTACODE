@@ -73,6 +73,12 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLowStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLowStock.Designer.cs">
+      <DependentUpon>frmLowStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,12 @@
     </Compile>
     <Compile Include="frmManageCashiers.Designer.cs">
       <DependentUpon>frmManageCashiers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageCustomers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageCustomers.Designer.cs">
+      <DependentUpon>frmManageCustomers.cs</DependentUpon>
     </Compile>
     <Compile Include="frmManageIngredients.cs">
       <SubType>Form</SubType>
@@ -115,6 +127,18 @@
     <Compile Include="frmNewOrder.Designer.cs">
       <DependentUpon>frmNewOrder.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPopularProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPopularProduct.Designer.cs">
+      <DependentUpon>frmPopularProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSalesReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSalesReport.Designer.cs">
+      <DependentUpon>frmSalesReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAddCustomer.resx">
@@ -126,11 +150,17 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmLowStock.resx">
+      <DependentUpon>frmLowStock.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmManageCashiers.resx">
       <DependentUpon>frmManageCashiers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageCustomers.resx">
+      <DependentUpon>frmManageCustomers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmManageIngredients.resx">
       <DependentUpon>frmManageIngredients.cs</DependentUpon>
@@ -143,6 +173,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNewOrder.resx">
       <DependentUpon>frmNewOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPopularProduct.resx">
+      <DependentUpon>frmPopularProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSalesReport.resx">
+      <DependentUpon>frmSalesReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

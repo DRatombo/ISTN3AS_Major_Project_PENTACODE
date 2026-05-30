@@ -91,5 +91,12 @@ namespace Cafe101
             backlogin.Show();
             this.Hide();
         }
+
+        private void reportsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+           /* frmAnalytics reports = new frmAnalytics();
+            reports.Show();
+            this.Hide();*/
+        }
     }
 }

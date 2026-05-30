@@ -90,6 +90,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
             this.pictureBox1.Location = new System.Drawing.Point(34, 356);
             this.pictureBox1.Name = "pictureBox1";
@@ -111,7 +112,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.Name = "frmManageCustomers";
-            this.Text = "frmManageCustomers";
+            this.Text = "Manage Customers";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

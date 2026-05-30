@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -32,6 +32,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,11 +50,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="DBConnection.cs" />
+    <Compile Include="dsCafe101.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsCafe101.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsLogin.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsLogin.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frmCheckout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="frmCheckout.Designer.cs">
+      <DependentUpon>frmCheckout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddCustomer.Designer.cs">
+      <DependentUpon>frmAddCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageCashiers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageCashiers.Designer.cs">
+      <DependentUpon>frmManageCashiers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageIngredients.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageIngredients.Designer.cs">
+      <DependentUpon>frmManageIngredients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageMenuItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageMenuItems.Designer.cs">
+      <DependentUpon>frmManageMenuItems.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageRecipes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageRecipes.Designer.cs">
+      <DependentUpon>frmManageRecipes.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAnalytics.cs">
       <SubType>Form</SubType>
@@ -89,6 +146,29 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLowStock.resx">
       <DependentUpon>frmLowStock.cs</DependentUpon>
+    <EmbeddedResource Include="frmAddCustomer.resx">
+      <DependentUpon>frmAddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCheckout.resx">
+      <DependentUpon>frmCheckout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageCashiers.resx">
+      <DependentUpon>frmManageCashiers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageIngredients.resx">
+      <DependentUpon>frmManageIngredients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageMenuItems.resx">
+      <DependentUpon>frmManageMenuItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageRecipes.resx">
+      <DependentUpon>frmManageRecipes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNewOrder.resx">
       <DependentUpon>frmNewOrder.cs</DependentUpon>
@@ -101,17 +181,40 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
+    <None Include="dsCafe101.xsc">
+      <DependentUpon>dsCafe101.xsd</DependentUpon>
+    </None>
+    <None Include="dsCafe101.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsCafe101.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dsCafe101.xss">
+      <DependentUpon>dsCafe101.xsd</DependentUpon>
+    </None>
+    <None Include="dsLogin.xsc">
+      <DependentUpon>dsLogin.xsd</DependentUpon>
+    </None>
+    <None Include="dsLogin.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsLogin.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dsLogin.xss">
+      <DependentUpon>dsLogin.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -120,6 +223,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Resources\Login.jpg.jpeg" />
+    <Content Include="Resources\Logo.jpg.jpeg" />
+    <Content Include="Resources\Show password.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

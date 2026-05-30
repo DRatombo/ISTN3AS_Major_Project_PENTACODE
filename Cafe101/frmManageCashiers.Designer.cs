@@ -21,8 +21,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblMain = new System.Windows.Forms.TableLayoutPanel();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.grpCashierDetails = new System.Windows.Forms.GroupBox();
@@ -46,15 +46,15 @@
             this.surnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cashierBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101 = new Cafe101.dsCafe101();
             this.pnlRightButtons = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnAddCashier = new System.Windows.Forms.Button();
             this.btnUpdateCashier = new System.Windows.Forms.Button();
             this.btnResetPassword = new System.Windows.Forms.Button();
-            this.btnRefreshCashiers = new System.Windows.Forms.Button();
+            this.btnAddCashier = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.cashierTableAdapter = new Cafe101.dsCafe101TableAdapters.CashierTableAdapter();
+            this.button1 = new System.Windows.Forms.Button();
             this.tblMain.SuspendLayout();
             this.pnlLeft.SuspendLayout();
             this.grpCashierDetails.SuspendLayout();
@@ -276,31 +276,31 @@
             // dgvCashiers
             // 
             this.dgvCashiers.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvCashiers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvCashiers.BackgroundColor = System.Drawing.Color.MidnightBlue;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvCashiers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvCashiers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCashiers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cashierIDDataGridViewTextBoxColumn,
             this.firstNameDataGridViewTextBoxColumn,
             this.surnameDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn,
-            this.addressDataGridViewTextBoxColumn,
-            this.passwordDataGridViewTextBoxColumn});
+            this.addressDataGridViewTextBoxColumn});
             this.dgvCashiers.DataSource = this.cashierBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCashiers.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCashiers.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvCashiers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCashiers.EnableHeadersVisualStyles = false;
             this.dgvCashiers.GridColor = System.Drawing.Color.White;
@@ -359,15 +359,6 @@
             this.addressDataGridViewTextBoxColumn.ReadOnly = true;
             this.addressDataGridViewTextBoxColumn.Width = 125;
             // 
-            // passwordDataGridViewTextBoxColumn
-            // 
-            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
-            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
-            this.passwordDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
-            this.passwordDataGridViewTextBoxColumn.ReadOnly = true;
-            this.passwordDataGridViewTextBoxColumn.Width = 125;
-            // 
             // cashierBindingSource
             // 
             this.cashierBindingSource.DataMember = "Cashier";
@@ -384,30 +375,14 @@
             this.pnlRightButtons.Controls.Add(this.btnAddCashier);
             this.pnlRightButtons.Controls.Add(this.btnUpdateCashier);
             this.pnlRightButtons.Controls.Add(this.btnResetPassword);
-            this.pnlRightButtons.Controls.Add(this.btnRefreshCashiers);
+            this.pnlRightButtons.Controls.Add(this.btnRefresh);
+            this.pnlRightButtons.Controls.Add(this.button1);
             this.pnlRightButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlRightButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.pnlRightButtons.Location = new System.Drawing.Point(3, 500);
             this.pnlRightButtons.Name = "pnlRightButtons";
             this.pnlRightButtons.Padding = new System.Windows.Forms.Padding(6);
             this.pnlRightButtons.Size = new System.Drawing.Size(643, 58);
             this.pnlRightButtons.TabIndex = 1;
-            // 
-            // btnAddCashier
-            // 
-            this.btnAddCashier.AutoSize = true;
-            this.btnAddCashier.BackColor = System.Drawing.Color.White;
-            this.btnAddCashier.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnAddCashier.FlatAppearance.BorderSize = 2;
-            this.btnAddCashier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddCashier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnAddCashier.Location = new System.Drawing.Point(512, 9);
-            this.btnAddCashier.Name = "btnAddCashier";
-            this.btnAddCashier.Size = new System.Drawing.Size(116, 34);
-            this.btnAddCashier.TabIndex = 0;
-            this.btnAddCashier.Text = "Add Cashier";
-            this.btnAddCashier.UseVisualStyleBackColor = false;
-            this.btnAddCashier.Click += new System.EventHandler(this.btnAddCashier_Click);
             // 
             // btnUpdateCashier
             // 
@@ -417,7 +392,7 @@
             this.btnUpdateCashier.FlatAppearance.BorderSize = 2;
             this.btnUpdateCashier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateCashier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnUpdateCashier.Location = new System.Drawing.Point(390, 9);
+            this.btnUpdateCashier.Location = new System.Drawing.Point(131, 9);
             this.btnUpdateCashier.Name = "btnUpdateCashier";
             this.btnUpdateCashier.Size = new System.Drawing.Size(116, 34);
             this.btnUpdateCashier.TabIndex = 1;
@@ -433,7 +408,7 @@
             this.btnResetPassword.FlatAppearance.BorderSize = 2;
             this.btnResetPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnResetPassword.Location = new System.Drawing.Point(243, 9);
+            this.btnResetPassword.Location = new System.Drawing.Point(253, 9);
             this.btnResetPassword.Name = "btnResetPassword";
             this.btnResetPassword.Size = new System.Drawing.Size(141, 34);
             this.btnResetPassword.TabIndex = 2;
@@ -441,25 +416,56 @@
             this.btnResetPassword.UseVisualStyleBackColor = false;
             this.btnResetPassword.Click += new System.EventHandler(this.btnResetPassword_Click);
             // 
-            // btnRefreshCashiers
+            // btnAddCashier
             // 
-            this.btnRefreshCashiers.AutoSize = true;
-            this.btnRefreshCashiers.BackColor = System.Drawing.Color.White;
-            this.btnRefreshCashiers.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnRefreshCashiers.FlatAppearance.BorderSize = 2;
-            this.btnRefreshCashiers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefreshCashiers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnRefreshCashiers.Location = new System.Drawing.Point(153, 9);
-            this.btnRefreshCashiers.Name = "btnRefreshCashiers";
-            this.btnRefreshCashiers.Size = new System.Drawing.Size(84, 34);
-            this.btnRefreshCashiers.TabIndex = 3;
-            this.btnRefreshCashiers.Text = "Refresh";
-            this.btnRefreshCashiers.UseVisualStyleBackColor = false;
-            this.btnRefreshCashiers.Click += new System.EventHandler(this.btnRefreshCashiers_Click);
+            this.btnAddCashier.AutoSize = true;
+            this.btnAddCashier.BackColor = System.Drawing.Color.White;
+            this.btnAddCashier.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnAddCashier.FlatAppearance.BorderSize = 2;
+            this.btnAddCashier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddCashier.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnAddCashier.Location = new System.Drawing.Point(9, 9);
+            this.btnAddCashier.Name = "btnAddCashier";
+            this.btnAddCashier.Size = new System.Drawing.Size(116, 37);
+            this.btnAddCashier.TabIndex = 0;
+            this.btnAddCashier.Text = "Add Cashier";
+            this.btnAddCashier.UseVisualStyleBackColor = false;
+            this.btnAddCashier.Click += new System.EventHandler(this.btnAddCashier_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.AutoSize = true;
+            this.btnRefresh.BackColor = System.Drawing.Color.White;
+            this.btnRefresh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnRefresh.FlatAppearance.BorderSize = 2;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnRefresh.Location = new System.Drawing.Point(400, 9);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(114, 37);
+            this.btnRefresh.TabIndex = 10;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefreshCashiers_Click);
             // 
             // cashierTableAdapter
             // 
             this.cashierTableAdapter.ClearBeforeFill = true;
+            // 
+            // button1
+            // 
+            this.button1.AutoSize = true;
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.button1.FlatAppearance.BorderSize = 2;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.button1.Location = new System.Drawing.Point(520, 9);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 37);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Back";
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // frmManageCashiers
             // 
@@ -515,7 +521,6 @@
         private System.Windows.Forms.Button btnAddCashier;
         private System.Windows.Forms.Button btnUpdateCashier;
         private System.Windows.Forms.Button btnResetPassword;
-        private System.Windows.Forms.Button btnRefreshCashiers;
         private System.Windows.Forms.DataGridView dgvCashiers;
         private Cafe101.dsCafe101 dsCafe101;
         private System.Windows.Forms.BindingSource cashierBindingSource;
@@ -525,6 +530,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn surnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button button1;
     }
 }

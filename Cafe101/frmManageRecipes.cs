@@ -223,5 +223,12 @@ namespace RestaurantSystem
         {
             // Optional
         }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Form form = new frmMain();
+            form.Show();
+            this.Close();
+        }
     }
 }

@@ -184,6 +184,13 @@ namespace RestaurantSystem
         {
             // optional
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form form = new frmMain();
+            form.Show();
+            this.Close();
+        }
     }
 
     // DbHelper class is already defined elsewhere – but if not, this is the fallback.

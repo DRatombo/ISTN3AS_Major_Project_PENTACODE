@@ -207,6 +207,18 @@ namespace Cafe101
             LoadMenuItems();
             ClearFields();
         }
+
+        private void grpMenuItemDetails_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            Form form = new frmMain();
+            form.Show();
+            this.Close();
+        }
     }
 
     // DbHelper class is already defined elsewhere; if not, this is the fallback.

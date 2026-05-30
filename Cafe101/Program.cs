@@ -17,9 +17,9 @@ namespace Cafe101
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
+            Application.Run(new frmMain());
             //Application.Run(new frmNewOrder());
-            Application.Run(new frmLogin());
+            //Application.Run(new frmLogin());
             //Application.Run(new frmCheckout());
             //Application.Run(new frmManageMenuItems());
         }

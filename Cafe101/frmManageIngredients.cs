@@ -200,5 +200,12 @@ namespace Cafe101
             LoadIngredients();
             ClearFields();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Form form = new frmMain();
+            form.Show();
+            this.Close();
+        }
     }
 }

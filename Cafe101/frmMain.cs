@@ -38,6 +38,7 @@ namespace Cafe101
             frmManageMenuItems frmMenu = new frmManageMenuItems();
            // frmMenu.MdiParent = this;
             frmMenu.Show();
+            this.Hide();
         }
 
         private void mnuIngredients_Click(object sender, EventArgs e)
@@ -53,6 +54,7 @@ namespace Cafe101
             frmManageIngredients frmIng = new frmManageIngredients();
          //   frmIng.MdiParent = this;
             frmIng.Show();
+            this.Hide();
         }
 
         private void mnuRecipes_Click(object sender, EventArgs e)
@@ -68,6 +70,7 @@ namespace Cafe101
             frmManageRecipes frmRecipe = new frmManageRecipes();
            // frmRecipe.MdiParent = this;
             frmRecipe.Show();
+            this.Hide();
         }
 
         private void mnuCashiers_Click(object sender, EventArgs e)
@@ -83,6 +86,17 @@ namespace Cafe101
             frmManageCashiers frmCash = new frmManageCashiers();
           //  frmCash.MdiParent = this;
             frmCash.Show();
+            this.Hide();
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

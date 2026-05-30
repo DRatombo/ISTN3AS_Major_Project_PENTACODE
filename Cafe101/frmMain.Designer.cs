@@ -36,11 +36,11 @@
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.managementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMenuItems = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuIngredients = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRecipes = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCashiers = new System.Windows.Forms.ToolStripMenuItem();
+            this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip2.SuspendLayout();
@@ -77,6 +77,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // menuStrip2
             // 
@@ -124,39 +125,39 @@
             this.managementToolStripMenuItem.Size = new System.Drawing.Size(111, 24);
             this.managementToolStripMenuItem.Text = "Management";
             // 
-            // logOutToolStripMenuItem
-            // 
-            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
-            this.logOutToolStripMenuItem.Text = "LogOut";
-            // 
             // mnuMenuItems
             // 
             this.mnuMenuItems.Name = "mnuMenuItems";
-            this.mnuMenuItems.Size = new System.Drawing.Size(224, 26);
+            this.mnuMenuItems.Size = new System.Drawing.Size(169, 26);
             this.mnuMenuItems.Text = "Menu Items";
             this.mnuMenuItems.Click += new System.EventHandler(this.mnuMenuItems_Click);
             // 
             // mnuIngredients
             // 
             this.mnuIngredients.Name = "mnuIngredients";
-            this.mnuIngredients.Size = new System.Drawing.Size(224, 26);
+            this.mnuIngredients.Size = new System.Drawing.Size(169, 26);
             this.mnuIngredients.Text = "Ingredients";
             this.mnuIngredients.Click += new System.EventHandler(this.mnuIngredients_Click);
             // 
             // mnuRecipes
             // 
             this.mnuRecipes.Name = "mnuRecipes";
-            this.mnuRecipes.Size = new System.Drawing.Size(224, 26);
+            this.mnuRecipes.Size = new System.Drawing.Size(169, 26);
             this.mnuRecipes.Text = "Recipe";
             this.mnuRecipes.Click += new System.EventHandler(this.mnuRecipes_Click);
             // 
             // mnuCashiers
             // 
             this.mnuCashiers.Name = "mnuCashiers";
-            this.mnuCashiers.Size = new System.Drawing.Size(224, 26);
+            this.mnuCashiers.Size = new System.Drawing.Size(169, 26);
             this.mnuCashiers.Text = "Cashiers";
             this.mnuCashiers.Click += new System.EventHandler(this.mnuCashiers_Click);
+            // 
+            // logOutToolStripMenuItem
+            // 
+            this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
+            this.logOutToolStripMenuItem.Text = "LogOut";
             // 
             // frmMain
             // 
@@ -171,6 +172,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmMain";
             this.Text = "Main";
+            this.Load += new System.EventHandler(this.frmMain_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

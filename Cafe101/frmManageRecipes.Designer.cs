@@ -34,21 +34,22 @@
             this.btnRemoveLink = new System.Windows.Forms.Button();
             this.btnRefreshRecipe = new System.Windows.Forms.Button();
             this.dgvRecipe = new System.Windows.Forms.DataGridView();
-            this.dsCafe101 = new Cafe101.dsCafe101();
-            this.recipeItemTableAdapter = new Cafe101.dsCafe101TableAdapters.RecipeItemTableAdapter();
-            this.recipeItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ingredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.ingredientTableAdapter = new Cafe101.dsCafe101TableAdapters.IngredientTableAdapter();
-            this.recipeItemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.menuItemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ingredientIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.proportionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.recipeItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsCafe101 = new Cafe101.dsCafe101();
+            this.recipeItemTableAdapter = new Cafe101.dsCafe101TableAdapters.RecipeItemTableAdapter();
+            this.ingredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ingredientTableAdapter = new Cafe101.dsCafe101TableAdapters.IngredientTableAdapter();
+            this.recipeItemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.btnBack = new System.Windows.Forms.Button();
             this.tblMain.SuspendLayout();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecipe)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipeItemBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipeItemBindingSource1)).BeginInit();
             this.SuspendLayout();
@@ -74,10 +75,11 @@
             this.pnlTop.ColumnCount = 6;
             this.pnlTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.pnlTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
-            this.pnlTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.pnlTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113F));
             this.pnlTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.pnlTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113F));
             this.pnlTop.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.pnlTop.Controls.Add(this.btnBack, 5, 0);
             this.pnlTop.Controls.Add(this.lblMenuItem, 0, 0);
             this.pnlTop.Controls.Add(this.cboMenuItems, 1, 0);
             this.pnlTop.Controls.Add(this.lblIngredient, 0, 1);
@@ -86,9 +88,9 @@
             this.pnlTop.Controls.Add(this.txtDisplayUnit, 3, 1);
             this.pnlTop.Controls.Add(this.lblQuantity, 4, 1);
             this.pnlTop.Controls.Add(this.numQuantity, 5, 1);
-            this.pnlTop.Controls.Add(this.btnAddToRecipe, 3, 0);
-            this.pnlTop.Controls.Add(this.btnRemoveLink, 4, 0);
-            this.pnlTop.Controls.Add(this.btnRefreshRecipe, 5, 0);
+            this.pnlTop.Controls.Add(this.btnAddToRecipe, 2, 0);
+            this.pnlTop.Controls.Add(this.btnRemoveLink, 3, 0);
+            this.pnlTop.Controls.Add(this.btnRefreshRecipe, 4, 0);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlTop.Location = new System.Drawing.Point(15, 15);
             this.pnlTop.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
@@ -96,6 +98,7 @@
             this.pnlTop.RowCount = 2;
             this.pnlTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.pnlTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.pnlTop.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.pnlTop.Size = new System.Drawing.Size(762, 105);
             this.pnlTop.TabIndex = 0;
             // 
@@ -118,10 +121,10 @@
             this.cboMenuItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMenuItems.ForeColor = System.Drawing.Color.Black;
             this.cboMenuItems.FormattingEnabled = true;
-            this.cboMenuItems.Location = new System.Drawing.Point(86, 12);
+            this.cboMenuItems.Location = new System.Drawing.Point(86, 14);
             this.cboMenuItems.Margin = new System.Windows.Forms.Padding(6);
             this.cboMenuItems.Name = "cboMenuItems";
-            this.cboMenuItems.Size = new System.Drawing.Size(203, 28);
+            this.cboMenuItems.Size = new System.Drawing.Size(193, 28);
             this.cboMenuItems.TabIndex = 1;
             this.cboMenuItems.SelectedIndexChanged += new System.EventHandler(this.cboMenuItems_SelectedIndexChanged);
             // 
@@ -144,10 +147,10 @@
             this.cboIngredients.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIngredients.ForeColor = System.Drawing.Color.Black;
             this.cboIngredients.FormattingEnabled = true;
-            this.cboIngredients.Location = new System.Drawing.Point(86, 64);
+            this.cboIngredients.Location = new System.Drawing.Point(86, 66);
             this.cboIngredients.Margin = new System.Windows.Forms.Padding(6);
             this.cboIngredients.Name = "cboIngredients";
-            this.cboIngredients.Size = new System.Drawing.Size(203, 28);
+            this.cboIngredients.Size = new System.Drawing.Size(193, 28);
             this.cboIngredients.TabIndex = 3;
             this.cboIngredients.SelectedIndexChanged += new System.EventHandler(this.cboIngredients_SelectedIndexChanged);
             // 
@@ -156,7 +159,7 @@
             this.lblUnit.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblUnit.AutoSize = true;
             this.lblUnit.ForeColor = System.Drawing.Color.White;
-            this.lblUnit.Location = new System.Drawing.Point(301, 68);
+            this.lblUnit.Location = new System.Drawing.Point(291, 68);
             this.lblUnit.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblUnit.Name = "lblUnit";
             this.lblUnit.Size = new System.Drawing.Size(39, 20);
@@ -169,7 +172,7 @@
             this.txtDisplayUnit.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtDisplayUnit.BackColor = System.Drawing.Color.White;
             this.txtDisplayUnit.ForeColor = System.Drawing.Color.Black;
-            this.txtDisplayUnit.Location = new System.Drawing.Point(391, 65);
+            this.txtDisplayUnit.Location = new System.Drawing.Point(404, 65);
             this.txtDisplayUnit.Margin = new System.Windows.Forms.Padding(6);
             this.txtDisplayUnit.Name = "txtDisplayUnit";
             this.txtDisplayUnit.ReadOnly = true;
@@ -181,7 +184,7 @@
             this.lblQuantity.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.ForeColor = System.Drawing.Color.White;
-            this.lblQuantity.Location = new System.Drawing.Point(510, 68);
+            this.lblQuantity.Location = new System.Drawing.Point(518, 68);
             this.lblQuantity.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(68, 20);
@@ -194,7 +197,7 @@
             this.numQuantity.BackColor = System.Drawing.Color.White;
             this.numQuantity.DecimalPlaces = 2;
             this.numQuantity.ForeColor = System.Drawing.Color.Black;
-            this.numQuantity.Location = new System.Drawing.Point(623, 65);
+            this.numQuantity.Location = new System.Drawing.Point(631, 65);
             this.numQuantity.Margin = new System.Windows.Forms.Padding(6);
             this.numQuantity.Maximum = new decimal(new int[] {
             999999,
@@ -215,10 +218,10 @@
             this.btnAddToRecipe.FlatAppearance.BorderSize = 2;
             this.btnAddToRecipe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddToRecipe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnAddToRecipe.Location = new System.Drawing.Point(391, 9);
+            this.btnAddToRecipe.Location = new System.Drawing.Point(297, 9);
             this.btnAddToRecipe.Margin = new System.Windows.Forms.Padding(6);
             this.btnAddToRecipe.Name = "btnAddToRecipe";
-            this.btnAddToRecipe.Size = new System.Drawing.Size(107, 34);
+            this.btnAddToRecipe.Size = new System.Drawing.Size(88, 34);
             this.btnAddToRecipe.TabIndex = 8;
             this.btnAddToRecipe.Text = "Add ";
             this.btnAddToRecipe.UseVisualStyleBackColor = false;
@@ -233,7 +236,7 @@
             this.btnRemoveLink.FlatAppearance.BorderSize = 2;
             this.btnRemoveLink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnRemoveLink.Location = new System.Drawing.Point(516, 9);
+            this.btnRemoveLink.Location = new System.Drawing.Point(411, 9);
             this.btnRemoveLink.Margin = new System.Windows.Forms.Padding(6);
             this.btnRemoveLink.Name = "btnRemoveLink";
             this.btnRemoveLink.Size = new System.Drawing.Size(88, 34);
@@ -251,10 +254,10 @@
             this.btnRefreshRecipe.FlatAppearance.BorderSize = 2;
             this.btnRefreshRecipe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefreshRecipe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnRefreshRecipe.Location = new System.Drawing.Point(653, 9);
+            this.btnRefreshRecipe.Location = new System.Drawing.Point(524, 9);
             this.btnRefreshRecipe.Margin = new System.Windows.Forms.Padding(6);
             this.btnRefreshRecipe.Name = "btnRefreshRecipe";
-            this.btnRefreshRecipe.Size = new System.Drawing.Size(72, 34);
+            this.btnRefreshRecipe.Size = new System.Drawing.Size(88, 34);
             this.btnRefreshRecipe.TabIndex = 10;
             this.btnRefreshRecipe.Text = "Refresh";
             this.btnRefreshRecipe.UseVisualStyleBackColor = false;
@@ -266,6 +269,7 @@
             this.dgvRecipe.AllowUserToDeleteRows = false;
             this.dgvRecipe.AutoGenerateColumns = false;
             this.dgvRecipe.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvRecipe.BackgroundColor = System.Drawing.Color.MidnightBlue;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -302,34 +306,6 @@
             this.dgvRecipe.Size = new System.Drawing.Size(762, 301);
             this.dgvRecipe.TabIndex = 1;
             // 
-            // dsCafe101
-            // 
-            this.dsCafe101.DataSetName = "dsCafe101";
-            this.dsCafe101.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // recipeItemTableAdapter
-            // 
-            this.recipeItemTableAdapter.ClearBeforeFill = true;
-            // 
-            // recipeItemBindingSource
-            // 
-            this.recipeItemBindingSource.DataMember = "RecipeItem";
-            this.recipeItemBindingSource.DataSource = this.dsCafe101;
-            // 
-            // ingredientBindingSource
-            // 
-            this.ingredientBindingSource.DataMember = "Ingredient";
-            this.ingredientBindingSource.DataSource = this.dsCafe101;
-            // 
-            // ingredientTableAdapter
-            // 
-            this.ingredientTableAdapter.ClearBeforeFill = true;
-            // 
-            // recipeItemBindingSource1
-            // 
-            this.recipeItemBindingSource1.DataMember = "RecipeItem";
-            this.recipeItemBindingSource1.DataSource = this.dsCafe101;
-            // 
             // menuItemIDDataGridViewTextBoxColumn
             // 
             this.menuItemIDDataGridViewTextBoxColumn.DataPropertyName = "MenuItemID";
@@ -354,6 +330,52 @@
             this.proportionDataGridViewTextBoxColumn.Name = "proportionDataGridViewTextBoxColumn";
             this.proportionDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // recipeItemBindingSource
+            // 
+            this.recipeItemBindingSource.DataMember = "RecipeItem";
+            this.recipeItemBindingSource.DataSource = this.dsCafe101;
+            // 
+            // dsCafe101
+            // 
+            this.dsCafe101.DataSetName = "dsCafe101";
+            this.dsCafe101.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // recipeItemTableAdapter
+            // 
+            this.recipeItemTableAdapter.ClearBeforeFill = true;
+            // 
+            // ingredientBindingSource
+            // 
+            this.ingredientBindingSource.DataMember = "Ingredient";
+            this.ingredientBindingSource.DataSource = this.dsCafe101;
+            // 
+            // ingredientTableAdapter
+            // 
+            this.ingredientTableAdapter.ClearBeforeFill = true;
+            // 
+            // recipeItemBindingSource1
+            // 
+            this.recipeItemBindingSource1.DataMember = "RecipeItem";
+            this.recipeItemBindingSource1.DataSource = this.dsCafe101;
+            // 
+            // btnBack
+            // 
+            this.btnBack.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnBack.AutoSize = true;
+            this.btnBack.BackColor = System.Drawing.Color.White;
+            this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnBack.FlatAppearance.BorderSize = 2;
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnBack.Location = new System.Drawing.Point(649, 9);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(6);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(88, 34);
+            this.btnBack.TabIndex = 11;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // frmManageRecipes
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(112)))));
@@ -370,8 +392,8 @@
             this.pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecipe)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipeItemBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.recipeItemBindingSource1)).EndInit();
             this.ResumeLayout(false);
@@ -403,5 +425,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn menuItemIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ingredientIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn proportionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnBack;
     }
 }

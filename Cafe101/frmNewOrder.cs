@@ -507,5 +507,17 @@ namespace Cafe101
             backMain.Show();    
             this.Hide();    
         }
+
+        private void dgvMenuItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            frmMain backMain = new frmMain();
+            backMain.Show();
+            this.Hide();
+        }
     }
 }

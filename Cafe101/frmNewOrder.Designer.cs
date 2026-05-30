@@ -62,29 +62,31 @@
             this.recipeItemTableAdapter1 = new Cafe101.dsCafe101TableAdapters.RecipeItemTableAdapter();
             this.ingredientTableAdapter1 = new Cafe101.dsCafe101TableAdapters.IngredientTableAdapter();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSearchCust
             // 
             this.lblSearchCust.AutoSize = true;
-            this.lblSearchCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblSearchCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearchCust.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblSearchCust.Location = new System.Drawing.Point(71, 41);
+            this.lblSearchCust.Location = new System.Drawing.Point(273, 38);
             this.lblSearchCust.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearchCust.Name = "lblSearchCust";
-            this.lblSearchCust.Size = new System.Drawing.Size(130, 13);
+            this.lblSearchCust.Size = new System.Drawing.Size(145, 18);
             this.lblSearchCust.TabIndex = 0;
-            this.lblSearchCust.Text = "SEARCH CUSTOMER";
+            this.lblSearchCust.Text = "Search Customer:";
             // 
             // txtSearchedCust
             // 
-            this.txtSearchedCust.Location = new System.Drawing.Point(243, 38);
+            this.txtSearchedCust.Location = new System.Drawing.Point(445, 39);
             this.txtSearchedCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearchedCust.Name = "txtSearchedCust";
             this.txtSearchedCust.Size = new System.Drawing.Size(204, 20);
@@ -94,30 +96,30 @@
             // 
             this.btnSearchCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchCust.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSearchCust.Location = new System.Drawing.Point(487, 31);
+            this.btnSearchCust.Location = new System.Drawing.Point(689, 32);
             this.btnSearchCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSearchCust.Name = "btnSearchCust";
             this.btnSearchCust.Size = new System.Drawing.Size(88, 30);
             this.btnSearchCust.TabIndex = 2;
-            this.btnSearchCust.Text = "SEARCH";
+            this.btnSearchCust.Text = "Search";
             this.btnSearchCust.UseVisualStyleBackColor = true;
             this.btnSearchCust.Click += new System.EventHandler(this.btnSearchCust_Click);
             // 
             // lblCustName
             // 
             this.lblCustName.AutoSize = true;
-            this.lblCustName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblCustName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCustName.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblCustName.Location = new System.Drawing.Point(662, 41);
+            this.lblCustName.Location = new System.Drawing.Point(365, 95);
             this.lblCustName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCustName.Name = "lblCustName";
-            this.lblCustName.Size = new System.Drawing.Size(42, 13);
+            this.lblCustName.Size = new System.Drawing.Size(136, 18);
             this.lblCustName.TabIndex = 3;
-            this.lblCustName.Text = "NAME";
+            this.lblCustName.Text = "Customer Name:";
             // 
             // txtSearchedName
             // 
-            this.txtSearchedName.Location = new System.Drawing.Point(747, 38);
+            this.txtSearchedName.Location = new System.Drawing.Point(523, 96);
             this.txtSearchedName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearchedName.Name = "txtSearchedName";
             this.txtSearchedName.Size = new System.Drawing.Size(195, 20);
@@ -126,17 +128,18 @@
             // lblSearchItems
             // 
             this.lblSearchItems.AutoSize = true;
+            this.lblSearchItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearchItems.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblSearchItems.Location = new System.Drawing.Point(227, 110);
+            this.lblSearchItems.Location = new System.Drawing.Point(269, 402);
             this.lblSearchItems.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearchItems.Name = "lblSearchItems";
-            this.lblSearchItems.Size = new System.Drawing.Size(143, 13);
+            this.lblSearchItems.Size = new System.Drawing.Size(149, 18);
             this.lblSearchItems.TabIndex = 5;
-            this.lblSearchItems.Text = "SEARCH MENU ITEM : ";
+            this.lblSearchItems.Text = "Search Menu Item:";
             // 
             // textItemSearch
             // 
-            this.textItemSearch.Location = new System.Drawing.Point(404, 107);
+            this.textItemSearch.Location = new System.Drawing.Point(446, 399);
             this.textItemSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textItemSearch.Name = "textItemSearch";
             this.textItemSearch.Size = new System.Drawing.Size(199, 20);
@@ -147,12 +150,12 @@
             // 
             this.btnSearchItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchItem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSearchItem.Location = new System.Drawing.Point(656, 99);
+            this.btnSearchItem.Location = new System.Drawing.Point(698, 391);
             this.btnSearchItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSearchItem.Name = "btnSearchItem";
             this.btnSearchItem.Size = new System.Drawing.Size(88, 33);
             this.btnSearchItem.TabIndex = 7;
-            this.btnSearchItem.Text = "SEARCH";
+            this.btnSearchItem.Text = "Search";
             this.btnSearchItem.UseVisualStyleBackColor = true;
             this.btnSearchItem.Click += new System.EventHandler(this.btnSearchItem_Click);
             // 
@@ -160,12 +163,12 @@
             // 
             this.btnAddToCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddToCart.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnAddToCart.Location = new System.Drawing.Point(416, 347);
+            this.btnAddToCart.Location = new System.Drawing.Point(431, 651);
             this.btnAddToCart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddToCart.Name = "btnAddToCart";
             this.btnAddToCart.Size = new System.Drawing.Size(187, 28);
             this.btnAddToCart.TabIndex = 10;
-            this.btnAddToCart.Text = "ADD TO CART";
+            this.btnAddToCart.Text = "Add To Cart";
             this.btnAddToCart.UseVisualStyleBackColor = true;
             this.btnAddToCart.Click += new System.EventHandler(this.btnAddToCart_Click);
             // 
@@ -181,7 +184,7 @@
             this.prepTimeDataGridViewTextBoxColumn,
             this.ItemQty});
             this.dgvMenuItems.DataSource = this.menuItemsBindingSource;
-            this.dgvMenuItems.Location = new System.Drawing.Point(178, 148);
+            this.dgvMenuItems.Location = new System.Drawing.Point(180, 446);
             this.dgvMenuItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvMenuItems.Name = "dgvMenuItems";
             this.dgvMenuItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -258,7 +261,7 @@
             // dgvCart
             // 
             this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCart.Location = new System.Drawing.Point(178, 401);
+            this.dgvCart.Location = new System.Drawing.Point(176, 701);
             this.dgvCart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvCart.Name = "dgvCart";
             this.dgvCart.Size = new System.Drawing.Size(702, 158);
@@ -267,22 +270,24 @@
             // lblTotalPrice
             // 
             this.lblTotalPrice.AutoSize = true;
+            this.lblTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPrice.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblTotalPrice.Location = new System.Drawing.Point(337, 656);
+            this.lblTotalPrice.Location = new System.Drawing.Point(330, 960);
             this.lblTotalPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotalPrice.Name = "lblTotalPrice";
-            this.lblTotalPrice.Size = new System.Drawing.Size(47, 13);
+            this.lblTotalPrice.Size = new System.Drawing.Size(60, 18);
             this.lblTotalPrice.TabIndex = 13;
             this.lblTotalPrice.Text = "TOTAL";
             // 
             // lblAmount
             // 
             this.lblAmount.AutoSize = true;
+            this.lblAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAmount.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblAmount.Location = new System.Drawing.Point(469, 656);
+            this.lblAmount.Location = new System.Drawing.Point(462, 960);
             this.lblAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(45, 13);
+            this.lblAmount.Size = new System.Drawing.Size(57, 18);
             this.lblAmount.TabIndex = 14;
             this.lblAmount.Text = "R 0.00";
             // 
@@ -290,12 +295,12 @@
             // 
             this.btnConfirmOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmOrder.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnConfirmOrder.Location = new System.Drawing.Point(566, 651);
+            this.btnConfirmOrder.Location = new System.Drawing.Point(564, 951);
             this.btnConfirmOrder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnConfirmOrder.Name = "btnConfirmOrder";
             this.btnConfirmOrder.Size = new System.Drawing.Size(191, 28);
             this.btnConfirmOrder.TabIndex = 15;
-            this.btnConfirmOrder.Text = "CONFIRM ORDER";
+            this.btnConfirmOrder.Text = "Confirm Order";
             this.btnConfirmOrder.UseVisualStyleBackColor = true;
             this.btnConfirmOrder.Click += new System.EventHandler(this.btnConfirmOrder_Click);
             // 
@@ -303,12 +308,12 @@
             // 
             this.btnDecreaseQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDecreaseQuantity.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnDecreaseQuantity.Location = new System.Drawing.Point(243, 581);
+            this.btnDecreaseQuantity.Location = new System.Drawing.Point(241, 881);
             this.btnDecreaseQuantity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDecreaseQuantity.Name = "btnDecreaseQuantity";
             this.btnDecreaseQuantity.Size = new System.Drawing.Size(242, 28);
             this.btnDecreaseQuantity.TabIndex = 16;
-            this.btnDecreaseQuantity.Text = "DECREASE QUANTITY";
+            this.btnDecreaseQuantity.Text = "Decrease Quantity";
             this.btnDecreaseQuantity.UseVisualStyleBackColor = true;
             this.btnDecreaseQuantity.Click += new System.EventHandler(this.btnDecreaseQuantity_Click);
             // 
@@ -316,12 +321,12 @@
             // 
             this.btnRemoveItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemoveItem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnRemoveItem.Location = new System.Drawing.Point(614, 581);
+            this.btnRemoveItem.Location = new System.Drawing.Point(612, 881);
             this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnRemoveItem.Name = "btnRemoveItem";
             this.btnRemoveItem.Size = new System.Drawing.Size(187, 28);
             this.btnRemoveItem.TabIndex = 17;
-            this.btnRemoveItem.Text = "REMOVE ITEM";
+            this.btnRemoveItem.Text = "Remove Item";
             this.btnRemoveItem.UseVisualStyleBackColor = true;
             this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click_1);
             // 
@@ -356,12 +361,22 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
-            this.pictureBox1.Location = new System.Drawing.Point(26, 560);
+            this.pictureBox1.Location = new System.Drawing.Point(28, 869);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(120, 109);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 18;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(180, 143);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(699, 222);
+            this.dataGridView1.TabIndex = 19;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // frmNewOrder
             // 
@@ -369,7 +384,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(1066, 691);
+            this.ClientSize = new System.Drawing.Size(1066, 999);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnRemoveItem);
             this.Controls.Add(this.btnDecreaseQuantity);
@@ -400,6 +416,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,5 +457,6 @@
         private dsCafe101TableAdapters.RecipeItemTableAdapter recipeItemTableAdapter1;
         private dsCafe101TableAdapters.IngredientTableAdapter ingredientTableAdapter1;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

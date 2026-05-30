@@ -23,6 +23,7 @@ namespace Cafe101
         {
             frmNewOrder newOrder = new frmNewOrder();
             newOrder.Show();
+            this.Hide();    
         }
 
         private void mnuMenuItems_Click(object sender, EventArgs e)

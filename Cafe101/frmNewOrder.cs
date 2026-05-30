@@ -340,7 +340,14 @@ namespace Cafe101
                     return;
                 }
 
-                if (dgvCart.Rows.Count == 0)
+                int itemCount = 0;
+                foreach (DataGridViewRow row in dgvCart.Rows)
+                {
+                    if (row.Cells["MenuItemID"].Value != null)
+                        itemCount++;
+                }
+
+                if (itemCount == 0)
                 {
                     MessageBox.Show("The cart is empty. Please add items.");
                     return;
@@ -487,6 +494,18 @@ namespace Cafe101
                     orderID = Convert.ToInt32(result);
             }
             return orderID;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            frmMain backMain = new frmMain();
+            backMain.Show();    
+            this.Hide();    
         }
     }
 }

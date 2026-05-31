@@ -123,7 +123,7 @@
             this.tblDetails.Controls.Add(this.lblPassword, 0, 4);
             this.tblDetails.Controls.Add(this.txtPassword, 1, 4);
             this.tblDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tblDetails.Location = new System.Drawing.Point(8, 24);
+            this.tblDetails.Location = new System.Drawing.Point(8, 28);
             this.tblDetails.Name = "tblDetails";
             this.tblDetails.Padding = new System.Windows.Forms.Padding(6);
             this.tblDetails.RowCount = 6;
@@ -133,7 +133,7 @@
             this.tblDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tblDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 44F));
             this.tblDetails.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblDetails.Size = new System.Drawing.Size(374, 505);
+            this.tblDetails.Size = new System.Drawing.Size(374, 501);
             this.tblDetails.TabIndex = 0;
             // 
             // lblFirstName
@@ -154,7 +154,7 @@
             this.txtFirstName.ForeColor = System.Drawing.Color.Black;
             this.txtFirstName.Location = new System.Drawing.Point(129, 9);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(236, 23);
+            this.txtFirstName.Size = new System.Drawing.Size(236, 27);
             this.txtFirstName.TabIndex = 1;
             // 
             // lblSurname
@@ -175,7 +175,7 @@
             this.txtSurname.ForeColor = System.Drawing.Color.Black;
             this.txtSurname.Location = new System.Drawing.Point(129, 53);
             this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(236, 23);
+            this.txtSurname.Size = new System.Drawing.Size(236, 27);
             this.txtSurname.TabIndex = 3;
             // 
             // lblEmail
@@ -196,7 +196,7 @@
             this.txtEmail.ForeColor = System.Drawing.Color.Black;
             this.txtEmail.Location = new System.Drawing.Point(129, 97);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(236, 23);
+            this.txtEmail.Size = new System.Drawing.Size(236, 27);
             this.txtEmail.TabIndex = 5;
             // 
             // lblAddress
@@ -217,7 +217,7 @@
             this.txtAddress.ForeColor = System.Drawing.Color.Black;
             this.txtAddress.Location = new System.Drawing.Point(129, 141);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(236, 23);
+            this.txtAddress.Size = new System.Drawing.Size(236, 27);
             this.txtAddress.TabIndex = 7;
             // 
             // lblPassword
@@ -238,7 +238,7 @@
             this.txtPassword.ForeColor = System.Drawing.Color.Black;
             this.txtPassword.Location = new System.Drawing.Point(129, 185);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(236, 23);
+            this.txtPassword.Size = new System.Drawing.Size(236, 27);
             this.txtPassword.TabIndex = 9;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -246,7 +246,7 @@
             // 
             this.txtFullName.Location = new System.Drawing.Point(0, 0);
             this.txtFullName.Name = "txtFullName";
-            this.txtFullName.Size = new System.Drawing.Size(100, 23);
+            this.txtFullName.Size = new System.Drawing.Size(100, 27);
             this.txtFullName.TabIndex = 2;
             this.txtFullName.Visible = false;
             // 
@@ -254,7 +254,7 @@
             // 
             this.txtUsername.Location = new System.Drawing.Point(0, 0);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(100, 23);
+            this.txtUsername.Size = new System.Drawing.Size(100, 27);
             this.txtUsername.TabIndex = 3;
             this.txtUsername.Visible = false;
             // 

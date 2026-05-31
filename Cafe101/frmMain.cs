@@ -120,5 +120,36 @@ namespace Cafe101
             stock.Show();
             this.Hide();
         }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            lblUser.Text = $"{SessionManager.Role}: {SessionManager.FirstName} {SessionManager.Surname}";
+            lblDateTime.Text = SessionManager.LoginTime.ToString("dd MMM yyyy  HH:mm");
+            txtHelp.Hide();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+            "Are you sure you want to exit?",
+            "Exit",
+            MessageBoxButtons.YesNo,
+             MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            txtHelp.Show();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            txtHelp.Hide();
+        }
     }
 }

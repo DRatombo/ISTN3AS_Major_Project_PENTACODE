@@ -3714,20 +3714,6 @@ namespace Cafe101 {
                     return this.eventAction;
                 }
             }
-            // ensure safe snapshot and exclude deleted rows
-            /*var matches = this.dsCafe101Test.TestCustomer
-                .Where(c => c.RowState != DataRowState.Deleted // exclude deleted
-                            && (c.FirstName != null && c.FirstName.IndexOf(txtSearchedCust.Text, StringComparison.OrdinalIgnoreCase) >= 0
-                                || c.Surname != null && c.Surname.IndexOf(txtSearchedCust.Text, StringComparison.OrdinalIgnoreCase) >= 0))
-                .ToList(); // materialize results safely
-
-            if (matches.Count > 0) {
-                var customer = matches[0];
-            selectedCustomerID = customer.CustomerID; // now safe
-                txtSearchedName.Text = customer.FirstName + " " + customer.Surname;
-                dgvCustomers.DataSource = null;
-                dgvCustomers.Visible = false;
-            }*/
         }
     }
 }

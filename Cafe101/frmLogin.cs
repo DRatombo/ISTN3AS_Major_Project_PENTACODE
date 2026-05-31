@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cafe101.dsCafe101TestTableAdapters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,7 +25,7 @@ namespace Cafe101
                 lblEmailMsg.Text = "Required";
                 return false;
             }
-            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            if (!txtEmail.Text.Contains("@cafe101.com"))
             {
                 txtEmail.BackColor = Color.Red;
                 lblEmailMsg.Text = "Invalid email";
@@ -51,20 +52,27 @@ namespace Cafe101
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            this.testEmployeeTableAdapter1.Fill(this.dsCafe101Test1.TestEmployee);
             string Email = txtEmail.Text;
             string Password = txtPassword.Text;
             bool isValid = false;
-            cashierTableAdapter1.Fill(dsLogin1.Cashier);
-            foreach (DataRow row in dsLogin1.Cashier.Rows)
+
+            // cashierTableAdapter1.Fill(dsLogin1.Cashier);
+          
+            foreach (DataRow row in dsCafe101Test1.TestEmployee.Rows)
             {
-                if (row["Email"].ToString() == Email && row["Password"].ToString() == Password)
+                if (row["Email"].ToString() == Email && Email.Contains("@cafe101.com") && row["Password"].ToString() == Password && Password.Length == 8)
                 {
                     isValid = true;
+                    SessionManager.FirstName = row["FirstName"].ToString();
+                    SessionManager.Surname = row["Surname"].ToString();
+                    SessionManager.Role = row["Role"].ToString();
+                    SessionManager.Email = row["Email"].ToString();
+                    SessionManager.LoginTime = DateTime.Now;
                 }
             }
             if (isValid)
             {
-                MessageBox.Show("Login successful!");
                 frmMain mainMenu = new frmMain();
                 mainMenu.Show();
                 this.Hide();
@@ -90,6 +98,70 @@ namespace Cafe101
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
             ValidatePassword();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            txtHelp.Show(); 
+        }
+
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            txtHelp.Hide();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            txtHelp.Hide();
+        }
+
+        private void pBLogin_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
+        }
+
+        private void pBHelp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmailMsg_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblPassword_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblUsername_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtHelp_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+        "Are you sure you want to exit?",
+        "Exit",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
         }
     }
 }

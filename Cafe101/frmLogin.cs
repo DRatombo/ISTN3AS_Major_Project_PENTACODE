@@ -19,40 +19,72 @@ namespace Cafe101
         }
         private bool ValidateEmail()
         {
-            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            string email = txtEmail.Text;
+
+            if (string.IsNullOrWhiteSpace(email))
             {
                 txtEmail.BackColor = Color.Red;
                 lblEmailMsg.Text = "Required";
                 return false;
             }
-            if (!txtEmail.Text.Contains("@cafe101.com"))
+
+            bool found = false;
+
+            foreach (DataRow row in dsCafe101Test1.TestEmployee.Rows)
+            {
+                if (row["Email"].ToString() == email)
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found)
+            {
+                txtEmail.BackColor = Color.LightGreen;
+                lblEmailMsg.Text = "";
+                return true;
+            }
+            else
             {
                 txtEmail.BackColor = Color.Red;
-                lblEmailMsg.Text = "Invalid email";
+                lblEmailMsg.Text = "Email not found";
                 return false;
             }
-            txtEmail.BackColor = Color.Green;
-            lblEmailMsg.Text = "";
-            return true;
         }
         private bool ValidatePassword()
         {
-            string pwd = txtPassword.Text;
-            if (string.IsNullOrWhiteSpace(pwd))
+            string email = txtEmail.Text;
+            string password = txtPassword.Text;
+
+            bool found = false;
+
+            foreach (DataRow row in dsCafe101Test1.TestEmployee.Rows)
+            {
+                if (row["Email"].ToString() == email &&
+                    row["Password"].ToString() == password)
+                {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (found)
+            {
+                txtPassword.BackColor = Color.LightGreen;
+                return true;
+            }
+            else
             {
                 txtPassword.BackColor = Color.Red;
                 return false;
-            } else
-            {
-                txtPassword.BackColor = Color.Green;
-               
             }
-            return true;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            this.testEmployeeTableAdapter1.Fill(this.dsCafe101Test1.TestEmployee);
+            
+           // this.testEmployeeTableAdapter1.Fill(this.dsCafe101Test1.TestEmployee);
             string Email = txtEmail.Text;
             string Password = txtPassword.Text;
             bool isValid = false;
@@ -69,6 +101,9 @@ namespace Cafe101
                     SessionManager.Role = row["Role"].ToString();
                     SessionManager.Email = row["Email"].ToString();
                     SessionManager.LoginTime = DateTime.Now;
+                    SessionManager.EmployeeID = Convert.ToInt32(row["EmployeeID"]);
+                   // this.testLoginHistoryTableAdapter1.Insert(SessionManager.EmployeeID,SessionManager.FirstName,SessionManager.Role,SessionManager.LoginTime, DateTime.MinValue, "Active");
+                    this.testLoginHistoryTableAdapter1.Insert(SessionManager.EmployeeID,SessionManager.FirstName,SessionManager.Role,SessionManager.LoginTime, new DateTime(1753, 1, 1), "Active");
                 }
             }
             if (isValid)
@@ -108,7 +143,18 @@ namespace Cafe101
         private void frmLogin_Load(object sender, EventArgs e)
         {
             txtHelp.Hide();
+
+            txtPassword.UseSystemPasswordChar = true;
+            this.testEmployeeTableAdapter1.Fill(
+       this.dsCafe101Test1.TestEmployee);
+
         }
+
+        private void frmLogin_Resize(object sender, EventArgs e)
+        {
+            
+        }
+        
 
         private void btnClose_Click(object sender, EventArgs e)
         {

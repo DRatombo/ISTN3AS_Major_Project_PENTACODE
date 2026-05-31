@@ -180,6 +180,7 @@ namespace Cafe101
                     {
                         frmAddCustomer addCust = new frmAddCustomer();
                         addCust.ShowDialog();
+                        this.Hide();
                     }
                 }
             }
@@ -816,6 +817,100 @@ namespace Cafe101
                     cell.Value = null;
                 }
             }
+        }
+
+       
+        private bool helpVisible = false;
+        private Panel pnlHelp;
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            if (helpVisible)
+            {
+                pnlHelp.Visible = false;
+                helpVisible = false;
+                btnHelp.Text = "? Help";
+                return;
+            }
+
+            if (pnlHelp == null)
+            {
+                pnlHelp = new Panel();
+                pnlHelp.Size = new System.Drawing.Size(320, 420);
+                pnlHelp.BackColor = System.Drawing.Color.FromArgb(20, 40, 100);
+                pnlHelp.BorderStyle = BorderStyle.FixedSingle;
+
+                Label lblTitle = new Label();
+                lblTitle.Text = "📋 How To Place An Order";
+                lblTitle.Font = new System.Drawing.Font("Segoe UI", 11, System.Drawing.FontStyle.Bold);
+                lblTitle.ForeColor = System.Drawing.Color.White;
+                lblTitle.Location = new System.Drawing.Point(10, 10);
+                lblTitle.Size = new System.Drawing.Size(300, 25);
+
+                Label lblSteps = new Label();
+                lblSteps.Text =
+                    "1. SEARCH CUSTOMER\r\n" +
+                    "   Type a name and press Search,\r\n" +
+                    "   or click a row in the list.\r\n\r\n" +
+                    "2. CLEAR CUSTOMER\r\n" +
+                    "   Press Clear to select a\r\n" +
+                    "   different customer.\r\n\r\n" +
+                    "3. SEARCH MENU ITEM\r\n" +
+                    "   Type an item name to filter\r\n" +
+                    "   the menu list.\r\n\r\n" +
+                    "4. SELECT QUANTITY\r\n" +
+                    "   Click the Quantity dropdown\r\n" +
+                    "   on the item row.\r\n\r\n" +
+                    "5. ADD TO CART\r\n" +
+                    "   Click Add To Cart to add\r\n" +
+                    "   the selected item.\r\n\r\n" +
+                    "6. ADJUST CART\r\n" +
+                    "   Use Decrease Quantity or\r\n" +
+                    "   Remove Item to edit cart.\r\n\r\n" +
+                    "7. CONFIRM ORDER\r\n" +
+                    "   Click Confirm Order to\r\n" +
+                    "   save and process payment.";
+                lblSteps.Font = new System.Drawing.Font("Segoe UI", 9);
+                lblSteps.ForeColor = System.Drawing.Color.LightGray;
+                lblSteps.Location = new System.Drawing.Point(10, 45);
+                lblSteps.Size = new System.Drawing.Size(295, 360);
+
+                Button btnClose = new Button();
+                btnClose.Text = "✕ Close Help";
+                btnClose.Size = new System.Drawing.Size(120, 30);
+                btnClose.Location = new System.Drawing.Point(190, 380);
+                btnClose.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
+                btnClose.ForeColor = System.Drawing.Color.White;
+                btnClose.FlatStyle = FlatStyle.Flat;
+                btnClose.Click += (s, ev) =>
+                {
+                    pnlHelp.Visible = false;
+                    helpVisible = false;
+                    btnHelp.Text = "? Help";
+                };
+
+                pnlHelp.Controls.Add(lblTitle);
+                pnlHelp.Controls.Add(lblSteps);
+                pnlHelp.Controls.Add(btnClose);
+                this.Controls.Add(pnlHelp);
+                pnlHelp.BringToFront();
+            }
+
+            // Position it near the help button
+            pnlHelp.Location = new System.Drawing.Point(
+                btnHelp.Left,
+                btnHelp.Top - pnlHelp.Height - 5);
+
+            pnlHelp.Visible = true;
+            helpVisible = true;
+            btnHelp.Text = "? Help (ON)";
+        }
+
+        private void btnAddNewCust_Click(object sender, EventArgs e)
+        {
+            frmAddCustomer newCust = new frmAddCustomer();
+            newCust.ShowDialog();
+            this.Hide();
         }
     }
     

@@ -28,5 +28,17 @@ namespace Cafe101
             mainForm.Show();
             this.Hide();
         }
+
+        private void frmManageCustomers_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'dsCafe101Test.TestCustomer' table. You can move, or remove it, as needed.
+            this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            testCustomerTableAdapter.FillBySearch(dsCafe101Test.TestCustomer,textBox1.Text );
+        }
     }
 }

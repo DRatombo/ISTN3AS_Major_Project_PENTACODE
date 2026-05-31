@@ -39,17 +39,7 @@
             this.btnSearchItem = new System.Windows.Forms.Button();
             this.btnAddToCart = new System.Windows.Forms.Button();
             this.dgvMenuItems = new System.Windows.Forms.DataGridView();
-            this.MenuItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemQty = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.menuItemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.menuItemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sellingPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costToMakeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.preparationTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testMenuItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dsCafe101TestBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dsCafe101Test = new Cafe101.dsCafe101Test();
             this.menuItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101 = new Cafe101.dsCafe101();
@@ -67,11 +57,6 @@
             this.recipeItemTableAdapter1 = new Cafe101.dsCafe101TableAdapters.RecipeItemTableAdapter();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvCustomers = new System.Windows.Forms.DataGridView();
-            this.customerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.surnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testCustomerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.btnBack = new System.Windows.Forms.Button();
             this.testCustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -87,22 +72,36 @@
             this.paymentMethodDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalAmountDueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalChangeDueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.testCustomerTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestCustomerTableAdapter();
-            this.testMenuItemsTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestMenuItemsTableAdapter();
-            this.testOrderTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestOrderTableAdapter();
-            this.testOrderItemTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestOrderItemTableAdapter();
-            this.testRecipeTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestRecipeTableAdapter();
-            this.testIngredientTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestIngredientTableAdapter();
             this.cmbOrderType = new System.Windows.Forms.ComboBox();
             this.lblOrderType = new System.Windows.Forms.Label();
             this.dtpEventDate = new System.Windows.Forms.DateTimePicker();
             this.dtpEventTime = new System.Windows.Forms.DateTimePicker();
             this.lblEventDate = new System.Windows.Forms.Label();
             this.lblEventTime = new System.Windows.Forms.Label();
+            this.btnClearCustName = new System.Windows.Forms.Button();
+            this.ItemQty = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.MenuItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dsCafe101TestBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsCafe101Test = new Cafe101.dsCafe101Test();
+            this.MenuItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PreparationTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testCustomerTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestCustomerTableAdapter();
+            this.testMenuItemsTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestMenuItemsTableAdapter();
+            this.testOrderTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestOrderTableAdapter();
+            this.testOrderItemTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestOrderItemTableAdapter();
+            this.testRecipeTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestRecipeTableAdapter();
+            this.testIngredientTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestIngredientTableAdapter();
+            this.btnAddNewCust = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testMenuItemsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101TestBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).BeginInit();
@@ -112,6 +111,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testOrderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101TestBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSearchCust
@@ -153,7 +154,7 @@
             this.lblCustName.AutoSize = true;
             this.lblCustName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCustName.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblCustName.Location = new System.Drawing.Point(471, 75);
+            this.lblCustName.Location = new System.Drawing.Point(471, 65);
             this.lblCustName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCustName.Name = "lblCustName";
             this.lblCustName.Size = new System.Drawing.Size(136, 18);
@@ -162,7 +163,7 @@
             // 
             // txtSearchedName
             // 
-            this.txtSearchedName.Location = new System.Drawing.Point(629, 76);
+            this.txtSearchedName.Location = new System.Drawing.Point(629, 66);
             this.txtSearchedName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearchedName.Name = "txtSearchedName";
             this.txtSearchedName.Size = new System.Drawing.Size(195, 20);
@@ -218,18 +219,17 @@
             // dgvMenuItems
             // 
             this.dgvMenuItems.AutoGenerateColumns = false;
+            this.dgvMenuItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMenuItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMenuItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.MenuItemID,
             this.ItemQty,
-            this.menuItemIDDataGridViewTextBoxColumn,
-            this.menuItemNameDataGridViewTextBoxColumn,
-            this.sellingPriceDataGridViewTextBoxColumn,
-            this.costToMakeDataGridViewTextBoxColumn,
-            this.categoryDataGridViewTextBoxColumn,
-            this.preparationTimeDataGridViewTextBoxColumn});
+            this.MenuItemID,
+            this.MenuItemName,
+            this.sellingPrice,
+            this.Category,
+            this.PreparationTime});
             this.dgvMenuItems.DataSource = this.testMenuItemsBindingSource;
-            this.dgvMenuItems.Location = new System.Drawing.Point(219, 414);
+            this.dgvMenuItems.Location = new System.Drawing.Point(320, 413);
             this.dgvMenuItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvMenuItems.Name = "dgvMenuItems";
             this.dgvMenuItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -237,81 +237,10 @@
             this.dgvMenuItems.TabIndex = 11;
             this.dgvMenuItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMenuItems_CellContentClick);
             // 
-            // MenuItemID
-            // 
-            this.MenuItemID.DataPropertyName = "MenuItemID";
-            this.MenuItemID.HeaderText = "Item ID";
-            this.MenuItemID.Name = "MenuItemID";
-            this.MenuItemID.ReadOnly = true;
-            // 
-            // ItemQty
-            // 
-            this.ItemQty.HeaderText = "Quantity";
-            this.ItemQty.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.ItemQty.Name = "ItemQty";
-            this.ItemQty.ReadOnly = true;
-            // 
-            // menuItemIDDataGridViewTextBoxColumn
-            // 
-            this.menuItemIDDataGridViewTextBoxColumn.DataPropertyName = "MenuItemID";
-            this.menuItemIDDataGridViewTextBoxColumn.HeaderText = "MenuItemID";
-            this.menuItemIDDataGridViewTextBoxColumn.Name = "menuItemIDDataGridViewTextBoxColumn";
-            this.menuItemIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // menuItemNameDataGridViewTextBoxColumn
-            // 
-            this.menuItemNameDataGridViewTextBoxColumn.DataPropertyName = "MenuItemName";
-            this.menuItemNameDataGridViewTextBoxColumn.HeaderText = "MenuItemName";
-            this.menuItemNameDataGridViewTextBoxColumn.Name = "menuItemNameDataGridViewTextBoxColumn";
-            // 
-            // sellingPriceDataGridViewTextBoxColumn
-            // 
-            this.sellingPriceDataGridViewTextBoxColumn.DataPropertyName = "SellingPrice";
-            this.sellingPriceDataGridViewTextBoxColumn.HeaderText = "SellingPrice";
-            this.sellingPriceDataGridViewTextBoxColumn.Name = "sellingPriceDataGridViewTextBoxColumn";
-            // 
-            // costToMakeDataGridViewTextBoxColumn
-            // 
-            this.costToMakeDataGridViewTextBoxColumn.DataPropertyName = "CostToMake";
-            this.costToMakeDataGridViewTextBoxColumn.HeaderText = "CostToMake";
-            this.costToMakeDataGridViewTextBoxColumn.Name = "costToMakeDataGridViewTextBoxColumn";
-            // 
-            // categoryDataGridViewTextBoxColumn
-            // 
-            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
-            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
-            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
-            // 
-            // preparationTimeDataGridViewTextBoxColumn
-            // 
-            this.preparationTimeDataGridViewTextBoxColumn.DataPropertyName = "PreparationTime";
-            this.preparationTimeDataGridViewTextBoxColumn.HeaderText = "PreparationTime";
-            this.preparationTimeDataGridViewTextBoxColumn.Name = "preparationTimeDataGridViewTextBoxColumn";
-            // 
             // testMenuItemsBindingSource
             // 
             this.testMenuItemsBindingSource.DataMember = "TestMenuItems";
             this.testMenuItemsBindingSource.DataSource = this.dsCafe101TestBindingSource;
-            // 
-            // dsCafe101TestBindingSource
-            // 
-            this.dsCafe101TestBindingSource.DataSource = this.dsCafe101Test;
-            this.dsCafe101TestBindingSource.Position = 0;
-            // 
-            // dsCafe101Test
-            // 
-            this.dsCafe101Test.DataSetName = "dsCafe101Test";
-            this.dsCafe101Test.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // menuItemsBindingSource
             // 
@@ -330,6 +259,7 @@
             // 
             // dgvCart
             // 
+            this.dgvCart.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCart.Location = new System.Drawing.Point(219, 673);
             this.dgvCart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -440,48 +370,17 @@
             this.dgvCustomers.AutoGenerateColumns = false;
             this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.customerIDDataGridViewTextBoxColumn,
-            this.firstNameDataGridViewTextBoxColumn,
-            this.surnameDataGridViewTextBoxColumn,
+            this.FirstName,
+            this.Surname,
             this.addressDataGridViewTextBoxColumn,
-            this.emailDataGridViewTextBoxColumn});
+            this.emailDataGridViewTextBoxColumn,
+            this.CustomerID});
             this.dgvCustomers.DataSource = this.testCustomerBindingSource1;
-            this.dgvCustomers.Location = new System.Drawing.Point(334, 117);
+            this.dgvCustomers.Location = new System.Drawing.Point(334, 106);
             this.dgvCustomers.Name = "dgvCustomers";
-            this.dgvCustomers.Size = new System.Drawing.Size(665, 222);
+            this.dgvCustomers.Size = new System.Drawing.Size(827, 233);
             this.dgvCustomers.TabIndex = 19;
             this.dgvCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellClick);
-            // 
-            // customerIDDataGridViewTextBoxColumn
-            // 
-            this.customerIDDataGridViewTextBoxColumn.DataPropertyName = "CustomerID";
-            this.customerIDDataGridViewTextBoxColumn.HeaderText = "CustomerID";
-            this.customerIDDataGridViewTextBoxColumn.Name = "customerIDDataGridViewTextBoxColumn";
-            this.customerIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // firstNameDataGridViewTextBoxColumn
-            // 
-            this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
-            this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
-            // 
-            // surnameDataGridViewTextBoxColumn
-            // 
-            this.surnameDataGridViewTextBoxColumn.DataPropertyName = "Surname";
-            this.surnameDataGridViewTextBoxColumn.HeaderText = "Surname";
-            this.surnameDataGridViewTextBoxColumn.Name = "surnameDataGridViewTextBoxColumn";
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
             // 
             // testCustomerBindingSource1
             // 
@@ -578,32 +477,9 @@
             this.totalChangeDueDataGridViewTextBoxColumn.HeaderText = "TotalChangeDue";
             this.totalChangeDueDataGridViewTextBoxColumn.Name = "totalChangeDueDataGridViewTextBoxColumn";
             // 
-            // testCustomerTableAdapter
-            // 
-            this.testCustomerTableAdapter.ClearBeforeFill = true;
-            // 
-            // testMenuItemsTableAdapter
-            // 
-            this.testMenuItemsTableAdapter.ClearBeforeFill = true;
-            // 
-            // testOrderTableAdapter
-            // 
-            this.testOrderTableAdapter.ClearBeforeFill = true;
-            // 
-            // testOrderItemTableAdapter1
-            // 
-            this.testOrderItemTableAdapter1.ClearBeforeFill = true;
-            // 
-            // testRecipeTableAdapter1
-            // 
-            this.testRecipeTableAdapter1.ClearBeforeFill = true;
-            // 
-            // testIngredientTableAdapter1
-            // 
-            this.testIngredientTableAdapter1.ClearBeforeFill = true;
-            // 
             // cmbOrderType
             // 
+            this.cmbOrderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbOrderType.FormattingEnabled = true;
             this.cmbOrderType.Items.AddRange(new object[] {
             "Regular",
@@ -664,6 +540,167 @@
             this.lblEventTime.TabIndex = 26;
             this.lblEventTime.Text = "Event Time:";
             // 
+            // btnClearCustName
+            // 
+            this.btnClearCustName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearCustName.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnClearCustName.Location = new System.Drawing.Point(848, 65);
+            this.btnClearCustName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnClearCustName.Name = "btnClearCustName";
+            this.btnClearCustName.Size = new System.Drawing.Size(88, 24);
+            this.btnClearCustName.TabIndex = 27;
+            this.btnClearCustName.Text = "Clear";
+            this.btnClearCustName.UseVisualStyleBackColor = true;
+            this.btnClearCustName.Click += new System.EventHandler(this.btnClearCustName_Click);
+            // 
+            // ItemQty
+            // 
+            this.ItemQty.HeaderText = "Quantity";
+            this.ItemQty.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.ItemQty.Name = "ItemQty";
+            this.ItemQty.ReadOnly = true;
+            // 
+            // MenuItemID
+            // 
+            this.MenuItemID.DataPropertyName = "MenuItemID";
+            this.MenuItemID.HeaderText = "Menu Item ID";
+            this.MenuItemID.Name = "MenuItemID";
+            this.MenuItemID.ReadOnly = true;
+            // 
+            // CustomerID
+            // 
+            this.CustomerID.DataPropertyName = "CustomerID";
+            this.CustomerID.FillWeight = 0.8712624F;
+            this.CustomerID.HeaderText = "Customer ID";
+            this.CustomerID.Name = "CustomerID";
+            this.CustomerID.ReadOnly = true;
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHelp.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnHelp.Location = new System.Drawing.Point(1160, 938);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(101, 28);
+            this.btnHelp.TabIndex = 28;
+            this.btnHelp.Text = "Help";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
+            // FirstName
+            // 
+            this.FirstName.DataPropertyName = "FirstName";
+            this.FirstName.FillWeight = 12.48717F;
+            this.FirstName.HeaderText = "First Name";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.Width = 150;
+            // 
+            // Surname
+            // 
+            this.Surname.DataPropertyName = "Surname";
+            this.Surname.FillWeight = 52.18124F;
+            this.Surname.HeaderText = "Surname";
+            this.Surname.Name = "Surname";
+            this.Surname.Width = 150;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.FillWeight = 431.4721F;
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.Width = 210;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.FillWeight = 2.988253F;
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.Width = 170;
+            // 
+            // dsCafe101TestBindingSource
+            // 
+            this.dsCafe101TestBindingSource.DataSource = this.dsCafe101Test;
+            this.dsCafe101TestBindingSource.Position = 0;
+            // 
+            // dsCafe101Test
+            // 
+            this.dsCafe101Test.DataSetName = "dsCafe101Test";
+            this.dsCafe101Test.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // MenuItemName
+            // 
+            this.MenuItemName.DataPropertyName = "MenuItemName";
+            this.MenuItemName.HeaderText = "Item Name";
+            this.MenuItemName.Name = "MenuItemName";
+            // 
+            // sellingPrice
+            // 
+            this.sellingPrice.DataPropertyName = "SellingPrice";
+            this.sellingPrice.HeaderText = "Selling Price";
+            this.sellingPrice.Name = "sellingPrice";
+            // 
+            // Category
+            // 
+            this.Category.DataPropertyName = "Category";
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            // 
+            // PreparationTime
+            // 
+            this.PreparationTime.DataPropertyName = "PreparationTime";
+            this.PreparationTime.HeaderText = "Preparation Time";
+            this.PreparationTime.Name = "PreparationTime";
+            // 
+            // testCustomerTableAdapter
+            // 
+            this.testCustomerTableAdapter.ClearBeforeFill = true;
+            // 
+            // testMenuItemsTableAdapter
+            // 
+            this.testMenuItemsTableAdapter.ClearBeforeFill = true;
+            // 
+            // testOrderTableAdapter
+            // 
+            this.testOrderTableAdapter.ClearBeforeFill = true;
+            // 
+            // testOrderItemTableAdapter1
+            // 
+            this.testOrderItemTableAdapter1.ClearBeforeFill = true;
+            // 
+            // testRecipeTableAdapter1
+            // 
+            this.testRecipeTableAdapter1.ClearBeforeFill = true;
+            // 
+            // testIngredientTableAdapter1
+            // 
+            this.testIngredientTableAdapter1.ClearBeforeFill = true;
+            // 
+            // btnAddNewCust
+            // 
+            this.btnAddNewCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddNewCust.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnAddNewCust.Location = new System.Drawing.Point(1072, 12);
+            this.btnAddNewCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnAddNewCust.Name = "btnAddNewCust";
+            this.btnAddNewCust.Size = new System.Drawing.Size(198, 30);
+            this.btnAddNewCust.TabIndex = 29;
+            this.btnAddNewCust.Text = "Add New Customer";
+            this.btnAddNewCust.UseVisualStyleBackColor = true;
+            this.btnAddNewCust.Click += new System.EventHandler(this.btnAddNewCust_Click);
+            // 
             // frmNewOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -671,6 +708,9 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(1312, 999);
+            this.Controls.Add(this.btnAddNewCust);
+            this.Controls.Add(this.btnHelp);
+            this.Controls.Add(this.btnClearCustName);
             this.Controls.Add(this.lblEventTime);
             this.Controls.Add(this.lblEventDate);
             this.Controls.Add(this.dtpEventTime);
@@ -705,8 +745,6 @@
             this.Load += new System.EventHandler(this.frmNewOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testMenuItemsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101TestBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).EndInit();
@@ -716,6 +754,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testOrderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101TestBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -743,8 +783,6 @@
         private dsCafe101TableAdapters.OrderTableAdapter orderTableAdapter;
         private dsCafe101TableAdapters.MenuItemsTableAdapter menuItemsTableAdapter1;
         private dsCafe101TableAdapters.CustomerTableAdapter customerTableAdapter1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MenuItemID;
-        private System.Windows.Forms.DataGridViewComboBoxColumn ItemQty;
         private System.Windows.Forms.Button btnDecreaseQuantity;
         private System.Windows.Forms.Button btnRemoveItem;
         private dsCafe101TableAdapters.OrderTableAdapter orderTableAdapter1;
@@ -759,12 +797,6 @@
         private dsCafe101TestTableAdapters.TestCustomerTableAdapter testCustomerTableAdapter;
         private System.Windows.Forms.BindingSource testMenuItemsBindingSource;
         private dsCafe101TestTableAdapters.TestMenuItemsTableAdapter testMenuItemsTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn menuItemIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn menuItemNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sellingPriceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn costToMakeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn preparationTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource testOrderBindingSource;
         private dsCafe101TestTableAdapters.TestOrderTableAdapter testOrderTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
@@ -782,11 +814,6 @@
         private dsCafe101TestTableAdapters.TestOrderItemTableAdapter testOrderItemTableAdapter1;
         private dsCafe101TestTableAdapters.TestRecipeTableAdapter testRecipeTableAdapter1;
         private dsCafe101TestTableAdapters.TestIngredientTableAdapter testIngredientTableAdapter1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn customerIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn surnameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource testCustomerBindingSource1;
         private System.Windows.Forms.ComboBox cmbOrderType;
         private System.Windows.Forms.Label lblOrderType;
@@ -794,5 +821,19 @@
         private System.Windows.Forms.DateTimePicker dtpEventTime;
         private System.Windows.Forms.Label lblEventDate;
         private System.Windows.Forms.Label lblEventTime;
+        private System.Windows.Forms.Button btnClearCustName;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ItemQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MenuItemID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MenuItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sellingPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PreparationTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;
+        private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.Button btnAddNewCust;
     }
 }

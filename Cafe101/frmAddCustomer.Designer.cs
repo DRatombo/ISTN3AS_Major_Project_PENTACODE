@@ -42,7 +42,7 @@
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.btnSaveCust = new System.Windows.Forms.Button();
             this.btnCanel = new System.Windows.Forms.Button();
-            this.lblAddNewCust = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblFirstNameMsg = new System.Windows.Forms.Label();
             this.lblSurnameMsg = new System.Windows.Forms.Label();
@@ -51,6 +51,8 @@
             this.lblAddressMsg = new System.Windows.Forms.Label();
             this.lblPasswordMsg = new System.Windows.Forms.Label();
             this.btnHome = new System.Windows.Forms.Button();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.testCustomerTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestCustomerTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,7 +60,7 @@
             // 
             this.lblFirstName.AutoSize = true;
             this.lblFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFirstName.Location = new System.Drawing.Point(82, 240);
+            this.lblFirstName.Location = new System.Drawing.Point(86, 127);
             this.lblFirstName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFirstName.Name = "lblFirstName";
             this.lblFirstName.Size = new System.Drawing.Size(95, 16);
@@ -69,7 +71,7 @@
             // 
             this.lblSurname.AutoSize = true;
             this.lblSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSurname.Location = new System.Drawing.Point(82, 282);
+            this.lblSurname.Location = new System.Drawing.Point(86, 169);
             this.lblSurname.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSurname.Name = "lblSurname";
             this.lblSurname.Size = new System.Drawing.Size(79, 16);
@@ -80,7 +82,7 @@
             // 
             this.lblPhoneNum.AutoSize = true;
             this.lblPhoneNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPhoneNum.Location = new System.Drawing.Point(82, 320);
+            this.lblPhoneNum.Location = new System.Drawing.Point(86, 207);
             this.lblPhoneNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPhoneNum.Name = "lblPhoneNum";
             this.lblPhoneNum.Size = new System.Drawing.Size(122, 16);
@@ -91,7 +93,7 @@
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(82, 367);
+            this.lblEmail.Location = new System.Drawing.Point(86, 254);
             this.lblEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(67, 16);
@@ -102,7 +104,7 @@
             // 
             this.lblAddress.AutoSize = true;
             this.lblAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress.Location = new System.Drawing.Point(85, 411);
+            this.lblAddress.Location = new System.Drawing.Point(89, 298);
             this.lblAddress.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(76, 16);
@@ -113,7 +115,7 @@
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(82, 522);
+            this.lblPassword.Location = new System.Drawing.Point(86, 409);
             this.lblPassword.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(91, 16);
@@ -124,7 +126,7 @@
             // 
             this.txtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFirstName.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtFirstName.Location = new System.Drawing.Point(235, 237);
+            this.txtFirstName.Location = new System.Drawing.Point(239, 124);
             this.txtFirstName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(204, 22);
@@ -135,7 +137,7 @@
             // 
             this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSurname.ForeColor = System.Drawing.SystemColors.Window;
-            this.txtSurname.Location = new System.Drawing.Point(235, 282);
+            this.txtSurname.Location = new System.Drawing.Point(239, 169);
             this.txtSurname.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(204, 22);
@@ -145,7 +147,7 @@
             // txtPhoneNum
             // 
             this.txtPhoneNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhoneNum.Location = new System.Drawing.Point(235, 320);
+            this.txtPhoneNum.Location = new System.Drawing.Point(239, 207);
             this.txtPhoneNum.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtPhoneNum.Name = "txtPhoneNum";
             this.txtPhoneNum.Size = new System.Drawing.Size(204, 22);
@@ -155,7 +157,7 @@
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(235, 359);
+            this.txtEmail.Location = new System.Drawing.Point(239, 246);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(204, 22);
@@ -165,7 +167,7 @@
             // txtAddress
             // 
             this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(235, 410);
+            this.txtAddress.Location = new System.Drawing.Point(239, 297);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
@@ -177,7 +179,7 @@
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(235, 521);
+            this.txtPassword.Location = new System.Drawing.Point(239, 408);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(204, 22);
@@ -188,7 +190,7 @@
             // 
             this.btnSaveCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveCust.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSaveCust.Location = new System.Drawing.Point(63, 582);
+            this.btnSaveCust.Location = new System.Drawing.Point(239, 486);
             this.btnSaveCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSaveCust.Name = "btnSaveCust";
             this.btnSaveCust.Size = new System.Drawing.Size(194, 32);
@@ -201,7 +203,7 @@
             // 
             this.btnCanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCanel.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnCanel.Location = new System.Drawing.Point(345, 582);
+            this.btnCanel.Location = new System.Drawing.Point(473, 486);
             this.btnCanel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCanel.Name = "btnCanel";
             this.btnCanel.Size = new System.Drawing.Size(94, 32);
@@ -210,33 +212,34 @@
             this.btnCanel.UseVisualStyleBackColor = true;
             this.btnCanel.Click += new System.EventHandler(this.btnCanel_Click);
             // 
-            // lblAddNewCust
+            // lblTitle
             // 
-            this.lblAddNewCust.AutoSize = true;
-            this.lblAddNewCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddNewCust.Location = new System.Drawing.Point(233, 173);
-            this.lblAddNewCust.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblAddNewCust.Name = "lblAddNewCust";
-            this.lblAddNewCust.Size = new System.Drawing.Size(191, 24);
-            this.lblAddNewCust.TabIndex = 15;
-            this.lblAddNewCust.Text = "Add New Customer";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.Location = new System.Drawing.Point(235, 42);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(191, 24);
+            this.lblTitle.TabIndex = 15;
+            this.lblTitle.Text = "Add New Customer";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
-            this.pictureBox1.Location = new System.Drawing.Point(235, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(39, 507);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(189, 136);
+            this.pictureBox1.Size = new System.Drawing.Size(100, 99);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
             // lblFirstNameMsg
             // 
             this.lblFirstNameMsg.AutoSize = true;
             this.lblFirstNameMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFirstNameMsg.ForeColor = System.Drawing.Color.Red;
-            this.lblFirstNameMsg.Location = new System.Drawing.Point(482, 237);
+            this.lblFirstNameMsg.Location = new System.Drawing.Point(486, 124);
             this.lblFirstNameMsg.Name = "lblFirstNameMsg";
             this.lblFirstNameMsg.Size = new System.Drawing.Size(0, 16);
             this.lblFirstNameMsg.TabIndex = 16;
@@ -246,7 +249,7 @@
             this.lblSurnameMsg.AutoSize = true;
             this.lblSurnameMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSurnameMsg.ForeColor = System.Drawing.Color.Red;
-            this.lblSurnameMsg.Location = new System.Drawing.Point(485, 288);
+            this.lblSurnameMsg.Location = new System.Drawing.Point(489, 175);
             this.lblSurnameMsg.Name = "lblSurnameMsg";
             this.lblSurnameMsg.Size = new System.Drawing.Size(0, 16);
             this.lblSurnameMsg.TabIndex = 17;
@@ -256,7 +259,7 @@
             this.lblPhoneMsg.AutoSize = true;
             this.lblPhoneMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPhoneMsg.ForeColor = System.Drawing.Color.Red;
-            this.lblPhoneMsg.Location = new System.Drawing.Point(485, 326);
+            this.lblPhoneMsg.Location = new System.Drawing.Point(489, 213);
             this.lblPhoneMsg.Name = "lblPhoneMsg";
             this.lblPhoneMsg.Size = new System.Drawing.Size(0, 16);
             this.lblPhoneMsg.TabIndex = 18;
@@ -266,7 +269,7 @@
             this.lblEmailMsg.AutoSize = true;
             this.lblEmailMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmailMsg.ForeColor = System.Drawing.Color.Red;
-            this.lblEmailMsg.Location = new System.Drawing.Point(485, 367);
+            this.lblEmailMsg.Location = new System.Drawing.Point(489, 254);
             this.lblEmailMsg.Name = "lblEmailMsg";
             this.lblEmailMsg.Size = new System.Drawing.Size(0, 16);
             this.lblEmailMsg.TabIndex = 19;
@@ -276,7 +279,7 @@
             this.lblAddressMsg.AutoSize = true;
             this.lblAddressMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddressMsg.ForeColor = System.Drawing.Color.Red;
-            this.lblAddressMsg.Location = new System.Drawing.Point(488, 420);
+            this.lblAddressMsg.Location = new System.Drawing.Point(492, 307);
             this.lblAddressMsg.Name = "lblAddressMsg";
             this.lblAddressMsg.Size = new System.Drawing.Size(0, 16);
             this.lblAddressMsg.TabIndex = 20;
@@ -286,7 +289,7 @@
             this.lblPasswordMsg.AutoSize = true;
             this.lblPasswordMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPasswordMsg.ForeColor = System.Drawing.Color.Red;
-            this.lblPasswordMsg.Location = new System.Drawing.Point(485, 524);
+            this.lblPasswordMsg.Location = new System.Drawing.Point(489, 411);
             this.lblPasswordMsg.Name = "lblPasswordMsg";
             this.lblPasswordMsg.Size = new System.Drawing.Size(0, 16);
             this.lblPasswordMsg.TabIndex = 21;
@@ -295,7 +298,7 @@
             // 
             this.btnHome.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnHome.Location = new System.Drawing.Point(525, 582);
+            this.btnHome.Location = new System.Drawing.Point(271, 556);
             this.btnHome.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(94, 32);
@@ -304,12 +307,30 @@
             this.btnHome.UseVisualStyleBackColor = true;
             this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
+            // btnHelp
+            // 
+            this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHelp.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnHelp.Location = new System.Drawing.Point(433, 556);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(94, 32);
+            this.btnHelp.TabIndex = 23;
+            this.btnHelp.Text = "Help";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click_1);
+            // 
+            // testCustomerTableAdapter1
+            // 
+            this.testCustomerTableAdapter1.ClearBeforeFill = true;
+            // 
             // frmAddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(673, 640);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.btnHome);
             this.Controls.Add(this.lblPasswordMsg);
             this.Controls.Add(this.lblAddressMsg);
@@ -318,7 +339,7 @@
             this.Controls.Add(this.lblSurnameMsg);
             this.Controls.Add(this.lblFirstNameMsg);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lblAddNewCust);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.btnCanel);
             this.Controls.Add(this.btnSaveCust);
             this.Controls.Add(this.txtPassword);
@@ -362,7 +383,7 @@
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Button btnSaveCust;
         private System.Windows.Forms.Button btnCanel;
-        private System.Windows.Forms.Label lblAddNewCust;
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblFirstNameMsg;
         private System.Windows.Forms.Label lblSurnameMsg;
@@ -371,5 +392,7 @@
         private System.Windows.Forms.Label lblAddressMsg;
         private System.Windows.Forms.Label lblPasswordMsg;
         private System.Windows.Forms.Button btnHome;
+        private System.Windows.Forms.Button btnHelp;
+        private dsCafe101TestTableAdapters.TestCustomerTableAdapter testCustomerTableAdapter1;
     }
 }

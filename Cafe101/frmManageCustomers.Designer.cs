@@ -44,11 +44,13 @@
             this.dsCafe101Test = new Cafe101.dsCafe101Test();
             this.testCustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.testCustomerTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestCustomerTableAdapter();
+            this.testCustomerBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -83,7 +85,7 @@
             this.surnameDataGridViewTextBoxColumn,
             this.addressDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.testCustomerBindingSource1;
+            this.dataGridView1.DataSource = this.testCustomerBindingSource2;
             this.dataGridView1.Location = new System.Drawing.Point(66, 103);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(536, 150);
@@ -101,6 +103,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Update Details";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnBack
             // 
@@ -176,6 +179,11 @@
             // 
             this.testCustomerTableAdapter.ClearBeforeFill = true;
             // 
+            // testCustomerBindingSource2
+            // 
+            this.testCustomerBindingSource2.DataMember = "TestCustomer";
+            this.testCustomerBindingSource2.DataSource = this.dsCafe101Test;
+            // 
             // frmManageCustomers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -197,6 +205,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +228,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource testCustomerBindingSource1;
+        private System.Windows.Forms.BindingSource testCustomerBindingSource2;
     }
 }

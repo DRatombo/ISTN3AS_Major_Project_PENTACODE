@@ -218,26 +218,174 @@ namespace Cafe101
             }
         }
 
+        /* private void txtSearchedCust_TextChanged(object sender, EventArgs e)
+         {
+             if (string.IsNullOrWhiteSpace(txtSearchedCust.Text))
+             {
+                 dgvCustomers.DataSource = null;
+                 dgvCustomers.Visible = false;
+                 return;
+             }
+
+             try
+             {
+                 this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
+
+                 string search = txtSearchedCust.Text.ToLower();
+
+                 DataTable dt = new DataTable();
+                 dt.Columns.Add("CustomerID", typeof(int));
+                 dt.Columns.Add("FirstName", typeof(string));
+                 dt.Columns.Add("Surname", typeof(string));
+                 dt.Columns.Add("Email", typeof(string));
+
+                 foreach (DataRow row in this.dsCafe101Test.TestCustomer.Rows)
+                 {
+                     if (row.RowState == DataRowState.Deleted ||
+                         row.RowState == DataRowState.Detached) continue;
+
+                     string fn = row["FirstName"].ToString().ToLower();
+                     string sn = row["Surname"].ToString().ToLower();
+
+                     if (fn.Contains(search) || sn.Contains(search))
+                     {
+                         dt.Rows.Add(row["CustomerID"], row["FirstName"], row["Surname"], row["Email"]);
+                     }
+                 }
+
+                 dgvCustomers.DataSource = null;
+                 dgvCustomers.DataSource = dt;
+
+                 // Hide CustomerID column from user but keep it accessible
+                 dgvCustomers.Columns["CustomerID"].Visible = false;
+
+                 dgvCustomers.Visible = dt.Rows.Count > 0;
+             }
+             catch (Exception ex)
+             {
+                 MessageBox.Show("Search error: " + ex.Message);
+             }
+         }
+
+        */
+         private void btnAddToCart_Click(object sender, EventArgs e)
+         {
+             try
+             {
+                 if (selectedCustomerID == 0)
+                 {
+                     MessageBox.Show("Please select a customer before adding items to the cart.");
+                     return;
+                 }
+
+                 if (dgvMenuItems.SelectedRows.Count == 0)
+                 {
+                     MessageBox.Show("Please select an item to order.");
+                     return;
+                 }
+
+                 int menuItemID = Convert.ToInt32(dgvMenuItems.SelectedRows[0].Cells["MenuItemID"].Value);
+                 string itemName = dgvMenuItems.SelectedRows[0].Cells["MenuItemName"].Value.ToString();
+                 string priceStr = dgvMenuItems.SelectedRows[0].Cells["SellingPrice"].Value.ToString()
+                     .Replace(",", ".").Trim();
+                 decimal price = decimal.Parse(priceStr, System.Globalization.CultureInfo.InvariantCulture);
+
+                 string qtyRaw = dgvMenuItems.SelectedRows[0].Cells["ItemQty"].Value?.ToString() ?? "";
+                 if (string.IsNullOrEmpty(qtyRaw) || qtyRaw == "0" || qtyRaw == "Out of stock")
+                 {
+                     MessageBox.Show("Please select a quantity first.");
+                     return;
+                 }
+
+                 int quantity = Convert.ToInt32(qtyRaw);
+
+                 // ── Calculate max stock for this item ──────────────────────────
+                 DataTable recipes = testRecipeTableAdapter1.GetData();
+                 DataTable ingredients = testIngredientTableAdapter1.GetData();
+                 int maxCanMake = int.MaxValue;
+
+                 foreach (DataRow recipe in recipes.Rows)
+                 {
+                     if (recipe["MenuItemID"] == DBNull.Value ||
+                         recipe["IngredientID"] == DBNull.Value ||
+                         recipe["QuantityNeeded"] == DBNull.Value) continue;
+                     if (Convert.ToInt32(recipe["MenuItemID"]) != menuItemID) continue;
+
+                     int ingredientID = Convert.ToInt32(recipe["IngredientID"]);
+                     int quantityNeeded = Convert.ToInt32(recipe["QuantityNeeded"]);
+                     if (quantityNeeded <= 0) continue;
+
+                     foreach (DataRow ingredient in ingredients.Rows)
+                     {
+                         if (ingredient["IngredientID"] == DBNull.Value ||
+                             ingredient["QuantityOnHand"] == DBNull.Value) continue;
+                         if (Convert.ToInt32(ingredient["IngredientID"]) != ingredientID) continue;
+
+                         int onHand = Convert.ToInt32(ingredient["QuantityOnHand"]);
+                         int canMake = onHand / quantityNeeded;
+                         if (canMake < maxCanMake) maxCanMake = canMake;
+                     }
+                 }
+
+                 if (maxCanMake == int.MaxValue) maxCanMake = 0;
+
+                 // ── Add to cart or update existing ────────────────────────────
+                 int newCartQty = quantity;
+
+                 foreach (DataGridViewRow row in dgvCart.Rows)
+                 {
+                     if (row.Cells["MenuItemID"].Value == null) continue;
+                     if (Convert.ToInt32(row.Cells["MenuItemID"].Value) == menuItemID)
+                     {
+                         int existingQty = Convert.ToInt32(row.Cells["Qty"].Value);
+                         newCartQty = existingQty + quantity;
+                         decimal newSubtotal = newCartQty * price;
+                         row.Cells["Qty"].Value = newCartQty;
+                         row.Cells["Subtotal"].Value = "R " + newSubtotal.ToString("0.00");
+                         orderTotal += quantity * price;
+                         lblAmount.Text = "R " + orderTotal.ToString("0.00");
+
+                         // Update dropdown for existing item
+                         UpdateDropdown(menuItemID, maxCanMake, newCartQty);
+                         return;
+                     }
+                 }
+
+                 // New row
+                 dgvCart.Rows.Add(
+                     menuItemID,
+                     itemName,
+                     quantity,
+                     "R " + price.ToString("0.00"),
+                     "R " + (quantity * price).ToString("0.00"));
+
+                 orderTotal += quantity * price;
+                 lblAmount.Text = "R " + orderTotal.ToString("0.00");
+
+                 // Update dropdown for new item
+                 UpdateDropdown(menuItemID, maxCanMake, newCartQty);
+             }
+             catch (Exception ex)
+             {
+                 MessageBox.Show("Error adding to cart: " + ex.Message);
+             }
+         }
+ 
+
         private void txtSearchedCust_TextChanged(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtSearchedCust.Text))
-            {
-                dgvCustomers.DataSource = null;
-                dgvCustomers.Visible = false;
-                return;
-            }
-
             try
             {
                 this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
-
-                string search = txtSearchedCust.Text.ToLower();
 
                 DataTable dt = new DataTable();
                 dt.Columns.Add("CustomerID", typeof(int));
                 dt.Columns.Add("FirstName", typeof(string));
                 dt.Columns.Add("Surname", typeof(string));
+                dt.Columns.Add("Address", typeof(string));
                 dt.Columns.Add("Email", typeof(string));
+
+                string search = txtSearchedCust.Text.ToLower();
 
                 foreach (DataRow row in this.dsCafe101Test.TestCustomer.Rows)
                 {
@@ -247,127 +395,29 @@ namespace Cafe101
                     string fn = row["FirstName"].ToString().ToLower();
                     string sn = row["Surname"].ToString().ToLower();
 
-                    if (fn.Contains(search) || sn.Contains(search))
+                    if (string.IsNullOrWhiteSpace(search) ||
+                        fn.Contains(search) || sn.Contains(search))
                     {
-                        dt.Rows.Add(row["CustomerID"], row["FirstName"], row["Surname"], row["Email"]);
+                        dt.Rows.Add(
+                            row["CustomerID"],
+                            row["FirstName"],
+                            row["Surname"],
+                            row["Address"],
+                            row["Email"]);
                     }
                 }
 
                 dgvCustomers.DataSource = null;
                 dgvCustomers.DataSource = dt;
-
-                // Hide CustomerID column from user but keep it accessible
                 dgvCustomers.Columns["CustomerID"].Visible = false;
-
-                dgvCustomers.Visible = dt.Rows.Count > 0;
+                dgvCustomers.Visible = true;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Search error: " + ex.Message);
             }
         }
-        private void btnAddToCart_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (selectedCustomerID == 0)
-                {
-                    MessageBox.Show("Please select a customer before adding items to the cart.");
-                    return;
-                }
 
-                if (dgvMenuItems.SelectedRows.Count == 0)
-                {
-                    MessageBox.Show("Please select an item to order.");
-                    return;
-                }
-
-                int menuItemID = Convert.ToInt32(dgvMenuItems.SelectedRows[0].Cells["MenuItemID"].Value);
-                string itemName = dgvMenuItems.SelectedRows[0].Cells["MenuItemName"].Value.ToString();
-                string priceStr = dgvMenuItems.SelectedRows[0].Cells["SellingPrice"].Value.ToString()
-                    .Replace(",", ".").Trim();
-                decimal price = decimal.Parse(priceStr, System.Globalization.CultureInfo.InvariantCulture);
-
-                string qtyRaw = dgvMenuItems.SelectedRows[0].Cells["ItemQty"].Value?.ToString() ?? "";
-                if (string.IsNullOrEmpty(qtyRaw) || qtyRaw == "0" || qtyRaw == "Out of stock")
-                {
-                    MessageBox.Show("Please select a quantity first.");
-                    return;
-                }
-
-                int quantity = Convert.ToInt32(qtyRaw);
-
-                // ── Calculate max stock for this item ──────────────────────────
-                DataTable recipes = testRecipeTableAdapter1.GetData();
-                DataTable ingredients = testIngredientTableAdapter1.GetData();
-                int maxCanMake = int.MaxValue;
-
-                foreach (DataRow recipe in recipes.Rows)
-                {
-                    if (recipe["MenuItemID"] == DBNull.Value ||
-                        recipe["IngredientID"] == DBNull.Value ||
-                        recipe["QuantityNeeded"] == DBNull.Value) continue;
-                    if (Convert.ToInt32(recipe["MenuItemID"]) != menuItemID) continue;
-
-                    int ingredientID = Convert.ToInt32(recipe["IngredientID"]);
-                    int quantityNeeded = Convert.ToInt32(recipe["QuantityNeeded"]);
-                    if (quantityNeeded <= 0) continue;
-
-                    foreach (DataRow ingredient in ingredients.Rows)
-                    {
-                        if (ingredient["IngredientID"] == DBNull.Value ||
-                            ingredient["QuantityOnHand"] == DBNull.Value) continue;
-                        if (Convert.ToInt32(ingredient["IngredientID"]) != ingredientID) continue;
-
-                        int onHand = Convert.ToInt32(ingredient["QuantityOnHand"]);
-                        int canMake = onHand / quantityNeeded;
-                        if (canMake < maxCanMake) maxCanMake = canMake;
-                    }
-                }
-
-                if (maxCanMake == int.MaxValue) maxCanMake = 0;
-
-                // ── Add to cart or update existing ────────────────────────────
-                int newCartQty = quantity;
-
-                foreach (DataGridViewRow row in dgvCart.Rows)
-                {
-                    if (row.Cells["MenuItemID"].Value == null) continue;
-                    if (Convert.ToInt32(row.Cells["MenuItemID"].Value) == menuItemID)
-                    {
-                        int existingQty = Convert.ToInt32(row.Cells["Qty"].Value);
-                        newCartQty = existingQty + quantity;
-                        decimal newSubtotal = newCartQty * price;
-                        row.Cells["Qty"].Value = newCartQty;
-                        row.Cells["Subtotal"].Value = "R " + newSubtotal.ToString("0.00");
-                        orderTotal += quantity * price;
-                        lblAmount.Text = "R " + orderTotal.ToString("0.00");
-
-                        // Update dropdown for existing item
-                        UpdateDropdown(menuItemID, maxCanMake, newCartQty);
-                        return;
-                    }
-                }
-
-                // New row
-                dgvCart.Rows.Add(
-                    menuItemID,
-                    itemName,
-                    quantity,
-                    "R " + price.ToString("0.00"),
-                    "R " + (quantity * price).ToString("0.00"));
-
-                orderTotal += quantity * price;
-                lblAmount.Text = "R " + orderTotal.ToString("0.00");
-
-                // Update dropdown for new item
-                UpdateDropdown(menuItemID, maxCanMake, newCartQty);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error adding to cart: " + ex.Message);
-            }
-        }
 
         private void UpdateDropdown(int menuItemID, int maxCanMake, int alreadyInCart)
         {
@@ -413,7 +463,7 @@ namespace Cafe101
             {
                 orderTotal -= price;
                 lblAmount.Text = "R " + orderTotal.ToString("0.00");
-                /*dgvCart.Rows.Remove(row);
+               dgvCart.Rows.Remove(row);
 
                 // Reset dropdown in menu grid
                 foreach (DataGridViewRow menuRow in dgvMenuItems.Rows)
@@ -424,7 +474,7 @@ namespace Cafe101
                         menuRow.Cells["ItemQty"].Value = null;
                         break;
                     }
-                }*/
+                }
 
                 dgvCart.Rows.Remove(row);
                 RebuildQtyColumnWithCart();
@@ -457,7 +507,7 @@ namespace Cafe101
             if (orderTotal < 0) orderTotal = 0;
             lblAmount.Text = "R " + orderTotal.ToString("0.00");
 
-            /*  dgvCart.Rows.Remove(row);
+             dgvCart.Rows.Remove(row);
 
               // Reset the quantity dropdown in dgvMenuItems for this item
               foreach (DataGridViewRow menuRow in dgvMenuItems.Rows)
@@ -468,7 +518,7 @@ namespace Cafe101
                       menuRow.Cells["ItemQty"].Value = null;
                       break;
                   }
-              }*/
+              }
 
             dgvCart.Rows.Remove(row);
             RebuildQtyColumnWithCart();
@@ -735,9 +785,6 @@ namespace Cafe101
             selectedCustomerID = 0;
             txtSearchedName.Text = "";
             txtSearchedCust.Text = "";
-            this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
-            dgvCustomers.DataSource = this.dsCafe101Test.TestCustomer;
-            dgvCustomers.Visible = true;
         }
 
         private void RebuildQtyColumnWithCart()

@@ -13,5 +13,7 @@ namespace Cafe101
         public static string Role { get; set; }
         public static string Email { get; set; }
         public static DateTime LoginTime { get; set; }
+
+        public static int EmployeeID { get; set; }
     }
 }

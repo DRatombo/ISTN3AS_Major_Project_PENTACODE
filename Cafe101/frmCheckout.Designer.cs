@@ -43,7 +43,6 @@
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -173,7 +172,7 @@
             // 
             this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnConfirm.Location = new System.Drawing.Point(177, 423);
+            this.btnConfirm.Location = new System.Drawing.Point(46, 423);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(196, 43);
             this.btnConfirm.TabIndex = 10;
@@ -185,7 +184,7 @@
             // 
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnCancel.Location = new System.Drawing.Point(449, 423);
+            this.btnCancel.Location = new System.Drawing.Point(429, 423);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(200, 43);
             this.btnCancel.TabIndex = 11;
@@ -204,23 +203,12 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "CHECKOUT";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(23, 476);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(143, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "VIEW ORDERS ";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // frmCheckout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(758, 528);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnConfirm);
@@ -261,6 +249,5 @@
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
     }
 }

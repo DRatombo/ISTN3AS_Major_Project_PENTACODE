@@ -28,15 +28,14 @@ namespace Cafe101
             try
             {
                 string query = @"SELECT 
-                    o.OrderID,
-                    c.FirstName + ' ' + c.Surname AS Customer,
-                    o.OrderDatetime,
-                    o.TotalAmountDue,
-                    o.PaymentMethod,
-                    o.OrderStatus
-                 FROM [Order] o
-                 JOIN Customer c ON o.CustomerID = c.CustomerID
-                 WHERE CAST(o.OrderDatetime AS DATE) = CAST(GETDATE() AS DATE)
+                    o.OrderID AS [Order #],
+                    ISNULL(c.FirstName + ' ' + c.Surname, 'Unknown') AS [Customer],
+                    o.OrderDatetime AS [Date & Time],
+                    o.TotalAmountDue AS [Total (R)],
+                    o.PaymentMethod AS [Payment],
+                    o.OrderStatus AS [Status]
+                 FROM [TestOrder] o
+                 LEFT JOIN TestCustomer c ON o.CustomerID = c.CustomerID
                  ORDER BY o.OrderDatetime DESC";
 
                 using (SqlConnection conn = DBConnection.GetConnection())
@@ -45,26 +44,24 @@ namespace Cafe101
                     conn.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
-                    
-                    adapter.Fill(dt);
-                    orderDataGridView.DataSource = dt;
 
+                    adapter.Fill(dt);
+                    orderDataGridView.AutoGenerateColumns = true;
+                    orderDataGridView.DataSource = null;
+                    orderDataGridView.DataSource = dt;
+                    orderDataGridView.Refresh();
+                    orderDataGridView.RowTemplate.Height = 30;
+                    orderDataGridView.DefaultCellStyle.WrapMode = DataGridViewTriState.False;
                     orderDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    orderDataGridView.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                     orderDataGridView.AllowUserToAddRows = false;
                     orderDataGridView.ReadOnly = true;
-
-                     //orderDataGridView.ClearSelection();
-
                     numOrders.Text = "Date: " + DateTime.Now.ToString("dd MMM yyyy") +
-                    "     Total Orders: " + dt.Rows.Count;
-                   
+                                     "     Total Orders: " + dt.Rows.Count;
+
 
                 }
 
-                // Show total count
-                //numOrders.Text = "Date: " + DateTime.Now.ToString("dd MMM yyyy") +
-                              // "     Total Orders: " + (orderDataGridView.Rows.Count-1);
+               
             }
             catch (Exception ex)
             {

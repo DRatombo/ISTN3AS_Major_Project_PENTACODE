@@ -17,10 +17,10 @@ namespace Cafe101
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
-            Application.Run(new frmNewOrder());
+            //Application.Run(new frmNewOrder());
             //Application.Run(new frmLogin());
             //Application.Run(new frmTodaysOrders());
-            //Application.Run(new frmCheckout(orderID , orderTotal));
+            Application.Run(new frmCheckout(2 , 1000m));
         }
     }
 }

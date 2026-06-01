@@ -38,12 +38,6 @@
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.numOrders = new System.Windows.Forms.Label();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderDataGridView)).BeginInit();
@@ -90,13 +84,6 @@
             // 
             this.orderDataGridView.AutoGenerateColumns = false;
             this.orderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.orderDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.Customer,
-            this.OrderDateTime,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn5});
             this.orderDataGridView.DataSource = this.orderBindingSource;
             this.orderDataGridView.Location = new System.Drawing.Point(17, 41);
             this.orderDataGridView.Name = "orderDataGridView";
@@ -109,7 +96,7 @@
             // 
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnRefresh.Location = new System.Drawing.Point(208, 356);
+            this.btnRefresh.Location = new System.Drawing.Point(229, 323);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(159, 36);
             this.btnRefresh.TabIndex = 3;
@@ -121,7 +108,7 @@
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnClose.Location = new System.Drawing.Point(533, 356);
+            this.btnClose.Location = new System.Drawing.Point(471, 323);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(158, 36);
             this.btnClose.TabIndex = 4;
@@ -134,66 +121,18 @@
             this.numOrders.AutoSize = true;
             this.numOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numOrders.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.numOrders.Location = new System.Drawing.Point(223, 289);
+            this.numOrders.Location = new System.Drawing.Point(244, 279);
             this.numOrders.Name = "numOrders";
             this.numOrders.Size = new System.Drawing.Size(144, 29);
             this.numOrders.TabIndex = 6;
             this.numOrders.Text = "orderCount";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "OrderID";
-            this.dataGridViewTextBoxColumn1.HeaderText = "OrderID";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // Customer
-            // 
-            this.Customer.HeaderText = "Customer";
-            this.Customer.MinimumWidth = 6;
-            this.Customer.Name = "Customer";
-            this.Customer.Width = 125;
-            // 
-            // OrderDateTime
-            // 
-            this.OrderDateTime.DataPropertyName = "OrderDateTime";
-            this.OrderDateTime.HeaderText = "OrderDateTime";
-            this.OrderDateTime.MinimumWidth = 6;
-            this.OrderDateTime.Name = "OrderDateTime";
-            this.OrderDateTime.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "TotalAmountDue";
-            this.dataGridViewTextBoxColumn7.HeaderText = "TotalAmountDue";
-            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "PaymentMethod";
-            this.dataGridViewTextBoxColumn6.HeaderText = "PaymentMethod";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "OrderStatus";
-            this.dataGridViewTextBoxColumn5.HeaderText = "OrderStatus";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 125;
             // 
             // frmTodaysOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(1114, 593);
+            this.ClientSize = new System.Drawing.Size(1114, 568);
             this.Controls.Add(this.numOrders);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnRefresh);
@@ -201,6 +140,7 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Name = "frmTodaysOrders";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmTodaysOrders";
             this.Load += new System.EventHandler(this.frmTodaysOrders_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).EndInit();
@@ -222,11 +162,5 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label numOrders;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Customer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderDateTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
     }
 }

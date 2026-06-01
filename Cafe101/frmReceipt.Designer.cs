@@ -124,7 +124,7 @@
             this.orderIDTxt.Location = new System.Drawing.Point(241, 90);
             this.orderIDTxt.Name = "orderIDTxt";
             this.orderIDTxt.ReadOnly = true;
-            this.orderIDTxt.Size = new System.Drawing.Size(183, 22);
+            this.orderIDTxt.Size = new System.Drawing.Size(500, 22);
             this.orderIDTxt.TabIndex = 8;
             // 
             // dateTxt
@@ -205,6 +205,7 @@
             this.custTxt.ReadOnly = true;
             this.custTxt.Size = new System.Drawing.Size(183, 22);
             this.custTxt.TabIndex = 11;
+            this.custTxt.TextChanged += new System.EventHandler(this.custTxt_TextChanged);
             // 
             // label3
             // 

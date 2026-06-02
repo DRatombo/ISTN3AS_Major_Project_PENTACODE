@@ -164,6 +164,11 @@ namespace Cafe101
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmNewOrder orders = new frmNewOrder();
+        }
+
         /* private void rbCash_CheckedChanged_1(object sender, EventArgs e)
          {
 

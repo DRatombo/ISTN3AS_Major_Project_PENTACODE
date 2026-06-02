@@ -7,6 +7,7 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
+
 namespace Cafe101.Properties {
     using System;
     
@@ -75,6 +76,16 @@ namespace Cafe101.Properties {
         internal static System.Drawing.Bitmap Logo_jpg {
             get {
                 object obj = ResourceManager.GetObject("Logo.jpg", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Show_password {
+            get {
+                object obj = ResourceManager.GetObject("Show password", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

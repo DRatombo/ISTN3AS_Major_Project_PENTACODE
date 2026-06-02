@@ -39,83 +39,131 @@
             this.btnSearchItem = new System.Windows.Forms.Button();
             this.btnAddToCart = new System.Windows.Forms.Button();
             this.dgvMenuItems = new System.Windows.Forms.DataGridView();
-            this.MenuItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ItemQty = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.testMenuItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsCafe101BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsCafe101 = new Cafe101.dsCafe101();
             this.dgvCart = new System.Windows.Forms.DataGridView();
             this.lblTotalPrice = new System.Windows.Forms.Label();
             this.lblAmount = new System.Windows.Forms.Label();
             this.btnConfirmOrder = new System.Windows.Forms.Button();
             this.btnDecreaseQuantity = new System.Windows.Forms.Button();
             this.btnRemoveItem = new System.Windows.Forms.Button();
-            this.menuItemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.priceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoryDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.prepTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dsCafe101BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dsCafe101 = new Cafe101.dsCafe101();
             this.orderTableAdapter = new Cafe101.dsCafe101TableAdapters.OrderTableAdapter();
             this.menuItemsTableAdapter1 = new Cafe101.dsCafe101TableAdapters.MenuItemsTableAdapter();
             this.customerTableAdapter1 = new Cafe101.dsCafe101TableAdapters.CustomerTableAdapter();
             this.orderTableAdapter1 = new Cafe101.dsCafe101TableAdapters.OrderTableAdapter();
             this.itemOrderTableAdapter1 = new Cafe101.dsCafe101TableAdapters.ItemOrderTableAdapter();
             this.recipeItemTableAdapter1 = new Cafe101.dsCafe101TableAdapters.RecipeItemTableAdapter();
-            this.ingredientTableAdapter1 = new Cafe101.dsCafe101TableAdapters.IngredientTableAdapter();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.dgvCustomers = new System.Windows.Forms.DataGridView();
+            this.testCustomerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.btnBack = new System.Windows.Forms.Button();
+            this.testCustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.testOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customerIDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eventDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.eventTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paymentMethodDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalAmountDueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalChangeDueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cmbOrderType = new System.Windows.Forms.ComboBox();
+            this.lblOrderType = new System.Windows.Forms.Label();
+            this.dtpEventDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpEventTime = new System.Windows.Forms.DateTimePicker();
+            this.lblEventDate = new System.Windows.Forms.Label();
+            this.lblEventTime = new System.Windows.Forms.Label();
+            this.btnClearCustName = new System.Windows.Forms.Button();
+            this.ItemQty = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.MenuItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnHelp = new System.Windows.Forms.Button();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dsCafe101TestBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsCafe101Test = new Cafe101.dsCafe101Test();
+            this.MenuItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PreparationTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.testCustomerTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestCustomerTableAdapter();
+            this.testMenuItemsTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestMenuItemsTableAdapter();
+            this.testOrderTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestOrderTableAdapter();
+            this.testOrderItemTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestOrderItemTableAdapter();
+            this.testRecipeTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestRecipeTableAdapter();
+            this.testIngredientTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestIngredientTableAdapter();
+            this.btnAddNewCust = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testMenuItemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testOrderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101TestBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSearchCust
             // 
             this.lblSearchCust.AutoSize = true;
-            this.lblSearchCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblSearchCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearchCust.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblSearchCust.Location = new System.Drawing.Point(71, 41);
+            this.lblSearchCust.Location = new System.Drawing.Point(379, 18);
             this.lblSearchCust.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearchCust.Name = "lblSearchCust";
-            this.lblSearchCust.Size = new System.Drawing.Size(130, 13);
+            this.lblSearchCust.Size = new System.Drawing.Size(145, 18);
             this.lblSearchCust.TabIndex = 0;
-            this.lblSearchCust.Text = "SEARCH CUSTOMER";
+            this.lblSearchCust.Text = "Search Customer:";
             // 
             // txtSearchedCust
             // 
-            this.txtSearchedCust.Location = new System.Drawing.Point(243, 38);
+            this.txtSearchedCust.Location = new System.Drawing.Point(551, 19);
             this.txtSearchedCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearchedCust.Name = "txtSearchedCust";
             this.txtSearchedCust.Size = new System.Drawing.Size(204, 20);
             this.txtSearchedCust.TabIndex = 1;
+            this.txtSearchedCust.TextChanged += new System.EventHandler(this.txtSearchedCust_TextChanged);
             // 
             // btnSearchCust
             // 
             this.btnSearchCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchCust.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSearchCust.Location = new System.Drawing.Point(487, 31);
+            this.btnSearchCust.Location = new System.Drawing.Point(795, 12);
             this.btnSearchCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSearchCust.Name = "btnSearchCust";
             this.btnSearchCust.Size = new System.Drawing.Size(88, 30);
             this.btnSearchCust.TabIndex = 2;
-            this.btnSearchCust.Text = "SEARCH";
+            this.btnSearchCust.Text = "Search";
             this.btnSearchCust.UseVisualStyleBackColor = true;
             this.btnSearchCust.Click += new System.EventHandler(this.btnSearchCust_Click);
             // 
             // lblCustName
             // 
             this.lblCustName.AutoSize = true;
-            this.lblCustName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.lblCustName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCustName.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblCustName.Location = new System.Drawing.Point(662, 41);
+            this.lblCustName.Location = new System.Drawing.Point(471, 65);
             this.lblCustName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCustName.Name = "lblCustName";
-            this.lblCustName.Size = new System.Drawing.Size(42, 13);
+            this.lblCustName.Size = new System.Drawing.Size(136, 18);
             this.lblCustName.TabIndex = 3;
-            this.lblCustName.Text = "NAME";
+            this.lblCustName.Text = "Customer Name:";
             // 
             // txtSearchedName
             // 
-            this.txtSearchedName.Location = new System.Drawing.Point(747, 38);
+            this.txtSearchedName.Location = new System.Drawing.Point(629, 66);
             this.txtSearchedName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearchedName.Name = "txtSearchedName";
             this.txtSearchedName.Size = new System.Drawing.Size(195, 20);
@@ -124,17 +172,18 @@
             // lblSearchItems
             // 
             this.lblSearchItems.AutoSize = true;
+            this.lblSearchItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearchItems.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblSearchItems.Location = new System.Drawing.Point(227, 110);
+            this.lblSearchItems.Location = new System.Drawing.Point(379, 363);
             this.lblSearchItems.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearchItems.Name = "lblSearchItems";
-            this.lblSearchItems.Size = new System.Drawing.Size(143, 13);
+            this.lblSearchItems.Size = new System.Drawing.Size(149, 18);
             this.lblSearchItems.TabIndex = 5;
-            this.lblSearchItems.Text = "SEARCH MENU ITEM : ";
+            this.lblSearchItems.Text = "Search Menu Item:";
             // 
             // textItemSearch
             // 
-            this.textItemSearch.Location = new System.Drawing.Point(404, 107);
+            this.textItemSearch.Location = new System.Drawing.Point(556, 364);
             this.textItemSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textItemSearch.Name = "textItemSearch";
             this.textItemSearch.Size = new System.Drawing.Size(199, 20);
@@ -145,12 +194,12 @@
             // 
             this.btnSearchItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchItem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSearchItem.Location = new System.Drawing.Point(656, 99);
+            this.btnSearchItem.Location = new System.Drawing.Point(808, 356);
             this.btnSearchItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSearchItem.Name = "btnSearchItem";
             this.btnSearchItem.Size = new System.Drawing.Size(88, 33);
             this.btnSearchItem.TabIndex = 7;
-            this.btnSearchItem.Text = "SEARCH";
+            this.btnSearchItem.Text = "Search";
             this.btnSearchItem.UseVisualStyleBackColor = true;
             this.btnSearchItem.Click += new System.EventHandler(this.btnSearchItem_Click);
             // 
@@ -158,160 +207,45 @@
             // 
             this.btnAddToCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddToCart.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnAddToCart.Location = new System.Drawing.Point(416, 347);
+            this.btnAddToCart.Location = new System.Drawing.Point(556, 616);
             this.btnAddToCart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddToCart.Name = "btnAddToCart";
             this.btnAddToCart.Size = new System.Drawing.Size(187, 28);
             this.btnAddToCart.TabIndex = 10;
-            this.btnAddToCart.Text = "ADD TO CART";
+            this.btnAddToCart.Text = "Add To Cart";
             this.btnAddToCart.UseVisualStyleBackColor = true;
             this.btnAddToCart.Click += new System.EventHandler(this.btnAddToCart_Click);
             // 
             // dgvMenuItems
             // 
             this.dgvMenuItems.AutoGenerateColumns = false;
+            this.dgvMenuItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMenuItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMenuItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.menuItemNameDataGridViewTextBoxColumn,
+            this.ItemQty,
             this.MenuItemID,
-            this.priceDataGridViewTextBoxColumn,
-            this.categoryDataGridViewTextBoxColumn,
-            this.prepTimeDataGridViewTextBoxColumn,
-            this.ItemQty});
-            this.dgvMenuItems.DataSource = this.menuItemsBindingSource;
-            this.dgvMenuItems.Location = new System.Drawing.Point(178, 148);
+            this.MenuItemName,
+            this.sellingPrice,
+            this.Category,
+            this.PreparationTime});
+            this.dgvMenuItems.DataSource = this.testMenuItemsBindingSource;
+            this.dgvMenuItems.Location = new System.Drawing.Point(320, 413);
             this.dgvMenuItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvMenuItems.Name = "dgvMenuItems";
             this.dgvMenuItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMenuItems.Size = new System.Drawing.Size(690, 181);
+            this.dgvMenuItems.Size = new System.Drawing.Size(894, 181);
             this.dgvMenuItems.TabIndex = 11;
+            this.dgvMenuItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMenuItems_CellContentClick);
             // 
-            // MenuItemID
+            // testMenuItemsBindingSource
             // 
-            this.MenuItemID.DataPropertyName = "MenuItemID";
-            this.MenuItemID.HeaderText = "Item ID";
-            this.MenuItemID.Name = "MenuItemID";
-            this.MenuItemID.ReadOnly = true;
-            // 
-            // ItemQty
-            // 
-            this.ItemQty.HeaderText = "Quantity";
-            this.ItemQty.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.ItemQty.Name = "ItemQty";
-            this.ItemQty.ReadOnly = true;
+            this.testMenuItemsBindingSource.DataMember = "TestMenuItems";
+            this.testMenuItemsBindingSource.DataSource = this.dsCafe101TestBindingSource;
             // 
             // menuItemsBindingSource
             // 
             this.menuItemsBindingSource.DataMember = "MenuItems";
             this.menuItemsBindingSource.DataSource = this.dsCafe101BindingSource;
-            // 
-            // dgvCart
-            // 
-            this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCart.Location = new System.Drawing.Point(178, 401);
-            this.dgvCart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.dgvCart.Name = "dgvCart";
-            this.dgvCart.Size = new System.Drawing.Size(702, 158);
-            this.dgvCart.TabIndex = 12;
-            // 
-            // lblTotalPrice
-            // 
-            this.lblTotalPrice.AutoSize = true;
-            this.lblTotalPrice.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblTotalPrice.Location = new System.Drawing.Point(337, 656);
-            this.lblTotalPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblTotalPrice.Name = "lblTotalPrice";
-            this.lblTotalPrice.Size = new System.Drawing.Size(47, 13);
-            this.lblTotalPrice.TabIndex = 13;
-            this.lblTotalPrice.Text = "TOTAL";
-            // 
-            // lblAmount
-            // 
-            this.lblAmount.AutoSize = true;
-            this.lblAmount.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblAmount.Location = new System.Drawing.Point(469, 656);
-            this.lblAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblAmount.Name = "lblAmount";
-            this.lblAmount.Size = new System.Drawing.Size(45, 13);
-            this.lblAmount.TabIndex = 14;
-            this.lblAmount.Text = "R 0.00";
-            // 
-            // btnConfirmOrder
-            // 
-            this.btnConfirmOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmOrder.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnConfirmOrder.Location = new System.Drawing.Point(566, 651);
-            this.btnConfirmOrder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnConfirmOrder.Name = "btnConfirmOrder";
-            this.btnConfirmOrder.Size = new System.Drawing.Size(191, 28);
-            this.btnConfirmOrder.TabIndex = 15;
-            this.btnConfirmOrder.Text = "CONFIRM ORDER";
-            this.btnConfirmOrder.UseVisualStyleBackColor = true;
-            this.btnConfirmOrder.Click += new System.EventHandler(this.btnConfirmOrder_Click);
-            // 
-            // btnDecreaseQuantity
-            // 
-            this.btnDecreaseQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDecreaseQuantity.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnDecreaseQuantity.Location = new System.Drawing.Point(243, 581);
-            this.btnDecreaseQuantity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnDecreaseQuantity.Name = "btnDecreaseQuantity";
-            this.btnDecreaseQuantity.Size = new System.Drawing.Size(242, 28);
-            this.btnDecreaseQuantity.TabIndex = 16;
-            this.btnDecreaseQuantity.Text = "DECREASE QUANTITY";
-            this.btnDecreaseQuantity.UseVisualStyleBackColor = true;
-            this.btnDecreaseQuantity.Click += new System.EventHandler(this.btnDecreaseQuantity_Click);
-            // 
-            // btnRemoveItem
-            // 
-            this.btnRemoveItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveItem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnRemoveItem.Location = new System.Drawing.Point(614, 581);
-            this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnRemoveItem.Name = "btnRemoveItem";
-            this.btnRemoveItem.Size = new System.Drawing.Size(187, 28);
-            this.btnRemoveItem.TabIndex = 17;
-            this.btnRemoveItem.Text = "REMOVE ITEM";
-            this.btnRemoveItem.UseVisualStyleBackColor = true;
-            this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click_1);
-            // 
-            // menuItemNameDataGridViewTextBoxColumn
-            // 
-            this.menuItemNameDataGridViewTextBoxColumn.DataPropertyName = "MenuItemName";
-            this.menuItemNameDataGridViewTextBoxColumn.HeaderText = "Item Name";
-            this.menuItemNameDataGridViewTextBoxColumn.Name = "menuItemNameDataGridViewTextBoxColumn";
-            this.menuItemNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // priceDataGridViewTextBoxColumn
-            // 
-            this.priceDataGridViewTextBoxColumn.DataPropertyName = "Price";
-            this.priceDataGridViewTextBoxColumn.HeaderText = "Price";
-            this.priceDataGridViewTextBoxColumn.Name = "priceDataGridViewTextBoxColumn";
-            this.priceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // categoryDataGridViewTextBoxColumn
-            // 
-            this.categoryDataGridViewTextBoxColumn.DataPropertyName = "Category";
-            this.categoryDataGridViewTextBoxColumn.HeaderText = "Category";
-            this.categoryDataGridViewTextBoxColumn.Name = "categoryDataGridViewTextBoxColumn";
-            this.categoryDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // prepTimeDataGridViewTextBoxColumn
-            // 
-            this.prepTimeDataGridViewTextBoxColumn.DataPropertyName = "PrepTime";
-            this.prepTimeDataGridViewTextBoxColumn.HeaderText = "PrepTime";
-            this.prepTimeDataGridViewTextBoxColumn.Name = "prepTimeDataGridViewTextBoxColumn";
-            this.prepTimeDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // dsCafe101BindingSource
             // 
@@ -322,6 +256,79 @@
             // 
             this.dsCafe101.DataSetName = "dsCafe101";
             this.dsCafe101.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // dgvCart
+            // 
+            this.dgvCart.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCart.Location = new System.Drawing.Point(219, 673);
+            this.dgvCart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.dgvCart.Name = "dgvCart";
+            this.dgvCart.Size = new System.Drawing.Size(524, 158);
+            this.dgvCart.TabIndex = 12;
+            // 
+            // lblTotalPrice
+            // 
+            this.lblTotalPrice.AutoSize = true;
+            this.lblTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPrice.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblTotalPrice.Location = new System.Drawing.Point(523, 947);
+            this.lblTotalPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalPrice.Name = "lblTotalPrice";
+            this.lblTotalPrice.Size = new System.Drawing.Size(60, 18);
+            this.lblTotalPrice.TabIndex = 13;
+            this.lblTotalPrice.Text = "TOTAL";
+            // 
+            // lblAmount
+            // 
+            this.lblAmount.AutoSize = true;
+            this.lblAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmount.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblAmount.Location = new System.Drawing.Point(655, 947);
+            this.lblAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAmount.Name = "lblAmount";
+            this.lblAmount.Size = new System.Drawing.Size(57, 18);
+            this.lblAmount.TabIndex = 14;
+            this.lblAmount.Text = "R 0.00";
+            // 
+            // btnConfirmOrder
+            // 
+            this.btnConfirmOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirmOrder.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnConfirmOrder.Location = new System.Drawing.Point(757, 938);
+            this.btnConfirmOrder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnConfirmOrder.Name = "btnConfirmOrder";
+            this.btnConfirmOrder.Size = new System.Drawing.Size(191, 28);
+            this.btnConfirmOrder.TabIndex = 15;
+            this.btnConfirmOrder.Text = "Confirm Order";
+            this.btnConfirmOrder.UseVisualStyleBackColor = true;
+            this.btnConfirmOrder.Click += new System.EventHandler(this.btnConfirmOrder_Click);
+            // 
+            // btnDecreaseQuantity
+            // 
+            this.btnDecreaseQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDecreaseQuantity.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDecreaseQuantity.Location = new System.Drawing.Point(354, 869);
+            this.btnDecreaseQuantity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnDecreaseQuantity.Name = "btnDecreaseQuantity";
+            this.btnDecreaseQuantity.Size = new System.Drawing.Size(242, 28);
+            this.btnDecreaseQuantity.TabIndex = 16;
+            this.btnDecreaseQuantity.Text = "Decrease Quantity";
+            this.btnDecreaseQuantity.UseVisualStyleBackColor = true;
+            this.btnDecreaseQuantity.Click += new System.EventHandler(this.btnDecreaseQuantity_Click);
+            // 
+            // btnRemoveItem
+            // 
+            this.btnRemoveItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveItem.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnRemoveItem.Location = new System.Drawing.Point(770, 869);
+            this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnRemoveItem.Name = "btnRemoveItem";
+            this.btnRemoveItem.Size = new System.Drawing.Size(187, 28);
+            this.btnRemoveItem.TabIndex = 17;
+            this.btnRemoveItem.Text = "Remove Item";
+            this.btnRemoveItem.UseVisualStyleBackColor = true;
+            this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click_1);
             // 
             // orderTableAdapter
             // 
@@ -347,16 +354,372 @@
             // 
             this.recipeItemTableAdapter1.ClearBeforeFill = true;
             // 
-            // ingredientTableAdapter1
+            // pictureBox1
             // 
-            this.ingredientTableAdapter1.ClearBeforeFill = true;
+            this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
+            this.pictureBox1.Location = new System.Drawing.Point(28, 869);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(120, 109);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 18;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // dgvCustomers
+            // 
+            this.dgvCustomers.AutoGenerateColumns = false;
+            this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.FirstName,
+            this.Surname,
+            this.addressDataGridViewTextBoxColumn,
+            this.emailDataGridViewTextBoxColumn,
+            this.CustomerID});
+            this.dgvCustomers.DataSource = this.testCustomerBindingSource1;
+            this.dgvCustomers.Location = new System.Drawing.Point(334, 106);
+            this.dgvCustomers.Name = "dgvCustomers";
+            this.dgvCustomers.Size = new System.Drawing.Size(827, 233);
+            this.dgvCustomers.TabIndex = 19;
+            this.dgvCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellClick);
+            // 
+            // testCustomerBindingSource1
+            // 
+            this.testCustomerBindingSource1.DataMember = "TestCustomer";
+            this.testCustomerBindingSource1.DataSource = this.dsCafe101TestBindingSource;
+            // 
+            // btnBack
+            // 
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnBack.Location = new System.Drawing.Point(366, 942);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(100, 28);
+            this.btnBack.TabIndex = 20;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // testCustomerBindingSource
+            // 
+            this.testCustomerBindingSource.DataMember = "TestCustomer";
+            this.testCustomerBindingSource.DataSource = this.dsCafe101TestBindingSource;
+            // 
+            // testOrderBindingSource
+            // 
+            this.testOrderBindingSource.DataMember = "TestOrder";
+            this.testOrderBindingSource.DataSource = this.dsCafe101TestBindingSource;
+            // 
+            // orderIDDataGridViewTextBoxColumn
+            // 
+            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn.HeaderText = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
+            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // customerIDDataGridViewTextBoxColumn1
+            // 
+            this.customerIDDataGridViewTextBoxColumn1.DataPropertyName = "CustomerID";
+            this.customerIDDataGridViewTextBoxColumn1.HeaderText = "CustomerID";
+            this.customerIDDataGridViewTextBoxColumn1.Name = "customerIDDataGridViewTextBoxColumn1";
+            // 
+            // employeeIDDataGridViewTextBoxColumn
+            // 
+            this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
+            this.employeeIDDataGridViewTextBoxColumn.HeaderText = "EmployeeID";
+            this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
+            // 
+            // orderTypeDataGridViewTextBoxColumn
+            // 
+            this.orderTypeDataGridViewTextBoxColumn.DataPropertyName = "OrderType";
+            this.orderTypeDataGridViewTextBoxColumn.HeaderText = "OrderType";
+            this.orderTypeDataGridViewTextBoxColumn.Name = "orderTypeDataGridViewTextBoxColumn";
+            // 
+            // orderDateTimeDataGridViewTextBoxColumn
+            // 
+            this.orderDateTimeDataGridViewTextBoxColumn.DataPropertyName = "OrderDateTime";
+            this.orderDateTimeDataGridViewTextBoxColumn.HeaderText = "OrderDateTime";
+            this.orderDateTimeDataGridViewTextBoxColumn.Name = "orderDateTimeDataGridViewTextBoxColumn";
+            // 
+            // eventDateDataGridViewTextBoxColumn
+            // 
+            this.eventDateDataGridViewTextBoxColumn.DataPropertyName = "EventDate";
+            this.eventDateDataGridViewTextBoxColumn.HeaderText = "EventDate";
+            this.eventDateDataGridViewTextBoxColumn.Name = "eventDateDataGridViewTextBoxColumn";
+            // 
+            // eventTimeDataGridViewTextBoxColumn
+            // 
+            this.eventTimeDataGridViewTextBoxColumn.DataPropertyName = "EventTime";
+            this.eventTimeDataGridViewTextBoxColumn.HeaderText = "EventTime";
+            this.eventTimeDataGridViewTextBoxColumn.Name = "eventTimeDataGridViewTextBoxColumn";
+            // 
+            // orderStatusDataGridViewTextBoxColumn
+            // 
+            this.orderStatusDataGridViewTextBoxColumn.DataPropertyName = "OrderStatus";
+            this.orderStatusDataGridViewTextBoxColumn.HeaderText = "OrderStatus";
+            this.orderStatusDataGridViewTextBoxColumn.Name = "orderStatusDataGridViewTextBoxColumn";
+            // 
+            // paymentMethodDataGridViewTextBoxColumn
+            // 
+            this.paymentMethodDataGridViewTextBoxColumn.DataPropertyName = "PaymentMethod";
+            this.paymentMethodDataGridViewTextBoxColumn.HeaderText = "PaymentMethod";
+            this.paymentMethodDataGridViewTextBoxColumn.Name = "paymentMethodDataGridViewTextBoxColumn";
+            // 
+            // totalAmountDueDataGridViewTextBoxColumn
+            // 
+            this.totalAmountDueDataGridViewTextBoxColumn.DataPropertyName = "TotalAmountDue";
+            this.totalAmountDueDataGridViewTextBoxColumn.HeaderText = "TotalAmountDue";
+            this.totalAmountDueDataGridViewTextBoxColumn.Name = "totalAmountDueDataGridViewTextBoxColumn";
+            // 
+            // totalChangeDueDataGridViewTextBoxColumn
+            // 
+            this.totalChangeDueDataGridViewTextBoxColumn.DataPropertyName = "TotalChangeDue";
+            this.totalChangeDueDataGridViewTextBoxColumn.HeaderText = "TotalChangeDue";
+            this.totalChangeDueDataGridViewTextBoxColumn.Name = "totalChangeDueDataGridViewTextBoxColumn";
+            // 
+            // cmbOrderType
+            // 
+            this.cmbOrderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbOrderType.FormattingEnabled = true;
+            this.cmbOrderType.Items.AddRange(new object[] {
+            "Regular",
+            "Event"});
+            this.cmbOrderType.Location = new System.Drawing.Point(1010, 687);
+            this.cmbOrderType.Name = "cmbOrderType";
+            this.cmbOrderType.Size = new System.Drawing.Size(204, 21);
+            this.cmbOrderType.TabIndex = 21;
+            this.cmbOrderType.SelectedIndexChanged += new System.EventHandler(this.cmbOrderType_SelectedIndexChanged);
+            // 
+            // lblOrderType
+            // 
+            this.lblOrderType.AutoSize = true;
+            this.lblOrderType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrderType.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblOrderType.Location = new System.Drawing.Point(792, 686);
+            this.lblOrderType.Name = "lblOrderType";
+            this.lblOrderType.Size = new System.Drawing.Size(149, 18);
+            this.lblOrderType.TabIndex = 22;
+            this.lblOrderType.Text = "Select Order Type:";
+            // 
+            // dtpEventDate
+            // 
+            this.dtpEventDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEventDate.Location = new System.Drawing.Point(1014, 743);
+            this.dtpEventDate.Name = "dtpEventDate";
+            this.dtpEventDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpEventDate.TabIndex = 23;
+            // 
+            // dtpEventTime
+            // 
+            this.dtpEventTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpEventTime.Location = new System.Drawing.Point(1014, 797);
+            this.dtpEventTime.Name = "dtpEventTime";
+            this.dtpEventTime.ShowUpDown = true;
+            this.dtpEventTime.Size = new System.Drawing.Size(200, 20);
+            this.dtpEventTime.TabIndex = 24;
+            // 
+            // lblEventDate
+            // 
+            this.lblEventDate.AutoSize = true;
+            this.lblEventDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEventDate.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblEventDate.Location = new System.Drawing.Point(841, 745);
+            this.lblEventDate.Name = "lblEventDate";
+            this.lblEventDate.Size = new System.Drawing.Size(95, 18);
+            this.lblEventDate.TabIndex = 25;
+            this.lblEventDate.Text = "Event Date:";
+            // 
+            // lblEventTime
+            // 
+            this.lblEventTime.AutoSize = true;
+            this.lblEventTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEventTime.ForeColor = System.Drawing.SystemColors.Control;
+            this.lblEventTime.Location = new System.Drawing.Point(841, 799);
+            this.lblEventTime.Name = "lblEventTime";
+            this.lblEventTime.Size = new System.Drawing.Size(97, 18);
+            this.lblEventTime.TabIndex = 26;
+            this.lblEventTime.Text = "Event Time:";
+            // 
+            // btnClearCustName
+            // 
+            this.btnClearCustName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearCustName.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnClearCustName.Location = new System.Drawing.Point(848, 65);
+            this.btnClearCustName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnClearCustName.Name = "btnClearCustName";
+            this.btnClearCustName.Size = new System.Drawing.Size(88, 24);
+            this.btnClearCustName.TabIndex = 27;
+            this.btnClearCustName.Text = "Clear";
+            this.btnClearCustName.UseVisualStyleBackColor = true;
+            this.btnClearCustName.Click += new System.EventHandler(this.btnClearCustName_Click);
+            // 
+            // ItemQty
+            // 
+            this.ItemQty.HeaderText = "Quantity";
+            this.ItemQty.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.ItemQty.Name = "ItemQty";
+            this.ItemQty.ReadOnly = true;
+            // 
+            // MenuItemID
+            // 
+            this.MenuItemID.DataPropertyName = "MenuItemID";
+            this.MenuItemID.HeaderText = "Menu Item ID";
+            this.MenuItemID.Name = "MenuItemID";
+            this.MenuItemID.ReadOnly = true;
+            // 
+            // CustomerID
+            // 
+            this.CustomerID.DataPropertyName = "CustomerID";
+            this.CustomerID.FillWeight = 0.8712624F;
+            this.CustomerID.HeaderText = "Customer ID";
+            this.CustomerID.Name = "CustomerID";
+            this.CustomerID.ReadOnly = true;
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHelp.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnHelp.Location = new System.Drawing.Point(1160, 938);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(101, 28);
+            this.btnHelp.TabIndex = 28;
+            this.btnHelp.Text = "Help";
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
+            // FirstName
+            // 
+            this.FirstName.DataPropertyName = "FirstName";
+            this.FirstName.FillWeight = 12.48717F;
+            this.FirstName.HeaderText = "First Name";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.Width = 150;
+            // 
+            // Surname
+            // 
+            this.Surname.DataPropertyName = "Surname";
+            this.Surname.FillWeight = 52.18124F;
+            this.Surname.HeaderText = "Surname";
+            this.Surname.Name = "Surname";
+            this.Surname.Width = 150;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.FillWeight = 431.4721F;
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.Width = 210;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.FillWeight = 2.988253F;
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.Width = 170;
+            // 
+            // dsCafe101TestBindingSource
+            // 
+            this.dsCafe101TestBindingSource.DataSource = this.dsCafe101Test;
+            this.dsCafe101TestBindingSource.Position = 0;
+            // 
+            // dsCafe101Test
+            // 
+            this.dsCafe101Test.DataSetName = "dsCafe101Test";
+            this.dsCafe101Test.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // MenuItemName
+            // 
+            this.MenuItemName.DataPropertyName = "MenuItemName";
+            this.MenuItemName.HeaderText = "Item Name";
+            this.MenuItemName.Name = "MenuItemName";
+            // 
+            // sellingPrice
+            // 
+            this.sellingPrice.DataPropertyName = "SellingPrice";
+            this.sellingPrice.HeaderText = "Selling Price";
+            this.sellingPrice.Name = "sellingPrice";
+            // 
+            // Category
+            // 
+            this.Category.DataPropertyName = "Category";
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            // 
+            // PreparationTime
+            // 
+            this.PreparationTime.DataPropertyName = "PreparationTime";
+            this.PreparationTime.HeaderText = "Preparation Time";
+            this.PreparationTime.Name = "PreparationTime";
+            // 
+            // testCustomerTableAdapter
+            // 
+            this.testCustomerTableAdapter.ClearBeforeFill = true;
+            // 
+            // testMenuItemsTableAdapter
+            // 
+            this.testMenuItemsTableAdapter.ClearBeforeFill = true;
+            // 
+            // testOrderTableAdapter
+            // 
+            this.testOrderTableAdapter.ClearBeforeFill = true;
+            // 
+            // testOrderItemTableAdapter1
+            // 
+            this.testOrderItemTableAdapter1.ClearBeforeFill = true;
+            // 
+            // testRecipeTableAdapter1
+            // 
+            this.testRecipeTableAdapter1.ClearBeforeFill = true;
+            // 
+            // testIngredientTableAdapter1
+            // 
+            this.testIngredientTableAdapter1.ClearBeforeFill = true;
+            // 
+            // btnAddNewCust
+            // 
+            this.btnAddNewCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddNewCust.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnAddNewCust.Location = new System.Drawing.Point(1072, 12);
+            this.btnAddNewCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnAddNewCust.Name = "btnAddNewCust";
+            this.btnAddNewCust.Size = new System.Drawing.Size(198, 30);
+            this.btnAddNewCust.TabIndex = 29;
+            this.btnAddNewCust.Text = "Add New Customer";
+            this.btnAddNewCust.UseVisualStyleBackColor = true;
+            this.btnAddNewCust.Click += new System.EventHandler(this.btnAddNewCust_Click);
             // 
             // frmNewOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(1066, 691);
+            this.ClientSize = new System.Drawing.Size(1312, 999);
+            this.Controls.Add(this.btnAddNewCust);
+            this.Controls.Add(this.btnHelp);
+            this.Controls.Add(this.btnClearCustName);
+            this.Controls.Add(this.lblEventTime);
+            this.Controls.Add(this.lblEventDate);
+            this.Controls.Add(this.dtpEventTime);
+            this.Controls.Add(this.dtpEventDate);
+            this.Controls.Add(this.lblOrderType);
+            this.Controls.Add(this.cmbOrderType);
+            this.Controls.Add(this.btnBack);
+            this.Controls.Add(this.dgvCustomers);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnRemoveItem);
             this.Controls.Add(this.btnDecreaseQuantity);
             this.Controls.Add(this.btnConfirmOrder);
@@ -378,12 +741,21 @@
             this.Name = "frmNewOrder";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Order";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmNewOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testMenuItemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testOrderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101TestBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -411,17 +783,57 @@
         private dsCafe101TableAdapters.OrderTableAdapter orderTableAdapter;
         private dsCafe101TableAdapters.MenuItemsTableAdapter menuItemsTableAdapter1;
         private dsCafe101TableAdapters.CustomerTableAdapter customerTableAdapter1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn menuItemNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MenuItemID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn priceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categoryDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn prepTimeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewComboBoxColumn ItemQty;
         private System.Windows.Forms.Button btnDecreaseQuantity;
         private System.Windows.Forms.Button btnRemoveItem;
         private dsCafe101TableAdapters.OrderTableAdapter orderTableAdapter1;
         private dsCafe101TableAdapters.ItemOrderTableAdapter itemOrderTableAdapter1;
         private dsCafe101TableAdapters.RecipeItemTableAdapter recipeItemTableAdapter1;
-        private dsCafe101TableAdapters.IngredientTableAdapter ingredientTableAdapter1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.DataGridView dgvCustomers;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.BindingSource dsCafe101TestBindingSource;
+        private dsCafe101Test dsCafe101Test;
+        private System.Windows.Forms.BindingSource testCustomerBindingSource;
+        private dsCafe101TestTableAdapters.TestCustomerTableAdapter testCustomerTableAdapter;
+        private System.Windows.Forms.BindingSource testMenuItemsBindingSource;
+        private dsCafe101TestTableAdapters.TestMenuItemsTableAdapter testMenuItemsTableAdapter;
+        private System.Windows.Forms.BindingSource testOrderBindingSource;
+        private dsCafe101TestTableAdapters.TestOrderTableAdapter testOrderTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn customerIDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderTypeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderDateTimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn eventDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn eventTimeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderStatusDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn paymentMethodDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalAmountDueDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalChangeDueDataGridViewTextBoxColumn;
+        private dsCafe101TestTableAdapters.TestOrderItemTableAdapter testOrderItemTableAdapter1;
+        private dsCafe101TestTableAdapters.TestRecipeTableAdapter testRecipeTableAdapter1;
+        private dsCafe101TestTableAdapters.TestIngredientTableAdapter testIngredientTableAdapter1;
+        private System.Windows.Forms.BindingSource testCustomerBindingSource1;
+        private System.Windows.Forms.ComboBox cmbOrderType;
+        private System.Windows.Forms.Label lblOrderType;
+        private System.Windows.Forms.DateTimePicker dtpEventDate;
+        private System.Windows.Forms.DateTimePicker dtpEventTime;
+        private System.Windows.Forms.Label lblEventDate;
+        private System.Windows.Forms.Label lblEventTime;
+        private System.Windows.Forms.Button btnClearCustName;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ItemQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MenuItemID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MenuItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sellingPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PreparationTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;
+        private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.Button btnAddNewCust;
     }
 }

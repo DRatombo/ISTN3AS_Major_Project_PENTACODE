@@ -22,6 +22,7 @@ namespace Cafe101
             //Application.Run(new frmLogin());
             //Application.Run(new frmCheckout());
             //Application.Run(new frmManageMenuItems());
+            //Application.Run(new frmPopularProduct()); 
         }
     }
 }

@@ -14,15 +14,13 @@ namespace Cafe101
 
         private void frmManageMenuItems_Load(object sender, EventArgs e)
         {
-            // Remove designer adapter call to avoid schema mismatch
-            // this.menuItemsTableAdapter.Fill(this.dsCafe101.MenuItems);
+            this.testMenuItemsTableAdapter.Fill(this.dataSet1.TestMenuItems);
             LoadMenuItems();
         }
 
         private void LoadMenuItems()
         {
-            // Column order: MenuItemID, MenuItemName, Price, CostPrice, Category, PrepTime
-            string query = "SELECT MenuItemID, MenuItemName, Price, CostPrice, Category, PrepTime FROM MenuItems";
+            string query = "SELECT MenuItemID, MenuItemName, SellingPrice, CostToMake, Category, PreparationTime FROM TestMenuItems";
             using (SqlConnection conn = DbHelper.GetConnection())
             {
                 try
@@ -32,14 +30,12 @@ namespace Cafe101
                     da.Fill(dt);
                     dgvMenuItems.DataSource = dt;
 
-                    // Hide ID column (index 0)
                     if (dgvMenuItems.Columns.Count > 0)
                         dgvMenuItems.Columns[0].Visible = false;
 
-                    // Format price columns using indexes
-                    if (dgvMenuItems.Columns.Count > 2) // Price at index 2
+                    if (dgvMenuItems.Columns.Count > 2)
                         dgvMenuItems.Columns[2].DefaultCellStyle.Format = "C2";
-                    if (dgvMenuItems.Columns.Count > 3) // CostPrice at index 3
+                    if (dgvMenuItems.Columns.Count > 3)
                         dgvMenuItems.Columns[3].DefaultCellStyle.Format = "C2";
                 }
                 catch (Exception ex)
@@ -59,6 +55,25 @@ namespace Cafe101
             btnUpdate.Tag = null;
         }
 
+        private bool IsMenuItemNameDuplicate(string name, int? excludeMenuItemId = null)
+        {
+            string query = "SELECT COUNT(*) FROM TestMenuItems WHERE MenuItemName = @name";
+            if (excludeMenuItemId.HasValue)
+                query += " AND MenuItemID != @excludeId";
+
+            using (SqlConnection conn = DbHelper.GetConnection())
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@name", name.Trim());
+                if (excludeMenuItemId.HasValue)
+                    cmd.Parameters.AddWithValue("@excludeId", excludeMenuItemId.Value);
+                conn.Open();
+                int count = (int)cmd.ExecuteScalar();
+                conn.Close();
+                return count > 0;
+            }
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtItemName.Text))
@@ -71,9 +86,25 @@ namespace Cafe101
                 MessageBox.Show("Please select a category.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (numSellingPrice.Value <= 0)
+            {
+                MessageBox.Show("Selling price must be greater than zero.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (numCostPrice.Value <= 0)
+            {
+                MessageBox.Show("Cost price must be greater than zero.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            string query = @"INSERT INTO MenuItems (MenuItemName, Price, CostPrice, Category, PrepTime) 
-                             VALUES (@name, @price, @cost, @cat, @prep)";
+            if (IsMenuItemNameDuplicate(txtItemName.Text))
+            {
+                MessageBox.Show("A menu item with this name already exists. Please use a different name.", "Duplicate Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string query = @"INSERT INTO TestMenuItems (MenuItemName, SellingPrice, CostToMake, Category, PreparationTime) 
+                              VALUES (@name, @price, @cost, @cat, @prep)";
             using (SqlConnection conn = DbHelper.GetConnection())
             {
                 try
@@ -107,18 +138,34 @@ namespace Cafe101
         {
             if (e.RowIndex >= 0)
             {
+                // Get the underlying DataRowView
                 DataGridViewRow row = dgvMenuItems.Rows[e.RowIndex];
+                DataRowView rowView = row.DataBoundItem as DataRowView;
+                if (rowView == null) return;
 
-                // Use column indexes (matching SELECT order)
-                // Index 0: MenuItemID, 1: MenuItemName, 2: Price, 3: CostPrice, 4: Category, 5: PrepTime
-                txtItemName.Text = row.Cells[1].Value?.ToString() ?? "";
-                numSellingPrice.Value = Convert.ToDecimal(row.Cells[2].Value);
-                numCostPrice.Value = Convert.ToDecimal(row.Cells[3].Value);
-                cboCategory.Text = row.Cells[4].Value?.ToString() ?? "";
-                txtPrepTime.Text = row.Cells[5].Value?.ToString() ?? "";
+                // Access columns by name from the DataRowView (safe and reliable)
+                txtItemName.Text = rowView["MenuItemName"]?.ToString() ?? "";
 
-                // Store ID for update/delete
-                btnUpdate.Tag = row.Cells[0].Value;
+                decimal sellingPrice = 0;
+                if (rowView["SellingPrice"] != DBNull.Value)
+                    decimal.TryParse(rowView["SellingPrice"].ToString().Replace(',', '.'),
+                        System.Globalization.NumberStyles.Any,
+                        System.Globalization.CultureInfo.InvariantCulture,
+                        out sellingPrice);
+                numSellingPrice.Value = sellingPrice;
+
+                decimal costPrice = 0;
+                if (rowView["CostToMake"] != DBNull.Value)
+                    decimal.TryParse(rowView["CostToMake"].ToString().Replace(',', '.'),
+                        System.Globalization.NumberStyles.Any,
+                        System.Globalization.CultureInfo.InvariantCulture,
+                        out costPrice);
+                numCostPrice.Value = costPrice;
+
+                cboCategory.Text = rowView["Category"]?.ToString() ?? "";
+                txtPrepTime.Text = rowView["PreparationTime"]?.ToString() ?? "";
+
+                btnUpdate.Tag = rowView["MenuItemID"];
             }
         }
 
@@ -135,10 +182,27 @@ namespace Cafe101
                 MessageBox.Show("Item name cannot be empty.", "Validation Error");
                 return;
             }
+            if (numSellingPrice.Value <= 0)
+            {
+                MessageBox.Show("Selling price must be greater than zero.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (numCostPrice.Value <= 0)
+            {
+                MessageBox.Show("Cost price must be greater than zero.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-            string query = @"UPDATE MenuItems 
-                             SET MenuItemName = @name, Price = @price, CostPrice = @cost, 
-                                 Category = @cat, PrepTime = @prep
+            int currentId = Convert.ToInt32(btnUpdate.Tag);
+            if (IsMenuItemNameDuplicate(txtItemName.Text, currentId))
+            {
+                MessageBox.Show("Another menu item with this name already exists. Please use a different name.", "Duplicate Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string query = @"UPDATE TestMenuItems 
+                             SET MenuItemName = @name, SellingPrice = @price, CostToMake = @cost, 
+                                 Category = @cat, PreparationTime = @prep
                              WHERE MenuItemID = @id";
             using (SqlConnection conn = DbHelper.GetConnection())
             {
@@ -150,7 +214,7 @@ namespace Cafe101
                     cmd.Parameters.AddWithValue("@cost", numCostPrice.Value);
                     cmd.Parameters.AddWithValue("@cat", cboCategory.SelectedItem?.ToString() ?? "");
                     cmd.Parameters.AddWithValue("@prep", txtPrepTime.Text.Trim());
-                    cmd.Parameters.AddWithValue("@id", Convert.ToInt32(btnUpdate.Tag));
+                    cmd.Parameters.AddWithValue("@id", currentId);
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -179,7 +243,7 @@ namespace Cafe101
                 "Confirm Remove", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dr == DialogResult.Yes)
             {
-                string query = "DELETE FROM MenuItems WHERE MenuItemID = @id";
+                string query = "DELETE FROM TestMenuItems WHERE MenuItemID = @id";
                 using (SqlConnection conn = DbHelper.GetConnection())
                 {
                     try
@@ -210,7 +274,6 @@ namespace Cafe101
 
         private void grpMenuItemDetails_Enter(object sender, EventArgs e)
         {
-
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -221,8 +284,6 @@ namespace Cafe101
         }
     }
 
-    // DbHelper class is already defined elsewhere; if not, this is the fallback.
-    // Remove this if your project already has a global DbHelper to avoid duplicate.
     public static class DbHelper
     {
         private static string server = "146.230.177.46";

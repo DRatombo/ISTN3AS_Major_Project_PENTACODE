@@ -2,222 +2,356 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using Cafe101;
 
-namespace RestaurantSystem
+namespace Cafe101
 {
-    public partial class frmManageCashiers : Form
+    public partial class frmManageEmployees : Form
     {
-        public frmManageCashiers()
+        public frmManageEmployees()
         {
             InitializeComponent();
         }
 
-        private void frmManageCashiers_Load(object sender, EventArgs e)
+        private void frmManageEmployees_Load(object sender, EventArgs e)
         {
-            // Remove designer adapter call – it may cause schema mismatch
-            // this.cashierTableAdapter.Fill(this.dsCafe101.Cashier);
-            LoadCashiers();
+            this.testEmployeeTableAdapter.Fill(this.dataSet1.TestEmployee);
+            LoadEmployees();
         }
 
-        private void LoadCashiers()
+        private void LoadEmployees()
         {
-            // Column order: CashierID, FirstName, Surname, Email, Address, Password (if needed)
-            // We exclude Password from display for security.
-            string query = "SELECT CashierID, FirstName, Surname, Email, Address FROM Cashier";
-            using (SqlConnection conn = DbHelper.GetConnection())
+            try
             {
-                SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgvCashiers.DataSource = dt;
+                string query = "SELECT EmployeeID, FirstName, Surname, Address, Email, Role FROM TestEmployee";
+                using (SqlConnection conn = DbHelper.GetConnection())
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
 
-                // Hide ID column (index 0)
-                if (dgvCashiers.Columns.Count > 0)
-                    dgvCashiers.Columns[0].Visible = false;
+                    // Let the grid auto‑generate columns from the DataTable
+                    dgvEmployees.AutoGenerateColumns = true;
+                    dgvEmployees.DataSource = dt;
+
+                    // Hide the EmployeeID column (first column)
+                    if (dgvEmployees.Columns.Count > 0)
+                        dgvEmployees.Columns[0].Visible = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading employees: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void ClearCashierFields()
+        private void ClearFields()
         {
             txtFirstName.Text = "";
             txtSurname.Text = "";
-            txtEmail.Text = "";
             txtAddress.Text = "";
+            txtEmail.Text = "";
             txtPassword.Text = "";
-            btnUpdateCashier.Tag = null;
+            cboRole.SelectedIndex = -1;
+            btnUpdate.Tag = null;
         }
 
-        private void btnAddCashier_Click(object sender, EventArgs e)
+        // Helper: check duplicate by full name
+        private bool IsEmployeeDuplicate(string firstName, string surname, int? excludeEmployeeId = null)
         {
-            if (string.IsNullOrWhiteSpace(txtFirstName.Text) || string.IsNullOrWhiteSpace(txtPassword.Text))
+            string query = "SELECT COUNT(*) FROM TestEmployee WHERE LOWER(FirstName) = LOWER(@firstName) AND LOWER(Surname) = LOWER(@surname)";
+            if (excludeEmployeeId.HasValue)
+                query += " AND EmployeeID != @excludeId";
+
+            using (SqlConnection conn = DbHelper.GetConnection())
             {
-                MessageBox.Show("First Name and Password are required.", "Validation");
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@firstName", firstName.Trim());
+                cmd.Parameters.AddWithValue("@surname", surname.Trim());
+                if (excludeEmployeeId.HasValue)
+                    cmd.Parameters.AddWithValue("@excludeId", excludeEmployeeId.Value);
+                conn.Open();
+                int count = (int)cmd.ExecuteScalar();
+                conn.Close();
+                return count > 0;
+            }
+        }
+
+        private bool IsEmailDuplicate(string email, int? excludeEmployeeId = null)
+        {
+            string query = "SELECT COUNT(*) FROM TestEmployee WHERE LOWER(Email) = LOWER(@email)";
+            if (excludeEmployeeId.HasValue)
+                query += " AND EmployeeID != @excludeId";
+
+            using (SqlConnection conn = DbHelper.GetConnection())
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@email", email.Trim());
+                if (excludeEmployeeId.HasValue)
+                    cmd.Parameters.AddWithValue("@excludeId", excludeEmployeeId.Value);
+                conn.Open();
+                int count = (int)cmd.ExecuteScalar();
+                conn.Close();
+                return count > 0;
+            }
+        }
+
+        private bool IsPasswordDuplicate(string password, int? excludeEmployeeId = null)
+        {
+            string query = "SELECT COUNT(*) FROM TestEmployee WHERE Password = @pass";
+            if (excludeEmployeeId.HasValue)
+                query += " AND EmployeeID != @excludeId";
+
+            using (SqlConnection conn = DbHelper.GetConnection())
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@pass", password);
+                if (excludeEmployeeId.HasValue)
+                    cmd.Parameters.AddWithValue("@excludeId", excludeEmployeeId.Value);
+                conn.Open();
+                int count = (int)cmd.ExecuteScalar();
+                conn.Close();
+                return count > 0;
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtFirstName.Text))
+            {
+                MessageBox.Show("First Name is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtSurname.Text))
+            {
+                MessageBox.Show("Surname is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                MessageBox.Show("Password is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (cboRole.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select a role (Manager or Cashier).", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                MessageBox.Show("Email address is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            string query = @"INSERT INTO Cashier (FirstName, Surname, Email, Address, Password) 
-                             VALUES (@firstName, @surname, @email, @address, @pass)";
-            using (SqlConnection conn = DbHelper.GetConnection())
+            if (IsEmployeeDuplicate(txtFirstName.Text, txtSurname.Text))
             {
-                try
+                MessageBox.Show("An employee with the same First Name and Surname already exists.", "Duplicate Employee", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (IsEmailDuplicate(txtEmail.Text))
+            {
+                MessageBox.Show("An employee with this email already exists.", "Duplicate Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (IsPasswordDuplicate(txtPassword.Text))
+            {
+                MessageBox.Show("This password is already in use.", "Duplicate Password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                string query = @"INSERT INTO TestEmployee (FirstName, Surname, Address, Email, Role, Password)
+                                 VALUES (@firstName, @surname, @address, @email, @role, @pass)";
+                using (SqlConnection conn = DbHelper.GetConnection())
                 {
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@firstName", txtFirstName.Text.Trim());
                     cmd.Parameters.AddWithValue("@surname", txtSurname.Text.Trim());
-                    cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
                     cmd.Parameters.AddWithValue("@address", txtAddress.Text.Trim());
+                    cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
+                    cmd.Parameters.AddWithValue("@role", cboRole.SelectedItem.ToString());
                     cmd.Parameters.AddWithValue("@pass", txtPassword.Text);
-
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();
-                    MessageBox.Show("Cashier added.");
-                    LoadCashiers();
-                    ClearCashierFields();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Employee added successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadEmployees();
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Add failed: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void dgvCashiers_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
-                DataGridViewRow row = dgvCashiers.Rows[e.RowIndex];
+                DataGridViewRow row = dgvEmployees.Rows[e.RowIndex];
+                // Use DataBoundItem to access columns by name (avoids column order issues)
+                DataRowView rowView = row.DataBoundItem as DataRowView;
+                if (rowView == null) return;
 
-                // Use column indexes (matching SELECT order):
-                // Index 0: CashierID, 1: FirstName, 2: Surname, 3: Email, 4: Address
-                txtFirstName.Text = row.Cells[1].Value?.ToString() ?? "";
-                txtSurname.Text = row.Cells[2].Value?.ToString() ?? "";
-                txtEmail.Text = row.Cells[3].Value?.ToString() ?? "";
-                txtAddress.Text = row.Cells[4].Value?.ToString() ?? "";
-                txtPassword.Text = ""; // do not show password
-
-                // Store ID for update/reset
-                btnUpdateCashier.Tag = row.Cells[0].Value;   // CashierID
+                txtFirstName.Text = rowView["FirstName"]?.ToString() ?? "";
+                txtSurname.Text = rowView["Surname"]?.ToString() ?? "";
+                txtAddress.Text = rowView["Address"]?.ToString() ?? "";
+                txtEmail.Text = rowView["Email"]?.ToString() ?? "";
+                cboRole.Text = rowView["Role"]?.ToString() ?? "";
+                txtPassword.Text = "";
+                btnUpdate.Tag = rowView["EmployeeID"];
             }
         }
 
-        private void btnUpdateCashier_Click(object sender, EventArgs e)
+        private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (btnUpdateCashier.Tag == null)
+            if (btnUpdate.Tag == null)
             {
-                MessageBox.Show("Select a cashier first.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Select an employee first.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-
             if (string.IsNullOrWhiteSpace(txtFirstName.Text))
             {
                 MessageBox.Show("First Name cannot be empty.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
-            string query;
-            if (!string.IsNullOrWhiteSpace(txtPassword.Text))
+            if (string.IsNullOrWhiteSpace(txtSurname.Text))
             {
-                query = @"UPDATE Cashier SET FirstName = @firstName, Surname = @surname, Email = @email, Address = @address, Password = @pass WHERE CashierID = @id";
+                MessageBox.Show("Surname cannot be empty.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
             {
-                query = @"UPDATE Cashier SET FirstName = @firstName, Surname = @surname, Email = @email, Address = @address WHERE CashierID = @id";
+                MessageBox.Show("Email address cannot be empty.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
-            using (SqlConnection conn = DbHelper.GetConnection())
+            int currentId = Convert.ToInt32(btnUpdate.Tag);
+
+            if (IsEmployeeDuplicate(txtFirstName.Text, txtSurname.Text, currentId))
             {
-                try
+                MessageBox.Show("Another employee with the same First Name and Surname already exists.", "Duplicate Employee", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (IsEmailDuplicate(txtEmail.Text, currentId))
+            {
+                MessageBox.Show("Another employee with this email already exists.", "Duplicate Email", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (!string.IsNullOrWhiteSpace(txtPassword.Text) && IsPasswordDuplicate(txtPassword.Text, currentId))
+            {
+                MessageBox.Show("This password is already in use.", "Duplicate Password", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                string query;
+                if (!string.IsNullOrWhiteSpace(txtPassword.Text))
+                {
+                    query = @"UPDATE TestEmployee SET FirstName=@firstName, Surname=@surname, Address=@address, Email=@email, Role=@role, Password=@pass WHERE EmployeeID=@id";
+                }
+                else
+                {
+                    query = @"UPDATE TestEmployee SET FirstName=@firstName, Surname=@surname, Address=@address, Email=@email, Role=@role WHERE EmployeeID=@id";
+                }
+                using (SqlConnection conn = DbHelper.GetConnection())
                 {
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@firstName", txtFirstName.Text.Trim());
                     cmd.Parameters.AddWithValue("@surname", txtSurname.Text.Trim());
-                    cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
                     cmd.Parameters.AddWithValue("@address", txtAddress.Text.Trim());
-                    cmd.Parameters.AddWithValue("@id", Convert.ToInt32(btnUpdateCashier.Tag));
+                    cmd.Parameters.AddWithValue("@email", txtEmail.Text.Trim());
+                    cmd.Parameters.AddWithValue("@role", cboRole.SelectedItem.ToString());
+                    cmd.Parameters.AddWithValue("@id", currentId);
                     if (!string.IsNullOrWhiteSpace(txtPassword.Text))
                         cmd.Parameters.AddWithValue("@pass", txtPassword.Text);
-
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();
-                    MessageBox.Show("Cashier updated.");
-                    LoadCashiers();
-                    ClearCashierFields();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Update failed: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Employee updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadEmployees();
+                ClearFields();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Update failed: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnResetPassword_Click(object sender, EventArgs e)
         {
-            if (btnUpdateCashier.Tag == null)
+            if (btnUpdate.Tag == null)
             {
-                MessageBox.Show("Select a cashier to reset password.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Select an employee first.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            string newPassword = "temp123";
-            string query = "UPDATE Cashier SET Password = @pass WHERE CashierID = @id";
-            using (SqlConnection conn = DbHelper.GetConnection())
+            try
             {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@pass", newPassword);
-                cmd.Parameters.AddWithValue("@id", Convert.ToInt32(btnUpdateCashier.Tag));
-                conn.Open();
-                cmd.ExecuteNonQuery();
-                conn.Close();
+                string newPassword = "temp123";
+                string query = "UPDATE TestEmployee SET Password = @pass WHERE EmployeeID = @id";
+                using (SqlConnection conn = DbHelper.GetConnection())
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@pass", newPassword);
+                    cmd.Parameters.AddWithValue("@id", Convert.ToInt32(btnUpdate.Tag));
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
+                MessageBox.Show($"Password reset to '{newPassword}'.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            MessageBox.Show($"Password reset to '{newPassword}'. Please advise cashier to change it on first login.");
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Password reset failed: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-        private void btnRefreshCashiers_Click(object sender, EventArgs e)
+        private void btnRemove_Click(object sender, EventArgs e)
         {
-            LoadCashiers();
-            ClearCashierFields();
+            if (btnUpdate.Tag == null)
+            {
+                MessageBox.Show("Select an employee to remove.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            DialogResult dr = MessageBox.Show("Delete this employee? This cannot be undone.", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (dr == DialogResult.Yes)
+            {
+                try
+                {
+                    string query = "DELETE FROM TestEmployee WHERE EmployeeID = @id";
+                    using (SqlConnection conn = DbHelper.GetConnection())
+                    {
+                        SqlCommand cmd = new SqlCommand(query, conn);
+                        cmd.Parameters.AddWithValue("@id", Convert.ToInt32(btnUpdate.Tag));
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    MessageBox.Show("Employee removed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadEmployees();
+                    ClearFields();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Delete failed: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
-        private void lblPassword_Click(object sender, EventArgs e)
+        private void btnRefresh_Click(object sender, EventArgs e)
         {
-            // optional
+            LoadEmployees();
+            ClearFields();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnBack_Click(object sender, EventArgs e)
         {
             Form form = new frmMain();
             form.Show();
             this.Close();
-        }
-    }
-
-    // DbHelper class is already defined elsewhere – but if not, this is the fallback.
-    // If your project already has a global DbHelper, remove this one to avoid conflict.
-    public static class DbHelper
-    {
-        private static string connectionString = $"Server=146.230.177.46;Database=GroupWst22;User Id=GroupWst22;Password=n38mc;";
-
-        public static SqlConnection GetConnection()
-        {
-            return new SqlConnection(connectionString);
-        }
-
-        public static bool TestConnection()
-        {
-            using (SqlConnection conn = GetConnection())
-            {
-                try
-                {
-                    conn.Open();
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
         }
     }
 }

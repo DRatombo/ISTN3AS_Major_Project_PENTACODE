@@ -2,9 +2,8 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using Cafe101;
 
-namespace RestaurantSystem
+namespace Cafe101
 {
     public partial class frmManageRecipes : Form
     {
@@ -15,166 +14,170 @@ namespace RestaurantSystem
 
         private void frmManageRecipes_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dsCafe101.Ingredient' table. You can move, or remove it, as needed.
-            this.ingredientTableAdapter.Fill(this.dsCafe101.Ingredient);
-            // Comment out designer adapter if it causes issues
-            // this.recipeItemTableAdapter.Fill(this.dsCafe101.RecipeItem);
+            this.testRecipeTableAdapter.Fill(this.dataSet1.TestRecipe);
+            LoadAllRecipes();
             LoadMenuItemsCombo();
             LoadIngredientsCombo();
+
+            // Manually attach event handler for menu item selection (optional)
+            this.cboMenuItems.SelectedIndexChanged += cboMenuItems_SelectedIndexChanged;
+            // No event for cboIngredients (unit column removed)
+        }
+
+        // Show ALL recipes (MenuItemName, Ingredient Description, QuantityNeeded)
+        private void LoadAllRecipes()
+        {
+            try
+            {
+                string query = @"SELECT m.MenuItemName, i.Description AS Ingredient, r.QuantityNeeded 
+                                 FROM TestRecipe r
+                                 INNER JOIN TestMenuItems m ON r.MenuItemID = m.MenuItemID
+                                 INNER JOIN TestIngredient i ON r.IngredientID = i.IngredientID
+                                 ORDER BY m.MenuItemName, i.Description";
+                using (SqlConnection conn = DbHelper.GetConnection())
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgvRecipe.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading recipes: {ex.Message}");
+            }
         }
 
         private void LoadMenuItemsCombo()
         {
-            string query = "SELECT MenuItemID, MenuItemName FROM MenuItems ORDER BY MenuItemName";
-            using (SqlConnection conn = DbHelper.GetConnection())
+            try
             {
-                SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cboMenuItems.DataSource = dt;
-                cboMenuItems.DisplayMember = "MenuItemName";
-                cboMenuItems.ValueMember = "MenuItemID";
-                cboMenuItems.SelectedIndex = -1;
+                string query = "SELECT MenuItemID, MenuItemName FROM TestMenuItems ORDER BY MenuItemName";
+                using (SqlConnection conn = DbHelper.GetConnection())
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    cboMenuItems.DataSource = dt;
+                    cboMenuItems.DisplayMember = "MenuItemName";
+                    cboMenuItems.ValueMember = "MenuItemID";
+                    cboMenuItems.SelectedIndex = -1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading menu items: {ex.Message}");
             }
         }
 
         private void LoadIngredientsCombo()
         {
-            string query = "SELECT IngredientID, Description, Units FROM Ingredient ORDER BY Description";
-            using (SqlConnection conn = DbHelper.GetConnection())
+            try
             {
-                SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                cboIngredients.DataSource = dt;
-                cboIngredients.DisplayMember = "Description";
-                cboIngredients.ValueMember = "IngredientID";
-                cboIngredients.SelectedIndex = -1;
+                // No Units column – only Description and IngredientID
+                string query = "SELECT IngredientID, Description FROM TestIngredient ORDER BY Description";
+                using (SqlConnection conn = DbHelper.GetConnection())
+                {
+                    SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    cboIngredients.DataSource = dt;
+                    cboIngredients.DisplayMember = "Description";
+                    cboIngredients.ValueMember = "IngredientID";
+                    cboIngredients.SelectedIndex = -1;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading ingredients: {ex.Message}");
             }
         }
 
-        // Helper method to get MenuItemID from selected combo box
         private int? GetSelectedMenuItemId()
         {
             if (cboMenuItems.SelectedItem == null) return null;
             DataRowView drv = cboMenuItems.SelectedItem as DataRowView;
             if (drv == null) return null;
-            object val = drv["MenuItemID"];
-            if (val == null || val == DBNull.Value) return null;
-            return Convert.ToInt32(val);
+            return Convert.ToInt32(drv["MenuItemID"]);
         }
 
-        // Helper method to get IngredientID from selected combo box
         private int? GetSelectedIngredientId()
         {
             if (cboIngredients.SelectedItem == null) return null;
             DataRowView drv = cboIngredients.SelectedItem as DataRowView;
             if (drv == null) return null;
-            object val = drv["IngredientID"];
-            if (val == null || val == DBNull.Value) return null;
-            return Convert.ToInt32(val);
+            return Convert.ToInt32(drv["IngredientID"]);
         }
 
-        private void LoadRecipe()
-        {
-            int? menuItemId = GetSelectedMenuItemId();
-            if (menuItemId == null)
-            {
-                dgvRecipe.DataSource = null;
-                return;
-            }
-
-            string query = @"SELECT r.IngredientID, r.MenuItemID, i.Description AS Ingredient, r.Proportion, i.Units 
-                     FROM RecipeItem r
-                     INNER JOIN Ingredient i ON r.MenuItemID = i.IngredientID
-                     WHERE r.MenuItemID = @menuId
-                     ORDER BY i.Description";
-
-            using (SqlConnection conn = DbHelper.GetConnection())
-            {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@menuId", menuItemId.Value);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                dgvRecipe.DataSource = dt;
-            }
-        }
-
-        private void cboIngredients_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DataRowView drv = cboIngredients.SelectedItem as DataRowView;
-            if (drv != null)
-            {
-                txtDisplayUnit.Text = drv["Units"].ToString();
-            }
-            else
-            {
-                txtDisplayUnit.Text = "";
-            }
-        }
-
+        // Optional: when menu item changes, refresh the recipe list (or do nothing)
         private void cboMenuItems_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LoadRecipe();
+            // Refresh all recipes (or you can filter by selected menu item if desired)
+            LoadAllRecipes();
         }
 
         private void btnAddToRecipe_Click(object sender, EventArgs e)
         {
-            // Validation
-            if (cboMenuItems.SelectedIndex == -1)
+            if (cboMenuItems.SelectedIndex == -1 || cboIngredients.SelectedIndex == -1)
             {
-                MessageBox.Show("Please select a menu item.", "Validation");
-                return;
-            }
-            if (cboIngredients.SelectedIndex == -1)
-            {
-                MessageBox.Show("Please select an ingredient.", "Validation");
+                MessageBox.Show("Select both a menu item and an ingredient.", "Validation");
                 return;
             }
             if (numQuantity.Value <= 0)
             {
-                MessageBox.Show("Quantity/proportion must be greater than zero.", "Validation");
+                MessageBox.Show("Quantity needed must be greater than zero.", "Validation");
                 return;
             }
 
             int? menuId = GetSelectedMenuItemId();
             int? ingId = GetSelectedIngredientId();
-            if (menuId == null || ingId == null)
-            {
-                MessageBox.Show("Invalid selection. Please try again.");
-                return;
-            }
+            if (menuId == null || ingId == null) return;
 
-            decimal proportion = numQuantity.Value;
-
-            string deleteQuery = "DELETE FROM RecipeItem WHERE MenuItemID = @menuId AND IngredientID = @ingId";
-            string insertQuery = "INSERT INTO RecipeItem (MenuItemID, IngredientID, Proportion) VALUES (@menuId, @ingId, @prop)";
-
+            // Check if this combination already exists
+            string checkQuery = "SELECT COUNT(*) FROM TestRecipe WHERE MenuItemID = @menuId AND IngredientID = @ingId";
             using (SqlConnection conn = DbHelper.GetConnection())
             {
-                try
+                conn.Open();
+                SqlCommand cmdCheck = new SqlCommand(checkQuery, conn);
+                cmdCheck.Parameters.AddWithValue("@menuId", menuId);
+                cmdCheck.Parameters.AddWithValue("@ingId", ingId);
+                int existingCount = (int)cmdCheck.ExecuteScalar();
+                if (existingCount > 0)
+                {
+                    MessageBox.Show("This ingredient is already linked to the selected menu item. Use Remove first if you want to change the quantity.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    conn.Close();
+                    return;
+                }
+                conn.Close();
+            }
+
+            // Get the Description of the selected ingredient
+            DataRowView drv = cboIngredients.SelectedItem as DataRowView;
+            string description = drv?["Description"]?.ToString() ?? "";
+
+            decimal qty = numQuantity.Value;
+
+            try
+            {
+                string insertQuery = @"INSERT INTO TestRecipe (MenuItemID, IngredientID, QuantityNeeded, Description) 
+                               VALUES (@menuId, @ingId, @qty, @desc)";
+                using (SqlConnection conn = DbHelper.GetConnection())
                 {
                     conn.Open();
-                    SqlCommand cmdDel = new SqlCommand(deleteQuery, conn);
-                    cmdDel.Parameters.AddWithValue("@menuId", menuId.Value);
-                    cmdDel.Parameters.AddWithValue("@ingId", ingId.Value);
-                    cmdDel.ExecuteNonQuery();
-
                     SqlCommand cmdIns = new SqlCommand(insertQuery, conn);
-                    cmdIns.Parameters.AddWithValue("@menuId", menuId.Value);
-                    cmdIns.Parameters.AddWithValue("@ingId", ingId.Value);
-                    cmdIns.Parameters.AddWithValue("@prop", proportion);
+                    cmdIns.Parameters.AddWithValue("@menuId", menuId);
+                    cmdIns.Parameters.AddWithValue("@ingId", ingId);
+                    cmdIns.Parameters.AddWithValue("@qty", qty);
+                    cmdIns.Parameters.AddWithValue("@desc", description);
                     cmdIns.ExecuteNonQuery();
-
                     conn.Close();
-                    MessageBox.Show("Recipe link saved.", "Success");
-                    LoadRecipe();
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message);
-                }
+                MessageBox.Show("Recipe link saved.", "Success");
+                LoadAllRecipes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
             }
         }
 
@@ -182,33 +185,35 @@ namespace RestaurantSystem
         {
             if (cboMenuItems.SelectedIndex == -1 || cboIngredients.SelectedIndex == -1)
             {
-                MessageBox.Show("Select both a menu item and an ingredient to remove.");
+                MessageBox.Show("Select both a menu item and an ingredient.");
                 return;
             }
-
             int? menuId = GetSelectedMenuItemId();
             int? ingId = GetSelectedIngredientId();
-            if (menuId == null || ingId == null)
-            {
-                MessageBox.Show("Invalid selection.");
-                return;
-            }
+            if (menuId == null || ingId == null) return;
 
             DialogResult dr = MessageBox.Show("Remove this ingredient from the recipe?", "Confirm", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {
-                string query = "DELETE FROM RecipeItem WHERE MenuItemID = @menuId AND IngredientID = @ingId";
-                using (SqlConnection conn = DbHelper.GetConnection())
+                try
                 {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@menuId", menuId.Value);
-                    cmd.Parameters.AddWithValue("@ingId", ingId.Value);
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
+                    string query = "DELETE FROM TestRecipe WHERE MenuItemID = @menuId AND IngredientID = @ingId";
+                    using (SqlConnection conn = DbHelper.GetConnection())
+                    {
+                        conn.Open();
+                        SqlCommand cmd = new SqlCommand(query, conn);
+                        cmd.Parameters.AddWithValue("@menuId", menuId);
+                        cmd.Parameters.AddWithValue("@ingId", ingId);
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    LoadAllRecipes();
+                    MessageBox.Show("Removed.", "Success");
                 }
-                LoadRecipe();
-                MessageBox.Show("Removed.");
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Delete failed: {ex.Message}");
+                }
             }
         }
 
@@ -216,12 +221,7 @@ namespace RestaurantSystem
         {
             LoadMenuItemsCombo();
             LoadIngredientsCombo();
-            LoadRecipe();
-        }
-
-        private void lblUnit_Click(object sender, EventArgs e)
-        {
-            // Optional
+            LoadAllRecipes();
         }
 
         private void btnBack_Click(object sender, EventArgs e)

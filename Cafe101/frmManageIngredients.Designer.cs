@@ -13,8 +13,6 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
@@ -22,14 +20,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblMain = new System.Windows.Forms.TableLayoutPanel();
             this.dgvIngredients = new System.Windows.Forms.DataGridView();
-            this.ingredientIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityInStockDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.restockLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unitsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ingredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dsCafe101 = new Cafe101.dsCafe101();
             this.grpIngredientDetails = new System.Windows.Forms.GroupBox();
             this.lblDescription = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
@@ -42,21 +32,34 @@
             this.lblCostPrice = new System.Windows.Forms.Label();
             this.numCostPrice = new System.Windows.Forms.NumericUpDown();
             this.pnlButtons = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnBack = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.dsCafe101 = new Cafe101.dsCafe101();
+            this.ingredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ingredientTableAdapter = new Cafe101.dsCafe101TableAdapters.IngredientTableAdapter();
-            this.btnBack = new System.Windows.Forms.Button();
+            this.ingredientIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.restockLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataSet1 = new Cafe101.DataSet1();
+            this.testIngredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.testIngredientTableAdapter = new Cafe101.DataSet1TableAdapters.TestIngredientTableAdapter();
+            this.testIngredientBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tblMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredients)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).BeginInit();
             this.grpIngredientDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantityInStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRestockLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCostPrice)).BeginInit();
             this.pnlButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // tblMain
@@ -95,12 +98,10 @@
             this.dgvIngredients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvIngredients.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ingredientIDDataGridViewTextBoxColumn,
-            this.quantityInStockDataGridViewTextBoxColumn,
             this.restockLevelDataGridViewTextBoxColumn,
             this.descriptionDataGridViewTextBoxColumn,
-            this.unitsDataGridViewTextBoxColumn,
             this.costPriceDataGridViewTextBoxColumn});
-            this.dgvIngredients.DataSource = this.ingredientBindingSource;
+            this.dgvIngredients.DataSource = this.testIngredientBindingSource1;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -123,64 +124,6 @@
             this.dgvIngredients.Size = new System.Drawing.Size(970, 271);
             this.dgvIngredients.TabIndex = 0;
             this.dgvIngredients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredients_CellClick);
-            // 
-            // ingredientIDDataGridViewTextBoxColumn
-            // 
-            this.ingredientIDDataGridViewTextBoxColumn.DataPropertyName = "IngredientID";
-            this.ingredientIDDataGridViewTextBoxColumn.HeaderText = "IngredientID";
-            this.ingredientIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.ingredientIDDataGridViewTextBoxColumn.Name = "ingredientIDDataGridViewTextBoxColumn";
-            this.ingredientIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // quantityInStockDataGridViewTextBoxColumn
-            // 
-            this.quantityInStockDataGridViewTextBoxColumn.DataPropertyName = "QuantityInStock";
-            this.quantityInStockDataGridViewTextBoxColumn.HeaderText = "QuantityInStock";
-            this.quantityInStockDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.quantityInStockDataGridViewTextBoxColumn.Name = "quantityInStockDataGridViewTextBoxColumn";
-            this.quantityInStockDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // restockLevelDataGridViewTextBoxColumn
-            // 
-            this.restockLevelDataGridViewTextBoxColumn.DataPropertyName = "RestockLevel";
-            this.restockLevelDataGridViewTextBoxColumn.HeaderText = "RestockLevel";
-            this.restockLevelDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.restockLevelDataGridViewTextBoxColumn.Name = "restockLevelDataGridViewTextBoxColumn";
-            this.restockLevelDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // unitsDataGridViewTextBoxColumn
-            // 
-            this.unitsDataGridViewTextBoxColumn.DataPropertyName = "Units";
-            this.unitsDataGridViewTextBoxColumn.HeaderText = "Units";
-            this.unitsDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.unitsDataGridViewTextBoxColumn.Name = "unitsDataGridViewTextBoxColumn";
-            this.unitsDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // costPriceDataGridViewTextBoxColumn
-            // 
-            this.costPriceDataGridViewTextBoxColumn.DataPropertyName = "CostPrice";
-            this.costPriceDataGridViewTextBoxColumn.HeaderText = "CostPrice";
-            this.costPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.costPriceDataGridViewTextBoxColumn.Name = "costPriceDataGridViewTextBoxColumn";
-            this.costPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // ingredientBindingSource
-            // 
-            this.ingredientBindingSource.DataMember = "Ingredient";
-            this.ingredientBindingSource.DataSource = this.dsCafe101;
-            // 
-            // dsCafe101
-            // 
-            this.dsCafe101.DataSetName = "dsCafe101";
-            this.dsCafe101.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // grpIngredientDetails
             // 
@@ -348,6 +291,23 @@
             this.pnlButtons.Size = new System.Drawing.Size(970, 49);
             this.pnlButtons.TabIndex = 2;
             // 
+            // btnBack
+            // 
+            this.btnBack.AutoSize = true;
+            this.btnBack.BackColor = System.Drawing.Color.White;
+            this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnBack.FlatAppearance.BorderSize = 2;
+            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnBack.Location = new System.Drawing.Point(876, 6);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(6);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(88, 34);
+            this.btnBack.TabIndex = 12;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = false;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // btnRefresh
             // 
             this.btnRefresh.AutoSize = true;
@@ -416,26 +376,70 @@
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // dsCafe101
+            // 
+            this.dsCafe101.DataSetName = "dsCafe101";
+            this.dsCafe101.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // ingredientBindingSource
+            // 
+            this.ingredientBindingSource.DataMember = "Ingredient";
+            this.ingredientBindingSource.DataSource = this.dsCafe101;
+            // 
             // ingredientTableAdapter
             // 
             this.ingredientTableAdapter.ClearBeforeFill = true;
             // 
-            // btnBack
+            // ingredientIDDataGridViewTextBoxColumn
             // 
-            this.btnBack.AutoSize = true;
-            this.btnBack.BackColor = System.Drawing.Color.White;
-            this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnBack.FlatAppearance.BorderSize = 2;
-            this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnBack.Location = new System.Drawing.Point(876, 6);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(6);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(88, 34);
-            this.btnBack.TabIndex = 12;
-            this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = false;
-            this.btnBack.Click += new System.EventHandler(this.button1_Click);
+            this.ingredientIDDataGridViewTextBoxColumn.DataPropertyName = "IngredientID";
+            this.ingredientIDDataGridViewTextBoxColumn.HeaderText = "IngredientID";
+            this.ingredientIDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.ingredientIDDataGridViewTextBoxColumn.Name = "ingredientIDDataGridViewTextBoxColumn";
+            this.ingredientIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // restockLevelDataGridViewTextBoxColumn
+            // 
+            this.restockLevelDataGridViewTextBoxColumn.DataPropertyName = "RestockLevel";
+            this.restockLevelDataGridViewTextBoxColumn.HeaderText = "RestockLevel";
+            this.restockLevelDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.restockLevelDataGridViewTextBoxColumn.Name = "restockLevelDataGridViewTextBoxColumn";
+            this.restockLevelDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // costPriceDataGridViewTextBoxColumn
+            // 
+            this.costPriceDataGridViewTextBoxColumn.DataPropertyName = "CostPrice";
+            this.costPriceDataGridViewTextBoxColumn.HeaderText = "CostPrice";
+            this.costPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.costPriceDataGridViewTextBoxColumn.Name = "costPriceDataGridViewTextBoxColumn";
+            this.costPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataSet1
+            // 
+            this.dataSet1.DataSetName = "DataSet1";
+            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // testIngredientBindingSource
+            // 
+            this.testIngredientBindingSource.DataMember = "TestIngredient";
+            this.testIngredientBindingSource.DataSource = this.dataSet1;
+            // 
+            // testIngredientTableAdapter
+            // 
+            this.testIngredientTableAdapter.ClearBeforeFill = true;
+            // 
+            // testIngredientBindingSource1
+            // 
+            this.testIngredientBindingSource1.DataMember = "TestIngredient";
+            this.testIngredientBindingSource1.DataSource = this.dataSet1;
             // 
             // frmManageIngredients
             // 
@@ -451,8 +455,6 @@
             this.tblMain.ResumeLayout(false);
             this.tblMain.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredients)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).EndInit();
             this.grpIngredientDetails.ResumeLayout(false);
             this.grpIngredientDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantityInStock)).EndInit();
@@ -460,11 +462,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCostPrice)).EndInit();
             this.pnlButtons.ResumeLayout(false);
             this.pnlButtons.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
-        #endregion
+//#endregion
 
         private System.Windows.Forms.TableLayoutPanel tblMain;
         private System.Windows.Forms.DataGridView dgvIngredients;
@@ -484,15 +491,17 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnBack;
         private dsCafe101 dsCafe101;
         private System.Windows.Forms.BindingSource ingredientBindingSource;
         private dsCafe101TableAdapters.IngredientTableAdapter ingredientTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn ingredientIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityInStockDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn restockLevelDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unitsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn costPriceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button btnBack;
+        private DataSet1 dataSet1;
+        private System.Windows.Forms.BindingSource testIngredientBindingSource;
+        private DataSet1TableAdapters.TestIngredientTableAdapter testIngredientTableAdapter;
+        private System.Windows.Forms.BindingSource testIngredientBindingSource1;
     }
 }

@@ -52,7 +52,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(988, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(988, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -128,29 +128,29 @@
             // mnuMenuItems
             // 
             this.mnuMenuItems.Name = "mnuMenuItems";
-            this.mnuMenuItems.Size = new System.Drawing.Size(169, 26);
+            this.mnuMenuItems.Size = new System.Drawing.Size(224, 26);
             this.mnuMenuItems.Text = "Menu Items";
             this.mnuMenuItems.Click += new System.EventHandler(this.mnuMenuItems_Click);
             // 
             // mnuIngredients
             // 
             this.mnuIngredients.Name = "mnuIngredients";
-            this.mnuIngredients.Size = new System.Drawing.Size(169, 26);
+            this.mnuIngredients.Size = new System.Drawing.Size(224, 26);
             this.mnuIngredients.Text = "Ingredients";
             this.mnuIngredients.Click += new System.EventHandler(this.mnuIngredients_Click);
             // 
             // mnuRecipes
             // 
             this.mnuRecipes.Name = "mnuRecipes";
-            this.mnuRecipes.Size = new System.Drawing.Size(169, 26);
-            this.mnuRecipes.Text = "Recipe";
+            this.mnuRecipes.Size = new System.Drawing.Size(224, 26);
+            this.mnuRecipes.Text = "Recipes";
             this.mnuRecipes.Click += new System.EventHandler(this.mnuRecipes_Click);
             // 
             // mnuCashiers
             // 
             this.mnuCashiers.Name = "mnuCashiers";
-            this.mnuCashiers.Size = new System.Drawing.Size(169, 26);
-            this.mnuCashiers.Text = "Cashiers";
+            this.mnuCashiers.Size = new System.Drawing.Size(224, 26);
+            this.mnuCashiers.Text = "Employees";
             this.mnuCashiers.Click += new System.EventHandler(this.mnuCashiers_Click);
             // 
             // logOutToolStripMenuItem

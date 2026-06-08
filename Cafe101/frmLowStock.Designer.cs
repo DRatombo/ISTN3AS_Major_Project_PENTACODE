@@ -80,8 +80,9 @@
             this.dataGridView1.DataSource = this.testIngredientBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(54, 83);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(542, 390);
+            this.dataGridView1.Size = new System.Drawing.Size(537, 390);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // ingredientIDDataGridViewTextBoxColumn
             // 

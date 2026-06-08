@@ -150,5 +150,10 @@ namespace Cafe101
                 MessageBox.Show("Print error:\n\n" + ex.Message);
             }
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -83,5 +83,12 @@ namespace Cafe101
                 MessageBox.Show("Error:\n" + ex.Message);
             }
         }
+
+        private void addCustomer_Click(object sender, EventArgs e)
+        {
+            frmAddCustomer frmAddCustomer = new frmAddCustomer();
+            frmAddCustomer.ShowDialog();   
+
+        }
     }
 }

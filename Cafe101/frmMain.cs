@@ -110,8 +110,8 @@ namespace Cafe101
         private void popularityAnalyticsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmPopularProduct frmAnalytics = new frmPopularProduct(); 
-            frmAnalytics.Show();
-            this.Hide();
+            frmAnalytics.ShowDialog();
+            
         }
 
         private void lowStockReportToolStripMenuItem_Click(object sender, EventArgs e)
@@ -162,6 +162,11 @@ namespace Cafe101
         private void button1_Click(object sender, EventArgs e)
         {
             txtHelp.Hide();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

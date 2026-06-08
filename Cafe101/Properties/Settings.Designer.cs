@@ -33,5 +33,16 @@ namespace Cafe101.Properties {
                 return ((string)(this["ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=146.230.177.46;Initial Catalog=GroupWst22;User ID=GroupWst22;Password" +
+            "=n38mc;TrustServerCertificate=True")]
+        public string GroupWst22ConnectionString {
+            get {
+                return ((string)(this["GroupWst22ConnectionString"]));
+            }
+        }
     }
 }

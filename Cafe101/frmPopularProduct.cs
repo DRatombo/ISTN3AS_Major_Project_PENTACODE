@@ -23,5 +23,12 @@ namespace Cafe101
             mainForm.Show();
             this.Hide();
         }
+
+        private void frmPopularProduct_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'dsCafe101Test.TopSellingItem' table. You can move, or remove it, as needed.
+            this.topSellingItemTableAdapter.FillByTopSellingItem(this.dsCafe101Test.TopSellingItem);
+
+        }
     }
 }

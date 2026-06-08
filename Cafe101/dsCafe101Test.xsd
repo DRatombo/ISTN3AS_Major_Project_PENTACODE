@@ -2,9 +2,10 @@
 <xs:schema id="dsCafe101Test" targetNamespace="http://tempuri.org/dsCafe101Test.xsd" xmlns:mstns="http://tempuri.org/dsCafe101Test.xsd" xmlns="http://tempuri.org/dsCafe101Test.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Cafe101.Properties.Settings.GlobalReference.Default.ConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="GroupWst22ConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="GroupWst22ConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Cafe101.Properties.Settings.GlobalReference.Default.GroupWst22ConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TestCustomerTableAdapter" GeneratorDataComponentClassName="TestCustomerTableAdapter" Name="TestCustomer" UserDataComponentName="TestCustomerTableAdapter">
@@ -609,7 +610,7 @@ SELECT LoginHistoryID, EmployeeID, FirstName, Role, LoginTime, LogoutTime, Durat
               <Mapping SourceColumn="Duration" DataSetColumn="Duration" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Insert1" Modifier="Public" Name="Insert1" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="Insert1">
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Insert1" Modifier="Public" Name="Insert1" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Insert1">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO TestLoginHistory 
@@ -627,7 +628,7 @@ VALUES
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
-              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateLogout" Modifier="Public" Name="UpdateLogout" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="UpdateLogout">
+              <DbSource ConnectionRef="ConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateLogout" Modifier="Public" Name="UpdateLogout" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="UpdateLogout">
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE TestLoginHistory 
@@ -644,6 +645,28 @@ AND LoginTime = @LoginTime</CommandText>
                 </UpdateCommand>
               </DbSource>
             </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="TopSellingItemTableAdapter" GeneratorDataComponentClassName="TopSellingItemTableAdapter" Name="TopSellingItem" UserDataComponentName="TopSellingItemTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="GroupWst22ConnectionString (Settings)" DbObjectName="GroupWst22.dbo.TestMenuItems" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByTopSellingItem" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataByTopSellingItem" GeneratorSourceName="FillByTopSellingItem" GetMethodModifier="Public" GetMethodName="GetDataByTopSellingItem" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataByTopSellingItem" UserSourceName="FillByTopSellingItem">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        m.MenuItemID, m.MenuItemName, SUM(o.QuantityOrdered) AS TotalSold
+FROM            TestOrderItem AS o INNER JOIN
+                         TestMenuItems AS m ON o.MenuItemID = m.MenuItemID
+GROUP BY m.MenuItemID, m.MenuItemName
+ORDER BY TotalSold DESC</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="MenuItemID" DataSetColumn="MenuItemID" />
+              <Mapping SourceColumn="MenuItemName" DataSetColumn="MenuItemName" />
+              <Mapping SourceColumn="TotalSold" DataSetColumn="TotalSold" />
+            </Mappings>
+            <Sources />
           </TableAdapter>
         </Tables>
         <Sources />
@@ -846,34 +869,49 @@ AND LoginTime = @LoginTime</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TestLoginHistory" msprop:Generator_RowEvHandlerName="TestLoginHistoryRowChangeEventHandler" msprop:Generator_RowDeletedName="TestLoginHistoryRowDeleted" msprop:Generator_RowDeletingName="TestLoginHistoryRowDeleting" msprop:Generator_RowEvArgName="TestLoginHistoryRowChangeEvent" msprop:Generator_TablePropName="TestLoginHistory" msprop:Generator_RowChangedName="TestLoginHistoryRowChanged" msprop:Generator_RowChangingName="TestLoginHistoryRowChanging" msprop:Generator_TableClassName="TestLoginHistoryDataTable" msprop:Generator_RowClassName="TestLoginHistoryRow" msprop:Generator_TableVarName="tableTestLoginHistory" msprop:Generator_UserTableName="TestLoginHistory">
+        <xs:element name="TestLoginHistory" msprop:Generator_RowClassName="TestLoginHistoryRow" msprop:Generator_RowEvHandlerName="TestLoginHistoryRowChangeEventHandler" msprop:Generator_RowDeletedName="TestLoginHistoryRowDeleted" msprop:Generator_RowDeletingName="TestLoginHistoryRowDeleting" msprop:Generator_RowEvArgName="TestLoginHistoryRowChangeEvent" msprop:Generator_TablePropName="TestLoginHistory" msprop:Generator_RowChangedName="TestLoginHistoryRowChanged" msprop:Generator_UserTableName="TestLoginHistory" msprop:Generator_RowChangingName="TestLoginHistoryRowChanging" msprop:Generator_TableClassName="TestLoginHistoryDataTable" msprop:Generator_TableVarName="tableTestLoginHistory">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="LoginHistoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="LoginHistoryID" msprop:Generator_ColumnPropNameInTable="LoginHistoryIDColumn" msprop:Generator_ColumnVarNameInTable="columnLoginHistoryID" msprop:Generator_UserColumnName="LoginHistoryID" type="xs:int" />
-              <xs:element name="EmployeeID" msprop:Generator_ColumnPropNameInRow="EmployeeID" msprop:Generator_ColumnPropNameInTable="EmployeeIDColumn" msprop:Generator_ColumnVarNameInTable="columnEmployeeID" msprop:Generator_UserColumnName="EmployeeID" type="xs:int" />
-              <xs:element name="FirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_UserColumnName="FirstName">
+              <xs:element name="LoginHistoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="LoginHistoryID" msprop:Generator_ColumnPropNameInTable="LoginHistoryIDColumn" msprop:Generator_ColumnPropNameInRow="LoginHistoryID" msprop:Generator_ColumnVarNameInTable="columnLoginHistoryID" type="xs:int" />
+              <xs:element name="EmployeeID" msprop:Generator_UserColumnName="EmployeeID" msprop:Generator_ColumnPropNameInTable="EmployeeIDColumn" msprop:Generator_ColumnPropNameInRow="EmployeeID" msprop:Generator_ColumnVarNameInTable="columnEmployeeID" type="xs:int" />
+              <xs:element name="FirstName" msprop:Generator_UserColumnName="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="Role" msprop:Generator_ColumnPropNameInRow="Role" msprop:Generator_ColumnPropNameInTable="RoleColumn" msprop:Generator_ColumnVarNameInTable="columnRole" msprop:Generator_UserColumnName="Role">
+              <xs:element name="Role" msprop:Generator_UserColumnName="Role" msprop:Generator_ColumnPropNameInTable="RoleColumn" msprop:Generator_ColumnPropNameInRow="Role" msprop:Generator_ColumnVarNameInTable="columnRole">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="LoginTime" msprop:Generator_ColumnPropNameInRow="LoginTime" msprop:Generator_ColumnPropNameInTable="LoginTimeColumn" msprop:Generator_ColumnVarNameInTable="columnLoginTime" msprop:Generator_UserColumnName="LoginTime" type="xs:dateTime" />
-              <xs:element name="LogoutTime" msprop:Generator_ColumnPropNameInRow="LogoutTime" msprop:Generator_ColumnPropNameInTable="LogoutTimeColumn" msprop:Generator_ColumnVarNameInTable="columnLogoutTime" msprop:Generator_UserColumnName="LogoutTime" type="xs:dateTime" />
-              <xs:element name="Duration" msprop:Generator_ColumnPropNameInRow="Duration" msprop:Generator_ColumnPropNameInTable="DurationColumn" msprop:Generator_ColumnVarNameInTable="columnDuration" msprop:Generator_UserColumnName="Duration">
+              <xs:element name="LoginTime" msprop:Generator_UserColumnName="LoginTime" msprop:Generator_ColumnPropNameInTable="LoginTimeColumn" msprop:Generator_ColumnPropNameInRow="LoginTime" msprop:Generator_ColumnVarNameInTable="columnLoginTime" type="xs:dateTime" />
+              <xs:element name="LogoutTime" msprop:Generator_UserColumnName="LogoutTime" msprop:Generator_ColumnPropNameInTable="LogoutTimeColumn" msprop:Generator_ColumnPropNameInRow="LogoutTime" msprop:Generator_ColumnVarNameInTable="columnLogoutTime" type="xs:dateTime" />
+              <xs:element name="Duration" msprop:Generator_UserColumnName="Duration" msprop:Generator_ColumnPropNameInTable="DurationColumn" msprop:Generator_ColumnPropNameInRow="Duration" msprop:Generator_ColumnVarNameInTable="columnDuration">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="TopSellingItem" msprop:Generator_RowEvHandlerName="TopSellingItemRowChangeEventHandler" msprop:Generator_RowDeletedName="TopSellingItemRowDeleted" msprop:Generator_RowDeletingName="TopSellingItemRowDeleting" msprop:Generator_RowEvArgName="TopSellingItemRowChangeEvent" msprop:Generator_TablePropName="TopSellingItem" msprop:Generator_RowChangedName="TopSellingItemRowChanged" msprop:Generator_RowChangingName="TopSellingItemRowChanging" msprop:Generator_TableClassName="TopSellingItemDataTable" msprop:Generator_RowClassName="TopSellingItemRow" msprop:Generator_TableVarName="tableTopSellingItem" msprop:Generator_UserTableName="TopSellingItem">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MenuItemID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="MenuItemID" msprop:Generator_ColumnPropNameInTable="MenuItemIDColumn" msprop:Generator_ColumnVarNameInTable="columnMenuItemID" msprop:Generator_UserColumnName="MenuItemID" type="xs:int" />
+              <xs:element name="MenuItemName" msprop:Generator_ColumnPropNameInRow="MenuItemName" msprop:Generator_ColumnPropNameInTable="MenuItemNameColumn" msprop:Generator_ColumnVarNameInTable="columnMenuItemName" msprop:Generator_UserColumnName="MenuItemName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TotalSold" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="TotalSold" msprop:Generator_ColumnPropNameInTable="TotalSoldColumn" msprop:Generator_ColumnVarNameInTable="columnTotalSold" msprop:Generator_UserColumnName="TotalSold" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -912,6 +950,10 @@ AND LoginTime = @LoginTime</CommandText>
     <xs:unique name="TestLoginHistory_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:TestLoginHistory" />
       <xs:field xpath="mstns:LoginHistoryID" />
+    </xs:unique>
+    <xs:unique name="TopSellingItem_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:TopSellingItem" />
+      <xs:field xpath="mstns:MenuItemID" />
     </xs:unique>
   </xs:element>
 </xs:schema>

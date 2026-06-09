@@ -228,7 +228,7 @@
             // 
             this.btnAddToCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddToCart.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnAddToCart.Location = new System.Drawing.Point(322, 314);
+            this.btnAddToCart.Location = new System.Drawing.Point(359, 333);
             this.btnAddToCart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddToCart.Name = "btnAddToCart";
             this.btnAddToCart.Size = new System.Drawing.Size(187, 28);
@@ -266,7 +266,7 @@
             this.dgvMenuItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvMenuItems.Name = "dgvMenuItems";
             this.dgvMenuItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMenuItems.Size = new System.Drawing.Size(894, 181);
+            this.dgvMenuItems.Size = new System.Drawing.Size(894, 210);
             this.dgvMenuItems.TabIndex = 11;
             this.dgvMenuItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMenuItems_CellContentClick);
             // 
@@ -469,7 +469,7 @@
             this.dgvCustomers.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvCustomers.Location = new System.Drawing.Point(84, 141);
             this.dgvCustomers.Name = "dgvCustomers";
-            this.dgvCustomers.Size = new System.Drawing.Size(855, 378);
+            this.dgvCustomers.Size = new System.Drawing.Size(855, 319);
             this.dgvCustomers.TabIndex = 19;
             this.dgvCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellClick);
             // 
@@ -716,7 +716,7 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox1.Location = new System.Drawing.Point(28, 21);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(974, 540);
+            this.groupBox1.Size = new System.Drawing.Size(974, 496);
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "STEP 1: SELECT A CUSTOMER";
@@ -730,9 +730,9 @@
             this.groupBox2.Controls.Add(this.btnSearchItem);
             this.groupBox2.Controls.Add(this.btnAddToCart);
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox2.Location = new System.Drawing.Point(28, 583);
+            this.groupBox2.Location = new System.Drawing.Point(28, 554);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(974, 369);
+            this.groupBox2.Size = new System.Drawing.Size(974, 398);
             this.groupBox2.TabIndex = 31;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "STEP 2: SELECT MENU ITEMS AND ADD TO CART";

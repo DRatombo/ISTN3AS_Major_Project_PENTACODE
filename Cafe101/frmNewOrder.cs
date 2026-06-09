@@ -53,6 +53,10 @@ namespace Cafe101
             dgvMenuItems.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             dgvCustomers.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
 
+
+            dgvCart.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dgvCart.DefaultCellStyle.BackColor = System.Drawing.Color.White;    
+
             dgvCustomers.Visible = true;
 
             try
@@ -426,7 +430,7 @@ namespace Cafe101
         {
             try
             {
-                this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
+                this.customerTableTableAdapter.Fill(this.dsCafe101Hub.CustomerTable);
 
                 DataTable dt = new DataTable();
                 dt.Columns.Add("CustomerID", typeof(int));
@@ -437,7 +441,7 @@ namespace Cafe101
 
                 string search = txtSearchedCust.Text.ToLower();
 
-                foreach (DataRow row in this.dsCafe101Test.TestCustomer.Rows)
+                foreach (DataRow row in this.dsCafe101Hub.CustomerTable.Rows)
                 {
                     if (row.RowState == DataRowState.Deleted ||
                         row.RowState == DataRowState.Detached) continue;
@@ -645,7 +649,7 @@ namespace Cafe101
                     int qty = Convert.ToInt32(row.Cells["Qty"].Value);
                     decimal subtotal = Convert.ToDecimal(row.Cells["Subtotal"].Value.ToString().Replace("R ", "").Trim());
 
-                    testOrderItemTableAdapter1.InsertItemOrder(newOrderID, menuItemID, qty, subtotal);
+                    orderItemTableTableAdapter1.InsertItemOrder(newOrderID, menuItemID, qty, subtotal);
                 }
 
                 DeductStock();
@@ -746,7 +750,7 @@ namespace Cafe101
             using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(orderTableTableAdapter1.Connection.ConnectionString))
             {
                 conn.Open();
-                System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand("SELECT MAX(OrderID) FROM TestOrder", conn);
+                System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand("SELECT MAX(OrderID) FROM OrderTable", conn);
                 object result = cmd.ExecuteScalar();
                 if (result != null)
                     orderID = Convert.ToInt32(result);

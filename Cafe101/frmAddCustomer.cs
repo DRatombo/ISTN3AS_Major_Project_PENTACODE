@@ -1,4 +1,4 @@
-﻿using Cafe101.dsCafe101TestTableAdapters;
+﻿using Cafe101.dsCafe101HubTableAdapters;
 using System;
 using System.Drawing;
 using System.Linq;

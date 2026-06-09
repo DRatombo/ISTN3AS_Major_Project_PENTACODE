@@ -37,8 +37,8 @@ namespace Cafe101
 
         private void frmSalesReport_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dsCafe101Test.TestOrder' table. You can move, or remove it, as needed.
-            this.testOrderTableAdapter.Fill(this.dsCafe101Test.TestOrder);
+            // TODO: This line of code loads data into the 'dsCafe101Hub.OrderTable' table. You can move, or remove it, as needed.
+            this.orderTableTableAdapter.Fill(this.dsCafe101Hub.OrderTable);
 
         }
 
@@ -157,8 +157,8 @@ namespace Cafe101
                 DateTime toDate = dateTimePicker2.Value.Date;
 
                 // Load filtered records
-                this.testOrderTableAdapter.FillByDateRange(
-                    this.dsCafe101Test.TestOrder,
+                this.orderTableTableAdapter.FillByDateRange(
+                    this.dsCafe101Hub.OrderTable,
                     fromDate,
                     toDate
                 );
@@ -168,7 +168,7 @@ namespace Cafe101
                 // Calculate total revenue
                 decimal totalRevenue = 0;
 
-                foreach (DataRow row in dsCafe101Test.TestOrder.Rows)
+                foreach (DataRow row in dsCafe101Hub.OrderTable.Rows)
                 {
                     if (row["TotalAmountDue"] != DBNull.Value)
                     {

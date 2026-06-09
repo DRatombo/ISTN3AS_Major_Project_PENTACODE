@@ -31,11 +31,13 @@ namespace Cafe101
 
         private void frmManageCustomers_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dsCafe101Hub.CustomerTable' table. You can move, or remove it, as needed.
+            this.customerTableTableAdapter.Fill(this.dsCafe101Hub.CustomerTable);
             try
             {
-                this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
+                this.customerTableTableAdapter.Fill(this.dsCafe101Hub.CustomerTable);
 
-                dsCafe101Test.TestCustomer.PasswordColumn.DefaultValue = "1234";
+                dsCafe101Hub.CustomerTable.PasswordColumn.DefaultValue = "1234";
 
                 if (dataGridView1.Columns.Contains("CustomerID"))
                 {
@@ -50,7 +52,7 @@ namespace Cafe101
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            testCustomerTableAdapter.FillBySearch(dsCafe101Test.TestCustomer,textBox1.Text );
+            customerTableTableAdapter.FillByCustName(dsCafe101Hub.CustomerTable, textBox1.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -61,7 +63,7 @@ namespace Cafe101
                 dataGridView1.EndEdit();
 
                 // Auto-fill password for new or empty rows
-                foreach (DataRow row in dsCafe101Test.TestCustomer.Rows)
+                foreach (DataRow row in dsCafe101Hub.CustomerTable.Rows)
                 {
                     if (row.RowState == DataRowState.Added)
                     {
@@ -73,8 +75,8 @@ namespace Cafe101
                     }
                 }
 
-                testCustomerTableAdapter.Update(dsCafe101Test.TestCustomer);
-                testCustomerTableAdapter.Fill(dsCafe101Test.TestCustomer);
+                customerTableTableAdapter.Update(dsCafe101Hub.CustomerTable);
+                customerTableTableAdapter.Fill(dsCafe101Hub.CustomerTable);
 
                 MessageBox.Show("Saved successfully.");
             }

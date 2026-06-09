@@ -38,9 +38,14 @@
             this.dsCafe101Test = new Cafe101.dsCafe101Test();
             this.topSellingItemTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TopSellingItemTableAdapter();
             this.label1 = new System.Windows.Forms.Label();
+            this.dsCafe101Hub = new Cafe101.dsCafe101Hub();
+            this.topSellingItemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.topSellingItemTableAdapter1 = new Cafe101.dsCafe101HubTableAdapters.TopSellingItemTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -65,7 +70,7 @@
             this.menuItemIDDataGridViewTextBoxColumn,
             this.menuItemNameDataGridViewTextBoxColumn,
             this.totalSoldDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.topSellingItemBindingSource;
+            this.dataGridView1.DataSource = this.topSellingItemBindingSource1;
             this.dataGridView1.Location = new System.Drawing.Point(224, 134);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(340, 150);
@@ -117,6 +122,20 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Chef\'s Best Sellers";
             // 
+            // dsCafe101Hub
+            // 
+            this.dsCafe101Hub.DataSetName = "dsCafe101Hub";
+            this.dsCafe101Hub.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // topSellingItemBindingSource1
+            // 
+            this.topSellingItemBindingSource1.DataMember = "TopSellingItem";
+            this.topSellingItemBindingSource1.DataSource = this.dsCafe101Hub;
+            // 
+            // topSellingItemTableAdapter1
+            // 
+            this.topSellingItemTableAdapter1.ClearBeforeFill = true;
+            // 
             // frmPopularProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -133,6 +152,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -149,5 +170,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn menuItemNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalSoldDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label1;
+        private dsCafe101Hub dsCafe101Hub;
+        private System.Windows.Forms.BindingSource topSellingItemBindingSource1;
+        private dsCafe101HubTableAdapters.TopSellingItemTableAdapter topSellingItemTableAdapter1;
     }
 }

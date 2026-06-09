@@ -49,9 +49,14 @@
             this.orderDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalAmountDueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dsCafe101Hub = new Cafe101.dsCafe101Hub();
+            this.orderTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.orderTableTableAdapter = new Cafe101.dsCafe101HubTableAdapters.OrderTableTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.testOrderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderTableBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -191,7 +196,7 @@
             this.orderDateTimeDataGridViewTextBoxColumn,
             this.orderStatusDataGridViewTextBoxColumn,
             this.totalAmountDueDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.testOrderBindingSource;
+            this.dataGridView1.DataSource = this.orderTableBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(95, 114);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(643, 150);
@@ -234,6 +239,20 @@
             this.totalAmountDueDataGridViewTextBoxColumn.HeaderText = "TotalAmountDue";
             this.totalAmountDueDataGridViewTextBoxColumn.Name = "totalAmountDueDataGridViewTextBoxColumn";
             // 
+            // dsCafe101Hub
+            // 
+            this.dsCafe101Hub.DataSetName = "dsCafe101Hub";
+            this.dsCafe101Hub.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // orderTableBindingSource
+            // 
+            this.orderTableBindingSource.DataMember = "OrderTable";
+            this.orderTableBindingSource.DataSource = this.dsCafe101Hub;
+            // 
+            // orderTableTableAdapter
+            // 
+            this.orderTableTableAdapter.ClearBeforeFill = true;
+            // 
             // frmSalesReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -258,6 +277,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.testOrderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderTableBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,5 +306,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn orderDateTimeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderStatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn totalAmountDueDataGridViewTextBoxColumn;
+        private dsCafe101Hub dsCafe101Hub;
+        private System.Windows.Forms.BindingSource orderTableBindingSource;
+        private dsCafe101HubTableAdapters.OrderTableTableAdapter orderTableTableAdapter;
     }
 }

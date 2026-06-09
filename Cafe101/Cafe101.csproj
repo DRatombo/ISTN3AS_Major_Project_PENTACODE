@@ -65,6 +65,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsCafe101Hub.xsd</DependentUpon>
     </Compile>
+    <Compile Include="dsCafe101Test.cs">
+      <DependentUpon>dsCafe101Test.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dsCafe101Test.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

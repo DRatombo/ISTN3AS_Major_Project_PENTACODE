@@ -46,12 +46,17 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnPrintLowStock = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.dsCafe101Hub = new Cafe101.dsCafe101Hub();
+            this.ingredientTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ingredientTableTableAdapter = new Cafe101.dsCafe101HubTableAdapters.IngredientTableTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource2)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientTableBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -76,7 +81,7 @@
             this.quantityOnHandDataGridViewTextBoxColumn,
             this.restockLevelDataGridViewTextBoxColumn,
             this.costPriceDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.testIngredientBindingSource;
+            this.dataGridView1.DataSource = this.ingredientTableBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 25);
             this.dataGridView1.Name = "dataGridView1";
@@ -203,6 +208,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Stock Analysis";
             // 
+            // dsCafe101Hub
+            // 
+            this.dsCafe101Hub.DataSetName = "dsCafe101Hub";
+            this.dsCafe101Hub.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // ingredientTableBindingSource
+            // 
+            this.ingredientTableBindingSource.DataMember = "IngredientTable";
+            this.ingredientTableBindingSource.DataSource = this.dsCafe101Hub;
+            // 
+            // ingredientTableTableAdapter
+            // 
+            this.ingredientTableTableAdapter.ClearBeforeFill = true;
+            // 
             // frmLowStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -226,6 +245,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource2)).EndInit();
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientTableBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,5 +271,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn restockLevelDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn costPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.GroupBox groupBox1;
+        private dsCafe101Hub dsCafe101Hub;
+        private System.Windows.Forms.BindingSource ingredientTableBindingSource;
+        private dsCafe101HubTableAdapters.IngredientTableTableAdapter ingredientTableTableAdapter;
     }
 }

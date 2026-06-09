@@ -43,12 +43,12 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.testOrderTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestOrderTableAdapter();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.totalAmountDueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalAmountDueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.testOrderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -87,11 +87,11 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(319, 22);
+            this.label1.Location = new System.Drawing.Point(232, 18);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(147, 16);
+            this.label1.Size = new System.Drawing.Size(298, 31);
             this.label1.TabIndex = 3;
             this.label1.Text = "Pick Your Report Dates";
             // 
@@ -99,11 +99,11 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Location = new System.Drawing.Point(66, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 16);
+            this.label2.Size = new System.Drawing.Size(60, 24);
             this.label2.TabIndex = 4;
             this.label2.Text = "From:";
             // 
@@ -197,29 +197,12 @@
             this.dataGridView1.Size = new System.Drawing.Size(643, 150);
             this.dataGridView1.TabIndex = 6;
             // 
-            // totalAmountDueDataGridViewTextBoxColumn
+            // orderIDDataGridViewTextBoxColumn
             // 
-            this.totalAmountDueDataGridViewTextBoxColumn.DataPropertyName = "TotalAmountDue";
-            this.totalAmountDueDataGridViewTextBoxColumn.HeaderText = "TotalAmountDue";
-            this.totalAmountDueDataGridViewTextBoxColumn.Name = "totalAmountDueDataGridViewTextBoxColumn";
-            // 
-            // orderStatusDataGridViewTextBoxColumn
-            // 
-            this.orderStatusDataGridViewTextBoxColumn.DataPropertyName = "OrderStatus";
-            this.orderStatusDataGridViewTextBoxColumn.HeaderText = "OrderStatus";
-            this.orderStatusDataGridViewTextBoxColumn.Name = "orderStatusDataGridViewTextBoxColumn";
-            // 
-            // orderDateTimeDataGridViewTextBoxColumn
-            // 
-            this.orderDateTimeDataGridViewTextBoxColumn.DataPropertyName = "OrderDateTime";
-            this.orderDateTimeDataGridViewTextBoxColumn.HeaderText = "OrderDateTime";
-            this.orderDateTimeDataGridViewTextBoxColumn.Name = "orderDateTimeDataGridViewTextBoxColumn";
-            // 
-            // orderTypeDataGridViewTextBoxColumn
-            // 
-            this.orderTypeDataGridViewTextBoxColumn.DataPropertyName = "OrderType";
-            this.orderTypeDataGridViewTextBoxColumn.HeaderText = "OrderType";
-            this.orderTypeDataGridViewTextBoxColumn.Name = "orderTypeDataGridViewTextBoxColumn";
+            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn.HeaderText = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
+            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // employeeIDDataGridViewTextBoxColumn
             // 
@@ -227,12 +210,29 @@
             this.employeeIDDataGridViewTextBoxColumn.HeaderText = "EmployeeID";
             this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
             // 
-            // orderIDDataGridViewTextBoxColumn
+            // orderTypeDataGridViewTextBoxColumn
             // 
-            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
-            this.orderIDDataGridViewTextBoxColumn.HeaderText = "OrderID";
-            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
-            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.orderTypeDataGridViewTextBoxColumn.DataPropertyName = "OrderType";
+            this.orderTypeDataGridViewTextBoxColumn.HeaderText = "OrderType";
+            this.orderTypeDataGridViewTextBoxColumn.Name = "orderTypeDataGridViewTextBoxColumn";
+            // 
+            // orderDateTimeDataGridViewTextBoxColumn
+            // 
+            this.orderDateTimeDataGridViewTextBoxColumn.DataPropertyName = "OrderDateTime";
+            this.orderDateTimeDataGridViewTextBoxColumn.HeaderText = "OrderDateTime";
+            this.orderDateTimeDataGridViewTextBoxColumn.Name = "orderDateTimeDataGridViewTextBoxColumn";
+            // 
+            // orderStatusDataGridViewTextBoxColumn
+            // 
+            this.orderStatusDataGridViewTextBoxColumn.DataPropertyName = "OrderStatus";
+            this.orderStatusDataGridViewTextBoxColumn.HeaderText = "OrderStatus";
+            this.orderStatusDataGridViewTextBoxColumn.Name = "orderStatusDataGridViewTextBoxColumn";
+            // 
+            // totalAmountDueDataGridViewTextBoxColumn
+            // 
+            this.totalAmountDueDataGridViewTextBoxColumn.DataPropertyName = "TotalAmountDue";
+            this.totalAmountDueDataGridViewTextBoxColumn.HeaderText = "TotalAmountDue";
+            this.totalAmountDueDataGridViewTextBoxColumn.Name = "totalAmountDueDataGridViewTextBoxColumn";
             // 
             // frmSalesReport
             // 

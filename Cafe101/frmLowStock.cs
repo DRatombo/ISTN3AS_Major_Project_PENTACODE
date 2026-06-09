@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Printing;
+
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace Cafe101
@@ -196,6 +197,11 @@ namespace Cafe101
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

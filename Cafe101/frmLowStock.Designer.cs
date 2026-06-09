@@ -31,6 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityOnHandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.restockLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testIngredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101Test = new Cafe101.dsCafe101Test();
             this.testIngredientTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestIngredientTableAdapter();
@@ -41,10 +45,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnPrintLowStock = new System.Windows.Forms.Button();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityOnHandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.restockLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource)).BeginInit();
@@ -57,11 +57,11 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.button1.Location = new System.Drawing.Point(54, 479);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(128, 39);
             this.button1.TabIndex = 0;
             this.button1.Text = "Back";
             this.button1.UseVisualStyleBackColor = true;
@@ -78,92 +78,11 @@
             this.costPriceDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.testIngredientBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 18);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 25);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(552, 376);
+            this.dataGridView1.Size = new System.Drawing.Size(745, 369);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // testIngredientBindingSource
-            // 
-            this.testIngredientBindingSource.DataMember = "TestIngredient";
-            this.testIngredientBindingSource.DataSource = this.dsCafe101Test;
-            // 
-            // dsCafe101Test
-            // 
-            this.dsCafe101Test.DataSetName = "dsCafe101Test";
-            this.dsCafe101Test.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // testIngredientTableAdapter
-            // 
-            this.testIngredientTableAdapter.ClearBeforeFill = true;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(218, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(282, 16);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "These Are All The Items Below Restock Level!";
-            // 
-            // testIngredientBindingSource1
-            // 
-            this.testIngredientBindingSource1.DataMember = "TestIngredient";
-            this.testIngredientBindingSource1.DataSource = this.dsCafe101Test;
-            // 
-            // testIngredientBindingSource2
-            // 
-            this.testIngredientBindingSource2.DataMember = "TestIngredient";
-            this.testIngredientBindingSource2.DataSource = this.dsCafe101Test;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(67, 50);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 16);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Low On Stock:";
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(322, 50);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(162, 16);
-            this.label3.TabIndex = 6;
-            this.label3.Text = "Items you need to restock:";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox1.Location = new System.Drawing.Point(491, 50);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 7;
-            // 
-            // btnPrintLowStock
-            // 
-            this.btnPrintLowStock.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnPrintLowStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrintLowStock.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPrintLowStock.Location = new System.Drawing.Point(469, 479);
-            this.btnPrintLowStock.Name = "btnPrintLowStock";
-            this.btnPrintLowStock.Size = new System.Drawing.Size(119, 23);
-            this.btnPrintLowStock.TabIndex = 8;
-            this.btnPrintLowStock.Text = "Print Low Stock";
-            this.btnPrintLowStock.UseVisualStyleBackColor = true;
-            this.btnPrintLowStock.Click += new System.EventHandler(this.btnPrintLowStock_Click);
             // 
             // descriptionDataGridViewTextBoxColumn
             // 
@@ -189,15 +108,97 @@
             this.costPriceDataGridViewTextBoxColumn.HeaderText = "CostPrice";
             this.costPriceDataGridViewTextBoxColumn.Name = "costPriceDataGridViewTextBoxColumn";
             // 
+            // testIngredientBindingSource
+            // 
+            this.testIngredientBindingSource.DataMember = "TestIngredient";
+            this.testIngredientBindingSource.DataSource = this.dsCafe101Test;
+            // 
+            // dsCafe101Test
+            // 
+            this.dsCafe101Test.DataSetName = "dsCafe101Test";
+            this.dsCafe101Test.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // testIngredientTableAdapter
+            // 
+            this.testIngredientTableAdapter.ClearBeforeFill = true;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(154, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(397, 24);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "These Are All The Items Below Restock Level!";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // testIngredientBindingSource1
+            // 
+            this.testIngredientBindingSource1.DataMember = "TestIngredient";
+            this.testIngredientBindingSource1.DataSource = this.dsCafe101Test;
+            // 
+            // testIngredientBindingSource2
+            // 
+            this.testIngredientBindingSource2.DataMember = "TestIngredient";
+            this.testIngredientBindingSource2.DataSource = this.dsCafe101Test;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Location = new System.Drawing.Point(67, 50);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(132, 24);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Low On Stock:";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Location = new System.Drawing.Point(322, 50);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(229, 24);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Items you need to restock:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBox1.Location = new System.Drawing.Point(548, 54);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 7;
+            // 
+            // btnPrintLowStock
+            // 
+            this.btnPrintLowStock.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnPrintLowStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintLowStock.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnPrintLowStock.Location = new System.Drawing.Point(469, 479);
+            this.btnPrintLowStock.Name = "btnPrintLowStock";
+            this.btnPrintLowStock.Size = new System.Drawing.Size(225, 39);
+            this.btnPrintLowStock.TabIndex = 8;
+            this.btnPrintLowStock.Text = "Print Low Stock";
+            this.btnPrintLowStock.UseVisualStyleBackColor = true;
+            this.btnPrintLowStock.Click += new System.EventHandler(this.btnPrintLowStock_Click);
+            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox1.Location = new System.Drawing.Point(70, 76);
+            this.groupBox1.Location = new System.Drawing.Point(12, 76);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(558, 397);
+            this.groupBox1.Size = new System.Drawing.Size(751, 397);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Stock Analysis";

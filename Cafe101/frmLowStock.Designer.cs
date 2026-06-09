@@ -80,7 +80,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 18);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(515, 350);
+            this.dataGridView1.Size = new System.Drawing.Size(552, 376);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -157,7 +157,7 @@
             this.btnPrintLowStock.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnPrintLowStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrintLowStock.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPrintLowStock.Location = new System.Drawing.Point(397, 480);
+            this.btnPrintLowStock.Location = new System.Drawing.Point(469, 479);
             this.btnPrintLowStock.Name = "btnPrintLowStock";
             this.btnPrintLowStock.Size = new System.Drawing.Size(119, 23);
             this.btnPrintLowStock.TabIndex = 8;
@@ -195,9 +195,9 @@
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox1.Location = new System.Drawing.Point(70, 102);
+            this.groupBox1.Location = new System.Drawing.Point(70, 76);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(521, 371);
+            this.groupBox1.Size = new System.Drawing.Size(558, 397);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Stock Analysis";

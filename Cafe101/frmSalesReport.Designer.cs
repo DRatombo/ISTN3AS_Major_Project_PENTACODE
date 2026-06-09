@@ -35,7 +35,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.testOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101Test = new Cafe101.dsCafe101Test();
             this.button2 = new System.Windows.Forms.Button();
@@ -43,15 +42,16 @@
             this.label4 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.testOrderTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestOrderTableAdapter();
-            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.totalAmountDueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.orderStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderDateTimeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderTypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.employeeIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.testOrderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -119,24 +119,6 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "To:";
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.orderIDDataGridViewTextBoxColumn,
-            this.employeeIDDataGridViewTextBoxColumn,
-            this.orderTypeDataGridViewTextBoxColumn,
-            this.orderDateTimeDataGridViewTextBoxColumn,
-            this.orderStatusDataGridViewTextBoxColumn,
-            this.totalAmountDueDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.testOrderBindingSource;
-            this.dataGridView1.Location = new System.Drawing.Point(69, 124);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(643, 150);
-            this.dataGridView1.TabIndex = 6;
-            // 
             // testOrderBindingSource
             // 
             this.testOrderBindingSource.DataMember = "TestOrder";
@@ -197,36 +179,23 @@
             // 
             this.testOrderTableAdapter.ClearBeforeFill = true;
             // 
-            // orderIDDataGridViewTextBoxColumn
+            // dataGridView1
             // 
-            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
-            this.orderIDDataGridViewTextBoxColumn.HeaderText = "OrderID";
-            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
-            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // employeeIDDataGridViewTextBoxColumn
-            // 
-            this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
-            this.employeeIDDataGridViewTextBoxColumn.HeaderText = "EmployeeID";
-            this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
-            // 
-            // orderTypeDataGridViewTextBoxColumn
-            // 
-            this.orderTypeDataGridViewTextBoxColumn.DataPropertyName = "OrderType";
-            this.orderTypeDataGridViewTextBoxColumn.HeaderText = "OrderType";
-            this.orderTypeDataGridViewTextBoxColumn.Name = "orderTypeDataGridViewTextBoxColumn";
-            // 
-            // orderDateTimeDataGridViewTextBoxColumn
-            // 
-            this.orderDateTimeDataGridViewTextBoxColumn.DataPropertyName = "OrderDateTime";
-            this.orderDateTimeDataGridViewTextBoxColumn.HeaderText = "OrderDateTime";
-            this.orderDateTimeDataGridViewTextBoxColumn.Name = "orderDateTimeDataGridViewTextBoxColumn";
-            // 
-            // orderStatusDataGridViewTextBoxColumn
-            // 
-            this.orderStatusDataGridViewTextBoxColumn.DataPropertyName = "OrderStatus";
-            this.orderStatusDataGridViewTextBoxColumn.HeaderText = "OrderStatus";
-            this.orderStatusDataGridViewTextBoxColumn.Name = "orderStatusDataGridViewTextBoxColumn";
+            this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.orderIDDataGridViewTextBoxColumn,
+            this.employeeIDDataGridViewTextBoxColumn,
+            this.orderTypeDataGridViewTextBoxColumn,
+            this.orderDateTimeDataGridViewTextBoxColumn,
+            this.orderStatusDataGridViewTextBoxColumn,
+            this.totalAmountDueDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.testOrderBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(95, 114);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(643, 150);
+            this.dataGridView1.TabIndex = 6;
             // 
             // totalAmountDueDataGridViewTextBoxColumn
             // 
@@ -234,17 +203,48 @@
             this.totalAmountDueDataGridViewTextBoxColumn.HeaderText = "TotalAmountDue";
             this.totalAmountDueDataGridViewTextBoxColumn.Name = "totalAmountDueDataGridViewTextBoxColumn";
             // 
+            // orderStatusDataGridViewTextBoxColumn
+            // 
+            this.orderStatusDataGridViewTextBoxColumn.DataPropertyName = "OrderStatus";
+            this.orderStatusDataGridViewTextBoxColumn.HeaderText = "OrderStatus";
+            this.orderStatusDataGridViewTextBoxColumn.Name = "orderStatusDataGridViewTextBoxColumn";
+            // 
+            // orderDateTimeDataGridViewTextBoxColumn
+            // 
+            this.orderDateTimeDataGridViewTextBoxColumn.DataPropertyName = "OrderDateTime";
+            this.orderDateTimeDataGridViewTextBoxColumn.HeaderText = "OrderDateTime";
+            this.orderDateTimeDataGridViewTextBoxColumn.Name = "orderDateTimeDataGridViewTextBoxColumn";
+            // 
+            // orderTypeDataGridViewTextBoxColumn
+            // 
+            this.orderTypeDataGridViewTextBoxColumn.DataPropertyName = "OrderType";
+            this.orderTypeDataGridViewTextBoxColumn.HeaderText = "OrderType";
+            this.orderTypeDataGridViewTextBoxColumn.Name = "orderTypeDataGridViewTextBoxColumn";
+            // 
+            // employeeIDDataGridViewTextBoxColumn
+            // 
+            this.employeeIDDataGridViewTextBoxColumn.DataPropertyName = "EmployeeID";
+            this.employeeIDDataGridViewTextBoxColumn.HeaderText = "EmployeeID";
+            this.employeeIDDataGridViewTextBoxColumn.Name = "employeeIDDataGridViewTextBoxColumn";
+            // 
+            // orderIDDataGridViewTextBoxColumn
+            // 
+            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn.HeaderText = "OrderID";
+            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
+            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // frmSalesReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -255,9 +255,9 @@
             this.Text = "Sales Report";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmSalesReport_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testOrderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,7 +271,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private dsCafe101Test dsCafe101Test;
         private System.Windows.Forms.BindingSource testOrderBindingSource;
         private dsCafe101TestTableAdapters.TestOrderTableAdapter testOrderTableAdapter;
@@ -279,6 +278,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn employeeIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderTypeDataGridViewTextBoxColumn;

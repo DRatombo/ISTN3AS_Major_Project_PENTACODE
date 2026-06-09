@@ -31,11 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.ingredientIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.quantityOnHandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.restockLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testIngredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101Test = new Cafe101.dsCafe101Test();
             this.testIngredientTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestIngredientTableAdapter();
@@ -46,6 +41,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnPrintLowStock = new System.Windows.Forms.Button();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.quantityOnHandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.restockLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
@@ -72,7 +71,6 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ingredientIDDataGridViewTextBoxColumn,
             this.descriptionDataGridViewTextBoxColumn,
             this.quantityOnHandDataGridViewTextBoxColumn,
             this.restockLevelDataGridViewTextBoxColumn,
@@ -80,40 +78,9 @@
             this.dataGridView1.DataSource = this.testIngredientBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(54, 83);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(537, 390);
+            this.dataGridView1.Size = new System.Drawing.Size(571, 390);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // ingredientIDDataGridViewTextBoxColumn
-            // 
-            this.ingredientIDDataGridViewTextBoxColumn.DataPropertyName = "IngredientID";
-            this.ingredientIDDataGridViewTextBoxColumn.HeaderText = "IngredientID";
-            this.ingredientIDDataGridViewTextBoxColumn.Name = "ingredientIDDataGridViewTextBoxColumn";
-            this.ingredientIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            // 
-            // quantityOnHandDataGridViewTextBoxColumn
-            // 
-            this.quantityOnHandDataGridViewTextBoxColumn.DataPropertyName = "QuantityOnHand";
-            this.quantityOnHandDataGridViewTextBoxColumn.HeaderText = "QuantityOnHand";
-            this.quantityOnHandDataGridViewTextBoxColumn.Name = "quantityOnHandDataGridViewTextBoxColumn";
-            // 
-            // restockLevelDataGridViewTextBoxColumn
-            // 
-            this.restockLevelDataGridViewTextBoxColumn.DataPropertyName = "RestockLevel";
-            this.restockLevelDataGridViewTextBoxColumn.HeaderText = "RestockLevel";
-            this.restockLevelDataGridViewTextBoxColumn.Name = "restockLevelDataGridViewTextBoxColumn";
-            // 
-            // costPriceDataGridViewTextBoxColumn
-            // 
-            this.costPriceDataGridViewTextBoxColumn.DataPropertyName = "CostPrice";
-            this.costPriceDataGridViewTextBoxColumn.HeaderText = "CostPrice";
-            this.costPriceDataGridViewTextBoxColumn.Name = "costPriceDataGridViewTextBoxColumn";
             // 
             // testIngredientBindingSource
             // 
@@ -196,6 +163,30 @@
             this.btnPrintLowStock.UseVisualStyleBackColor = true;
             this.btnPrintLowStock.Click += new System.EventHandler(this.btnPrintLowStock_Click);
             // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            // 
+            // quantityOnHandDataGridViewTextBoxColumn
+            // 
+            this.quantityOnHandDataGridViewTextBoxColumn.DataPropertyName = "QuantityOnHand";
+            this.quantityOnHandDataGridViewTextBoxColumn.HeaderText = "QuantityOnHand";
+            this.quantityOnHandDataGridViewTextBoxColumn.Name = "quantityOnHandDataGridViewTextBoxColumn";
+            // 
+            // restockLevelDataGridViewTextBoxColumn
+            // 
+            this.restockLevelDataGridViewTextBoxColumn.DataPropertyName = "RestockLevel";
+            this.restockLevelDataGridViewTextBoxColumn.HeaderText = "RestockLevel";
+            this.restockLevelDataGridViewTextBoxColumn.Name = "restockLevelDataGridViewTextBoxColumn";
+            // 
+            // costPriceDataGridViewTextBoxColumn
+            // 
+            this.costPriceDataGridViewTextBoxColumn.DataPropertyName = "CostPrice";
+            this.costPriceDataGridViewTextBoxColumn.HeaderText = "CostPrice";
+            this.costPriceDataGridViewTextBoxColumn.Name = "costPriceDataGridViewTextBoxColumn";
+            // 
             // frmLowStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,11 +221,6 @@
         private dsCafe101Test dsCafe101Test;
         private System.Windows.Forms.BindingSource testIngredientBindingSource;
         private dsCafe101TestTableAdapters.TestIngredientTableAdapter testIngredientTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ingredientIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn quantityOnHandDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn restockLevelDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn costPriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.BindingSource testIngredientBindingSource1;
         private System.Windows.Forms.BindingSource testIngredientBindingSource2;
@@ -242,5 +228,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button btnPrintLowStock;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descriptionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn quantityOnHandDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn restockLevelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn costPriceDataGridViewTextBoxColumn;
     }
 }

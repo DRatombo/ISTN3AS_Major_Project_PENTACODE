@@ -94,61 +94,105 @@ namespace Cafe101
         }
         private void PrintPageHandler(object sender, PrintPageEventArgs e)
         {
-            try
+            Font titleFont = new Font("Arial", 16, FontStyle.Bold);
+            Font headerFont = new Font("Arial", 10, FontStyle.Bold);
+            Font cellFont = new Font("Arial", 10);
+
+            Pen gridPen = Pens.Black;
+
+            int startX = 50;
+            int startY = 50;
+            int rowHeight = 30;
+            int cellWidth = 180;
+
+            int x = startX;
+            int y = startY;
+
+            // Report Title
+            e.Graphics.DrawString("LOW STOCK REPORT", titleFont, Brushes.Black, x, y);
+
+            y += 50;
+
+            // Print Column Headers
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
             {
-                Font titleFont = new Font("Arial", 16, FontStyle.Bold);
-                Font font = new Font("Arial", 10);
+                if (!column.Visible)
+                    continue;
 
-                int x = 50;
-                int y = 50;
-                int lineHeight = 25;
+                Rectangle rect = new Rectangle(x, y, cellWidth, rowHeight);
 
-                // HEADER
-                e.Graphics.DrawString("LOW STOCK REPORT", titleFont, Brushes.Black, x, y);
-                y += 40;
+                e.Graphics.DrawRectangle(gridPen, rect);
 
-                // COLUMN HEADERS
-                e.Graphics.DrawString("Ingredient", font, Brushes.Black, x, y);
-                e.Graphics.DrawString("Qty", font, Brushes.Black, x + 250, y);
-                e.Graphics.DrawString("Restock Level", font, Brushes.Black, x + 350, y);
+                e.Graphics.DrawString(
+                    column.HeaderText,
+                    headerFont,
+                    Brushes.Black,
+                    rect,
+                    new StringFormat
+                    {
+                        Alignment = StringAlignment.Center,
+                        LineAlignment = StringAlignment.Center
+                    });
 
-                y += 30;
+                x += cellWidth;
+            }
 
-                // PRINT ROWS
-                while (printRowIndex < dataGridView1.Rows.Count)
+            y += rowHeight;
+
+            // Print Data Rows
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                x = startX;
+
+                foreach (DataGridViewCell cell in row.Cells)
                 {
-                    DataGridViewRow row = dataGridView1.Rows[printRowIndex];
+                    if (!dataGridView1.Columns[cell.ColumnIndex].Visible)
+                        continue;
 
-                    if (!row.IsNewRow)
-                    {
-                        string name = row.Cells[1].Value?.ToString();
-                        string qty = row.Cells[2].Value?.ToString();
-                        string restock = row.Cells[3].Value?.ToString();
+                    Rectangle rect = new Rectangle(x, y, cellWidth, rowHeight);
 
-                        e.Graphics.DrawString(name, font, Brushes.Black, x, y);
-                        e.Graphics.DrawString(qty, font, Brushes.Black, x + 250, y);
-                        e.Graphics.DrawString(restock, font, Brushes.Black, x + 350, y);
+                    e.Graphics.DrawRectangle(gridPen, rect);
 
-                        y += lineHeight;
-                    }
+                    string value = cell.Value?.ToString() ?? "";
 
-                    printRowIndex++;
+                    e.Graphics.DrawString(
+                        value,
+                        cellFont,
+                        Brushes.Black,
+                        rect,
+                        new StringFormat
+                        {
+                            Alignment = StringAlignment.Center,
+                            LineAlignment = StringAlignment.Center
+                        });
 
-                    // PAGE BREAK
-                    if (y > 700)
-                    {
-                        e.HasMorePages = true;
-                        return;
-                    }
+                    x += cellWidth;
                 }
 
-                e.HasMorePages = false;
-                printRowIndex = 0;
+                y += rowHeight;
+
+                // Simple page break
+                if (y > e.MarginBounds.Bottom - rowHeight)
+                {
+                    e.HasMorePages = true;
+                    return;
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Print error:\n\n" + ex.Message);
-            }
+
+            // Low Stock Count at Bottom
+            y += 20;
+
+            e.Graphics.DrawString(
+                "Total Low Stock Items: " + textBox1.Text,
+                headerFont,
+                Brushes.Black,
+                startX,
+                y);
+
+            e.HasMorePages = false;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)

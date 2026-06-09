@@ -23,15 +23,11 @@ namespace Cafe101
         {
             InitializeComponent();
         }
-        // Store the data for printing
-        private DataTable reportData;
-
-        // Store the chart image
-        private Bitmap chartBitmap;
-
-        // PrintDocument instance
+       
         private PrintDocument printDoc = new PrintDocument();
 
+        // Variables for printing
+        private int currentRow = 0;
         private void button1_Click(object sender, EventArgs e)
         {
             frmMain mainForm = new frmMain();
@@ -48,11 +44,109 @@ namespace Cafe101
 
         private void button3_Click(object sender, EventArgs e)
         {
-          
+            try
+            {
+                printDoc.PrintPage -= PrintDoc_PrintPage; // avoid duplicate handlers
+                printDoc.PrintPage += PrintDoc_PrintPage;
+
+                PrintPreviewDialog preview = new PrintPreviewDialog();
+                preview.Document = printDoc;
+
+                preview.WindowState = FormWindowState.Maximized;
+                preview.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Printing Error: " + ex.Message);
+            }
         }
         private void PrintDoc_PrintPage(object sender, PrintPageEventArgs e)
         {
-           
+            Font printFont = new Font("Arial", 10);
+            Pen gridPen = Pens.Black;
+
+            int startX = 50;
+            int startY = 50;
+            int rowHeight = 30;
+            int cellWidth = 120;
+
+            int x = startX;
+            int y = startY;
+
+            // Report Title
+            Font titleFont = new Font("Arial", 14, FontStyle.Bold);
+            e.Graphics.DrawString("Sales Report", titleFont, Brushes.Black, x, y);
+
+            y += 50;
+
+            // Print Column Headers
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                Rectangle rect = new Rectangle(x, y, cellWidth, rowHeight);
+
+                e.Graphics.DrawRectangle(gridPen, rect);
+                e.Graphics.DrawString(
+                    column.HeaderText,
+                    printFont,
+                    Brushes.Black,
+                    rect,
+                    new StringFormat()
+                    {
+                        Alignment = StringAlignment.Center,
+                        LineAlignment = StringAlignment.Center
+                    });
+
+                x += cellWidth;
+            }
+
+            y += rowHeight;
+
+            // Print Rows
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                x = startX;
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    Rectangle rect = new Rectangle(x, y, cellWidth, rowHeight);
+
+                    e.Graphics.DrawRectangle(gridPen, rect);
+
+                    string value = cell.Value?.ToString() ?? "";
+
+                    e.Graphics.DrawString(
+                        value,
+                        printFont,
+                        Brushes.Black,
+                        rect,
+                        new StringFormat()
+                        {
+                            Alignment = StringAlignment.Center,
+                            LineAlignment = StringAlignment.Center
+                        });
+
+                    x += cellWidth;
+                }
+
+                y += rowHeight;
+            }
+
+            // Print Total Revenue
+            y += 20;
+
+            Font totalFont = new Font("Arial", 12, FontStyle.Bold);
+
+            e.Graphics.DrawString(
+                "Total Revenue: R " + textBox1.Text,
+                totalFont,
+                Brushes.Black,
+                startX,
+                y);
+
+            e.HasMorePages = false;
         }
 
         private void button2_Click(object sender, EventArgs e)

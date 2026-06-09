@@ -30,11 +30,13 @@ namespace Cafe101
 
         private void frmLowStock_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dsCafe101Hub.IngredientTable' table. You can move, or remove it, as needed.
+            this.ingredientTableTableAdapter.Fill(this.dsCafe101Hub.IngredientTable);
             int count = 0;
 
             try
             {
-                this.testIngredientTableAdapter.Fill(this.dsCafe101Test.TestIngredient);
+                this.ingredientTableTableAdapter.Fill(this.dsCafe101Hub.IngredientTable);
 
                 var ingredients = dsCafe101Test.TestIngredient.AsEnumerable();
 

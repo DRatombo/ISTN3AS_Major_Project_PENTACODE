@@ -39,7 +39,15 @@
             this.btnSearchItem = new System.Windows.Forms.Button();
             this.btnAddToCart = new System.Windows.Forms.Button();
             this.dgvMenuItems = new System.Windows.Forms.DataGridView();
+            this.ItemQty = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.MenuItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MenuItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PreparationTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testMenuItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsCafe101TestBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsCafe101Test = new Cafe101.dsCafe101Test();
             this.menuItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101 = new Cafe101.dsCafe101();
@@ -57,6 +65,11 @@
             this.recipeItemTableAdapter1 = new Cafe101.dsCafe101TableAdapters.RecipeItemTableAdapter();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvCustomers = new System.Windows.Forms.DataGridView();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testCustomerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.btnBack = new System.Windows.Forms.Button();
             this.testCustomerBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -79,20 +92,7 @@
             this.lblEventDate = new System.Windows.Forms.Label();
             this.lblEventTime = new System.Windows.Forms.Label();
             this.btnClearCustName = new System.Windows.Forms.Button();
-            this.ItemQty = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.MenuItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnHelp = new System.Windows.Forms.Button();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dsCafe101TestBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dsCafe101Test = new Cafe101.dsCafe101Test();
-            this.MenuItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PreparationTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.testCustomerTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestCustomerTableAdapter();
             this.testMenuItemsTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestMenuItemsTableAdapter();
             this.testOrderTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestOrderTableAdapter();
@@ -100,8 +100,13 @@
             this.testRecipeTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestRecipeTableAdapter();
             this.testIngredientTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestIngredientTableAdapter();
             this.btnAddNewCust = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testMenuItemsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101TestBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).BeginInit();
@@ -111,8 +116,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testOrderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101TestBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblSearchCust
@@ -120,7 +126,7 @@
             this.lblSearchCust.AutoSize = true;
             this.lblSearchCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearchCust.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblSearchCust.Location = new System.Drawing.Point(379, 18);
+            this.lblSearchCust.Location = new System.Drawing.Point(81, 39);
             this.lblSearchCust.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearchCust.Name = "lblSearchCust";
             this.lblSearchCust.Size = new System.Drawing.Size(145, 18);
@@ -129,7 +135,7 @@
             // 
             // txtSearchedCust
             // 
-            this.txtSearchedCust.Location = new System.Drawing.Point(551, 19);
+            this.txtSearchedCust.Location = new System.Drawing.Point(253, 40);
             this.txtSearchedCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearchedCust.Name = "txtSearchedCust";
             this.txtSearchedCust.Size = new System.Drawing.Size(204, 20);
@@ -140,7 +146,7 @@
             // 
             this.btnSearchCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchCust.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSearchCust.Location = new System.Drawing.Point(795, 12);
+            this.btnSearchCust.Location = new System.Drawing.Point(497, 33);
             this.btnSearchCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSearchCust.Name = "btnSearchCust";
             this.btnSearchCust.Size = new System.Drawing.Size(88, 30);
@@ -154,7 +160,7 @@
             this.lblCustName.AutoSize = true;
             this.lblCustName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCustName.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblCustName.Location = new System.Drawing.Point(471, 65);
+            this.lblCustName.Location = new System.Drawing.Point(193, 94);
             this.lblCustName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCustName.Name = "lblCustName";
             this.lblCustName.Size = new System.Drawing.Size(136, 18);
@@ -163,7 +169,7 @@
             // 
             // txtSearchedName
             // 
-            this.txtSearchedName.Location = new System.Drawing.Point(629, 66);
+            this.txtSearchedName.Location = new System.Drawing.Point(351, 95);
             this.txtSearchedName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearchedName.Name = "txtSearchedName";
             this.txtSearchedName.Size = new System.Drawing.Size(195, 20);
@@ -174,7 +180,7 @@
             this.lblSearchItems.AutoSize = true;
             this.lblSearchItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearchItems.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblSearchItems.Location = new System.Drawing.Point(379, 363);
+            this.lblSearchItems.Location = new System.Drawing.Point(153, 39);
             this.lblSearchItems.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearchItems.Name = "lblSearchItems";
             this.lblSearchItems.Size = new System.Drawing.Size(149, 18);
@@ -183,7 +189,7 @@
             // 
             // textItemSearch
             // 
-            this.textItemSearch.Location = new System.Drawing.Point(556, 364);
+            this.textItemSearch.Location = new System.Drawing.Point(345, 37);
             this.textItemSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textItemSearch.Name = "textItemSearch";
             this.textItemSearch.Size = new System.Drawing.Size(199, 20);
@@ -194,7 +200,7 @@
             // 
             this.btnSearchItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearchItem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnSearchItem.Location = new System.Drawing.Point(808, 356);
+            this.btnSearchItem.Location = new System.Drawing.Point(603, 29);
             this.btnSearchItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSearchItem.Name = "btnSearchItem";
             this.btnSearchItem.Size = new System.Drawing.Size(88, 33);
@@ -207,7 +213,7 @@
             // 
             this.btnAddToCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddToCart.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnAddToCart.Location = new System.Drawing.Point(556, 616);
+            this.btnAddToCart.Location = new System.Drawing.Point(322, 314);
             this.btnAddToCart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddToCart.Name = "btnAddToCart";
             this.btnAddToCart.Size = new System.Drawing.Size(187, 28);
@@ -220,6 +226,7 @@
             // 
             this.dgvMenuItems.AutoGenerateColumns = false;
             this.dgvMenuItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvMenuItems.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(21)))), ((int)(((byte)(48)))));
             this.dgvMenuItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMenuItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ItemQty,
@@ -229,7 +236,7 @@
             this.Category,
             this.PreparationTime});
             this.dgvMenuItems.DataSource = this.testMenuItemsBindingSource;
-            this.dgvMenuItems.Location = new System.Drawing.Point(320, 413);
+            this.dgvMenuItems.Location = new System.Drawing.Point(22, 97);
             this.dgvMenuItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvMenuItems.Name = "dgvMenuItems";
             this.dgvMenuItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -237,10 +244,68 @@
             this.dgvMenuItems.TabIndex = 11;
             this.dgvMenuItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMenuItems_CellContentClick);
             // 
+            // ItemQty
+            // 
+            this.ItemQty.HeaderText = "Quantity";
+            this.ItemQty.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.ItemQty.Name = "ItemQty";
+            this.ItemQty.ReadOnly = true;
+            // 
+            // MenuItemID
+            // 
+            this.MenuItemID.DataPropertyName = "MenuItemID";
+            this.MenuItemID.HeaderText = "Menu Item ID";
+            this.MenuItemID.Name = "MenuItemID";
+            this.MenuItemID.ReadOnly = true;
+            // 
+            // MenuItemName
+            // 
+            this.MenuItemName.DataPropertyName = "MenuItemName";
+            this.MenuItemName.HeaderText = "Item Name";
+            this.MenuItemName.Name = "MenuItemName";
+            // 
+            // sellingPrice
+            // 
+            this.sellingPrice.DataPropertyName = "SellingPrice";
+            this.sellingPrice.HeaderText = "Selling Price";
+            this.sellingPrice.Name = "sellingPrice";
+            // 
+            // Category
+            // 
+            this.Category.DataPropertyName = "Category";
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            // 
+            // PreparationTime
+            // 
+            this.PreparationTime.DataPropertyName = "PreparationTime";
+            this.PreparationTime.HeaderText = "Preparation Time";
+            this.PreparationTime.Name = "PreparationTime";
+            // 
             // testMenuItemsBindingSource
             // 
             this.testMenuItemsBindingSource.DataMember = "TestMenuItems";
             this.testMenuItemsBindingSource.DataSource = this.dsCafe101TestBindingSource;
+            // 
+            // dsCafe101TestBindingSource
+            // 
+            this.dsCafe101TestBindingSource.DataSource = this.dsCafe101Test;
+            this.dsCafe101TestBindingSource.Position = 0;
+            // 
+            // dsCafe101Test
+            // 
+            this.dsCafe101Test.DataSetName = "dsCafe101Test";
+            this.dsCafe101Test.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // menuItemsBindingSource
             // 
@@ -260,11 +325,12 @@
             // dgvCart
             // 
             this.dgvCart.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCart.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(21)))), ((int)(((byte)(48)))));
             this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCart.Location = new System.Drawing.Point(219, 673);
+            this.dgvCart.Location = new System.Drawing.Point(55, 50);
             this.dgvCart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvCart.Name = "dgvCart";
-            this.dgvCart.Size = new System.Drawing.Size(524, 158);
+            this.dgvCart.Size = new System.Drawing.Size(589, 230);
             this.dgvCart.TabIndex = 12;
             // 
             // lblTotalPrice
@@ -272,7 +338,7 @@
             this.lblTotalPrice.AutoSize = true;
             this.lblTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPrice.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblTotalPrice.Location = new System.Drawing.Point(523, 947);
+            this.lblTotalPrice.Location = new System.Drawing.Point(455, 305);
             this.lblTotalPrice.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotalPrice.Name = "lblTotalPrice";
             this.lblTotalPrice.Size = new System.Drawing.Size(60, 18);
@@ -284,7 +350,7 @@
             this.lblAmount.AutoSize = true;
             this.lblAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAmount.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblAmount.Location = new System.Drawing.Point(655, 947);
+            this.lblAmount.Location = new System.Drawing.Point(587, 305);
             this.lblAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAmount.Name = "lblAmount";
             this.lblAmount.Size = new System.Drawing.Size(57, 18);
@@ -295,7 +361,7 @@
             // 
             this.btnConfirmOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmOrder.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnConfirmOrder.Location = new System.Drawing.Point(757, 938);
+            this.btnConfirmOrder.Location = new System.Drawing.Point(271, 609);
             this.btnConfirmOrder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnConfirmOrder.Name = "btnConfirmOrder";
             this.btnConfirmOrder.Size = new System.Drawing.Size(191, 28);
@@ -308,7 +374,7 @@
             // 
             this.btnDecreaseQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDecreaseQuantity.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnDecreaseQuantity.Location = new System.Drawing.Point(354, 869);
+            this.btnDecreaseQuantity.Location = new System.Drawing.Point(114, 367);
             this.btnDecreaseQuantity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDecreaseQuantity.Name = "btnDecreaseQuantity";
             this.btnDecreaseQuantity.Size = new System.Drawing.Size(242, 28);
@@ -321,7 +387,7 @@
             // 
             this.btnRemoveItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRemoveItem.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnRemoveItem.Location = new System.Drawing.Point(770, 869);
+            this.btnRemoveItem.Location = new System.Drawing.Point(428, 367);
             this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnRemoveItem.Name = "btnRemoveItem";
             this.btnRemoveItem.Size = new System.Drawing.Size(187, 28);
@@ -368,6 +434,7 @@
             // dgvCustomers
             // 
             this.dgvCustomers.AutoGenerateColumns = false;
+            this.dgvCustomers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(21)))), ((int)(((byte)(48)))));
             this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FirstName,
@@ -376,11 +443,51 @@
             this.emailDataGridViewTextBoxColumn,
             this.CustomerID});
             this.dgvCustomers.DataSource = this.testCustomerBindingSource1;
-            this.dgvCustomers.Location = new System.Drawing.Point(334, 106);
+            this.dgvCustomers.Location = new System.Drawing.Point(84, 141);
             this.dgvCustomers.Name = "dgvCustomers";
-            this.dgvCustomers.Size = new System.Drawing.Size(827, 233);
+            this.dgvCustomers.Size = new System.Drawing.Size(855, 233);
             this.dgvCustomers.TabIndex = 19;
             this.dgvCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellClick);
+            // 
+            // FirstName
+            // 
+            this.FirstName.DataPropertyName = "FirstName";
+            this.FirstName.FillWeight = 12.48717F;
+            this.FirstName.HeaderText = "First Name";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.Width = 150;
+            // 
+            // Surname
+            // 
+            this.Surname.DataPropertyName = "Surname";
+            this.Surname.FillWeight = 52.18124F;
+            this.Surname.HeaderText = "Surname";
+            this.Surname.Name = "Surname";
+            this.Surname.Width = 150;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.FillWeight = 431.4721F;
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.Width = 210;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.FillWeight = 2.988253F;
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.Width = 170;
+            // 
+            // CustomerID
+            // 
+            this.CustomerID.DataPropertyName = "CustomerID";
+            this.CustomerID.FillWeight = 0.8712624F;
+            this.CustomerID.HeaderText = "Customer ID";
+            this.CustomerID.Name = "CustomerID";
+            this.CustomerID.ReadOnly = true;
             // 
             // testCustomerBindingSource1
             // 
@@ -391,7 +498,7 @@
             // 
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnBack.Location = new System.Drawing.Point(366, 942);
+            this.btnBack.Location = new System.Drawing.Point(1391, 950);
             this.btnBack.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(100, 28);
@@ -484,7 +591,7 @@
             this.cmbOrderType.Items.AddRange(new object[] {
             "Regular",
             "Event"});
-            this.cmbOrderType.Location = new System.Drawing.Point(1010, 687);
+            this.cmbOrderType.Location = new System.Drawing.Point(371, 433);
             this.cmbOrderType.Name = "cmbOrderType";
             this.cmbOrderType.Size = new System.Drawing.Size(204, 21);
             this.cmbOrderType.TabIndex = 21;
@@ -495,7 +602,7 @@
             this.lblOrderType.AutoSize = true;
             this.lblOrderType.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOrderType.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblOrderType.Location = new System.Drawing.Point(792, 686);
+            this.lblOrderType.Location = new System.Drawing.Point(153, 432);
             this.lblOrderType.Name = "lblOrderType";
             this.lblOrderType.Size = new System.Drawing.Size(149, 18);
             this.lblOrderType.TabIndex = 22;
@@ -504,7 +611,7 @@
             // dtpEventDate
             // 
             this.dtpEventDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpEventDate.Location = new System.Drawing.Point(1014, 743);
+            this.dtpEventDate.Location = new System.Drawing.Point(371, 490);
             this.dtpEventDate.Name = "dtpEventDate";
             this.dtpEventDate.Size = new System.Drawing.Size(200, 20);
             this.dtpEventDate.TabIndex = 23;
@@ -512,7 +619,7 @@
             // dtpEventTime
             // 
             this.dtpEventTime.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dtpEventTime.Location = new System.Drawing.Point(1014, 797);
+            this.dtpEventTime.Location = new System.Drawing.Point(375, 546);
             this.dtpEventTime.Name = "dtpEventTime";
             this.dtpEventTime.ShowUpDown = true;
             this.dtpEventTime.Size = new System.Drawing.Size(200, 20);
@@ -523,7 +630,7 @@
             this.lblEventDate.AutoSize = true;
             this.lblEventDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEventDate.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblEventDate.Location = new System.Drawing.Point(841, 745);
+            this.lblEventDate.Location = new System.Drawing.Point(205, 490);
             this.lblEventDate.Name = "lblEventDate";
             this.lblEventDate.Size = new System.Drawing.Size(95, 18);
             this.lblEventDate.TabIndex = 25;
@@ -534,7 +641,7 @@
             this.lblEventTime.AutoSize = true;
             this.lblEventTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEventTime.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblEventTime.Location = new System.Drawing.Point(841, 799);
+            this.lblEventTime.Location = new System.Drawing.Point(205, 546);
             this.lblEventTime.Name = "lblEventTime";
             this.lblEventTime.Size = new System.Drawing.Size(97, 18);
             this.lblEventTime.TabIndex = 26;
@@ -544,7 +651,7 @@
             // 
             this.btnClearCustName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearCustName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnClearCustName.Location = new System.Drawing.Point(848, 65);
+            this.btnClearCustName.Location = new System.Drawing.Point(570, 94);
             this.btnClearCustName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnClearCustName.Name = "btnClearCustName";
             this.btnClearCustName.Size = new System.Drawing.Size(88, 24);
@@ -553,43 +660,11 @@
             this.btnClearCustName.UseVisualStyleBackColor = true;
             this.btnClearCustName.Click += new System.EventHandler(this.btnClearCustName_Click);
             // 
-            // ItemQty
-            // 
-            this.ItemQty.HeaderText = "Quantity";
-            this.ItemQty.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.ItemQty.Name = "ItemQty";
-            this.ItemQty.ReadOnly = true;
-            // 
-            // MenuItemID
-            // 
-            this.MenuItemID.DataPropertyName = "MenuItemID";
-            this.MenuItemID.HeaderText = "Menu Item ID";
-            this.MenuItemID.Name = "MenuItemID";
-            this.MenuItemID.ReadOnly = true;
-            // 
-            // CustomerID
-            // 
-            this.CustomerID.DataPropertyName = "CustomerID";
-            this.CustomerID.FillWeight = 0.8712624F;
-            this.CustomerID.HeaderText = "Customer ID";
-            this.CustomerID.Name = "CustomerID";
-            this.CustomerID.ReadOnly = true;
-            // 
             // btnHelp
             // 
             this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHelp.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnHelp.Location = new System.Drawing.Point(1160, 938);
+            this.btnHelp.Location = new System.Drawing.Point(1540, 951);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(101, 28);
@@ -597,72 +672,6 @@
             this.btnHelp.Text = "Help";
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
-            // 
-            // FirstName
-            // 
-            this.FirstName.DataPropertyName = "FirstName";
-            this.FirstName.FillWeight = 12.48717F;
-            this.FirstName.HeaderText = "First Name";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.Width = 150;
-            // 
-            // Surname
-            // 
-            this.Surname.DataPropertyName = "Surname";
-            this.Surname.FillWeight = 52.18124F;
-            this.Surname.HeaderText = "Surname";
-            this.Surname.Name = "Surname";
-            this.Surname.Width = 150;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.FillWeight = 431.4721F;
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            this.addressDataGridViewTextBoxColumn.Width = 210;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.FillWeight = 2.988253F;
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.Width = 170;
-            // 
-            // dsCafe101TestBindingSource
-            // 
-            this.dsCafe101TestBindingSource.DataSource = this.dsCafe101Test;
-            this.dsCafe101TestBindingSource.Position = 0;
-            // 
-            // dsCafe101Test
-            // 
-            this.dsCafe101Test.DataSetName = "dsCafe101Test";
-            this.dsCafe101Test.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // MenuItemName
-            // 
-            this.MenuItemName.DataPropertyName = "MenuItemName";
-            this.MenuItemName.HeaderText = "Item Name";
-            this.MenuItemName.Name = "MenuItemName";
-            // 
-            // sellingPrice
-            // 
-            this.sellingPrice.DataPropertyName = "SellingPrice";
-            this.sellingPrice.HeaderText = "Selling Price";
-            this.sellingPrice.Name = "sellingPrice";
-            // 
-            // Category
-            // 
-            this.Category.DataPropertyName = "Category";
-            this.Category.HeaderText = "Category";
-            this.Category.Name = "Category";
-            // 
-            // PreparationTime
-            // 
-            this.PreparationTime.DataPropertyName = "PreparationTime";
-            this.PreparationTime.HeaderText = "Preparation Time";
-            this.PreparationTime.Name = "PreparationTime";
             // 
             // testCustomerTableAdapter
             // 
@@ -692,7 +701,7 @@
             // 
             this.btnAddNewCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNewCust.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnAddNewCust.Location = new System.Drawing.Point(1072, 12);
+            this.btnAddNewCust.Location = new System.Drawing.Point(643, 33);
             this.btnAddNewCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddNewCust.Name = "btnAddNewCust";
             this.btnAddNewCust.Size = new System.Drawing.Size(198, 30);
@@ -701,41 +710,76 @@
             this.btnAddNewCust.UseVisualStyleBackColor = true;
             this.btnAddNewCust.Click += new System.EventHandler(this.btnAddNewCust_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnSearchCust);
+            this.groupBox1.Controls.Add(this.lblSearchCust);
+            this.groupBox1.Controls.Add(this.btnAddNewCust);
+            this.groupBox1.Controls.Add(this.txtSearchedCust);
+            this.groupBox1.Controls.Add(this.btnClearCustName);
+            this.groupBox1.Controls.Add(this.txtSearchedName);
+            this.groupBox1.Controls.Add(this.lblCustName);
+            this.groupBox1.Controls.Add(this.dgvCustomers);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox1.Location = new System.Drawing.Point(28, 21);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(974, 395);
+            this.groupBox1.TabIndex = 30;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "CUSTOMER";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.dgvMenuItems);
+            this.groupBox2.Controls.Add(this.textItemSearch);
+            this.groupBox2.Controls.Add(this.lblSearchItems);
+            this.groupBox2.Controls.Add(this.btnSearchItem);
+            this.groupBox2.Controls.Add(this.btnAddToCart);
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox2.Location = new System.Drawing.Point(28, 436);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(974, 369);
+            this.groupBox2.TabIndex = 31;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "MENU ITEMS";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.dgvCart);
+            this.groupBox3.Controls.Add(this.btnRemoveItem);
+            this.groupBox3.Controls.Add(this.lblTotalPrice);
+            this.groupBox3.Controls.Add(this.lblAmount);
+            this.groupBox3.Controls.Add(this.lblEventTime);
+            this.groupBox3.Controls.Add(this.btnConfirmOrder);
+            this.groupBox3.Controls.Add(this.lblEventDate);
+            this.groupBox3.Controls.Add(this.btnDecreaseQuantity);
+            this.groupBox3.Controls.Add(this.dtpEventTime);
+            this.groupBox3.Controls.Add(this.dtpEventDate);
+            this.groupBox3.Controls.Add(this.lblOrderType);
+            this.groupBox3.Controls.Add(this.cmbOrderType);
+            this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox3.Location = new System.Drawing.Point(1029, 21);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(692, 665);
+            this.groupBox3.TabIndex = 32;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "CART";
+            this.groupBox3.Enter += new System.EventHandler(this.groupBox3_Enter);
+            // 
             // frmNewOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(1312, 999);
-            this.Controls.Add(this.btnAddNewCust);
+            this.ClientSize = new System.Drawing.Size(1733, 999);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnHelp);
-            this.Controls.Add(this.btnClearCustName);
-            this.Controls.Add(this.lblEventTime);
-            this.Controls.Add(this.lblEventDate);
-            this.Controls.Add(this.dtpEventTime);
-            this.Controls.Add(this.dtpEventDate);
-            this.Controls.Add(this.lblOrderType);
-            this.Controls.Add(this.cmbOrderType);
-            this.Controls.Add(this.btnBack);
-            this.Controls.Add(this.dgvCustomers);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.btnRemoveItem);
-            this.Controls.Add(this.btnDecreaseQuantity);
-            this.Controls.Add(this.btnConfirmOrder);
-            this.Controls.Add(this.lblAmount);
-            this.Controls.Add(this.lblTotalPrice);
-            this.Controls.Add(this.dgvCart);
-            this.Controls.Add(this.dgvMenuItems);
-            this.Controls.Add(this.btnAddToCart);
-            this.Controls.Add(this.btnSearchItem);
-            this.Controls.Add(this.textItemSearch);
-            this.Controls.Add(this.lblSearchItems);
-            this.Controls.Add(this.txtSearchedName);
-            this.Controls.Add(this.lblCustName);
-            this.Controls.Add(this.btnSearchCust);
-            this.Controls.Add(this.txtSearchedCust);
-            this.Controls.Add(this.lblSearchCust);
+            this.Controls.Add(this.btnBack);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "frmNewOrder";
@@ -745,6 +789,8 @@
             this.Load += new System.EventHandler(this.frmNewOrder_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testMenuItemsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101TestBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).EndInit();
@@ -754,10 +800,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testOrderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101TestBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -835,5 +884,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;
         private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.Button btnAddNewCust;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBox3;
     }
 }

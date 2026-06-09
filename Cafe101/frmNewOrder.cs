@@ -959,6 +959,16 @@ namespace Cafe101
             newCust.ShowDialog();
             this.Hide();
         }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox3_Enter(object sender, EventArgs e)
+        {
+
+        }
     }
     
 }

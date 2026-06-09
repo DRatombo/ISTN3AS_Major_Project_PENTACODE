@@ -5067,7 +5067,7 @@ SELECT CustomerID, FirstName, Surname, Address, Email, Password, Status FROM Cus
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual dsCafe101Hub.CustomerTableDataTable GetDataBy1(string Search) {
+        public virtual dsCafe101Hub.CustomerTableDataTable GetDataBy11(string Search) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((Search == null)) {
                 throw new global::System.ArgumentNullException("Search");
@@ -6326,22 +6326,25 @@ SELECT LoginHistoryID, EmployeeID, Role, FirstName, LoginTime, LogoutTime, Durat
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "INSERT INTO LoginHistoryTable\r\n(\r\n    EmployeeID,\r\n    Role,\r\n    FirstName,\r\n   " +
-                " LoginTime\r\n)\r\nVALUES\r\n(\r\n    @EmployeeID,\r\n    @Role,\r\n    @FirstName,\r\n    @Lo" +
-                "ginTime\r\n)";
+            this._commandCollection[1].CommandText = "INSERT INTO LoginHistoryTable\r\n                  (EmployeeID, Role, FirstName, Lo" +
+                "ginTime, LogoutTime, Duration)\r\nVALUES (@EmployeeID,@Role,@FirstName,@LoginTime," +
+                "@LogoutTime,@Duration)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Role", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Role", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FirstName", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoginTime", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "LoginTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LogoutTime", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "LogoutTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Duration", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "Duration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "UPDATE LoginHistoryTable\r\nSET\r\n    LogoutTime = @LogoutTime,\r\n    Duration = @Dur" +
-                "ation\r\nWHERE LoginHistoryID = @LoginHistoryID";
+            this._commandCollection[2].CommandText = "UPDATE LoginHistoryTable\r\nSET          LogoutTime = @LogoutTime, Duration = @Dura" +
+                "tion\r\nWHERE  (EmployeeID = @EmployeeID) AND (LoginTime = @LoginTime)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LogoutTime", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "LogoutTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Duration", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "Duration", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoginHistoryID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "LoginHistoryID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@LoginTime", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "LoginTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6559,7 +6562,7 @@ SELECT LoginHistoryID, EmployeeID, Role, FirstName, LoginTime, LogoutTime, Durat
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertLogin(int EmployeeID, string Role, string FirstName, System.DateTime LoginTime) {
+        public virtual int InsertLogin(int EmployeeID, string Role, string FirstName, System.DateTime LoginTime, System.DateTime LogoutTime, string Duration) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
             command.Parameters[0].Value = ((int)(EmployeeID));
             if ((Role == null)) {
@@ -6575,6 +6578,13 @@ SELECT LoginHistoryID, EmployeeID, Role, FirstName, LoginTime, LogoutTime, Durat
                 command.Parameters[2].Value = ((string)(FirstName));
             }
             command.Parameters[3].Value = ((System.DateTime)(LoginTime));
+            command.Parameters[4].Value = ((System.DateTime)(LogoutTime));
+            if ((Duration == null)) {
+                throw new global::System.ArgumentNullException("Duration");
+            }
+            else {
+                command.Parameters[5].Value = ((string)(Duration));
+            }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6596,7 +6606,7 @@ SELECT LoginHistoryID, EmployeeID, Role, FirstName, LoginTime, LogoutTime, Durat
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateLogout(System.DateTime LogoutTime, string Duration, int LoginHistoryID) {
+        public virtual int UpdateLogout(System.DateTime LogoutTime, string Duration, int EmployeeID, System.DateTime LoginTime) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
             command.Parameters[0].Value = ((System.DateTime)(LogoutTime));
             if ((Duration == null)) {
@@ -6605,7 +6615,8 @@ SELECT LoginHistoryID, EmployeeID, Role, FirstName, LoginTime, LogoutTime, Durat
             else {
                 command.Parameters[1].Value = ((string)(Duration));
             }
-            command.Parameters[2].Value = ((int)(LoginHistoryID));
+            command.Parameters[2].Value = ((int)(EmployeeID));
+            command.Parameters[3].Value = ((System.DateTime)(LoginTime));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

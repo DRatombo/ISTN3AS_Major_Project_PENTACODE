@@ -88,9 +88,31 @@ namespace Cafe101
 
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmLogin backlogin = new frmLogin();
-            backlogin.Show();
-            this.Hide();
+         DialogResult result = MessageBox.Show(
+        "Are you sure you want to exit?",
+        "Exit",
+        MessageBoxButtons.YesNo,
+        MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                // Record logout before exiting
+                DateTime logoutTime = DateTime.Now;
+                TimeSpan duration = logoutTime - SessionManager.LoginTime;
+                string durationStr = $"{duration.Hours}h {duration.Minutes}m {duration.Seconds}s";
+
+                this.loginHistoryTableTableAdapter1.UpdateLogout(
+                 logoutTime,
+                  durationStr,
+             SessionManager.EmployeeID,
+             SessionManager.LoginTime);
+
+                
+                frmLogin backlogin = new frmLogin();
+                backlogin.Show();
+                this.Hide();
+
+            }
         }
 
         private void manageCustomersToolStripMenuItem_Click(object sender, EventArgs e)

@@ -19,8 +19,9 @@ namespace Cafe101
             //Application.Run(new Form1());
             //Application.Run(new frmNewOrder());
             //Application.Run(new frmLogin());
-            //Application.Run(new frmTodaysOrders());
-            Application.Run(new frmCheckout(2 , 1000m));
+            Application.Run(new frmTodaysOrders());
+           //Application.Run(new frmCheckout(2 , 1000m));
+            //Application.Run(new frmReceipt(1,, decimal amountPaid, decimal change, string paymentMethod));
         }
     }
 }

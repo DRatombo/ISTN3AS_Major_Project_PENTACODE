@@ -178,5 +178,11 @@ namespace Cafe101
         {
 
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            frmTodaysOrders orders = new frmTodaysOrders();
+            orders.Show();
+        }
     }
 }

@@ -20,11 +20,17 @@ namespace Cafe101
 
         private void frmTodaysOrders_Load(object sender, EventArgs e)
         {
+            this.WindowState = FormWindowState.Maximized;
             LoadTodaysOrders();
         }
 
         private void LoadTodaysOrders()
         {
+
+            orderDataGridView.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            orderDataGridView.DefaultCellStyle.BackColor = System.Drawing.Color.White;  
+
+
             try
             {
                 string query = @"SELECT 

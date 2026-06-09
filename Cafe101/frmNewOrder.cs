@@ -1,4 +1,5 @@
-﻿using Cafe101.dsCafe101TestTableAdapters;
+﻿using Cafe101.dsCafe101HubTableAdapters;
+using Cafe101.dsCafe101TestTableAdapters;
 using System;
 using System.Data;
 using System.Linq;
@@ -19,12 +20,41 @@ namespace Cafe101
 
         private void frmNewOrder_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dsCafe101Hub.MenuItemsTable' table. You can move, or remove it, as needed.
+            this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
+            // TODO: This line of code loads data into the 'dsCafe101Hub.CustomerTable' table. You can move, or remove it, as needed.
+            this.customerTableTableAdapter.Fill(this.dsCafe101Hub.CustomerTable);
             // TODO: This line of code loads data into the 'dsCafe101Test.TestOrder' table. You can move, or remove it, as needed.
             this.testOrderTableAdapter.Fill(this.dsCafe101Test.TestOrder);
             // TODO: This line of code loads data into the 'dsCafe101Test.TestMenuItems' table. You can move, or remove it, as needed.
-            this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
+            //this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
+            this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
             // TODO: This line of code loads data into the 'dsCafe101Test.TestCustomer' table. You can move, or remove it, as needed.
-            this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
+           // this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
+
+            this.customerTableTableAdapter.Fill(this.dsCafe101Hub.CustomerTable);
+
+            dgvCustomers.DataSource = dsCafe101Hub.CustomerTable;
+            dgvMenuItems.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dgvMenuItems.DefaultCellStyle.BackColor = System.Drawing.Color.White;
+
+            dgvMenuItems.RowsDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dgvMenuItems.RowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+
+            dgvMenuItems.AlternatingRowsDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dgvMenuItems.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+
+            dgvCustomers.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dgvCustomers.DefaultCellStyle.BackColor = System.Drawing.Color.White;
+
+            dgvCustomers.RowsDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dgvCustomers.RowsDefaultCellStyle.BackColor = System.Drawing.Color.White;
+
+            dgvMenuItems.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dgvCustomers.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+
+            dgvCustomers.Visible = true;
+
             try
             {
                 // Setup cart columns manually - cart is not bound to database
@@ -44,8 +74,12 @@ namespace Cafe101
 
 
                 // Load all menu items from database into the grid
-                this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
-                dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;
+              /*  this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
+                dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;*/
+
+                this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
+                dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable;
+
                 RebuildQtyColumn();
 
                 // Reset total label
@@ -82,8 +116,11 @@ namespace Cafe101
             qtyCol.ValueType = typeof(string);
             dgvMenuItems.Columns.Add(qtyCol);
 
-            DataTable recipes = testRecipeTableAdapter1.GetData();
+           /* DataTable recipes = testRecipeTableAdapter1.GetData();
             DataTable ingredients = testIngredientTableAdapter1.GetData();
+*/
+            DataTable recipes = recipeTableTableAdapter1.GetData();
+            DataTable ingredients = ingredientTableTableAdapter1.GetData();
 
             foreach (DataGridViewRow row in dgvMenuItems.Rows)
             {
@@ -149,11 +186,16 @@ namespace Cafe101
                     return;
                 }
 
-                this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
+              //  this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
+              this.customerTableTableAdapter.Fill(this.dsCafe101Hub.CustomerTable); 
 
-                var results = this.dsCafe101Test.TestCustomer.Where(c =>
+                var results = this.dsCafe101Hub.CustomerTable.Where(c =>
                     c.FirstName.ToLower().Contains(txtSearchedCust.Text.ToLower()) ||
                     c.Surname.ToLower().Contains(txtSearchedCust.Text.ToLower()));
+
+                /*var results = this.dsCafe101Test.TestCustomer.Where(c =>
+                    c.FirstName.ToLower().Contains(txtSearchedCust.Text.ToLower()) ||
+                    c.Surname.ToLower().Contains(txtSearchedCust.Text.ToLower()));*/
 
                 if (results.Any())
                 {
@@ -168,7 +210,8 @@ namespace Cafe101
                 else
                 {
                     // Show grid with all customers so cashier can browse
-                    dgvCustomers.DataSource = this.dsCafe101Test.TestCustomer;
+/*                    dgvCustomers.DataSource = this.dsCafe101Test.TestCustomer;
+ */                 dgvCustomers.DataSource = this.dsCafe101Hub.CustomerTable;
                     dgvCustomers.Visible = true;
 
                     DialogResult result = MessageBox.Show(
@@ -196,14 +239,21 @@ namespace Cafe101
                 // If search box is empty - show all menu items
                 if (string.IsNullOrWhiteSpace(textItemSearch.Text))
                 {
-                    this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
-                    dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;
+                    /*this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
+                    dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;*/
+
+                    this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
+                    dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable;
+                     RebuildQtyColumn();
                     return;
                 }
 
                 // Use the FillByMenuItem query to filter by name
-                this.testMenuItemsTableAdapter.FillByMenuItems(this.dsCafe101Test.TestMenuItems, textItemSearch.Text);
-                dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;
+                /*this.testMenuItemsTableAdapter.FillByMenuItems(this.dsCafe101Test.TestMenuItems, textItemSearch.Text);
+                dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;*/
+
+                this.menuItemsTableTableAdapter.FillByMenuItems(this.dsCafe101Hub.MenuItemsTable, textItemSearch.Text);
+                dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable; 
 
                 // Reset quantity dropdown to 1 after search
                 foreach (DataGridViewRow row in dgvMenuItems.Rows)
@@ -300,8 +350,8 @@ namespace Cafe101
                  int quantity = Convert.ToInt32(qtyRaw);
 
                  // ── Calculate max stock for this item ──────────────────────────
-                 DataTable recipes = testRecipeTableAdapter1.GetData();
-                 DataTable ingredients = testIngredientTableAdapter1.GetData();
+                 DataTable recipes = recipeTableTableAdapter1.GetData();
+                 DataTable ingredients = ingredientTableTableAdapter1.GetData();
                  int maxCanMake = int.MaxValue;
 
                  foreach (DataRow recipe in recipes.Rows)
@@ -411,6 +461,15 @@ namespace Cafe101
                 dgvCustomers.DataSource = dt;
                 dgvCustomers.Columns["CustomerID"].Visible = false;
                 dgvCustomers.Visible = true;
+
+                if (string.IsNullOrWhiteSpace(txtSearchedCust.Text))
+                {
+                    customerTableTableAdapter.Fill(dsCafe101Hub.CustomerTable);
+
+                    dgvCustomers.DataSource = dsCafe101Hub.CustomerTable;
+                    dgvCustomers.Visible = true;
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -550,17 +609,22 @@ namespace Cafe101
                 if (!CheckStock())
                     return;
 
-                // Insert the order and get the new OrderID back
-                object result = testOrderTableAdapter.InsertOrder(
-                     selectedCustomerID,
-                     1,
-                     cmbOrderType.SelectedItem.ToString(),
-                     DateTime.Now,
-                     cmbOrderType.SelectedItem.ToString() == "Event" ? dtpEventDate.Value.ToString("yyyy-MM-dd") : null,
-                     cmbOrderType.SelectedItem.ToString() == "Event" ? dtpEventTime.Value.ToString("HH:mm:ss") : null, "Pending",
-                     "Cash",
-                     orderTotal,
-                     0);
+                object result = orderTableTableAdapter1.Insert(
+                    selectedCustomerID,
+                    1,
+                    cmbOrderType.SelectedItem.ToString(),
+                    DateTime.Now,
+                    cmbOrderType.SelectedItem.ToString() == "Event"
+                        ? (DateTime?)dtpEventDate.Value.Date
+                        : null,
+                    cmbOrderType.SelectedItem.ToString() == "Event"
+                        ? (TimeSpan?)dtpEventTime.Value.TimeOfDay
+                        : null,
+                    "Pending",
+                    "Cash",
+                    orderTotal,
+                    0m
+                );
 
                 if (result == null)
                 {
@@ -615,7 +679,7 @@ namespace Cafe101
                 int menuItemID = Convert.ToInt32(row.Cells["MenuItemID"].Value);
                 int qtyOrdered = Convert.ToInt32(row.Cells["Qty"].Value);
 
-                DataTable allRecipes = testRecipeTableAdapter1.GetData();
+                DataTable allRecipes = recipeTableTableAdapter1.GetData();
 
                 foreach (DataRow recipe in allRecipes.Rows)
                 {
@@ -625,7 +689,7 @@ namespace Cafe101
                     int quantityNeeded = Convert.ToInt32(recipe["QuantityNeeded"]);
                     int amountNeeded = quantityNeeded * qtyOrdered;
 
-                    DataTable allStock = testIngredientTableAdapter1.GetData();
+                    DataTable allStock = ingredientTableTableAdapter1.GetData();
 
                     foreach (DataRow stockRow in allStock.Rows)
                     {
@@ -661,7 +725,7 @@ namespace Cafe101
                 int menuItemID = Convert.ToInt32(row.Cells["MenuItemID"].Value);
                 int qtyOrdered = Convert.ToInt32(row.Cells["Qty"].Value);
 
-                DataTable allRecipes = testRecipeTableAdapter1.GetData();
+                DataTable allRecipes = recipeTableTableAdapter1.GetData();
 
                 foreach (DataRow recipe in allRecipes.Rows)
                 {
@@ -671,7 +735,7 @@ namespace Cafe101
                     int quantityNeeded = Convert.ToInt32(recipe["QuantityNeeded"]);
                     int amountToDeduct = quantityNeeded * qtyOrdered;
 
-                    testIngredientTableAdapter1.DeductStock(amountToDeduct, ingredientID);
+                    ingredientTableTableAdapter1.DeductStock(amountToDeduct, ingredientID);
                 }
             }
         }
@@ -679,7 +743,7 @@ namespace Cafe101
         private int GetNewOrderID()
         {
             int orderID = 0;
-            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(testOrderTableAdapter.Connection.ConnectionString))
+            using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(orderTableTableAdapter1.Connection.ConnectionString))
             {
                 conn.Open();
                 System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand("SELECT MAX(OrderID) FROM TestOrder", conn);
@@ -746,14 +810,14 @@ namespace Cafe101
             {
                 if (string.IsNullOrWhiteSpace(textItemSearch.Text))
                 {
-                    this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
-                    dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;
+                    this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
+                    dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable;
                     RebuildQtyColumn();
                     return;
                 }
 
-                this.testMenuItemsTableAdapter.FillByMenuItems(this.dsCafe101Test.TestMenuItems, textItemSearch.Text);
-                dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;
+                this.menuItemsTableTableAdapter.FillByMenuItems(this.dsCafe101Hub.MenuItemsTable, textItemSearch.Text);
+                dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable;
                 RebuildQtyColumn();
             }
             catch (Exception ex)
@@ -799,8 +863,8 @@ namespace Cafe101
             qtyCol.ValueType = typeof(string);
             dgvMenuItems.Columns.Add(qtyCol);
 
-            DataTable recipes = testRecipeTableAdapter1.GetData();
-            DataTable ingredients = testIngredientTableAdapter1.GetData();
+            DataTable recipes = recipeTableTableAdapter1.GetData();
+            DataTable ingredients = ingredientTableTableAdapter1.GetData();
 
             foreach (DataGridViewRow row in dgvMenuItems.Rows)
             {

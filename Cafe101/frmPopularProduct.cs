@@ -32,5 +32,10 @@ namespace Cafe101
             this.topSellingItemTableAdapter.FillByTopSellingItem(this.dsCafe101Test.TopSellingItem);
 
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

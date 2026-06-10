@@ -34,18 +34,18 @@
             this.menuItemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuItemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalSoldDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.topSellingItemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.dsCafe101Hub = new Cafe101.dsCafe101Hub();
             this.topSellingItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101Test = new Cafe101.dsCafe101Test();
             this.topSellingItemTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TopSellingItemTableAdapter();
             this.label1 = new System.Windows.Forms.Label();
-            this.dsCafe101Hub = new Cafe101.dsCafe101Hub();
-            this.topSellingItemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.topSellingItemTableAdapter1 = new Cafe101.dsCafe101HubTableAdapters.TopSellingItemTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -53,7 +53,7 @@
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.button1.Location = new System.Drawing.Point(161, 347);
+            this.button1.Location = new System.Drawing.Point(776, 545);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -63,17 +63,21 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.menuItemIDDataGridViewTextBoxColumn,
             this.menuItemNameDataGridViewTextBoxColumn,
             this.totalSoldDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.topSellingItemBindingSource1;
-            this.dataGridView1.Location = new System.Drawing.Point(224, 134);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 1);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(340, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(502, 713);
             this.dataGridView1.TabIndex = 1;
             // 
             // menuItemIDDataGridViewTextBoxColumn
@@ -96,6 +100,16 @@
             this.totalSoldDataGridViewTextBoxColumn.Name = "totalSoldDataGridViewTextBoxColumn";
             this.totalSoldDataGridViewTextBoxColumn.ReadOnly = true;
             // 
+            // topSellingItemBindingSource1
+            // 
+            this.topSellingItemBindingSource1.DataMember = "TopSellingItem";
+            this.topSellingItemBindingSource1.DataSource = this.dsCafe101Hub;
+            // 
+            // dsCafe101Hub
+            // 
+            this.dsCafe101Hub.DataSetName = "dsCafe101Hub";
+            this.dsCafe101Hub.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // topSellingItemBindingSource
             // 
             this.topSellingItemBindingSource.DataMember = "TopSellingItem";
@@ -114,23 +128,14 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(350, 60);
+            this.label1.Location = new System.Drawing.Point(771, 76);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 16);
+            this.label1.Size = new System.Drawing.Size(193, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "Chef\'s Best Sellers";
-            // 
-            // dsCafe101Hub
-            // 
-            this.dsCafe101Hub.DataSetName = "dsCafe101Hub";
-            this.dsCafe101Hub.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // topSellingItemBindingSource1
-            // 
-            this.topSellingItemBindingSource1.DataMember = "TopSellingItem";
-            this.topSellingItemBindingSource1.DataSource = this.dsCafe101Hub;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // topSellingItemTableAdapter1
             // 
@@ -141,7 +146,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1805, 715);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);
@@ -150,10 +155,10 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmPopularProduct_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

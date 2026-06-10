@@ -17,129 +17,218 @@ namespace Cafe101
         private int _orderID;
         private decimal _orderTotal;
 
-        // Constructor - receives OrderID and OrderTotal from Mandilakhe's frmNewOrder
         public frmCheckout(int orderID, decimal orderTotal)
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
             _orderID = orderID;
             _orderTotal = orderTotal;
 
-            // Display the order info
             orderIDTxt.Text = orderID.ToString();
             totalTxt.Text = "R " + orderTotal.ToString("0.00");
-
-            // Disable amount tendered until Cash is selected
-            //txtAmountTendered.Enabled = false;
             changeTextBox.Text = "R 0.00";
         }
 
         private void frmCheckout_Load(object sender, EventArgs e)
         {
         }
-        // ── CASH SELECTED ──────────────────────────────────────────
+
+        // ---------------------------------------------------------------
+        // VALIDATION
+        // ---------------------------------------------------------------
+        private bool ValidateAmountTendered()
+        {
+            if (!rbCash.Checked) return true;
+
+            if (string.IsNullOrWhiteSpace(txtAmountTendered.Text))
+            {
+                txtAmountTendered.BackColor = Color.FromArgb(255, 220, 220);
+                lblAmountMes.Text = "⚠ Required";
+                lblAmountMes.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            if (!decimal.TryParse(txtAmountTendered.Text, out decimal amount))
+            {
+                txtAmountTendered.BackColor = Color.FromArgb(255, 220, 220);
+                lblAmountMes.Text = "⚠ Numbers only";
+                lblAmountMes.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            if (amount <= 0)
+            {
+                txtAmountTendered.BackColor = Color.FromArgb(255, 220, 220);
+                lblAmountMes.Text = "⚠ Must be greater than 0";
+                lblAmountMes.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            if (amount < _orderTotal)
+            {
+                txtAmountTendered.BackColor = Color.FromArgb(255, 220, 220);
+                lblAmountMes.Text = "⚠ Amount too low";
+                lblAmountMes.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            txtAmountTendered.BackColor = Color.FromArgb(220, 245, 220);
+            lblAmountMes.Text = "✓";
+            lblAmountMes.ForeColor = Color.FromArgb(50, 180, 100);
+            return true;
+        }
+
+        // ---------------------------------------------------------------
+        // CASH SELECTED
+        // ---------------------------------------------------------------
         private void rbCash_CheckedChanged(object sender, EventArgs e)
         {
             if (rbCash.Checked)
             {
+                label4.Visible = true;
+                txtAmountTendered.Visible = true;
+                lblChange.Visible = true;
+                changeTextBox.Visible = true;
+                lblAmountMes.Visible = true;
                 txtAmountTendered.Enabled = true;
-                txtAmountTendered.Focus();
+                txtAmountTendered.Text = "";
                 changeTextBox.Text = "R 0.00";
+                lblAmountMes.Text = "";
+                txtAmountTendered.Focus();
+            }
+            else
+            {
+                label4.Visible = false;
+                txtAmountTendered.Visible = false;
+                lblChange.Visible = false;
+                changeTextBox.Visible = false;
+                lblAmountMes.Visible = false;
+                txtAmountTendered.Enabled = false;
+                txtAmountTendered.Text = "";
             }
         }
-        // ── CARD SELECTED ──────────────────────────────────────────
+
         private void rbCard_CheckedChanged(object sender, EventArgs e)
         {
             if (rbCard.Checked)
             {
+                label4.Visible = false;
+                txtAmountTendered.Visible = false;
+                lblChange.Visible = false;
+                changeTextBox.Visible = false;
+                lblAmountMes.Visible = false;
                 txtAmountTendered.Enabled = false;
                 txtAmountTendered.Text = "";
-                changeTextBox.Text = "N/A";
+            }
+            else
+            {
+                label4.Visible = true;
+                txtAmountTendered.Visible = true;
+                lblChange.Visible = true;
+                changeTextBox.Visible = true;
+                lblAmountMes.Visible = true;
+                txtAmountTendered.Enabled = true;
+                changeTextBox.Text = "R 0.00";
+                lblAmountMes.Text = "";
             }
         }
-        //CALCULATE CHANGE AS CASHIER TYPES
+
+        // ---------------------------------------------------------------
+        // LIVE VALIDATION
+        // ---------------------------------------------------------------
         private void txtAmountTendered_TextChanged(object sender, EventArgs e)
         {
-            if (decimal.TryParse(txtAmountTendered.Text,out decimal amount))
+            if (decimal.TryParse(txtAmountTendered.Text, out decimal amount))
             {
                 decimal change = amount - _orderTotal;
-                if (change >= 0)
-                    changeTextBox.Text = "R " + change.ToString("0.00");
-                else
-                    changeTextBox.Text = "Insufficient";
+                changeTextBox.Text = change >= 0 ? "R " + change.ToString("0.00") : "Insufficient";
             }
             else
             {
                 changeTextBox.Text = "R 0.00";
             }
-        }  
-        //CONFIRM PAYMENT BUTTON
+
+            ValidateAmountTendered();
+        }
+
+        // ---------------------------------------------------------------
+        // CONFIRM PAYMENT BUTTON
+        // ---------------------------------------------------------------
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            //Check payment method is selected
             if (!rbCash.Checked && !rbCard.Checked)
             {
                 MessageBox.Show("Please select a payment method (Cash or Card).",
                     "Payment Method Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            // If cash, check amount is enough
+
+            if (rbCash.Checked && !ValidateAmountTendered())
+            {
+                txtAmountTendered.Focus();
+                return;
+            }
+
             decimal amountTendered = 0;
             decimal change = 0;
+
             if (rbCash.Checked)
             {
-                if (!decimal.TryParse(txtAmountTendered.Text, out amountTendered))
-                {
-                    MessageBox.Show("Please enter a valid amount.",
-                        "Invalid Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (amountTendered < _orderTotal)
-                {
-                    MessageBox.Show("Amount tendered is less than the order total. Please enter a higher amount.",
-                        "Insufficient Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                decimal.TryParse(txtAmountTendered.Text, out amountTendered);
                 change = amountTendered - _orderTotal;
             }
-            //string paymentMethod = rbCash.Checked ? "Cash" : "Card";
-            string paymentMethod;
-            if (rbCash.Checked)
+            else if (rbCard.Checked)
             {
-                paymentMethod = "Cash";
+                amountTendered = _orderTotal;
+                change = 0;
             }
-            else
-            {
-                paymentMethod = "Card";
-            }
+
+            string paymentMethod = rbCash.Checked ? "Cash" : "Card";
+
             try
             {
-                string query = @"UPDATE [Order] 
+                string query = @"UPDATE [OrderTable] 
                                  SET PaymentMethod = @method, 
                                      TotalChangeDue = @change, 
                                      OrderStatus = 'Completed' 
-                                 WHERE OrderID = @orderID"
-                ;
+                                 WHERE OrderID = @orderID";
+
                 using (SqlConnection conn = DBConnection.GetConnection())
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@method", paymentMethod);
                     cmd.Parameters.AddWithValue("@change", change);
                     cmd.Parameters.AddWithValue("@orderID", _orderID);
-
                     conn.Open();
                     cmd.ExecuteNonQuery();
                 }
-                //Show success and close
-                MessageBox.Show(
-                    "Payment confirmed!\n\n" +
-                    "Order #: " + _orderID + "\n" +
-                    "Total:   R " + _orderTotal.ToString("0.00") + "\n" +
-                    "Paid:    R " + amountTendered.ToString("0.00") + "\n" +
-                    "Change:  R " + change.ToString("0.00"),
-                    "Payment Successful",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
-                this.Close();
+
+                if (rbCard.Checked)
+                {
+                    MessageBox.Show(
+                        "Card payment approved!\n\n" +
+                        "Order #: " + _orderID + "\n" +
+                        "Total:   R " + _orderTotal.ToString("0.00") + "\n" +
+                        "Payment: Card (Approved)",
+                        "Payment Successful",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show(
+                        "Payment confirmed!\n\n" +
+                        "Order #: " + _orderID + "\n" +
+                        "Total:   R " + _orderTotal.ToString("0.00") + "\n" +
+                        "Paid:    R " + amountTendered.ToString("0.00") + "\n" +
+                        "Change:  R " + change.ToString("0.00"),
+                        "Payment Successful",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
+
+                frmReceipt formR = new frmReceipt(_orderID, _orderTotal, amountTendered, change, paymentMethod);
+                formR.Show();
             }
             catch (Exception ex)
             {
@@ -147,7 +236,10 @@ namespace Cafe101
                     "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        // ── CANCEL BUTTON 
+
+        // ---------------------------------------------------------------
+        // CANCEL BUTTON
+        // ---------------------------------------------------------------
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
@@ -159,19 +251,25 @@ namespace Cafe101
             if (result == DialogResult.Yes)
                 this.Close();
         }
+
         private void groupBox1_Enter(object sender, EventArgs e)
         {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            frmNewOrder orders = new frmNewOrder();
+            frmTodaysOrders orders = new frmTodaysOrders();
+            orders.Show();
         }
 
-        /* private void rbCash_CheckedChanged_1(object sender, EventArgs e)
-         {
+        private void label1_Click(object sender, EventArgs e)
+        {
+        }
 
-         }*/
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            frmTodaysOrders orders = new frmTodaysOrders();
+            orders.Show();
+        }
     }
 }

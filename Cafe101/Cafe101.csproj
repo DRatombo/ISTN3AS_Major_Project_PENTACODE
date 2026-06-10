@@ -84,6 +84,18 @@
     <Compile Include="frmCheckout.Designer.cs">
       <DependentUpon>frmCheckout.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmKitchen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKitchen.Designer.cs">
+      <DependentUpon>frmKitchen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKitchenQueue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKitchenQueue.Designer.cs">
+      <DependentUpon>frmKitchenQueue.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,11 +162,23 @@
     <Compile Include="frmPopularProduct.Designer.cs">
       <DependentUpon>frmPopularProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReceipt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReceipt.Designer.cs">
+      <DependentUpon>frmReceipt.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSalesReport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSalesReport.Designer.cs">
       <DependentUpon>frmSalesReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTodaysOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTodaysOrders.Designer.cs">
+      <DependentUpon>frmTodaysOrders.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -164,6 +188,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmCheckout.resx">
       <DependentUpon>frmCheckout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKitchen.resx">
+      <DependentUpon>frmKitchen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKitchenQueue.resx">
+      <DependentUpon>frmKitchenQueue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -195,8 +225,14 @@
     <EmbeddedResource Include="frmPopularProduct.resx">
       <DependentUpon>frmPopularProduct.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReceipt.resx">
+      <DependentUpon>frmReceipt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSalesReport.resx">
       <DependentUpon>frmSalesReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTodaysOrders.resx">
+      <DependentUpon>frmTodaysOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

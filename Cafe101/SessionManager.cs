@@ -15,5 +15,20 @@ namespace Cafe101
         public static DateTime LoginTime { get; set; }
 
         public static int EmployeeID { get; set; }
+
+        public static void Clear()
+        {
+            FirstName = null;
+            Surname = null;
+            Role = null;
+            Email = null;
+            EmployeeID = 0;
+            LoginTime = DateTime.MinValue;
+        }
+
+        public static bool IsLoggedIn()
+        {
+            return EmployeeID != 0 && LoginTime != DateTime.MinValue;
+        }
     }
 }

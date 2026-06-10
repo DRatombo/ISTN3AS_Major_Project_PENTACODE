@@ -9,18 +9,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
-
 namespace Cafe101
 {
     public partial class frmLowStock : Form
     {
+        private PrintDocument printDocument = new PrintDocument();
+        private int printRowIndex = 0;
+        private int pageNumber = 0;
+
         public frmLowStock()
         {
             InitializeComponent();
+
+            // Centralized Event Subscription: Keeps memory footprint minimal
+            printDocument.PrintPage += PrintPageHandler;
         }
-        private PrintDocument printDocument = new PrintDocument();
-        private int printRowIndex = 0;
+
         private void button1_Click(object sender, EventArgs e)
         {
             frmMain mainForm = new frmMain();
@@ -30,15 +34,14 @@ namespace Cafe101
 
         private void frmLowStock_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dsCafe101Hub.IngredientTable' table. You can move, or remove it, as needed.
-            this.ingredientTableTableAdapter.Fill(this.dsCafe101Hub.IngredientTable);
             int count = 0;
 
             try
             {
+                // Removed duplicate Fill call to streamline system database connection execution
                 this.ingredientTableTableAdapter.Fill(this.dsCafe101Hub.IngredientTable);
 
-                var ingredients = dsCafe101Test.TestIngredient.AsEnumerable();
+                var ingredients = dsCafe101Hub.IngredientTable.AsEnumerable();
 
                 var lowStock = ingredients.Where(r =>
                 {
@@ -46,9 +49,9 @@ namespace Cafe101
                     double restock = Convert.ToDouble(r["RestockLevel"]);
 
                     return qty < restock;
-                }).ToList(); // IMPORTANT
+                }).ToList();
 
-                count = lowStock.Count; // SAFE MANUAL COUNT
+                count = lowStock.Count;
 
                 dataGridView1.DataSource = lowStock.Any()
                     ? lowStock.CopyToDataTable()
@@ -60,9 +63,10 @@ namespace Cafe101
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error loading low stock items:\n\n" + ex.Message);
+                MessageBox.Show("Error loading low stock items:\n\n" + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void SetupGrid()
         {
             dataGridView1.ReadOnly = true;
@@ -78,134 +82,194 @@ namespace Cafe101
         {
             try
             {
+                // Reset tracking markers before the runtime print execution layout loop kicks off
                 printRowIndex = 0;
+                pageNumber = 0;
 
-                printDocument.PrintPage -= PrintPageHandler;
-                printDocument.PrintPage += PrintPageHandler;
-
-                PrintPreviewDialog preview = new PrintPreviewDialog();
-                preview.Document = printDocument;
-                preview.Width = 1000;
-                preview.Height = 700;
-
-                preview.ShowDialog();
+                using (PrintPreviewDialog preview = new PrintPreviewDialog())
+                {
+                    preview.Document = printDocument;
+                    preview.Width = 1000;
+                    preview.Height = 700;
+                    preview.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Print error:\n\n" + ex.Message);
+                MessageBox.Show("Print engine initialization error:\n\n" + ex.Message, "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void PrintPageHandler(object sender, PrintPageEventArgs e)
         {
-            Font titleFont = new Font("Arial", 16, FontStyle.Bold);
-            Font headerFont = new Font("Arial", 10, FontStyle.Bold);
-            Font cellFont = new Font("Arial", 10);
+            pageNumber++;
 
-            Pen gridPen = Pens.Black;
+            // --- Typography & Styling Layout Rules ---
+            Font companyFont = new Font("Segoe UI", 18, FontStyle.Bold);
+            Font addressFont = new Font("Segoe UI", 9, FontStyle.Regular);
+            Font titleFont = new Font("Segoe UI", 14, FontStyle.Bold);
+            Font headerFont = new Font("Segoe UI", 10, FontStyle.Bold);
+            Font cellFont = new Font("Segoe UI", 10, FontStyle.Regular);
+            Font footerFont = new Font("Segoe UI", 9, FontStyle.Italic);
 
-            int startX = 50;
-            int startY = 50;
-            int rowHeight = 30;
-            int cellWidth = 180;
+            Brush textBrush = Brushes.Black;
+            Brush headerBgBrush = new SolidBrush(Color.FromArgb(240, 240, 240));
+            Pen linePen = new Pen(Color.DimGray, 1f);
+            Pen gridPen = new Pen(Color.LightGray, 0.75f);
 
-            int x = startX;
-            int y = startY;
+            int marginLeft = e.MarginBounds.Left;
+            int marginTop = e.MarginBounds.Top;
+            int marginRight = e.MarginBounds.Right;
+            int marginBottom = e.MarginBounds.Bottom;
+            int printableWidth = e.MarginBounds.Width;
 
-            // Report Title
-            e.Graphics.DrawString("LOW STOCK REPORT", titleFont, Brushes.Black, x, y);
+            int currentY = marginTop;
 
-            y += 50;
+            // =================================================================
+            // 1. BRANDING HEADER (CAFE101 DETAILS)
+            // =================================================================
+            e.Graphics.DrawString("Cafe101", companyFont, textBrush, marginLeft, currentY);
 
-            // Print Column Headers
-            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            string pageStr = $"Page {pageNumber}";
+            SizeF pageSize = e.Graphics.MeasureString(pageStr, addressFont);
+            e.Graphics.DrawString(pageStr, addressFont, textBrush, marginRight - pageSize.Width, currentY + 8);
+
+            currentY += 30;
+
+            string addressLine1 = "University of KwaZulu-Natal (UKZN)";
+            string addressLine2 = "Westville Campus, Durban, KwaZulu-Natal, South Africa";
+            e.Graphics.DrawString(addressLine1, addressFont, Brushes.Gray, marginLeft, currentY);
+            currentY += 16;
+            e.Graphics.DrawString(addressLine2, addressFont, Brushes.Gray, marginLeft, currentY);
+            currentY += 25;
+
+            e.Graphics.DrawLine(linePen, marginLeft, currentY, marginRight, currentY);
+            currentY += 20;
+
+            e.Graphics.DrawString("INVENTORY CONTROL: LOW STOCK REPORT", titleFont, textBrush, marginLeft, currentY);
+
+            string dateStr = $"Generated: {DateTime.Now:yyyy-MM-dd HH:mm}";
+            SizeF dateSize = e.Graphics.MeasureString(dateStr, addressFont);
+            e.Graphics.DrawString(dateStr, addressFont, Brushes.DimGray, marginRight - dateSize.Width, currentY + 4);
+
+            currentY += 40;
+
+            // =================================================================
+            // 2. DATA GRID STRUCTURAL CALCULATIONS
+            // =================================================================
+            int rowHeight = 28;
+
+            var visibleColumns = dataGridView1.Columns.Cast<DataGridViewColumn>()
+                                                      .Where(c => c.Visible)
+                                                      .ToList();
+
+            if (visibleColumns.Count == 0) return;
+
+            int cellWidth = printableWidth / visibleColumns.Count;
+
+            // Print Header Track Block
+            int currentX = marginLeft;
+            foreach (var column in visibleColumns)
             {
-                if (!column.Visible)
-                    continue;
+                Rectangle headerRect = new Rectangle(currentX, currentY, cellWidth, rowHeight);
 
-                Rectangle rect = new Rectangle(x, y, cellWidth, rowHeight);
-
-                e.Graphics.DrawRectangle(gridPen, rect);
+                e.Graphics.FillRectangle(headerBgBrush, headerRect);
+                e.Graphics.DrawRectangle(linePen, headerRect);
 
                 e.Graphics.DrawString(
                     column.HeaderText,
                     headerFont,
-                    Brushes.Black,
-                    rect,
+                    textBrush,
+                    headerRect,
                     new StringFormat
                     {
                         Alignment = StringAlignment.Center,
                         LineAlignment = StringAlignment.Center
                     });
 
-                x += cellWidth;
+                currentX += cellWidth;
             }
 
-            y += rowHeight;
+            currentY += rowHeight;
 
-            // Print Data Rows
-            foreach (DataGridViewRow row in dataGridView1.Rows)
+            // =================================================================
+            // 3. PAGINATION STREAM LOOP
+            // =================================================================
+            while (printRowIndex < dataGridView1.Rows.Count)
             {
+                DataGridViewRow row = dataGridView1.Rows[printRowIndex];
+
                 if (row.IsNewRow)
-                    continue;
-
-                x = startX;
-
-                foreach (DataGridViewCell cell in row.Cells)
                 {
-                    if (!dataGridView1.Columns[cell.ColumnIndex].Visible)
-                        continue;
+                    printRowIndex++;
+                    continue;
+                }
 
-                    Rectangle rect = new Rectangle(x, y, cellWidth, rowHeight);
+                // Check page height space bounds constraints
+                if (currentY + rowHeight > marginBottom - 40)
+                {
+                    e.HasMorePages = true;
+                    return;
+                }
 
-                    e.Graphics.DrawRectangle(gridPen, rect);
+                currentX = marginLeft;
 
-                    string value = cell.Value?.ToString() ?? "";
+                foreach (var column in visibleColumns)
+                {
+                    Rectangle cellRect = new Rectangle(currentX, currentY, cellWidth, rowHeight);
+                    e.Graphics.DrawRectangle(gridPen, cellRect);
+
+                    string value = row.Cells[column.Index].Value?.ToString() ?? "";
 
                     e.Graphics.DrawString(
                         value,
                         cellFont,
-                        Brushes.Black,
-                        rect,
+                        textBrush,
+                        cellRect,
                         new StringFormat
                         {
                             Alignment = StringAlignment.Center,
                             LineAlignment = StringAlignment.Center
                         });
 
-                    x += cellWidth;
+                    currentX += cellWidth;
                 }
 
-                y += rowHeight;
-
-                // Simple page break
-                if (y > e.MarginBounds.Bottom - rowHeight)
-                {
-                    e.HasMorePages = true;
-                    return;
-                }
+                currentY += rowHeight;
+                printRowIndex++;
             }
 
-            // Low Stock Count at Bottom
-            y += 20;
+            // =================================================================
+            // 4. REPORT RUNTIME SUMMARY FOOTER
+            // =================================================================
+            currentY += 25;
 
+            e.Graphics.DrawLine(linePen, marginLeft, currentY, marginRight, currentY);
+            currentY += 10;
+
+            string totalItemsCount = string.IsNullOrWhiteSpace(textBox1.Text) ? "0" : textBox1.Text;
             e.Graphics.DrawString(
-                "Total Low Stock Items: " + textBox1.Text,
+                $"Total Low Stock Line Items Identified: {totalItemsCount}",
                 headerFont,
-                Brushes.Black,
-                startX,
-                y);
+                textBrush,
+                marginLeft,
+                currentY);
+
+            string confidentialityNotice = "Cafe101 Internal Operational Management Record.";
+            SizeF noticeSize = e.Graphics.MeasureString(confidentialityNotice, footerFont);
+            e.Graphics.DrawString(confidentialityNotice, footerFont, Brushes.DarkGray, marginRight - noticeSize.Width, currentY);
 
             e.HasMorePages = false;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            // Event hook placeholder
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-
+            // Event hook placeholder
         }
 
         private void button2_Click(object sender, EventArgs e)

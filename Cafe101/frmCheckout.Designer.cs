@@ -44,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.lblAmountMes = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,7 +98,7 @@
             this.lblChange.AutoSize = true;
             this.lblChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChange.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblChange.Location = new System.Drawing.Point(300, 407);
+            this.lblChange.Location = new System.Drawing.Point(296, 424);
             this.lblChange.Name = "lblChange";
             this.lblChange.Size = new System.Drawing.Size(93, 25);
             this.lblChange.TabIndex = 4;
@@ -172,7 +173,7 @@
             // changeTextBox
             // 
             this.changeTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.changeTextBox.Location = new System.Drawing.Point(525, 411);
+            this.changeTextBox.Location = new System.Drawing.Point(525, 428);
             this.changeTextBox.Name = "changeTextBox";
             this.changeTextBox.ReadOnly = true;
             this.changeTextBox.Size = new System.Drawing.Size(183, 22);
@@ -235,12 +236,23 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // lblAmountMes
+            // 
+            this.lblAmountMes.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblAmountMes.AutoSize = true;
+            this.lblAmountMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAmountMes.Location = new System.Drawing.Point(525, 389);
+            this.lblAmountMes.Name = "lblAmountMes";
+            this.lblAmountMes.Size = new System.Drawing.Size(0, 18);
+            this.lblAmountMes.TabIndex = 15;
+            // 
             // frmCheckout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(1337, 705);
+            this.Controls.Add(this.lblAmountMes);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.label1);
@@ -284,5 +296,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblAmountMes;
     }
 }

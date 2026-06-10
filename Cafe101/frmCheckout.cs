@@ -33,7 +33,54 @@ namespace Cafe101
         {
         }
 
-        //CASH SELECTED
+        // ---------------------------------------------------------------
+        // VALIDATION
+        // ---------------------------------------------------------------
+        private bool ValidateAmountTendered()
+        {
+            if (!rbCash.Checked) return true;
+
+            if (string.IsNullOrWhiteSpace(txtAmountTendered.Text))
+            {
+                txtAmountTendered.BackColor = Color.FromArgb(255, 220, 220);
+                lblAmountMes.Text = "⚠ Required";
+                lblAmountMes.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            if (!decimal.TryParse(txtAmountTendered.Text, out decimal amount))
+            {
+                txtAmountTendered.BackColor = Color.FromArgb(255, 220, 220);
+                lblAmountMes.Text = "⚠ Numbers only";
+                lblAmountMes.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            if (amount <= 0)
+            {
+                txtAmountTendered.BackColor = Color.FromArgb(255, 220, 220);
+                lblAmountMes.Text = "⚠ Must be greater than 0";
+                lblAmountMes.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            if (amount < _orderTotal)
+            {
+                txtAmountTendered.BackColor = Color.FromArgb(255, 220, 220);
+                lblAmountMes.Text = "⚠ Amount too low";
+                lblAmountMes.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            txtAmountTendered.BackColor = Color.FromArgb(220, 245, 220);
+            lblAmountMes.Text = "✓";
+            lblAmountMes.ForeColor = Color.FromArgb(50, 180, 100);
+            return true;
+        }
+
+        // ---------------------------------------------------------------
+        // CASH SELECTED
+        // ---------------------------------------------------------------
         private void rbCash_CheckedChanged(object sender, EventArgs e)
         {
             if (rbCash.Checked)
@@ -42,9 +89,11 @@ namespace Cafe101
                 txtAmountTendered.Visible = true;
                 lblChange.Visible = true;
                 changeTextBox.Visible = true;
+                lblAmountMes.Visible = true;
                 txtAmountTendered.Enabled = true;
                 txtAmountTendered.Text = "";
                 changeTextBox.Text = "R 0.00";
+                lblAmountMes.Text = "";
                 txtAmountTendered.Focus();
             }
             else
@@ -53,6 +102,7 @@ namespace Cafe101
                 txtAmountTendered.Visible = false;
                 lblChange.Visible = false;
                 changeTextBox.Visible = false;
+                lblAmountMes.Visible = false;
                 txtAmountTendered.Enabled = false;
                 txtAmountTendered.Text = "";
             }
@@ -66,6 +116,7 @@ namespace Cafe101
                 txtAmountTendered.Visible = false;
                 lblChange.Visible = false;
                 changeTextBox.Visible = false;
+                lblAmountMes.Visible = false;
                 txtAmountTendered.Enabled = false;
                 txtAmountTendered.Text = "";
             }
@@ -75,71 +126,72 @@ namespace Cafe101
                 txtAmountTendered.Visible = true;
                 lblChange.Visible = true;
                 changeTextBox.Visible = true;
+                lblAmountMes.Visible = true;
                 txtAmountTendered.Enabled = true;
                 changeTextBox.Text = "R 0.00";
+                lblAmountMes.Text = "";
             }
         }
 
-        //CALCULATE CHANGE
+        // ---------------------------------------------------------------
+        // LIVE VALIDATION
+        // ---------------------------------------------------------------
         private void txtAmountTendered_TextChanged(object sender, EventArgs e)
         {
             if (decimal.TryParse(txtAmountTendered.Text, out decimal amount))
             {
                 decimal change = amount - _orderTotal;
-                if (change >= 0)
-                    changeTextBox.Text = "R " + change.ToString("0.00");
-                else
-                    changeTextBox.Text = "Insufficient";
+                changeTextBox.Text = change >= 0 ? "R " + change.ToString("0.00") : "Insufficient";
             }
             else
             {
                 changeTextBox.Text = "R 0.00";
             }
+
+            ValidateAmountTendered();
         }
-        //CONFIRM PAYMENT BUTTON
+
+        // ---------------------------------------------------------------
+        // CONFIRM PAYMENT BUTTON
+        // ---------------------------------------------------------------
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            // Check payment method is selected
             if (!rbCash.Checked && !rbCard.Checked)
             {
                 MessageBox.Show("Please select a payment method (Cash or Card).",
                     "Payment Method Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            if (rbCash.Checked && !ValidateAmountTendered())
+            {
+                txtAmountTendered.Focus();
+                return;
+            }
+
             decimal amountTendered = 0;
             decimal change = 0;
+
             if (rbCash.Checked)
             {
-                // Cash - validate amount entered
-                if (!decimal.TryParse(txtAmountTendered.Text, out amountTendered))
-                {
-                    MessageBox.Show("Please enter a valid amount.",
-                        "Invalid Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (amountTendered < _orderTotal)
-                {
-                    MessageBox.Show("Amount tendered is less than the order total. Please enter a higher amount.",
-                        "Insufficient Amount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                decimal.TryParse(txtAmountTendered.Text, out amountTendered);
                 change = amountTendered - _orderTotal;
             }
             else if (rbCard.Checked)
             {
-                // Card - assume payment always succeeds
-                // Exact amount is charged, no change given
                 amountTendered = _orderTotal;
                 change = 0;
             }
+
             string paymentMethod = rbCash.Checked ? "Cash" : "Card";
+
             try
             {
                 string query = @"UPDATE [OrderTable] 
-                 SET PaymentMethod = @method, 
-                     TotalChangeDue = @change, 
-                     OrderStatus = 'Completed' 
-                 WHERE OrderID = @orderID";
+                                 SET PaymentMethod = @method, 
+                                     TotalChangeDue = @change, 
+                                     OrderStatus = 'Completed' 
+                                 WHERE OrderID = @orderID";
 
                 using (SqlConnection conn = DBConnection.GetConnection())
                 using (SqlCommand cmd = new SqlCommand(query, conn))
@@ -150,6 +202,7 @@ namespace Cafe101
                     conn.Open();
                     cmd.ExecuteNonQuery();
                 }
+
                 if (rbCard.Checked)
                 {
                     MessageBox.Show(
@@ -183,7 +236,10 @@ namespace Cafe101
                     "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // ---------------------------------------------------------------
         // CANCEL BUTTON
+        // ---------------------------------------------------------------
         private void btnCancel_Click(object sender, EventArgs e)
         {
             DialogResult result = MessageBox.Show(
@@ -199,7 +255,8 @@ namespace Cafe101
         private void groupBox1_Enter(object sender, EventArgs e)
         {
         }
-       private void button1_Click(object sender, EventArgs e)
+
+        private void button1_Click(object sender, EventArgs e)
         {
             frmTodaysOrders orders = new frmTodaysOrders();
             orders.Show();
@@ -207,7 +264,6 @@ namespace Cafe101
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button1_Click_1(object sender, EventArgs e)

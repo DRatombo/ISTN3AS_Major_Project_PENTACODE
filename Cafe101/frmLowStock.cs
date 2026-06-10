@@ -255,7 +255,7 @@ namespace Cafe101
                 marginLeft,
                 currentY);
 
-            string confidentialityNotice = "Cafe101 Internal Operational Management Record.";
+            string confidentialityNotice = "\n\nCafe101 Internal Operational Management Record.";
             SizeF noticeSize = e.Graphics.MeasureString(confidentialityNotice, footerFont);
             e.Graphics.DrawString(confidentialityNotice, footerFont, Brushes.DarkGray, marginRight - noticeSize.Width, currentY);
 

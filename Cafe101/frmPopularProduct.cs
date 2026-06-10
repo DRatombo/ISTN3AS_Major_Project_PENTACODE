@@ -26,6 +26,8 @@ namespace Cafe101
 
         private void frmPopularProduct_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dsCafe101Hub.MenuItemsTable' table. You can move, or remove it, as needed.
+            this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
             try
             {
                 this.topSellingItemTableAdapter1.FillByTopSellingItem(this.dsCafe101Hub.TopSellingItem);
@@ -54,6 +56,12 @@ namespace Cafe101
         private void label1_Click(object sender, EventArgs e)
         {
     
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            frmLowStock lowStock = new frmLowStock();
+            lowStock.Show();
         }
     }
 }

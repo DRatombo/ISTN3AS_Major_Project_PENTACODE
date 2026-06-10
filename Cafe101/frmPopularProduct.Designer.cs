@@ -48,22 +48,28 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.menuItemsTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.menuItemsTableTableAdapter = new Cafe101.dsCafe101HubTableAdapters.MenuItemsTableTableAdapter();
+            this.topSellingItemBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.menuItemsTableBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource2)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.button1.Location = new System.Drawing.Point(701, 548);
+            this.button1.Location = new System.Drawing.Point(1056, 555);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(75, 42);
             this.button1.TabIndex = 0;
             this.button1.Text = "Back";
             this.button1.UseVisualStyleBackColor = true;
@@ -73,7 +79,6 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -84,9 +89,11 @@
             this.menuItemNameDataGridViewTextBoxColumn,
             this.totalSoldDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.topSellingItemBindingSource1;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 1);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(502, 713);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(814, 698);
             this.dataGridView1.TabIndex = 1;
             // 
             // menuItemIDDataGridViewTextBoxColumn
@@ -139,7 +146,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(771, 76);
+            this.label1.Location = new System.Drawing.Point(1119, 189);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(193, 25);
             this.label1.TabIndex = 2;
@@ -165,21 +172,21 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(142, 30);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 26);
+            this.textBox1.Size = new System.Drawing.Size(149, 26);
             this.textBox1.TabIndex = 4;
             // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(142, 82);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 26);
+            this.textBox2.Size = new System.Drawing.Size(149, 26);
             this.textBox2.TabIndex = 5;
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(142, 133);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 26);
+            this.textBox3.Size = new System.Drawing.Size(149, 26);
             this.textBox3.TabIndex = 6;
             // 
             // label3
@@ -215,19 +222,47 @@
             this.groupBox1.Controls.Add(this.textBox2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox1.Location = new System.Drawing.Point(701, 137);
+            this.groupBox1.Location = new System.Drawing.Point(1047, 274);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(263, 208);
+            this.groupBox1.Size = new System.Drawing.Size(330, 208);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Top 3 Best Sellers";
+            // 
+            // menuItemsTableBindingSource
+            // 
+            this.menuItemsTableBindingSource.DataMember = "MenuItemsTable";
+            this.menuItemsTableBindingSource.DataSource = this.dsCafe101Hub;
+            // 
+            // menuItemsTableTableAdapter
+            // 
+            this.menuItemsTableTableAdapter.ClearBeforeFill = true;
+            // 
+            // topSellingItemBindingSource2
+            // 
+            this.topSellingItemBindingSource2.DataMember = "TopSellingItem";
+            this.topSellingItemBindingSource2.DataSource = this.dsCafe101Hub;
+            // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.button2.Location = new System.Drawing.Point(1247, 555);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(130, 42);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Check Stock";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // frmPopularProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(1805, 715);
+            this.ClientSize = new System.Drawing.Size(1502, 698);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
@@ -243,6 +278,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.menuItemsTableBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,5 +306,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.BindingSource menuItemsTableBindingSource;
+        private dsCafe101HubTableAdapters.MenuItemsTableTableAdapter menuItemsTableTableAdapter;
+        private System.Windows.Forms.BindingSource topSellingItemBindingSource2;
+        private System.Windows.Forms.Button button2;
     }
 }

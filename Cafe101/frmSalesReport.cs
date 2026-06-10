@@ -19,6 +19,9 @@ namespace Cafe101
         private int printRowIndex = 0;
         private int pageNumber = 0;
 
+        private DateTime lastValidFromDate = DateTime.Now;
+        private DateTime lastValidToDate = DateTime.Now;
+
         public frmSalesReport()
         {
             InitializeComponent();
@@ -29,6 +32,7 @@ namespace Cafe101
             // Wire up both date pickers to refresh data automatically when their values change
             dateTimePicker1.ValueChanged += DateFilters_ValueChanged;
             dateTimePicker2.ValueChanged += DateFilters_ValueChanged;
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -64,7 +68,15 @@ namespace Cafe101
             {
                 DateTime fromDate = dateTimePicker1.Value.Date;
                 DateTime toDate = dateTimePicker2.Value.Date;
-
+                if (fromDate > toDate)
+                {
+                    MessageBox.Show("The starting date cannot be later than the ending date.\n\nPlease adjust your selection to ensure the 'From' date occurs before the 'To' date.",
+                                    "Invalid Date Range Selected", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    textBox1.Text = "0.00";
+                    dateTimePicker2.Value = fromDate;
+                    toDate = fromDate;
+                    return; // Stops the method right here
+                }
                 // 1. Fetch filtered data from Database Table Adapter straight into the dataset
                 this.orderTableTableAdapter.FillByDateRange(
                     this.dsCafe101Hub.OrderTable,

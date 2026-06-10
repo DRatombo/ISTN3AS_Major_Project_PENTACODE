@@ -28,8 +28,6 @@ namespace Cafe101
         {
             // TODO: This line of code loads data into the 'dsCafe101Hub.TopSellingItem' table. You can move, or remove it, as needed.
             this.topSellingItemTableAdapter1.FillByTopSellingItem(this.dsCafe101Hub.TopSellingItem);
-            // TODO: This line of code loads data into the 'dsCafe101Test.TopSellingItem' table. You can move, or remove it, as needed.
-            this.topSellingItemTableAdapter.FillByTopSellingItem(this.dsCafe101Test.TopSellingItem);
 
         }
 

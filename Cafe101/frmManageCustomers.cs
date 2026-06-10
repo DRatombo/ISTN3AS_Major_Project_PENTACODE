@@ -65,6 +65,15 @@ namespace Cafe101
 
                 dataGridView1.DataSource = dsCafe101Hub.CustomerTable;
 
+                // Clear text fields
+                txtName.Clear();
+                txtSurname.Clear();
+                txtAddress.Clear();
+                txtEmail.Clear();
+
+                // Reset selected ID (important)
+                selectedCustomerID = 0;
+
                 MessageBox.Show("Data refreshed successfully.");
             }
             catch (Exception ex)

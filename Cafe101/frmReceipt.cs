@@ -83,6 +83,8 @@ namespace Cafe101
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            frmMain mainForm = new frmMain();
+            mainForm.Show();
             this.Close();
         }
 

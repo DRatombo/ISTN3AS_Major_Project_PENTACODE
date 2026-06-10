@@ -40,101 +40,97 @@
             this.rbCash = new System.Windows.Forms.RadioButton();
             this.txtAmountTendered = new System.Windows.Forms.TextBox();
             this.changeTextBox = new System.Windows.Forms.TextBox();
-            this.btnConfirm = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnConfirm = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblOrderID
             // 
+            this.lblOrderID.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblOrderID.AutoSize = true;
-            this.lblOrderID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrderID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOrderID.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblOrderID.Location = new System.Drawing.Point(76, 77);
-            this.lblOrderID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblOrderID.Location = new System.Drawing.Point(296, 140);
             this.lblOrderID.Name = "lblOrderID";
-            this.lblOrderID.Size = new System.Drawing.Size(88, 20);
+            this.lblOrderID.Size = new System.Drawing.Size(97, 25);
             this.lblOrderID.TabIndex = 0;
             this.lblOrderID.Text = "Order ID :";
             // 
             // lblOrderTotal
             // 
+            this.lblOrderTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblOrderTotal.AutoSize = true;
-            this.lblOrderTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOrderTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOrderTotal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblOrderTotal.Location = new System.Drawing.Point(76, 110);
-            this.lblOrderTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblOrderTotal.Location = new System.Drawing.Point(296, 188);
             this.lblOrderTotal.Name = "lblOrderTotal";
-            this.lblOrderTotal.Size = new System.Drawing.Size(114, 20);
+            this.lblOrderTotal.Size = new System.Drawing.Size(127, 25);
             this.lblOrderTotal.TabIndex = 1;
             this.lblOrderTotal.Text = "Order Total : ";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(11, 82);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(15, 101);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(0, 13);
+            this.label3.Size = new System.Drawing.Size(0, 16);
             this.label3.TabIndex = 2;
             // 
             // label4
             // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(66, 254);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(296, 357);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(162, 20);
+            this.label4.Size = new System.Drawing.Size(181, 25);
             this.label4.TabIndex = 3;
             this.label4.Text = "Amount Tendered :";
             // 
             // lblChange
             // 
+            this.lblChange.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblChange.AutoSize = true;
-            this.lblChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChange.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblChange.Location = new System.Drawing.Point(73, 291);
-            this.lblChange.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblChange.Location = new System.Drawing.Point(300, 407);
             this.lblChange.Name = "lblChange";
-            this.lblChange.Size = new System.Drawing.Size(81, 20);
+            this.lblChange.Size = new System.Drawing.Size(93, 25);
             this.lblChange.TabIndex = 4;
             this.lblChange.Text = "Change :";
             // 
             // orderIDTxt
             // 
-            this.orderIDTxt.Location = new System.Drawing.Point(234, 75);
-            this.orderIDTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.orderIDTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.orderIDTxt.Location = new System.Drawing.Point(525, 140);
             this.orderIDTxt.Name = "orderIDTxt";
             this.orderIDTxt.ReadOnly = true;
-            this.orderIDTxt.Size = new System.Drawing.Size(204, 20);
+            this.orderIDTxt.Size = new System.Drawing.Size(183, 22);
             this.orderIDTxt.TabIndex = 5;
             // 
             // totalTxt
             // 
-            this.totalTxt.Location = new System.Drawing.Point(234, 112);
-            this.totalTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.totalTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.totalTxt.Location = new System.Drawing.Point(525, 192);
             this.totalTxt.Name = "totalTxt";
             this.totalTxt.ReadOnly = true;
-            this.totalTxt.Size = new System.Drawing.Size(204, 20);
+            this.totalTxt.Size = new System.Drawing.Size(183, 22);
             this.totalTxt.TabIndex = 6;
             // 
             // groupBox1
             // 
+            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.groupBox1.Controls.Add(this.rbCard);
             this.groupBox1.Controls.Add(this.rbCash);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox1.Location = new System.Drawing.Point(34, 151);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Location = new System.Drawing.Point(301, 232);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.groupBox1.Size = new System.Drawing.Size(478, 79);
+            this.groupBox1.Size = new System.Drawing.Size(637, 101);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Payment Method";
@@ -143,10 +139,9 @@
             // rbCard
             // 
             this.rbCard.AutoSize = true;
-            this.rbCard.Location = new System.Drawing.Point(263, 37);
-            this.rbCard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbCard.Location = new System.Drawing.Point(351, 46);
             this.rbCard.Name = "rbCard";
-            this.rbCard.Size = new System.Drawing.Size(65, 24);
+            this.rbCard.Size = new System.Drawing.Size(61, 22);
             this.rbCard.TabIndex = 1;
             this.rbCard.TabStop = true;
             this.rbCard.Text = "Card";
@@ -156,10 +151,9 @@
             // rbCash
             // 
             this.rbCash.AutoSize = true;
-            this.rbCash.Location = new System.Drawing.Point(87, 37);
-            this.rbCash.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbCash.Location = new System.Drawing.Point(116, 46);
             this.rbCash.Name = "rbCash";
-            this.rbCash.Size = new System.Drawing.Size(68, 24);
+            this.rbCash.Size = new System.Drawing.Size(64, 22);
             this.rbCash.TabIndex = 0;
             this.rbCash.TabStop = true;
             this.rbCash.Text = "Cash";
@@ -168,93 +162,89 @@
             // 
             // txtAmountTendered
             // 
-            this.txtAmountTendered.Location = new System.Drawing.Point(254, 256);
-            this.txtAmountTendered.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAmountTendered.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtAmountTendered.Location = new System.Drawing.Point(525, 360);
             this.txtAmountTendered.Name = "txtAmountTendered";
-            this.txtAmountTendered.Size = new System.Drawing.Size(181, 20);
+            this.txtAmountTendered.Size = new System.Drawing.Size(183, 22);
             this.txtAmountTendered.TabIndex = 8;
             this.txtAmountTendered.TextChanged += new System.EventHandler(this.txtAmountTendered_TextChanged);
             // 
             // changeTextBox
             // 
-            this.changeTextBox.Location = new System.Drawing.Point(254, 293);
-            this.changeTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.changeTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.changeTextBox.Location = new System.Drawing.Point(525, 411);
             this.changeTextBox.Name = "changeTextBox";
             this.changeTextBox.ReadOnly = true;
-            this.changeTextBox.Size = new System.Drawing.Size(181, 20);
+            this.changeTextBox.Size = new System.Drawing.Size(183, 22);
             this.changeTextBox.TabIndex = 9;
-            // 
-            // btnConfirm
-            // 
-            this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirm.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnConfirm.Location = new System.Drawing.Point(189, 362);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(147, 32);
-            this.btnConfirm.TabIndex = 10;
-            this.btnConfirm.Text = "Confirm Payment";
-            this.btnConfirm.UseVisualStyleBackColor = true;
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnCancel.Location = new System.Drawing.Point(362, 362);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCancel.BackColor = System.Drawing.Color.White;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnCancel.Location = new System.Drawing.Point(719, 473);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(150, 35);
+            this.btnCancel.Size = new System.Drawing.Size(136, 41);
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancel Payment";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(214, 18);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(520, 58);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 29);
+            this.label1.Size = new System.Drawing.Size(134, 25);
             this.label1.TabIndex = 12;
-            this.label1.Text = "Checkout";
+            this.label1.Text = "CHECKOUT";
+            // 
+            // btnConfirm
+            // 
+            this.btnConfirm.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnConfirm.BackColor = System.Drawing.Color.White;
+            this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirm.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnConfirm.Location = new System.Drawing.Point(525, 473);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(139, 41);
+            this.btnConfirm.TabIndex = 13;
+            this.btnConfirm.Text = "Confirm Payment";
+            this.btnConfirm.UseVisualStyleBackColor = false;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
             // button1
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.button1.Location = new System.Drawing.Point(300, 417);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.button1.Location = new System.Drawing.Point(525, 554);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(108, 32);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Back";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Size = new System.Drawing.Size(144, 31);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "TODAY\'S ORDERS";
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
-            this.pictureBox1.Location = new System.Drawing.Point(25, 362);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(129, 102);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
             // 
             // frmCheckout
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(554, 504);
-            this.Controls.Add(this.pictureBox1);
+            this.ClientSize = new System.Drawing.Size(1337, 705);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.changeTextBox);
             this.Controls.Add(this.txtAmountTendered);
             this.Controls.Add(this.groupBox1);
@@ -265,19 +255,18 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblOrderTotal);
             this.Controls.Add(this.lblOrderID);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmCheckout";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCheckout";
             this.Load += new System.EventHandler(this.frmCheckout_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
-        #endregion
+        #endregion  
 
         private System.Windows.Forms.Label lblOrderID;
         private System.Windows.Forms.Label lblOrderTotal;
@@ -291,10 +280,9 @@
         private System.Windows.Forms.RadioButton rbCash;
         private System.Windows.Forms.TextBox txtAmountTendered;
         private System.Windows.Forms.TextBox changeTextBox;
-        private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

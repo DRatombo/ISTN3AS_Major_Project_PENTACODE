@@ -20,6 +20,7 @@
                     public frmLogin()
                     {
                         InitializeComponent();
+                        //this.DoubleBuffered = true;
                     }
                     private bool ValidateEmail()
                     {
@@ -89,43 +90,47 @@
 
                     private void btnLogin_Click(object sender, EventArgs e)
                     {
-            
-                       // this.testEmployeeTableAdapter1.Fill(this.dsCafe101Test1.TestEmployee);
-                        string Email = txtEmail.Text;
-                        string Password = txtPassword.Text;
-                        bool isValid = false;
 
-                        // cashierTableAdapter1.Fill(dsLogin1.Cashier);
-          
-                        // Use the instance dataset that contains EmployeeTable
-                        foreach (DataRow row in dsCafe101Hub1.EmployeeTable.Rows)
-                        {
-                            if (row["Email"].ToString() == Email && Email.Contains("@cafe101.com") && row["Password"].ToString() == Password && Password.Length == 8)
-                            {
-                                isValid = true;
-                                SessionManager.FirstName = row["FirstName"].ToString();
-                                SessionManager.Surname = row["Surname"].ToString();
-                                SessionManager.Role = row["Role"].ToString();
-                                SessionManager.Email = row["Email"].ToString();
-                                SessionManager.LoginTime = DateTime.Now;
-                                SessionManager.EmployeeID = Convert.ToInt32(row["EmployeeID"]);
-                                this.loginHistoryTableTableAdapter1.InsertLogin(SessionManager.EmployeeID,SessionManager.FirstName,SessionManager.Role,SessionManager.LoginTime, new DateTime(1753, 1, 1), "0h 0m 0s");
-                          
+            // this.testEmployeeTableAdapter1.Fill(this.dsCafe101Test1.TestEmployee);
+            string Email = txtEmail.Text;
+            string Password = txtPassword.Text;
+            bool isValid = false;
+
+            // cashierTableAdapter1.Fill(dsLogin1.Cashier);
+
+            // Use the instance dataset that contains EmployeeTable
+            foreach (DataRow row in dsCafe101Hub1.EmployeeTable.Rows)
+            {
+                if (row["Email"].ToString() == Email && Email.Contains("@cafe101.com") && row["Password"].ToString() == Password && Password.Length == 8)
+                {
+                    isValid = true;
+                    SessionManager.EmployeeID = Convert.ToInt32(row["EmployeeID"]);
+                    SessionManager.FirstName = row["FirstName"].ToString();
+                    SessionManager.Surname = row["Surname"].ToString();
+                    SessionManager.Role = row["Role"].ToString();
+                    SessionManager.Email = row["Email"].ToString();
+                    SessionManager.LoginTime = DateTime.Now;
+                    this.loginHistoryTableTableAdapter1.InsertLogin(SessionManager.EmployeeID, SessionManager.FirstName, SessionManager.Role, SessionManager.LoginTime, SessionManager.LoginTime, "0h 0m 0s");
+
                 }
-                        }
-                        if (isValid)
-                        {
-                            frmMain mainMenu = new frmMain();
-                            mainMenu.Show();
-                            this.Hide();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Invalid username or password. Please try again.");
-                            txtEmail.Clear();
-                            txtPassword.Clear();
-                        }
-                    }
+            }
+            if (isValid)
+            {
+                frmMain mainMenu = new frmMain();
+                mainMenu.Show();
+                this.Hide(); 
+
+               // frmMain mainMenu = new frmMain();
+               // this.Hide();
+               // mainMenu.Show();
+            }
+            else
+            {
+                MessageBox.Show("Invalid username or password. Please try again.");
+                txtEmail.Clear();
+                txtPassword.Clear();
+            }
+        }
 
                     private void button1_Click(object sender, EventArgs e)
                     {
@@ -217,26 +222,23 @@
 
                     private void btnExit_Click(object sender, EventArgs e)
                     {
-                        DialogResult result = MessageBox.Show(
+                     DialogResult result = MessageBox.Show(
                     "Are you sure you want to exit?",
-                    "Exit",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Question);
+                     "Exit",
+                      MessageBoxButtons.YesNo,
+                      MessageBoxIcon.Question);
 
-                        if (result == DialogResult.Yes)
-                        {
-                            Application.Exit();
-                        }
-                     DateTime logoutTime = DateTime.Now;
-                    TimeSpan duration = logoutTime - SessionManager.LoginTime;
-                    string durationStr = $"{duration.Hours}h {duration.Minutes}m {duration.Seconds}s";
+            if (result != DialogResult.Yes)
+                return;
 
-                     this.testLoginHistoryTableAdapter1.UpdateLogout(
-                      logoutTime,
-                       durationStr,
-                        SessionManager.EmployeeID,
-                        SessionManager.LoginTime
-            );
+            if (!SessionManager.IsLoggedIn())
+            {
+                Application.Exit();
+                return;
+            }
+
+            SessionManager.Clear();
+            Application.Exit();
         }
         // Add this method to the frmLogin class to resolve CS1061.
         // Adjust the implementation as needed to match your actual LoginHistoryTableAdapter and dataset.

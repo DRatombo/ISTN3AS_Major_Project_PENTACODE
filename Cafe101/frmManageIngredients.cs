@@ -8,6 +8,8 @@ namespace Cafe101
 {
     public partial class frmManageIngredients : Form
     {
+        private DataTable originalIngredientData;
+
         public frmManageIngredients()
         {
             InitializeComponent();
@@ -15,35 +17,32 @@ namespace Cafe101
 
         private void frmManageIngredients_Load(object sender, EventArgs e)
         {
-            // DataSet adapters removed - using live connection only
             LoadIngredients();
+            this.txtSearch.TextChanged += txtSearch_TextChanged;
         }
 
         private void LoadIngredients()
         {
             try
             {
-                // Match exactly the columns in your table: IngredientID, Description, QuantityOnHand, RestockLevel, CostPrice
                 string query = "SELECT IngredientID, Description, QuantityOnHand, RestockLevel, CostPrice FROM IngredientTable ORDER BY Description";
                 using (SqlConnection conn = DbHelper.GetConnection())
                 {
                     SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    dgvIngredients.DataSource = dt;
+                    originalIngredientData = new DataTable();
+                    da.Fill(originalIngredientData);
+                    dgvIngredients.DataSource = originalIngredientData;
 
                     if (dgvIngredients.Columns.Count > 0)
-                        dgvIngredients.Columns[0].Visible = false; // Hide IngredientID
+                        dgvIngredients.Columns[0].Visible = false;
 
-                    // Format numeric columns
                     if (dgvIngredients.Columns.Count > 2)
-                        dgvIngredients.Columns[2].DefaultCellStyle.Format = "N2"; // QuantityOnHand
+                        dgvIngredients.Columns[2].DefaultCellStyle.Format = "N2";
                     if (dgvIngredients.Columns.Count > 3)
-                        dgvIngredients.Columns[3].DefaultCellStyle.Format = "N2"; // RestockLevel
+                        dgvIngredients.Columns[3].DefaultCellStyle.Format = "N2";
                     if (dgvIngredients.Columns.Count > 4)
-                        dgvIngredients.Columns[4].DefaultCellStyle.Format = "C2"; // CostPrice
+                        dgvIngredients.Columns[4].DefaultCellStyle.Format = "C2";
 
-                    // Highlight low stock – safely handle NULL values and comma decimal separators
                     foreach (DataGridViewRow row in dgvIngredients.Rows)
                     {
                         if (row.IsNewRow) continue;
@@ -69,6 +68,33 @@ namespace Cafe101
             }
         }
 
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (originalIngredientData == null) return;
+
+            string searchTerm = txtSearch.Text.Trim();
+
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                dgvIngredients.DataSource = originalIngredientData;
+            }
+            else
+            {
+                DataView dv = originalIngredientData.DefaultView;
+                dv.RowFilter = $"Description LIKE '%{searchTerm}%'";
+                dgvIngredients.DataSource = dv;
+            }
+
+            if (dgvIngredients.Columns.Count > 0)
+                dgvIngredients.Columns[0].Visible = false;
+        }
+
+        private void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+            LoadIngredients();
+        }
+
         private void ClearFields()
         {
             txtDescription.Text = "";
@@ -76,10 +102,8 @@ namespace Cafe101
             numRestockLevel.Value = 0;
             numCostPrice.Value = 0;
             btnUpdate.Tag = null;
-            // txtUnits is ignored because the table has no Units column
         }
 
-        // Helper method to check duplicate description (case‑insensitive)
         private bool IsDescriptionDuplicate(string description, int? excludeIngredientId = null)
         {
             string query = "SELECT COUNT(*) FROM IngredientTable WHERE LOWER(Description) = LOWER(@desc)";
@@ -122,7 +146,6 @@ namespace Cafe101
                 return;
             }
 
-            // Check for duplicate description
             if (IsDescriptionDuplicate(txtDescription.Text))
             {
                 MessageBox.Show("An ingredient with this description already exists. Please use a different description.", "Duplicate", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -160,58 +183,51 @@ namespace Cafe101
             {
                 DataGridViewRow row = dgvIngredients.Rows[e.RowIndex];
                 if (row == null) return;
-
-                // Ensure we have enough columns
                 if (dgvIngredients.Columns.Count < 5) return;
 
                 txtDescription.Text = row.Cells[1].Value?.ToString() ?? "";
 
-                decimal qty = 0;
-                decimal restock = 0;
-                decimal cost = 0;
+                decimal qty = 0, restock = 0, cost = 0;
 
-                // ---- QuantityOnHand (column index 2) ----
                 if (row.Cells[2].Value != null && row.Cells[2].Value != DBNull.Value)
                 {
                     string val = row.Cells[2].Value.ToString().Trim();
-                    decimal.TryParse(val.Replace(',', '.'),
-                        System.Globalization.NumberStyles.Any,
-                        System.Globalization.CultureInfo.InvariantCulture,
-                        out qty);
+                    decimal.TryParse(val.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out qty);
                 }
-                // Clamp to the NumericUpDown's allowed range
                 if (qty < numQuantityInStock.Minimum) qty = numQuantityInStock.Minimum;
                 if (qty > numQuantityInStock.Maximum) qty = numQuantityInStock.Maximum;
                 numQuantityInStock.Value = qty;
 
-                // ---- RestockLevel (column index 3) ----
                 if (row.Cells[3].Value != null && row.Cells[3].Value != DBNull.Value)
                 {
                     string val = row.Cells[3].Value.ToString().Trim();
-                    decimal.TryParse(val.Replace(',', '.'),
-                        System.Globalization.NumberStyles.Any,
-                        System.Globalization.CultureInfo.InvariantCulture,
-                        out restock);
+                    decimal.TryParse(val.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out restock);
                 }
                 if (restock < numRestockLevel.Minimum) restock = numRestockLevel.Minimum;
                 if (restock > numRestockLevel.Maximum) restock = numRestockLevel.Maximum;
                 numRestockLevel.Value = restock;
 
-                // ---- CostPrice (column index 4) ----
                 if (row.Cells[4].Value != null && row.Cells[4].Value != DBNull.Value)
                 {
                     string val = row.Cells[4].Value.ToString().Trim();
-                    decimal.TryParse(val.Replace(',', '.'),
-                        System.Globalization.NumberStyles.Any,
-                        System.Globalization.CultureInfo.InvariantCulture,
-                        out cost);
+                    decimal.TryParse(val.Replace(',', '.'), System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out cost);
                 }
                 if (cost < numCostPrice.Minimum) cost = numCostPrice.Minimum;
                 if (cost > numCostPrice.Maximum) cost = numCostPrice.Maximum;
                 numCostPrice.Value = cost;
 
-                // Store the ID for updates
-                btnUpdate.Tag = row.Cells[0].Value;
+                int ingredientId = Convert.ToInt32(row.Cells[0].Value);
+                btnUpdate.Tag = ingredientId;
+
+                // Filter to show ONLY the selected row
+                DataView dv = originalIngredientData.DefaultView;
+                dv.RowFilter = $"IngredientID = {ingredientId}";
+                dgvIngredients.DataSource = dv;
+
+                if (dgvIngredients.Columns.Count > 0)
+                    dgvIngredients.Columns[0].Visible = false;
+
+                txtSearch.Text = "";
             }
         }
 
@@ -244,7 +260,6 @@ namespace Cafe101
             }
 
             int currentId = Convert.ToInt32(btnUpdate.Tag);
-            // Check duplicate description excluding the current ingredient
             if (IsDescriptionDuplicate(txtDescription.Text, currentId))
             {
                 MessageBox.Show("Another ingredient with this description already exists. Please use a different description.", "Duplicate", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -312,6 +327,7 @@ namespace Cafe101
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Text = "";
             LoadIngredients();
             ClearFields();
         }

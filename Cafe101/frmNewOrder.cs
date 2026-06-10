@@ -742,20 +742,27 @@ namespace Cafe101
                 // Uncomment when frmCheckout is ready
 
                 frmCheckout checkout = new frmCheckout(newOrderID, orderTotal);
+                checkout.Owner = this;
                 checkout.ShowDialog();
 
-                // Reset the form for the next order
-                dgvCart.Rows.Clear();
-                orderTotal = 0;
-                lblAmount.Text = "R0.00";
-                selectedCustomerID = 0;
-                txtSearchedCust.Text = "";
-                txtSearchedName.Text = "";
+               
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error confirming order: " + ex.Message);
             }
+        }
+
+
+        public void ResetOrder()
+        {
+            dgvCart.Rows.Clear();
+            orderTotal = 0;
+            lblAmount.Text = "R0.00";
+
+            selectedCustomerID = 0;
+            txtSearchedCust.Text = "";
+            txtSearchedName.Text = "";
         }
 
         private bool CheckStock()

@@ -7,6 +7,8 @@ namespace Cafe101
 {
     public partial class frmManageMenuItems : Form
     {
+        private DataTable originalMenuItemsData;
+
         public frmManageMenuItems()
         {
             InitializeComponent();
@@ -14,8 +16,8 @@ namespace Cafe101
 
         private void frmManageMenuItems_Load(object sender, EventArgs e)
         {
-            // DataSet adapter removed - using live connection only
             LoadMenuItems();
+            this.txtSearch.TextChanged += txtSearch_TextChanged;
         }
 
         private void LoadMenuItems()
@@ -26,9 +28,9 @@ namespace Cafe101
                 try
                 {
                     SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    dgvMenuItems.DataSource = dt;
+                    originalMenuItemsData = new DataTable();
+                    da.Fill(originalMenuItemsData);
+                    dgvMenuItems.DataSource = originalMenuItemsData;
 
                     if (dgvMenuItems.Columns.Count > 0)
                         dgvMenuItems.Columns[0].Visible = false;
@@ -43,6 +45,33 @@ namespace Cafe101
                     MessageBox.Show("Error loading menu items: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (originalMenuItemsData == null) return;
+
+            string searchTerm = txtSearch.Text.Trim();
+
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                dgvMenuItems.DataSource = originalMenuItemsData;
+            }
+            else
+            {
+                DataView dv = originalMenuItemsData.DefaultView;
+                dv.RowFilter = $"MenuItemName LIKE '%{searchTerm}%' OR Category LIKE '%{searchTerm}%'";
+                dgvMenuItems.DataSource = dv;
+            }
+
+            if (dgvMenuItems.Columns.Count > 0)
+                dgvMenuItems.Columns[0].Visible = false;
+        }
+
+        private void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+            LoadMenuItems();
         }
 
         private void ClearFields()
@@ -138,12 +167,10 @@ namespace Cafe101
         {
             if (e.RowIndex >= 0)
             {
-                // Get the underlying DataRowView
                 DataGridViewRow row = dgvMenuItems.Rows[e.RowIndex];
                 DataRowView rowView = row.DataBoundItem as DataRowView;
                 if (rowView == null) return;
 
-                // Access columns by name from the DataRowView (safe and reliable)
                 txtItemName.Text = rowView["MenuItemName"]?.ToString() ?? "";
 
                 decimal sellingPrice = 0;
@@ -165,7 +192,18 @@ namespace Cafe101
                 cboCategory.Text = rowView["Category"]?.ToString() ?? "";
                 txtPrepTime.Text = rowView["PreparationTime"]?.ToString() ?? "";
 
-                btnUpdate.Tag = rowView["MenuItemID"];
+                int menuItemId = Convert.ToInt32(rowView["MenuItemID"]);
+                btnUpdate.Tag = menuItemId;
+
+                // Filter to show ONLY the selected row
+                DataView dv = originalMenuItemsData.DefaultView;
+                dv.RowFilter = $"MenuItemID = {menuItemId}";
+                dgvMenuItems.DataSource = dv;
+
+                if (dgvMenuItems.Columns.Count > 0)
+                    dgvMenuItems.Columns[0].Visible = false;
+
+                txtSearch.Text = "";
             }
         }
 
@@ -268,6 +306,7 @@ namespace Cafe101
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Text = "";
             LoadMenuItems();
             ClearFields();
         }
@@ -281,33 +320,6 @@ namespace Cafe101
             Form form = new frmMain();
             form.Show();
             this.Close();
-        }
-    }
-
-    public static class DbHelper
-    {
-        private static string server = "146.230.177.46";
-        private static string database = "GroupWst22";
-        private static string username = "GroupWst22";
-        private static string password = "n38mc";
-        private static string connectionString = $"Server={server};Database={database};User Id={username};Password={password};";
-
-        public static SqlConnection GetConnection() => new SqlConnection(connectionString);
-
-        public static bool TestConnection()
-        {
-            using (SqlConnection conn = GetConnection())
-            {
-                try
-                {
-                    conn.Open();
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
         }
     }
 }

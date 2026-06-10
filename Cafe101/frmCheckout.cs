@@ -227,6 +227,10 @@ namespace Cafe101
                         MessageBoxIcon.Information);
                 }
 
+                ((frmNewOrder)this.Owner).ResetOrder();
+
+                this.Close();
+
                 frmReceipt formR = new frmReceipt(_orderID, _orderTotal, amountTendered, change, paymentMethod);
                 formR.Show();
             }

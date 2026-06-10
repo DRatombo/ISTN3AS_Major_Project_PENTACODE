@@ -142,6 +142,17 @@ namespace Cafe101
             lblUser.Text = $"{SessionManager.Role}: {SessionManager.FirstName} {SessionManager.Surname}";
             lblDateTime.Text = SessionManager.LoginTime.ToString("dd MMM yyyy  HH:mm");
             txtHelp.Hide();
+
+            
+            switch (SessionManager.Role)
+            {
+                case "Cashier":
+                    mnuAnalytics.Visible = false;  
+                    mnuManagement.Visible = false; 
+                    break;
+
+
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)

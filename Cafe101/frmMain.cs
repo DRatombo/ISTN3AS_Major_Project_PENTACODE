@@ -190,5 +190,12 @@ namespace Cafe101
         {
 
         }
+
+        private void manageCustomersToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            frmManageCustomers frmCust = new frmManageCustomers();
+            frmCust.Show();
+            this.Hide();
+        }
     }
 }

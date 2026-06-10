@@ -76,7 +76,7 @@
             // dataGridView1
             // 
             this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -97,28 +97,24 @@
             this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
             this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
             this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            this.descriptionDataGridViewTextBoxColumn.Width = 129;
             // 
             // quantityOnHandDataGridViewTextBoxColumn
             // 
             this.quantityOnHandDataGridViewTextBoxColumn.DataPropertyName = "QuantityOnHand";
             this.quantityOnHandDataGridViewTextBoxColumn.HeaderText = "QuantityOnHand";
             this.quantityOnHandDataGridViewTextBoxColumn.Name = "quantityOnHandDataGridViewTextBoxColumn";
-            this.quantityOnHandDataGridViewTextBoxColumn.Width = 175;
             // 
             // restockLevelDataGridViewTextBoxColumn
             // 
             this.restockLevelDataGridViewTextBoxColumn.DataPropertyName = "RestockLevel";
             this.restockLevelDataGridViewTextBoxColumn.HeaderText = "RestockLevel";
             this.restockLevelDataGridViewTextBoxColumn.Name = "restockLevelDataGridViewTextBoxColumn";
-            this.restockLevelDataGridViewTextBoxColumn.Width = 147;
             // 
             // costPriceDataGridViewTextBoxColumn
             // 
             this.costPriceDataGridViewTextBoxColumn.DataPropertyName = "CostPrice";
             this.costPriceDataGridViewTextBoxColumn.HeaderText = "CostPrice";
             this.costPriceDataGridViewTextBoxColumn.Name = "costPriceDataGridViewTextBoxColumn";
-            this.costPriceDataGridViewTextBoxColumn.Width = 115;
             // 
             // ingredientTableBindingSource
             // 

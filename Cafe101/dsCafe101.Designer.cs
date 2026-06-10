@@ -4317,7 +4317,7 @@ SELECT CustomerID, FirstName, Surname, PhoneNumber, Email, Address, Status, Pass
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[2];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT CustomerID, FirstName, Surname, PhoneNumber, Email, Address, Status, Passw" +
@@ -4325,10 +4325,15 @@ SELECT CustomerID, FirstName, Surname, PhoneNumber, Email, Address, Status, Pass
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT        CustomerID, FirstName, Surname, Address, Email, Password\r\nFROM     " +
-                "       TestCustomer\r\nWHERE        (FirstName LIKE @Search + \'%\')";
+            this._commandCollection[1].CommandText = "DELETE FROM Customer\r\nWHERE        (CustomerID = @CustomerID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Search", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT        CustomerID, FirstName, Surname, Address, Email, Password\r\nFROM     " +
+                "       TestCustomer\r\nWHERE        (FirstName LIKE @Search + \'%\')";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Search", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4360,7 +4365,7 @@ SELECT CustomerID, FirstName, Surname, PhoneNumber, Email, Address, Status, Pass
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillBy(dsCafe101.CustomerDataTable dataTable, string Search) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((Search == null)) {
                 throw new global::System.ArgumentNullException("Search");
             }
@@ -4379,7 +4384,7 @@ SELECT CustomerID, FirstName, Surname, PhoneNumber, Email, Address, Status, Pass
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual dsCafe101.CustomerDataTable Search(string Search1) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
+            this.Adapter.SelectCommand = this.CommandCollection[2];
             if ((Search1 == null)) {
                 throw new global::System.ArgumentNullException("Search1");
             }
@@ -4676,6 +4681,30 @@ SELECT CustomerID, FirstName, Surname, PhoneNumber, Email, Address, Status, Pass
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(string FirstName, string Surname, string PhoneNumber, string Email, string Address, string Status, string Password, int Original_CustomerID, string Original_FirstName, string Original_Surname, string Original_PhoneNumber, string Original_Email, string Original_Address, string Original_Status, string Original_Password) {
             return this.Update(FirstName, Surname, PhoneNumber, Email, Address, Status, Password, Original_CustomerID, Original_FirstName, Original_Surname, Original_PhoneNumber, Original_Email, Original_Address, Original_Status, Original_Password, Original_CustomerID);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteByID(int CustomerID) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            command.Parameters[0].Value = ((int)(CustomerID));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     

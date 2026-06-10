@@ -15,6 +15,7 @@ namespace Cafe101
         public frmManageCustomers()
         {
             InitializeComponent();
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -101,6 +102,49 @@ namespace Cafe101
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+        
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+        private DataRow selectedRow;
+        private int selectedCustomerID;
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0) return;
+
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                selectedCustomerID = Convert.ToInt32(row.Cells[0].Value);
+
+                txtName.Text = row.Cells[1].Value?.ToString();
+                txtSurname.Text = row.Cells[2].Value?.ToString();
+                txtAddress.Text = row.Cells[3].Value?.ToString();
+                txtEmail.Text = row.Cells[4].Value?.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Selection Error:\n" + ex.Message);
+            }
+        }
+
+        private void btnRemoveCustomer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+               customerTableTableAdapter.DeleteByID(selectedCustomerID);
+
+                customerTableTableAdapter.Fill(dsCafe101Hub.CustomerTable);
+
+                MessageBox.Show("Customer deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Delete Error:\n" + ex.Message);
+            }
         }
     }
 }

@@ -35,6 +35,8 @@
             this.quantityOnHandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.restockLevelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.costPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ingredientTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsCafe101Hub = new Cafe101.dsCafe101Hub();
             this.testIngredientBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101Test = new Cafe101.dsCafe101Test();
             this.testIngredientTableAdapter = new Cafe101.dsCafe101TestTableAdapters.TestIngredientTableAdapter();
@@ -46,17 +48,15 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnPrintLowStock = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.dsCafe101Hub = new Cafe101.dsCafe101Hub();
-            this.ingredientTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ingredientTableTableAdapter = new Cafe101.dsCafe101HubTableAdapters.IngredientTableTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientTableBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource2)).BeginInit();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ingredientTableBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -64,7 +64,7 @@
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.button1.Location = new System.Drawing.Point(54, 479);
+            this.button1.Location = new System.Drawing.Point(555, 606);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(128, 39);
             this.button1.TabIndex = 0;
@@ -113,6 +113,16 @@
             this.costPriceDataGridViewTextBoxColumn.HeaderText = "CostPrice";
             this.costPriceDataGridViewTextBoxColumn.Name = "costPriceDataGridViewTextBoxColumn";
             // 
+            // ingredientTableBindingSource
+            // 
+            this.ingredientTableBindingSource.DataMember = "IngredientTable";
+            this.ingredientTableBindingSource.DataSource = this.dsCafe101Hub;
+            // 
+            // dsCafe101Hub
+            // 
+            this.dsCafe101Hub.DataSetName = "dsCafe101Hub";
+            this.dsCafe101Hub.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // testIngredientBindingSource
             // 
             this.testIngredientBindingSource.DataMember = "TestIngredient";
@@ -133,7 +143,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(154, 9);
+            this.label1.Location = new System.Drawing.Point(655, 136);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(397, 24);
             this.label1.TabIndex = 2;
@@ -156,7 +166,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(67, 50);
+            this.label2.Location = new System.Drawing.Point(568, 177);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 24);
             this.label2.TabIndex = 5;
@@ -168,7 +178,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label3.Location = new System.Drawing.Point(322, 50);
+            this.label3.Location = new System.Drawing.Point(823, 177);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(229, 24);
             this.label3.TabIndex = 6;
@@ -177,7 +187,7 @@
             // textBox1
             // 
             this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox1.Location = new System.Drawing.Point(548, 54);
+            this.textBox1.Location = new System.Drawing.Point(1049, 181);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 7;
@@ -187,7 +197,7 @@
             this.btnPrintLowStock.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnPrintLowStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrintLowStock.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPrintLowStock.Location = new System.Drawing.Point(469, 479);
+            this.btnPrintLowStock.Location = new System.Drawing.Point(1025, 606);
             this.btnPrintLowStock.Name = "btnPrintLowStock";
             this.btnPrintLowStock.Size = new System.Drawing.Size(225, 39);
             this.btnPrintLowStock.TabIndex = 8;
@@ -201,22 +211,12 @@
             this.groupBox1.Controls.Add(this.dataGridView1);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.groupBox1.Location = new System.Drawing.Point(12, 76);
+            this.groupBox1.Location = new System.Drawing.Point(513, 203);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(751, 397);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Stock Analysis";
-            // 
-            // dsCafe101Hub
-            // 
-            this.dsCafe101Hub.DataSetName = "dsCafe101Hub";
-            this.dsCafe101Hub.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // ingredientTableBindingSource
-            // 
-            this.ingredientTableBindingSource.DataMember = "IngredientTable";
-            this.ingredientTableBindingSource.DataSource = this.dsCafe101Hub;
             // 
             // ingredientTableTableAdapter
             // 
@@ -227,7 +227,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(800, 530);
+            this.ClientSize = new System.Drawing.Size(1802, 785);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnPrintLowStock);
             this.Controls.Add(this.textBox1);
@@ -240,13 +240,13 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmLowStock_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ingredientTableBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.testIngredientBindingSource2)).EndInit();
             this.groupBox1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ingredientTableBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

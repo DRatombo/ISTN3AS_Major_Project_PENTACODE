@@ -108,11 +108,11 @@
     <Compile Include="frmAddCustomer.Designer.cs">
       <DependentUpon>frmAddCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmManageCashiers.cs">
+    <Compile Include="frmManageEmployees.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmManageCashiers.Designer.cs">
-      <DependentUpon>frmManageCashiers.cs</DependentUpon>
+    <Compile Include="frmManageEmployees.Designer.cs">
+      <DependentUpon>frmManageEmployees.cs</DependentUpon>
     </Compile>
     <Compile Include="frmManageCustomers.cs">
       <SubType>Form</SubType>
@@ -174,8 +174,8 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmManageCashiers.resx">
-      <DependentUpon>frmManageCashiers.cs</DependentUpon>
+    <EmbeddedResource Include="frmManageEmployees.resx">
+      <DependentUpon>frmManageEmployees.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmManageCustomers.resx">
       <DependentUpon>frmManageCustomers.cs</DependentUpon>

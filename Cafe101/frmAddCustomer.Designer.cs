@@ -371,6 +371,7 @@
             // dgvCustomers
             // 
             this.dgvCustomers.AutoGenerateColumns = false;
+            this.dgvCustomers.BackgroundColor = System.Drawing.Color.MidnightBlue;
             this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.customerIDDataGridViewTextBoxColumn,

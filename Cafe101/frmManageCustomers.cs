@@ -60,30 +60,16 @@ namespace Cafe101
         {
             try
             {
-                this.Validate();
-                dataGridView1.EndEdit();
-
-                // Auto-fill password for new or empty rows
-                foreach (DataRow row in dsCafe101Hub.CustomerTable.Rows)
-                {
-                    if (row.RowState == DataRowState.Added)
-                    {
-                        if (row["Password"] == DBNull.Value ||
-                            string.IsNullOrWhiteSpace(row["Password"]?.ToString()))
-                        {
-                            row["Password"] = "1234";
-                        }
-                    }
-                }
-
-                customerTableTableAdapter.Update(dsCafe101Hub.CustomerTable);
+                dsCafe101Hub.CustomerTable.Clear();
                 customerTableTableAdapter.Fill(dsCafe101Hub.CustomerTable);
 
-                MessageBox.Show("Saved successfully.");
+                dataGridView1.DataSource = dsCafe101Hub.CustomerTable;
+
+                MessageBox.Show("Data refreshed successfully.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:\n" + ex.Message);
+                MessageBox.Show("Refresh Error:\n" + ex.Message);
             }
         }
 
@@ -135,11 +121,37 @@ namespace Cafe101
         {
             try
             {
-               customerTableTableAdapter.DeleteByID(selectedCustomerID);
+                // Validate text fields first
+                if (string.IsNullOrWhiteSpace(txtName.Text) ||
+                    string.IsNullOrWhiteSpace(txtSurname.Text) ||
+                    string.IsNullOrWhiteSpace(txtAddress.Text) ||
+                    string.IsNullOrWhiteSpace(txtEmail.Text))
+                {
+                    MessageBox.Show("Please select a customer first. Fields cannot be empty.");
+                    return;
+                }
 
-                customerTableTableAdapter.Fill(dsCafe101Hub.CustomerTable);
+                // Validate ID
+                if (selectedCustomerID <= 0)
+                {
+                    MessageBox.Show("Invalid customer selection.");
+                    return;
+                }
 
-                MessageBox.Show("Customer deleted successfully.");
+                DialogResult result = MessageBox.Show(
+                    "Are you sure you want to delete this customer?",
+                    "Confirm Delete",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    customerTableTableAdapter.DeleteByID(selectedCustomerID);
+                    customerTableTableAdapter.Fill(dsCafe101Hub.CustomerTable);
+
+                    MessageBox.Show("Customer deleted successfully.");
+                }
             }
             catch (Exception ex)
             {

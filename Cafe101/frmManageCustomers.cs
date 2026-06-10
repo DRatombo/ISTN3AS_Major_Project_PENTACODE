@@ -15,6 +15,7 @@ namespace Cafe101
         public frmManageCustomers()
         {
             InitializeComponent();
+            dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -59,30 +60,16 @@ namespace Cafe101
         {
             try
             {
-                this.Validate();
-                dataGridView1.EndEdit();
-
-                // Auto-fill password for new or empty rows
-                foreach (DataRow row in dsCafe101Hub.CustomerTable.Rows)
-                {
-                    if (row.RowState == DataRowState.Added)
-                    {
-                        if (row["Password"] == DBNull.Value ||
-                            string.IsNullOrWhiteSpace(row["Password"]?.ToString()))
-                        {
-                            row["Password"] = "1234";
-                        }
-                    }
-                }
-
-                customerTableTableAdapter.Update(dsCafe101Hub.CustomerTable);
+                dsCafe101Hub.CustomerTable.Clear();
                 customerTableTableAdapter.Fill(dsCafe101Hub.CustomerTable);
 
-                MessageBox.Show("Saved successfully.");
+                dataGridView1.DataSource = dsCafe101Hub.CustomerTable;
+
+                MessageBox.Show("Data refreshed successfully.");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error:\n" + ex.Message);
+                MessageBox.Show("Refresh Error:\n" + ex.Message);
             }
         }
 
@@ -101,6 +88,75 @@ namespace Cafe101
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+        
+        private void dataGridView1_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+        private DataRow selectedRow;
+        private int selectedCustomerID;
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex < 0) return;
+
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                selectedCustomerID = Convert.ToInt32(row.Cells[0].Value);
+
+                txtName.Text = row.Cells[1].Value?.ToString();
+                txtSurname.Text = row.Cells[2].Value?.ToString();
+                txtAddress.Text = row.Cells[3].Value?.ToString();
+                txtEmail.Text = row.Cells[4].Value?.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Selection Error:\n" + ex.Message);
+            }
+        }
+
+        private void btnRemoveCustomer_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Validate text fields first
+                if (string.IsNullOrWhiteSpace(txtName.Text) ||
+                    string.IsNullOrWhiteSpace(txtSurname.Text) ||
+                    string.IsNullOrWhiteSpace(txtAddress.Text) ||
+                    string.IsNullOrWhiteSpace(txtEmail.Text))
+                {
+                    MessageBox.Show("Please select a customer first. Fields cannot be empty.");
+                    return;
+                }
+
+                // Validate ID
+                if (selectedCustomerID <= 0)
+                {
+                    MessageBox.Show("Invalid customer selection.");
+                    return;
+                }
+
+                DialogResult result = MessageBox.Show(
+                    "Are you sure you want to delete this customer?",
+                    "Confirm Delete",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    customerTableTableAdapter.DeleteByID(selectedCustomerID);
+                    customerTableTableAdapter.Fill(dsCafe101Hub.CustomerTable);
+
+                    MessageBox.Show("Customer deleted successfully.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Delete Error:\n" + ex.Message);
+            }
         }
     }
 }

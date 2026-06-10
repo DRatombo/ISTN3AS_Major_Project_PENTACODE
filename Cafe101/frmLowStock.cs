@@ -207,5 +207,12 @@ namespace Cafe101
         {
 
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            frmManageIngredients manageIngredientsForm = new frmManageIngredients();
+            manageIngredientsForm.Show();
+            this.Hide();
+        }
     }
 }

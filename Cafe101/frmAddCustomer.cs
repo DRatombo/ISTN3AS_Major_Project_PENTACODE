@@ -14,7 +14,7 @@ namespace Cafe101
         public frmAddCustomer()
         {
             InitializeComponent();
-            txtPassword.PasswordChar = '●';
+            txtPassword.PasswordChar = '*';
         }
 
         private void frmAddCustomer_Load(object sender, EventArgs e)

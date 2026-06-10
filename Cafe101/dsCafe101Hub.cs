@@ -4,12 +4,18 @@
 
     public partial class dsCafe101Hub
     {
+        partial class IngredientTableDataTable
+        {
+        }
     }
 }
 
-namespace Cafe101.dsCafe101HubTableAdapters {
-    
-    
+namespace Cafe101.dsCafe101HubTableAdapters
+{
+    partial class OrderTableTableAdapter
+    {
+    }
+
     public partial class CustomerTableTableAdapter {
     }
 }

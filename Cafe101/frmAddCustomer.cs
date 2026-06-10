@@ -598,12 +598,6 @@ namespace Cafe101
         // ---------------------------------------------------------------
         // PICTURE BOX — go home
         // ---------------------------------------------------------------
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            frmMain main = new frmMain();
-            main.Show();
-            this.Hide();
-        }
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {

@@ -12,6 +12,10 @@
 
 namespace Cafe101.dsCafe101HubTableAdapters
 {
+    partial class LoginHistoryTableTableAdapter
+    {
+    }
+
     partial class OrderTableTableAdapter
     {
     }

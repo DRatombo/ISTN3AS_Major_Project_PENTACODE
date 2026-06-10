@@ -15,15 +15,15 @@ namespace Cafe101
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Form1());
             //Application.Run(new frmLogin());
             //Application.Run(new frmMain());
-            Application.Run(new frmCheckout(1 , 159m));
+            //Application.Run(new frmCheckout());
             //Application.Run(new frmManageMenuItems());
             //Application.Run(new frmPopularProduct()); 
-            //Application.Run(new frmNewOrder());
+            Application.Run(new frmNewOrder());
             //Application.Run(new frmAddCustomer());  
         }
     }

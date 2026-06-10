@@ -103,7 +103,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(147, 44);
             this.btnClose.TabIndex = 12;
-            this.btnClose.Text = "CLOSE";
+            this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
@@ -130,7 +130,7 @@
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(147, 44);
             this.btnHelp.TabIndex = 10;
-            this.btnHelp.Text = "HELP";
+            this.btnHelp.Text = "Help";
             this.btnHelp.UseVisualStyleBackColor = false;
             this.btnHelp.Click += new System.EventHandler(this.button2_Click);
             // 

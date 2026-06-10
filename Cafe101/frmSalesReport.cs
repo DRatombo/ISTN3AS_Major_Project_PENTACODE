@@ -184,5 +184,15 @@ namespace Cafe101
                 MessageBox.Show("Error generating report: " + ex.Message);
             }
         }
+
+        private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

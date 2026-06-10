@@ -51,7 +51,7 @@
             this.lblUser = new System.Windows.Forms.Label();
             this.testLoginHistoryTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestLoginHistoryTableAdapter();
             this.loginHistoryTableTableAdapter1 = new Cafe101.dsCafe101HubTableAdapters.LoginHistoryTableTableAdapter();
-            this.manageCustomersToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -127,7 +127,7 @@
             this.mnuIngredients,
             this.mnuRecipes,
             this.mnuCashiers,
-            this.manageCustomersToolStripMenuItem1});
+            this.customersToolStripMenuItem});
             this.managementToolStripMenuItem.Name = "managementToolStripMenuItem";
             this.managementToolStripMenuItem.Size = new System.Drawing.Size(90, 20);
             this.managementToolStripMenuItem.Text = "Management";
@@ -277,12 +277,12 @@
             // 
             this.loginHistoryTableTableAdapter1.ClearBeforeFill = true;
             // 
-            // manageCustomersToolStripMenuItem1
+            // customersToolStripMenuItem
             // 
-            this.manageCustomersToolStripMenuItem1.Name = "manageCustomersToolStripMenuItem1";
-            this.manageCustomersToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.manageCustomersToolStripMenuItem1.Text = "Manage Customers";
-            this.manageCustomersToolStripMenuItem1.Click += new System.EventHandler(this.manageCustomersToolStripMenuItem1_Click);
+            this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
+            this.customersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.customersToolStripMenuItem.Text = "Customers";
+            this.customersToolStripMenuItem.Click += new System.EventHandler(this.customersToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -334,6 +334,6 @@
         private System.Windows.Forms.Button btnClose;
         private dsCafe101TestTableAdapters.TestLoginHistoryTableAdapter testLoginHistoryTableAdapter1;
         private dsCafe101HubTableAdapters.LoginHistoryTableTableAdapter loginHistoryTableTableAdapter1;
-        private System.Windows.Forms.ToolStripMenuItem manageCustomersToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;
     }
 }

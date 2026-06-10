@@ -24,12 +24,44 @@ namespace Cafe101
             txtPassword.PasswordChar = '*'; 
             ResetForm();
             ApplyStyles();
-            CentreControls();
+
+            LoadCustomers();
+
+            // Fill the groupbox fully and style the grid
+            dgvCustomers.Dock = DockStyle.Fill;
+            dgvCustomers.BackgroundColor = Color.White;
+            dgvCustomers.GridColor = Color.LightGray;
+            dgvCustomers.BorderStyle = BorderStyle.None;
+            dgvCustomers.EnableHeadersVisualStyles = false;
+            dgvCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dgvCustomers.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(13, 27, 110);
+            dgvCustomers.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
+            dgvCustomers.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+
+            dgvCustomers.DefaultCellStyle.BackColor = Color.White;
+            dgvCustomers.DefaultCellStyle.ForeColor = Color.FromArgb(20, 20, 20);
+            dgvCustomers.DefaultCellStyle.SelectionBackColor = Color.FromArgb(13, 27, 110);
+            dgvCustomers.DefaultCellStyle.SelectionForeColor = Color.White;
+
+            dgvCustomers.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(235, 240, 255);
+            dgvCustomers.AlternatingRowsDefaultCellStyle.ForeColor = Color.FromArgb(20, 20, 20);
+
+            groupBox1.BackColor = Color.White;
+            groupBox1.ForeColor = Color.White;
+
+            dgvCustomers.ReadOnly = true;
+            dgvCustomers.AllowUserToAddRows = false;
+            dgvCustomers.AllowUserToDeleteRows = false;
+
+            btnShowPwd.Location = new Point(txtPassword.Right + 6, txtPassword.Top);
+            btnShowPwd.Size = new Size(55, txtPassword.Height);
         }
 
-        private void frmAddCustomer_Resize(object sender, EventArgs e)
+        private void LoadCustomers()
         {
-            CentreControls();
+            dgvCustomers.DataSource = customerTableTableAdapter1.GetData();
+            dgvCustomers.Columns[5].Visible = false; // Hide password column
         }
 
         // ---------------------------------------------------------------
@@ -69,8 +101,8 @@ namespace Cafe101
             Font inputFont = new Font("Segoe UI", 11);
 
             foreach (var txt in new Control[] {
-                txtFirstName, txtSurname, txtPhoneNum,
-                txtEmail, txtAddress, txtPassword })
+                txtFirstName, txtSurname, txtPhoneNumber,
+                txtCustEmail, txtAddress, txtPassword })
             {
                 txt.BackColor = inputBg;
                 txt.ForeColor = inputFg;
@@ -80,8 +112,8 @@ namespace Cafe101
             // Msg labels
             Font msgFont = new Font("Segoe UI", 9);
             foreach (var lbl in new[] {
-                lblFirstNameMsg, lblSurnameMsg, lblPhoneMsg,
-                lblEmailMsg, lblAddressMsg, lblPasswordMsg })
+                lblNameMes, lblSurMes, lblPhonMes,
+                lblEmailMes, lblAddressMes, lblPassMes })
             {
                 lbl.Font = msgFont;
                 lbl.BackColor = Color.Transparent;
@@ -108,185 +140,15 @@ namespace Cafe101
                 btn.Cursor = Cursors.Hand;
             }
 
-            // Eye button
+            // Password visibility button
             btnShowPwd.FlatStyle = FlatStyle.Flat;
-            btnShowPwd.FlatAppearance.BorderSize = 0;
-            btnShowPwd.BackColor = Color.Transparent;
-            btnShowPwd.ForeColor = Color.FromArgb(100, 100, 100);
-            btnShowPwd.Font = new Font("Segoe UI", 11);
+            btnShowPwd.FlatAppearance.BorderColor = Color.FromArgb(180, 180, 180);
+            btnShowPwd.FlatAppearance.BorderSize = 1;
+            btnShowPwd.BackColor = Color.White;
+            btnShowPwd.ForeColor = Color.FromArgb(13, 27, 110);
+            btnShowPwd.Font = new Font("Segoe UI", 9, FontStyle.Bold);
+            btnShowPwd.Text = "Show";
             btnShowPwd.Cursor = Cursors.Hand;
-            btnShowPwd.Text = "👁";
-        }
-
-        // ---------------------------------------------------------------
-        // LAYOUT
-        // ---------------------------------------------------------------
-        private void CentreControls()
-        {
-            int formW = this.ClientSize.Width;
-            int formH = this.ClientSize.Height;
-
-            // Card dimensions — narrow centred column
-            int cardW = Math.Min(520, (int)(formW * 0.45));
-            int cardX = (formW - cardW) / 2;
-            int inputH = 36;
-            int halfW = (cardW - 12) / 2;
-            int labelH = 20;
-            int msgH = 16;
-            int gap = 14;  // space between fields
-            Font labelFont = new Font("Segoe UI", 9, FontStyle.Regular);
-
-            // ── LOGO ──────────────────────────────────────────
-            int logoSize = 80;
-            pictureBox1.Size = new Size(logoSize, logoSize);
-            pictureBox1.Location = new Point(formW / 2 - logoSize / 2, 20);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-
-            // ── TITLE ─────────────────────────────────────────
-            lblTitle.AutoSize = false;
-            lblTitle.Size = new Size(cardW, 32);
-            lblTitle.Location = new Point(cardX, 20 + logoSize + 10);
-            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
-
-            int y = 20 + logoSize + 52;
-
-            // ── FIRST NAME + SURNAME (side by side) ───────────
-            lblFirstName.AutoSize = false;
-            lblFirstName.Font = labelFont;
-            lblFirstName.Size = new Size(halfW, labelH);
-            lblFirstName.Location = new Point(cardX, y);
-
-            lblSurname.AutoSize = false;
-            lblSurname.Font = labelFont;
-            lblSurname.Size = new Size(halfW, labelH);
-            lblSurname.Location = new Point(cardX + halfW + 12, y);
-            y += labelH + 4;
-
-            txtFirstName.Size = new Size(halfW, inputH);
-            txtFirstName.Location = new Point(cardX, y);
-            txtFirstName.BorderStyle = BorderStyle.FixedSingle;
-
-            txtSurname.Size = new Size(halfW, inputH);
-            txtSurname.Location = new Point(cardX + halfW + 12, y);
-            txtSurname.BorderStyle = BorderStyle.FixedSingle;
-            y += inputH + 2;
-
-            lblFirstNameMsg.AutoSize = false;
-            lblFirstNameMsg.Size = new Size(halfW, msgH);
-            lblFirstNameMsg.Location = new Point(cardX, y);
-
-            lblSurnameMsg.AutoSize = false;
-            lblSurnameMsg.Size = new Size(halfW, msgH);
-            lblSurnameMsg.Location = new Point(cardX + halfW + 12, y);
-            y += msgH + gap;
-
-            // ── PHONE ─────────────────────────────────────────
-            lblPhoneNum.AutoSize = false;
-            lblPhoneNum.Font = labelFont;
-            lblPhoneNum.Size = new Size(cardW, labelH);
-            lblPhoneNum.Location = new Point(cardX, y);
-            y += labelH + 4;
-
-            txtPhoneNum.Size = new Size(cardW, inputH);
-            txtPhoneNum.Location = new Point(cardX, y);
-            txtPhoneNum.BorderStyle = BorderStyle.FixedSingle;
-            y += inputH + 2;
-
-            lblPhoneMsg.AutoSize = false;
-            lblPhoneMsg.Size = new Size(cardW, msgH);
-            lblPhoneMsg.Location = new Point(cardX, y);
-            y += msgH + gap;
-
-            // ── EMAIL ─────────────────────────────────────────
-            lblEmail.AutoSize = false;
-            lblEmail.Font = labelFont;
-            lblEmail.Size = new Size(cardW, labelH);
-            lblEmail.Location = new Point(cardX, y);
-            y += labelH + 4;
-
-            txtEmail.Size = new Size(cardW, inputH);
-            txtEmail.Location = new Point(cardX, y);
-            txtEmail.BorderStyle = BorderStyle.FixedSingle;
-            y += inputH + 2;
-
-            lblEmailMsg.AutoSize = false;
-            lblEmailMsg.Size = new Size(cardW, msgH);
-            lblEmailMsg.Location = new Point(cardX, y);
-            y += msgH + gap;
-
-            // ── ADDRESS ───────────────────────────────────────
-            lblAddress.AutoSize = false;
-            lblAddress.Font = labelFont;
-            lblAddress.Size = new Size(cardW, labelH);
-            lblAddress.Location = new Point(cardX, y);
-            y += labelH + 4;
-
-            txtAddress.Size = new Size(cardW, inputH * 2);
-            txtAddress.Location = new Point(cardX, y);
-            txtAddress.BorderStyle = BorderStyle.FixedSingle;
-            y += inputH * 2 + 2;
-
-            lblAddressMsg.AutoSize = false;
-            lblAddressMsg.Size = new Size(cardW, msgH);
-            lblAddressMsg.Location = new Point(cardX, y);
-            y += msgH + gap;
-
-            // ── PASSWORD ──────────────────────────────────────
-            lblPassword.AutoSize = false;
-            lblPassword.Font = labelFont;
-            lblPassword.Size = new Size(cardW, labelH);
-            lblPassword.Location = new Point(cardX, y);
-            y += labelH + 4;
-
-            txtPassword.Size = new Size(cardW, inputH);
-            txtPassword.Location = new Point(cardX, y);
-            txtPassword.BorderStyle = BorderStyle.FixedSingle;
-
-            // Eye button inside password field right edge
-            btnShowPwd.Size = new Size(inputH, inputH);
-            btnShowPwd.Location = new Point(cardX + cardW - inputH, y);
-            btnShowPwd.BringToFront();
-            y += inputH + 2;
-
-            lblPasswordMsg.AutoSize = false;
-            lblPasswordMsg.Size = new Size(cardW, msgH);
-            lblPasswordMsg.Location = new Point(cardX, y);
-            y += msgH + 28;
-
-            // ── BUTTONS ───────────────────────────────────────
-            int btnH = 38;
-            int btnW = (cardW - 12) / 2;
-            int btnGap = 12;
-
-            btnSaveCust.Size = new Size(btnW, btnH);
-            btnSaveCust.Location = new Point(cardX, y);
-
-            btnCanel.Size = new Size(btnW, btnH);
-            btnCanel.Location = new Point(cardX + btnW + btnGap, y);
-            y += btnH + 10;
-
-            btnHome.Size = new Size(btnW, btnH);
-            btnHome.Location = new Point(cardX, y);
-
-            btnHelp.Size = new Size(btnW, btnH);
-            btnHelp.Location = new Point(cardX + btnW + btnGap, y);
-        }
-
-        // ---------------------------------------------------------------
-        // PASSWORD TOGGLE
-        // ---------------------------------------------------------------
-        private void btnShowPwd_Click(object sender, EventArgs e)
-        {
-            if (txtPassword.PasswordChar == '●')
-            {
-                txtPassword.PasswordChar = '\0';
-                btnShowPwd.Text = "🙈";
-            }
-            else
-            {
-                txtPassword.PasswordChar = '●';
-                btnShowPwd.Text = "👁";
-            }
         }
 
         // ---------------------------------------------------------------
@@ -297,20 +159,20 @@ namespace Cafe101
             if (string.IsNullOrWhiteSpace(txtFirstName.Text))
             {
                 txtFirstName.BackColor = Color.FromArgb(255, 220, 220);
-                lblFirstNameMsg.Text = "⚠ Required";
-                lblFirstNameMsg.ForeColor = Color.FromArgb(255, 80, 80);
+                lblNameMes.Text = "⚠ Required";
+                lblNameMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
             if (!txtFirstName.Text.All(char.IsLetter))
             {
                 txtFirstName.BackColor = Color.FromArgb(255, 220, 220);
-                lblFirstNameMsg.Text = "⚠ Letters only";
-                lblFirstNameMsg.ForeColor = Color.FromArgb(255, 80, 80);
+                lblNameMes.Text = "⚠ Letters only";
+                lblNameMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
             txtFirstName.BackColor = Color.FromArgb(220, 245, 220);
-            lblFirstNameMsg.Text = "✓";
-            lblFirstNameMsg.ForeColor = Color.FromArgb(50, 180, 100);
+            lblNameMes.Text = "✓";
+            lblNameMes.ForeColor = Color.FromArgb(50, 180, 100);
             return true;
         }
 
@@ -319,64 +181,67 @@ namespace Cafe101
             if (string.IsNullOrWhiteSpace(txtSurname.Text))
             {
                 txtSurname.BackColor = Color.FromArgb(255, 220, 220);
-                lblSurnameMsg.Text = "⚠ Required";
-                lblSurnameMsg.ForeColor = Color.FromArgb(255, 80, 80);
+                lblSurMes.Text = "⚠ Required";
+                lblSurMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
             if (!txtSurname.Text.All(char.IsLetter))
             {
                 txtSurname.BackColor = Color.FromArgb(255, 220, 220);
-                lblSurnameMsg.Text = "⚠ Letters only";
-                lblSurnameMsg.ForeColor = Color.FromArgb(255, 80, 80);
+                lblSurMes.Text = "⚠ Letters only";
+                lblSurMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
             txtSurname.BackColor = Color.FromArgb(220, 245, 220);
-            lblSurnameMsg.Text = "✓";
-            lblSurnameMsg.ForeColor = Color.FromArgb(50, 180, 100);
+            lblSurMes.Text = "✓";
+            lblSurMes.ForeColor = Color.FromArgb(50, 180, 100);
             return true;
         }
 
         private bool ValidatePhone()
         {
-            if (string.IsNullOrWhiteSpace(txtPhoneNum.Text))
+            if (string.IsNullOrWhiteSpace(txtPhoneNumber.Text))
             {
-                txtPhoneNum.BackColor = Color.FromArgb(255, 220, 220);
-                lblPhoneMsg.Text = "⚠ Required";
-                lblPhoneMsg.ForeColor = Color.FromArgb(255, 80, 80);
+                txtPhoneNumber.BackColor = Color.FromArgb(255, 220, 220);
+                lblPhonMes.Text = "⚠ Required";
+                lblPhonMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
-            if (!txtPhoneNum.Text.All(char.IsDigit) || txtPhoneNum.Text.Length != 10)
+
+            if (!txtPhoneNumber.Text.All(char.IsDigit) ||
+                txtPhoneNumber.Text.Length != 10)
             {
-                txtPhoneNum.BackColor = Color.FromArgb(255, 220, 220);
-                lblPhoneMsg.Text = "⚠ Must be exactly 10 digits";
-                lblPhoneMsg.ForeColor = Color.FromArgb(255, 80, 80);
+                txtPhoneNumber.BackColor = Color.FromArgb(255, 220, 220);
+                lblPhonMes.Text = "⚠ Must be exactly 10 digits";
+                lblPhonMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
-            txtPhoneNum.BackColor = Color.FromArgb(220, 245, 220);
-            lblPhoneMsg.Text = "✓";
-            lblPhoneMsg.ForeColor = Color.FromArgb(50, 180, 100);
+
+            txtPhoneNumber.BackColor = Color.FromArgb(220, 245, 220);
+            lblPhonMes.Text = "✓";
+            lblPhonMes.ForeColor = Color.FromArgb(50, 180, 100);
             return true;
         }
 
         private bool ValidateEmail()
         {
-            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            if (string.IsNullOrWhiteSpace(txtCustEmail.Text))
             {
-                txtEmail.BackColor = Color.FromArgb(255, 220, 220);
-                lblEmailMsg.Text = "⚠ Required";
-                lblEmailMsg.ForeColor = Color.FromArgb(255, 80, 80);
+                txtCustEmail.BackColor = Color.FromArgb(255, 220, 220);
+                lblEmailMes.Text = "⚠ Required";
+                lblEmailMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
-            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            if (!txtCustEmail.Text.Contains("@") || !txtCustEmail.Text.Contains("."))
             {
-                txtEmail.BackColor = Color.FromArgb(255, 220, 220);
-                lblEmailMsg.Text = "⚠ Must contain @ and a dot";
-                lblEmailMsg.ForeColor = Color.FromArgb(255, 80, 80);
+                txtCustEmail.BackColor = Color.FromArgb(255, 220, 220);
+                lblEmailMes.Text = "⚠ Must contain @ and a dot";
+                lblEmailMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
-            txtEmail.BackColor = Color.FromArgb(220, 245, 220);
-            lblEmailMsg.Text = "✓";
-            lblEmailMsg.ForeColor = Color.FromArgb(50, 180, 100);
+            txtCustEmail.BackColor = Color.FromArgb(220, 245, 220);
+            lblEmailMes.Text = "✓";
+            lblEmailMes.ForeColor = Color.FromArgb(50, 180, 100);
             return true;
         }
 
@@ -385,13 +250,13 @@ namespace Cafe101
             if (string.IsNullOrWhiteSpace(txtAddress.Text))
             {
                 txtAddress.BackColor = Color.FromArgb(255, 220, 220);
-                lblAddressMsg.Text = "⚠ Required";
-                lblAddressMsg.ForeColor = Color.FromArgb(255, 80, 80);
+                lblAddressMes.Text = "⚠ Required";
+                lblAddressMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
             txtAddress.BackColor = Color.FromArgb(220, 245, 220);
-            lblAddressMsg.Text = "✓";
-            lblAddressMsg.ForeColor = Color.FromArgb(50, 180, 100);
+            lblAddressMes.Text = "✓";
+            lblAddressMes.ForeColor = Color.FromArgb(50, 180, 100);
             return true;
         }
 
@@ -401,34 +266,34 @@ namespace Cafe101
             if (string.IsNullOrWhiteSpace(pwd))
             {
                 txtPassword.BackColor = Color.FromArgb(255, 220, 220);
-                lblPasswordMsg.Text = "⚠ Required";
-                lblPasswordMsg.ForeColor = Color.FromArgb(255, 80, 80);
+                lblPassMes.Text = "⚠ Required";
+                lblPassMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
             if (pwd.Length < 8)
             {
                 txtPassword.BackColor = Color.FromArgb(255, 220, 220);
-                lblPasswordMsg.Text = "⚠ Minimum 8 characters";
-                lblPasswordMsg.ForeColor = Color.FromArgb(255, 80, 80);
+                lblPassMes.Text = "⚠ Minimum 8 characters";
+                lblPassMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
             if (!pwd.Any(char.IsUpper))
             {
                 txtPassword.BackColor = Color.FromArgb(255, 220, 220);
-                lblPasswordMsg.Text = "⚠ Need 1 uppercase letter";
-                lblPasswordMsg.ForeColor = Color.FromArgb(255, 80, 80);
+                lblPassMes.Text = "⚠ Need 1 uppercase letter";
+                lblPassMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
             if (!pwd.Any(char.IsDigit))
             {
                 txtPassword.BackColor = Color.FromArgb(255, 220, 220);
-                lblPasswordMsg.Text = "⚠ Need at least 1 number";
-                lblPasswordMsg.ForeColor = Color.FromArgb(255, 80, 80);
+                lblPassMes.Text = "⚠ Need at least 1 number";
+                lblPassMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
             txtPassword.BackColor = Color.FromArgb(220, 245, 220);
-            lblPasswordMsg.Text = "✓";
-            lblPasswordMsg.ForeColor = Color.FromArgb(50, 180, 100);
+            lblPassMes.Text = "✓";
+            lblPassMes.ForeColor = Color.FromArgb(50, 180, 100);
             return true;
         }
 
@@ -437,8 +302,8 @@ namespace Cafe101
         // ---------------------------------------------------------------
         private void txtFirstName_TextChanged(object sender, EventArgs e) { ValidateFirstName(); }
         private void txtSurname_TextChanged(object sender, EventArgs e) { ValidateSurname(); }
-        private void txtPhoneNum_TextChanged(object sender, EventArgs e) { ValidatePhone(); }
-        private void txtEmail_TextChanged(object sender, EventArgs e) { ValidateEmail(); }
+        private void txtPhoneNumber_TextChanged(object sender, EventArgs e) { ValidatePhone(); }
+        private void txtCustEmail_TextChanged(object sender, EventArgs e) { ValidateEmail(); }
         private void txtAddress_TextChanged(object sender, EventArgs e) { ValidateAddress(); }
         private void txtPassword_TextChanged(object sender, EventArgs e) { ValidatePassword(); }
 
@@ -454,24 +319,31 @@ namespace Cafe101
             if (!valid)
             {
                 MessageBox.Show("Please fix the errors above before saving.",
-                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    "Validation Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
                 return;
             }
 
             try
             {
-                testCustomerTableAdapter1.Insert(
+                customerTableTableAdapter1.InsertCust(
                     txtFirstName.Text.Trim(),
                     txtSurname.Text.Trim(),
+                    txtPhoneNumber.Text.Trim(),
                     txtAddress.Text.Trim(),
-                    txtEmail.Text.Trim(),
-                    txtPassword.Text.Trim());
-
+                    txtCustEmail.Text.Trim(),
+                    txtPassword.Text.Trim()
+                );
+                
                 MessageBox.Show(
-                    "Customer " + txtFirstName.Text + " " + txtSurname.Text + " added successfully!",
-                    "Customer Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    "Customer " + txtFirstName.Text.Trim() + " " + txtSurname.Text.Trim() + " added successfully!",
+                    "Success",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
 
-                this.Close();
+                ResetForm();
+                LoadCustomers(); // refresh grid AFTER reset so new customer appears
             }
             catch (Exception ex)
             {
@@ -480,14 +352,18 @@ namespace Cafe101
             }
         }
 
+
+
+
         // ---------------------------------------------------------------
         // CANCEL
         // ---------------------------------------------------------------
         private void btnCanel_Click(object sender, EventArgs e)
         {
+            frmNewOrder newOrder = new frmNewOrder();
+            newOrder.Show();
             this.Close();
         }
-
         // ---------------------------------------------------------------
         // HOME
         // ---------------------------------------------------------------
@@ -495,7 +371,7 @@ namespace Cafe101
         {
             frmMain main = new frmMain();
             main.Show();
-            this.Hide();
+            this.Close();
         }
 
         // ---------------------------------------------------------------
@@ -581,29 +457,21 @@ namespace Cafe101
         private void ResetForm()
         {
             txtFirstName.Clear(); txtSurname.Clear();
-            txtPhoneNum.Clear(); txtEmail.Clear();
+            txtPhoneNumber.Clear(); txtCustEmail.Clear();
             txtAddress.Clear(); txtPassword.Clear();
 
             foreach (var txt in new Control[] {
-                txtFirstName, txtSurname, txtPhoneNum,
-                txtEmail, txtAddress, txtPassword })
+                txtFirstName, txtSurname, txtPhoneNumber,
+                txtCustEmail, txtAddress, txtPassword })
                 txt.BackColor = Color.White;
 
             foreach (var lbl in new[] {
-                lblFirstNameMsg, lblSurnameMsg, lblPhoneMsg,
-                lblEmailMsg, lblAddressMsg, lblPasswordMsg })
+                lblNameMes, lblSurMes, lblPhonMes,
+                lblEmailMes, lblAddressMes, lblPassMes })
                 lbl.Text = "";
         }
 
-        // ---------------------------------------------------------------
-        // PICTURE BOX — go home
-        // ---------------------------------------------------------------
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-            frmMain main = new frmMain();
-            main.Show();
-            this.Hide();
-        }
+        //  PICTURE BOX — go home
 
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
@@ -618,13 +486,11 @@ namespace Cafe101
         {
             if (txtPassword.PasswordChar == '*')
             {
-                // Show password
                 txtPassword.PasswordChar = '\0';
                 btnShowPwd.Text = "Hide";
             }
             else
             {
-                // Hide password
                 txtPassword.PasswordChar = '*';
                 btnShowPwd.Text = "Show";
             }

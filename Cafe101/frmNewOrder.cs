@@ -1152,7 +1152,7 @@ namespace Cafe101
         {
             frmAddCustomer newCust = new frmAddCustomer();
             newCust.ShowDialog();
-            this.Hide();
+            this.Close();
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Cafe101;           // or your project's namespace
-using RestaurantSystem; // if frmManageRecipes is in a different namespace
+///using RestaurantSystem; // if frmManageRecipes is in a different namespace
 
 namespace Cafe101
 {
@@ -77,15 +77,15 @@ namespace Cafe101
         {
             foreach (Form frm in Application.OpenForms)
             {
-                if (frm is frmManageCashiers)
+                if (frm is frmManageEmployees)
                 {
                     frm.BringToFront();
                     return;
                 }
             }
-            frmManageCashiers frmCash = new frmManageCashiers();
-          //  frmCash.MdiParent = this;
-            frmCash.Show();
+            frmManageEmployees frmEmp = new frmManageEmployees();
+          //  frmEmp.MdiParent = this;
+            frmEmp.Show();
         }
 
         private void logOutToolStripMenuItem_Click(object sender, EventArgs e)

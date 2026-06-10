@@ -53,7 +53,7 @@
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.button1.Location = new System.Drawing.Point(161, 347);
+            this.button1.Location = new System.Drawing.Point(776, 545);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -63,9 +63,11 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -73,9 +75,9 @@
             this.menuItemNameDataGridViewTextBoxColumn,
             this.totalSoldDataGridViewTextBoxColumn});
             this.dataGridView1.DataSource = this.topSellingItemBindingSource1;
-            this.dataGridView1.Location = new System.Drawing.Point(62, 110);
+            this.dataGridView1.Location = new System.Drawing.Point(3, 1);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(502, 174);
+            this.dataGridView1.Size = new System.Drawing.Size(502, 713);
             this.dataGridView1.TabIndex = 1;
             // 
             // menuItemIDDataGridViewTextBoxColumn
@@ -84,14 +86,12 @@
             this.menuItemIDDataGridViewTextBoxColumn.HeaderText = "MenuItemID";
             this.menuItemIDDataGridViewTextBoxColumn.Name = "menuItemIDDataGridViewTextBoxColumn";
             this.menuItemIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.menuItemIDDataGridViewTextBoxColumn.Width = 90;
             // 
             // menuItemNameDataGridViewTextBoxColumn
             // 
             this.menuItemNameDataGridViewTextBoxColumn.DataPropertyName = "MenuItemName";
             this.menuItemNameDataGridViewTextBoxColumn.HeaderText = "MenuItemName";
             this.menuItemNameDataGridViewTextBoxColumn.Name = "menuItemNameDataGridViewTextBoxColumn";
-            this.menuItemNameDataGridViewTextBoxColumn.Width = 107;
             // 
             // totalSoldDataGridViewTextBoxColumn
             // 
@@ -99,7 +99,6 @@
             this.totalSoldDataGridViewTextBoxColumn.HeaderText = "TotalSold";
             this.totalSoldDataGridViewTextBoxColumn.Name = "totalSoldDataGridViewTextBoxColumn";
             this.totalSoldDataGridViewTextBoxColumn.ReadOnly = true;
-            this.totalSoldDataGridViewTextBoxColumn.Width = 77;
             // 
             // topSellingItemBindingSource1
             // 
@@ -129,13 +128,14 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(350, 60);
+            this.label1.Location = new System.Drawing.Point(771, 76);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(119, 16);
+            this.label1.Size = new System.Drawing.Size(193, 25);
             this.label1.TabIndex = 2;
             this.label1.Text = "Chef\'s Best Sellers";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // topSellingItemTableAdapter1
             // 
@@ -146,7 +146,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1805, 715);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button1);

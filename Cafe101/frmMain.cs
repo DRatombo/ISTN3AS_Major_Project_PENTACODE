@@ -213,5 +213,12 @@ namespace Cafe101
                 SafeLogout();
             }
         }
+
+        private void customersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmManageCustomers frmCust = new frmManageCustomers();      
+            frmCust.Show();
+            this.Hide();
+        }
     }
 }

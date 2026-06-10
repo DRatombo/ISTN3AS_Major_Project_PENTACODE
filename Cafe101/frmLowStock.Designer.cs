@@ -64,9 +64,9 @@
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.button1.Location = new System.Drawing.Point(555, 606);
+            this.button1.Location = new System.Drawing.Point(979, 606);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(128, 39);
+            this.button1.Size = new System.Drawing.Size(128, 30);
             this.button1.TabIndex = 0;
             this.button1.Text = "Back";
             this.button1.UseVisualStyleBackColor = true;
@@ -188,7 +188,7 @@
             this.btnPrintLowStock.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnPrintLowStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrintLowStock.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPrintLowStock.Location = new System.Drawing.Point(1016, 606);
+            this.btnPrintLowStock.Location = new System.Drawing.Point(1162, 606);
             this.btnPrintLowStock.Name = "btnPrintLowStock";
             this.btnPrintLowStock.Size = new System.Drawing.Size(128, 30);
             this.btnPrintLowStock.TabIndex = 8;
@@ -218,7 +218,7 @@
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.button2.Location = new System.Drawing.Point(1259, 606);
+            this.button2.Location = new System.Drawing.Point(1326, 606);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(167, 30);
             this.button2.TabIndex = 10;

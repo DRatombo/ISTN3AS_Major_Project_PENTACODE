@@ -2588,8 +2588,6 @@ namespace Cafe101 {
             
             private global::System.Data.DataColumn columnEmployeeID;
             
-            private global::System.Data.DataColumn columnFirstName;
-            
             private global::System.Data.DataColumn columnOrderType;
             
             private global::System.Data.DataColumn columnOrderDateTime;
@@ -2660,14 +2658,6 @@ namespace Cafe101 {
             public global::System.Data.DataColumn EmployeeIDColumn {
                 get {
                     return this.columnEmployeeID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn FirstNameColumn {
-                get {
-                    return this.columnFirstName;
                 }
             }
             
@@ -2772,13 +2762,12 @@ namespace Cafe101 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public OrderTableRow AddOrderTableRow(int CustomerID, int EmployeeID, string FirstName, string OrderType, System.DateTime OrderDateTime, System.DateTime EventDate, System.TimeSpan EventTime, string OrderStatus, string PaymentMethod, decimal TotalAmountDue, decimal TotalChangeDue) {
+            public OrderTableRow AddOrderTableRow(int CustomerID, int EmployeeID, string OrderType, System.DateTime OrderDateTime, System.DateTime EventDate, System.TimeSpan EventTime, string OrderStatus, string PaymentMethod, decimal TotalAmountDue, decimal TotalChangeDue) {
                 OrderTableRow rowOrderTableRow = ((OrderTableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         CustomerID,
                         EmployeeID,
-                        FirstName,
                         OrderType,
                         OrderDateTime,
                         EventDate,
@@ -2819,7 +2808,6 @@ namespace Cafe101 {
                 this.columnOrderID = base.Columns["OrderID"];
                 this.columnCustomerID = base.Columns["CustomerID"];
                 this.columnEmployeeID = base.Columns["EmployeeID"];
-                this.columnFirstName = base.Columns["FirstName"];
                 this.columnOrderType = base.Columns["OrderType"];
                 this.columnOrderDateTime = base.Columns["OrderDateTime"];
                 this.columnEventDate = base.Columns["EventDate"];
@@ -2839,8 +2827,6 @@ namespace Cafe101 {
                 base.Columns.Add(this.columnCustomerID);
                 this.columnEmployeeID = new global::System.Data.DataColumn("EmployeeID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmployeeID);
-                this.columnFirstName = new global::System.Data.DataColumn("FirstName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFirstName);
                 this.columnOrderType = new global::System.Data.DataColumn("OrderType", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnOrderType);
                 this.columnOrderDateTime = new global::System.Data.DataColumn("OrderDateTime", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -2867,8 +2853,6 @@ namespace Cafe101 {
                 this.columnOrderID.Unique = true;
                 this.columnCustomerID.AllowDBNull = false;
                 this.columnEmployeeID.AllowDBNull = false;
-                this.columnFirstName.AllowDBNull = false;
-                this.columnFirstName.MaxLength = 50;
                 this.columnOrderType.AllowDBNull = false;
                 this.columnOrderType.MaxLength = 10;
                 this.columnOrderDateTime.AllowDBNull = false;
@@ -4205,17 +4189,6 @@ namespace Cafe101 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string FirstName {
-                get {
-                    return ((string)(this[this.tableOrderTable.FirstNameColumn]));
-                }
-                set {
-                    this[this.tableOrderTable.FirstNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string OrderType {
                 get {
                     return ((string)(this[this.tableOrderTable.OrderTypeColumn]));
@@ -4953,7 +4926,7 @@ SELECT CustomerID, FirstName, Surname, Address, Email, Password, Status FROM Cus
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT CustomerID, FirstName, Surname, Address, Email, Password, Status FROM dbo." +
@@ -4961,32 +4934,27 @@ SELECT CustomerID, FirstName, Surname, Address, Email, Password, Status FROM Cus
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM CustomerTable\r\nWHERE        (CustomerID = @CustomerID)";
+            this._commandCollection[1].CommandText = "SELECT *\r\nFROM CustomerTable\r\nWHERE FirstName LIKE @NAME + \'%\'\r\n   OR Surname LIK" +
+                "E @NAME + \'%\'";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NAME", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT *\r\nFROM CustomerTable\r\nWHERE FirstName LIKE @NAME + \'%\'\r\n   OR Surname LIK" +
-                "E @NAME + \'%\'";
-            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NAME", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "INSERT INTO CustomerTable\r\n(\r\n    FirstName,\r\n    Surname,\r\n    Address,\r\n    Ema" +
+            this._commandCollection[2].CommandText = "INSERT INTO CustomerTable\r\n(\r\n    FirstName,\r\n    Surname,\r\n    Address,\r\n    Ema" +
                 "il,\r\n    Password,\r\n    Status\r\n)\r\nVALUES\r\n(\r\n    @FirstName,\r\n    @Surname,\r\n  " +
                 "  @Address,\r\n    @Email,\r\n    @Password,\r\n    \'Active\'\r\n)";
-            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FirstName", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Surname", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Surname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Address", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT *\r\nFROM CustomerTable\r\nWHERE FirstName LIKE @Search + \'%\'\r\n   OR Surname L" +
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FirstName", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Surname", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Surname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Address", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "SELECT *\r\nFROM CustomerTable\r\nWHERE FirstName LIKE @Search + \'%\'\r\n   OR Surname L" +
                 "IKE @Search + \'%\'";
-            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Search", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Search", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5018,7 +4986,7 @@ SELECT CustomerID, FirstName, Surname, Address, Email, Password, Status FROM Cus
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByCustName(dsCafe101Hub.CustomerTableDataTable dataTable, string NAME) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((NAME == null)) {
                 throw new global::System.ArgumentNullException("NAME");
             }
@@ -5037,7 +5005,7 @@ SELECT CustomerID, FirstName, Surname, Address, Email, Password, Status FROM Cus
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual dsCafe101Hub.CustomerTableDataTable GetDataBy(string NAME) {
-            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((NAME == null)) {
                 throw new global::System.ArgumentNullException("NAME");
             }
@@ -5054,7 +5022,7 @@ SELECT CustomerID, FirstName, Surname, Address, Email, Password, Status FROM Cus
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int SearchCust(dsCafe101Hub.CustomerTableDataTable dataTable, string Search) {
-            this.Adapter.SelectCommand = this.CommandCollection[4];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((Search == null)) {
                 throw new global::System.ArgumentNullException("Search");
             }
@@ -5073,7 +5041,7 @@ SELECT CustomerID, FirstName, Surname, Address, Email, Password, Status FROM Cus
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual dsCafe101Hub.CustomerTableDataTable GetDataBy11(string Search) {
-            this.Adapter.SelectCommand = this.CommandCollection[4];
+            this.Adapter.SelectCommand = this.CommandCollection[3];
             if ((Search == null)) {
                 throw new global::System.ArgumentNullException("Search");
             }
@@ -5335,33 +5303,9 @@ SELECT CustomerID, FirstName, Surname, Address, Email, Password, Status FROM Cus
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
-        public virtual int DeleteByID(int CustomerID) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
-            command.Parameters[0].Value = ((int)(CustomerID));
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
-            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                command.Connection.Open();
-            }
-            int returnValue;
-            try {
-                returnValue = command.ExecuteNonQuery();
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    command.Connection.Close();
-                }
-            }
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual int InsertCust(string FirstName, string Surname, string Address, string Email, string Password) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
             if ((FirstName == null)) {
                 throw new global::System.ArgumentNullException("FirstName");
             }
@@ -7557,7 +7501,6 @@ SELECT OrderID, MenuItemID, QuantityOrdered, Subtotal FROM OrderItemTable WHERE 
             tableMapping.ColumnMappings.Add("OrderID", "OrderID");
             tableMapping.ColumnMappings.Add("CustomerID", "CustomerID");
             tableMapping.ColumnMappings.Add("EmployeeID", "EmployeeID");
-            tableMapping.ColumnMappings.Add("FirstName", "FirstName");
             tableMapping.ColumnMappings.Add("OrderType", "OrderType");
             tableMapping.ColumnMappings.Add("OrderDateTime", "OrderDateTime");
             tableMapping.ColumnMappings.Add("EventDate", "EventDate");
@@ -7569,12 +7512,11 @@ SELECT OrderID, MenuItemID, QuantityOrdered, Subtotal FROM OrderItemTable WHERE 
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[OrderTable] WHERE (([OrderID] = @Original_OrderID) AND ([CustomerID] = @Original_CustomerID) AND ([EmployeeID] = @Original_EmployeeID) AND ([FirstName] = @Original_FirstName) AND ([OrderType] = @Original_OrderType) AND ([OrderDateTime] = @Original_OrderDateTime) AND ((@IsNull_EventDate = 1 AND [EventDate] IS NULL) OR ([EventDate] = @Original_EventDate)) AND ((@IsNull_EventTime = 1 AND [EventTime] IS NULL) OR ([EventTime] = @Original_EventTime)) AND ([OrderStatus] = @Original_OrderStatus) AND ([PaymentMethod] = @Original_PaymentMethod) AND ([TotalAmountDue] = @Original_TotalAmountDue) AND ([TotalChangeDue] = @Original_TotalChangeDue))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[OrderTable] WHERE (([OrderID] = @Original_OrderID) AND ([CustomerID] = @Original_CustomerID) AND ([EmployeeID] = @Original_EmployeeID) AND ([OrderType] = @Original_OrderType) AND ([OrderDateTime] = @Original_OrderDateTime) AND ((@IsNull_EventDate = 1 AND [EventDate] IS NULL) OR ([EventDate] = @Original_EventDate)) AND ((@IsNull_EventTime = 1 AND [EventTime] IS NULL) OR ([EventTime] = @Original_EventTime)) AND ([OrderStatus] = @Original_OrderStatus) AND ([PaymentMethod] = @Original_PaymentMethod) AND ([TotalAmountDue] = @Original_TotalAmountDue) AND ([TotalChangeDue] = @Original_TotalChangeDue))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OrderID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CustomerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FirstName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OrderType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OrderDateTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderDateTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_EventDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EventDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -7587,12 +7529,11 @@ SELECT OrderID, MenuItemID, QuantityOrdered, Subtotal FROM OrderItemTable WHERE 
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_TotalChangeDue", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "TotalChangeDue", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[OrderTable] ([CustomerID], [EmployeeID], [FirstName], [OrderType], [OrderDateTime], [EventDate], [EventTime], [OrderStatus], [PaymentMethod], [TotalAmountDue], [TotalChangeDue]) VALUES (@CustomerID, @EmployeeID, @FirstName, @OrderType, @OrderDateTime, @EventDate, @EventTime, @OrderStatus, @PaymentMethod, @TotalAmountDue, @TotalChangeDue);
-SELECT OrderID, CustomerID, EmployeeID, FirstName, OrderType, OrderDateTime, EventDate, EventTime, OrderStatus, PaymentMethod, TotalAmountDue, TotalChangeDue FROM OrderTable WHERE (OrderID = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[OrderTable] ([CustomerID], [EmployeeID], [OrderType], [OrderDateTime], [EventDate], [EventTime], [OrderStatus], [PaymentMethod], [TotalAmountDue], [TotalChangeDue]) VALUES (@CustomerID, @EmployeeID, @OrderType, @OrderDateTime, @EventDate, @EventTime, @OrderStatus, @PaymentMethod, @TotalAmountDue, @TotalChangeDue);
+SELECT OrderID, CustomerID, EmployeeID, OrderType, OrderDateTime, EventDate, EventTime, OrderStatus, PaymentMethod, TotalAmountDue, TotalChangeDue FROM OrderTable WHERE (OrderID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FirstName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderDateTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderDateTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EventDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EventDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -7603,12 +7544,11 @@ SELECT OrderID, CustomerID, EmployeeID, FirstName, OrderType, OrderDateTime, Eve
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalChangeDue", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "TotalChangeDue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[OrderTable] SET [CustomerID] = @CustomerID, [EmployeeID] = @EmployeeID, [FirstName] = @FirstName, [OrderType] = @OrderType, [OrderDateTime] = @OrderDateTime, [EventDate] = @EventDate, [EventTime] = @EventTime, [OrderStatus] = @OrderStatus, [PaymentMethod] = @PaymentMethod, [TotalAmountDue] = @TotalAmountDue, [TotalChangeDue] = @TotalChangeDue WHERE (([OrderID] = @Original_OrderID) AND ([CustomerID] = @Original_CustomerID) AND ([EmployeeID] = @Original_EmployeeID) AND ([FirstName] = @Original_FirstName) AND ([OrderType] = @Original_OrderType) AND ([OrderDateTime] = @Original_OrderDateTime) AND ((@IsNull_EventDate = 1 AND [EventDate] IS NULL) OR ([EventDate] = @Original_EventDate)) AND ((@IsNull_EventTime = 1 AND [EventTime] IS NULL) OR ([EventTime] = @Original_EventTime)) AND ([OrderStatus] = @Original_OrderStatus) AND ([PaymentMethod] = @Original_PaymentMethod) AND ([TotalAmountDue] = @Original_TotalAmountDue) AND ([TotalChangeDue] = @Original_TotalChangeDue));
-SELECT OrderID, CustomerID, EmployeeID, FirstName, OrderType, OrderDateTime, EventDate, EventTime, OrderStatus, PaymentMethod, TotalAmountDue, TotalChangeDue FROM OrderTable WHERE (OrderID = @OrderID)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[OrderTable] SET [CustomerID] = @CustomerID, [EmployeeID] = @EmployeeID, [OrderType] = @OrderType, [OrderDateTime] = @OrderDateTime, [EventDate] = @EventDate, [EventTime] = @EventTime, [OrderStatus] = @OrderStatus, [PaymentMethod] = @PaymentMethod, [TotalAmountDue] = @TotalAmountDue, [TotalChangeDue] = @TotalChangeDue WHERE (([OrderID] = @Original_OrderID) AND ([CustomerID] = @Original_CustomerID) AND ([EmployeeID] = @Original_EmployeeID) AND ([OrderType] = @Original_OrderType) AND ([OrderDateTime] = @Original_OrderDateTime) AND ((@IsNull_EventDate = 1 AND [EventDate] IS NULL) OR ([EventDate] = @Original_EventDate)) AND ((@IsNull_EventTime = 1 AND [EventTime] IS NULL) OR ([EventTime] = @Original_EventTime)) AND ([OrderStatus] = @Original_OrderStatus) AND ([PaymentMethod] = @Original_PaymentMethod) AND ([TotalAmountDue] = @Original_TotalAmountDue) AND ([TotalChangeDue] = @Original_TotalChangeDue));
+SELECT OrderID, CustomerID, EmployeeID, OrderType, OrderDateTime, EventDate, EventTime, OrderStatus, PaymentMethod, TotalAmountDue, TotalChangeDue FROM OrderTable WHERE (OrderID = @OrderID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FirstName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderDateTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderDateTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EventDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EventDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -7620,7 +7560,6 @@ SELECT OrderID, CustomerID, EmployeeID, FirstName, OrderType, OrderDateTime, Eve
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OrderID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CustomerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_EmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_FirstName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OrderType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderType", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_OrderDateTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderDateTime", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_EventDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EventDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -7647,9 +7586,9 @@ SELECT OrderID, CustomerID, EmployeeID, FirstName, OrderType, OrderDateTime, Eve
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[3];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT OrderID, CustomerID, EmployeeID, FirstName, OrderType, OrderDateTime, Even" +
-                "tDate, EventTime, OrderStatus, PaymentMethod, TotalAmountDue, TotalChangeDue FRO" +
-                "M dbo.OrderTable";
+            this._commandCollection[0].CommandText = "SELECT OrderID, CustomerID, EmployeeID, OrderType, OrderDateTime, EventDate, Even" +
+                "tTime, OrderStatus, PaymentMethod, TotalAmountDue, TotalChangeDue FROM dbo.Order" +
+                "Table";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -7660,45 +7599,20 @@ SELECT OrderID, CustomerID, EmployeeID, FirstName, OrderType, OrderDateTime, Eve
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = @"INSERT INTO OrderTable
-(
-    CustomerID,
-    EmployeeID,
-    OrderType,
-    OrderDateTime,
-    EventDate,
-    EventTime,
-    OrderStatus,
-    PaymentMethod,
-    TotalAmountDue,
-    TotalChangeDue
-)
-VALUES
-(
-    @CustomerID,
-    @EmployeeID,
-    @OrderType,
-    @OrderDateTime,
-    @EventDate,
-    @EventTime,
-    @OrderStatus,
-    @PaymentMethod,
-    @TotalAmountDue,
-    @TotalChangeDue
-)
-
+                         (CustomerID, EmployeeID, OrderType, OrderDateTime, EventDate, EventTime, OrderStatus, PaymentMethod, TotalAmountDue, TotalChangeDue)
+VALUES        (@CustomerID,@EmployeeID,@OrderType,@OrderDateTime,@EventDate,@EventTime,@OrderStatus,@PaymentMethod,@TotalAmountDue,@TotalChangeDue); 
 SELECT SCOPE_IDENTITY()";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FirstName", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "FirstName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderType", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderDateTime", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderDateTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EventDate", global::System.Data.SqlDbType.Date, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EventDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EventTime", global::System.Data.SqlDbType.Time, 0, global::System.Data.ParameterDirection.Input, 0, 0, "EventTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderStatus", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "OrderStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PaymentMethod", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentMethod", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalAmountDue", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "TotalAmountDue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalChangeDue", global::System.Data.SqlDbType.Decimal, 0, global::System.Data.ParameterDirection.Input, 10, 2, "TotalChangeDue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CustomerID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "CustomerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EmployeeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "EmployeeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderType", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, "OrderType", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderDateTime", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "OrderDateTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EventDate", global::System.Data.SqlDbType.Date, 3, global::System.Data.ParameterDirection.Input, 0, 0, "EventDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@EventTime", global::System.Data.SqlDbType.Time, 5, global::System.Data.ParameterDirection.Input, 0, 0, "EventTime", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@OrderStatus", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "OrderStatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PaymentMethod", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "PaymentMethod", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalAmountDue", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 10, 2, "TotalAmountDue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@TotalChangeDue", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 10, 2, "TotalChangeDue", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7756,6 +7670,100 @@ SELECT SCOPE_IDENTITY()";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int SaveOrder(dsCafe101Hub.OrderTableDataTable dataTable, int CustomerID, int EmployeeID, string OrderType, System.DateTime OrderDateTime, string EventDate, string EventTime, string OrderStatus, string PaymentMethod, decimal TotalAmountDue, decimal TotalChangeDue) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(CustomerID));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((int)(EmployeeID));
+            if ((OrderType == null)) {
+                throw new global::System.ArgumentNullException("OrderType");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(OrderType));
+            }
+            this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(OrderDateTime));
+            if ((EventDate == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(EventDate));
+            }
+            if ((EventTime == null)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(EventTime));
+            }
+            if ((OrderStatus == null)) {
+                throw new global::System.ArgumentNullException("OrderStatus");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(OrderStatus));
+            }
+            if ((PaymentMethod == null)) {
+                throw new global::System.ArgumentNullException("PaymentMethod");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((string)(PaymentMethod));
+            }
+            this.Adapter.SelectCommand.Parameters[8].Value = ((decimal)(TotalAmountDue));
+            this.Adapter.SelectCommand.Parameters[9].Value = ((decimal)(TotalChangeDue));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual dsCafe101Hub.OrderTableDataTable GetDataBy(int CustomerID, int EmployeeID, string OrderType, System.DateTime OrderDateTime, string EventDate, string EventTime, string OrderStatus, string PaymentMethod, decimal TotalAmountDue, decimal TotalChangeDue) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(CustomerID));
+            this.Adapter.SelectCommand.Parameters[1].Value = ((int)(EmployeeID));
+            if ((OrderType == null)) {
+                throw new global::System.ArgumentNullException("OrderType");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[2].Value = ((string)(OrderType));
+            }
+            this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(OrderDateTime));
+            if ((EventDate == null)) {
+                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(EventDate));
+            }
+            if ((EventTime == null)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((string)(EventTime));
+            }
+            if ((OrderStatus == null)) {
+                throw new global::System.ArgumentNullException("OrderStatus");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((string)(OrderStatus));
+            }
+            if ((PaymentMethod == null)) {
+                throw new global::System.ArgumentNullException("PaymentMethod");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[7].Value = ((string)(PaymentMethod));
+            }
+            this.Adapter.SelectCommand.Parameters[8].Value = ((decimal)(TotalAmountDue));
+            this.Adapter.SelectCommand.Parameters[9].Value = ((decimal)(TotalChangeDue));
+            dsCafe101Hub.OrderTableDataTable dataTable = new dsCafe101Hub.OrderTableDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual int Update(dsCafe101Hub.OrderTableDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
@@ -7786,53 +7794,47 @@ SELECT SCOPE_IDENTITY()";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_OrderID, int Original_CustomerID, int Original_EmployeeID, string Original_FirstName, string Original_OrderType, System.DateTime Original_OrderDateTime, global::System.Nullable<global::System.DateTime> Original_EventDate, global::System.Nullable<global::System.TimeSpan> Original_EventTime, string Original_OrderStatus, string Original_PaymentMethod, decimal Original_TotalAmountDue, decimal Original_TotalChangeDue) {
+        public virtual int Delete(int Original_OrderID, int Original_CustomerID, int Original_EmployeeID, string Original_OrderType, System.DateTime Original_OrderDateTime, global::System.Nullable<global::System.DateTime> Original_EventDate, global::System.Nullable<global::System.TimeSpan> Original_EventTime, string Original_OrderStatus, string Original_PaymentMethod, decimal Original_TotalAmountDue, decimal Original_TotalChangeDue) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_OrderID));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((int)(Original_CustomerID));
             this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_EmployeeID));
-            if ((Original_FirstName == null)) {
-                throw new global::System.ArgumentNullException("Original_FirstName");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_FirstName));
-            }
             if ((Original_OrderType == null)) {
                 throw new global::System.ArgumentNullException("Original_OrderType");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_OrderType));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_OrderType));
             }
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((System.DateTime)(Original_OrderDateTime));
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_OrderDateTime));
             if ((Original_EventDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((System.DateTime)(Original_EventDate.Value));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_EventDate.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             if ((Original_EventTime.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((System.TimeSpan)(Original_EventTime.Value));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((System.TimeSpan)(Original_EventTime.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
             if ((Original_OrderStatus == null)) {
                 throw new global::System.ArgumentNullException("Original_OrderStatus");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_OrderStatus));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_OrderStatus));
             }
             if ((Original_PaymentMethod == null)) {
                 throw new global::System.ArgumentNullException("Original_PaymentMethod");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((string)(Original_PaymentMethod));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_PaymentMethod));
             }
-            this.Adapter.DeleteCommand.Parameters[12].Value = ((decimal)(Original_TotalAmountDue));
-            this.Adapter.DeleteCommand.Parameters[13].Value = ((decimal)(Original_TotalChangeDue));
+            this.Adapter.DeleteCommand.Parameters[11].Value = ((decimal)(Original_TotalAmountDue));
+            this.Adapter.DeleteCommand.Parameters[12].Value = ((decimal)(Original_TotalChangeDue));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7853,48 +7855,42 @@ SELECT SCOPE_IDENTITY()";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int CustomerID, int EmployeeID, string FirstName, string OrderType, System.DateTime OrderDateTime, global::System.Nullable<global::System.DateTime> EventDate, global::System.Nullable<global::System.TimeSpan> EventTime, string OrderStatus, string PaymentMethod, decimal TotalAmountDue, decimal TotalChangeDue) {
+        public virtual int Insert(int CustomerID, int EmployeeID, string OrderType, System.DateTime OrderDateTime, global::System.Nullable<global::System.DateTime> EventDate, global::System.Nullable<global::System.TimeSpan> EventTime, string OrderStatus, string PaymentMethod, decimal TotalAmountDue, decimal TotalChangeDue) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(CustomerID));
             this.Adapter.InsertCommand.Parameters[1].Value = ((int)(EmployeeID));
-            if ((FirstName == null)) {
-                throw new global::System.ArgumentNullException("FirstName");
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(FirstName));
-            }
             if ((OrderType == null)) {
                 throw new global::System.ArgumentNullException("OrderType");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(OrderType));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(OrderType));
             }
-            this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(OrderDateTime));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(OrderDateTime));
             if ((EventDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((System.DateTime)(EventDate.Value));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(EventDate.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((EventTime.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((System.TimeSpan)(EventTime.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((EventTime.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((System.TimeSpan)(EventTime.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             if ((OrderStatus == null)) {
                 throw new global::System.ArgumentNullException("OrderStatus");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(OrderStatus));
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(OrderStatus));
             }
             if ((PaymentMethod == null)) {
                 throw new global::System.ArgumentNullException("PaymentMethod");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(PaymentMethod));
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(PaymentMethod));
             }
-            this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(TotalAmountDue));
-            this.Adapter.InsertCommand.Parameters[10].Value = ((decimal)(TotalChangeDue));
+            this.Adapter.InsertCommand.Parameters[8].Value = ((decimal)(TotalAmountDue));
+            this.Adapter.InsertCommand.Parameters[9].Value = ((decimal)(TotalChangeDue));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -7918,7 +7914,6 @@ SELECT SCOPE_IDENTITY()";
         public virtual int Update(
                     int CustomerID, 
                     int EmployeeID, 
-                    string FirstName, 
                     string OrderType, 
                     System.DateTime OrderDateTime, 
                     global::System.Nullable<global::System.DateTime> EventDate, 
@@ -7930,7 +7925,6 @@ SELECT SCOPE_IDENTITY()";
                     int Original_OrderID, 
                     int Original_CustomerID, 
                     int Original_EmployeeID, 
-                    string Original_FirstName, 
                     string Original_OrderType, 
                     System.DateTime Original_OrderDateTime, 
                     global::System.Nullable<global::System.DateTime> Original_EventDate, 
@@ -7942,92 +7936,80 @@ SELECT SCOPE_IDENTITY()";
                     int OrderID) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(CustomerID));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(EmployeeID));
-            if ((FirstName == null)) {
-                throw new global::System.ArgumentNullException("FirstName");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(FirstName));
-            }
             if ((OrderType == null)) {
                 throw new global::System.ArgumentNullException("OrderType");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(OrderType));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(OrderType));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(OrderDateTime));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(OrderDateTime));
             if ((EventDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(EventDate.Value));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(EventDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((EventTime.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((System.TimeSpan)(EventTime.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((EventTime.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((System.TimeSpan)(EventTime.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             if ((OrderStatus == null)) {
                 throw new global::System.ArgumentNullException("OrderStatus");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(OrderStatus));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(OrderStatus));
             }
             if ((PaymentMethod == null)) {
                 throw new global::System.ArgumentNullException("PaymentMethod");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(PaymentMethod));
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(PaymentMethod));
             }
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(TotalAmountDue));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((decimal)(TotalChangeDue));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_OrderID));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_CustomerID));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_EmployeeID));
-            if ((Original_FirstName == null)) {
-                throw new global::System.ArgumentNullException("Original_FirstName");
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_FirstName));
-            }
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((decimal)(TotalAmountDue));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((decimal)(TotalChangeDue));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_OrderID));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_CustomerID));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_EmployeeID));
             if ((Original_OrderType == null)) {
                 throw new global::System.ArgumentNullException("Original_OrderType");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_OrderType));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_OrderType));
             }
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(Original_OrderDateTime));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((System.DateTime)(Original_OrderDateTime));
             if ((Original_EventDate.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((System.DateTime)(Original_EventDate.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            if ((Original_EventTime.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((System.DateTime)(Original_EventDate.Value));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((System.TimeSpan)(Original_EventTime.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
-            if ((Original_EventTime.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((System.TimeSpan)(Original_EventTime.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
-            }
             if ((Original_OrderStatus == null)) {
                 throw new global::System.ArgumentNullException("Original_OrderStatus");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_OrderStatus));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_OrderStatus));
             }
             if ((Original_PaymentMethod == null)) {
                 throw new global::System.ArgumentNullException("Original_PaymentMethod");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_PaymentMethod));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_PaymentMethod));
             }
-            this.Adapter.UpdateCommand.Parameters[23].Value = ((decimal)(Original_TotalAmountDue));
-            this.Adapter.UpdateCommand.Parameters[24].Value = ((decimal)(Original_TotalChangeDue));
-            this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(OrderID));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((decimal)(Original_TotalAmountDue));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((decimal)(Original_TotalChangeDue));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(OrderID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8051,7 +8033,6 @@ SELECT SCOPE_IDENTITY()";
         public virtual int Update(
                     int CustomerID, 
                     int EmployeeID, 
-                    string FirstName, 
                     string OrderType, 
                     System.DateTime OrderDateTime, 
                     global::System.Nullable<global::System.DateTime> EventDate, 
@@ -8063,7 +8044,6 @@ SELECT SCOPE_IDENTITY()";
                     int Original_OrderID, 
                     int Original_CustomerID, 
                     int Original_EmployeeID, 
-                    string Original_FirstName, 
                     string Original_OrderType, 
                     System.DateTime Original_OrderDateTime, 
                     global::System.Nullable<global::System.DateTime> Original_EventDate, 
@@ -8072,71 +8052,7 @@ SELECT SCOPE_IDENTITY()";
                     string Original_PaymentMethod, 
                     decimal Original_TotalAmountDue, 
                     decimal Original_TotalChangeDue) {
-            return this.Update(CustomerID, EmployeeID, FirstName, OrderType, OrderDateTime, EventDate, EventTime, OrderStatus, PaymentMethod, TotalAmountDue, TotalChangeDue, Original_OrderID, Original_CustomerID, Original_EmployeeID, Original_FirstName, Original_OrderType, Original_OrderDateTime, Original_EventDate, Original_EventTime, Original_OrderStatus, Original_PaymentMethod, Original_TotalAmountDue, Original_TotalChangeDue, Original_OrderID);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertOrder(int CustomerID, int EmployeeID, string FirstName, string OrderType, System.DateTime OrderDateTime, global::System.Nullable<global::System.DateTime> EventDate, global::System.Nullable<global::System.TimeSpan> EventTime, string OrderStatus, string PaymentMethod, decimal TotalAmountDue, decimal TotalChangeDue) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
-            command.Parameters[0].Value = ((int)(CustomerID));
-            command.Parameters[1].Value = ((int)(EmployeeID));
-            if ((FirstName == null)) {
-                throw new global::System.ArgumentNullException("FirstName");
-            }
-            else {
-                command.Parameters[2].Value = ((string)(FirstName));
-            }
-            if ((OrderType == null)) {
-                throw new global::System.ArgumentNullException("OrderType");
-            }
-            else {
-                command.Parameters[3].Value = ((string)(OrderType));
-            }
-            command.Parameters[4].Value = ((System.DateTime)(OrderDateTime));
-            if ((EventDate.HasValue == true)) {
-                command.Parameters[5].Value = ((System.DateTime)(EventDate.Value));
-            }
-            else {
-                command.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((EventTime.HasValue == true)) {
-                command.Parameters[6].Value = ((System.TimeSpan)(EventTime.Value));
-            }
-            else {
-                command.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((OrderStatus == null)) {
-                throw new global::System.ArgumentNullException("OrderStatus");
-            }
-            else {
-                command.Parameters[7].Value = ((string)(OrderStatus));
-            }
-            if ((PaymentMethod == null)) {
-                throw new global::System.ArgumentNullException("PaymentMethod");
-            }
-            else {
-                command.Parameters[8].Value = ((string)(PaymentMethod));
-            }
-            command.Parameters[9].Value = ((decimal)(TotalAmountDue));
-            command.Parameters[10].Value = ((decimal)(TotalChangeDue));
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
-            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                command.Connection.Open();
-            }
-            int returnValue;
-            try {
-                returnValue = command.ExecuteNonQuery();
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    command.Connection.Close();
-                }
-            }
-            return returnValue;
+            return this.Update(CustomerID, EmployeeID, OrderType, OrderDateTime, EventDate, EventTime, OrderStatus, PaymentMethod, TotalAmountDue, TotalChangeDue, Original_OrderID, Original_CustomerID, Original_EmployeeID, Original_OrderType, Original_OrderDateTime, Original_EventDate, Original_EventTime, Original_OrderStatus, Original_PaymentMethod, Original_TotalAmountDue, Original_TotalChangeDue, Original_OrderID);
         }
     }
     

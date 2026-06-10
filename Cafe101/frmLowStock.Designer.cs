@@ -49,6 +49,7 @@
             this.btnPrintLowStock = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ingredientTableTableAdapter = new Cafe101.dsCafe101HubTableAdapters.IngredientTableTableAdapter();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ingredientTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
@@ -75,6 +76,8 @@
             // dataGridView1
             // 
             this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.descriptionDataGridViewTextBoxColumn,
@@ -94,24 +97,28 @@
             this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
             this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
             this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            this.descriptionDataGridViewTextBoxColumn.Width = 129;
             // 
             // quantityOnHandDataGridViewTextBoxColumn
             // 
             this.quantityOnHandDataGridViewTextBoxColumn.DataPropertyName = "QuantityOnHand";
             this.quantityOnHandDataGridViewTextBoxColumn.HeaderText = "QuantityOnHand";
             this.quantityOnHandDataGridViewTextBoxColumn.Name = "quantityOnHandDataGridViewTextBoxColumn";
+            this.quantityOnHandDataGridViewTextBoxColumn.Width = 175;
             // 
             // restockLevelDataGridViewTextBoxColumn
             // 
             this.restockLevelDataGridViewTextBoxColumn.DataPropertyName = "RestockLevel";
             this.restockLevelDataGridViewTextBoxColumn.HeaderText = "RestockLevel";
             this.restockLevelDataGridViewTextBoxColumn.Name = "restockLevelDataGridViewTextBoxColumn";
+            this.restockLevelDataGridViewTextBoxColumn.Width = 147;
             // 
             // costPriceDataGridViewTextBoxColumn
             // 
             this.costPriceDataGridViewTextBoxColumn.DataPropertyName = "CostPrice";
             this.costPriceDataGridViewTextBoxColumn.HeaderText = "CostPrice";
             this.costPriceDataGridViewTextBoxColumn.Name = "costPriceDataGridViewTextBoxColumn";
+            this.costPriceDataGridViewTextBoxColumn.Width = 115;
             // 
             // ingredientTableBindingSource
             // 
@@ -197,7 +204,7 @@
             this.btnPrintLowStock.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnPrintLowStock.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrintLowStock.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnPrintLowStock.Location = new System.Drawing.Point(1025, 606);
+            this.btnPrintLowStock.Location = new System.Drawing.Point(756, 606);
             this.btnPrintLowStock.Name = "btnPrintLowStock";
             this.btnPrintLowStock.Size = new System.Drawing.Size(225, 39);
             this.btnPrintLowStock.TabIndex = 8;
@@ -222,12 +229,26 @@
             // 
             this.ingredientTableTableAdapter.ClearBeforeFill = true;
             // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.button2.Location = new System.Drawing.Point(1049, 607);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(167, 38);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "Restock Ingredients";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // frmLowStock
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(1802, 785);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnPrintLowStock);
             this.Controls.Add(this.textBox1);
@@ -274,5 +295,6 @@
         private dsCafe101Hub dsCafe101Hub;
         private System.Windows.Forms.BindingSource ingredientTableBindingSource;
         private dsCafe101HubTableAdapters.IngredientTableTableAdapter ingredientTableTableAdapter;
+        private System.Windows.Forms.Button button2;
     }
 }

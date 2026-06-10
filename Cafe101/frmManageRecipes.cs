@@ -7,6 +7,8 @@ namespace Cafe101
 {
     public partial class frmManageRecipes : Form
     {
+        private DataTable originalRecipesData;
+
         public frmManageRecipes()
         {
             InitializeComponent();
@@ -14,19 +16,15 @@ namespace Cafe101
 
         private void frmManageRecipes_Load(object sender, EventArgs e)
         {
-            // Live connection only - no DataSets
             LoadAllRecipes();
             LoadMenuItemsCombo();
             LoadIngredientsCombo();
 
-            // Manually attach event handler for menu item selection
             this.cboMenuItems.SelectedIndexChanged += cboMenuItems_SelectedIndexChanged;
-
-            // Attach cell click event for the DataGridView
             this.dgvRecipe.CellClick += dgvRecipe_CellClick;
+            this.txtSearch.TextChanged += txtSearch_TextChanged;
         }
 
-        // Show ALL recipes (MenuItemName, Ingredient Description, QuantityNeeded)
         private void LoadAllRecipes()
         {
             try
@@ -40,11 +38,10 @@ namespace Cafe101
                 using (SqlConnection conn = DbHelper.GetConnection())
                 {
                     SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    dgvRecipe.DataSource = dt;
+                    originalRecipesData = new DataTable();
+                    da.Fill(originalRecipesData);
+                    dgvRecipe.DataSource = originalRecipesData;
 
-                    // Hide the ID columns if they exist (optional)
                     if (dgvRecipe.Columns["MenuItemID"] != null)
                         dgvRecipe.Columns["MenuItemID"].Visible = false;
                     if (dgvRecipe.Columns["IngredientID"] != null)
@@ -55,6 +52,35 @@ namespace Cafe101
             {
                 MessageBox.Show($"Error loading recipes: {ex.Message}");
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (originalRecipesData == null) return;
+
+            string searchTerm = txtSearch.Text.Trim();
+
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                dgvRecipe.DataSource = originalRecipesData;
+            }
+            else
+            {
+                DataView dv = originalRecipesData.DefaultView;
+                dv.RowFilter = $"MenuItemName LIKE '%{searchTerm}%' OR Ingredient LIKE '%{searchTerm}%'";
+                dgvRecipe.DataSource = dv;
+            }
+
+            if (dgvRecipe.Columns["MenuItemID"] != null)
+                dgvRecipe.Columns["MenuItemID"].Visible = false;
+            if (dgvRecipe.Columns["IngredientID"] != null)
+                dgvRecipe.Columns["IngredientID"].Visible = false;
+        }
+
+        private void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+            LoadAllRecipes();
         }
 
         private void LoadMenuItemsCombo()
@@ -101,25 +127,20 @@ namespace Cafe101
             }
         }
 
-        // Event handler for when a recipe row is clicked - populates the combo boxes and quantity
         private void dgvRecipe_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Check if the click is on a valid row (not header)
             if (e.RowIndex < 0) return;
             if (e.RowIndex >= dgvRecipe.Rows.Count) return;
 
             DataGridViewRow row = dgvRecipe.Rows[e.RowIndex];
             if (row == null || row.IsNewRow) return;
 
-            // Get the underlying DataRowView to access column values
             DataRowView rowView = row.DataBoundItem as DataRowView;
             if (rowView == null) return;
 
-            // Populate Menu Item ComboBox
             string menuItemName = rowView["MenuItemName"]?.ToString() ?? "";
             if (!string.IsNullOrEmpty(menuItemName))
             {
-                // Find and select the matching menu item in the combo box
                 foreach (DataRowView item in cboMenuItems.Items)
                 {
                     if (item["MenuItemName"].ToString() == menuItemName)
@@ -130,11 +151,9 @@ namespace Cafe101
                 }
             }
 
-            // Populate Ingredient ComboBox
             string ingredientName = rowView["Ingredient"]?.ToString() ?? "";
             if (!string.IsNullOrEmpty(ingredientName))
             {
-                // Find and select the matching ingredient in the combo box
                 foreach (DataRowView item in cboIngredients.Items)
                 {
                     if (item["Description"].ToString() == ingredientName)
@@ -145,7 +164,6 @@ namespace Cafe101
                 }
             }
 
-            // Populate Quantity
             decimal quantity = 0;
             if (rowView["QuantityNeeded"] != DBNull.Value)
                 decimal.TryParse(rowView["QuantityNeeded"].ToString().Replace(',', '.'),
@@ -153,6 +171,22 @@ namespace Cafe101
                     System.Globalization.CultureInfo.InvariantCulture,
                     out quantity);
             numQuantity.Value = quantity > 0 ? quantity : 1;
+
+            // Store IDs for reference
+            int menuItemId = Convert.ToInt32(rowView["MenuItemID"]);
+            int ingredientId = Convert.ToInt32(rowView["IngredientID"]);
+
+            // Filter to show ONLY the selected row
+            DataView dv = originalRecipesData.DefaultView;
+            dv.RowFilter = $"MenuItemID = {menuItemId} AND IngredientID = {ingredientId}";
+            dgvRecipe.DataSource = dv;
+
+            if (dgvRecipe.Columns["MenuItemID"] != null)
+                dgvRecipe.Columns["MenuItemID"].Visible = false;
+            if (dgvRecipe.Columns["IngredientID"] != null)
+                dgvRecipe.Columns["IngredientID"].Visible = false;
+
+            txtSearch.Text = "";
         }
 
         private int? GetSelectedMenuItemId()
@@ -193,7 +227,6 @@ namespace Cafe101
             int? ingId = GetSelectedIngredientId();
             if (menuId == null || ingId == null) return;
 
-            // Check if this combination already exists
             string checkQuery = "SELECT COUNT(*) FROM RecipeTable WHERE MenuItemID = @menuId AND IngredientID = @ingId";
             using (SqlConnection conn = DbHelper.GetConnection())
             {
@@ -211,7 +244,6 @@ namespace Cafe101
                 conn.Close();
             }
 
-            // Get the Description of the selected ingredient
             DataRowView drv = cboIngredients.SelectedItem as DataRowView;
             string description = drv?["Description"]?.ToString() ?? "";
 
@@ -279,6 +311,7 @@ namespace Cafe101
 
         private void btnRefreshRecipe_Click(object sender, EventArgs e)
         {
+            txtSearch.Text = "";
             LoadMenuItemsCombo();
             LoadIngredientsCombo();
             LoadAllRecipes();

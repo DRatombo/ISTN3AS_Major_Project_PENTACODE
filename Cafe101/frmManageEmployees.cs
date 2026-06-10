@@ -7,6 +7,8 @@ namespace Cafe101
 {
     public partial class frmManageEmployees : Form
     {
+        private DataTable originalEmployeeData;
+
         public frmManageEmployees()
         {
             InitializeComponent();
@@ -14,8 +16,8 @@ namespace Cafe101
 
         private void frmManageEmployees_Load(object sender, EventArgs e)
         {
-            // DataSet adapter removed - using live connection only
             LoadEmployees();
+            this.txtSearch.TextChanged += txtSearch_TextChanged;
         }
 
         private void LoadEmployees()
@@ -26,14 +28,10 @@ namespace Cafe101
                 using (SqlConnection conn = DbHelper.GetConnection())
                 {
                     SqlDataAdapter da = new SqlDataAdapter(query, conn);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
+                    originalEmployeeData = new DataTable();
+                    da.Fill(originalEmployeeData);
+                    dgvEmployees.DataSource = originalEmployeeData;
 
-                    // Let the grid auto‑generate columns from the DataTable
-                    dgvEmployees.AutoGenerateColumns = true;
-                    dgvEmployees.DataSource = dt;
-
-                    // Hide the EmployeeID column (first column)
                     if (dgvEmployees.Columns.Count > 0)
                         dgvEmployees.Columns[0].Visible = false;
                 }
@@ -42,6 +40,33 @@ namespace Cafe101
             {
                 MessageBox.Show($"Error loading employees: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (originalEmployeeData == null) return;
+
+            string searchTerm = txtSearch.Text.Trim();
+
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                dgvEmployees.DataSource = originalEmployeeData;
+            }
+            else
+            {
+                DataView dv = originalEmployeeData.DefaultView;
+                dv.RowFilter = $"FirstName LIKE '%{searchTerm}%' OR Surname LIKE '%{searchTerm}%' OR Email LIKE '%{searchTerm}%' OR Role LIKE '%{searchTerm}%' OR Address LIKE '%{searchTerm}%'";
+                dgvEmployees.DataSource = dv;
+            }
+
+            if (dgvEmployees.Columns.Count > 0)
+                dgvEmployees.Columns[0].Visible = false;
+        }
+
+        private void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+            LoadEmployees();
         }
 
         private void ClearFields()
@@ -55,7 +80,6 @@ namespace Cafe101
             btnUpdate.Tag = null;
         }
 
-        // Helper: check duplicate by full name
         private bool IsEmployeeDuplicate(string firstName, string surname, int? excludeEmployeeId = null)
         {
             string query = "SELECT COUNT(*) FROM EmployeeTable WHERE LOWER(FirstName) = LOWER(@firstName) AND LOWER(Surname) = LOWER(@surname)";
@@ -190,7 +214,6 @@ namespace Cafe101
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dgvEmployees.Rows[e.RowIndex];
-                // Use DataBoundItem to access columns by name (avoids column order issues)
                 DataRowView rowView = row.DataBoundItem as DataRowView;
                 if (rowView == null) return;
 
@@ -201,6 +224,18 @@ namespace Cafe101
                 cboRole.Text = rowView["Role"]?.ToString() ?? "";
                 txtPassword.Text = "";
                 btnUpdate.Tag = rowView["EmployeeID"];
+
+                // Filter to show ONLY the selected row
+                DataView dv = originalEmployeeData.DefaultView;
+                dv.RowFilter = $"EmployeeID = {btnUpdate.Tag}";
+                dgvEmployees.DataSource = dv;
+
+                // Hide ID column after filtering
+                if (dgvEmployees.Columns.Count > 0)
+                    dgvEmployees.Columns[0].Visible = false;
+
+                // Clear search box
+                txtSearch.Text = "";
             }
         }
 
@@ -272,6 +307,8 @@ namespace Cafe101
                     conn.Close();
                 }
                 MessageBox.Show("Employee updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Reload full data after update
                 LoadEmployees();
                 ClearFields();
             }
@@ -343,6 +380,7 @@ namespace Cafe101
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            txtSearch.Text = "";
             LoadEmployees();
             ClearFields();
         }
@@ -353,15 +391,39 @@ namespace Cafe101
             form.Show();
             this.Close();
         }
-
-        private void lblPassword_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblPassword_Click_1(object sender, EventArgs e)
-        {
-
-        }
     }
 }
+
+// ============================================================
+// DbHelper Class
+// ============================================================
+public static class DbHelper
+    {
+        private static string server = "146.230.177.46";
+        private static string database = "GroupWst22";
+        private static string username = "GroupWst22";
+        private static string password = "n38mc";
+        private static string connectionString = $"Server={server};Database={database};User Id={username};Password={password};Connection Timeout=30;";
+
+        public static SqlConnection GetConnection()
+        {
+            return new SqlConnection(connectionString);
+        }
+
+        public static bool TestConnection()
+        {
+            using (SqlConnection conn = GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    conn.Close();
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+    }

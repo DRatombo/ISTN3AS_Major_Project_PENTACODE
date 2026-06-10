@@ -33,6 +33,10 @@
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.pnlRight = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlSearch = new System.Windows.Forms.Panel();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnClearSearch = new System.Windows.Forms.Button();
             this.dgvEmployees = new System.Windows.Forms.DataGridView();
             this.pnlRightButtons = new System.Windows.Forms.FlowLayoutPanel();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -45,6 +49,7 @@
             this.pnlLeft.SuspendLayout();
             this.grpEmployeeDetails.SuspendLayout();
             this.pnlRight.SuspendLayout();
+            this.pnlSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).BeginInit();
             this.pnlRightButtons.SuspendLayout();
             this.SuspendLayout();
@@ -222,16 +227,65 @@
             // 
             this.pnlRight.ColumnCount = 1;
             this.pnlRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100));
-            this.pnlRight.Controls.Add(this.dgvEmployees, 0, 0);
-            this.pnlRight.Controls.Add(this.pnlRightButtons, 0, 1);
+            this.pnlRight.Controls.Add(this.pnlSearch, 0, 0);
+            this.pnlRight.Controls.Add(this.dgvEmployees, 0, 1);
+            this.pnlRight.Controls.Add(this.pnlRightButtons, 0, 2);
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRight.Location = new System.Drawing.Point(423, 3);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.RowCount = 2;
+            this.pnlRight.RowCount = 3;
+            this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50));
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88));
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64));
             this.pnlRight.Size = new System.Drawing.Size(649, 561);
             this.pnlRight.TabIndex = 1;
+            // 
+            // pnlSearch
+            // 
+            this.pnlSearch.Controls.Add(this.lblSearch);
+            this.pnlSearch.Controls.Add(this.txtSearch);
+            this.pnlSearch.Controls.Add(this.btnClearSearch);
+            this.pnlSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlSearch.Location = new System.Drawing.Point(3, 3);
+            this.pnlSearch.Name = "pnlSearch";
+            this.pnlSearch.Size = new System.Drawing.Size(643, 44);
+            this.pnlSearch.TabIndex = 2;
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblSearch.ForeColor = System.Drawing.Color.White;
+            this.lblSearch.Location = new System.Drawing.Point(10, 12);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(67, 23);
+            this.lblSearch.TabIndex = 0;
+            this.lblSearch.Text = "Search:";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.Color.White;
+            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtSearch.ForeColor = System.Drawing.Color.Black;
+            this.txtSearch.Location = new System.Drawing.Point(80, 9);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(300, 30);
+            this.txtSearch.TabIndex = 1;
+            // 
+            // btnClearSearch
+            // 
+            this.btnClearSearch.BackColor = System.Drawing.Color.FromArgb(108, 117, 125);
+            this.btnClearSearch.FlatAppearance.BorderSize = 0;
+            this.btnClearSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnClearSearch.ForeColor = System.Drawing.Color.White;
+            this.btnClearSearch.Location = new System.Drawing.Point(390, 9);
+            this.btnClearSearch.Name = "btnClearSearch";
+            this.btnClearSearch.Size = new System.Drawing.Size(70, 30);
+            this.btnClearSearch.TabIndex = 3;
+            this.btnClearSearch.Text = "Clear";
+            this.btnClearSearch.UseVisualStyleBackColor = false;
+            this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
             // 
             // dgvEmployees
             // 
@@ -259,14 +313,14 @@
             this.dgvEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEmployees.EnableHeadersVisualStyles = false;
             this.dgvEmployees.GridColor = System.Drawing.Color.DarkGray;
-            this.dgvEmployees.Location = new System.Drawing.Point(3, 3);
+            this.dgvEmployees.Location = new System.Drawing.Point(3, 53);
             this.dgvEmployees.MultiSelect = false;
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.ReadOnly = true;
             this.dgvEmployees.RowHeadersWidth = 51;
             this.dgvEmployees.RowTemplate.Height = 24;
             this.dgvEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEmployees.Size = new System.Drawing.Size(643, 491);
+            this.dgvEmployees.Size = new System.Drawing.Size(643, 441);
             this.dgvEmployees.TabIndex = 0;
             this.dgvEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_CellClick);
             // 
@@ -394,6 +448,8 @@
             this.grpEmployeeDetails.PerformLayout();
             this.pnlRight.ResumeLayout(false);
             this.pnlRight.PerformLayout();
+            this.pnlSearch.ResumeLayout(false);
+            this.pnlSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.pnlRightButtons.ResumeLayout(false);
             this.pnlRightButtons.PerformLayout();
@@ -416,6 +472,10 @@
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.TableLayoutPanel pnlRight;
+        private System.Windows.Forms.Panel pnlSearch;
+        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnClearSearch;
         private System.Windows.Forms.DataGridView dgvEmployees;
         private System.Windows.Forms.FlowLayoutPanel pnlRightButtons;
         private System.Windows.Forms.Button btnAdd;

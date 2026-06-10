@@ -36,6 +36,10 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.pnlSearch = new System.Windows.Forms.Panel();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnClearSearch = new System.Windows.Forms.Button();
             this.tblMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredients)).BeginInit();
             this.grpIngredientDetails.SuspendLayout();
@@ -43,25 +47,75 @@
             ((System.ComponentModel.ISupportInitialize)(this.numRestockLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCostPrice)).BeginInit();
             this.pnlButtons.SuspendLayout();
+            this.pnlSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // tblMain
             // 
             this.tblMain.ColumnCount = 1;
             this.tblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblMain.Controls.Add(this.dgvIngredients, 0, 0);
-            this.tblMain.Controls.Add(this.grpIngredientDetails, 0, 1);
-            this.tblMain.Controls.Add(this.pnlButtons, 0, 2);
+            this.tblMain.Controls.Add(this.pnlSearch, 0, 0);
+            this.tblMain.Controls.Add(this.dgvIngredients, 0, 1);
+            this.tblMain.Controls.Add(this.grpIngredientDetails, 0, 2);
+            this.tblMain.Controls.Add(this.pnlButtons, 0, 3);
             this.tblMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblMain.Location = new System.Drawing.Point(0, 0);
             this.tblMain.Name = "tblMain";
             this.tblMain.Padding = new System.Windows.Forms.Padding(12);
-            this.tblMain.RowCount = 3;
+            this.tblMain.RowCount = 4;
+            this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tblMain.Size = new System.Drawing.Size(1000, 596);
             this.tblMain.TabIndex = 0;
+            // 
+            // pnlSearch
+            // 
+            this.pnlSearch.Controls.Add(this.lblSearch);
+            this.pnlSearch.Controls.Add(this.txtSearch);
+            this.pnlSearch.Controls.Add(this.btnClearSearch);
+            this.pnlSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlSearch.Location = new System.Drawing.Point(15, 15);
+            this.pnlSearch.Name = "pnlSearch";
+            this.pnlSearch.Size = new System.Drawing.Size(970, 44);
+            this.pnlSearch.TabIndex = 4;
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblSearch.ForeColor = System.Drawing.Color.White;
+            this.lblSearch.Location = new System.Drawing.Point(10, 12);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(67, 23);
+            this.lblSearch.TabIndex = 0;
+            this.lblSearch.Text = "Search:";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.Color.White;
+            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtSearch.ForeColor = System.Drawing.Color.Black;
+            this.txtSearch.Location = new System.Drawing.Point(80, 9);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(300, 30);
+            this.txtSearch.TabIndex = 1;
+            // 
+            // btnClearSearch
+            // 
+            this.btnClearSearch.BackColor = System.Drawing.Color.FromArgb(108, 117, 125);
+            this.btnClearSearch.FlatAppearance.BorderSize = 0;
+            this.btnClearSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnClearSearch.ForeColor = System.Drawing.Color.White;
+            this.btnClearSearch.Location = new System.Drawing.Point(390, 9);
+            this.btnClearSearch.Name = "btnClearSearch";
+            this.btnClearSearch.Size = new System.Drawing.Size(70, 30);
+            this.btnClearSearch.TabIndex = 3;
+            this.btnClearSearch.Text = "Clear";
+            this.btnClearSearch.UseVisualStyleBackColor = false;
+            this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
             // 
             // dgvIngredients
             // 
@@ -83,14 +137,14 @@
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(0, 84, 204);
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvIngredients.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvIngredients.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvIngredients.EnableHeadersVisualStyles = false;
             this.dgvIngredients.GridColor = System.Drawing.Color.DarkGray;
-            this.dgvIngredients.Location = new System.Drawing.Point(15, 15);
+            this.dgvIngredients.Location = new System.Drawing.Point(15, 65);
             this.dgvIngredients.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
             this.dgvIngredients.MultiSelect = false;
             this.dgvIngredients.Name = "dgvIngredients";
@@ -98,7 +152,7 @@
             this.dgvIngredients.RowHeadersWidth = 51;
             this.dgvIngredients.RowTemplate.Height = 24;
             this.dgvIngredients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvIngredients.Size = new System.Drawing.Size(970, 271);
+            this.dgvIngredients.Size = new System.Drawing.Size(970, 240);
             this.dgvIngredients.TabIndex = 0;
             this.dgvIngredients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredients_CellClick);
             // 
@@ -117,11 +171,11 @@
             this.grpIngredientDetails.Controls.Add(this.numCostPrice);
             this.grpIngredientDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpIngredientDetails.ForeColor = System.Drawing.Color.White;
-            this.grpIngredientDetails.Location = new System.Drawing.Point(15, 301);
+            this.grpIngredientDetails.Location = new System.Drawing.Point(15, 320);
             this.grpIngredientDetails.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
             this.grpIngredientDetails.Name = "grpIngredientDetails";
             this.grpIngredientDetails.Padding = new System.Windows.Forms.Padding(12);
-            this.grpIngredientDetails.Size = new System.Drawing.Size(970, 213);
+            this.grpIngredientDetails.Size = new System.Drawing.Size(970, 200);
             this.grpIngredientDetails.TabIndex = 1;
             this.grpIngredientDetails.TabStop = false;
             this.grpIngredientDetails.Text = "Ingredient Details";
@@ -186,11 +240,7 @@
             this.numQuantityInStock.ForeColor = System.Drawing.Color.Black;
             this.numQuantityInStock.Location = new System.Drawing.Point(150, 58);
             this.numQuantityInStock.Margin = new System.Windows.Forms.Padding(6);
-            this.numQuantityInStock.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
+            this.numQuantityInStock.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             this.numQuantityInStock.Name = "numQuantityInStock";
             this.numQuantityInStock.Size = new System.Drawing.Size(120, 27);
             this.numQuantityInStock.TabIndex = 5;
@@ -214,11 +264,7 @@
             this.numRestockLevel.ForeColor = System.Drawing.Color.Black;
             this.numRestockLevel.Location = new System.Drawing.Point(390, 58);
             this.numRestockLevel.Margin = new System.Windows.Forms.Padding(6);
-            this.numRestockLevel.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
+            this.numRestockLevel.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             this.numRestockLevel.Name = "numRestockLevel";
             this.numRestockLevel.Size = new System.Drawing.Size(120, 27);
             this.numRestockLevel.TabIndex = 7;
@@ -242,11 +288,7 @@
             this.numCostPrice.ForeColor = System.Drawing.Color.Black;
             this.numCostPrice.Location = new System.Drawing.Point(600, 58);
             this.numCostPrice.Margin = new System.Windows.Forms.Padding(6);
-            this.numCostPrice.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
+            this.numCostPrice.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             this.numCostPrice.Name = "numCostPrice";
             this.numCostPrice.Size = new System.Drawing.Size(120, 27);
             this.numCostPrice.TabIndex = 9;
@@ -377,12 +419,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCostPrice)).EndInit();
             this.pnlButtons.ResumeLayout(false);
             this.pnlButtons.PerformLayout();
+            this.pnlSearch.ResumeLayout(false);
+            this.pnlSearch.PerformLayout();
             this.ResumeLayout(false);
         }
 
-//#endregion
-
         private System.Windows.Forms.TableLayoutPanel tblMain;
+        private System.Windows.Forms.Panel pnlSearch;
+        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnClearSearch;
         private System.Windows.Forms.DataGridView dgvIngredients;
         private System.Windows.Forms.GroupBox grpIngredientDetails;
         private System.Windows.Forms.Label lblDescription;

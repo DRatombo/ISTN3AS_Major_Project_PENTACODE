@@ -13,8 +13,6 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
         private void InitializeComponent()
         {
             this.tblMain = new System.Windows.Forms.TableLayoutPanel();
@@ -30,27 +28,81 @@
             this.btnRemoveLink = new System.Windows.Forms.Button();
             this.btnRefreshRecipe = new System.Windows.Forms.Button();
             this.dgvRecipe = new System.Windows.Forms.DataGridView();
+            this.pnlSearch = new System.Windows.Forms.Panel();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnClearSearch = new System.Windows.Forms.Button();
             this.tblMain.SuspendLayout();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecipe)).BeginInit();
+            this.pnlSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // tblMain
             // 
             this.tblMain.ColumnCount = 1;
             this.tblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblMain.Controls.Add(this.pnlTop, 0, 0);
-            this.tblMain.Controls.Add(this.dgvRecipe, 0, 1);
+            this.tblMain.Controls.Add(this.pnlSearch, 0, 0);
+            this.tblMain.Controls.Add(this.pnlTop, 0, 1);
+            this.tblMain.Controls.Add(this.dgvRecipe, 0, 2);
             this.tblMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblMain.Location = new System.Drawing.Point(0, 0);
             this.tblMain.Name = "tblMain";
             this.tblMain.Padding = new System.Windows.Forms.Padding(12);
-            this.tblMain.RowCount = 2;
-            this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tblMain.RowCount = 3;
+            this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50));
+            this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 120));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblMain.Size = new System.Drawing.Size(792, 460);
             this.tblMain.TabIndex = 0;
+            // 
+            // pnlSearch
+            // 
+            this.pnlSearch.Controls.Add(this.lblSearch);
+            this.pnlSearch.Controls.Add(this.txtSearch);
+            this.pnlSearch.Controls.Add(this.btnClearSearch);
+            this.pnlSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlSearch.Location = new System.Drawing.Point(15, 15);
+            this.pnlSearch.Name = "pnlSearch";
+            this.pnlSearch.Size = new System.Drawing.Size(762, 44);
+            this.pnlSearch.TabIndex = 2;
+            // 
+            // lblSearch
+            // 
+            this.lblSearch.AutoSize = true;
+            this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.lblSearch.ForeColor = System.Drawing.Color.White;
+            this.lblSearch.Location = new System.Drawing.Point(10, 12);
+            this.lblSearch.Name = "lblSearch";
+            this.lblSearch.Size = new System.Drawing.Size(67, 23);
+            this.lblSearch.TabIndex = 0;
+            this.lblSearch.Text = "Search:";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.BackColor = System.Drawing.Color.White;
+            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.txtSearch.ForeColor = System.Drawing.Color.Black;
+            this.txtSearch.Location = new System.Drawing.Point(80, 9);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(300, 30);
+            this.txtSearch.TabIndex = 1;
+            // 
+            // btnClearSearch
+            // 
+            this.btnClearSearch.BackColor = System.Drawing.Color.FromArgb(108, 117, 125);
+            this.btnClearSearch.FlatAppearance.BorderSize = 0;
+            this.btnClearSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnClearSearch.ForeColor = System.Drawing.Color.White;
+            this.btnClearSearch.Location = new System.Drawing.Point(390, 9);
+            this.btnClearSearch.Name = "btnClearSearch";
+            this.btnClearSearch.Size = new System.Drawing.Size(70, 30);
+            this.btnClearSearch.TabIndex = 3;
+            this.btnClearSearch.Text = "Clear";
+            this.btnClearSearch.UseVisualStyleBackColor = false;
+            this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
             // 
             // pnlTop
             // 
@@ -72,7 +124,7 @@
             this.pnlTop.Controls.Add(this.btnRemoveLink, 3, 0);
             this.pnlTop.Controls.Add(this.btnRefreshRecipe, 4, 0);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlTop.Location = new System.Drawing.Point(15, 15);
+            this.pnlTop.Location = new System.Drawing.Point(15, 65);
             this.pnlTop.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
             this.pnlTop.Name = "pnlTop";
             this.pnlTop.RowCount = 2;
@@ -86,10 +138,10 @@
             this.btnBack.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnBack.AutoSize = true;
             this.btnBack.BackColor = System.Drawing.Color.White;
-            this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
             this.btnBack.FlatAppearance.BorderSize = 2;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
             this.btnBack.Location = new System.Drawing.Point(649, 9);
             this.btnBack.Margin = new System.Windows.Forms.Padding(6);
             this.btnBack.Name = "btnBack";
@@ -169,35 +221,23 @@
             this.numQuantity.ForeColor = System.Drawing.Color.Black;
             this.numQuantity.Location = new System.Drawing.Point(631, 65);
             this.numQuantity.Margin = new System.Windows.Forms.Padding(6);
-            this.numQuantity.Maximum = new decimal(new int[] {
-            999999,
-            0,
-            0,
-            0});
-            this.numQuantity.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.numQuantity.Maximum = new decimal(new int[] { 999999, 0, 0, 0 });
+            this.numQuantity.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             this.numQuantity.Name = "numQuantity";
             this.numQuantity.Size = new System.Drawing.Size(70, 27);
             this.numQuantity.TabIndex = 7;
             this.numQuantity.ThousandsSeparator = true;
-            this.numQuantity.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.numQuantity.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // btnAddToRecipe
             // 
             this.btnAddToRecipe.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnAddToRecipe.AutoSize = true;
             this.btnAddToRecipe.BackColor = System.Drawing.Color.White;
-            this.btnAddToRecipe.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnAddToRecipe.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
             this.btnAddToRecipe.FlatAppearance.BorderSize = 2;
             this.btnAddToRecipe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddToRecipe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnAddToRecipe.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
             this.btnAddToRecipe.Location = new System.Drawing.Point(297, 9);
             this.btnAddToRecipe.Margin = new System.Windows.Forms.Padding(6);
             this.btnAddToRecipe.Name = "btnAddToRecipe";
@@ -212,10 +252,10 @@
             this.btnRemoveLink.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnRemoveLink.AutoSize = true;
             this.btnRemoveLink.BackColor = System.Drawing.Color.White;
-            this.btnRemoveLink.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnRemoveLink.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
             this.btnRemoveLink.FlatAppearance.BorderSize = 2;
             this.btnRemoveLink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnRemoveLink.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
             this.btnRemoveLink.Location = new System.Drawing.Point(411, 9);
             this.btnRemoveLink.Margin = new System.Windows.Forms.Padding(6);
             this.btnRemoveLink.Name = "btnRemoveLink";
@@ -230,10 +270,10 @@
             this.btnRefreshRecipe.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnRefreshRecipe.AutoSize = true;
             this.btnRefreshRecipe.BackColor = System.Drawing.Color.White;
-            this.btnRefreshRecipe.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnRefreshRecipe.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
             this.btnRefreshRecipe.FlatAppearance.BorderSize = 2;
             this.btnRefreshRecipe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefreshRecipe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnRefreshRecipe.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
             this.btnRefreshRecipe.Location = new System.Drawing.Point(524, 9);
             this.btnRefreshRecipe.Margin = new System.Windows.Forms.Padding(6);
             this.btnRefreshRecipe.Name = "btnRefreshRecipe";
@@ -253,7 +293,7 @@
             this.dgvRecipe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRecipe.EnableHeadersVisualStyles = false;
             this.dgvRecipe.GridColor = System.Drawing.Color.DarkGray;
-            this.dgvRecipe.Location = new System.Drawing.Point(15, 135);
+            this.dgvRecipe.Location = new System.Drawing.Point(15, 182);
             this.dgvRecipe.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
             this.dgvRecipe.MultiSelect = false;
             this.dgvRecipe.Name = "dgvRecipe";
@@ -261,14 +301,14 @@
             this.dgvRecipe.RowHeadersWidth = 51;
             this.dgvRecipe.RowTemplate.Height = 24;
             this.dgvRecipe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRecipe.Size = new System.Drawing.Size(762, 301);
+            this.dgvRecipe.Size = new System.Drawing.Size(762, 254);
             this.dgvRecipe.TabIndex = 1;
             // 
             // frmManageRecipes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(112)))));
+            this.BackColor = System.Drawing.Color.FromArgb(18, 18, 112);
             this.ClientSize = new System.Drawing.Size(792, 460);
             this.Controls.Add(this.tblMain);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -283,13 +323,18 @@
             this.pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRecipe)).EndInit();
+            this.pnlSearch.ResumeLayout(false);
+            this.pnlSearch.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
-        #endregion
+//#endregion
 
         private System.Windows.Forms.TableLayoutPanel tblMain;
+        private System.Windows.Forms.Panel pnlSearch;
+        private System.Windows.Forms.Label lblSearch;
+        private System.Windows.Forms.TextBox txtSearch;
+        private System.Windows.Forms.Button btnClearSearch;
         private System.Windows.Forms.TableLayoutPanel pnlTop;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Label lblMenuItem;

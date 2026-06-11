@@ -242,14 +242,14 @@ namespace Cafe101
             lblDetail.Location = new System.Drawing.Point(10, 60);
             lblDetail.Size = new System.Drawing.Size(1620, 690);
 
-            Button btnClose = new Button();
-            btnClose.Text = "✕ Close";
-            btnClose.Size = new System.Drawing.Size(120, 35);
-            btnClose.Location = new System.Drawing.Point(1260, 750);
-            btnClose.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
-            btnClose.ForeColor = System.Drawing.Color.White;
-            btnClose.FlatStyle = FlatStyle.Flat;
-            btnClose.Click += (s, ev) =>
+            Button btnCloseHelp = new Button();
+            btnCloseHelp.Text = "✕ Close";
+            btnCloseHelp.Size = new System.Drawing.Size(120, 35);
+            btnCloseHelp.Location = new System.Drawing.Point(1260, 750);
+            btnCloseHelp.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
+            btnCloseHelp.ForeColor = System.Drawing.Color.White;
+            btnCloseHelp.FlatStyle = FlatStyle.Flat;
+            btnCloseHelp.Click += (s, ev) =>
             {
                 pnlHelpDash.Visible = false;
                 helpVisibleDash = false;
@@ -258,7 +258,7 @@ namespace Cafe101
 
             pnlHelpDash.Controls.Add(lblTitle);
             pnlHelpDash.Controls.Add(lblDetail);
-            pnlHelpDash.Controls.Add(btnClose);
+            pnlHelpDash.Controls.Add(btnCloseHelp);
             pnlHelpDash.Location = new System.Drawing.Point(0, 30);
 
             pnlHelpDash.Visible = true;

@@ -238,7 +238,7 @@
             this.btnConfirm.UseVisualStyleBackColor = false;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
             // 
-            // button1
+         /*   // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.BackColor = System.Drawing.Color.White;
@@ -252,8 +252,8 @@
             this.button1.TabIndex = 14;
             this.button1.Text = "TODAY\'S ORDERS";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
+//            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // */
             // lblAmountMes
             // 
             this.lblAmountMes.Anchor = System.Windows.Forms.AnchorStyles.None;

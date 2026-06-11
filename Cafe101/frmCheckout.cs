@@ -270,7 +270,7 @@ namespace Cafe101
         {
         }
 
-        private void button1_Click(object sender, EventArgs e)
+       /* private void button1_Click(object sender, EventArgs e)
         {
             frmTodaysOrders orders = new frmTodaysOrders();
             orders.Show();

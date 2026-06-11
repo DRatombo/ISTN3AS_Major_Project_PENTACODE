@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuStrip2 = new System.Windows.Forms.MenuStrip();
             this.mnuOrders = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,8 +43,6 @@
             this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.txtHelp = new System.Windows.Forms.TextBox();
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
             this.lblDateTime = new System.Windows.Forms.Label();
@@ -61,8 +58,8 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1683, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1683, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -85,8 +82,8 @@
             // mnuOrders
             // 
             this.mnuOrders.Name = "mnuOrders";
-            this.mnuOrders.Size = new System.Drawing.Size(67, 24);
-            this.mnuOrders.Text = "Orders";
+            this.mnuOrders.Size = new System.Drawing.Size(120, 24);
+            this.mnuOrders.Text = "Place an Order";
             this.mnuOrders.Click += new System.EventHandler(this.ordersToolStripMenuItem_Click);
             // 
             // mnuAnalytics
@@ -96,27 +93,27 @@
             this.popularityAnalyticsToolStripMenuItem,
             this.lowStockReportToolStripMenuItem});
             this.mnuAnalytics.Name = "mnuAnalytics";
-            this.mnuAnalytics.Size = new System.Drawing.Size(82, 24);
-            this.mnuAnalytics.Text = "Analytics";
+            this.mnuAnalytics.Size = new System.Drawing.Size(118, 24);
+            this.mnuAnalytics.Text = "View Analytics";
             // 
             // salesReportToolStripMenuItem
             // 
             this.salesReportToolStripMenuItem.Name = "salesReportToolStripMenuItem";
-            this.salesReportToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.salesReportToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
             this.salesReportToolStripMenuItem.Text = "Sales Report";
             this.salesReportToolStripMenuItem.Click += new System.EventHandler(this.salesReportToolStripMenuItem_Click);
             // 
             // popularityAnalyticsToolStripMenuItem
             // 
             this.popularityAnalyticsToolStripMenuItem.Name = "popularityAnalyticsToolStripMenuItem";
-            this.popularityAnalyticsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.popularityAnalyticsToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
             this.popularityAnalyticsToolStripMenuItem.Text = "Popularity Analytics";
             this.popularityAnalyticsToolStripMenuItem.Click += new System.EventHandler(this.popularityAnalyticsToolStripMenuItem_Click);
             // 
             // lowStockReportToolStripMenuItem
             // 
             this.lowStockReportToolStripMenuItem.Name = "lowStockReportToolStripMenuItem";
-            this.lowStockReportToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.lowStockReportToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
             this.lowStockReportToolStripMenuItem.Text = "Low Stock Report";
             this.lowStockReportToolStripMenuItem.Click += new System.EventHandler(this.lowStockReportToolStripMenuItem_Click);
             // 
@@ -129,42 +126,42 @@
             this.mnuCashiers,
             this.customersToolStripMenuItem});
             this.mnuManagement.Name = "mnuManagement";
-            this.mnuManagement.Size = new System.Drawing.Size(111, 24);
-            this.mnuManagement.Text = "Management";
+            this.mnuManagement.Size = new System.Drawing.Size(150, 24);
+            this.mnuManagement.Text = "Management Tools";
             // 
             // mnuMenuItems
             // 
             this.mnuMenuItems.Name = "mnuMenuItems";
-            this.mnuMenuItems.Size = new System.Drawing.Size(224, 26);
-            this.mnuMenuItems.Text = "Menu Items";
+            this.mnuMenuItems.Size = new System.Drawing.Size(227, 26);
+            this.mnuMenuItems.Text = "Manage Menu Items";
             this.mnuMenuItems.Click += new System.EventHandler(this.mnuMenuItems_Click);
             // 
             // mnuIngredients
             // 
             this.mnuIngredients.Name = "mnuIngredients";
-            this.mnuIngredients.Size = new System.Drawing.Size(224, 26);
-            this.mnuIngredients.Text = "Ingredients";
+            this.mnuIngredients.Size = new System.Drawing.Size(227, 26);
+            this.mnuIngredients.Text = "Manage Ingredients";
             this.mnuIngredients.Click += new System.EventHandler(this.mnuIngredients_Click);
             // 
             // mnuRecipes
             // 
             this.mnuRecipes.Name = "mnuRecipes";
-            this.mnuRecipes.Size = new System.Drawing.Size(224, 26);
-            this.mnuRecipes.Text = "Recipe";
+            this.mnuRecipes.Size = new System.Drawing.Size(227, 26);
+            this.mnuRecipes.Text = "Manage Recipes";
             this.mnuRecipes.Click += new System.EventHandler(this.mnuRecipes_Click);
             // 
             // mnuCashiers
             // 
             this.mnuCashiers.Name = "mnuCashiers";
-            this.mnuCashiers.Size = new System.Drawing.Size(224, 26);
-            this.mnuCashiers.Text = "Cashiers";
+            this.mnuCashiers.Size = new System.Drawing.Size(227, 26);
+            this.mnuCashiers.Text = "Manage Employees";
             this.mnuCashiers.Click += new System.EventHandler(this.mnuCashiers_Click);
             // 
             // customersToolStripMenuItem
             // 
             this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
-            this.customersToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.customersToolStripMenuItem.Text = "Customers";
+            this.customersToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
+            this.customersToolStripMenuItem.Text = "Manage Customers";
             this.customersToolStripMenuItem.Click += new System.EventHandler(this.customersToolStripMenuItem_Click);
             // 
             // logOutToolStripMenuItem
@@ -181,44 +178,16 @@
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.BackgroundImage = global::Cafe101.Properties.Resources.Logo_jpg;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Controls.Add(this.btnClose);
-            this.panel1.Controls.Add(this.txtHelp);
             this.panel1.Controls.Add(this.btnHelp);
             this.panel1.Controls.Add(this.btnExit);
             this.panel1.Controls.Add(this.lblDateTime);
             this.panel1.Controls.Add(this.menuStrip2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 28);
+            this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1683, 834);
+            this.panel1.Size = new System.Drawing.Size(1683, 838);
             this.panel1.TabIndex = 1;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClose.BackColor = System.Drawing.SystemColors.Control;
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnClose.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnClose.Location = new System.Drawing.Point(175, 781);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(147, 44);
-            this.btnClose.TabIndex = 14;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // txtHelp
-            // 
-            this.txtHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHelp.Location = new System.Drawing.Point(105, 31);
-            this.txtHelp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtHelp.Multiline = true;
-            this.txtHelp.Name = "txtHelp";
-            this.txtHelp.Size = new System.Drawing.Size(1515, 747);
-            this.txtHelp.TabIndex = 13;
-            this.txtHelp.Text = resources.GetString("txtHelp.Text");
             // 
             // btnHelp
             // 
@@ -226,7 +195,7 @@
             this.btnHelp.BackColor = System.Drawing.SystemColors.Control;
             this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnHelp.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnHelp.Location = new System.Drawing.Point(12, 781);
+            this.btnHelp.Location = new System.Drawing.Point(12, 783);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(147, 44);
@@ -241,7 +210,7 @@
             this.btnExit.BackColor = System.Drawing.SystemColors.Control;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnExit.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnExit.Location = new System.Drawing.Point(1524, 781);
+            this.btnExit.Location = new System.Drawing.Point(1524, 783);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(147, 44);
@@ -328,8 +297,6 @@
         private System.Windows.Forms.Label lblDateTime;
         private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.TextBox txtHelp;
-        private System.Windows.Forms.Button btnClose;
         private dsCafe101TestTableAdapters.TestLoginHistoryTableAdapter testLoginHistoryTableAdapter1;
         private dsCafe101HubTableAdapters.LoginHistoryTableTableAdapter loginHistoryTableTableAdapter1;
         private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;

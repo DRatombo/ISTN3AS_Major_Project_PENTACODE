@@ -123,40 +123,6 @@
   <metadata name="menuStrip2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>153, 17</value>
   </metadata>
-  <data name="txtHelp.Text" xml:space="preserve">
-    <value>Cafe101 Main Dashboard Guide
-
-Once you have successfully logged in, you will be taken to the Main Dashboard. 
-From here you can access all the core features of the Cafe101 system using the navigation tabs at the top of the screen.
-
-The Navigation Tabs:
-📋 Orders
-The Orders tab is where cashiers manage customer orders.
-Select the items a customer would like to order from the menu
-Add or remove items as needed before confirming the order
-Once the order is finalised, you can process the customer's payment directly through the same interface
-This tab is designed to make the ordering and payment process as quick and smooth as possible
-
-📊 Analytics
-The Analytics tab gives you an overview of how the business is performing.
-View sales reports that show how much profit the business is making
-See business projections to understand future performance trends
-Data is displayed using charts and graphs to make the information easy to read and understand at a glance
-This tab is primarily used by management to make informed business decisions
-
-⚙️ Management
-The Management tab is used to manage the core data of the business.
- Each operation opens its own dedicated interface, making it easy to focus on one task at a time. From here you can:
-Add new menu items or recipes to the system
-View existing menu items and their details
-Update information such as prices or ingredients
-Remove menu items or recipes that are no longer needed
-
-🚪 Logout
-The Logout tab gives you two options when you are done using the system:
-Return to Login — takes you back to the login screen so another user can log in
-Exit — closes the application entirely</value>
-  </data>
   <metadata name="testLoginHistoryTableAdapter1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>289, 17</value>
   </metadata>
@@ -164,6 +130,6 @@ Exit — closes the application entirely</value>
     <value>554, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>85</value>
+    <value>25</value>
   </metadata>
 </root>

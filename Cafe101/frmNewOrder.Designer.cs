@@ -113,6 +113,7 @@
             this.orderTableTableAdapter1 = new Cafe101.dsCafe101HubTableAdapters.OrderTableTableAdapter();
             this.ingredientTableTableAdapter1 = new Cafe101.dsCafe101HubTableAdapters.IngredientTableTableAdapter();
             this.btnCancelOrder = new System.Windows.Forms.Button();
+            this.btnClearItemSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
@@ -255,10 +256,12 @@
             this.dgvMenuItems.Location = new System.Drawing.Point(22, 97);
             this.dgvMenuItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvMenuItems.Name = "dgvMenuItems";
+           // this.dgvMenuItems.ReadOnly = true;
             this.dgvMenuItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMenuItems.Size = new System.Drawing.Size(894, 210);
             this.dgvMenuItems.TabIndex = 11;
             this.dgvMenuItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMenuItems_CellContentClick);
+            this.dgvMenuItems.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvMenuItems_EditingControlShowing);
             // 
             // ItemQty
             // 
@@ -289,24 +292,28 @@
             this.MenuItemName.DataPropertyName = "MenuItemName";
             this.MenuItemName.HeaderText = "Item Name";
             this.MenuItemName.Name = "MenuItemName";
+            this.MenuItemName.ReadOnly = true;
             // 
             // sellingPrice
             // 
             this.sellingPrice.DataPropertyName = "SellingPrice";
             this.sellingPrice.HeaderText = "Selling Price";
             this.sellingPrice.Name = "sellingPrice";
+            this.sellingPrice.ReadOnly = true;
             // 
             // Category
             // 
             this.Category.DataPropertyName = "Category";
             this.Category.HeaderText = "Category";
             this.Category.Name = "Category";
+            this.Category.ReadOnly = true;
             // 
             // PreparationTime
             // 
             this.PreparationTime.DataPropertyName = "PreparationTime";
             this.PreparationTime.HeaderText = "Preparation Time";
             this.PreparationTime.Name = "PreparationTime";
+            this.PreparationTime.ReadOnly = true;
             // 
             // menuItemsTableBindingSource
             // 
@@ -480,11 +487,11 @@
             this.dgvCustomers.Size = new System.Drawing.Size(855, 319);
             this.dgvCustomers.TabIndex = 19;
             this.dgvCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellClick);
+            this.dgvCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellContentClick);
             // 
             // FirstName
             // 
             this.FirstName.DataPropertyName = "FirstName";
-            //this.FirstName.FillWeight = 12.48717F;
             this.FirstName.HeaderText = "First Name";
             this.FirstName.Name = "FirstName";
             this.FirstName.Width = 150;
@@ -492,7 +499,6 @@
             // Surname
             // 
             this.Surname.DataPropertyName = "Surname";
-            //this.Surname.FillWeight = 52.18124F;
             this.Surname.HeaderText = "Surname";
             this.Surname.Name = "Surname";
             this.Surname.Width = 150;
@@ -500,7 +506,6 @@
             // addressDataGridViewTextBoxColumn
             // 
             this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-           // this.addressDataGridViewTextBoxColumn.FillWeight = 431.4721F;
             this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
             this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
             this.addressDataGridViewTextBoxColumn.Width = 210;
@@ -508,7 +513,6 @@
             // emailDataGridViewTextBoxColumn
             // 
             this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            //this.emailDataGridViewTextBoxColumn.FillWeight = 2.988253F;
             this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
             this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
             this.emailDataGridViewTextBoxColumn.Width = 170;
@@ -516,7 +520,6 @@
             // CustomerID
             // 
             this.CustomerID.DataPropertyName = "CustomerID";
-            //this.CustomerID.FillWeight = 0.8712624F;
             this.CustomerID.HeaderText = "Customer ID";
             this.CustomerID.Name = "CustomerID";
             this.CustomerID.ReadOnly = true;
@@ -769,6 +772,7 @@
             // groupBox2
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox2.Controls.Add(this.btnClearItemSearch);
             this.groupBox2.Controls.Add(this.dgvMenuItems);
             this.groupBox2.Controls.Add(this.textItemSearch);
             this.groupBox2.Controls.Add(this.lblSearchItems);
@@ -843,6 +847,19 @@
             this.btnCancelOrder.Text = "Cancel Order";
             this.btnCancelOrder.UseVisualStyleBackColor = true;
             this.btnCancelOrder.Click += new System.EventHandler(this.btnCancelOrder_Click);
+            // 
+            // btnClearItemSearch
+            // 
+            this.btnClearItemSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearItemSearch.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnClearItemSearch.Location = new System.Drawing.Point(728, 29);
+            this.btnClearItemSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnClearItemSearch.Name = "btnClearItemSearch";
+            this.btnClearItemSearch.Size = new System.Drawing.Size(88, 33);
+            this.btnClearItemSearch.TabIndex = 12;
+            this.btnClearItemSearch.Text = "Clear";
+            this.btnClearItemSearch.UseVisualStyleBackColor = true;
+            this.btnClearItemSearch.Click += new System.EventHandler(this.btnClearItemSearch_Click);
             // 
             // frmNewOrder
             // 
@@ -978,5 +995,6 @@
         private dsCafe101HubTableAdapters.OrderTableTableAdapter orderTableTableAdapter1;
         private dsCafe101HubTableAdapters.IngredientTableTableAdapter ingredientTableTableAdapter1;
         private System.Windows.Forms.Button btnCancelOrder;
+        private System.Windows.Forms.Button btnClearItemSearch;
     }
 }

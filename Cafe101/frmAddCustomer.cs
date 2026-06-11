@@ -325,6 +325,27 @@ namespace Cafe101
                 return;
             }
 
+            // Check for duplicates before saving
+            var existing = customerTableTableAdapter1.GetData();
+            foreach (System.Data.DataRow row in existing.Rows)
+            {
+                bool sameName = row["FirstName"].ToString().Trim().ToLower() == txtFirstName.Text.Trim().ToLower()
+                             && row["Surname"].ToString().Trim().ToLower() == txtSurname.Text.Trim().ToLower();
+                bool samePhone = row["PhoneNumber"].ToString().Trim() == txtPhoneNumber.Text.Trim();
+                bool sameEmail = row["Email"].ToString().Trim().ToLower() == txtCustEmail.Text.Trim().ToLower();
+
+                if (sameName && (samePhone || sameEmail))
+                {
+                    MessageBox.Show(
+                        "A customer with the same name and matching phone number or email already exists.\n\n" +
+                        "Please verify the details before adding.",
+                        "Duplicate Customer",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+
             try
             {
                 customerTableTableAdapter1.InsertCust(

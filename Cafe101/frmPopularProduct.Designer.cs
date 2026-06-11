@@ -67,7 +67,7 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.button1.Location = new System.Drawing.Point(1067, 555);
             this.button1.Name = "button1";
@@ -110,6 +110,7 @@
             this.menuItemNameDataGridViewTextBoxColumn.DataPropertyName = "MenuItemName";
             this.menuItemNameDataGridViewTextBoxColumn.HeaderText = "MenuItemName";
             this.menuItemNameDataGridViewTextBoxColumn.Name = "menuItemNameDataGridViewTextBoxColumn";
+            this.menuItemNameDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // totalSoldDataGridViewTextBoxColumn
             // 
@@ -248,11 +249,11 @@
             // button2
             // 
             this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.button2.Location = new System.Drawing.Point(1229, 555);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 42);
+            this.button2.Size = new System.Drawing.Size(130, 42);
             this.button2.TabIndex = 10;
             this.button2.Text = "Check Stock";
             this.button2.UseVisualStyleBackColor = true;
@@ -261,11 +262,11 @@
             // button3
             // 
             this.button3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.button3.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.button3.Location = new System.Drawing.Point(1229, 628);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(109, 42);
+            this.button3.Size = new System.Drawing.Size(130, 42);
             this.button3.TabIndex = 11;
             this.button3.Text = "Refresh";
             this.button3.UseVisualStyleBackColor = true;
@@ -274,7 +275,7 @@
             // button4
             // 
             this.button4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.button4.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.button4.Location = new System.Drawing.Point(1067, 629);
             this.button4.Name = "button4";

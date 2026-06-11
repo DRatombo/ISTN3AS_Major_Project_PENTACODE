@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dsCafe101 = new Cafe101.dsCafe101();
             this.orderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.orderTableAdapter = new Cafe101.dsCafe101TableAdapters.OrderTableAdapter();
@@ -96,19 +96,20 @@
             this.totalChangeDueDataGridViewTextBoxColumn,
             this.deliveryCostDataGridViewTextBoxColumn});
             this.orderDataGridView.DataSource = this.orderBindingSource;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.orderDataGridView.DefaultCellStyle = dataGridViewCellStyle1;
-            this.orderDataGridView.Location = new System.Drawing.Point(5, 5);
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.orderDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
+            this.orderDataGridView.Location = new System.Drawing.Point(4, 4);
+            this.orderDataGridView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.orderDataGridView.Name = "orderDataGridView";
             this.orderDataGridView.RowHeadersWidth = 51;
             this.orderDataGridView.RowTemplate.Height = 24;
-            this.orderDataGridView.Size = new System.Drawing.Size(1097, 357);
+            this.orderDataGridView.Size = new System.Drawing.Size(1279, 640);
             this.orderDataGridView.TabIndex = 2;
             // 
             // orderIDDataGridViewTextBoxColumn
@@ -189,11 +190,12 @@
             this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnRefresh.BackColor = System.Drawing.Color.White;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnRefresh.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnRefresh.Location = new System.Drawing.Point(296, 431);
+            this.btnRefresh.Location = new System.Drawing.Point(528, 721);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(107, 29);
+            this.btnRefresh.Size = new System.Drawing.Size(103, 35);
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "REFRESH";
             this.btnRefresh.UseVisualStyleBackColor = false;
@@ -204,11 +206,12 @@
             this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnClose.BackColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnClose.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.btnClose.Location = new System.Drawing.Point(517, 431);
+            this.btnClose.Location = new System.Drawing.Point(697, 721);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(106, 29);
+            this.btnClose.Size = new System.Drawing.Size(83, 35);
             this.btnClose.TabIndex = 4;
             this.btnClose.Text = "CLOSE";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -220,23 +223,25 @@
             this.numOrders.AutoSize = true;
             this.numOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.numOrders.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.numOrders.Location = new System.Drawing.Point(259, 376);
+            this.numOrders.Location = new System.Drawing.Point(516, 671);
+            this.numOrders.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.numOrders.Name = "numOrders";
-            this.numOrders.Size = new System.Drawing.Size(144, 29);
+            this.numOrders.Size = new System.Drawing.Size(115, 24);
             this.numOrders.TabIndex = 6;
             this.numOrders.Text = "orderCount";
             // 
             // frmTodaysOrders
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(1114, 568);
+            this.ClientSize = new System.Drawing.Size(1292, 777);
             this.Controls.Add(this.numOrders);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.orderDataGridView);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmTodaysOrders";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmTodaysOrders";

@@ -15,9 +15,13 @@
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblMain = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlSearch = new System.Windows.Forms.Panel();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnClearSearch = new System.Windows.Forms.Button();
             this.dgvMenuItems = new System.Windows.Forms.DataGridView();
             this.grpMenuItemDetails = new System.Windows.Forms.GroupBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -36,17 +40,13 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.pnlSearch = new System.Windows.Forms.Panel();
-            this.lblSearch = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnClearSearch = new System.Windows.Forms.Button();
             this.tblMain.SuspendLayout();
+            this.pnlSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).BeginInit();
             this.grpMenuItemDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSellingPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCostPrice)).BeginInit();
             this.pnlButtons.SuspendLayout();
-            this.pnlSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // tblMain
@@ -63,7 +63,7 @@
             this.tblMain.Name = "tblMain";
             this.tblMain.Padding = new System.Windows.Forms.Padding(12);
             this.tblMain.RowCount = 4;
-            this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50));
+            this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -88,7 +88,7 @@
             this.lblSearch.ForeColor = System.Drawing.Color.White;
             this.lblSearch.Location = new System.Drawing.Point(10, 12);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(67, 23);
+            this.lblSearch.Size = new System.Drawing.Size(58, 19);
             this.lblSearch.TabIndex = 0;
             this.lblSearch.Text = "Search:";
             // 
@@ -99,15 +99,15 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Location = new System.Drawing.Point(80, 9);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(350, 30);
+            this.txtSearch.Size = new System.Drawing.Size(350, 25);
             this.txtSearch.TabIndex = 1;
             // 
             // btnClearSearch
             // 
-            this.btnClearSearch.BackColor = System.Drawing.Color.FromArgb(108, 117, 125);
+            this.btnClearSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
             this.btnClearSearch.FlatAppearance.BorderSize = 0;
             this.btnClearSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnClearSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnClearSearch.ForeColor = System.Drawing.Color.White;
             this.btnClearSearch.Location = new System.Drawing.Point(440, 9);
             this.btnClearSearch.Name = "btnClearSearch";
@@ -121,26 +121,25 @@
             // 
             this.dgvMenuItems.AllowUserToAddRows = false;
             this.dgvMenuItems.AllowUserToDeleteRows = false;
-            this.dgvMenuItems.AutoGenerateColumns = true;
             this.dgvMenuItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvMenuItems.BackgroundColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvMenuItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvMenuItems.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvMenuItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvMenuItems.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvMenuItems.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvMenuItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMenuItems.EnableHeadersVisualStyles = false;
             this.dgvMenuItems.GridColor = System.Drawing.Color.DarkGray;
@@ -152,7 +151,7 @@
             this.dgvMenuItems.RowHeadersWidth = 51;
             this.dgvMenuItems.RowTemplate.Height = 24;
             this.dgvMenuItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMenuItems.Size = new System.Drawing.Size(1228, 200);
+            this.dgvMenuItems.Size = new System.Drawing.Size(1228, 219);
             this.dgvMenuItems.TabIndex = 0;
             this.dgvMenuItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMenuItems_CellClick);
             // 
@@ -171,11 +170,11 @@
             this.grpMenuItemDetails.Controls.Add(this.txtPrepTime);
             this.grpMenuItemDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpMenuItemDetails.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.grpMenuItemDetails.Location = new System.Drawing.Point(15, 280);
+            this.grpMenuItemDetails.Location = new System.Drawing.Point(15, 299);
             this.grpMenuItemDetails.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
             this.grpMenuItemDetails.Name = "grpMenuItemDetails";
             this.grpMenuItemDetails.Padding = new System.Windows.Forms.Padding(12);
-            this.grpMenuItemDetails.Size = new System.Drawing.Size(1228, 190);
+            this.grpMenuItemDetails.Size = new System.Drawing.Size(1228, 172);
             this.grpMenuItemDetails.TabIndex = 1;
             this.grpMenuItemDetails.TabStop = false;
             this.grpMenuItemDetails.Text = "Menu Item Details";
@@ -187,7 +186,7 @@
             this.lblName.Location = new System.Drawing.Point(16, 20);
             this.lblName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(52, 20);
+            this.lblName.Size = new System.Drawing.Size(42, 15);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Name:";
             // 
@@ -198,7 +197,7 @@
             this.txtItemName.Location = new System.Drawing.Point(120, 18);
             this.txtItemName.Margin = new System.Windows.Forms.Padding(6);
             this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Size = new System.Drawing.Size(420, 27);
+            this.txtItemName.Size = new System.Drawing.Size(420, 23);
             this.txtItemName.TabIndex = 1;
             // 
             // lblSelling
@@ -208,7 +207,7 @@
             this.lblSelling.Location = new System.Drawing.Point(16, 60);
             this.lblSelling.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblSelling.Name = "lblSelling";
-            this.lblSelling.Size = new System.Drawing.Size(93, 20);
+            this.lblSelling.Size = new System.Drawing.Size(74, 15);
             this.lblSelling.TabIndex = 2;
             this.lblSelling.Text = "Selling Price:";
             // 
@@ -219,9 +218,13 @@
             this.numSellingPrice.ForeColor = System.Drawing.Color.Black;
             this.numSellingPrice.Location = new System.Drawing.Point(120, 58);
             this.numSellingPrice.Margin = new System.Windows.Forms.Padding(6);
-            this.numSellingPrice.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            this.numSellingPrice.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.numSellingPrice.Name = "numSellingPrice";
-            this.numSellingPrice.Size = new System.Drawing.Size(120, 27);
+            this.numSellingPrice.Size = new System.Drawing.Size(120, 23);
             this.numSellingPrice.TabIndex = 3;
             this.numSellingPrice.ThousandsSeparator = true;
             // 
@@ -232,7 +235,7 @@
             this.lblCost.Location = new System.Drawing.Point(280, 60);
             this.lblCost.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblCost.Name = "lblCost";
-            this.lblCost.Size = new System.Drawing.Size(77, 20);
+            this.lblCost.Size = new System.Drawing.Size(63, 15);
             this.lblCost.TabIndex = 4;
             this.lblCost.Text = "Cost Price:";
             // 
@@ -243,9 +246,13 @@
             this.numCostPrice.ForeColor = System.Drawing.Color.Black;
             this.numCostPrice.Location = new System.Drawing.Point(360, 58);
             this.numCostPrice.Margin = new System.Windows.Forms.Padding(6);
-            this.numCostPrice.Maximum = new decimal(new int[] { 9999, 0, 0, 0 });
+            this.numCostPrice.Maximum = new decimal(new int[] {
+            9999,
+            0,
+            0,
+            0});
             this.numCostPrice.Name = "numCostPrice";
-            this.numCostPrice.Size = new System.Drawing.Size(120, 27);
+            this.numCostPrice.Size = new System.Drawing.Size(120, 23);
             this.numCostPrice.TabIndex = 5;
             this.numCostPrice.ThousandsSeparator = true;
             // 
@@ -256,7 +263,7 @@
             this.lblCategory.Location = new System.Drawing.Point(16, 100);
             this.lblCategory.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(72, 20);
+            this.lblCategory.Size = new System.Drawing.Size(58, 15);
             this.lblCategory.TabIndex = 6;
             this.lblCategory.Text = "Category:";
             // 
@@ -266,10 +273,15 @@
             this.cboCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCategory.ForeColor = System.Drawing.Color.Black;
             this.cboCategory.FormattingEnabled = true;
-            this.cboCategory.Items.AddRange(new object[] { "Burger", "Wings", "Sides", "Drinks", "Combo" });
+            this.cboCategory.Items.AddRange(new object[] {
+            "Burger",
+            "Wings",
+            "Sides",
+            "Drinks",
+            "Combo"});
             this.cboCategory.Location = new System.Drawing.Point(120, 96);
             this.cboCategory.Name = "cboCategory";
-            this.cboCategory.Size = new System.Drawing.Size(200, 28);
+            this.cboCategory.Size = new System.Drawing.Size(200, 23);
             this.cboCategory.TabIndex = 7;
             // 
             // lblPrep
@@ -279,7 +291,7 @@
             this.lblPrep.Location = new System.Drawing.Point(16, 142);
             this.lblPrep.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblPrep.Name = "lblPrep";
-            this.lblPrep.Size = new System.Drawing.Size(79, 20);
+            this.lblPrep.Size = new System.Drawing.Size(63, 15);
             this.lblPrep.TabIndex = 8;
             this.lblPrep.Text = "Prep Time:";
             // 
@@ -290,7 +302,7 @@
             this.txtPrepTime.Location = new System.Drawing.Point(120, 142);
             this.txtPrepTime.Margin = new System.Windows.Forms.Padding(6);
             this.txtPrepTime.Name = "txtPrepTime";
-            this.txtPrepTime.Size = new System.Drawing.Size(120, 27);
+            this.txtPrepTime.Size = new System.Drawing.Size(120, 23);
             this.txtPrepTime.TabIndex = 9;
             this.txtPrepTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -303,20 +315,21 @@
             this.pnlButtons.Controls.Add(this.btnUpdate);
             this.pnlButtons.Controls.Add(this.btnRefresh);
             this.pnlButtons.Controls.Add(this.btnBack);
-            this.pnlButtons.Location = new System.Drawing.Point(375, 482);
+            this.pnlButtons.Location = new System.Drawing.Point(372, 489);
             this.pnlButtons.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(508, 44);
+            this.pnlButtons.Size = new System.Drawing.Size(513, 39);
             this.pnlButtons.TabIndex = 2;
             // 
             // btnAdd
             // 
             this.btnAdd.AutoSize = true;
             this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnAdd.FlatAppearance.BorderSize = 2;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnAdd.Location = new System.Drawing.Point(6, 6);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(6);
             this.btnAdd.Name = "btnAdd";
@@ -330,14 +343,15 @@
             // 
             this.btnDeactivate.AutoSize = true;
             this.btnDeactivate.BackColor = System.Drawing.Color.White;
-            this.btnDeactivate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnDeactivate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnDeactivate.FlatAppearance.BorderSize = 2;
             this.btnDeactivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeactivate.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnDeactivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnDeactivate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnDeactivate.Location = new System.Drawing.Point(106, 6);
             this.btnDeactivate.Margin = new System.Windows.Forms.Padding(6);
             this.btnDeactivate.Name = "btnDeactivate";
-            this.btnDeactivate.Size = new System.Drawing.Size(96, 34);
+            this.btnDeactivate.Size = new System.Drawing.Size(101, 34);
             this.btnDeactivate.TabIndex = 2;
             this.btnDeactivate.Text = "Deactivate";
             this.btnDeactivate.UseVisualStyleBackColor = false;
@@ -347,11 +361,12 @@
             // 
             this.btnUpdate.AutoSize = true;
             this.btnUpdate.BackColor = System.Drawing.Color.White;
-            this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnUpdate.FlatAppearance.BorderSize = 2;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnUpdate.Location = new System.Drawing.Point(214, 6);
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnUpdate.Location = new System.Drawing.Point(219, 6);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(6);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(88, 34);
@@ -364,11 +379,12 @@
             // 
             this.btnRefresh.AutoSize = true;
             this.btnRefresh.BackColor = System.Drawing.Color.White;
-            this.btnRefresh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnRefresh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnRefresh.FlatAppearance.BorderSize = 2;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnRefresh.Location = new System.Drawing.Point(314, 6);
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnRefresh.Location = new System.Drawing.Point(319, 6);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(6);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(88, 34);
@@ -381,11 +397,12 @@
             // 
             this.btnBack.AutoSize = true;
             this.btnBack.BackColor = System.Drawing.Color.White;
-            this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnBack.FlatAppearance.BorderSize = 2;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnBack.Location = new System.Drawing.Point(414, 6);
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnBack.Location = new System.Drawing.Point(419, 6);
             this.btnBack.Margin = new System.Windows.Forms.Padding(6);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(88, 34);
@@ -396,7 +413,7 @@
             // 
             // frmManageMenuItems
             // 
-            this.BackColor = System.Drawing.Color.FromArgb(18, 18, 112);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1258, 543);
             this.Controls.Add(this.tblMain);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -408,6 +425,8 @@
             this.Load += new System.EventHandler(this.frmManageMenuItems_Load);
             this.tblMain.ResumeLayout(false);
             this.tblMain.PerformLayout();
+            this.pnlSearch.ResumeLayout(false);
+            this.pnlSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).EndInit();
             this.grpMenuItemDetails.ResumeLayout(false);
             this.grpMenuItemDetails.PerformLayout();
@@ -415,9 +434,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCostPrice)).EndInit();
             this.pnlButtons.ResumeLayout(false);
             this.pnlButtons.PerformLayout();
-            this.pnlSearch.ResumeLayout(false);
-            this.pnlSearch.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.TableLayoutPanel tblMain;

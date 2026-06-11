@@ -55,7 +55,7 @@
             this.lblOrderID.AutoSize = true;
             this.lblOrderID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOrderID.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblOrderID.Location = new System.Drawing.Point(245, 332);
+            this.lblOrderID.Location = new System.Drawing.Point(293, 144);
             this.lblOrderID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOrderID.Name = "lblOrderID";
             this.lblOrderID.Size = new System.Drawing.Size(78, 20);
@@ -68,7 +68,7 @@
             this.lblOrderTotal.AutoSize = true;
             this.lblOrderTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOrderTotal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblOrderTotal.Location = new System.Drawing.Point(245, 371);
+            this.lblOrderTotal.Location = new System.Drawing.Point(293, 183);
             this.lblOrderTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblOrderTotal.Name = "lblOrderTotal";
             this.lblOrderTotal.Size = new System.Drawing.Size(100, 20);
@@ -90,7 +90,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(245, 508);
+            this.label4.Location = new System.Drawing.Point(293, 320);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(145, 20);
@@ -103,7 +103,7 @@
             this.lblChange.AutoSize = true;
             this.lblChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChange.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblChange.Location = new System.Drawing.Point(245, 562);
+            this.lblChange.Location = new System.Drawing.Point(293, 374);
             this.lblChange.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblChange.Name = "lblChange";
             this.lblChange.Size = new System.Drawing.Size(73, 20);
@@ -113,8 +113,8 @@
             // orderIDTxt
             // 
             this.orderIDTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.orderIDTxt.Location = new System.Drawing.Point(417, 332);
-            this.orderIDTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.orderIDTxt.Location = new System.Drawing.Point(465, 144);
+            this.orderIDTxt.Margin = new System.Windows.Forms.Padding(2);
             this.orderIDTxt.Name = "orderIDTxt";
             this.orderIDTxt.ReadOnly = true;
             this.orderIDTxt.Size = new System.Drawing.Size(138, 20);
@@ -123,8 +123,8 @@
             // totalTxt
             // 
             this.totalTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.totalTxt.Location = new System.Drawing.Point(417, 374);
-            this.totalTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.totalTxt.Location = new System.Drawing.Point(465, 186);
+            this.totalTxt.Margin = new System.Windows.Forms.Padding(2);
             this.totalTxt.Name = "totalTxt";
             this.totalTxt.ReadOnly = true;
             this.totalTxt.Size = new System.Drawing.Size(138, 20);
@@ -137,10 +137,10 @@
             this.groupBox1.Controls.Add(this.rbCash);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.groupBox1.Location = new System.Drawing.Point(249, 406);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Location = new System.Drawing.Point(297, 218);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox1.Size = new System.Drawing.Size(478, 82);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
@@ -151,7 +151,7 @@
             // 
             this.rbCard.AutoSize = true;
             this.rbCard.Location = new System.Drawing.Point(263, 37);
-            this.rbCard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbCard.Margin = new System.Windows.Forms.Padding(2);
             this.rbCard.Name = "rbCard";
             this.rbCard.Size = new System.Drawing.Size(51, 19);
             this.rbCard.TabIndex = 1;
@@ -164,7 +164,7 @@
             // 
             this.rbCash.AutoSize = true;
             this.rbCash.Location = new System.Drawing.Point(87, 37);
-            this.rbCash.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbCash.Margin = new System.Windows.Forms.Padding(2);
             this.rbCash.Name = "rbCash";
             this.rbCash.Size = new System.Drawing.Size(53, 19);
             this.rbCash.TabIndex = 0;
@@ -176,8 +176,8 @@
             // txtAmountTendered
             // 
             this.txtAmountTendered.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtAmountTendered.Location = new System.Drawing.Point(417, 510);
-            this.txtAmountTendered.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtAmountTendered.Location = new System.Drawing.Point(465, 322);
+            this.txtAmountTendered.Margin = new System.Windows.Forms.Padding(2);
             this.txtAmountTendered.Name = "txtAmountTendered";
             this.txtAmountTendered.Size = new System.Drawing.Size(138, 20);
             this.txtAmountTendered.TabIndex = 8;
@@ -186,8 +186,8 @@
             // changeTextBox
             // 
             this.changeTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.changeTextBox.Location = new System.Drawing.Point(417, 566);
-            this.changeTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.changeTextBox.Location = new System.Drawing.Point(465, 378);
+            this.changeTextBox.Margin = new System.Windows.Forms.Padding(2);
             this.changeTextBox.Name = "changeTextBox";
             this.changeTextBox.ReadOnly = true;
             this.changeTextBox.Size = new System.Drawing.Size(138, 20);
@@ -200,8 +200,8 @@
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnCancel.Location = new System.Drawing.Point(557, 644);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Location = new System.Drawing.Point(468, 456);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(170, 33);
             this.btnCancel.TabIndex = 11;
@@ -215,7 +215,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(361, 254);
+            this.label1.Location = new System.Drawing.Point(409, 66);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(230, 20);
@@ -229,8 +229,8 @@
             this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnConfirm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnConfirm.Location = new System.Drawing.Point(249, 644);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnConfirm.Location = new System.Drawing.Point(198, 456);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(180, 33);
             this.btnConfirm.TabIndex = 13;
@@ -246,7 +246,7 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.button1.Location = new System.Drawing.Point(400, 715);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(181, 33);
             this.button1.TabIndex = 14;
@@ -259,7 +259,7 @@
             this.lblAmountMes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblAmountMes.AutoSize = true;
             this.lblAmountMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAmountMes.Location = new System.Drawing.Point(417, 534);
+            this.lblAmountMes.Location = new System.Drawing.Point(465, 346);
             this.lblAmountMes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAmountMes.Name = "lblAmountMes";
             this.lblAmountMes.Size = new System.Drawing.Size(0, 15);
@@ -270,11 +270,11 @@
             this.btnHelp.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnHelp.BackColor = System.Drawing.Color.White;
             this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHelp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnHelp.Location = new System.Drawing.Point(946, 580);
+            this.btnHelp.Location = new System.Drawing.Point(772, 456);
             this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(136, 41);
+            this.btnHelp.Size = new System.Drawing.Size(136, 33);
             this.btnHelp.TabIndex = 16;
             this.btnHelp.Text = "HELP";
             this.btnHelp.UseVisualStyleBackColor = false;
@@ -302,7 +302,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblOrderTotal);
             this.Controls.Add(this.lblOrderID);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmCheckout";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCheckout";

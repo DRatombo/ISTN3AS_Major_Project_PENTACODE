@@ -135,36 +135,36 @@
             // mnuMenuItems
             // 
             this.mnuMenuItems.Name = "mnuMenuItems";
-            this.mnuMenuItems.Size = new System.Drawing.Size(180, 22);
-            this.mnuMenuItems.Text = "Menu Items";
+            this.mnuMenuItems.Size = new System.Drawing.Size(183, 22);
+            this.mnuMenuItems.Text = "Manage Menu Items";
             this.mnuMenuItems.Click += new System.EventHandler(this.mnuMenuItems_Click);
             // 
             // mnuIngredients
             // 
             this.mnuIngredients.Name = "mnuIngredients";
-            this.mnuIngredients.Size = new System.Drawing.Size(180, 22);
-            this.mnuIngredients.Text = "Ingredients";
+            this.mnuIngredients.Size = new System.Drawing.Size(183, 22);
+            this.mnuIngredients.Text = "Manage Ingredients";
             this.mnuIngredients.Click += new System.EventHandler(this.mnuIngredients_Click);
             // 
             // mnuRecipes
             // 
             this.mnuRecipes.Name = "mnuRecipes";
-            this.mnuRecipes.Size = new System.Drawing.Size(180, 22);
-            this.mnuRecipes.Text = "Recipe";
+            this.mnuRecipes.Size = new System.Drawing.Size(183, 22);
+            this.mnuRecipes.Text = "Manage Recipes";
             this.mnuRecipes.Click += new System.EventHandler(this.mnuRecipes_Click);
             // 
             // mnuCashiers
             // 
             this.mnuCashiers.Name = "mnuCashiers";
-            this.mnuCashiers.Size = new System.Drawing.Size(180, 22);
-            this.mnuCashiers.Text = "Cashiers";
+            this.mnuCashiers.Size = new System.Drawing.Size(183, 22);
+            this.mnuCashiers.Text = "Manage Employees";
             this.mnuCashiers.Click += new System.EventHandler(this.mnuCashiers_Click);
             // 
             // customersToolStripMenuItem
             // 
             this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
-            this.customersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.customersToolStripMenuItem.Text = "Customers";
+            this.customersToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.customersToolStripMenuItem.Text = "Manage Customers";
             this.customersToolStripMenuItem.Click += new System.EventHandler(this.customersToolStripMenuItem_Click);
             // 
             // logOutToolStripMenuItem

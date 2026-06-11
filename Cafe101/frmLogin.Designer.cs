@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.txtHelp = new System.Windows.Forms.TextBox();
             this.btnHelp = new System.Windows.Forms.Button();
             this.pBHelp = new System.Windows.Forms.PictureBox();
             this.lblEmailMsg = new System.Windows.Forms.Label();
@@ -70,8 +68,6 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.btnClose);
-            this.splitContainer1.Panel1.Controls.Add(this.txtHelp);
             this.splitContainer1.Panel1.Controls.Add(this.btnHelp);
             this.splitContainer1.Panel1.Controls.Add(this.pBHelp);
             // 
@@ -92,40 +88,13 @@
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackColor = System.Drawing.SystemColors.Control;
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnClose.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnClose.Location = new System.Drawing.Point(279, 761);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(147, 44);
-            this.btnClose.TabIndex = 12;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // txtHelp
-            // 
-            this.txtHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtHelp.Location = new System.Drawing.Point(12, 12);
-            this.txtHelp.Multiline = true;
-            this.txtHelp.Name = "txtHelp";
-            this.txtHelp.ReadOnly = true;
-            this.txtHelp.Size = new System.Drawing.Size(455, 716);
-            this.txtHelp.TabIndex = 11;
-            this.txtHelp.Text = resources.GetString("txtHelp.Text");
-            this.txtHelp.TextChanged += new System.EventHandler(this.txtHelp_TextChanged);
-            // 
             // btnHelp
             // 
             this.btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnHelp.BackColor = System.Drawing.SystemColors.Control;
             this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnHelp.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnHelp.Location = new System.Drawing.Point(29, 763);
+            this.btnHelp.Location = new System.Drawing.Point(154, 763);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(147, 44);
@@ -309,7 +278,6 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -331,8 +299,6 @@
         private dsLogin dsLogin1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button btnHelp;
-        private System.Windows.Forms.TextBox txtHelp;
-        private System.Windows.Forms.Button btnClose;
         private dsCafe101TestTableAdapters.TestEmployeeTableAdapter testEmployeeTableAdapter1;
         private dsCafe101Test dsCafe101Test1;
         private dsCafe101TestTableAdapters.TestLoginHistoryTableAdapter testLoginHistoryTableAdapter1;

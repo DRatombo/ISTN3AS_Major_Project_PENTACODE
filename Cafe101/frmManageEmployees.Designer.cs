@@ -15,8 +15,8 @@
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblMain = new System.Windows.Forms.TableLayoutPanel();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.grpEmployeeDetails = new System.Windows.Forms.GroupBox();
@@ -39,7 +39,6 @@
             this.btnClearSearch = new System.Windows.Forms.Button();
             this.dgvEmployees = new System.Windows.Forms.DataGridView();
             this.pnlRightButtons = new System.Windows.Forms.FlowLayoutPanel();
-            this.btnHelp = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
@@ -58,16 +57,16 @@
             // tblMain
             // 
             this.tblMain.ColumnCount = 2;
-            this.tblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 420));
-            this.tblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100));
+            this.tblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 420F));
+            this.tblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblMain.Controls.Add(this.pnlLeft, 0, 0);
             this.tblMain.Controls.Add(this.pnlRight, 1, 0);
             this.tblMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblMain.Location = new System.Drawing.Point(0, 0);
             this.tblMain.Name = "tblMain";
             this.tblMain.RowCount = 1;
-            this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100));
-            this.tblMain.Size = new System.Drawing.Size(1075, 567);
+            this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblMain.Size = new System.Drawing.Size(1075, 573);
             this.tblMain.TabIndex = 0;
             // 
             // pnlLeft
@@ -77,7 +76,7 @@
             this.pnlLeft.Location = new System.Drawing.Point(3, 3);
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Padding = new System.Windows.Forms.Padding(12);
-            this.pnlLeft.Size = new System.Drawing.Size(414, 561);
+            this.pnlLeft.Size = new System.Drawing.Size(414, 567);
             this.pnlLeft.TabIndex = 0;
             // 
             // grpEmployeeDetails
@@ -99,7 +98,7 @@
             this.grpEmployeeDetails.Location = new System.Drawing.Point(12, 12);
             this.grpEmployeeDetails.Name = "grpEmployeeDetails";
             this.grpEmployeeDetails.Padding = new System.Windows.Forms.Padding(15);
-            this.grpEmployeeDetails.Size = new System.Drawing.Size(390, 537);
+            this.grpEmployeeDetails.Size = new System.Drawing.Size(390, 543);
             this.grpEmployeeDetails.TabIndex = 0;
             this.grpEmployeeDetails.TabStop = false;
             this.grpEmployeeDetails.Text = "Employee Details";
@@ -110,7 +109,7 @@
             this.lblFirstName.ForeColor = System.Drawing.Color.White;
             this.lblFirstName.Location = new System.Drawing.Point(18, 27);
             this.lblFirstName.Name = "lblFirstName";
-            this.lblFirstName.Size = new System.Drawing.Size(88, 20);
+            this.lblFirstName.Size = new System.Drawing.Size(67, 15);
             this.lblFirstName.TabIndex = 0;
             this.lblFirstName.Text = "First Name:";
             // 
@@ -120,7 +119,7 @@
             this.txtFirstName.ForeColor = System.Drawing.Color.Black;
             this.txtFirstName.Location = new System.Drawing.Point(140, 24);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(220, 27);
+            this.txtFirstName.Size = new System.Drawing.Size(220, 23);
             this.txtFirstName.TabIndex = 1;
             // 
             // lblSurname
@@ -129,7 +128,7 @@
             this.lblSurname.ForeColor = System.Drawing.Color.White;
             this.lblSurname.Location = new System.Drawing.Point(18, 67);
             this.lblSurname.Name = "lblSurname";
-            this.lblSurname.Size = new System.Drawing.Size(74, 20);
+            this.lblSurname.Size = new System.Drawing.Size(57, 15);
             this.lblSurname.TabIndex = 2;
             this.lblSurname.Text = "Surname:";
             // 
@@ -139,7 +138,7 @@
             this.txtSurname.ForeColor = System.Drawing.Color.Black;
             this.txtSurname.Location = new System.Drawing.Point(140, 64);
             this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(220, 27);
+            this.txtSurname.Size = new System.Drawing.Size(220, 23);
             this.txtSurname.TabIndex = 3;
             // 
             // lblEmail
@@ -148,7 +147,7 @@
             this.lblEmail.ForeColor = System.Drawing.Color.White;
             this.lblEmail.Location = new System.Drawing.Point(18, 107);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(49, 20);
+            this.lblEmail.Size = new System.Drawing.Size(39, 15);
             this.lblEmail.TabIndex = 4;
             this.lblEmail.Text = "Email:";
             // 
@@ -158,7 +157,7 @@
             this.txtEmail.ForeColor = System.Drawing.Color.Black;
             this.txtEmail.Location = new System.Drawing.Point(140, 104);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(220, 27);
+            this.txtEmail.Size = new System.Drawing.Size(220, 23);
             this.txtEmail.TabIndex = 5;
             // 
             // lblAddress
@@ -167,7 +166,7 @@
             this.lblAddress.ForeColor = System.Drawing.Color.White;
             this.lblAddress.Location = new System.Drawing.Point(18, 147);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(69, 20);
+            this.lblAddress.Size = new System.Drawing.Size(52, 15);
             this.lblAddress.TabIndex = 6;
             this.lblAddress.Text = "Address:";
             // 
@@ -177,7 +176,7 @@
             this.txtAddress.ForeColor = System.Drawing.Color.Black;
             this.txtAddress.Location = new System.Drawing.Point(140, 144);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(220, 27);
+            this.txtAddress.Size = new System.Drawing.Size(220, 23);
             this.txtAddress.TabIndex = 7;
             // 
             // lblRole
@@ -186,7 +185,7 @@
             this.lblRole.ForeColor = System.Drawing.Color.White;
             this.lblRole.Location = new System.Drawing.Point(18, 187);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(44, 20);
+            this.lblRole.Size = new System.Drawing.Size(33, 15);
             this.lblRole.TabIndex = 8;
             this.lblRole.Text = "Role:";
             // 
@@ -201,7 +200,7 @@
             "Cashier"});
             this.cboRole.Location = new System.Drawing.Point(140, 184);
             this.cboRole.Name = "cboRole";
-            this.cboRole.Size = new System.Drawing.Size(200, 28);
+            this.cboRole.Size = new System.Drawing.Size(200, 23);
             this.cboRole.TabIndex = 9;
             // 
             // lblPassword
@@ -210,7 +209,7 @@
             this.lblPassword.ForeColor = System.Drawing.Color.White;
             this.lblPassword.Location = new System.Drawing.Point(18, 227);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(77, 20);
+            this.lblPassword.Size = new System.Drawing.Size(60, 15);
             this.lblPassword.TabIndex = 10;
             this.lblPassword.Text = "Password:";
             // 
@@ -220,14 +219,14 @@
             this.txtPassword.ForeColor = System.Drawing.Color.Black;
             this.txtPassword.Location = new System.Drawing.Point(140, 224);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(220, 27);
+            this.txtPassword.Size = new System.Drawing.Size(220, 23);
             this.txtPassword.TabIndex = 11;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // pnlRight
             // 
             this.pnlRight.ColumnCount = 1;
-            this.pnlRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100));
+            this.pnlRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.pnlRight.Controls.Add(this.pnlSearch, 0, 0);
             this.pnlRight.Controls.Add(this.dgvEmployees, 0, 1);
             this.pnlRight.Controls.Add(this.pnlRightButtons, 0, 2);
@@ -235,10 +234,10 @@
             this.pnlRight.Location = new System.Drawing.Point(423, 3);
             this.pnlRight.Name = "pnlRight";
             this.pnlRight.RowCount = 3;
-            this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50));
-            this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88));
-            this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64));
-            this.pnlRight.Size = new System.Drawing.Size(649, 561);
+            this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
+            this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
+            this.pnlRight.Size = new System.Drawing.Size(649, 567);
             this.pnlRight.TabIndex = 1;
             // 
             // pnlSearch
@@ -259,7 +258,7 @@
             this.lblSearch.ForeColor = System.Drawing.Color.White;
             this.lblSearch.Location = new System.Drawing.Point(10, 12);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(67, 23);
+            this.lblSearch.Size = new System.Drawing.Size(58, 19);
             this.lblSearch.TabIndex = 0;
             this.lblSearch.Text = "Search:";
             // 
@@ -270,15 +269,15 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Location = new System.Drawing.Point(80, 9);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(300, 30);
+            this.txtSearch.Size = new System.Drawing.Size(300, 25);
             this.txtSearch.TabIndex = 1;
             // 
             // btnClearSearch
             // 
-            this.btnClearSearch.BackColor = System.Drawing.Color.FromArgb(108, 117, 125);
+            this.btnClearSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
             this.btnClearSearch.FlatAppearance.BorderSize = 0;
             this.btnClearSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnClearSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnClearSearch.ForeColor = System.Drawing.Color.White;
             this.btnClearSearch.Location = new System.Drawing.Point(390, 9);
             this.btnClearSearch.Name = "btnClearSearch";
@@ -294,23 +293,23 @@
             this.dgvEmployees.AllowUserToDeleteRows = false;
             this.dgvEmployees.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvEmployees.BackgroundColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvEmployees.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvEmployees.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvEmployees.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEmployees.EnableHeadersVisualStyles = false;
             this.dgvEmployees.GridColor = System.Drawing.Color.DarkGray;
@@ -321,14 +320,13 @@
             this.dgvEmployees.RowHeadersWidth = 51;
             this.dgvEmployees.RowTemplate.Height = 24;
             this.dgvEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEmployees.Size = new System.Drawing.Size(643, 441);
+            this.dgvEmployees.Size = new System.Drawing.Size(643, 447);
             this.dgvEmployees.TabIndex = 0;
             this.dgvEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_CellClick);
             // 
             // pnlRightButtons
             // 
             this.pnlRightButtons.AutoSize = true;
-            this.pnlRightButtons.Controls.Add(this.btnHelp);
             this.pnlRightButtons.Controls.Add(this.btnAdd);
             this.pnlRightButtons.Controls.Add(this.btnUpdate);
             this.pnlRightButtons.Controls.Add(this.btnRemove);
@@ -336,37 +334,23 @@
             this.pnlRightButtons.Controls.Add(this.btnRefresh);
             this.pnlRightButtons.Controls.Add(this.btnBack);
             this.pnlRightButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlRightButtons.Location = new System.Drawing.Point(3, 500);
+            this.pnlRightButtons.Location = new System.Drawing.Point(3, 506);
             this.pnlRightButtons.Name = "pnlRightButtons";
             this.pnlRightButtons.Padding = new System.Windows.Forms.Padding(6);
             this.pnlRightButtons.Size = new System.Drawing.Size(643, 58);
             this.pnlRightButtons.TabIndex = 1;
             // 
-            // btnHelp
-            // 
-            this.btnHelp.BackColor = System.Drawing.Color.FromArgb(23, 162, 184);
-            this.btnHelp.FlatAppearance.BorderSize = 0;
-            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHelp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnHelp.ForeColor = System.Drawing.Color.White;
-            this.btnHelp.Location = new System.Drawing.Point(3, 9);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(80, 37);
-            this.btnHelp.TabIndex = 6;
-            this.btnHelp.Text = "❓ Help";
-            this.btnHelp.UseVisualStyleBackColor = false;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
-            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnAdd.FlatAppearance.BorderSize = 2;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnAdd.Location = new System.Drawing.Point(89, 9);
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnAdd.Location = new System.Drawing.Point(9, 9);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(80, 37);
+            this.btnAdd.Size = new System.Drawing.Size(100, 37);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -375,13 +359,14 @@
             // btnUpdate
             // 
             this.btnUpdate.BackColor = System.Drawing.Color.White;
-            this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnUpdate.FlatAppearance.BorderSize = 2;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnUpdate.Location = new System.Drawing.Point(175, 9);
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnUpdate.Location = new System.Drawing.Point(115, 9);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(80, 37);
+            this.btnUpdate.Size = new System.Drawing.Size(100, 37);
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -390,13 +375,14 @@
             // btnRemove
             // 
             this.btnRemove.BackColor = System.Drawing.Color.White;
-            this.btnRemove.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnRemove.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnRemove.FlatAppearance.BorderSize = 2;
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemove.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnRemove.Location = new System.Drawing.Point(261, 9);
+            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnRemove.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnRemove.Location = new System.Drawing.Point(221, 9);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(80, 37);
+            this.btnRemove.Size = new System.Drawing.Size(100, 37);
             this.btnRemove.TabIndex = 2;
             this.btnRemove.Text = "Delete";
             this.btnRemove.UseVisualStyleBackColor = false;
@@ -405,28 +391,30 @@
             // btnResetPassword
             // 
             this.btnResetPassword.BackColor = System.Drawing.Color.White;
-            this.btnResetPassword.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnResetPassword.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnResetPassword.FlatAppearance.BorderSize = 2;
             this.btnResetPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnResetPassword.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnResetPassword.Location = new System.Drawing.Point(347, 9);
+            this.btnResetPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnResetPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnResetPassword.Location = new System.Drawing.Point(327, 9);
             this.btnResetPassword.Name = "btnResetPassword";
-            this.btnResetPassword.Size = new System.Drawing.Size(80, 37);
+            this.btnResetPassword.Size = new System.Drawing.Size(193, 37);
             this.btnResetPassword.TabIndex = 3;
-            this.btnResetPassword.Text = "Reset PW";
+            this.btnResetPassword.Text = "Reset Password";
             this.btnResetPassword.UseVisualStyleBackColor = false;
             this.btnResetPassword.Click += new System.EventHandler(this.btnResetPassword_Click);
             // 
             // btnRefresh
             // 
             this.btnRefresh.BackColor = System.Drawing.Color.White;
-            this.btnRefresh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnRefresh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnRefresh.FlatAppearance.BorderSize = 2;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnRefresh.Location = new System.Drawing.Point(433, 9);
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnRefresh.Location = new System.Drawing.Point(526, 9);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(80, 37);
+            this.btnRefresh.Size = new System.Drawing.Size(100, 37);
             this.btnRefresh.TabIndex = 4;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = false;
@@ -435,13 +423,13 @@
             // btnBack
             // 
             this.btnBack.BackColor = System.Drawing.Color.White;
-            this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnBack.FlatAppearance.BorderSize = 2;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnBack.Location = new System.Drawing.Point(519, 9);
+            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnBack.Location = new System.Drawing.Point(9, 52);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(80, 37);
+            this.btnBack.Size = new System.Drawing.Size(100, 37);
             this.btnBack.TabIndex = 5;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = false;
@@ -449,8 +437,8 @@
             // 
             // frmManageEmployees
             // 
-            this.BackColor = System.Drawing.Color.FromArgb(18, 18, 112);
-            this.ClientSize = new System.Drawing.Size(1075, 567);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(112)))));
+            this.ClientSize = new System.Drawing.Size(1075, 573);
             this.Controls.Add(this.tblMain);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.MinimumSize = new System.Drawing.Size(900, 480);
@@ -469,8 +457,8 @@
             this.pnlSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.pnlRightButtons.ResumeLayout(false);
-            this.pnlRightButtons.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.TableLayoutPanel tblMain;
@@ -495,7 +483,6 @@
         private System.Windows.Forms.Button btnClearSearch;
         private System.Windows.Forms.DataGridView dgvEmployees;
         private System.Windows.Forms.FlowLayoutPanel pnlRightButtons;
-        private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnRemove;

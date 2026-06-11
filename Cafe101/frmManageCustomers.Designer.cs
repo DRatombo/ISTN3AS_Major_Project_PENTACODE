@@ -109,7 +109,7 @@
             // button1
             // 
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.button1.Location = new System.Drawing.Point(1139, 535);
             this.button1.Name = "button1";
@@ -122,7 +122,7 @@
             // btnBack
             // 
             this.btnBack.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnBack.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.btnBack.Location = new System.Drawing.Point(724, 533);
             this.btnBack.Name = "btnBack";
@@ -160,9 +160,9 @@
             // addCustomer
             // 
             this.addCustomer.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.addCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.addCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.addCustomer.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.addCustomer.Location = new System.Drawing.Point(893, 533);
+            this.addCustomer.Location = new System.Drawing.Point(908, 533);
             this.addCustomer.Name = "addCustomer";
             this.addCustomer.Size = new System.Drawing.Size(192, 42);
             this.addCustomer.TabIndex = 6;
@@ -208,8 +208,9 @@
             // btnRemoveCustomer
             // 
             this.btnRemoveCustomer.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRemoveCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnRemoveCustomer.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnRemoveCustomer.Location = new System.Drawing.Point(181, 321);
+            this.btnRemoveCustomer.Location = new System.Drawing.Point(223, 326);
             this.btnRemoveCustomer.Name = "btnRemoveCustomer";
             this.btnRemoveCustomer.Size = new System.Drawing.Size(175, 36);
             this.btnRemoveCustomer.TabIndex = 8;

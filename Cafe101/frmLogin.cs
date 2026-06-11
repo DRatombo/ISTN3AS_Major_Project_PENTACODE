@@ -16,8 +16,9 @@
                     // Added dataset instance and table adapter that point to dsCafe101Hub.EmployeeTable
                     private dsCafe101Hub dsCafe101Hub1 = new dsCafe101Hub();
                     private EmployeeTableTableAdapter employeeTableAdapter1 = new EmployeeTableTableAdapter();
-
-                    public frmLogin()
+                    private Panel pnlHelp = null;
+                    private bool helpVisible = false;
+        public frmLogin()
                     {
                         InitializeComponent();
                         //this.DoubleBuffered = true;
@@ -149,12 +150,98 @@
 
                     private void button2_Click(object sender, EventArgs e)
                     {
-                        txtHelp.Show(); 
-                    }
+            if (helpVisible)
+            {
+                pnlHelp.Visible = false;
+                helpVisible = false;
+                btnHelp.Text = "? Help";
+                return;
+            }
+
+            string stepTitle = "📖 Cafe101 Login Guide";
+            string stepDetail =
+                "─── Getting Started ───\r\n\r\n" +
+
+                "📍 Step 1 — Enter Your Email\r\n" +
+                "• Type your work email in the Email field.\r\n" +
+                "• Must use the Cafe101 domain:\r\n" +
+                "  e.g. yourname@cafe101.com\r\n" +
+                "• Gmail / Outlook / Yahoo not accepted.\r\n\r\n" +
+
+                "📍 Step 2 — Enter Your Password\r\n" +
+                "• Type your password in the Password field.\r\n" +
+                "• Must be at least 8 characters long.\r\n" +
+                "• Fewer than 8 characters = login blocked.\r\n\r\n" +
+
+                "📍 Step 3 — Show / Hide Password\r\n" +
+                "• Password is hidden by default (••••••••).\r\n" +
+                "• Click 👁 Show Password to reveal it.\r\n" +
+                "• Click again to hide it.\r\n\r\n" +
+
+                "📍 Step 4 — Click Login\r\n" +
+                "• Both fields must be filled correctly.\r\n" +
+                "• You'll be taken to the main dashboard.\r\n\r\n" +
+
+                "💡 Contact your manager if you don't\r\n" +
+                "   have login credentials yet.";
+
+            if (pnlHelp == null)
+            {
+                pnlHelp = new Panel();
+                pnlHelp.Size = new System.Drawing.Size(483, 807);  // taller for more content
+                pnlHelp.BackColor = System.Drawing.Color.FromArgb(20, 40, 100);
+                pnlHelp.BorderStyle = BorderStyle.FixedSingle;
+                this.Controls.Add(pnlHelp);
+                pnlHelp.BringToFront();
+            }
+
+            pnlHelp.Controls.Clear();
+
+            Label lblTitle = new Label();
+            lblTitle.Text = stepTitle;
+            lblTitle.Font = new System.Drawing.Font("Segoe UI", 13, System.Drawing.FontStyle.Bold);
+            lblTitle.ForeColor = System.Drawing.Color.White;
+            lblTitle.Location = new System.Drawing.Point(10, 10);
+            lblTitle.Size = new System.Drawing.Size(460, 30);
+
+            Label lblDetail = new Label();
+            lblDetail.Text = stepDetail;
+            lblDetail.Font = new System.Drawing.Font("Segoe UI", 13);
+            lblDetail.ForeColor = System.Drawing.Color.LightGray;
+            lblDetail.Location = new System.Drawing.Point(10, 42);
+            lblDetail.Size = new System.Drawing.Size(460, 700);  // expanded to fit all steps
+
+            Button btnClose = new Button();
+            btnClose.Text = "✕ Close";
+            btnClose.Size = new System.Drawing.Size(100, 28);
+            btnClose.Location = new System.Drawing.Point(370, 765);  // pushed down to match new height
+            btnClose.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
+            btnClose.ForeColor = System.Drawing.Color.White;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Click += (s, ev) =>
+            {
+                pnlHelp.Visible = false;
+                helpVisible = false;
+                btnHelp.Text = "? Help";
+            };
+
+            pnlHelp.Controls.Add(lblTitle);
+            pnlHelp.Controls.Add(lblDetail);
+            pnlHelp.Controls.Add(btnClose);
+
+            pnlHelp.Location = new System.Drawing.Point(
+                pBHelp.Left,
+                pBHelp.Top);
+
+            pnlHelp.Visible = true;
+            helpVisible = true;
+            btnHelp.Text = "? Help (ON)";
+
+        }
 
                     private void frmLogin_Load(object sender, EventArgs e)
                     {
-                        txtHelp.Hide();
+                        
 
                         txtPassword.UseSystemPasswordChar = true;
 
@@ -182,7 +269,7 @@
 
                     private void btnClose_Click(object sender, EventArgs e)
                     {
-                        txtHelp.Hide();
+                       
                     }
 
                     private void pBLogin_Click(object sender, EventArgs e)

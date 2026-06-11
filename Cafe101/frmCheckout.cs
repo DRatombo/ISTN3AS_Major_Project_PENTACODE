@@ -16,6 +16,8 @@ namespace Cafe101
     {
         private int _orderID;
         private decimal _orderTotal;
+        private Panel pnlHelp;
+        private bool helpVisible = false;
 
         public frmCheckout(int orderID, decimal orderTotal)
         {
@@ -228,6 +230,7 @@ namespace Cafe101
                 }
 
                 ((frmNewOrder)this.Owner).ResetOrder();
+                ((frmNewOrder)this.Owner).Close();
 
                 this.Close();
 
@@ -251,9 +254,12 @@ namespace Cafe101
                 "Cancel Payment",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
-
             if (result == DialogResult.Yes)
-                this.Close();
+            {
+                frmNewOrder newOrder = new frmNewOrder();
+                newOrder.Show();
+                //this.Close();
+            }
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
@@ -274,6 +280,170 @@ namespace Cafe101
         {
             frmTodaysOrders orders = new frmTodaysOrders();
             orders.Show();
+        }
+
+        /* private void btnHelp_Click(object sender, EventArgs e)
+         {
+
+         }*/
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            if (helpVisible)
+            {
+                pnlHelp.Visible = false;
+                helpVisible = false;
+                btnHelp.Text = "? Help";
+                return;
+            }
+
+            string stepTitle;
+            string stepDetail;
+
+            if (!rbCash.Checked && !rbCard.Checked)
+            {
+                // Step 1 — No payment method selected
+                stepTitle = "📋 Checkout Guide — Step 1 of 3";
+                stepDetail =
+                    "FORM OVERVIEW\r\n" +
+                    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\r\n" +
+                    "This form processes payment for the\r\n" +
+                    "selected order before issuing a receipt.\r\n\r\n" +
+
+                    "ORDER ID\r\n" +
+                    "  The unique number assigned to this\r\n" +
+                    "  order. Read-only — for reference only.\r\n\r\n" +
+
+                    "ORDER TOTAL\r\n" +
+                    "  The full amount owed by the customer.\r\n" +
+                    "  Calculated from the order items.\r\n\r\n" +
+
+                    "PAYMENT METHOD  ← You are here\r\n" +
+                    "  • Cash  — Customer pays with notes/coins.\r\n" +
+                    "             You will enter the amount given\r\n" +
+                    "             and change is auto-calculated.\r\n" +
+                    "  • Card  — Customer pays by debit/credit.\r\n" +
+                    "             No change required. Payment is\r\n" +
+                    "             assumed approved immediately.\r\n\r\n" +
+
+                    "💡 Select Cash or Card to proceed.";
+            }
+            else if (rbCash.Checked && string.IsNullOrWhiteSpace(txtAmountTendered.Text))
+            {
+                // Step 2 — Cash selected, no amount entered
+                stepTitle = "📋 Checkout Guide — Step 2 of 3";
+                stepDetail =
+                    "Payment Method: Cash ✔\r\n" +
+                    "Order Total: " + totalTxt.Text + "\r\n" +
+                    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\r\n\r\n" +
+
+                    "AMOUNT TENDERED  ← You are here\r\n" +
+                    "  Enter the cash amount the customer\r\n" +
+                    "  hands over. Rules:\r\n" +
+                    "  • Numbers only (e.g. 250 or 250.50)\r\n" +
+                    "  • Must be greater than zero\r\n" +
+                    "  • Must cover the full order total\r\n" +
+                    "  • Field turns green ✔ when valid\r\n" +
+                    "  • Field turns red ⚠ when invalid\r\n\r\n" +
+
+                    "CHANGE\r\n" +
+                    "  Updates automatically as you type.\r\n" +
+                    "  Shows the exact amount to hand back.\r\n" +
+                    "  Displays 'Insufficient' if the amount\r\n" +
+                    "  entered does not cover the total.\r\n\r\n" +
+
+                    "💡 Enter the cash amount to proceed.";
+            }
+            else
+            {
+                // Step 3 — Ready to confirm
+                string method = rbCard.Checked ? "Card" : "Cash";
+                stepTitle = "📋 Checkout Guide — Step 3 of 3";
+                stepDetail =
+                    "Payment Method: " + method + " ✔\r\n" +
+                    "Order Total: " + totalTxt.Text + "\r\n" +       
+                    (rbCash.Checked ? "  |  Change: " + changeTextBox.Text : "") + "\r\n" +
+                    "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\r\n\r\n" +
+
+                    "CONFIRM PAYMENT  ← Action required\r\n" +
+                    "  Finalises and records the payment.\r\n" +
+                    "  This will:\r\n" +
+                    "  • Save the payment method to the order\r\n" +
+                    "  • Mark the order status as Completed\r\n" +
+                    "  • Automatically open the receipt\r\n" +
+                    "  • Reset the order screen for next order\r\n\r\n" +
+
+                    "CANCEL PAYMENT\r\n" +
+                    "  Cancels this checkout session and\r\n" +
+                    "  returns you to the New Order screen.\r\n" +
+                    "  The order will NOT be marked complete.\r\n\r\n" +
+
+                    "TODAY'S ORDERS\r\n" +
+                    "  Opens a read-only list of all orders\r\n" +
+                    "  processed today. Use for reference\r\n" +
+                    "  without affecting the current checkout.\r\n\r\n" +
+
+                    "💡 Press Confirm Payment when ready.";
+            }
+
+            if (pnlHelp == null)
+            {
+                pnlHelp = new Panel();
+                pnlHelp.Size = new System.Drawing.Size(345, 420);
+                pnlHelp.BackColor = System.Drawing.Color.FromArgb(15, 30, 80);
+                pnlHelp.BorderStyle = BorderStyle.FixedSingle;
+                this.Controls.Add(pnlHelp);
+                pnlHelp.BringToFront();
+            }
+
+            pnlHelp.Controls.Clear();
+
+            Label lblTitle = new Label();
+            lblTitle.Text = stepTitle;
+            lblTitle.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Bold);
+            lblTitle.ForeColor = System.Drawing.Color.White;
+            lblTitle.Location = new System.Drawing.Point(12, 10);
+            lblTitle.Size = new System.Drawing.Size(320, 22);
+
+            Label lblDivider = new Label();
+            lblDivider.Text = "";
+            lblDivider.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
+            lblDivider.Location = new System.Drawing.Point(12, 36);
+            lblDivider.Size = new System.Drawing.Size(318, 2);
+
+            Label lblDetail = new Label();
+            lblDetail.Text = stepDetail;
+            lblDetail.Font = new System.Drawing.Font("Segoe UI", 8.5f);
+            lblDetail.ForeColor = System.Drawing.Color.LightGray;
+            lblDetail.Location = new System.Drawing.Point(12, 46);
+            lblDetail.Size = new System.Drawing.Size(318, 330);
+
+            Button btnClose = new Button();
+            btnClose.Text = "✕ Close Help";
+            btnClose.Size = new System.Drawing.Size(110, 28);
+            btnClose.Location = new System.Drawing.Point(222, 383);
+            btnClose.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
+            btnClose.ForeColor = System.Drawing.Color.White;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.FlatAppearance.BorderSize = 0;
+            btnClose.Click += (s, ev) =>
+            {
+                pnlHelp.Visible = false;
+                helpVisible = false;
+                btnHelp.Text = "? Help";
+            };
+
+            pnlHelp.Controls.Add(lblTitle);
+            pnlHelp.Controls.Add(lblDivider);
+            pnlHelp.Controls.Add(lblDetail);
+            pnlHelp.Controls.Add(btnClose);
+
+            pnlHelp.Location = new System.Drawing.Point(
+                btnHelp.Left - pnlHelp.Width + btnHelp.Width,
+                btnHelp.Top - pnlHelp.Height - 5);
+
+            pnlHelp.Visible = true;
+            helpVisible = true;
+            btnHelp.Text = "? Help (ON)";
         }
     }
 }

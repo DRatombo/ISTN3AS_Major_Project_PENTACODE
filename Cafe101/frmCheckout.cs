@@ -254,11 +254,15 @@ namespace Cafe101
                 "Cancel Payment",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
+
             if (result == DialogResult.Yes)
             {
-                frmNewOrder newOrder = new frmNewOrder();
-                newOrder.Show();
-                //this.Close();
+                if (this.Owner != null)
+                {
+                    this.Owner.Show();
+                }
+
+                this.Close();
             }
         }
 

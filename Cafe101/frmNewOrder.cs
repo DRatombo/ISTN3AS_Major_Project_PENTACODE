@@ -768,7 +768,8 @@ namespace Cafe101
 
                 frmCheckout checkout = new frmCheckout(newOrderID, orderTotal);
                 checkout.Owner = this;
-                checkout.ShowDialog();
+                checkout.Show();
+                this.Hide();   
 
                
             }

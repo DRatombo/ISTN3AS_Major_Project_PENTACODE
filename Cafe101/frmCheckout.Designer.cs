@@ -45,6 +45,7 @@
             this.btnConfirm = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.lblAmountMes = new System.Windows.Forms.Label();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -246,12 +247,28 @@
             this.lblAmountMes.Size = new System.Drawing.Size(0, 18);
             this.lblAmountMes.TabIndex = 15;
             // 
+            // btnHelp
+            // 
+            this.btnHelp.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnHelp.BackColor = System.Drawing.Color.White;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnHelp.Location = new System.Drawing.Point(946, 580);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(136, 41);
+            this.btnHelp.TabIndex = 16;
+            this.btnHelp.Text = "HELP";
+            this.btnHelp.UseVisualStyleBackColor = false;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
             // frmCheckout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(1337, 705);
+            this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.lblAmountMes);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnConfirm);
@@ -297,5 +314,6 @@
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label lblAmountMes;
+        private System.Windows.Forms.Button btnHelp;
     }
 }

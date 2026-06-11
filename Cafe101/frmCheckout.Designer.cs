@@ -54,8 +54,10 @@
             this.lblOrderID.AutoSize = true;
             this.lblOrderID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOrderID.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblOrderID.Location = new System.Drawing.Point(101, 95);
             this.lblOrderID.Location = new System.Drawing.Point(296, 140);
             this.lblOrderID.Name = "lblOrderID";
+            this.lblOrderID.Size = new System.Drawing.Size(107, 25);
             this.lblOrderID.Size = new System.Drawing.Size(97, 25);
             this.lblOrderID.TabIndex = 0;
             this.lblOrderID.Text = "Order ID :";
@@ -66,8 +68,10 @@
             this.lblOrderTotal.AutoSize = true;
             this.lblOrderTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOrderTotal.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblOrderTotal.Location = new System.Drawing.Point(101, 135);
             this.lblOrderTotal.Location = new System.Drawing.Point(296, 188);
             this.lblOrderTotal.Name = "lblOrderTotal";
+            this.lblOrderTotal.Size = new System.Drawing.Size(141, 25);
             this.lblOrderTotal.Size = new System.Drawing.Size(127, 25);
             this.lblOrderTotal.TabIndex = 1;
             this.lblOrderTotal.Text = "Order Total : ";
@@ -86,8 +90,10 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label4.Location = new System.Drawing.Point(88, 313);
             this.label4.Location = new System.Drawing.Point(296, 357);
             this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(198, 25);
             this.label4.Size = new System.Drawing.Size(181, 25);
             this.label4.TabIndex = 3;
             this.label4.Text = "Amount Tendered :";
@@ -98,27 +104,35 @@
             this.lblChange.AutoSize = true;
             this.lblChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblChange.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblChange.Location = new System.Drawing.Point(97, 358);
             this.lblChange.Location = new System.Drawing.Point(296, 424);
             this.lblChange.Name = "lblChange";
+            this.lblChange.Size = new System.Drawing.Size(101, 25);
             this.lblChange.Size = new System.Drawing.Size(93, 25);
             this.lblChange.TabIndex = 4;
             this.lblChange.Text = "Change :";
             // 
             // orderIDTxt
             // 
+            this.orderIDTxt.Location = new System.Drawing.Point(312, 92);
+            this.orderIDTxt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.orderIDTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.orderIDTxt.Location = new System.Drawing.Point(525, 140);
             this.orderIDTxt.Name = "orderIDTxt";
             this.orderIDTxt.ReadOnly = true;
+            this.orderIDTxt.Size = new System.Drawing.Size(271, 22);
             this.orderIDTxt.Size = new System.Drawing.Size(183, 22);
             this.orderIDTxt.TabIndex = 5;
             // 
             // totalTxt
             // 
+            this.totalTxt.Location = new System.Drawing.Point(312, 138);
+            this.totalTxt.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.totalTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.totalTxt.Location = new System.Drawing.Point(525, 192);
             this.totalTxt.Name = "totalTxt";
             this.totalTxt.ReadOnly = true;
+            this.totalTxt.Size = new System.Drawing.Size(271, 22);
             this.totalTxt.Size = new System.Drawing.Size(183, 22);
             this.totalTxt.TabIndex = 6;
             // 
@@ -129,8 +143,12 @@
             this.groupBox1.Controls.Add(this.rbCash);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.groupBox1.Location = new System.Drawing.Point(45, 186);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Location = new System.Drawing.Point(301, 232);
             this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(637, 97);
             this.groupBox1.Size = new System.Drawing.Size(637, 101);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
@@ -141,7 +159,10 @@
             // 
             this.rbCard.AutoSize = true;
             this.rbCard.Location = new System.Drawing.Point(351, 46);
+            this.rbCard.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rbCard.Location = new System.Drawing.Point(351, 46);
             this.rbCard.Name = "rbCard";
+            this.rbCard.Size = new System.Drawing.Size(80, 29);
             this.rbCard.Size = new System.Drawing.Size(61, 22);
             this.rbCard.TabIndex = 1;
             this.rbCard.TabStop = true;
@@ -153,7 +174,10 @@
             // 
             this.rbCash.AutoSize = true;
             this.rbCash.Location = new System.Drawing.Point(116, 46);
+            this.rbCash.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rbCash.Location = new System.Drawing.Point(116, 46);
             this.rbCash.Name = "rbCash";
+            this.rbCash.Size = new System.Drawing.Size(84, 29);
             this.rbCash.Size = new System.Drawing.Size(64, 22);
             this.rbCash.TabIndex = 0;
             this.rbCash.TabStop = true;
@@ -163,24 +187,34 @@
             // 
             // txtAmountTendered
             // 
+            this.txtAmountTendered.Location = new System.Drawing.Point(339, 315);
+            this.txtAmountTendered.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAmountTendered.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtAmountTendered.Location = new System.Drawing.Point(525, 360);
             this.txtAmountTendered.Name = "txtAmountTendered";
+            this.txtAmountTendered.Size = new System.Drawing.Size(240, 22);
             this.txtAmountTendered.Size = new System.Drawing.Size(183, 22);
             this.txtAmountTendered.TabIndex = 8;
             this.txtAmountTendered.TextChanged += new System.EventHandler(this.txtAmountTendered_TextChanged);
             // 
             // changeTextBox
             // 
+            this.changeTextBox.Location = new System.Drawing.Point(339, 361);
+            this.changeTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.changeTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.changeTextBox.Location = new System.Drawing.Point(525, 428);
             this.changeTextBox.Name = "changeTextBox";
             this.changeTextBox.ReadOnly = true;
+            this.changeTextBox.Size = new System.Drawing.Size(240, 22);
             this.changeTextBox.Size = new System.Drawing.Size(183, 22);
             this.changeTextBox.TabIndex = 9;
             // 
             // btnCancel
             // 
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnCancel.Location = new System.Drawing.Point(483, 446);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCancel.BackColor = System.Drawing.Color.White;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -188,6 +222,7 @@
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnCancel.Location = new System.Drawing.Point(719, 473);
             this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(200, 43);
             this.btnCancel.Size = new System.Drawing.Size(136, 41);
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancel Payment";
@@ -198,10 +233,15 @@
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.Location = new System.Drawing.Point(285, 22);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label1.Location = new System.Drawing.Point(520, 58);
             this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(149, 36);
             this.label1.Size = new System.Drawing.Size(134, 25);
             this.label1.TabIndex = 12;
             this.label1.Text = "CHECKOUT";
@@ -223,6 +263,10 @@
             // 
             // button1
             // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.button1.Location = new System.Drawing.Point(400, 513);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -230,6 +274,10 @@
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.button1.Location = new System.Drawing.Point(525, 554);
             this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(144, 39);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Back";
+            this.button1.UseVisualStyleBackColor = true;
             this.button1.Size = new System.Drawing.Size(144, 31);
             this.button1.TabIndex = 14;
             this.button1.Text = "TODAY\'S ORDERS";
@@ -238,6 +286,14 @@
             // 
             // lblAmountMes
             // 
+            this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
+            this.pictureBox1.Location = new System.Drawing.Point(33, 446);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(172, 126);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 14;
+            this.pictureBox1.TabStop = false;
             this.lblAmountMes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblAmountMes.AutoSize = true;
             this.lblAmountMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -251,6 +307,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
+            this.ClientSize = new System.Drawing.Size(1120, 620);
+            this.Controls.Add(this.pictureBox1);
             this.ClientSize = new System.Drawing.Size(1337, 705);
             this.Controls.Add(this.lblAmountMes);
             this.Controls.Add(this.button1);

@@ -348,27 +348,47 @@ namespace Cafe101
             // =================================================================
             // 4. REPORT SUMMARY FOOTER (ONLY RENDERED ON FINAL PAGE)
             // =================================================================
-            currentY += 35;
+            if (printRowIndex >= dataGridView1.Rows.Count)
+            {
+                currentY += 35;
+                e.Graphics.DrawLine(linePen, marginLeft, currentY, marginRight, currentY);
+                currentY += 20;
 
-            e.Graphics.DrawLine(linePen, marginLeft, currentY, marginRight, currentY);
-            currentY += 20;
+                string finalRevenue = string.IsNullOrWhiteSpace(textBox1.Text) ? "0.00" : textBox1.Text;
+                e.Graphics.DrawString(
+                    $"Cumulative Total Revenue (Completed Orders Only): R {finalRevenue}",
+                    headerFont,
+                    textBrush,
+                    marginLeft,
+                    currentY);
 
-            string finalRevenue = string.IsNullOrWhiteSpace(textBox1.Text) ? "0.00" : textBox1.Text;
-            e.Graphics.DrawString(
-                $"Cumulative Total Revenue (Completed Orders Only): R {finalRevenue}",
-                headerFont,
-                textBrush,
-                marginLeft,
-                currentY);
+                string confidentialityNotice = "\n\nCafe101 Internal Operational Management Record.";
+                SizeF noticeSize = e.Graphics.MeasureString(confidentialityNotice, footerFont);
+                e.Graphics.DrawString(confidentialityNotice, footerFont, Brushes.DarkGray, marginRight - noticeSize.Width, currentY);
 
-            string confidentialityNotice = "\n\nCafe101 Internal Operational Management Record.";
-            SizeF noticeSize = e.Graphics.MeasureString(confidentialityNotice, footerFont);
-            e.Graphics.DrawString(confidentialityNotice, footerFont, Brushes.DarkGray, marginRight - noticeSize.Width, currentY);
-
-            e.HasMorePages = false;
+                e.HasMorePages = false;
+            }
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e) { }
         private void textBox1_TextChanged(object sender, EventArgs e) { }
+
+        private void today_Click(object sender, EventArgs e)
+        {
+            frmTodaysOrders frmTodaysOrders = new frmTodaysOrders();    
+            frmTodaysOrders.Show();
+                this.Hide();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            RefreshReportData();
+
+            // Display alert window validation status response to user interface
+
+            MessageBox.Show("Database tracking rows successfully refreshed.",
+                            "Data Sync Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+            
     }
 }

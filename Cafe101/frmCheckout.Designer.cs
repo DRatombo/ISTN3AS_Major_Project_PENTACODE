@@ -286,14 +286,14 @@
             // 
             // lblAmountMes
             // 
-            this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
-            this.pictureBox1.Location = new System.Drawing.Point(33, 446);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(172, 126);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 14;
-            this.pictureBox1.TabStop = false;
+            //this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
+            //this.pictureBox1.Location = new System.Drawing.Point(33, 446);
+            //this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            //this.pictureBox1.Name = "pictureBox1";
+            //this.pictureBox1.Size = new System.Drawing.Size(172, 126);
+           // this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+           // this.pictureBox1.TabIndex = 14;
+           // this.pictureBox1.TabStop = false;
             this.lblAmountMes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblAmountMes.AutoSize = true;
             this.lblAmountMes.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -308,7 +308,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(1120, 620);
-            this.Controls.Add(this.pictureBox1);
+         //   this.Controls.Add(this.pictureBox1);
             this.ClientSize = new System.Drawing.Size(1337, 705);
             this.Controls.Add(this.lblAmountMes);
             this.Controls.Add(this.button1);

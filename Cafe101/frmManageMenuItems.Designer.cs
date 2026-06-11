@@ -31,6 +31,7 @@
             this.lblPrep = new System.Windows.Forms.Label();
             this.txtPrepTime = new System.Windows.Forms.TextBox();
             this.pnlButtons = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnDeactivate = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -298,16 +299,33 @@
             // 
             this.pnlButtons.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pnlButtons.AutoSize = true;
+            this.pnlButtons.Controls.Add(this.btnHelp);
             this.pnlButtons.Controls.Add(this.btnAdd);
             this.pnlButtons.Controls.Add(this.btnDeactivate);
             this.pnlButtons.Controls.Add(this.btnUpdate);
             this.pnlButtons.Controls.Add(this.btnRefresh);
             this.pnlButtons.Controls.Add(this.btnBack);
-            this.pnlButtons.Location = new System.Drawing.Point(375, 482);
+            this.pnlButtons.Location = new System.Drawing.Point(350, 482);
             this.pnlButtons.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(508, 44);
+            this.pnlButtons.Size = new System.Drawing.Size(558, 44);
             this.pnlButtons.TabIndex = 2;
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.BackColor = System.Drawing.Color.FromArgb(23, 162, 184);
+            this.btnHelp.FlatAppearance.BorderSize = 0;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnHelp.ForeColor = System.Drawing.Color.White;
+            this.btnHelp.Location = new System.Drawing.Point(6, 6);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(6);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(80, 34);
+            this.btnHelp.TabIndex = 5;
+            this.btnHelp.Text = "❓ Help";
+            this.btnHelp.UseVisualStyleBackColor = false;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // btnAdd
             // 
@@ -317,7 +335,7 @@
             this.btnAdd.FlatAppearance.BorderSize = 2;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnAdd.Location = new System.Drawing.Point(6, 6);
+            this.btnAdd.Location = new System.Drawing.Point(92, 6);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(6);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(88, 34);
@@ -334,7 +352,7 @@
             this.btnDeactivate.FlatAppearance.BorderSize = 2;
             this.btnDeactivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeactivate.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnDeactivate.Location = new System.Drawing.Point(106, 6);
+            this.btnDeactivate.Location = new System.Drawing.Point(186, 6);
             this.btnDeactivate.Margin = new System.Windows.Forms.Padding(6);
             this.btnDeactivate.Name = "btnDeactivate";
             this.btnDeactivate.Size = new System.Drawing.Size(96, 34);
@@ -351,7 +369,7 @@
             this.btnUpdate.FlatAppearance.BorderSize = 2;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnUpdate.Location = new System.Drawing.Point(214, 6);
+            this.btnUpdate.Location = new System.Drawing.Point(288, 6);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(6);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(88, 34);
@@ -368,7 +386,7 @@
             this.btnRefresh.FlatAppearance.BorderSize = 2;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnRefresh.Location = new System.Drawing.Point(314, 6);
+            this.btnRefresh.Location = new System.Drawing.Point(382, 6);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(6);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(88, 34);
@@ -385,10 +403,10 @@
             this.btnBack.FlatAppearance.BorderSize = 2;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnBack.Location = new System.Drawing.Point(414, 6);
+            this.btnBack.Location = new System.Drawing.Point(476, 6);
             this.btnBack.Margin = new System.Windows.Forms.Padding(6);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(88, 34);
+            this.btnBack.Size = new System.Drawing.Size(76, 34);
             this.btnBack.TabIndex = 4;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = false;
@@ -438,6 +456,7 @@
         private System.Windows.Forms.Label lblPrep;
         private System.Windows.Forms.TextBox txtPrepTime;
         private System.Windows.Forms.FlowLayoutPanel pnlButtons;
+        private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnDeactivate;
         private System.Windows.Forms.Button btnUpdate;

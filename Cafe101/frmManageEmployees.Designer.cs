@@ -39,6 +39,7 @@
             this.btnClearSearch = new System.Windows.Forms.Button();
             this.dgvEmployees = new System.Windows.Forms.DataGridView();
             this.pnlRightButtons = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
@@ -327,6 +328,7 @@
             // pnlRightButtons
             // 
             this.pnlRightButtons.AutoSize = true;
+            this.pnlRightButtons.Controls.Add(this.btnHelp);
             this.pnlRightButtons.Controls.Add(this.btnAdd);
             this.pnlRightButtons.Controls.Add(this.btnUpdate);
             this.pnlRightButtons.Controls.Add(this.btnRemove);
@@ -340,6 +342,21 @@
             this.pnlRightButtons.Size = new System.Drawing.Size(643, 58);
             this.pnlRightButtons.TabIndex = 1;
             // 
+            // btnHelp
+            // 
+            this.btnHelp.BackColor = System.Drawing.Color.FromArgb(23, 162, 184);
+            this.btnHelp.FlatAppearance.BorderSize = 0;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnHelp.ForeColor = System.Drawing.Color.White;
+            this.btnHelp.Location = new System.Drawing.Point(3, 9);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(80, 37);
+            this.btnHelp.TabIndex = 6;
+            this.btnHelp.Text = "❓ Help";
+            this.btnHelp.UseVisualStyleBackColor = false;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.White;
@@ -347,9 +364,9 @@
             this.btnAdd.FlatAppearance.BorderSize = 2;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnAdd.Location = new System.Drawing.Point(3, 9);
+            this.btnAdd.Location = new System.Drawing.Point(89, 9);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(100, 37);
+            this.btnAdd.Size = new System.Drawing.Size(80, 37);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -362,9 +379,9 @@
             this.btnUpdate.FlatAppearance.BorderSize = 2;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnUpdate.Location = new System.Drawing.Point(109, 9);
+            this.btnUpdate.Location = new System.Drawing.Point(175, 9);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(100, 37);
+            this.btnUpdate.Size = new System.Drawing.Size(80, 37);
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -377,9 +394,9 @@
             this.btnRemove.FlatAppearance.BorderSize = 2;
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnRemove.Location = new System.Drawing.Point(215, 9);
+            this.btnRemove.Location = new System.Drawing.Point(261, 9);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(100, 37);
+            this.btnRemove.Size = new System.Drawing.Size(80, 37);
             this.btnRemove.TabIndex = 2;
             this.btnRemove.Text = "Delete";
             this.btnRemove.UseVisualStyleBackColor = false;
@@ -392,9 +409,9 @@
             this.btnResetPassword.FlatAppearance.BorderSize = 2;
             this.btnResetPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnResetPassword.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnResetPassword.Location = new System.Drawing.Point(321, 9);
+            this.btnResetPassword.Location = new System.Drawing.Point(347, 9);
             this.btnResetPassword.Name = "btnResetPassword";
-            this.btnResetPassword.Size = new System.Drawing.Size(100, 37);
+            this.btnResetPassword.Size = new System.Drawing.Size(80, 37);
             this.btnResetPassword.TabIndex = 3;
             this.btnResetPassword.Text = "Reset PW";
             this.btnResetPassword.UseVisualStyleBackColor = false;
@@ -407,9 +424,9 @@
             this.btnRefresh.FlatAppearance.BorderSize = 2;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnRefresh.Location = new System.Drawing.Point(427, 9);
+            this.btnRefresh.Location = new System.Drawing.Point(433, 9);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(100, 37);
+            this.btnRefresh.Size = new System.Drawing.Size(80, 37);
             this.btnRefresh.TabIndex = 4;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = false;
@@ -422,9 +439,9 @@
             this.btnBack.FlatAppearance.BorderSize = 2;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
-            this.btnBack.Location = new System.Drawing.Point(533, 9);
+            this.btnBack.Location = new System.Drawing.Point(519, 9);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(100, 37);
+            this.btnBack.Size = new System.Drawing.Size(80, 37);
             this.btnBack.TabIndex = 5;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = false;
@@ -478,6 +495,7 @@
         private System.Windows.Forms.Button btnClearSearch;
         private System.Windows.Forms.DataGridView dgvEmployees;
         private System.Windows.Forms.FlowLayoutPanel pnlRightButtons;
+        private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnRemove;

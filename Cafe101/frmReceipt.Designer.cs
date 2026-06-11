@@ -46,6 +46,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.custTxt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -137,7 +138,7 @@
             // 
             this.orderIDTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.orderIDTxt.Location = new System.Drawing.Point(181, 73);
-            this.orderIDTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.orderIDTxt.Margin = new System.Windows.Forms.Padding(2);
             this.orderIDTxt.Name = "orderIDTxt";
             this.orderIDTxt.ReadOnly = true;
             this.orderIDTxt.Size = new System.Drawing.Size(376, 20);
@@ -147,7 +148,7 @@
             // 
             this.dateTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dateTxt.Location = new System.Drawing.Point(181, 119);
-            this.dateTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dateTxt.Margin = new System.Windows.Forms.Padding(2);
             this.dateTxt.Name = "dateTxt";
             this.dateTxt.ReadOnly = true;
             this.dateTxt.Size = new System.Drawing.Size(138, 20);
@@ -157,7 +158,7 @@
             // 
             this.cashierTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cashierTxt.Location = new System.Drawing.Point(181, 225);
-            this.cashierTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cashierTxt.Margin = new System.Windows.Forms.Padding(2);
             this.cashierTxt.Name = "cashierTxt";
             this.cashierTxt.ReadOnly = true;
             this.cashierTxt.Size = new System.Drawing.Size(138, 20);
@@ -167,7 +168,7 @@
             // 
             this.payTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.payTxt.Location = new System.Drawing.Point(326, 286);
-            this.payTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.payTxt.Margin = new System.Windows.Forms.Padding(2);
             this.payTxt.Name = "payTxt";
             this.payTxt.ReadOnly = true;
             this.payTxt.Size = new System.Drawing.Size(138, 20);
@@ -190,7 +191,7 @@
             // 
             this.totTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.totTxt.Location = new System.Drawing.Point(181, 330);
-            this.totTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.totTxt.Margin = new System.Windows.Forms.Padding(2);
             this.totTxt.Name = "totTxt";
             this.totTxt.ReadOnly = true;
             this.totTxt.Size = new System.Drawing.Size(138, 20);
@@ -200,7 +201,7 @@
             // 
             this.amountTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.amountTxt.Location = new System.Drawing.Point(181, 396);
-            this.amountTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.amountTxt.Margin = new System.Windows.Forms.Padding(2);
             this.amountTxt.Name = "amountTxt";
             this.amountTxt.ReadOnly = true;
             this.amountTxt.Size = new System.Drawing.Size(138, 20);
@@ -210,7 +211,7 @@
             // 
             this.changeTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.changeTxt.Location = new System.Drawing.Point(181, 458);
-            this.changeTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.changeTxt.Margin = new System.Windows.Forms.Padding(2);
             this.changeTxt.Name = "changeTxt";
             this.changeTxt.ReadOnly = true;
             this.changeTxt.Size = new System.Drawing.Size(138, 20);
@@ -224,7 +225,7 @@
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(84)))), ((int)(((byte)(241)))));
             this.btnClose.Location = new System.Drawing.Point(257, 517);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(112, 27);
             this.btnClose.TabIndex = 17;
@@ -236,7 +237,7 @@
             // 
             this.custTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.custTxt.Location = new System.Drawing.Point(181, 171);
-            this.custTxt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.custTxt.Margin = new System.Windows.Forms.Padding(2);
             this.custTxt.Name = "custTxt";
             this.custTxt.ReadOnly = true;
             this.custTxt.Size = new System.Drawing.Size(138, 20);
@@ -255,12 +256,26 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Customer : ";
             // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.button1.Location = new System.Drawing.Point(148, 517);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 32);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "Print";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmReceipt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(585, 600);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.changeTxt);
             this.Controls.Add(this.amountTxt);
@@ -280,7 +295,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmReceipt";
             this.Text = "frmReceipt";
             this.Load += new System.EventHandler(this.frmReceipt_Load);
@@ -309,5 +324,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TextBox custTxt;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button1;
     }
 }

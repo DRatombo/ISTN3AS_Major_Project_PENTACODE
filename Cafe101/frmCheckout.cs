@@ -230,6 +230,7 @@ namespace Cafe101
                 }
 
                 ((frmNewOrder)this.Owner).ResetOrder();
+                ((frmNewOrder)this.Owner).Close();
 
                 this.Close();
 

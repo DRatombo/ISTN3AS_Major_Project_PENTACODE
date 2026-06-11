@@ -94,7 +94,7 @@
             this.btnClearSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
             this.btnClearSearch.FlatAppearance.BorderSize = 0;
             this.btnClearSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnClearSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnClearSearch.ForeColor = System.Drawing.Color.White;
             this.btnClearSearch.Location = new System.Drawing.Point(390, 9);
             this.btnClearSearch.Name = "btnClearSearch";
@@ -141,6 +141,7 @@
             this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnBack.FlatAppearance.BorderSize = 2;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnBack.Location = new System.Drawing.Point(649, 9);
             this.btnBack.Margin = new System.Windows.Forms.Padding(6);
@@ -170,7 +171,7 @@
             this.cboMenuItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMenuItems.ForeColor = System.Drawing.Color.Black;
             this.cboMenuItems.FormattingEnabled = true;
-            this.cboMenuItems.Location = new System.Drawing.Point(86, 15);
+            this.cboMenuItems.Location = new System.Drawing.Point(86, 14);
             this.cboMenuItems.Margin = new System.Windows.Forms.Padding(6);
             this.cboMenuItems.Name = "cboMenuItems";
             this.cboMenuItems.Size = new System.Drawing.Size(193, 23);
@@ -195,7 +196,7 @@
             this.cboIngredients.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIngredients.ForeColor = System.Drawing.Color.Black;
             this.cboIngredients.FormattingEnabled = true;
-            this.cboIngredients.Location = new System.Drawing.Point(86, 68);
+            this.cboIngredients.Location = new System.Drawing.Point(86, 67);
             this.cboIngredients.Margin = new System.Windows.Forms.Padding(6);
             this.cboIngredients.Name = "cboIngredients";
             this.cboIngredients.Size = new System.Drawing.Size(193, 23);
@@ -249,6 +250,7 @@
             this.btnAddToRecipe.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnAddToRecipe.FlatAppearance.BorderSize = 2;
             this.btnAddToRecipe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddToRecipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnAddToRecipe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnAddToRecipe.Location = new System.Drawing.Point(297, 9);
             this.btnAddToRecipe.Margin = new System.Windows.Forms.Padding(6);
@@ -267,6 +269,7 @@
             this.btnRemoveLink.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnRemoveLink.FlatAppearance.BorderSize = 2;
             this.btnRemoveLink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveLink.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnRemoveLink.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnRemoveLink.Location = new System.Drawing.Point(411, 9);
             this.btnRemoveLink.Margin = new System.Windows.Forms.Padding(6);
@@ -285,6 +288,7 @@
             this.btnRefreshRecipe.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnRefreshRecipe.FlatAppearance.BorderSize = 2;
             this.btnRefreshRecipe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefreshRecipe.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnRefreshRecipe.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnRefreshRecipe.Location = new System.Drawing.Point(524, 9);
             this.btnRefreshRecipe.Margin = new System.Windows.Forms.Padding(6);

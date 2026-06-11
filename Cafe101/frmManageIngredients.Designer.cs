@@ -18,6 +18,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblMain = new System.Windows.Forms.TableLayoutPanel();
+            this.pnlSearch = new System.Windows.Forms.Panel();
+            this.lblSearch = new System.Windows.Forms.Label();
+            this.txtSearch = new System.Windows.Forms.TextBox();
+            this.btnClearSearch = new System.Windows.Forms.Button();
             this.dgvIngredients = new System.Windows.Forms.DataGridView();
             this.grpIngredientDetails = new System.Windows.Forms.GroupBox();
             this.lblDescription = new System.Windows.Forms.Label();
@@ -36,18 +40,14 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.pnlSearch = new System.Windows.Forms.Panel();
-            this.lblSearch = new System.Windows.Forms.Label();
-            this.txtSearch = new System.Windows.Forms.TextBox();
-            this.btnClearSearch = new System.Windows.Forms.Button();
             this.tblMain.SuspendLayout();
+            this.pnlSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredients)).BeginInit();
             this.grpIngredientDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantityInStock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRestockLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCostPrice)).BeginInit();
             this.pnlButtons.SuspendLayout();
-            this.pnlSearch.SuspendLayout();
             this.SuspendLayout();
             // 
             // tblMain
@@ -63,7 +63,7 @@
             this.tblMain.Name = "tblMain";
             this.tblMain.Padding = new System.Windows.Forms.Padding(12);
             this.tblMain.RowCount = 4;
-            this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50));
+            this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -88,7 +88,7 @@
             this.lblSearch.ForeColor = System.Drawing.Color.White;
             this.lblSearch.Location = new System.Drawing.Point(10, 12);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(67, 23);
+            this.lblSearch.Size = new System.Drawing.Size(58, 19);
             this.lblSearch.TabIndex = 0;
             this.lblSearch.Text = "Search:";
             // 
@@ -99,15 +99,15 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Location = new System.Drawing.Point(80, 9);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(300, 30);
+            this.txtSearch.Size = new System.Drawing.Size(300, 25);
             this.txtSearch.TabIndex = 1;
             // 
             // btnClearSearch
             // 
-            this.btnClearSearch.BackColor = System.Drawing.Color.FromArgb(108, 117, 125);
+            this.btnClearSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(108)))), ((int)(((byte)(117)))), ((int)(((byte)(125)))));
             this.btnClearSearch.FlatAppearance.BorderSize = 0;
             this.btnClearSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearSearch.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnClearSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnClearSearch.ForeColor = System.Drawing.Color.White;
             this.btnClearSearch.Location = new System.Drawing.Point(390, 9);
             this.btnClearSearch.Name = "btnClearSearch";
@@ -121,7 +121,6 @@
             // 
             this.dgvIngredients.AllowUserToAddRows = false;
             this.dgvIngredients.AllowUserToDeleteRows = false;
-            this.dgvIngredients.AutoGenerateColumns = true;
             this.dgvIngredients.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvIngredients.BackgroundColor = System.Drawing.Color.MidnightBlue;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -137,7 +136,7 @@
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvIngredients.DefaultCellStyle = dataGridViewCellStyle2;
@@ -152,7 +151,7 @@
             this.dgvIngredients.RowHeadersWidth = 51;
             this.dgvIngredients.RowTemplate.Height = 24;
             this.dgvIngredients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvIngredients.Size = new System.Drawing.Size(970, 240);
+            this.dgvIngredients.Size = new System.Drawing.Size(970, 246);
             this.dgvIngredients.TabIndex = 0;
             this.dgvIngredients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredients_CellClick);
             // 
@@ -171,11 +170,11 @@
             this.grpIngredientDetails.Controls.Add(this.numCostPrice);
             this.grpIngredientDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpIngredientDetails.ForeColor = System.Drawing.Color.White;
-            this.grpIngredientDetails.Location = new System.Drawing.Point(15, 320);
+            this.grpIngredientDetails.Location = new System.Drawing.Point(15, 326);
             this.grpIngredientDetails.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
             this.grpIngredientDetails.Name = "grpIngredientDetails";
             this.grpIngredientDetails.Padding = new System.Windows.Forms.Padding(12);
-            this.grpIngredientDetails.Size = new System.Drawing.Size(970, 200);
+            this.grpIngredientDetails.Size = new System.Drawing.Size(970, 193);
             this.grpIngredientDetails.TabIndex = 1;
             this.grpIngredientDetails.TabStop = false;
             this.grpIngredientDetails.Text = "Ingredient Details";
@@ -187,7 +186,7 @@
             this.lblDescription.Location = new System.Drawing.Point(16, 20);
             this.lblDescription.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(88, 20);
+            this.lblDescription.Size = new System.Drawing.Size(70, 15);
             this.lblDescription.TabIndex = 0;
             this.lblDescription.Text = "Description:";
             // 
@@ -198,7 +197,7 @@
             this.txtDescription.Location = new System.Drawing.Point(120, 18);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(6);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(300, 27);
+            this.txtDescription.Size = new System.Drawing.Size(300, 23);
             this.txtDescription.TabIndex = 1;
             // 
             // lblUnits
@@ -208,7 +207,7 @@
             this.lblUnits.Location = new System.Drawing.Point(430, 20);
             this.lblUnits.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblUnits.Name = "lblUnits";
-            this.lblUnits.Size = new System.Drawing.Size(45, 20);
+            this.lblUnits.Size = new System.Drawing.Size(37, 15);
             this.lblUnits.TabIndex = 2;
             this.lblUnits.Text = "Units:";
             // 
@@ -219,7 +218,7 @@
             this.txtUnits.Location = new System.Drawing.Point(490, 18);
             this.txtUnits.Margin = new System.Windows.Forms.Padding(6);
             this.txtUnits.Name = "txtUnits";
-            this.txtUnits.Size = new System.Drawing.Size(100, 27);
+            this.txtUnits.Size = new System.Drawing.Size(100, 23);
             this.txtUnits.TabIndex = 3;
             // 
             // lblQuantityInStock
@@ -229,7 +228,7 @@
             this.lblQuantityInStock.Location = new System.Drawing.Point(16, 60);
             this.lblQuantityInStock.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblQuantityInStock.Name = "lblQuantityInStock";
-            this.lblQuantityInStock.Size = new System.Drawing.Size(91, 20);
+            this.lblQuantityInStock.Size = new System.Drawing.Size(74, 15);
             this.lblQuantityInStock.TabIndex = 4;
             this.lblQuantityInStock.Text = "Qty In Stock:";
             // 
@@ -240,9 +239,13 @@
             this.numQuantityInStock.ForeColor = System.Drawing.Color.Black;
             this.numQuantityInStock.Location = new System.Drawing.Point(150, 58);
             this.numQuantityInStock.Margin = new System.Windows.Forms.Padding(6);
-            this.numQuantityInStock.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            this.numQuantityInStock.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numQuantityInStock.Name = "numQuantityInStock";
-            this.numQuantityInStock.Size = new System.Drawing.Size(120, 27);
+            this.numQuantityInStock.Size = new System.Drawing.Size(120, 23);
             this.numQuantityInStock.TabIndex = 5;
             this.numQuantityInStock.ThousandsSeparator = true;
             // 
@@ -253,7 +256,7 @@
             this.lblRestockLevel.Location = new System.Drawing.Point(280, 60);
             this.lblRestockLevel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblRestockLevel.Name = "lblRestockLevel";
-            this.lblRestockLevel.Size = new System.Drawing.Size(101, 20);
+            this.lblRestockLevel.Size = new System.Drawing.Size(81, 15);
             this.lblRestockLevel.TabIndex = 6;
             this.lblRestockLevel.Text = "Restock Level:";
             // 
@@ -264,9 +267,13 @@
             this.numRestockLevel.ForeColor = System.Drawing.Color.Black;
             this.numRestockLevel.Location = new System.Drawing.Point(390, 58);
             this.numRestockLevel.Margin = new System.Windows.Forms.Padding(6);
-            this.numRestockLevel.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            this.numRestockLevel.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numRestockLevel.Name = "numRestockLevel";
-            this.numRestockLevel.Size = new System.Drawing.Size(120, 27);
+            this.numRestockLevel.Size = new System.Drawing.Size(120, 23);
             this.numRestockLevel.TabIndex = 7;
             this.numRestockLevel.ThousandsSeparator = true;
             // 
@@ -277,7 +284,7 @@
             this.lblCostPrice.Location = new System.Drawing.Point(520, 60);
             this.lblCostPrice.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblCostPrice.Name = "lblCostPrice";
-            this.lblCostPrice.Size = new System.Drawing.Size(77, 20);
+            this.lblCostPrice.Size = new System.Drawing.Size(63, 15);
             this.lblCostPrice.TabIndex = 8;
             this.lblCostPrice.Text = "Cost Price:";
             // 
@@ -288,9 +295,13 @@
             this.numCostPrice.ForeColor = System.Drawing.Color.Black;
             this.numCostPrice.Location = new System.Drawing.Point(600, 58);
             this.numCostPrice.Margin = new System.Windows.Forms.Padding(6);
-            this.numCostPrice.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
+            this.numCostPrice.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
             this.numCostPrice.Name = "numCostPrice";
-            this.numCostPrice.Size = new System.Drawing.Size(120, 27);
+            this.numCostPrice.Size = new System.Drawing.Size(120, 23);
             this.numCostPrice.TabIndex = 9;
             this.numCostPrice.ThousandsSeparator = true;
             // 
@@ -304,20 +315,21 @@
             this.pnlButtons.Controls.Add(this.btnAdd);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.pnlButtons.Location = new System.Drawing.Point(15, 532);
+            this.pnlButtons.Location = new System.Drawing.Point(15, 537);
             this.pnlButtons.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(970, 49);
+            this.pnlButtons.Size = new System.Drawing.Size(970, 44);
             this.pnlButtons.TabIndex = 2;
             // 
             // btnBack
             // 
             this.btnBack.AutoSize = true;
             this.btnBack.BackColor = System.Drawing.Color.White;
-            this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnBack.FlatAppearance.BorderSize = 2;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnBack.Location = new System.Drawing.Point(876, 6);
             this.btnBack.Margin = new System.Windows.Forms.Padding(6);
             this.btnBack.Name = "btnBack";
@@ -331,10 +343,11 @@
             // 
             this.btnRefresh.AutoSize = true;
             this.btnRefresh.BackColor = System.Drawing.Color.White;
-            this.btnRefresh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnRefresh.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnRefresh.FlatAppearance.BorderSize = 2;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnRefresh.Location = new System.Drawing.Point(776, 6);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(6);
             this.btnRefresh.Name = "btnRefresh";
@@ -348,10 +361,11 @@
             // 
             this.btnRemove.AutoSize = true;
             this.btnRemove.BackColor = System.Drawing.Color.White;
-            this.btnRemove.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnRemove.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnRemove.FlatAppearance.BorderSize = 2;
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemove.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnRemove.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnRemove.Location = new System.Drawing.Point(676, 6);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(6);
             this.btnRemove.Name = "btnRemove";
@@ -365,10 +379,11 @@
             // 
             this.btnUpdate.AutoSize = true;
             this.btnUpdate.BackColor = System.Drawing.Color.White;
-            this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnUpdate.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnUpdate.FlatAppearance.BorderSize = 2;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnUpdate.Location = new System.Drawing.Point(576, 6);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(6);
             this.btnUpdate.Name = "btnUpdate";
@@ -382,10 +397,11 @@
             // 
             this.btnAdd.AutoSize = true;
             this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnAdd.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnAdd.FlatAppearance.BorderSize = 2;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(0, 84, 204);
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnAdd.Location = new System.Drawing.Point(476, 6);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(6);
             this.btnAdd.Name = "btnAdd";
@@ -397,9 +413,9 @@
             // 
             // frmManageIngredients
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(18, 18, 112);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1000, 596);
             this.Controls.Add(this.tblMain);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
@@ -411,6 +427,8 @@
             this.Load += new System.EventHandler(this.frmManageIngredients_Load);
             this.tblMain.ResumeLayout(false);
             this.tblMain.PerformLayout();
+            this.pnlSearch.ResumeLayout(false);
+            this.pnlSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredients)).EndInit();
             this.grpIngredientDetails.ResumeLayout(false);
             this.grpIngredientDetails.PerformLayout();
@@ -419,9 +437,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCostPrice)).EndInit();
             this.pnlButtons.ResumeLayout(false);
             this.pnlButtons.PerformLayout();
-            this.pnlSearch.ResumeLayout(false);
-            this.pnlSearch.PerformLayout();
             this.ResumeLayout(false);
+
         }
 
         private System.Windows.Forms.TableLayoutPanel tblMain;

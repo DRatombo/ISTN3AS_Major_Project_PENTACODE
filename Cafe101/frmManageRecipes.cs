@@ -8,6 +8,8 @@ namespace Cafe101
     public partial class frmManageRecipes : Form
     {
         private DataTable originalRecipesData;
+        private bool helpVisible = false;
+        private Panel pnlHelp = null;
 
         public frmManageRecipes()
         {
@@ -79,8 +81,160 @@ namespace Cafe101
 
         private void btnClearSearch_Click(object sender, EventArgs e)
         {
+            // Clear search box
             txtSearch.Text = "";
+
+            // Reset combo boxes
+            cboMenuItems.SelectedIndex = -1;
+            cboIngredients.SelectedIndex = -1;
+
+            // Reset quantity to 1
+            numQuantity.Value = 1;
+
+            // Reload full data
             LoadAllRecipes();
+        }
+
+        // ============================================================
+        // HELP BUTTON - Panel-based contextual help (with your icons)
+        // ============================================================
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            if (helpVisible)
+            {
+                if (pnlHelp != null)
+                {
+                    pnlHelp.Visible = false;
+                }
+                helpVisible = false;
+                btnHelp.Text = "❓ Help";
+                return;
+            }
+
+            string stepTitle;
+            string stepDetail;
+
+            if (cboMenuItems.SelectedIndex == -1 && cboIngredients.SelectedIndex == -1)
+            {
+                stepTitle = "📍 Step 1 of 2 — Add a New Recipe Link";
+                stepDetail =
+                    "A recipe links a Menu Item with an Ingredient and Quantity.\r\n\r\n" +
+                    "➕ ADD NEW RECIPE LINK:\r\n" +
+                    "• Select a Menu Item from the first dropdown.\r\n" +
+                    "• Select an Ingredient from the second dropdown.\r\n" +
+                    "• Enter the Quantity needed.\r\n" +
+                    "• Click 'Add' button.\r\n\r\n" +
+                    "🔍 SEARCH:\r\n" +
+                    "• Type a menu item name or ingredient in the search box.\r\n" +
+                    "• Results filter automatically as you type.\r\n" +
+                    "• Click 'Clear' to reset search.\r\n\r\n" +
+                    "✏️ EDIT EXISTING RECIPE:\r\n" +
+                    "• Click any row in the recipe list to auto-select\r\n" +
+                    "  that menu item and ingredient.\r\n" +
+                    "• Change the quantity, then click 'Remove' and 'Add'.\r\n\r\n" +
+                    "📋 EXAMPLE:\r\n" +
+                    "• 'Chicken Burger' needs 'Chicken Wings' (2),\r\n" +
+                    "  'Burger Buns' (1), 'Lettuce' (2), etc.\r\n\r\n" +
+                    "🔄 REFRESH:\r\n" +
+                    "• Click 'Refresh' to reload all recipe data.\r\n\r\n" +
+                    "🗑️ REMOVE:\r\n" +
+                    "• Select a menu item and ingredient, then click 'Remove'.\r\n" +
+                    "• Confirm removal when prompted.\r\n\r\n" +
+                    "◀ BACK:\r\n" +
+                    "• Returns to the main menu.";
+            }
+            else
+            {
+                stepTitle = "📍 Step 2 of 2 — Remove Recipe Link";
+                stepDetail =
+                    "Selected: " + (cboMenuItems.SelectedItem != null ? cboMenuItems.Text : "") +
+                    " + " + (cboIngredients.SelectedItem != null ? cboIngredients.Text : "") + "\r\n\r\n" +
+                    "✏️ TO MODIFY QUANTITY:\r\n" +
+                    "• Change the quantity in the Quantity box.\r\n" +
+                    "• Click 'Remove' then 'Add' with the new quantity.\r\n\r\n" +
+                    "🗑️ TO REMOVE THE RECIPE LINK:\r\n" +
+                    "• Click 'Remove' button.\r\n" +
+                    "• Confirm removal when prompted.\r\n\r\n" +
+                    "🔄 TO SEE ALL RECIPES AGAIN:\r\n" +
+                    "• Click 'Refresh' to reload all recipe data.\r\n\r\n" +
+                    "💡 TIP:\r\n" +
+                    "• Click any row in the recipe list to automatically\r\n" +
+                    "  select that menu item and ingredient for editing.\r\n\r\n" +
+                    "◀ BACK:\r\n" +
+                    "• Returns to the main menu.";
+            }
+
+            if (pnlHelp == null)
+            {
+                pnlHelp = new Panel();
+                pnlHelp.Size = new System.Drawing.Size(370, 420);
+                pnlHelp.BackColor = System.Drawing.Color.FromArgb(20, 40, 100);
+                pnlHelp.BorderStyle = BorderStyle.FixedSingle;
+                this.Controls.Add(pnlHelp);
+                pnlHelp.BringToFront();
+            }
+
+            pnlHelp.Controls.Clear();
+
+            Label lblTitle = new Label();
+            lblTitle.Text = stepTitle;
+            lblTitle.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Bold);
+            lblTitle.ForeColor = System.Drawing.Color.White;
+            lblTitle.Location = new System.Drawing.Point(10, 10);
+            lblTitle.Size = new System.Drawing.Size(350, 30);
+           // lblTitle.TextAlign = ContentAlignment.MiddleLeft;
+
+            Label lblDetail = new Label();
+            lblDetail.Text = stepDetail;
+            lblDetail.Font = new System.Drawing.Font("Segoe UI", 9);
+            lblDetail.ForeColor = System.Drawing.Color.LightGray;
+            lblDetail.Location = new System.Drawing.Point(10, 50);
+            lblDetail.Size = new System.Drawing.Size(350, 320);
+
+            Button btnClose = new Button();
+            btnClose.Text = "✕ Close";
+            btnClose.Size = new System.Drawing.Size(100, 30);
+            btnClose.Location = new System.Drawing.Point(255, 380);
+            btnClose.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
+            btnClose.ForeColor = System.Drawing.Color.White;
+            btnClose.FlatStyle = FlatStyle.Flat;
+            btnClose.Click += (s, ev) =>
+            {
+                pnlHelp.Visible = false;
+                helpVisible = false;
+                btnHelp.Text = "❓ Help";
+            };
+
+            pnlHelp.Controls.Add(lblTitle);
+            pnlHelp.Controls.Add(lblDetail);
+            pnlHelp.Controls.Add(btnClose);
+
+            // Calculate position - place to the right of the button, but ensure it stays within form bounds
+            int xPos = btnHelp.Left + btnHelp.Width + 5;
+            int yPos = btnHelp.Top - 10;
+
+            // Ensure panel doesn't go off the right edge of the form
+            if (xPos + pnlHelp.Width > this.ClientSize.Width)
+            {
+                xPos = btnHelp.Left - pnlHelp.Width - 5;
+            }
+
+            // Ensure panel doesn't go off the bottom of the form
+            if (yPos + pnlHelp.Height > this.ClientSize.Height)
+            {
+                yPos = this.ClientSize.Height - pnlHelp.Height - 10;
+            }
+
+            // Ensure panel doesn't go off the top of the form
+            if (yPos < 0)
+            {
+                yPos = 5;
+            }
+
+            pnlHelp.Location = new System.Drawing.Point(xPos, yPos);
+            pnlHelp.Visible = true;
+            helpVisible = true;
+            btnHelp.Text = "❓ Help (ON)";
         }
 
         private void LoadMenuItemsCombo()
@@ -172,11 +326,9 @@ namespace Cafe101
                     out quantity);
             numQuantity.Value = quantity > 0 ? quantity : 1;
 
-            // Store IDs for reference
             int menuItemId = Convert.ToInt32(rowView["MenuItemID"]);
             int ingredientId = Convert.ToInt32(rowView["IngredientID"]);
 
-            // Filter to show ONLY the selected row
             DataView dv = originalRecipesData.DefaultView;
             dv.RowFilter = $"MenuItemID = {menuItemId} AND IngredientID = {ingredientId}";
             dgvRecipe.DataSource = dv;
@@ -321,7 +473,24 @@ namespace Cafe101
         {
             Form form = new frmMain();
             form.Show();
-            this.Close();
+            this.Hide();
         }
     }
+
+    // ============================================================
+    // DbHelper Class
+    // ============================================================
+    /*public static class DbHelper
+    {
+        private static string server = "146.230.177.46";
+        private static string database = "GroupWst22";
+        private static string username = "GroupWst22";
+        private static string password = "n38mc";
+        private static string connectionString = $"Server={server};Database={database};User Id={username};Password={password};Connection Timeout=30;";
+
+        public static SqlConnection GetConnection()
+        {
+            return new SqlConnection(connectionString);
+        }
+    }*/
 }

@@ -45,6 +45,7 @@
             this.btnResetPassword = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.tblMain.SuspendLayout();
             this.pnlLeft.SuspendLayout();
             this.grpEmployeeDetails.SuspendLayout();
@@ -66,7 +67,7 @@
             this.tblMain.Name = "tblMain";
             this.tblMain.RowCount = 1;
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblMain.Size = new System.Drawing.Size(1075, 573);
+            this.tblMain.Size = new System.Drawing.Size(1309, 573);
             this.tblMain.TabIndex = 0;
             // 
             // pnlLeft
@@ -109,7 +110,7 @@
             this.lblFirstName.ForeColor = System.Drawing.Color.White;
             this.lblFirstName.Location = new System.Drawing.Point(18, 27);
             this.lblFirstName.Name = "lblFirstName";
-            this.lblFirstName.Size = new System.Drawing.Size(67, 15);
+            this.lblFirstName.Size = new System.Drawing.Size(83, 20);
             this.lblFirstName.TabIndex = 0;
             this.lblFirstName.Text = "First Name:";
             // 
@@ -119,7 +120,7 @@
             this.txtFirstName.ForeColor = System.Drawing.Color.Black;
             this.txtFirstName.Location = new System.Drawing.Point(140, 24);
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(220, 23);
+            this.txtFirstName.Size = new System.Drawing.Size(220, 27);
             this.txtFirstName.TabIndex = 1;
             // 
             // lblSurname
@@ -128,7 +129,7 @@
             this.lblSurname.ForeColor = System.Drawing.Color.White;
             this.lblSurname.Location = new System.Drawing.Point(18, 67);
             this.lblSurname.Name = "lblSurname";
-            this.lblSurname.Size = new System.Drawing.Size(57, 15);
+            this.lblSurname.Size = new System.Drawing.Size(70, 20);
             this.lblSurname.TabIndex = 2;
             this.lblSurname.Text = "Surname:";
             // 
@@ -138,7 +139,7 @@
             this.txtSurname.ForeColor = System.Drawing.Color.Black;
             this.txtSurname.Location = new System.Drawing.Point(140, 64);
             this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(220, 23);
+            this.txtSurname.Size = new System.Drawing.Size(220, 27);
             this.txtSurname.TabIndex = 3;
             // 
             // lblEmail
@@ -147,7 +148,7 @@
             this.lblEmail.ForeColor = System.Drawing.Color.White;
             this.lblEmail.Location = new System.Drawing.Point(18, 107);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(39, 15);
+            this.lblEmail.Size = new System.Drawing.Size(49, 20);
             this.lblEmail.TabIndex = 4;
             this.lblEmail.Text = "Email:";
             // 
@@ -157,7 +158,7 @@
             this.txtEmail.ForeColor = System.Drawing.Color.Black;
             this.txtEmail.Location = new System.Drawing.Point(140, 104);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(220, 23);
+            this.txtEmail.Size = new System.Drawing.Size(220, 27);
             this.txtEmail.TabIndex = 5;
             // 
             // lblAddress
@@ -166,7 +167,7 @@
             this.lblAddress.ForeColor = System.Drawing.Color.White;
             this.lblAddress.Location = new System.Drawing.Point(18, 147);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(52, 15);
+            this.lblAddress.Size = new System.Drawing.Size(65, 20);
             this.lblAddress.TabIndex = 6;
             this.lblAddress.Text = "Address:";
             // 
@@ -176,7 +177,7 @@
             this.txtAddress.ForeColor = System.Drawing.Color.Black;
             this.txtAddress.Location = new System.Drawing.Point(140, 144);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(220, 23);
+            this.txtAddress.Size = new System.Drawing.Size(220, 27);
             this.txtAddress.TabIndex = 7;
             // 
             // lblRole
@@ -185,7 +186,7 @@
             this.lblRole.ForeColor = System.Drawing.Color.White;
             this.lblRole.Location = new System.Drawing.Point(18, 187);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(33, 15);
+            this.lblRole.Size = new System.Drawing.Size(42, 20);
             this.lblRole.TabIndex = 8;
             this.lblRole.Text = "Role:";
             // 
@@ -200,7 +201,7 @@
             "Cashier"});
             this.cboRole.Location = new System.Drawing.Point(140, 184);
             this.cboRole.Name = "cboRole";
-            this.cboRole.Size = new System.Drawing.Size(200, 23);
+            this.cboRole.Size = new System.Drawing.Size(200, 28);
             this.cboRole.TabIndex = 9;
             // 
             // lblPassword
@@ -209,7 +210,7 @@
             this.lblPassword.ForeColor = System.Drawing.Color.White;
             this.lblPassword.Location = new System.Drawing.Point(18, 227);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(60, 15);
+            this.lblPassword.Size = new System.Drawing.Size(73, 20);
             this.lblPassword.TabIndex = 10;
             this.lblPassword.Text = "Password:";
             // 
@@ -219,7 +220,7 @@
             this.txtPassword.ForeColor = System.Drawing.Color.Black;
             this.txtPassword.Location = new System.Drawing.Point(140, 224);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(220, 23);
+            this.txtPassword.Size = new System.Drawing.Size(220, 27);
             this.txtPassword.TabIndex = 11;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -237,7 +238,7 @@
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.pnlRight.Size = new System.Drawing.Size(649, 567);
+            this.pnlRight.Size = new System.Drawing.Size(883, 567);
             this.pnlRight.TabIndex = 1;
             // 
             // pnlSearch
@@ -248,7 +249,7 @@
             this.pnlSearch.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlSearch.Location = new System.Drawing.Point(3, 3);
             this.pnlSearch.Name = "pnlSearch";
-            this.pnlSearch.Size = new System.Drawing.Size(643, 44);
+            this.pnlSearch.Size = new System.Drawing.Size(877, 44);
             this.pnlSearch.TabIndex = 2;
             // 
             // lblSearch
@@ -258,7 +259,7 @@
             this.lblSearch.ForeColor = System.Drawing.Color.White;
             this.lblSearch.Location = new System.Drawing.Point(10, 12);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(58, 19);
+            this.lblSearch.Size = new System.Drawing.Size(68, 23);
             this.lblSearch.TabIndex = 0;
             this.lblSearch.Text = "Search:";
             // 
@@ -269,7 +270,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Location = new System.Drawing.Point(80, 9);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(300, 25);
+            this.txtSearch.Size = new System.Drawing.Size(300, 30);
             this.txtSearch.TabIndex = 1;
             // 
             // btnClearSearch
@@ -320,7 +321,7 @@
             this.dgvEmployees.RowHeadersWidth = 51;
             this.dgvEmployees.RowTemplate.Height = 24;
             this.dgvEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEmployees.Size = new System.Drawing.Size(643, 447);
+            this.dgvEmployees.Size = new System.Drawing.Size(877, 447);
             this.dgvEmployees.TabIndex = 0;
             this.dgvEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_CellClick);
             // 
@@ -333,11 +334,12 @@
             this.pnlRightButtons.Controls.Add(this.btnResetPassword);
             this.pnlRightButtons.Controls.Add(this.btnRefresh);
             this.pnlRightButtons.Controls.Add(this.btnBack);
+            this.pnlRightButtons.Controls.Add(this.btnHelp);
             this.pnlRightButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRightButtons.Location = new System.Drawing.Point(3, 506);
             this.pnlRightButtons.Name = "pnlRightButtons";
             this.pnlRightButtons.Padding = new System.Windows.Forms.Padding(6);
-            this.pnlRightButtons.Size = new System.Drawing.Size(643, 58);
+            this.pnlRightButtons.Size = new System.Drawing.Size(877, 58);
             this.pnlRightButtons.TabIndex = 1;
             // 
             // btnAdd
@@ -426,8 +428,9 @@
             this.btnBack.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnBack.FlatAppearance.BorderSize = 2;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnBack.Location = new System.Drawing.Point(9, 52);
+            this.btnBack.Location = new System.Drawing.Point(632, 9);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(100, 37);
             this.btnBack.TabIndex = 5;
@@ -435,10 +438,26 @@
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
+            // btnHelp
+            // 
+            this.btnHelp.BackColor = System.Drawing.Color.White;
+            this.btnHelp.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnHelp.FlatAppearance.BorderSize = 2;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnHelp.Location = new System.Drawing.Point(738, 9);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(100, 37);
+            this.btnHelp.TabIndex = 6;
+            this.btnHelp.Text = "Help";
+            this.btnHelp.UseVisualStyleBackColor = false;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click_1);
+            // 
             // frmManageEmployees
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(112)))));
-            this.ClientSize = new System.Drawing.Size(1075, 573);
+            this.ClientSize = new System.Drawing.Size(1309, 573);
             this.Controls.Add(this.tblMain);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.MinimumSize = new System.Drawing.Size(900, 480);
@@ -489,5 +508,6 @@
         private System.Windows.Forms.Button btnResetPassword;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnHelp;
     }
 }

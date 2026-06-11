@@ -40,6 +40,7 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.tblMain.SuspendLayout();
             this.pnlSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).BeginInit();
@@ -88,7 +89,7 @@
             this.lblSearch.ForeColor = System.Drawing.Color.White;
             this.lblSearch.Location = new System.Drawing.Point(10, 12);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(58, 19);
+            this.lblSearch.Size = new System.Drawing.Size(68, 23);
             this.lblSearch.TabIndex = 0;
             this.lblSearch.Text = "Search:";
             // 
@@ -99,7 +100,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Location = new System.Drawing.Point(80, 9);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(350, 25);
+            this.txtSearch.Size = new System.Drawing.Size(350, 30);
             this.txtSearch.TabIndex = 1;
             // 
             // btnClearSearch
@@ -186,7 +187,7 @@
             this.lblName.Location = new System.Drawing.Point(16, 20);
             this.lblName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(42, 15);
+            this.lblName.Size = new System.Drawing.Size(52, 20);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Name:";
             // 
@@ -197,7 +198,7 @@
             this.txtItemName.Location = new System.Drawing.Point(120, 18);
             this.txtItemName.Margin = new System.Windows.Forms.Padding(6);
             this.txtItemName.Name = "txtItemName";
-            this.txtItemName.Size = new System.Drawing.Size(420, 23);
+            this.txtItemName.Size = new System.Drawing.Size(420, 27);
             this.txtItemName.TabIndex = 1;
             // 
             // lblSelling
@@ -207,7 +208,7 @@
             this.lblSelling.Location = new System.Drawing.Point(16, 60);
             this.lblSelling.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblSelling.Name = "lblSelling";
-            this.lblSelling.Size = new System.Drawing.Size(74, 15);
+            this.lblSelling.Size = new System.Drawing.Size(93, 20);
             this.lblSelling.TabIndex = 2;
             this.lblSelling.Text = "Selling Price:";
             // 
@@ -224,7 +225,7 @@
             0,
             0});
             this.numSellingPrice.Name = "numSellingPrice";
-            this.numSellingPrice.Size = new System.Drawing.Size(120, 23);
+            this.numSellingPrice.Size = new System.Drawing.Size(120, 27);
             this.numSellingPrice.TabIndex = 3;
             this.numSellingPrice.ThousandsSeparator = true;
             // 
@@ -235,7 +236,7 @@
             this.lblCost.Location = new System.Drawing.Point(280, 60);
             this.lblCost.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblCost.Name = "lblCost";
-            this.lblCost.Size = new System.Drawing.Size(63, 15);
+            this.lblCost.Size = new System.Drawing.Size(77, 20);
             this.lblCost.TabIndex = 4;
             this.lblCost.Text = "Cost Price:";
             // 
@@ -252,7 +253,7 @@
             0,
             0});
             this.numCostPrice.Name = "numCostPrice";
-            this.numCostPrice.Size = new System.Drawing.Size(120, 23);
+            this.numCostPrice.Size = new System.Drawing.Size(120, 27);
             this.numCostPrice.TabIndex = 5;
             this.numCostPrice.ThousandsSeparator = true;
             // 
@@ -263,7 +264,7 @@
             this.lblCategory.Location = new System.Drawing.Point(16, 100);
             this.lblCategory.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblCategory.Name = "lblCategory";
-            this.lblCategory.Size = new System.Drawing.Size(58, 15);
+            this.lblCategory.Size = new System.Drawing.Size(72, 20);
             this.lblCategory.TabIndex = 6;
             this.lblCategory.Text = "Category:";
             // 
@@ -281,7 +282,7 @@
             "Combo"});
             this.cboCategory.Location = new System.Drawing.Point(120, 96);
             this.cboCategory.Name = "cboCategory";
-            this.cboCategory.Size = new System.Drawing.Size(200, 23);
+            this.cboCategory.Size = new System.Drawing.Size(200, 28);
             this.cboCategory.TabIndex = 7;
             // 
             // lblPrep
@@ -291,7 +292,7 @@
             this.lblPrep.Location = new System.Drawing.Point(16, 142);
             this.lblPrep.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblPrep.Name = "lblPrep";
-            this.lblPrep.Size = new System.Drawing.Size(63, 15);
+            this.lblPrep.Size = new System.Drawing.Size(79, 20);
             this.lblPrep.TabIndex = 8;
             this.lblPrep.Text = "Prep Time:";
             // 
@@ -302,23 +303,24 @@
             this.txtPrepTime.Location = new System.Drawing.Point(120, 142);
             this.txtPrepTime.Margin = new System.Windows.Forms.Padding(6);
             this.txtPrepTime.Name = "txtPrepTime";
-            this.txtPrepTime.Size = new System.Drawing.Size(120, 23);
+            this.txtPrepTime.Size = new System.Drawing.Size(120, 27);
             this.txtPrepTime.TabIndex = 9;
             this.txtPrepTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // pnlButtons
             // 
-            this.pnlButtons.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pnlButtons.AutoSize = true;
             this.pnlButtons.Controls.Add(this.btnAdd);
             this.pnlButtons.Controls.Add(this.btnDeactivate);
             this.pnlButtons.Controls.Add(this.btnUpdate);
             this.pnlButtons.Controls.Add(this.btnRefresh);
             this.pnlButtons.Controls.Add(this.btnBack);
-            this.pnlButtons.Location = new System.Drawing.Point(372, 489);
+            this.pnlButtons.Controls.Add(this.btnHelp);
+            this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlButtons.Location = new System.Drawing.Point(15, 489);
             this.pnlButtons.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(513, 39);
+            this.pnlButtons.Size = new System.Drawing.Size(1228, 39);
             this.pnlButtons.TabIndex = 2;
             // 
             // btnAdd
@@ -333,7 +335,7 @@
             this.btnAdd.Location = new System.Drawing.Point(6, 6);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(6);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(88, 34);
+            this.btnAdd.Size = new System.Drawing.Size(110, 38);
             this.btnAdd.TabIndex = 0;
             this.btnAdd.Text = "Add New";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -348,10 +350,10 @@
             this.btnDeactivate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeactivate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnDeactivate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnDeactivate.Location = new System.Drawing.Point(106, 6);
+            this.btnDeactivate.Location = new System.Drawing.Point(128, 6);
             this.btnDeactivate.Margin = new System.Windows.Forms.Padding(6);
             this.btnDeactivate.Name = "btnDeactivate";
-            this.btnDeactivate.Size = new System.Drawing.Size(101, 34);
+            this.btnDeactivate.Size = new System.Drawing.Size(120, 38);
             this.btnDeactivate.TabIndex = 2;
             this.btnDeactivate.Text = "Deactivate";
             this.btnDeactivate.UseVisualStyleBackColor = false;
@@ -366,10 +368,10 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnUpdate.Location = new System.Drawing.Point(219, 6);
+            this.btnUpdate.Location = new System.Drawing.Point(260, 6);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(6);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(88, 34);
+            this.btnUpdate.Size = new System.Drawing.Size(90, 38);
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -384,10 +386,10 @@
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnRefresh.Location = new System.Drawing.Point(319, 6);
+            this.btnRefresh.Location = new System.Drawing.Point(362, 6);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(6);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(88, 34);
+            this.btnRefresh.Size = new System.Drawing.Size(96, 38);
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = false;
@@ -402,14 +404,32 @@
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnBack.Location = new System.Drawing.Point(419, 6);
+            this.btnBack.Location = new System.Drawing.Point(470, 6);
             this.btnBack.Margin = new System.Windows.Forms.Padding(6);
             this.btnBack.Name = "btnBack";
-            this.btnBack.Size = new System.Drawing.Size(88, 34);
+            this.btnBack.Size = new System.Drawing.Size(88, 38);
             this.btnBack.TabIndex = 4;
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.AutoSize = true;
+            this.btnHelp.BackColor = System.Drawing.Color.White;
+            this.btnHelp.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnHelp.FlatAppearance.BorderSize = 2;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnHelp.Location = new System.Drawing.Point(570, 6);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(6);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(88, 38);
+            this.btnHelp.TabIndex = 5;
+            this.btnHelp.Text = "Help";
+            this.btnHelp.UseVisualStyleBackColor = false;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click_1);
             // 
             // frmManageMenuItems
             // 
@@ -461,5 +481,6 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnHelp;
     }
 }

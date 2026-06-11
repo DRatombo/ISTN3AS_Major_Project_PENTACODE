@@ -305,7 +305,7 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmCheckout";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmCheckout";
+            this.Text = "Checkout";
             this.Load += new System.EventHandler(this.frmCheckout_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

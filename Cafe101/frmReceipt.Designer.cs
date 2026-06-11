@@ -297,7 +297,7 @@
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmReceipt";
-            this.Text = "frmReceipt";
+            this.Text = "Receipt";
             this.Load += new System.EventHandler(this.frmReceipt_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

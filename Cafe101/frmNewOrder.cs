@@ -107,6 +107,9 @@ namespace Cafe101
 
                 this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
                 dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable;
+                dgvMenuItems.AllowUserToAddRows = false;
+                dgvMenuItems.RowTemplate.Height = 30;
+                dgvMenuItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
                 RebuildQtyColumn();
 
@@ -117,18 +120,28 @@ namespace Cafe101
                 dgvMenuItems.DataError += (s, ev) => { ev.Cancel = true; };
 
                 // Set default quantity to 1 for all rows after data loads
-              /*  foreach (DataGridViewRow row in dgvMenuItems.Rows)
-                {
-                    if (!row.IsNewRow)
-                        // Default quantity is 1 - user can change via dropdown
-                        row.Cells["ItemQty"].Value = 1;
-                }*/
-      
+                /*  foreach (DataGridViewRow row in dgvMenuItems.Rows)
+                  {
+                      if (!row.IsNewRow)
+                          // Default quantity is 1 - user can change via dropdown
+                          row.Cells["ItemQty"].Value = 1;
+                  }*/
+                dgvMenuItems.CellClick += dgvMenuItems_CellClick_SelectRow;
+                dgvMenuItems.EditingControlShowing += dgvMenuItems_EditingControlShowing;
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred while loading the form: " + ex.Message);
+            }
+        }
+
+        private void dgvMenuItems_CellClick_SelectRow(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+            if (dgvMenuItems.Columns[e.ColumnIndex].Name == "ItemQty")
+            {
+                dgvMenuItems.BeginEdit(true);
             }
         }
 
@@ -142,13 +155,25 @@ namespace Cafe101
             qtyCol.HeaderText = "Quantity";
             qtyCol.Width = 80;
             qtyCol.ValueType = typeof(string);
+            qtyCol.FlatStyle = FlatStyle.Flat;
+            qtyCol.DisplayStyle = DataGridViewComboBoxDisplayStyle.ComboBox;
             dgvMenuItems.Columns.Add(qtyCol);
 
-           /* DataTable recipes = testRecipeTableAdapter1.GetData();
-            DataTable ingredients = testIngredientTableAdapter1.GetData();
-*/
+            dgvMenuItems.AllowUserToAddRows = false;
+
+            /* DataTable recipes = testRecipeTableAdapter1.GetData();
+             DataTable ingredients = testIngredientTableAdapter1.GetData();
+ */
             DataTable recipes = recipeTableTableAdapter1.GetData();
             DataTable ingredients = ingredientTableTableAdapter1.GetData();
+
+            dgvMenuItems.ReadOnly = false;
+
+            foreach (DataGridViewColumn col in dgvMenuItems.Columns)
+            {
+                if (col.Name != "ItemQty")
+                    col.ReadOnly = true;
+            }
 
             foreach (DataGridViewRow row in dgvMenuItems.Rows)
             {
@@ -861,9 +886,13 @@ namespace Cafe101
             this.Hide();    
         }
 
-        private void dgvMenuItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvMenuItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
 
+            object nameVal = dgvMenuItems.Rows[e.RowIndex].Cells["MenuItemName"].Value;
+            if (nameVal != null)
+                textItemSearch.Text = nameVal.ToString();
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -1273,6 +1302,55 @@ namespace Cafe101
                  MessageBox.Show("Error loading customers: " + ex.Message);
              }*/
         }
+
+        private void dgvCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvMenuItems_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            object nameVal = dgvMenuItems.Rows[e.RowIndex].Cells["MenuItemName"].Value;
+            if (nameVal != null)
+                textItemSearch.Text = nameVal.ToString();
+        }
+
+        private void btnClearItemSearch_Click(object sender, EventArgs e)
+        {
+            textItemSearch.TextChanged -= textItemSearch_TextChanged;
+            textItemSearch.Text = "";
+            textItemSearch.TextChanged += textItemSearch_TextChanged;
+
+            this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
+            dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable;
+            RebuildQtyColumn();
+        }
+
+        private void dgvMenuItems_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dgvMenuItems.CurrentCell?.OwningColumn?.Name != "ItemQty") return;
+
+            ComboBox cb = e.Control as ComboBox;
+            if (cb == null) return;
+
+            cb.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb.SelectedIndexChanged -= QtyComboBox_SelectedIndexChanged;
+            cb.SelectedIndexChanged += QtyComboBox_SelectedIndexChanged;
+
+            // Force open immediately
+            cb.DroppedDown = true;
+        }
+
+        private void QtyComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
+            if (cb == null) return;
+
+            dgvMenuItems.CurrentCell.Value = cb.SelectedItem?.ToString();
+        }
+
     }
     
 }

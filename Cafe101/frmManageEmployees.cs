@@ -15,7 +15,171 @@ namespace Cafe101
         public frmManageEmployees()
         {
             InitializeComponent();
+            AttachValidationEvents();
         }
+
+        private void AttachValidationEvents()
+        {
+            txtFirstName.TextChanged += txtFirstName_TextChanged;
+            txtSurname.TextChanged += txtSurname_TextChanged;
+            txtEmail.TextChanged += txtEmail_TextChanged;
+            txtPassword.TextChanged += txtPassword_TextChanged;
+        }
+
+        // ============================================================
+        // VALIDATION METHODS
+        // ============================================================
+
+        private void txtFirstName_TextChanged(object sender, EventArgs e)
+        {
+            ValidateFirstName();
+        }
+
+        private void txtSurname_TextChanged(object sender, EventArgs e)
+        {
+            ValidateSurname();
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            ValidateEmail();
+        }
+
+        private void txtPassword_TextChanged(object sender, EventArgs e)
+        {
+            ValidatePassword();
+        }
+
+        private bool ValidateFirstName()
+        {
+            string value = txtFirstName.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                txtFirstName.BackColor = Color.FromArgb(255, 220, 220);
+                lblFirstNameStatus.Text = "⚠️ Required";
+                lblFirstNameStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            // Check for letters only (no spaces, no numbers, no special characters)
+            foreach (char c in value)
+            {
+                if (!char.IsLetter(c))
+                {
+                    txtFirstName.BackColor = Color.FromArgb(255, 220, 220);
+                    lblFirstNameStatus.Text = "⚠️ Letters only";
+                    lblFirstNameStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                    return false;
+                }
+            }
+
+            txtFirstName.BackColor = Color.FromArgb(220, 245, 220);
+            lblFirstNameStatus.Text = "✓";
+            lblFirstNameStatus.ForeColor = Color.FromArgb(50, 180, 100);
+            return true;
+        }
+
+        private bool ValidateSurname()
+        {
+            string value = txtSurname.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                txtSurname.BackColor = Color.FromArgb(255, 220, 220);
+                lblSurnameStatus.Text = "⚠️ Required";
+                lblSurnameStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            // Check for letters only (no spaces, no numbers, no special characters)
+            foreach (char c in value)
+            {
+                if (!char.IsLetter(c))
+                {
+                    txtSurname.BackColor = Color.FromArgb(255, 220, 220);
+                    lblSurnameStatus.Text = "⚠️ Letters only";
+                    lblSurnameStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                    return false;
+                }
+            }
+
+            txtSurname.BackColor = Color.FromArgb(220, 245, 220);
+            lblSurnameStatus.Text = "✓";
+            lblSurnameStatus.ForeColor = Color.FromArgb(50, 180, 100);
+            return true;
+        }
+
+        private bool ValidateEmail()
+        {
+            string email = txtEmail.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                txtEmail.BackColor = Color.FromArgb(255, 220, 220);
+                lblEmailStatus.Text = "⚠️ Required";
+                lblEmailStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            int atIndex = email.IndexOf('@');
+            if (atIndex < 1)
+            {
+                txtEmail.BackColor = Color.FromArgb(255, 220, 220);
+                lblEmailStatus.Text = "⚠️ Missing '@'";
+                lblEmailStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            int dotIndex = email.IndexOf('.', atIndex);
+            if (dotIndex < atIndex + 2 || dotIndex >= email.Length - 1)
+            {
+                txtEmail.BackColor = Color.FromArgb(255, 220, 220);
+                lblEmailStatus.Text = "⚠️ Invalid domain";
+                lblEmailStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            txtEmail.BackColor = Color.FromArgb(220, 245, 220);
+            lblEmailStatus.Text = "✓";
+            lblEmailStatus.ForeColor = Color.FromArgb(50, 180, 100);
+            return true;
+        }
+
+        private bool ValidatePassword()
+        {
+            string password = txtPassword.Text;
+
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                txtPassword.BackColor = Color.FromArgb(255, 220, 220);
+                lblPasswordStatus.Text = "⚠️ Required";
+                lblPasswordStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            if (password.Length < 6)
+            {
+                txtPassword.BackColor = Color.FromArgb(255, 220, 220);
+                lblPasswordStatus.Text = "⚠️ Min 6 chars";
+                lblPasswordStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            txtPassword.BackColor = Color.FromArgb(220, 245, 220);
+            lblPasswordStatus.Text = "✓";
+            lblPasswordStatus.ForeColor = Color.FromArgb(50, 180, 100);
+            return true;
+        }
+
+        private bool IsFormValid()
+        {
+            return ValidateFirstName() && ValidateSurname() && ValidateEmail() && ValidatePassword();
+        }
+
+        // ============================================================
+        // END OF VALIDATION METHODS
+        // ============================================================
 
         private void frmManageEmployees_Load(object sender, EventArgs e)
         {
@@ -68,156 +232,10 @@ namespace Cafe101
 
         private void btnClearSearch_Click(object sender, EventArgs e)
         {
-            // Clear search box
             txtSearch.Text = "";
-
-            // Clear all input fields
             ClearFields();
-
-            // Reload full data
             LoadEmployees();
         }
-
-        // ============================================================
-        // HELP BUTTON - Panel-based contextual help (with your icons)
-        // ============================================================
-      /*  private void btnHelp_Click(object sender, EventArgs e)
-        {
-            if (helpVisible)
-            {
-                if (pnlHelp != null)
-                {
-                    pnlHelp.Visible = false;
-                }
-                helpVisible = false;
-                btnHelp.Text = "❓ Help";
-                return;
-            }
-
-            string stepTitle;
-            string stepDetail;
-
-            if (btnUpdate.Tag == null)
-            {
-                stepTitle = "📍 Step 1 of 2 — Add a New Employee";
-                stepDetail =
-                    "You haven't selected an employee to edit.\r\n\r\n" +
-                    "➕ ADD NEW EMPLOYEE:\r\n" +
-                    "• Fill in: First Name, Surname, Email, Address,\r\n" +
-                    "  Role (Manager/Cashier), and Password.\r\n" +
-                    "• Click the 'Add' button.\r\n\r\n" +
-                    "✏️ EDIT EXISTING EMPLOYEE:\r\n" +
-                    "• Click any row in the list to select an employee.\r\n" +
-                    "• Only that employee will remain visible.\r\n" +
-                    "• Edit the fields as needed.\r\n" +
-                    "• Click 'Update' to save changes.\r\n\r\n" +
-                    "🔍 SEARCH:\r\n" +
-                    "• Type name, email, or role in the search box.\r\n" +
-                    "• Results filter automatically as you type.\r\n" +
-                    "• Click 'Clear' to reset search.\r\n\r\n" +
-                    "🔄 REFRESH:\r\n" +
-                    "• Click 'Refresh' to reload all employee data.\r\n\r\n" +
-                    "🔑 RESET PASSWORD:\r\n" +
-                    "• Select an employee, then click 'Reset PW'.\r\n" +
-                    "• Password resets to 'temp123'.\r\n\r\n" +
-                    "🗑️ DELETE:\r\n" +
-                    "• Select an employee, then click 'Delete'.\r\n" +
-                    "• Confirm deletion when prompted.\r\n\r\n" +
-                    "◀ BACK:\r\n" +
-                    "• Returns to the main menu.";
-            }
-            else
-            {
-                stepTitle = "📍 Step 2 of 2 — Update or Delete Employee";
-                stepDetail =
-                    "Employee selected: " + txtFirstName.Text + " " + txtSurname.Text + "\r\n\r\n" +
-                    "✏️ TO UPDATE:\r\n" +
-                    "• Edit the fields you want to change.\r\n" +
-                    "• Click 'Update' to save changes.\r\n" +
-                    "• Click 'Refresh' to see all employees again.\r\n\r\n" +
-                    "🗑️ TO DELETE:\r\n" +
-                    "• Click 'Delete' button.\r\n" +
-                    "• Confirm deletion when prompted.\r\n\r\n" +
-                    "🔑 RESET PASSWORD:\r\n" +
-                    "• Click 'Reset PW' to reset password to 'temp123'.\r\n\r\n" +
-                    "🔄 REFRESH:\r\n" +
-                    "• Click 'Refresh' to reload all employee data.\r\n\r\n" +
-                    "◀ BACK:\r\n" +
-                    "• Returns to the main menu.";
-            }
-
-            if (pnlHelp == null)
-            {
-                pnlHelp = new Panel();
-                pnlHelp.Size = new System.Drawing.Size(370, 400);
-                pnlHelp.BackColor = System.Drawing.Color.FromArgb(20, 40, 100);
-                pnlHelp.BorderStyle = BorderStyle.FixedSingle;
-                this.Controls.Add(pnlHelp);
-                pnlHelp.BringToFront();
-            }
-
-            pnlHelp.Controls.Clear();
-
-            Label lblTitle = new Label();
-            lblTitle.Text = stepTitle;
-            lblTitle.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Bold);
-            lblTitle.ForeColor = System.Drawing.Color.White;
-            lblTitle.Location = new System.Drawing.Point(10, 10);
-            lblTitle.Size = new System.Drawing.Size(350, 30);
-            lblTitle.TextAlign = ContentAlignment.MiddleLeft;
-
-            Label lblDetail = new Label();
-            lblDetail.Text = stepDetail;
-            lblDetail.Font = new System.Drawing.Font("Segoe UI", 9);
-            lblDetail.ForeColor = System.Drawing.Color.LightGray;
-            lblDetail.Location = new System.Drawing.Point(10, 50);
-            lblDetail.Size = new System.Drawing.Size(350, 300);
-
-            Button btnClose = new Button();
-            btnClose.Text = "✕ Close";
-            btnClose.Size = new System.Drawing.Size(100, 30);
-            btnClose.Location = new System.Drawing.Point(255, 360);
-            btnClose.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
-            btnClose.ForeColor = System.Drawing.Color.White;
-            btnClose.FlatStyle = FlatStyle.Flat;
-            btnClose.Click += (s, ev) =>
-            {
-                pnlHelp.Visible = false;
-                helpVisible = false;
-                btnHelp.Text = "❓ Help";
-            };
-
-            pnlHelp.Controls.Add(lblTitle);
-            pnlHelp.Controls.Add(lblDetail);
-            pnlHelp.Controls.Add(btnClose);
-
-            // Calculate position - place to the right of the button, but ensure it stays within form bounds
-            int xPos = btnHelp.Left + btnHelp.Width + 5;
-            int yPos = btnHelp.Top - 10;
-
-            // Ensure panel doesn't go off the right edge of the form
-            if (xPos + pnlHelp.Width > this.ClientSize.Width)
-            {
-                xPos = btnHelp.Left - pnlHelp.Width - 5;
-            }
-
-            // Ensure panel doesn't go off the bottom of the form
-            if (yPos + pnlHelp.Height > this.ClientSize.Height)
-            {
-                yPos = this.ClientSize.Height - pnlHelp.Height - 10;
-            }
-
-            // Ensure panel doesn't go off the top of the form
-            if (yPos < 0)
-            {
-                yPos = 5;
-            }
-
-            pnlHelp.Location = new System.Drawing.Point(xPos, yPos);
-            pnlHelp.Visible = true;
-            helpVisible = true;
-            btnHelp.Text = "❓ Help (ON)";
-        }*/
 
         private void ClearFields()
         {
@@ -228,6 +246,15 @@ namespace Cafe101
             txtPassword.Text = "";
             cboRole.SelectedIndex = -1;
             btnUpdate.Tag = null;
+
+            txtFirstName.BackColor = System.Drawing.Color.White;
+            txtSurname.BackColor = System.Drawing.Color.White;
+            txtEmail.BackColor = System.Drawing.Color.White;
+            txtPassword.BackColor = System.Drawing.Color.White;
+            lblFirstNameStatus.Text = "";
+            lblSurnameStatus.Text = "";
+            lblEmailStatus.Text = "";
+            lblPasswordStatus.Text = "";
         }
 
         private bool IsEmployeeDuplicate(string firstName, string surname, int? excludeEmployeeId = null)
@@ -290,29 +317,15 @@ namespace Cafe101
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtFirstName.Text))
+            if (!IsFormValid())
             {
-                MessageBox.Show("First Name is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please correct the highlighted fields before adding.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (string.IsNullOrWhiteSpace(txtSurname.Text))
-            {
-                MessageBox.Show("Surname is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtPassword.Text))
-            {
-                MessageBox.Show("Password is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+
             if (cboRole.SelectedIndex == -1)
             {
                 MessageBox.Show("Please select a role (Manager or Cashier).", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtEmail.Text))
-            {
-                MessageBox.Show("Email address is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -383,6 +396,11 @@ namespace Cafe101
                     dgvEmployees.Columns[0].Visible = false;
 
                 txtSearch.Text = "";
+
+                ValidateFirstName();
+                ValidateSurname();
+                ValidateEmail();
+                ValidatePassword();
             }
         }
 
@@ -393,19 +411,10 @@ namespace Cafe101
                 MessageBox.Show("Select an employee first.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (string.IsNullOrWhiteSpace(txtFirstName.Text))
+
+            if (!IsFormValid())
             {
-                MessageBox.Show("First Name cannot be empty.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtSurname.Text))
-            {
-                MessageBox.Show("Surname cannot be empty.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(txtEmail.Text))
-            {
-                MessageBox.Show("Email address cannot be empty.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please correct the highlighted fields before updating.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -539,7 +548,6 @@ namespace Cafe101
 
         private void btnHelp_Click_1(object sender, EventArgs e)
         {
-
             if (helpVisible)
             {
                 if (pnlHelp != null)
@@ -562,6 +570,8 @@ namespace Cafe101
                     "➕ ADD NEW EMPLOYEE:\r\n" +
                     "• Fill in: First Name, Surname, Email, Address,\r\n" +
                     "  Role (Manager/Cashier), and Password.\r\n" +
+                    "• First Name and Surname: LETTERS ONLY (no spaces, numbers, or special characters)\r\n" +
+                    "• Password: minimum 6 characters\r\n" +
                     "• Click the 'Add' button.\r\n\r\n" +
                     "✏️ EDIT EXISTING EMPLOYEE:\r\n" +
                     "• Click any row in the list to select an employee.\r\n" +
@@ -590,6 +600,7 @@ namespace Cafe101
                     "Employee selected: " + txtFirstName.Text + " " + txtSurname.Text + "\r\n\r\n" +
                     "✏️ TO UPDATE:\r\n" +
                     "• Edit the fields you want to change.\r\n" +
+                    "• First Name and Surname: LETTERS ONLY (no spaces, numbers, or special characters)\r\n" +
                     "• Click 'Update' to save changes.\r\n" +
                     "• Click 'Refresh' to see all employees again.\r\n\r\n" +
                     "🗑️ TO DELETE:\r\n" +
@@ -606,7 +617,7 @@ namespace Cafe101
             if (pnlHelp == null)
             {
                 pnlHelp = new Panel();
-                pnlHelp.Size = new System.Drawing.Size(370, 400);
+                pnlHelp.Size = new System.Drawing.Size(370, 420);
                 pnlHelp.BackColor = System.Drawing.Color.FromArgb(20, 40, 100);
                 pnlHelp.BorderStyle = BorderStyle.FixedSingle;
                 this.Controls.Add(pnlHelp);
@@ -628,12 +639,12 @@ namespace Cafe101
             lblDetail.Font = new System.Drawing.Font("Segoe UI", 9);
             lblDetail.ForeColor = System.Drawing.Color.LightGray;
             lblDetail.Location = new System.Drawing.Point(10, 50);
-            lblDetail.Size = new System.Drawing.Size(350, 300);
+            lblDetail.Size = new System.Drawing.Size(350, 320);
 
             Button btnClose = new Button();
             btnClose.Text = "✕ Close";
             btnClose.Size = new System.Drawing.Size(100, 30);
-            btnClose.Location = new System.Drawing.Point(255, 360);
+            btnClose.Location = new System.Drawing.Point(255, 380);
             btnClose.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
             btnClose.ForeColor = System.Drawing.Color.White;
             btnClose.FlatStyle = FlatStyle.Flat;
@@ -648,23 +659,19 @@ namespace Cafe101
             pnlHelp.Controls.Add(lblDetail);
             pnlHelp.Controls.Add(btnClose);
 
-            // Calculate position - place to the right of the button, but ensure it stays within form bounds
             int xPos = btnHelp.Left + btnHelp.Width + 5;
             int yPos = btnHelp.Top - 10;
 
-            // Ensure panel doesn't go off the right edge of the form
             if (xPos + pnlHelp.Width > this.ClientSize.Width)
             {
                 xPos = btnHelp.Left - pnlHelp.Width - 5;
             }
 
-            // Ensure panel doesn't go off the bottom of the form
             if (yPos + pnlHelp.Height > this.ClientSize.Height)
             {
                 yPos = this.ClientSize.Height - pnlHelp.Height - 10;
             }
 
-            // Ensure panel doesn't go off the top of the form
             if (yPos < 0)
             {
                 yPos = 5;
@@ -680,7 +687,7 @@ namespace Cafe101
     // ============================================================
     // DbHelper Class
     // ============================================================
-  /*  public static class DbHelper
+   /* public static class DbHelper
     {
         private static string server = "146.230.177.46";
         private static string database = "GroupWst22";

@@ -26,8 +26,7 @@
             this.grpIngredientDetails = new System.Windows.Forms.GroupBox();
             this.lblDescription = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
-            this.lblUnits = new System.Windows.Forms.Label();
-            this.txtUnits = new System.Windows.Forms.TextBox();
+            this.lblDescriptionStatus = new System.Windows.Forms.Label();
             this.lblQuantityInStock = new System.Windows.Forms.Label();
             this.numQuantityInStock = new System.Windows.Forms.NumericUpDown();
             this.lblRestockLevel = new System.Windows.Forms.Label();
@@ -68,7 +67,7 @@
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tblMain.Size = new System.Drawing.Size(1000, 596);
+            this.tblMain.Size = new System.Drawing.Size(1000, 650);
             this.tblMain.TabIndex = 0;
             // 
             // pnlSearch
@@ -152,7 +151,7 @@
             this.dgvIngredients.RowHeadersWidth = 51;
             this.dgvIngredients.RowTemplate.Height = 24;
             this.dgvIngredients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvIngredients.Size = new System.Drawing.Size(970, 246);
+            this.dgvIngredients.Size = new System.Drawing.Size(970, 280);
             this.dgvIngredients.TabIndex = 0;
             this.dgvIngredients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredients_CellClick);
             // 
@@ -161,8 +160,7 @@
             this.grpIngredientDetails.BackColor = System.Drawing.Color.Transparent;
             this.grpIngredientDetails.Controls.Add(this.lblDescription);
             this.grpIngredientDetails.Controls.Add(this.txtDescription);
-            this.grpIngredientDetails.Controls.Add(this.lblUnits);
-            this.grpIngredientDetails.Controls.Add(this.txtUnits);
+            this.grpIngredientDetails.Controls.Add(this.lblDescriptionStatus);
             this.grpIngredientDetails.Controls.Add(this.lblQuantityInStock);
             this.grpIngredientDetails.Controls.Add(this.numQuantityInStock);
             this.grpIngredientDetails.Controls.Add(this.lblRestockLevel);
@@ -171,11 +169,11 @@
             this.grpIngredientDetails.Controls.Add(this.numCostPrice);
             this.grpIngredientDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpIngredientDetails.ForeColor = System.Drawing.Color.White;
-            this.grpIngredientDetails.Location = new System.Drawing.Point(15, 326);
+            this.grpIngredientDetails.Location = new System.Drawing.Point(15, 360);
             this.grpIngredientDetails.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
             this.grpIngredientDetails.Name = "grpIngredientDetails";
             this.grpIngredientDetails.Padding = new System.Windows.Forms.Padding(12);
-            this.grpIngredientDetails.Size = new System.Drawing.Size(970, 193);
+            this.grpIngredientDetails.Size = new System.Drawing.Size(970, 220);
             this.grpIngredientDetails.TabIndex = 1;
             this.grpIngredientDetails.TabStop = false;
             this.grpIngredientDetails.Text = "Ingredient Details";
@@ -200,37 +198,27 @@
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(300, 27);
             this.txtDescription.TabIndex = 1;
+            this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
             // 
-            // lblUnits
+            // lblDescriptionStatus
             // 
-            this.lblUnits.AutoSize = true;
-            this.lblUnits.ForeColor = System.Drawing.Color.White;
-            this.lblUnits.Location = new System.Drawing.Point(430, 20);
-            this.lblUnits.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
-            this.lblUnits.Name = "lblUnits";
-            this.lblUnits.Size = new System.Drawing.Size(45, 20);
-            this.lblUnits.TabIndex = 2;
-            this.lblUnits.Text = "Units:";
-            // 
-            // txtUnits
-            // 
-            this.txtUnits.BackColor = System.Drawing.Color.White;
-            this.txtUnits.ForeColor = System.Drawing.Color.Black;
-            this.txtUnits.Location = new System.Drawing.Point(490, 18);
-            this.txtUnits.Margin = new System.Windows.Forms.Padding(6);
-            this.txtUnits.Name = "txtUnits";
-            this.txtUnits.Size = new System.Drawing.Size(100, 27);
-            this.txtUnits.TabIndex = 3;
+            this.lblDescriptionStatus.AutoSize = true;
+            this.lblDescriptionStatus.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.lblDescriptionStatus.ForeColor = System.Drawing.Color.White;
+            this.lblDescriptionStatus.Location = new System.Drawing.Point(120, 48);
+            this.lblDescriptionStatus.Name = "lblDescriptionStatus";
+            this.lblDescriptionStatus.Size = new System.Drawing.Size(0, 20);
+            this.lblDescriptionStatus.TabIndex = 14;
             // 
             // lblQuantityInStock
             // 
             this.lblQuantityInStock.AutoSize = true;
             this.lblQuantityInStock.ForeColor = System.Drawing.Color.White;
-            this.lblQuantityInStock.Location = new System.Drawing.Point(16, 60);
+            this.lblQuantityInStock.Location = new System.Drawing.Point(16, 80);
             this.lblQuantityInStock.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblQuantityInStock.Name = "lblQuantityInStock";
             this.lblQuantityInStock.Size = new System.Drawing.Size(91, 20);
-            this.lblQuantityInStock.TabIndex = 4;
+            this.lblQuantityInStock.TabIndex = 2;
             this.lblQuantityInStock.Text = "Qty In Stock:";
             // 
             // numQuantityInStock
@@ -238,27 +226,23 @@
             this.numQuantityInStock.BackColor = System.Drawing.Color.White;
             this.numQuantityInStock.DecimalPlaces = 2;
             this.numQuantityInStock.ForeColor = System.Drawing.Color.Black;
-            this.numQuantityInStock.Location = new System.Drawing.Point(150, 58);
+            this.numQuantityInStock.Location = new System.Drawing.Point(120, 78);
             this.numQuantityInStock.Margin = new System.Windows.Forms.Padding(6);
-            this.numQuantityInStock.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
+            this.numQuantityInStock.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             this.numQuantityInStock.Name = "numQuantityInStock";
             this.numQuantityInStock.Size = new System.Drawing.Size(120, 27);
-            this.numQuantityInStock.TabIndex = 5;
+            this.numQuantityInStock.TabIndex = 3;
             this.numQuantityInStock.ThousandsSeparator = true;
             // 
             // lblRestockLevel
             // 
             this.lblRestockLevel.AutoSize = true;
             this.lblRestockLevel.ForeColor = System.Drawing.Color.White;
-            this.lblRestockLevel.Location = new System.Drawing.Point(280, 60);
+            this.lblRestockLevel.Location = new System.Drawing.Point(280, 80);
             this.lblRestockLevel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblRestockLevel.Name = "lblRestockLevel";
             this.lblRestockLevel.Size = new System.Drawing.Size(101, 20);
-            this.lblRestockLevel.TabIndex = 6;
+            this.lblRestockLevel.TabIndex = 4;
             this.lblRestockLevel.Text = "Restock Level:";
             // 
             // numRestockLevel
@@ -266,27 +250,23 @@
             this.numRestockLevel.BackColor = System.Drawing.Color.White;
             this.numRestockLevel.DecimalPlaces = 2;
             this.numRestockLevel.ForeColor = System.Drawing.Color.Black;
-            this.numRestockLevel.Location = new System.Drawing.Point(390, 58);
+            this.numRestockLevel.Location = new System.Drawing.Point(390, 78);
             this.numRestockLevel.Margin = new System.Windows.Forms.Padding(6);
-            this.numRestockLevel.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
+            this.numRestockLevel.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             this.numRestockLevel.Name = "numRestockLevel";
             this.numRestockLevel.Size = new System.Drawing.Size(120, 27);
-            this.numRestockLevel.TabIndex = 7;
+            this.numRestockLevel.TabIndex = 5;
             this.numRestockLevel.ThousandsSeparator = true;
             // 
             // lblCostPrice
             // 
             this.lblCostPrice.AutoSize = true;
             this.lblCostPrice.ForeColor = System.Drawing.Color.White;
-            this.lblCostPrice.Location = new System.Drawing.Point(520, 60);
+            this.lblCostPrice.Location = new System.Drawing.Point(520, 80);
             this.lblCostPrice.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblCostPrice.Name = "lblCostPrice";
             this.lblCostPrice.Size = new System.Drawing.Size(77, 20);
-            this.lblCostPrice.TabIndex = 8;
+            this.lblCostPrice.TabIndex = 6;
             this.lblCostPrice.Text = "Cost Price:";
             // 
             // numCostPrice
@@ -294,16 +274,12 @@
             this.numCostPrice.BackColor = System.Drawing.Color.White;
             this.numCostPrice.DecimalPlaces = 2;
             this.numCostPrice.ForeColor = System.Drawing.Color.Black;
-            this.numCostPrice.Location = new System.Drawing.Point(600, 58);
+            this.numCostPrice.Location = new System.Drawing.Point(600, 78);
             this.numCostPrice.Margin = new System.Windows.Forms.Padding(6);
-            this.numCostPrice.Maximum = new decimal(new int[] {
-            100000,
-            0,
-            0,
-            0});
+            this.numCostPrice.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             this.numCostPrice.Name = "numCostPrice";
             this.numCostPrice.Size = new System.Drawing.Size(120, 27);
-            this.numCostPrice.TabIndex = 9;
+            this.numCostPrice.TabIndex = 7;
             this.numCostPrice.ThousandsSeparator = true;
             // 
             // pnlButtons
@@ -317,10 +293,10 @@
             this.pnlButtons.Controls.Add(this.btnHelp);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.pnlButtons.Location = new System.Drawing.Point(15, 537);
+            this.pnlButtons.Location = new System.Drawing.Point(15, 595);
             this.pnlButtons.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(970, 44);
+            this.pnlButtons.Size = new System.Drawing.Size(970, 40);
             this.pnlButtons.TabIndex = 2;
             // 
             // btnBack
@@ -427,7 +403,7 @@
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(110, 38);
             this.btnHelp.TabIndex = 13;
-            this.btnHelp.Text = "Help";
+            this.btnHelp.Text = "❓ Help";
             this.btnHelp.UseVisualStyleBackColor = false;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click_1);
             // 
@@ -436,10 +412,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(112)))));
-            this.ClientSize = new System.Drawing.Size(1000, 596);
+            this.ClientSize = new System.Drawing.Size(1000, 650);
             this.Controls.Add(this.tblMain);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.MinimumSize = new System.Drawing.Size(800, 480);
+            this.MinimumSize = new System.Drawing.Size(800, 550);
             this.Name = "frmManageIngredients";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Ingredients";
@@ -458,7 +434,6 @@
             this.pnlButtons.ResumeLayout(false);
             this.pnlButtons.PerformLayout();
             this.ResumeLayout(false);
-
         }
 
         private System.Windows.Forms.TableLayoutPanel tblMain;
@@ -470,8 +445,7 @@
         private System.Windows.Forms.GroupBox grpIngredientDetails;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.TextBox txtDescription;
-        private System.Windows.Forms.Label lblUnits;
-        private System.Windows.Forms.TextBox txtUnits;
+        private System.Windows.Forms.Label lblDescriptionStatus;
         private System.Windows.Forms.Label lblQuantityInStock;
         private System.Windows.Forms.NumericUpDown numQuantityInStock;
         private System.Windows.Forms.Label lblRestockLevel;

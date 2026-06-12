@@ -20,7 +20,7 @@ namespace Cafe101
         public frmMain()
         {
             InitializeComponent();
-           
+
         }
 
         private void ordersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -28,7 +28,7 @@ namespace Cafe101
             frmNewOrder newOrder = new frmNewOrder();
             //newOrder.ShowDialog();
             newOrder.Show();
-            this.Hide();    
+            this.Hide();
         }
 
         private void mnuMenuItems_Click(object sender, EventArgs e)
@@ -42,7 +42,7 @@ namespace Cafe101
                 }
             }
             frmManageMenuItems frmMenu = new frmManageMenuItems();
-           // frmMenu.MdiParent = this;
+            // frmMenu.MdiParent = this;
             frmMenu.Show();
         }
 
@@ -57,7 +57,7 @@ namespace Cafe101
                 }
             }
             frmManageIngredients frmIng = new frmManageIngredients();
-         //   frmIng.MdiParent = this;
+            //   frmIng.MdiParent = this;
             frmIng.Show();
         }
 
@@ -72,7 +72,7 @@ namespace Cafe101
                 }
             }
             frmManageRecipes frmRecipe = new frmManageRecipes();
-           // frmRecipe.MdiParent = this;
+            // frmRecipe.MdiParent = this;
             frmRecipe.Show();
         }
 
@@ -87,7 +87,7 @@ namespace Cafe101
                 }
             }
             frmManageEmployees frmEmp = new frmManageEmployees();
-          //  frmEmp.MdiParent = this;
+            //  frmEmp.MdiParent = this;
             frmEmp.Show();
         }
 
@@ -113,8 +113,8 @@ namespace Cafe101
         {
             frmManageCustomers frmCust = new frmManageCustomers();
             frmCust.ShowDialog();
-           // frmCust.Show();
-           // this.Hide();
+            // frmCust.Show();
+            // this.Hide();
         }
 
         private void salesReportToolStripMenuItem_Click(object sender, EventArgs e)
@@ -127,14 +127,14 @@ namespace Cafe101
 
         private void popularityAnalyticsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmPopularProduct frmAnalytics = new frmPopularProduct(); 
+            frmPopularProduct frmAnalytics = new frmPopularProduct();
             frmAnalytics.ShowDialog();
-            
+
         }
 
         private void lowStockReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmLowStock stock = new frmLowStock();  
+            frmLowStock stock = new frmLowStock();
             //stock.ShowDialog();
             stock.Show();
             this.Hide();
@@ -144,14 +144,14 @@ namespace Cafe101
         {
             lblUser.Text = $"{SessionManager.Role}: {SessionManager.FirstName} {SessionManager.Surname}";
             lblDateTime.Text = SessionManager.LoginTime.ToString("dd MMM yyyy  HH:mm");
-           
 
-            
+
+
             switch (SessionManager.Role)
             {
                 case "Cashier":
-                    mnuAnalytics.Visible = false;  
-                    mnuManagement.Visible = false; 
+                    mnuAnalytics.Visible = false;
+                    mnuManagement.Visible = false;
                     break;
 
 
@@ -209,7 +209,7 @@ namespace Cafe101
                 "• View existing menu items and all their associated details.\r\n" +
                 "• Update information such as prices, ingredients, or descriptions.\r\n" +
                 "• Remove menu items or recipes that are no longer being offered.\r\n" +
-                "• Each operation opens its own dedicated interface, making it easy to focus on one task at a time.\r\n\r\n" +   
+                "• Each operation opens its own dedicated interface, making it easy to focus on one task at a time.\r\n\r\n" +
 
                 " Logout\r\n" +
                 "• Use this option to return to the login screen so that another user can log in.\r\n\r\n" +
@@ -265,13 +265,13 @@ namespace Cafe101
             helpVisibleDash = true;
             btnHelp.Text = "? Help (ON)";
         }
-       
 
-        
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -320,7 +320,7 @@ namespace Cafe101
 
         private void customersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmManageCustomers frmCust = new frmManageCustomers();      
+            frmManageCustomers frmCust = new frmManageCustomers();
             frmCust.Show();
             this.Hide();
         }

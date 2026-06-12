@@ -22,16 +22,20 @@
             this.grpEmployeeDetails = new System.Windows.Forms.GroupBox();
             this.lblFirstName = new System.Windows.Forms.Label();
             this.txtFirstName = new System.Windows.Forms.TextBox();
+            this.lblFirstNameStatus = new System.Windows.Forms.Label();
             this.lblSurname = new System.Windows.Forms.Label();
             this.txtSurname = new System.Windows.Forms.TextBox();
+            this.lblSurnameStatus = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
+            this.lblEmailStatus = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.lblRole = new System.Windows.Forms.Label();
             this.cboRole = new System.Windows.Forms.ComboBox();
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
+            this.lblPasswordStatus = new System.Windows.Forms.Label();
             this.pnlRight = new System.Windows.Forms.TableLayoutPanel();
             this.pnlSearch = new System.Windows.Forms.Panel();
             this.lblSearch = new System.Windows.Forms.Label();
@@ -67,7 +71,7 @@
             this.tblMain.Name = "tblMain";
             this.tblMain.RowCount = 1;
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tblMain.Size = new System.Drawing.Size(1309, 573);
+            this.tblMain.Size = new System.Drawing.Size(1309, 650);
             this.tblMain.TabIndex = 0;
             // 
             // pnlLeft
@@ -77,29 +81,33 @@
             this.pnlLeft.Location = new System.Drawing.Point(3, 3);
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Padding = new System.Windows.Forms.Padding(12);
-            this.pnlLeft.Size = new System.Drawing.Size(414, 567);
+            this.pnlLeft.Size = new System.Drawing.Size(414, 644);
             this.pnlLeft.TabIndex = 0;
             // 
             // grpEmployeeDetails
             // 
             this.grpEmployeeDetails.Controls.Add(this.lblFirstName);
             this.grpEmployeeDetails.Controls.Add(this.txtFirstName);
+            this.grpEmployeeDetails.Controls.Add(this.lblFirstNameStatus);
             this.grpEmployeeDetails.Controls.Add(this.lblSurname);
             this.grpEmployeeDetails.Controls.Add(this.txtSurname);
+            this.grpEmployeeDetails.Controls.Add(this.lblSurnameStatus);
             this.grpEmployeeDetails.Controls.Add(this.lblEmail);
             this.grpEmployeeDetails.Controls.Add(this.txtEmail);
+            this.grpEmployeeDetails.Controls.Add(this.lblEmailStatus);
             this.grpEmployeeDetails.Controls.Add(this.lblAddress);
             this.grpEmployeeDetails.Controls.Add(this.txtAddress);
             this.grpEmployeeDetails.Controls.Add(this.lblRole);
             this.grpEmployeeDetails.Controls.Add(this.cboRole);
             this.grpEmployeeDetails.Controls.Add(this.lblPassword);
             this.grpEmployeeDetails.Controls.Add(this.txtPassword);
+            this.grpEmployeeDetails.Controls.Add(this.lblPasswordStatus);
             this.grpEmployeeDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpEmployeeDetails.ForeColor = System.Drawing.Color.White;
             this.grpEmployeeDetails.Location = new System.Drawing.Point(12, 12);
             this.grpEmployeeDetails.Name = "grpEmployeeDetails";
             this.grpEmployeeDetails.Padding = new System.Windows.Forms.Padding(15);
-            this.grpEmployeeDetails.Size = new System.Drawing.Size(390, 543);
+            this.grpEmployeeDetails.Size = new System.Drawing.Size(390, 620);
             this.grpEmployeeDetails.TabIndex = 0;
             this.grpEmployeeDetails.TabStop = false;
             this.grpEmployeeDetails.Text = "Employee Details";
@@ -122,12 +130,23 @@
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(220, 27);
             this.txtFirstName.TabIndex = 1;
+            this.txtFirstName.TextChanged += new System.EventHandler(this.txtFirstName_TextChanged);
+            // 
+            // lblFirstNameStatus
+            // 
+            this.lblFirstNameStatus.AutoSize = true;
+            this.lblFirstNameStatus.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.lblFirstNameStatus.ForeColor = System.Drawing.Color.White;
+            this.lblFirstNameStatus.Location = new System.Drawing.Point(140, 54);
+            this.lblFirstNameStatus.Name = "lblFirstNameStatus";
+            this.lblFirstNameStatus.Size = new System.Drawing.Size(0, 20);
+            this.lblFirstNameStatus.TabIndex = 12;
             // 
             // lblSurname
             // 
             this.lblSurname.AutoSize = true;
             this.lblSurname.ForeColor = System.Drawing.Color.White;
-            this.lblSurname.Location = new System.Drawing.Point(18, 67);
+            this.lblSurname.Location = new System.Drawing.Point(18, 85);
             this.lblSurname.Name = "lblSurname";
             this.lblSurname.Size = new System.Drawing.Size(70, 20);
             this.lblSurname.TabIndex = 2;
@@ -137,16 +156,27 @@
             // 
             this.txtSurname.BackColor = System.Drawing.Color.White;
             this.txtSurname.ForeColor = System.Drawing.Color.Black;
-            this.txtSurname.Location = new System.Drawing.Point(140, 64);
+            this.txtSurname.Location = new System.Drawing.Point(140, 82);
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(220, 27);
             this.txtSurname.TabIndex = 3;
+            this.txtSurname.TextChanged += new System.EventHandler(this.txtSurname_TextChanged);
+            // 
+            // lblSurnameStatus
+            // 
+            this.lblSurnameStatus.AutoSize = true;
+            this.lblSurnameStatus.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.lblSurnameStatus.ForeColor = System.Drawing.Color.White;
+            this.lblSurnameStatus.Location = new System.Drawing.Point(140, 112);
+            this.lblSurnameStatus.Name = "lblSurnameStatus";
+            this.lblSurnameStatus.Size = new System.Drawing.Size(0, 20);
+            this.lblSurnameStatus.TabIndex = 13;
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.ForeColor = System.Drawing.Color.White;
-            this.lblEmail.Location = new System.Drawing.Point(18, 107);
+            this.lblEmail.Location = new System.Drawing.Point(18, 143);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(49, 20);
             this.lblEmail.TabIndex = 4;
@@ -156,16 +186,27 @@
             // 
             this.txtEmail.BackColor = System.Drawing.Color.White;
             this.txtEmail.ForeColor = System.Drawing.Color.Black;
-            this.txtEmail.Location = new System.Drawing.Point(140, 104);
+            this.txtEmail.Location = new System.Drawing.Point(140, 140);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(220, 27);
             this.txtEmail.TabIndex = 5;
+            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
+            // 
+            // lblEmailStatus
+            // 
+            this.lblEmailStatus.AutoSize = true;
+            this.lblEmailStatus.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.lblEmailStatus.ForeColor = System.Drawing.Color.White;
+            this.lblEmailStatus.Location = new System.Drawing.Point(140, 170);
+            this.lblEmailStatus.Name = "lblEmailStatus";
+            this.lblEmailStatus.Size = new System.Drawing.Size(0, 20);
+            this.lblEmailStatus.TabIndex = 14;
             // 
             // lblAddress
             // 
             this.lblAddress.AutoSize = true;
             this.lblAddress.ForeColor = System.Drawing.Color.White;
-            this.lblAddress.Location = new System.Drawing.Point(18, 147);
+            this.lblAddress.Location = new System.Drawing.Point(18, 201);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(65, 20);
             this.lblAddress.TabIndex = 6;
@@ -175,7 +216,7 @@
             // 
             this.txtAddress.BackColor = System.Drawing.Color.White;
             this.txtAddress.ForeColor = System.Drawing.Color.Black;
-            this.txtAddress.Location = new System.Drawing.Point(140, 144);
+            this.txtAddress.Location = new System.Drawing.Point(140, 198);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(220, 27);
             this.txtAddress.TabIndex = 7;
@@ -184,7 +225,7 @@
             // 
             this.lblRole.AutoSize = true;
             this.lblRole.ForeColor = System.Drawing.Color.White;
-            this.lblRole.Location = new System.Drawing.Point(18, 187);
+            this.lblRole.Location = new System.Drawing.Point(18, 241);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(42, 20);
             this.lblRole.TabIndex = 8;
@@ -196,10 +237,8 @@
             this.cboRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboRole.ForeColor = System.Drawing.Color.Black;
             this.cboRole.FormattingEnabled = true;
-            this.cboRole.Items.AddRange(new object[] {
-            "Manager",
-            "Cashier"});
-            this.cboRole.Location = new System.Drawing.Point(140, 184);
+            this.cboRole.Items.AddRange(new object[] { "Manager", "Cashier" });
+            this.cboRole.Location = new System.Drawing.Point(140, 238);
             this.cboRole.Name = "cboRole";
             this.cboRole.Size = new System.Drawing.Size(200, 28);
             this.cboRole.TabIndex = 9;
@@ -208,7 +247,7 @@
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.ForeColor = System.Drawing.Color.White;
-            this.lblPassword.Location = new System.Drawing.Point(18, 227);
+            this.lblPassword.Location = new System.Drawing.Point(18, 281);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(73, 20);
             this.lblPassword.TabIndex = 10;
@@ -218,11 +257,22 @@
             // 
             this.txtPassword.BackColor = System.Drawing.Color.White;
             this.txtPassword.ForeColor = System.Drawing.Color.Black;
-            this.txtPassword.Location = new System.Drawing.Point(140, 224);
+            this.txtPassword.Location = new System.Drawing.Point(140, 278);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(220, 27);
             this.txtPassword.TabIndex = 11;
             this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            // 
+            // lblPasswordStatus
+            // 
+            this.lblPasswordStatus.AutoSize = true;
+            this.lblPasswordStatus.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.lblPasswordStatus.ForeColor = System.Drawing.Color.White;
+            this.lblPasswordStatus.Location = new System.Drawing.Point(140, 308);
+            this.lblPasswordStatus.Name = "lblPasswordStatus";
+            this.lblPasswordStatus.Size = new System.Drawing.Size(0, 20);
+            this.lblPasswordStatus.TabIndex = 15;
             // 
             // pnlRight
             // 
@@ -238,7 +288,7 @@
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 88F));
             this.pnlRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.pnlRight.Size = new System.Drawing.Size(883, 567);
+            this.pnlRight.Size = new System.Drawing.Size(883, 644);
             this.pnlRight.TabIndex = 1;
             // 
             // pnlSearch
@@ -321,7 +371,7 @@
             this.dgvEmployees.RowHeadersWidth = 51;
             this.dgvEmployees.RowTemplate.Height = 24;
             this.dgvEmployees.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEmployees.Size = new System.Drawing.Size(877, 447);
+            this.dgvEmployees.Size = new System.Drawing.Size(877, 524);
             this.dgvEmployees.TabIndex = 0;
             this.dgvEmployees.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployees_CellClick);
             // 
@@ -336,7 +386,7 @@
             this.pnlRightButtons.Controls.Add(this.btnBack);
             this.pnlRightButtons.Controls.Add(this.btnHelp);
             this.pnlRightButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlRightButtons.Location = new System.Drawing.Point(3, 506);
+            this.pnlRightButtons.Location = new System.Drawing.Point(3, 583);
             this.pnlRightButtons.Name = "pnlRightButtons";
             this.pnlRightButtons.Padding = new System.Windows.Forms.Padding(6);
             this.pnlRightButtons.Size = new System.Drawing.Size(877, 58);
@@ -400,9 +450,9 @@
             this.btnResetPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
             this.btnResetPassword.Location = new System.Drawing.Point(327, 9);
             this.btnResetPassword.Name = "btnResetPassword";
-            this.btnResetPassword.Size = new System.Drawing.Size(193, 37);
+            this.btnResetPassword.Size = new System.Drawing.Size(150, 37);
             this.btnResetPassword.TabIndex = 3;
-            this.btnResetPassword.Text = "Reset Password";
+            this.btnResetPassword.Text = "Reset PW";
             this.btnResetPassword.UseVisualStyleBackColor = false;
             this.btnResetPassword.Click += new System.EventHandler(this.btnResetPassword_Click);
             // 
@@ -414,7 +464,7 @@
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnRefresh.Location = new System.Drawing.Point(526, 9);
+            this.btnRefresh.Location = new System.Drawing.Point(483, 9);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(100, 37);
             this.btnRefresh.TabIndex = 4;
@@ -430,7 +480,7 @@
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnBack.Location = new System.Drawing.Point(632, 9);
+            this.btnBack.Location = new System.Drawing.Point(589, 9);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(100, 37);
             this.btnBack.TabIndex = 5;
@@ -446,21 +496,21 @@
             this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            this.btnHelp.Location = new System.Drawing.Point(738, 9);
+            this.btnHelp.Location = new System.Drawing.Point(695, 9);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(100, 37);
             this.btnHelp.TabIndex = 6;
-            this.btnHelp.Text = "Help";
+            this.btnHelp.Text = "❓ Help";
             this.btnHelp.UseVisualStyleBackColor = false;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click_1);
             // 
             // frmManageEmployees
             // 
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(112)))));
-            this.ClientSize = new System.Drawing.Size(1309, 573);
+            this.ClientSize = new System.Drawing.Size(1309, 650);
             this.Controls.Add(this.tblMain);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.MinimumSize = new System.Drawing.Size(900, 480);
+            this.MinimumSize = new System.Drawing.Size(900, 550);
             this.Name = "frmManageEmployees";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Employees";
@@ -477,7 +527,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployees)).EndInit();
             this.pnlRightButtons.ResumeLayout(false);
             this.ResumeLayout(false);
-
         }
 
         private System.Windows.Forms.TableLayoutPanel tblMain;
@@ -485,16 +534,20 @@
         private System.Windows.Forms.GroupBox grpEmployeeDetails;
         private System.Windows.Forms.Label lblFirstName;
         private System.Windows.Forms.TextBox txtFirstName;
+        private System.Windows.Forms.Label lblFirstNameStatus;
         private System.Windows.Forms.Label lblSurname;
         private System.Windows.Forms.TextBox txtSurname;
+        private System.Windows.Forms.Label lblSurnameStatus;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.Label lblEmailStatus;
         private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.ComboBox cboRole;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Label lblPasswordStatus;
         private System.Windows.Forms.TableLayoutPanel pnlRight;
         private System.Windows.Forms.Panel pnlSearch;
         private System.Windows.Forms.Label lblSearch;

@@ -15,7 +15,61 @@ namespace Cafe101
         public frmManageIngredients()
         {
             InitializeComponent();
+            AttachValidationEvents();
         }
+
+        private void AttachValidationEvents()
+        {
+            txtDescription.TextChanged += txtDescription_TextChanged;
+        }
+
+        // ============================================================
+        // VALIDATION METHODS
+        // ============================================================
+
+        private void txtDescription_TextChanged(object sender, EventArgs e)
+        {
+            ValidateDescription();
+        }
+
+        private bool ValidateDescription()
+        {
+            string value = txtDescription.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                txtDescription.BackColor = Color.FromArgb(255, 220, 220);
+                lblDescriptionStatus.Text = "⚠️ Required";
+                lblDescriptionStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            // Check for letters only (no spaces, no numbers, no special characters)
+            foreach (char c in value)
+            {
+                if (!char.IsLetter(c))
+                {
+                    txtDescription.BackColor = Color.FromArgb(255, 220, 220);
+                    lblDescriptionStatus.Text = "⚠️ Letters only";
+                    lblDescriptionStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                    return false;
+                }
+            }
+
+            txtDescription.BackColor = Color.FromArgb(220, 245, 220);
+            lblDescriptionStatus.Text = "✓";
+            lblDescriptionStatus.ForeColor = Color.FromArgb(50, 180, 100);
+            return true;
+        }
+
+        private bool IsFormValid()
+        {
+            return ValidateDescription();
+        }
+
+        // ============================================================
+        // END OF VALIDATION METHODS
+        // ============================================================
 
         private void frmManageIngredients_Load(object sender, EventArgs e)
         {
@@ -93,157 +147,10 @@ namespace Cafe101
 
         private void btnClearSearch_Click(object sender, EventArgs e)
         {
-            // Clear search box
             txtSearch.Text = "";
-
-            // Clear all input fields
             ClearFields();
-
-            // Reload full data
             LoadIngredients();
         }
-
-        // ============================================================
-        // HELP BUTTON - Panel-based contextual help (with your icons)
-        // ============================================================
-      /*  private void btnHelp_Click(object sender, EventArgs e)
-        {
-            if (helpVisible)
-            {
-                if (pnlHelp != null)
-                {
-                    pnlHelp.Visible = false;
-                }
-                helpVisible = false;
-                btnHelp.Text = "❓ Help";
-                return;
-            }
-
-            string stepTitle;
-            string stepDetail;
-
-            if (btnUpdate.Tag == null)
-            {
-                stepTitle = "📍 Step 1 of 2 — Add a New Ingredient";
-                stepDetail =
-                    "You haven't selected an ingredient to edit.\r\n\r\n" +
-                    "➕ ADD NEW INGREDIENT:\r\n" +
-                    "• Fill in: Description, Quantity On Hand,\r\n" +
-                    "  Restock Level, and Cost Price.\r\n" +
-                    "• Click 'Add New' button.\r\n\r\n" +
-                    "✏️ EDIT EXISTING INGREDIENT:\r\n" +
-                    "• Click any row in the list to select an ingredient.\r\n" +
-                    "• Only that ingredient will remain visible.\r\n" +
-                    "• Edit the fields as needed.\r\n" +
-                    "• Click 'Update' to save changes.\r\n\r\n" +
-                    "🔍 SEARCH:\r\n" +
-                    "• Type an ingredient name in the search box.\r\n" +
-                    "• Results filter automatically as you type.\r\n" +
-                    "• Click 'Clear' to reset search.\r\n\r\n" +
-                    "⚠️ LOW STOCK WARNING:\r\n" +
-                    "• Ingredients with Quantity ≤ Restock Level\r\n" +
-                    "  are highlighted in YELLOW.\r\n" +
-                    "• These need to be reordered soon.\r\n\r\n" +
-                    "🔄 REFRESH:\r\n" +
-                    "• Click 'Refresh' to reload all ingredient data.\r\n\r\n" +
-                    "🗑️ DELETE:\r\n" +
-                    "• Select an ingredient, then click 'Remove'.\r\n" +
-                    "• Confirm deletion when prompted.\r\n\r\n" +
-                    "◀ BACK:\r\n" +
-                    "• Returns to the main menu.";
-            }
-            else
-            {
-                stepTitle = "📍 Step 2 of 2 — Update or Delete Ingredient";
-                stepDetail =
-                    "Ingredient selected: " + txtDescription.Text + "\r\n\r\n" +
-                    "✏️ TO UPDATE:\r\n" +
-                    "• Edit the Quantity, Restock Level, or Cost Price.\r\n" +
-                    "• Click 'Update' to save changes.\r\n" +
-                    "• Click 'Refresh' to see all ingredients again.\r\n\r\n" +
-                    "🗑️ TO DELETE:\r\n" +
-                    "• Click 'Remove' button.\r\n" +
-                    "• Confirm deletion when prompted.\r\n\r\n" +
-                    "⚠️ LOW STOCK:\r\n" +
-                    "• If Quantity ≤ Restock Level, the row is YELLOW.\r\n\r\n" +
-                    "🔄 REFRESH:\r\n" +
-                    "• Click 'Refresh' to reload all ingredient data.\r\n\r\n" +
-                    "◀ BACK:\r\n" +
-                    "• Returns to the main menu.";
-            }
-
-            if (pnlHelp == null)
-            {
-                pnlHelp = new Panel();
-                pnlHelp.Size = new System.Drawing.Size(370, 400);
-                pnlHelp.BackColor = System.Drawing.Color.FromArgb(20, 40, 100);
-                pnlHelp.BorderStyle = BorderStyle.FixedSingle;
-                this.Controls.Add(pnlHelp);
-                pnlHelp.BringToFront();
-            }
-
-            pnlHelp.Controls.Clear();
-
-            Label lblTitle = new Label();
-            lblTitle.Text = stepTitle;
-            lblTitle.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Bold);
-            lblTitle.ForeColor = System.Drawing.Color.White;
-            lblTitle.Location = new System.Drawing.Point(10, 10);
-            lblTitle.Size = new System.Drawing.Size(350, 30);
-            lblTitle.TextAlign = ContentAlignment.MiddleLeft;
-
-            Label lblDetail = new Label();
-            lblDetail.Text = stepDetail;
-            lblDetail.Font = new System.Drawing.Font("Segoe UI", 9);
-            lblDetail.ForeColor = System.Drawing.Color.LightGray;
-            lblDetail.Location = new System.Drawing.Point(10, 50);
-            lblDetail.Size = new System.Drawing.Size(350, 300);
-
-            Button btnClose = new Button();
-            btnClose.Text = "✕ Close";
-            btnClose.Size = new System.Drawing.Size(100, 30);
-            btnClose.Location = new System.Drawing.Point(255, 360);
-            btnClose.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
-            btnClose.ForeColor = System.Drawing.Color.White;
-            btnClose.FlatStyle = FlatStyle.Flat;
-            btnClose.Click += (s, ev) =>
-            {
-                pnlHelp.Visible = false;
-                helpVisible = false;
-                btnHelp.Text = "❓ Help";
-            };
-
-            pnlHelp.Controls.Add(lblTitle);
-            pnlHelp.Controls.Add(lblDetail);
-            pnlHelp.Controls.Add(btnClose);
-
-            // Calculate position - place to the right of the button, but ensure it stays within form bounds
-            int xPos = btnHelp.Left + btnHelp.Width + 5;
-            int yPos = btnHelp.Top - 10;
-
-            // Ensure panel doesn't go off the right edge of the form
-            if (xPos + pnlHelp.Width > this.ClientSize.Width)
-            {
-                xPos = btnHelp.Left - pnlHelp.Width - 5;
-            }
-
-            // Ensure panel doesn't go off the bottom of the form
-            if (yPos + pnlHelp.Height > this.ClientSize.Height)
-            {
-                yPos = this.ClientSize.Height - pnlHelp.Height - 10;
-            }
-
-            // Ensure panel doesn't go off the top of the form
-            if (yPos < 0)
-            {
-                yPos = 5;
-            }
-
-            pnlHelp.Location = new System.Drawing.Point(xPos, yPos);
-            pnlHelp.Visible = true;
-            helpVisible = true;
-            btnHelp.Text = "❓ Help (ON)";
-        }*/
 
         private void ClearFields()
         {
@@ -252,6 +159,9 @@ namespace Cafe101
             numRestockLevel.Value = 0;
             numCostPrice.Value = 0;
             btnUpdate.Tag = null;
+
+            txtDescription.BackColor = System.Drawing.Color.White;
+            lblDescriptionStatus.Text = "";
         }
 
         private bool IsDescriptionDuplicate(string description, int? excludeIngredientId = null)
@@ -275,11 +185,12 @@ namespace Cafe101
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtDescription.Text))
+            if (!IsFormValid())
             {
-                MessageBox.Show("Description is required.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Description is required and can only contain letters (no spaces, numbers, or special characters).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             if (numQuantityInStock.Value <= 0)
             {
                 MessageBox.Show("Quantity on hand must be greater than zero.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -377,6 +288,8 @@ namespace Cafe101
                     dgvIngredients.Columns[0].Visible = false;
 
                 txtSearch.Text = "";
+
+                ValidateDescription();
             }
         }
 
@@ -387,11 +300,13 @@ namespace Cafe101
                 MessageBox.Show("Select an ingredient first.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            if (string.IsNullOrWhiteSpace(txtDescription.Text))
+
+            if (!IsFormValid())
             {
-                MessageBox.Show("Description cannot be empty.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Description is required and can only contain letters (no spaces, numbers, or special characters).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             if (numQuantityInStock.Value <= 0)
             {
                 MessageBox.Show("Quantity on hand must be greater than zero.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -488,14 +403,8 @@ namespace Cafe101
             this.Hide();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnHelp_Click_1(object sender, EventArgs e)
         {
-
             if (helpVisible)
             {
                 if (pnlHelp != null)
@@ -516,8 +425,8 @@ namespace Cafe101
                 stepDetail =
                     "You haven't selected an ingredient to edit.\r\n\r\n" +
                     "➕ ADD NEW INGREDIENT:\r\n" +
-                    "• Fill in: Description, Quantity On Hand,\r\n" +
-                    "  Restock Level, and Cost Price.\r\n" +
+                    "• Fill in: Description (LETTERS ONLY - no spaces, numbers, or special characters),\r\n" +
+                    "  Quantity On Hand, Restock Level, and Cost Price.\r\n" +
                     "• Click 'Add New' button.\r\n\r\n" +
                     "✏️ EDIT EXISTING INGREDIENT:\r\n" +
                     "• Click any row in the list to select an ingredient.\r\n" +
@@ -547,6 +456,7 @@ namespace Cafe101
                     "Ingredient selected: " + txtDescription.Text + "\r\n\r\n" +
                     "✏️ TO UPDATE:\r\n" +
                     "• Edit the Quantity, Restock Level, or Cost Price.\r\n" +
+                    "• Description must contain only LETTERS (no spaces, numbers, or special characters).\r\n" +
                     "• Click 'Update' to save changes.\r\n" +
                     "• Click 'Refresh' to see all ingredients again.\r\n\r\n" +
                     "🗑️ TO DELETE:\r\n" +
@@ -605,23 +515,19 @@ namespace Cafe101
             pnlHelp.Controls.Add(lblDetail);
             pnlHelp.Controls.Add(btnClose);
 
-            // Calculate position - place to the right of the button, but ensure it stays within form bounds
             int xPos = btnHelp.Left + btnHelp.Width + 5;
             int yPos = btnHelp.Top - 10;
 
-            // Ensure panel doesn't go off the right edge of the form
             if (xPos + pnlHelp.Width > this.ClientSize.Width)
             {
                 xPos = btnHelp.Left - pnlHelp.Width - 5;
             }
 
-            // Ensure panel doesn't go off the bottom of the form
             if (yPos + pnlHelp.Height > this.ClientSize.Height)
             {
                 yPos = this.ClientSize.Height - pnlHelp.Height - 10;
             }
 
-            // Ensure panel doesn't go off the top of the form
             if (yPos < 0)
             {
                 yPos = 5;

@@ -174,7 +174,7 @@
             this.cboMenuItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMenuItems.ForeColor = System.Drawing.Color.Black;
             this.cboMenuItems.FormattingEnabled = true;
-            this.cboMenuItems.Location = new System.Drawing.Point(86, 12);
+            this.cboMenuItems.Location = new System.Drawing.Point(86, 14);
             this.cboMenuItems.Margin = new System.Windows.Forms.Padding(6);
             this.cboMenuItems.Name = "cboMenuItems";
             this.cboMenuItems.Size = new System.Drawing.Size(193, 28);
@@ -199,7 +199,7 @@
             this.cboIngredients.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIngredients.ForeColor = System.Drawing.Color.Black;
             this.cboIngredients.FormattingEnabled = true;
-            this.cboIngredients.Location = new System.Drawing.Point(86, 66);
+            this.cboIngredients.Location = new System.Drawing.Point(86, 64);
             this.cboIngredients.Margin = new System.Windows.Forms.Padding(6);
             this.cboIngredients.Name = "cboIngredients";
             this.cboIngredients.Size = new System.Drawing.Size(193, 28);
@@ -244,6 +244,7 @@
             0,
             0,
             0});
+            this.numQuantity.TextChanged += new System.EventHandler(this.numQuantity_TextChanged);
             // 
             // btnAddToRecipe
             // 
@@ -335,9 +336,9 @@
             this.btnHelp.Location = new System.Drawing.Point(18, 459);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(6);
             this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(88, 38);
+            this.btnHelp.Size = new System.Drawing.Size(96, 38);
             this.btnHelp.TabIndex = 5;
-            this.btnHelp.Text = "Help";
+            this.btnHelp.Text = "❓ Help";
             this.btnHelp.UseVisualStyleBackColor = false;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click_1);
             // 
@@ -366,8 +367,6 @@
             this.ResumeLayout(false);
 
         }
-
-//#endregion
 
         private System.Windows.Forms.TableLayoutPanel tblMain;
         private System.Windows.Forms.Panel pnlSearch;

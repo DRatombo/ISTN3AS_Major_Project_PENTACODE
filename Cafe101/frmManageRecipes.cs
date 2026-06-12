@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Cafe101
@@ -14,7 +15,51 @@ namespace Cafe101
         public frmManageRecipes()
         {
             InitializeComponent();
+            AttachValidationEvents();
         }
+
+        private void AttachValidationEvents()
+        {
+            numQuantity.TextChanged += numQuantity_TextChanged;
+            numQuantity.ValueChanged += numQuantity_ValueChanged;
+        }
+
+        // ============================================================
+        // VALIDATION METHODS
+        // ============================================================
+
+        private void numQuantity_TextChanged(object sender, EventArgs e)
+        {
+            ValidateQuantity();
+        }
+
+        private void numQuantity_ValueChanged(object sender, EventArgs e)
+        {
+            ValidateQuantity();
+        }
+
+        private bool ValidateQuantity()
+        {
+            if (numQuantity.Value <= 0)
+            {
+                numQuantity.BackColor = Color.FromArgb(255, 220, 220);
+                return false;
+            }
+            else
+            {
+                numQuantity.BackColor = Color.FromArgb(220, 245, 220);
+                return true;
+            }
+        }
+
+        private bool IsFormValid()
+        {
+            return ValidateQuantity();
+        }
+
+        // ============================================================
+        // END OF VALIDATION METHODS
+        // ============================================================
 
         private void frmManageRecipes_Load(object sender, EventArgs e)
         {
@@ -91,151 +136,12 @@ namespace Cafe101
             // Reset quantity to 1
             numQuantity.Value = 1;
 
+            // Reset validation color
+            numQuantity.BackColor = System.Drawing.Color.White;
+
             // Reload full data
             LoadAllRecipes();
         }
-
-        // ============================================================
-        // HELP BUTTON - Panel-based contextual help (with your icons)
-        // ============================================================
-      /*  private void btnHelp_Click(object sender, EventArgs e)
-        {
-            if (helpVisible)
-            {
-                if (pnlHelp != null)
-                {
-                    pnlHelp.Visible = false;
-                }
-                helpVisible = false;
-                btnHelp.Text = "❓ Help";
-                return;
-            }
-
-            string stepTitle;
-            string stepDetail;
-
-            if (cboMenuItems.SelectedIndex == -1 && cboIngredients.SelectedIndex == -1)
-            {
-                stepTitle = "📍 Step 1 of 2 — Add a New Recipe Link";
-                stepDetail =
-                    "A recipe links a Menu Item with an Ingredient and Quantity.\r\n\r\n" +
-                    "➕ ADD NEW RECIPE LINK:\r\n" +
-                    "• Select a Menu Item from the first dropdown.\r\n" +
-                    "• Select an Ingredient from the second dropdown.\r\n" +
-                    "• Enter the Quantity needed.\r\n" +
-                    "• Click 'Add' button.\r\n\r\n" +
-                    "🔍 SEARCH:\r\n" +
-                    "• Type a menu item name or ingredient in the search box.\r\n" +
-                    "• Results filter automatically as you type.\r\n" +
-                    "• Click 'Clear' to reset search.\r\n\r\n" +
-                    "✏️ EDIT EXISTING RECIPE:\r\n" +
-                    "• Click any row in the recipe list to auto-select\r\n" +
-                    "  that menu item and ingredient.\r\n" +
-                    "• Change the quantity, then click 'Remove' and 'Add'.\r\n\r\n" +
-                    "📋 EXAMPLE:\r\n" +
-                    "• 'Chicken Burger' needs 'Chicken Wings' (2),\r\n" +
-                    "  'Burger Buns' (1), 'Lettuce' (2), etc.\r\n\r\n" +
-                    "🔄 REFRESH:\r\n" +
-                    "• Click 'Refresh' to reload all recipe data.\r\n\r\n" +
-                    "🗑️ REMOVE:\r\n" +
-                    "• Select a menu item and ingredient, then click 'Remove'.\r\n" +
-                    "• Confirm removal when prompted.\r\n\r\n" +
-                    "◀ BACK:\r\n" +
-                    "• Returns to the main menu.";
-            }
-            else
-            {
-                stepTitle = "📍 Step 2 of 2 — Remove Recipe Link";
-                stepDetail =
-                    "Selected: " + (cboMenuItems.SelectedItem != null ? cboMenuItems.Text : "") +
-                    " + " + (cboIngredients.SelectedItem != null ? cboIngredients.Text : "") + "\r\n\r\n" +
-                    "✏️ TO MODIFY QUANTITY:\r\n" +
-                    "• Change the quantity in the Quantity box.\r\n" +
-                    "• Click 'Remove' then 'Add' with the new quantity.\r\n\r\n" +
-                    "🗑️ TO REMOVE THE RECIPE LINK:\r\n" +
-                    "• Click 'Remove' button.\r\n" +
-                    "• Confirm removal when prompted.\r\n\r\n" +
-                    "🔄 TO SEE ALL RECIPES AGAIN:\r\n" +
-                    "• Click 'Refresh' to reload all recipe data.\r\n\r\n" +
-                    "💡 TIP:\r\n" +
-                    "• Click any row in the recipe list to automatically\r\n" +
-                    "  select that menu item and ingredient for editing.\r\n\r\n" +
-                    "◀ BACK:\r\n" +
-                    "• Returns to the main menu.";
-            }
-
-            if (pnlHelp == null)
-            {
-                pnlHelp = new Panel();
-                pnlHelp.Size = new System.Drawing.Size(370, 420);
-                pnlHelp.BackColor = System.Drawing.Color.FromArgb(20, 40, 100);
-                pnlHelp.BorderStyle = BorderStyle.FixedSingle;
-                this.Controls.Add(pnlHelp);
-                pnlHelp.BringToFront();
-            }
-
-            pnlHelp.Controls.Clear();
-
-            Label lblTitle = new Label();
-            lblTitle.Text = stepTitle;
-            lblTitle.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Bold);
-            lblTitle.ForeColor = System.Drawing.Color.White;
-            lblTitle.Location = new System.Drawing.Point(10, 10);
-            lblTitle.Size = new System.Drawing.Size(350, 30);
-           // lblTitle.TextAlign = ContentAlignment.MiddleLeft;
-
-            Label lblDetail = new Label();
-            lblDetail.Text = stepDetail;
-            lblDetail.Font = new System.Drawing.Font("Segoe UI", 9);
-            lblDetail.ForeColor = System.Drawing.Color.LightGray;
-            lblDetail.Location = new System.Drawing.Point(10, 50);
-            lblDetail.Size = new System.Drawing.Size(350, 320);
-
-            Button btnClose = new Button();
-            btnClose.Text = "✕ Close";
-            btnClose.Size = new System.Drawing.Size(100, 30);
-            btnClose.Location = new System.Drawing.Point(255, 380);
-            btnClose.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
-            btnClose.ForeColor = System.Drawing.Color.White;
-            btnClose.FlatStyle = FlatStyle.Flat;
-            btnClose.Click += (s, ev) =>
-            {
-                pnlHelp.Visible = false;
-                helpVisible = false;
-                btnHelp.Text = "❓ Help";
-            };
-
-            pnlHelp.Controls.Add(lblTitle);
-            pnlHelp.Controls.Add(lblDetail);
-            pnlHelp.Controls.Add(btnClose);
-
-            // Calculate position - place to the right of the button, but ensure it stays within form bounds
-            int xPos = btnHelp.Left + btnHelp.Width + 5;
-            int yPos = btnHelp.Top - 10;
-
-            // Ensure panel doesn't go off the right edge of the form
-            if (xPos + pnlHelp.Width > this.ClientSize.Width)
-            {
-                xPos = btnHelp.Left - pnlHelp.Width - 5;
-            }
-
-            // Ensure panel doesn't go off the bottom of the form
-            if (yPos + pnlHelp.Height > this.ClientSize.Height)
-            {
-                yPos = this.ClientSize.Height - pnlHelp.Height - 10;
-            }
-
-            // Ensure panel doesn't go off the top of the form
-            if (yPos < 0)
-            {
-                yPos = 5;
-            }
-
-            pnlHelp.Location = new System.Drawing.Point(xPos, yPos);
-            pnlHelp.Visible = true;
-            helpVisible = true;
-            btnHelp.Text = "❓ Help (ON)";
-        }*/
 
         private void LoadMenuItemsCombo()
         {
@@ -339,6 +245,9 @@ namespace Cafe101
                 dgvRecipe.Columns["IngredientID"].Visible = false;
 
             txtSearch.Text = "";
+
+            // Validate quantity after loading
+            ValidateQuantity();
         }
 
         private int? GetSelectedMenuItemId()
@@ -364,14 +273,16 @@ namespace Cafe101
 
         private void btnAddToRecipe_Click(object sender, EventArgs e)
         {
+            // Validate quantity before adding
+            if (!IsFormValid())
+            {
+                MessageBox.Show("Quantity must be greater than zero.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             if (cboMenuItems.SelectedIndex == -1 || cboIngredients.SelectedIndex == -1)
             {
                 MessageBox.Show("Select both a menu item and an ingredient.", "Validation");
-                return;
-            }
-            if (numQuantity.Value <= 0)
-            {
-                MessageBox.Show("Quantity needed must be greater than zero.", "Validation");
                 return;
             }
 
@@ -467,6 +378,7 @@ namespace Cafe101
             LoadMenuItemsCombo();
             LoadIngredientsCombo();
             LoadAllRecipes();
+            numQuantity.BackColor = System.Drawing.Color.White;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -500,7 +412,7 @@ namespace Cafe101
                     "➕ ADD NEW RECIPE LINK:\r\n" +
                     "• Select a Menu Item from the first dropdown.\r\n" +
                     "• Select an Ingredient from the second dropdown.\r\n" +
-                    "• Enter the Quantity needed.\r\n" +
+                    "• Enter the Quantity needed (must be greater than zero).\r\n" +
                     "• Click 'Add' button.\r\n\r\n" +
                     "🔍 SEARCH:\r\n" +
                     "• Type a menu item name or ingredient in the search box.\r\n" +
@@ -529,6 +441,7 @@ namespace Cafe101
                     " + " + (cboIngredients.SelectedItem != null ? cboIngredients.Text : "") + "\r\n\r\n" +
                     "✏️ TO MODIFY QUANTITY:\r\n" +
                     "• Change the quantity in the Quantity box.\r\n" +
+                    "• Quantity must be greater than zero.\r\n" +
                     "• Click 'Remove' then 'Add' with the new quantity.\r\n\r\n" +
                     "🗑️ TO REMOVE THE RECIPE LINK:\r\n" +
                     "• Click 'Remove' button.\r\n" +
@@ -560,7 +473,6 @@ namespace Cafe101
             lblTitle.ForeColor = System.Drawing.Color.White;
             lblTitle.Location = new System.Drawing.Point(10, 10);
             lblTitle.Size = new System.Drawing.Size(350, 30);
-            // lblTitle.TextAlign = ContentAlignment.MiddleLeft;
 
             Label lblDetail = new Label();
             lblDetail.Text = stepDetail;

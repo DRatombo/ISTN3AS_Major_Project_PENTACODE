@@ -24,7 +24,7 @@ namespace Cafe101
         }
 
         // ============================================================
-        // VALIDATION METHODS
+        // VALIDATION METHODS (Spaces allowed in Description)
         // ============================================================
 
         private void txtDescription_TextChanged(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace Cafe101
 
         private bool ValidateDescription()
         {
-            string value = txtDescription.Text.Trim();
+            string value = txtDescription.Text;
 
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -44,13 +44,13 @@ namespace Cafe101
                 return false;
             }
 
-            // Check for letters only (no spaces, no numbers, no special characters)
+            // Check for letters and spaces only (no numbers or special characters)
             foreach (char c in value)
             {
-                if (!char.IsLetter(c))
+                if (!char.IsLetter(c) && c != ' ')
                 {
                     txtDescription.BackColor = Color.FromArgb(255, 220, 220);
-                    lblDescriptionStatus.Text = "⚠️ Letters only";
+                    lblDescriptionStatus.Text = "⚠️ Letters and spaces only";
                     lblDescriptionStatus.ForeColor = Color.FromArgb(255, 80, 80);
                     return false;
                 }
@@ -187,7 +187,7 @@ namespace Cafe101
         {
             if (!IsFormValid())
             {
-                MessageBox.Show("Description is required and can only contain letters (no spaces, numbers, or special characters).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Description is required and can only contain letters and spaces (no numbers or special characters).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -303,7 +303,7 @@ namespace Cafe101
 
             if (!IsFormValid())
             {
-                MessageBox.Show("Description is required and can only contain letters (no spaces, numbers, or special characters).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Description is required and can only contain letters and spaces (no numbers or special characters).", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -425,7 +425,7 @@ namespace Cafe101
                 stepDetail =
                     "You haven't selected an ingredient to edit.\r\n\r\n" +
                     "➕ ADD NEW INGREDIENT:\r\n" +
-                    "• Fill in: Description (LETTERS ONLY - no spaces, numbers, or special characters),\r\n" +
+                    "• Fill in: Description (LETTERS and SPACES only),\r\n" +
                     "  Quantity On Hand, Restock Level, and Cost Price.\r\n" +
                     "• Click 'Add New' button.\r\n\r\n" +
                     "✏️ EDIT EXISTING INGREDIENT:\r\n" +
@@ -456,7 +456,7 @@ namespace Cafe101
                     "Ingredient selected: " + txtDescription.Text + "\r\n\r\n" +
                     "✏️ TO UPDATE:\r\n" +
                     "• Edit the Quantity, Restock Level, or Cost Price.\r\n" +
-                    "• Description must contain only LETTERS (no spaces, numbers, or special characters).\r\n" +
+                    "• Description must contain only LETTERS and SPACES.\r\n" +
                     "• Click 'Update' to save changes.\r\n" +
                     "• Click 'Refresh' to see all ingredients again.\r\n\r\n" +
                     "🗑️ TO DELETE:\r\n" +
@@ -537,11 +537,6 @@ namespace Cafe101
             pnlHelp.Visible = true;
             helpVisible = true;
             btnHelp.Text = "❓ Help (ON)";
-        }
-
-        private void tblMain_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 

@@ -11,8 +11,6 @@ namespace Cafe101
         private DataTable originalMenuItemsData;
         private bool helpVisible = false;
         private Panel pnlHelp = null;
-
-        // Status label for Prep Time (add this to your designer or create dynamically)
         private Label lblPrepTimeStatus;
 
         public frmManageMenuItems()
@@ -24,12 +22,11 @@ namespace Cafe101
 
         private void CreatePrepTimeStatusLabel()
         {
-            // Create status label for Prep Time (positioned below the Prep Time textbox)
             lblPrepTimeStatus = new Label();
             lblPrepTimeStatus.AutoSize = true;
             lblPrepTimeStatus.Font = new System.Drawing.Font("Segoe UI", 8F);
             lblPrepTimeStatus.ForeColor = System.Drawing.Color.White;
-            lblPrepTimeStatus.Location = new System.Drawing.Point(120, 172); // Adjust X,Y as needed
+            lblPrepTimeStatus.Location = new System.Drawing.Point(120, 185);
             lblPrepTimeStatus.Name = "lblPrepTimeStatus";
             lblPrepTimeStatus.Size = new System.Drawing.Size(0, 20);
             lblPrepTimeStatus.TabIndex = 11;
@@ -44,7 +41,7 @@ namespace Cafe101
         }
 
         // ============================================================
-        // VALIDATION METHODS
+        // VALIDATION METHODS (Spaces allowed in Name)
         // ============================================================
 
         private void txtItemName_TextChanged(object sender, EventArgs e)
@@ -57,10 +54,8 @@ namespace Cafe101
             ValidatePrepTime();
         }
 
-        // Prevent non-digit characters from being entered
         private void txtPrepTime_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Allow digits, backspace, and control characters
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
@@ -69,7 +64,7 @@ namespace Cafe101
 
         private bool ValidateItemName()
         {
-            string value = txtItemName.Text.Trim();
+            string value = txtItemName.Text;
 
             if (string.IsNullOrWhiteSpace(value))
             {
@@ -79,13 +74,13 @@ namespace Cafe101
                 return false;
             }
 
-            // Check for letters only (no spaces, no numbers, no special characters)
+            // Check for letters and spaces only (no numbers or special characters)
             foreach (char c in value)
             {
-                if (!char.IsLetter(c))
+                if (!char.IsLetter(c) && c != ' ')
                 {
                     txtItemName.BackColor = Color.FromArgb(255, 220, 220);
-                    lblItemNameStatus.Text = "⚠️ Letters only";
+                    lblItemNameStatus.Text = "⚠️ Letters and spaces only";
                     lblItemNameStatus.ForeColor = Color.FromArgb(255, 80, 80);
                     return false;
                 }
@@ -109,7 +104,6 @@ namespace Cafe101
                 return false;
             }
 
-            // Check for numbers only
             foreach (char c in value)
             {
                 if (!char.IsDigit(c))
@@ -121,7 +115,6 @@ namespace Cafe101
                 }
             }
 
-            // Optional: Check for reasonable range (e.g., 1-999 minutes)
             int prepTime = int.Parse(value);
             if (prepTime < 1)
             {
@@ -223,7 +216,6 @@ namespace Cafe101
             txtPrepTime.Text = "";
             btnUpdate.Tag = null;
 
-            // Reset validation colors and status labels
             txtItemName.BackColor = System.Drawing.Color.White;
             txtPrepTime.BackColor = System.Drawing.Color.White;
             lblItemNameStatus.Text = "";
@@ -253,7 +245,7 @@ namespace Cafe101
         {
             if (!IsFormValid())
             {
-                MessageBox.Show("Please correct the highlighted fields before adding.\n\n- Name: Letters only (no spaces, numbers, or special characters)\n- Prep Time: Numbers only (1-999 minutes)", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please correct the highlighted fields before adding.\n\n- Name: Letters and spaces only\n- Prep Time: Numbers only (1-999 minutes)", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -351,7 +343,6 @@ namespace Cafe101
 
                 txtSearch.Text = "";
 
-                // Trigger validation on loaded data
                 ValidateItemName();
                 ValidatePrepTime();
             }
@@ -367,7 +358,7 @@ namespace Cafe101
 
             if (!IsFormValid())
             {
-                MessageBox.Show("Please correct the highlighted fields before updating.\n\n- Name: Letters only (no spaces, numbers, or special characters)\n- Prep Time: Numbers only (1-999 minutes)", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please correct the highlighted fields before updating.\n\n- Name: Letters and spaces only\n- Prep Time: Numbers only (1-999 minutes)", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -495,7 +486,7 @@ namespace Cafe101
                 stepDetail =
                     "You haven't selected a menu item to edit.\r\n\r\n" +
                     "➕ ADD NEW MENU ITEM:\r\n" +
-                    "• Fill in: Name (LETTERS ONLY - no spaces, numbers, or special characters),\r\n" +
+                    "• Fill in: Name (LETTERS and SPACES only),\r\n" +
                     "  Selling Price, Cost Price, Category, and Preparation Time (NUMBERS ONLY).\r\n" +
                     "• Click 'Add New' button.\r\n\r\n" +
                     "✏️ EDIT EXISTING MENU ITEM:\r\n" +
@@ -524,7 +515,7 @@ namespace Cafe101
                     "Menu item selected: " + txtItemName.Text + "\r\n\r\n" +
                     "✏️ TO UPDATE:\r\n" +
                     "• Edit the price, category, or prep time.\r\n" +
-                    "• Name must contain only LETTERS (no spaces, numbers, or special characters).\r\n" +
+                    "• Name must contain only LETTERS and SPACES.\r\n" +
                     "• Prep Time must contain only NUMBERS.\r\n" +
                     "• Click 'Update' to save changes.\r\n" +
                     "• Click 'Refresh' to see all items again.\r\n\r\n" +
@@ -609,7 +600,7 @@ namespace Cafe101
     // ============================================================
     // DbHelper Class
     // ============================================================
-   /* public static class DbHelper
+    /*public static class DbHelper
     {
         private static string server = "146.230.177.46";
         private static string database = "GroupWst22";

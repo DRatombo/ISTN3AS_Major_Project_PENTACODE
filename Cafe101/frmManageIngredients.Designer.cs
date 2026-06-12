@@ -72,7 +72,7 @@
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tblMain.Size = new System.Drawing.Size(1000, 684);
             this.tblMain.TabIndex = 0;
-            this.tblMain.Paint += new System.Windows.Forms.PaintEventHandler(this.tblMain_Paint);
+           // this.tblMain.Paint += new System.Windows.Forms.PaintEventHandler(this.tblMain_Paint);
             // 
             // pnlSearch
             // 

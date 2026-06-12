@@ -549,6 +549,11 @@ namespace Cafe101
             helpVisible = true;
             btnHelp.Text = "❓ Help (ON)";
         }
+
+        private void tblMain_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 
     // ============================================================

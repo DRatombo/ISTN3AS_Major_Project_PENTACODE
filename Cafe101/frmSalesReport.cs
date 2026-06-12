@@ -389,6 +389,10 @@ namespace Cafe101
             MessageBox.Show("Database tracking rows successfully refreshed.",
                             "Data Sync Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-            
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

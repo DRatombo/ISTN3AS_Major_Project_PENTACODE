@@ -33,8 +33,8 @@ namespace Cafe101
         private void frmManageCustomers_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'dsCafe101Hub.CustomerTable' table. You can move, or remove it, as needed.
-            this.customerTableTableAdapter.Fill(this.dsCafe101Hub.CustomerTable);
-            try
+/*            this.customerTableTableAdapter.Fill(this.dsCafe101Hub.CustomerTable);
+*/            try
             {
                 this.customerTableTableAdapter.Fill(this.dsCafe101Hub.CustomerTable);
 
@@ -84,7 +84,7 @@ namespace Cafe101
 
         private void addCustomer_Click(object sender, EventArgs e)
         {
-            frmAddCustomer frmAddCustomer = new frmAddCustomer();
+            frmAddCustomer frmAddCustomer = new frmAddCustomer(this);
             frmAddCustomer.ShowDialog();   
 
         }
@@ -166,6 +166,15 @@ namespace Cafe101
             {
                 MessageBox.Show("Delete Error:\n" + ex.Message);
             }
+        }
+
+        public void RefreshCustomers()
+        {
+            customerTableTableAdapter.Fill(dsCafe101Hub.CustomerTable);
+
+            dataGridView1.DataSource = customerTableTableAdapter.GetData();
+
+            dataGridView1.Refresh();
         }
     }
 }

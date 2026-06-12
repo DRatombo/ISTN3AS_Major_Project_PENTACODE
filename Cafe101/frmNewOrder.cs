@@ -278,9 +278,8 @@ namespace Cafe101
 
                     if (result == DialogResult.Yes)
                     {
-                        frmAddCustomer addCust = new frmAddCustomer();
+                        frmAddCustomer addCust = new frmAddCustomer(this);
                         addCust.ShowDialog();
-                        this.Hide();
                     }
                 }
             }
@@ -768,7 +767,8 @@ namespace Cafe101
 
                 frmCheckout checkout = new frmCheckout(newOrderID, orderTotal);
                 checkout.Owner = this;
-                checkout.ShowDialog();
+                checkout.Show();
+                this.Hide();   
 
                
             }
@@ -1186,9 +1186,8 @@ namespace Cafe101
 
         private void btnAddNewCust_Click(object sender, EventArgs e)
         {
-            frmAddCustomer newCust = new frmAddCustomer();
-            newCust.ShowDialog();
-            this.Close();
+            frmAddCustomer addCust = new frmAddCustomer(this);
+            addCust.ShowDialog();
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
@@ -1351,6 +1350,19 @@ namespace Cafe101
             dgvMenuItems.CurrentCell.Value = cb.SelectedItem?.ToString();
         }
 
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        public void RefreshCustomerList()
+        {
+            customerTableTableAdapter.Fill(dsCafe101Hub.CustomerTable);
+
+            PopulateCustomerGrid("");
+
+            dgvCustomers.Refresh();
+        }
     }
     
 }

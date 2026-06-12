@@ -10,6 +10,16 @@ namespace Cafe101
     {
         private bool helpVisible = false;
         private Panel pnlHelp;
+        private bool goingHome = false;
+
+        private Form parentForm;
+
+        public frmAddCustomer(Form caller)
+        {
+            InitializeComponent();
+            parentForm = caller;
+            txtPassword.PasswordChar = '*';
+        }
 
         public frmAddCustomer()
         {
@@ -56,6 +66,13 @@ namespace Cafe101
 
             btnShowPwd.Location = new Point(txtPassword.Right + 6, txtPassword.Top);
             btnShowPwd.Size = new Size(55, txtPassword.Height);
+
+            cmbCountryCode.Items.Add("+27 (South Africa)");
+            cmbCountryCode.Items.Add("+44 (UK)");
+            cmbCountryCode.Items.Add("+1 (USA)");
+            cmbCountryCode.Items.Add("+91 (India)");
+
+            cmbCountryCode.SelectedIndex = 0; // South Africa default
         }
 
         private void LoadCustomers()
@@ -129,7 +146,7 @@ namespace Cafe101
             btnSaveCust.Cursor = Cursors.Hand;
 
             // Other buttons — ghost style
-            foreach (var btn in new[] { btnCanel, btnHome, btnHelp })
+            foreach (var btn in new[] { btnCanel, btnHelp })
             {
                 btn.FlatStyle = FlatStyle.Flat;
                 btn.FlatAppearance.BorderColor = Color.FromArgb(120, 255, 255, 255);
@@ -200,6 +217,13 @@ namespace Cafe101
 
         private bool ValidatePhone()
         {
+            if (cmbCountryCode.SelectedIndex == -1)
+            {
+                lblPhonMes.Text = "⚠ Select a country code";
+                lblPhonMes.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
             if (string.IsNullOrWhiteSpace(txtPhoneNumber.Text))
             {
                 txtPhoneNumber.BackColor = Color.FromArgb(255, 220, 220);
@@ -208,11 +232,10 @@ namespace Cafe101
                 return false;
             }
 
-            if (!txtPhoneNumber.Text.All(char.IsDigit) ||
-                txtPhoneNumber.Text.Length != 10)
+            if (!txtPhoneNumber.Text.All(char.IsDigit))
             {
                 txtPhoneNumber.BackColor = Color.FromArgb(255, 220, 220);
-                lblPhonMes.Text = "⚠ Must be exactly 10 digits";
+                lblPhonMes.Text = "⚠ Numbers only";
                 lblPhonMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
@@ -232,28 +255,87 @@ namespace Cafe101
                 lblEmailMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
-            if (!txtCustEmail.Text.Contains("@") || !txtCustEmail.Text.Contains("."))
+
+            string email = txtCustEmail.Text.Trim();
+
+            int atPos = email.IndexOf('@');
+            int dotPos = email.LastIndexOf('.');
+
+            if (atPos <= 0 || dotPos <= atPos + 1 || dotPos == email.Length - 1)
             {
                 txtCustEmail.BackColor = Color.FromArgb(255, 220, 220);
-                lblEmailMes.Text = "⚠ Must contain @ and a dot";
+                lblEmailMes.Text = "⚠ Invalid email format";
                 lblEmailMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
+
             txtCustEmail.BackColor = Color.FromArgb(220, 245, 220);
             lblEmailMes.Text = "✓";
             lblEmailMes.ForeColor = Color.FromArgb(50, 180, 100);
             return true;
         }
 
+
         private bool ValidateAddress()
         {
-            if (string.IsNullOrWhiteSpace(txtAddress.Text))
+            string address = txtAddress.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(address))
             {
                 txtAddress.BackColor = Color.FromArgb(255, 220, 220);
                 lblAddressMes.Text = "⚠ Required";
                 lblAddressMes.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
+
+            string[] parts = address.Split(',');
+
+            if (parts.Length < 3)
+            {
+                txtAddress.BackColor = Color.FromArgb(255, 220, 220);
+                lblAddressMes.Text = "⚠ Format: Number Street, Suburb, City";
+                lblAddressMes.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            string streetPart = parts[0].Trim();
+
+            // Check street number exists at start
+            string firstWord = streetPart.Split(' ')[0];
+
+            if (!int.TryParse(firstWord, out _))
+            {
+                txtAddress.BackColor = Color.FromArgb(255, 220, 220);
+                lblAddressMes.Text = "⚠ Street number required";
+                lblAddressMes.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            // Check there is a street name after the number
+            if (streetPart.Split(' ').Length < 2)
+            {
+                txtAddress.BackColor = Color.FromArgb(255, 220, 220);
+                lblAddressMes.Text = "⚠ Street name required";
+                lblAddressMes.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(parts[1]))
+            {
+                txtAddress.BackColor = Color.FromArgb(255, 220, 220);
+                lblAddressMes.Text = "⚠ Suburb required";
+                lblAddressMes.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            if (string.IsNullOrWhiteSpace(parts[2]))
+            {
+                txtAddress.BackColor = Color.FromArgb(255, 220, 220);
+                lblAddressMes.Text = "⚠ City required";
+                lblAddressMes.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
             txtAddress.BackColor = Color.FromArgb(220, 245, 220);
             lblAddressMes.Text = "✓";
             lblAddressMes.ForeColor = Color.FromArgb(50, 180, 100);
@@ -331,7 +413,11 @@ namespace Cafe101
             {
                 bool sameName = row["FirstName"].ToString().Trim().ToLower() == txtFirstName.Text.Trim().ToLower()
                              && row["Surname"].ToString().Trim().ToLower() == txtSurname.Text.Trim().ToLower();
-                bool samePhone = row["PhoneNumber"].ToString().Trim() == txtPhoneNumber.Text.Trim();
+                string countryCode = cmbCountryCode.Text.Split(' ')[0];
+                string fullPhoneNumber = countryCode + txtPhoneNumber.Text.Trim();
+
+                bool samePhone = row["PhoneNumber"].ToString().Trim() ==
+                                 fullPhoneNumber;
                 bool sameEmail = row["Email"].ToString().Trim().ToLower() == txtCustEmail.Text.Trim().ToLower();
 
                 if (sameName && (samePhone || sameEmail))
@@ -348,15 +434,18 @@ namespace Cafe101
 
             try
             {
+                string countryCode = cmbCountryCode.Text.Split(' ')[0];
+                string fullPhoneNumber = countryCode + txtPhoneNumber.Text.Trim();
+
                 customerTableTableAdapter1.InsertCust(
                     txtFirstName.Text.Trim(),
                     txtSurname.Text.Trim(),
-                    txtPhoneNumber.Text.Trim(),
+                    fullPhoneNumber,
                     txtAddress.Text.Trim(),
                     txtCustEmail.Text.Trim(),
                     txtPassword.Text.Trim()
                 );
-                
+
                 MessageBox.Show(
                     "Customer " + txtFirstName.Text.Trim() + " " + txtSurname.Text.Trim() + " added successfully!",
                     "Success",
@@ -365,12 +454,34 @@ namespace Cafe101
 
                 ResetForm();
                 LoadCustomers(); // refresh grid AFTER reset so new customer appears
+               
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error saving customer: " + ex.Message,
                     "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            if (parentForm is frmNewOrder)
+            {
+                frmNewOrder orderForm = (frmNewOrder)parentForm;
+
+                orderForm.RefreshCustomerList();
+
+                orderForm.Show();
+            }
+
+            else if (parentForm is frmManageCustomers)
+            {
+                frmManageCustomers manageForm = (frmManageCustomers)parentForm;
+
+                manageForm.RefreshCustomers();
+
+                manageForm.Show();
+            }
+
+            this.Close();
+
         }
 
 
@@ -381,19 +492,24 @@ namespace Cafe101
         // ---------------------------------------------------------------
         private void btnCanel_Click(object sender, EventArgs e)
         {
-            frmNewOrder newOrder = new frmNewOrder();
-            newOrder.Show();
+            if (parentForm != null)
+                parentForm.Show();
+
             this.Close();
         }
+
         // ---------------------------------------------------------------
         // HOME
         // ---------------------------------------------------------------
-        private void btnHome_Click(object sender, EventArgs e)
+      /*  private void btnHome_Click(object sender, EventArgs e)
         {
+            goingHome = true;
+
             frmMain main = new frmMain();
             main.Show();
+
             this.Close();
-        }
+        }*/
 
         // ---------------------------------------------------------------
         // HELP
@@ -516,5 +632,12 @@ namespace Cafe101
                 btnShowPwd.Text = "Show";
             }
         }
+
+       /* private void frmAddCustomer_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (!goingHome && this.Owner != null)
+                this.Owner.Show();
+        }*/
+
     }
 }

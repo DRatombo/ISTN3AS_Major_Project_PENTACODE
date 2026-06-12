@@ -58,8 +58,8 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1683, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(1262, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -74,15 +74,15 @@
             this.logOutToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip2.Size = new System.Drawing.Size(1683, 28);
+            this.menuStrip2.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip2.Size = new System.Drawing.Size(1262, 24);
             this.menuStrip2.TabIndex = 0;
             this.menuStrip2.Text = "menuStrip2";
             // 
             // mnuOrders
             // 
             this.mnuOrders.Name = "mnuOrders";
-            this.mnuOrders.Size = new System.Drawing.Size(120, 24);
+            this.mnuOrders.Size = new System.Drawing.Size(96, 20);
             this.mnuOrders.Text = "Place an Order";
             this.mnuOrders.Click += new System.EventHandler(this.ordersToolStripMenuItem_Click);
             // 
@@ -93,27 +93,27 @@
             this.popularityAnalyticsToolStripMenuItem,
             this.lowStockReportToolStripMenuItem});
             this.mnuAnalytics.Name = "mnuAnalytics";
-            this.mnuAnalytics.Size = new System.Drawing.Size(118, 24);
+            this.mnuAnalytics.Size = new System.Drawing.Size(95, 20);
             this.mnuAnalytics.Text = "View Analytics";
             // 
             // salesReportToolStripMenuItem
             // 
             this.salesReportToolStripMenuItem.Name = "salesReportToolStripMenuItem";
-            this.salesReportToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
+            this.salesReportToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.salesReportToolStripMenuItem.Text = "Sales Report";
             this.salesReportToolStripMenuItem.Click += new System.EventHandler(this.salesReportToolStripMenuItem_Click);
             // 
             // popularityAnalyticsToolStripMenuItem
             // 
             this.popularityAnalyticsToolStripMenuItem.Name = "popularityAnalyticsToolStripMenuItem";
-            this.popularityAnalyticsToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
+            this.popularityAnalyticsToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.popularityAnalyticsToolStripMenuItem.Text = "Popularity Analytics";
             this.popularityAnalyticsToolStripMenuItem.Click += new System.EventHandler(this.popularityAnalyticsToolStripMenuItem_Click);
             // 
             // lowStockReportToolStripMenuItem
             // 
             this.lowStockReportToolStripMenuItem.Name = "lowStockReportToolStripMenuItem";
-            this.lowStockReportToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
+            this.lowStockReportToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
             this.lowStockReportToolStripMenuItem.Text = "Low Stock Report";
             this.lowStockReportToolStripMenuItem.Click += new System.EventHandler(this.lowStockReportToolStripMenuItem_Click);
             // 
@@ -126,41 +126,41 @@
             this.mnuCashiers,
             this.customersToolStripMenuItem});
             this.mnuManagement.Name = "mnuManagement";
-            this.mnuManagement.Size = new System.Drawing.Size(150, 24);
+            this.mnuManagement.Size = new System.Drawing.Size(120, 20);
             this.mnuManagement.Text = "Management Tools";
             // 
             // mnuMenuItems
             // 
             this.mnuMenuItems.Name = "mnuMenuItems";
-            this.mnuMenuItems.Size = new System.Drawing.Size(227, 26);
+            this.mnuMenuItems.Size = new System.Drawing.Size(183, 22);
             this.mnuMenuItems.Text = "Manage Menu Items";
             this.mnuMenuItems.Click += new System.EventHandler(this.mnuMenuItems_Click);
             // 
             // mnuIngredients
             // 
             this.mnuIngredients.Name = "mnuIngredients";
-            this.mnuIngredients.Size = new System.Drawing.Size(227, 26);
+            this.mnuIngredients.Size = new System.Drawing.Size(183, 22);
             this.mnuIngredients.Text = "Manage Ingredients";
             this.mnuIngredients.Click += new System.EventHandler(this.mnuIngredients_Click);
             // 
             // mnuRecipes
             // 
             this.mnuRecipes.Name = "mnuRecipes";
-            this.mnuRecipes.Size = new System.Drawing.Size(227, 26);
+            this.mnuRecipes.Size = new System.Drawing.Size(183, 22);
             this.mnuRecipes.Text = "Manage Recipes";
             this.mnuRecipes.Click += new System.EventHandler(this.mnuRecipes_Click);
             // 
             // mnuCashiers
             // 
             this.mnuCashiers.Name = "mnuCashiers";
-            this.mnuCashiers.Size = new System.Drawing.Size(227, 26);
+            this.mnuCashiers.Size = new System.Drawing.Size(183, 22);
             this.mnuCashiers.Text = "Manage Employees";
             this.mnuCashiers.Click += new System.EventHandler(this.mnuCashiers_Click);
             // 
             // customersToolStripMenuItem
             // 
             this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
-            this.customersToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
+            this.customersToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.customersToolStripMenuItem.Text = "Manage Customers";
             this.customersToolStripMenuItem.Click += new System.EventHandler(this.customersToolStripMenuItem_Click);
             // 
@@ -168,7 +168,7 @@
             // 
             this.logOutToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
             this.logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
-            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(72, 24);
+            this.logOutToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
             this.logOutToolStripMenuItem.Text = "LogOut";
             this.logOutToolStripMenuItem.Click += new System.EventHandler(this.logOutToolStripMenuItem_Click);
             // 
@@ -184,21 +184,21 @@
             this.panel1.Controls.Add(this.menuStrip2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
-            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1683, 838);
+            this.panel1.Size = new System.Drawing.Size(1262, 676);
             this.panel1.TabIndex = 1;
             // 
             // btnHelp
             // 
             this.btnHelp.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnHelp.BackColor = System.Drawing.SystemColors.Control;
+            this.btnHelp.BackColor = System.Drawing.Color.White;
             this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnHelp.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnHelp.Location = new System.Drawing.Point(12, 783);
-            this.btnHelp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
+            this.btnHelp.Location = new System.Drawing.Point(9, 634);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(147, 44);
+            this.btnHelp.Size = new System.Drawing.Size(110, 36);
             this.btnHelp.TabIndex = 12;
             this.btnHelp.Text = "Help";
             this.btnHelp.UseVisualStyleBackColor = false;
@@ -207,13 +207,13 @@
             // btnExit
             // 
             this.btnExit.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnExit.BackColor = System.Drawing.SystemColors.Control;
+            this.btnExit.BackColor = System.Drawing.Color.White;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnExit.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnExit.Location = new System.Drawing.Point(1524, 783);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
+            this.btnExit.Location = new System.Drawing.Point(1143, 634);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(147, 44);
+            this.btnExit.Size = new System.Drawing.Size(110, 36);
             this.btnExit.TabIndex = 11;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = false;
@@ -225,9 +225,10 @@
             this.lblDateTime.BackColor = System.Drawing.Color.White;
             this.lblDateTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateTime.ForeColor = System.Drawing.Color.Red;
-            this.lblDateTime.Location = new System.Drawing.Point(1469, 0);
+            this.lblDateTime.Location = new System.Drawing.Point(1102, 0);
+            this.lblDateTime.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDateTime.Name = "lblDateTime";
-            this.lblDateTime.Size = new System.Drawing.Size(108, 20);
+            this.lblDateTime.Size = new System.Drawing.Size(92, 17);
             this.lblDateTime.TabIndex = 1;
             this.lblDateTime.Text = "Date & Time:";
             // 
@@ -237,9 +238,10 @@
             this.lblUser.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUser.ForeColor = System.Drawing.Color.Red;
-            this.lblUser.Location = new System.Drawing.Point(1469, 0);
+            this.lblUser.Location = new System.Drawing.Point(1102, 0);
+            this.lblUser.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(97, 20);
+            this.lblUser.Size = new System.Drawing.Size(85, 17);
             this.lblUser.TabIndex = 1;
             this.lblUser.Text = "Logged in:";
             // 
@@ -253,17 +255,17 @@
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.BackgroundImage = global::Cafe101.Properties.Resources.Login_jpg;
-            this.ClientSize = new System.Drawing.Size(1683, 862);
+            this.ClientSize = new System.Drawing.Size(1262, 700);
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmMain";
             this.Text = "Main";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

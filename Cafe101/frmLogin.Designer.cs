@@ -63,7 +63,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -83,21 +83,22 @@
             this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.lblPassword);
             this.splitContainer1.Panel2.Controls.Add(this.pBLogin);
-            this.splitContainer1.Size = new System.Drawing.Size(1455, 807);
-            this.splitContainer1.SplitterDistance = 481;
+            this.splitContainer1.Size = new System.Drawing.Size(1091, 656);
+            this.splitContainer1.SplitterDistance = 360;
+            this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
             // 
             // btnHelp
             // 
             this.btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnHelp.BackColor = System.Drawing.SystemColors.Control;
+            this.btnHelp.BackColor = System.Drawing.Color.White;
             this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnHelp.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnHelp.Location = new System.Drawing.Point(154, 763);
-            this.btnHelp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
+            this.btnHelp.Location = new System.Drawing.Point(115, 610);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(147, 44);
+            this.btnHelp.Size = new System.Drawing.Size(110, 36);
             this.btnHelp.TabIndex = 10;
             this.btnHelp.Text = "Help";
             this.btnHelp.UseVisualStyleBackColor = false;
@@ -110,9 +111,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pBHelp.Image = global::Cafe101.Properties.Resources.Logo_jpg;
             this.pBHelp.Location = new System.Drawing.Point(0, 0);
-            this.pBHelp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pBHelp.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pBHelp.Name = "pBHelp";
-            this.pBHelp.Size = new System.Drawing.Size(483, 807);
+            this.pBHelp.Size = new System.Drawing.Size(361, 656);
             this.pBHelp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pBHelp.TabIndex = 0;
             this.pBHelp.TabStop = false;
@@ -123,31 +124,33 @@
             this.lblEmailMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEmailMsg.AutoSize = true;
             this.lblEmailMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmailMsg.Location = new System.Drawing.Point(623, 399);
+            this.lblEmailMsg.Location = new System.Drawing.Point(467, 324);
+            this.lblEmailMsg.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEmailMsg.Name = "lblEmailMsg";
-            this.lblEmailMsg.Size = new System.Drawing.Size(0, 22);
+            this.lblEmailMsg.Size = new System.Drawing.Size(0, 18);
             this.lblEmailMsg.TabIndex = 15;
             // 
             // txtPassword
             // 
-            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(144, 473);
+            this.txtPassword.Location = new System.Drawing.Point(253, 422);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(441, 28);
+            this.txtPassword.Size = new System.Drawing.Size(247, 24);
             this.txtPassword.TabIndex = 14;
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // btnExit
             // 
-            this.btnExit.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnExit.BackColor = System.Drawing.SystemColors.Window;
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.BackColor = System.Drawing.Color.White;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnExit.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnExit.Location = new System.Drawing.Point(789, 751);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
+            this.btnExit.Location = new System.Drawing.Point(592, 610);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(147, 44);
+            this.btnExit.Size = new System.Drawing.Size(110, 36);
             this.btnExit.TabIndex = 10;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = false;
@@ -155,14 +158,14 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnLogin.BackColor = System.Drawing.SystemColors.Window;
+            this.btnLogin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnLogin.BackColor = System.Drawing.Color.White;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnLogin.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnLogin.Location = new System.Drawing.Point(260, 522);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
+            this.btnLogin.Location = new System.Drawing.Point(304, 496);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(147, 44);
+            this.btnLogin.Size = new System.Drawing.Size(82, 36);
             this.btnLogin.TabIndex = 1;
             this.btnLogin.Text = "Login ";
             this.btnLogin.UseVisualStyleBackColor = false;
@@ -170,41 +173,43 @@
             // 
             // lblUsername
             // 
-            this.lblUsername.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUsername.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblUsername.AutoSize = true;
             this.lblUsername.BackColor = System.Drawing.SystemColors.Window;
             this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsername.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.lblUsername.Location = new System.Drawing.Point(20, 391);
+            this.lblUsername.Location = new System.Drawing.Point(118, 376);
+            this.lblUsername.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(68, 24);
+            this.lblUsername.Size = new System.Drawing.Size(50, 18);
             this.lblUsername.TabIndex = 2;
-            this.lblUsername.Text = "Email:";
+            this.lblUsername.Text = "Email";
             this.lblUsername.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblUsername.Click += new System.EventHandler(this.lblUsername_Click);
             // 
             // txtEmail
             // 
-            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(144, 391);
+            this.txtEmail.Location = new System.Drawing.Point(253, 374);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(441, 28);
+            this.txtEmail.Size = new System.Drawing.Size(247, 24);
             this.txtEmail.TabIndex = 13;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button1.BackColor = System.Drawing.SystemColors.Window;
             this.button1.BackgroundImage = global::Cafe101.Properties.Resources.Show_password;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ImageIndex = 0;
             this.button1.ImageList = this.imageList1;
-            this.button1.Location = new System.Drawing.Point(626, 473);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button1.Location = new System.Drawing.Point(526, 422);
+            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(59, 42);
+            this.button1.Size = new System.Drawing.Size(44, 27);
             this.button1.TabIndex = 8;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -217,12 +222,13 @@
             // 
             // lblPassword
             // 
-            this.lblPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(20, 473);
+            this.lblPassword.Location = new System.Drawing.Point(118, 425);
+            this.lblPassword.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(103, 22);
+            this.lblPassword.Size = new System.Drawing.Size(88, 18);
             this.lblPassword.TabIndex = 12;
             this.lblPassword.Text = "Password:";
             // 
@@ -231,9 +237,9 @@
             this.pBLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pBLogin.Image = global::Cafe101.Properties.Resources.Login_jpg;
             this.pBLogin.Location = new System.Drawing.Point(0, 0);
-            this.pBLogin.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pBLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pBLogin.Name = "pBLogin";
-            this.pBLogin.Size = new System.Drawing.Size(970, 807);
+            this.pBLogin.Size = new System.Drawing.Size(728, 656);
             this.pBLogin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pBLogin.TabIndex = 6;
             this.pBLogin.TabStop = false;
@@ -267,12 +273,12 @@
             // 
             // frmLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1455, 807);
+            this.ClientSize = new System.Drawing.Size(1091, 656);
             this.Controls.Add(this.splitContainer1);
             this.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmLogin";
             this.Text = "Login";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

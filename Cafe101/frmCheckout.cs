@@ -254,11 +254,15 @@ namespace Cafe101
                 "Cancel Payment",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
+
             if (result == DialogResult.Yes)
             {
-                frmNewOrder newOrder = new frmNewOrder();
-                newOrder.Show();
-                //this.Close();
+                if (this.Owner != null)
+                {
+                    this.Owner.Show();
+                }
+
+                this.Close();
             }
         }
 
@@ -266,7 +270,7 @@ namespace Cafe101
         {
         }
 
-        private void button1_Click(object sender, EventArgs e)
+       /* private void button1_Click(object sender, EventArgs e)
         {
             frmTodaysOrders orders = new frmTodaysOrders();
             orders.Show();

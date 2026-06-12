@@ -12,16 +12,35 @@ namespace Cafe101
         private bool helpVisible = false;
         private Panel pnlHelp = null;
 
+        // Status label for Prep Time (add this to your designer or create dynamically)
+        private Label lblPrepTimeStatus;
+
         public frmManageMenuItems()
         {
             InitializeComponent();
+            CreatePrepTimeStatusLabel();
             AttachValidationEvents();
+        }
+
+        private void CreatePrepTimeStatusLabel()
+        {
+            // Create status label for Prep Time (positioned below the Prep Time textbox)
+            lblPrepTimeStatus = new Label();
+            lblPrepTimeStatus.AutoSize = true;
+            lblPrepTimeStatus.Font = new System.Drawing.Font("Segoe UI", 8F);
+            lblPrepTimeStatus.ForeColor = System.Drawing.Color.White;
+            lblPrepTimeStatus.Location = new System.Drawing.Point(120, 172); // Adjust X,Y as needed
+            lblPrepTimeStatus.Name = "lblPrepTimeStatus";
+            lblPrepTimeStatus.Size = new System.Drawing.Size(0, 20);
+            lblPrepTimeStatus.TabIndex = 11;
+            this.grpMenuItemDetails.Controls.Add(lblPrepTimeStatus);
         }
 
         private void AttachValidationEvents()
         {
             txtItemName.TextChanged += txtItemName_TextChanged;
             txtPrepTime.TextChanged += txtPrepTime_TextChanged;
+            txtPrepTime.KeyPress += txtPrepTime_KeyPress;
         }
 
         // ============================================================
@@ -36,6 +55,16 @@ namespace Cafe101
         private void txtPrepTime_TextChanged(object sender, EventArgs e)
         {
             ValidatePrepTime();
+        }
+
+        // Prevent non-digit characters from being entered
+        private void txtPrepTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Allow digits, backspace, and control characters
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         private bool ValidateItemName()
@@ -75,20 +104,43 @@ namespace Cafe101
             if (string.IsNullOrWhiteSpace(value))
             {
                 txtPrepTime.BackColor = Color.FromArgb(255, 220, 220);
+                lblPrepTimeStatus.Text = "⚠️ Required";
+                lblPrepTimeStatus.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
 
-            // Check for numbers only (no letters, no spaces, no special characters)
+            // Check for numbers only
             foreach (char c in value)
             {
                 if (!char.IsDigit(c))
                 {
                     txtPrepTime.BackColor = Color.FromArgb(255, 220, 220);
+                    lblPrepTimeStatus.Text = "⚠️ Numbers only";
+                    lblPrepTimeStatus.ForeColor = Color.FromArgb(255, 80, 80);
                     return false;
                 }
             }
 
+            // Optional: Check for reasonable range (e.g., 1-999 minutes)
+            int prepTime = int.Parse(value);
+            if (prepTime < 1)
+            {
+                txtPrepTime.BackColor = Color.FromArgb(255, 220, 220);
+                lblPrepTimeStatus.Text = "⚠️ Min 1 minute";
+                lblPrepTimeStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+            if (prepTime > 999)
+            {
+                txtPrepTime.BackColor = Color.FromArgb(255, 220, 220);
+                lblPrepTimeStatus.Text = "⚠️ Max 999 minutes";
+                lblPrepTimeStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
             txtPrepTime.BackColor = Color.FromArgb(220, 245, 220);
+            lblPrepTimeStatus.Text = "✓";
+            lblPrepTimeStatus.ForeColor = Color.FromArgb(50, 180, 100);
             return true;
         }
 
@@ -171,9 +223,11 @@ namespace Cafe101
             txtPrepTime.Text = "";
             btnUpdate.Tag = null;
 
+            // Reset validation colors and status labels
             txtItemName.BackColor = System.Drawing.Color.White;
             txtPrepTime.BackColor = System.Drawing.Color.White;
             lblItemNameStatus.Text = "";
+            lblPrepTimeStatus.Text = "";
         }
 
         private bool IsMenuItemNameDuplicate(string name, int? excludeMenuItemId = null)
@@ -199,7 +253,7 @@ namespace Cafe101
         {
             if (!IsFormValid())
             {
-                MessageBox.Show("Please correct the highlighted fields before adding.\n\n- Name: Letters only (no spaces, numbers, or special characters)\n- Prep Time: Numbers only", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please correct the highlighted fields before adding.\n\n- Name: Letters only (no spaces, numbers, or special characters)\n- Prep Time: Numbers only (1-999 minutes)", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -297,6 +351,7 @@ namespace Cafe101
 
                 txtSearch.Text = "";
 
+                // Trigger validation on loaded data
                 ValidateItemName();
                 ValidatePrepTime();
             }
@@ -312,7 +367,7 @@ namespace Cafe101
 
             if (!IsFormValid())
             {
-                MessageBox.Show("Please correct the highlighted fields before updating.\n\n- Name: Letters only (no spaces, numbers, or special characters)\n- Prep Time: Numbers only", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please correct the highlighted fields before updating.\n\n- Name: Letters only (no spaces, numbers, or special characters)\n- Prep Time: Numbers only (1-999 minutes)", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -548,11 +603,6 @@ namespace Cafe101
             pnlHelp.Visible = true;
             helpVisible = true;
             btnHelp.Text = "❓ Help (ON)";
-        }
-
-        private void tblMain_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 

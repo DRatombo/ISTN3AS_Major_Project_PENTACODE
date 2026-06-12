@@ -72,7 +72,6 @@
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tblMain.Size = new System.Drawing.Size(1258, 729);
             this.tblMain.TabIndex = 0;
-           // this.tblMain.Paint += new System.Windows.Forms.PaintEventHandler(this.tblMain_Paint);
             // 
             // pnlSearch
             // 
@@ -304,7 +303,7 @@
             // 
             this.lblPrep.AutoSize = true;
             this.lblPrep.ForeColor = System.Drawing.Color.White;
-            this.lblPrep.Location = new System.Drawing.Point(16, 198);
+            this.lblPrep.Location = new System.Drawing.Point(18, 201);
             this.lblPrep.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblPrep.Name = "lblPrep";
             this.lblPrep.Size = new System.Drawing.Size(79, 16);
@@ -315,7 +314,7 @@
             // 
             this.txtPrepTime.BackColor = System.Drawing.Color.White;
             this.txtPrepTime.ForeColor = System.Drawing.Color.Black;
-            this.txtPrepTime.Location = new System.Drawing.Point(120, 196);
+            this.txtPrepTime.Location = new System.Drawing.Point(117, 201);
             this.txtPrepTime.Margin = new System.Windows.Forms.Padding(6);
             this.txtPrepTime.Name = "txtPrepTime";
             this.txtPrepTime.Size = new System.Drawing.Size(120, 22);

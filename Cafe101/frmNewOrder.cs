@@ -1202,10 +1202,23 @@ namespace Cafe101
 
         private void btnCancelOrder_Click(object sender, EventArgs e)
         {
-            if (dgvCart.Rows.Count == 0 && selectedCustomerID == 0) return;
+            // Nothing in cart
+            if (dgvCart.Rows.Count == 0)
+            {
+                MessageBox.Show(
+                    "There is no order to cancel because the cart is empty.\n\n" +
+                    "You can either:\n" +
+                    "• Return to the Home screen\n" +
+                    "• Continue building a new order",
+                    "Cart Empty",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                return;
+            }
 
             DialogResult confirm = MessageBox.Show(
-                "Are you sure you want to cancel this order?\nAll cart items will be cleared.",
+                "Are you sure you want to cancel this order?\nAll cart items will be removed.",
                 "Cancel Order",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
@@ -1215,12 +1228,21 @@ namespace Cafe101
                 dgvCart.Rows.Clear();
                 orderTotal = 0;
                 lblAmount.Text = "R0.00";
+
                 selectedCustomerID = 0;
                 txtSearchedName.Text = "";
                 txtSearchedCust.Text = "";
+
                 btnClearCustName.Enabled = true;
+
                 RebuildQtyColumnWithCart();
                 PopulateCustomerGrid("");
+
+                MessageBox.Show(
+                    "Order cancelled successfully.",
+                    "Order Cancelled",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
         }
 

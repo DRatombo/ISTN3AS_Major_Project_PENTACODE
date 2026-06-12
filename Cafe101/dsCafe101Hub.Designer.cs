@@ -5427,7 +5427,7 @@ SELECT CustomerID, FirstName, Surname, Address, Email, Password, Status, PhoneNu
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@PhoneNumber", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, "PhoneNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Address", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.VarChar, 20, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.NVarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
             this._commandCollection[4].CommandText = "SELECT Address, CustomerID, Email, FirstName, Password, PhoneNumber, Status, Surn" +
@@ -5885,7 +5885,7 @@ SELECT CustomerID, FirstName, Surname, Address, Email, Password, Status, PhoneNu
                 command.Parameters[4].Value = ((string)(Email));
             }
             if ((Password == null)) {
-                throw new global::System.ArgumentNullException("Password");
+                command.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
                 command.Parameters[5].Value = ((string)(Password));
@@ -8228,7 +8228,7 @@ SELECT SCOPE_IDENTITY()";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual dsCafe101Hub.OrderTableDataTable GetDataBy1(System.DateTime startDate, System.DateTime endDate) {
+        public virtual dsCafe101Hub.OrderTableDataTable GetDataBy11(System.DateTime startDate, System.DateTime endDate) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
             this.Adapter.SelectCommand.Parameters[0].Value = ((System.DateTime)(startDate));
             this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(endDate));
@@ -8289,7 +8289,7 @@ SELECT SCOPE_IDENTITY()";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual dsCafe101Hub.OrderTableDataTable GetDataBy(int CustomerID, int EmployeeID, string OrderType, System.DateTime OrderDateTime, string EventDate, string EventTime, string OrderStatus, string PaymentMethod, decimal TotalAmountDue, decimal TotalChangeDue) {
+        public virtual dsCafe101Hub.OrderTableDataTable GetDataBy2(int CustomerID, int EmployeeID, string OrderType, System.DateTime OrderDateTime, string EventDate, string EventTime, string OrderStatus, string PaymentMethod, decimal TotalAmountDue, decimal TotalChangeDue) {
             this.Adapter.SelectCommand = this.CommandCollection[4];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(CustomerID));
             this.Adapter.SelectCommand.Parameters[1].Value = ((int)(EmployeeID));

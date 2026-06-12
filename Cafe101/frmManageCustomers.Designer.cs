@@ -54,13 +54,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.customerTableBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
             this.customerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customerTableBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.testCustomerBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Test)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -112,7 +112,7 @@
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.button1.Location = new System.Drawing.Point(1222, 644);
+            this.button1.Location = new System.Drawing.Point(1222, 656);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(169, 40);
             this.button1.TabIndex = 3;
@@ -126,7 +126,7 @@
             this.btnBack.BackColor = System.Drawing.Color.White;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnBack.Location = new System.Drawing.Point(807, 642);
+            this.btnBack.Location = new System.Drawing.Point(807, 656);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(139, 42);
             this.btnBack.TabIndex = 4;
@@ -165,7 +165,7 @@
             this.addCustomer.BackColor = System.Drawing.Color.White;
             this.addCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.addCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.addCustomer.Location = new System.Drawing.Point(991, 642);
+            this.addCustomer.Location = new System.Drawing.Point(991, 656);
             this.addCustomer.Name = "addCustomer";
             this.addCustomer.Size = new System.Drawing.Size(192, 42);
             this.addCustomer.TabIndex = 6;
@@ -203,7 +203,7 @@
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox1.Location = new System.Drawing.Point(795, 212);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(596, 395);
+            this.groupBox1.Size = new System.Drawing.Size(596, 438);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Enter Details to Remove a Customer";
@@ -214,7 +214,7 @@
             this.btnRemoveCustomer.BackColor = System.Drawing.Color.White;
             this.btnRemoveCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnRemoveCustomer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnRemoveCustomer.Location = new System.Drawing.Point(223, 326);
+            this.btnRemoveCustomer.Location = new System.Drawing.Point(213, 370);
             this.btnRemoveCustomer.Name = "btnRemoveCustomer";
             this.btnRemoveCustomer.Size = new System.Drawing.Size(175, 36);
             this.btnRemoveCustomer.TabIndex = 8;
@@ -225,33 +225,38 @@
             // txtEmail
             // 
             this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtEmail.Location = new System.Drawing.Point(274, 266);
+            this.txtEmail.Location = new System.Drawing.Point(274, 288);
+            this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(185, 29);
+            this.txtEmail.Size = new System.Drawing.Size(222, 54);
             this.txtEmail.TabIndex = 7;
             // 
             // txtAddress
             // 
             this.txtAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtAddress.Location = new System.Drawing.Point(274, 197);
+            this.txtAddress.Location = new System.Drawing.Point(274, 193);
+            this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(185, 29);
+            this.txtAddress.ReadOnly = true;
+            this.txtAddress.Size = new System.Drawing.Size(222, 63);
             this.txtAddress.TabIndex = 6;
             // 
             // txtSurname
             // 
             this.txtSurname.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtSurname.Location = new System.Drawing.Point(274, 128);
+            this.txtSurname.Location = new System.Drawing.Point(274, 137);
             this.txtSurname.Name = "txtSurname";
-            this.txtSurname.Size = new System.Drawing.Size(185, 29);
+            this.txtSurname.ReadOnly = true;
+            this.txtSurname.Size = new System.Drawing.Size(222, 29);
             this.txtSurname.TabIndex = 5;
             // 
             // txtName
             // 
             this.txtName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtName.Location = new System.Drawing.Point(274, 65);
+            this.txtName.Location = new System.Drawing.Point(274, 73);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(185, 29);
+            this.txtName.ReadOnly = true;
+            this.txtName.Size = new System.Drawing.Size(222, 29);
             this.txtName.TabIndex = 4;
             // 
             // label5
@@ -259,18 +264,19 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(157, 269);
+            this.label5.Location = new System.Drawing.Point(145, 288);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 20);
             this.label5.TabIndex = 3;
             this.label5.Text = "Email";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(149, 203);
+            this.label4.Location = new System.Drawing.Point(145, 199);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(75, 20);
             this.label4.TabIndex = 2;
@@ -281,7 +287,7 @@
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(145, 131);
+            this.label3.Location = new System.Drawing.Point(145, 137);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 20);
             this.label3.TabIndex = 1;
@@ -292,7 +298,7 @@
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(145, 71);
+            this.label2.Location = new System.Drawing.Point(145, 79);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 20);
             this.label2.TabIndex = 0;
@@ -318,21 +324,6 @@
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentDoubleClick);
             this.dataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellDoubleClick);
-            // 
-            // customerTableBindingSource1
-            // 
-            this.customerTableBindingSource1.DataMember = "CustomerTable";
-            this.customerTableBindingSource1.DataSource = this.dsCafe101Hub;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.dataGridView1);
-            this.panel1.Controls.Add(this.pictureBox1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(612, 734);
-            this.panel1.TabIndex = 9;
             // 
             // customerIDDataGridViewTextBoxColumn
             // 
@@ -378,6 +369,21 @@
             this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             this.emailDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.emailDataGridViewTextBoxColumn.Width = 57;
+            // 
+            // customerTableBindingSource1
+            // 
+            this.customerTableBindingSource1.DataMember = "CustomerTable";
+            this.customerTableBindingSource1.DataSource = this.dsCafe101Hub;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.dataGridView1);
+            this.panel1.Controls.Add(this.pictureBox1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(612, 734);
+            this.panel1.TabIndex = 9;
             // 
             // frmManageCustomers
             // 

@@ -32,10 +32,11 @@ namespace Cafe101
 
         private void frmManageCustomers_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dsCafe101Hub.CustomerTable' table. You can move, or remove it, as needed.
-/*            this.customerTableTableAdapter.Fill(this.dsCafe101Hub.CustomerTable);
-*/            try
+           
+          try
             {
+                this.dsCafe101Hub.EnforceConstraints = false;
+
                 this.customerTableTableAdapter.Fill(this.dsCafe101Hub.CustomerTable);
 
                 dsCafe101Hub.CustomerTable.PasswordColumn.DefaultValue = "1234";
@@ -175,6 +176,11 @@ namespace Cafe101
             dataGridView1.DataSource = customerTableTableAdapter.GetData();
 
             dataGridView1.Refresh();
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

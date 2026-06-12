@@ -39,12 +39,6 @@
             this.btnSearchItem = new System.Windows.Forms.Button();
             this.btnAddToCart = new System.Windows.Forms.Button();
             this.dgvMenuItems = new System.Windows.Forms.DataGridView();
-            this.ItemQty = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.MenuItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MenuItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PreparationTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuItemsTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101Hub = new Cafe101.dsCafe101Hub();
             this.testMenuItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -67,11 +61,6 @@
             this.recipeItemTableAdapter1 = new Cafe101.dsCafe101TableAdapters.RecipeItemTableAdapter();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvCustomers = new System.Windows.Forms.DataGridView();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.testCustomerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.btnBack = new System.Windows.Forms.Button();
@@ -114,6 +103,17 @@
             this.orderTableTableAdapter1 = new Cafe101.dsCafe101HubTableAdapters.OrderTableTableAdapter();
             this.ingredientTableTableAdapter1 = new Cafe101.dsCafe101HubTableAdapters.IngredientTableTableAdapter();
             this.btnCancelOrder = new System.Windows.Forms.Button();
+            this.ItemQty = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.MenuItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MenuItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PreparationTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
@@ -143,30 +143,31 @@
             this.lblSearchCust.Location = new System.Drawing.Point(81, 39);
             this.lblSearchCust.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearchCust.Name = "lblSearchCust";
-            this.lblSearchCust.Size = new System.Drawing.Size(145, 18);
+            this.lblSearchCust.Size = new System.Drawing.Size(140, 18);
             this.lblSearchCust.TabIndex = 0;
-            this.lblSearchCust.Text = "Search Customer:";
+            this.lblSearchCust.Text = "Search Customer";
             // 
             // txtSearchedCust
             // 
             this.txtSearchedCust.Location = new System.Drawing.Point(253, 40);
             this.txtSearchedCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearchedCust.Name = "txtSearchedCust";
-            this.txtSearchedCust.Size = new System.Drawing.Size(204, 20);
+            this.txtSearchedCust.Size = new System.Drawing.Size(204, 22);
             this.txtSearchedCust.TabIndex = 1;
             this.txtSearchedCust.TextChanged += new System.EventHandler(this.txtSearchedCust_TextChanged);
             // 
             // btnSearchCust
             // 
+            this.btnSearchCust.BackColor = System.Drawing.Color.White;
             this.btnSearchCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchCust.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSearchCust.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnSearchCust.Location = new System.Drawing.Point(497, 33);
             this.btnSearchCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSearchCust.Name = "btnSearchCust";
             this.btnSearchCust.Size = new System.Drawing.Size(88, 30);
             this.btnSearchCust.TabIndex = 2;
             this.btnSearchCust.Text = "Search";
-            this.btnSearchCust.UseVisualStyleBackColor = true;
+            this.btnSearchCust.UseVisualStyleBackColor = false;
             this.btnSearchCust.Click += new System.EventHandler(this.btnSearchCust_Click);
             // 
             // lblCustName
@@ -177,16 +178,16 @@
             this.lblCustName.Location = new System.Drawing.Point(193, 94);
             this.lblCustName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCustName.Name = "lblCustName";
-            this.lblCustName.Size = new System.Drawing.Size(136, 18);
+            this.lblCustName.Size = new System.Drawing.Size(131, 18);
             this.lblCustName.TabIndex = 3;
-            this.lblCustName.Text = "Customer Name:";
+            this.lblCustName.Text = "Customer Name";
             // 
             // txtSearchedName
             // 
             this.txtSearchedName.Location = new System.Drawing.Point(351, 95);
             this.txtSearchedName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearchedName.Name = "txtSearchedName";
-            this.txtSearchedName.Size = new System.Drawing.Size(195, 20);
+            this.txtSearchedName.Size = new System.Drawing.Size(195, 22);
             this.txtSearchedName.TabIndex = 4;
             // 
             // lblSearchItems
@@ -197,43 +198,45 @@
             this.lblSearchItems.Location = new System.Drawing.Point(153, 39);
             this.lblSearchItems.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearchItems.Name = "lblSearchItems";
-            this.lblSearchItems.Size = new System.Drawing.Size(149, 18);
+            this.lblSearchItems.Size = new System.Drawing.Size(144, 18);
             this.lblSearchItems.TabIndex = 5;
-            this.lblSearchItems.Text = "Search Menu Item:";
+            this.lblSearchItems.Text = "Search Menu Item";
             // 
             // textItemSearch
             // 
             this.textItemSearch.Location = new System.Drawing.Point(345, 37);
             this.textItemSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textItemSearch.Name = "textItemSearch";
-            this.textItemSearch.Size = new System.Drawing.Size(199, 20);
+            this.textItemSearch.Size = new System.Drawing.Size(199, 22);
             this.textItemSearch.TabIndex = 6;
             this.textItemSearch.TextChanged += new System.EventHandler(this.textItemSearch_TextChanged);
             // 
             // btnSearchItem
             // 
+            this.btnSearchItem.BackColor = System.Drawing.Color.White;
             this.btnSearchItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchItem.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnSearchItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnSearchItem.Location = new System.Drawing.Point(603, 29);
             this.btnSearchItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSearchItem.Name = "btnSearchItem";
             this.btnSearchItem.Size = new System.Drawing.Size(88, 33);
             this.btnSearchItem.TabIndex = 7;
             this.btnSearchItem.Text = "Search";
-            this.btnSearchItem.UseVisualStyleBackColor = true;
+            this.btnSearchItem.UseVisualStyleBackColor = false;
             this.btnSearchItem.Click += new System.EventHandler(this.btnSearchItem_Click);
             // 
             // btnAddToCart
             // 
+            this.btnAddToCart.BackColor = System.Drawing.Color.White;
             this.btnAddToCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddToCart.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnAddToCart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnAddToCart.Location = new System.Drawing.Point(359, 333);
             this.btnAddToCart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddToCart.Name = "btnAddToCart";
             this.btnAddToCart.Size = new System.Drawing.Size(187, 28);
             this.btnAddToCart.TabIndex = 10;
             this.btnAddToCart.Text = "Add To Cart";
-            this.btnAddToCart.UseVisualStyleBackColor = true;
+            this.btnAddToCart.UseVisualStyleBackColor = false;
             this.btnAddToCart.Click += new System.EventHandler(this.btnAddToCart_Click);
             // 
             // dgvMenuItems
@@ -243,7 +246,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvMenuItems.AutoGenerateColumns = false;
             this.dgvMenuItems.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvMenuItems.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(21)))), ((int)(((byte)(48)))));
+            this.dgvMenuItems.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.dgvMenuItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMenuItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ItemQty,
@@ -261,58 +264,6 @@
             this.dgvMenuItems.TabIndex = 11;
             this.dgvMenuItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMenuItems_CellContentClick);
             this.dgvMenuItems.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvMenuItems_EditingControlShowing);
-            // 
-            // ItemQty
-            // 
-            this.ItemQty.HeaderText = "Quantity";
-            this.ItemQty.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.ItemQty.Name = "ItemQty";
-            this.ItemQty.ReadOnly = true;
-            // 
-            // MenuItemID
-            // 
-            this.MenuItemID.DataPropertyName = "MenuItemID";
-            this.MenuItemID.HeaderText = "Menu Item ID";
-            this.MenuItemID.Name = "MenuItemID";
-            this.MenuItemID.ReadOnly = true;
-            // 
-            // MenuItemName
-            // 
-            this.MenuItemName.DataPropertyName = "MenuItemName";
-            this.MenuItemName.HeaderText = "Item Name";
-            this.MenuItemName.Name = "MenuItemName";
-            this.MenuItemName.ReadOnly = true;
-            // 
-            // sellingPrice
-            // 
-            this.sellingPrice.DataPropertyName = "SellingPrice";
-            this.sellingPrice.HeaderText = "Selling Price";
-            this.sellingPrice.Name = "sellingPrice";
-            this.sellingPrice.ReadOnly = true;
-            // 
-            // Category
-            // 
-            this.Category.DataPropertyName = "Category";
-            this.Category.HeaderText = "Category";
-            this.Category.Name = "Category";
-            this.Category.ReadOnly = true;
-            // 
-            // PreparationTime
-            // 
-            this.PreparationTime.DataPropertyName = "PreparationTime";
-            this.PreparationTime.HeaderText = "Preparation Time";
-            this.PreparationTime.Name = "PreparationTime";
-            this.PreparationTime.ReadOnly = true;
             // 
             // menuItemsTableBindingSource
             // 
@@ -360,7 +311,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCart.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvCart.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(21)))), ((int)(((byte)(48)))));
+            this.dgvCart.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.dgvCart.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCart.Location = new System.Drawing.Point(17, 39);
             this.dgvCart.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -394,41 +345,44 @@
             // 
             // btnConfirmOrder
             // 
+            this.btnConfirmOrder.BackColor = System.Drawing.Color.White;
             this.btnConfirmOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmOrder.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnConfirmOrder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnConfirmOrder.Location = new System.Drawing.Point(258, 599);
             this.btnConfirmOrder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnConfirmOrder.Name = "btnConfirmOrder";
             this.btnConfirmOrder.Size = new System.Drawing.Size(191, 28);
             this.btnConfirmOrder.TabIndex = 15;
             this.btnConfirmOrder.Text = "Confirm Order";
-            this.btnConfirmOrder.UseVisualStyleBackColor = true;
+            this.btnConfirmOrder.UseVisualStyleBackColor = false;
             this.btnConfirmOrder.Click += new System.EventHandler(this.btnConfirmOrder_Click);
             // 
             // btnDecreaseQuantity
             // 
+            this.btnDecreaseQuantity.BackColor = System.Drawing.Color.White;
             this.btnDecreaseQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDecreaseQuantity.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnDecreaseQuantity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnDecreaseQuantity.Location = new System.Drawing.Point(101, 357);
             this.btnDecreaseQuantity.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnDecreaseQuantity.Name = "btnDecreaseQuantity";
             this.btnDecreaseQuantity.Size = new System.Drawing.Size(242, 28);
             this.btnDecreaseQuantity.TabIndex = 16;
             this.btnDecreaseQuantity.Text = "Decrease Quantity";
-            this.btnDecreaseQuantity.UseVisualStyleBackColor = true;
+            this.btnDecreaseQuantity.UseVisualStyleBackColor = false;
             this.btnDecreaseQuantity.Click += new System.EventHandler(this.btnDecreaseQuantity_Click);
             // 
             // btnRemoveItem
             // 
+            this.btnRemoveItem.BackColor = System.Drawing.Color.White;
             this.btnRemoveItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveItem.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnRemoveItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnRemoveItem.Location = new System.Drawing.Point(415, 357);
             this.btnRemoveItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnRemoveItem.Name = "btnRemoveItem";
             this.btnRemoveItem.Size = new System.Drawing.Size(187, 28);
             this.btnRemoveItem.TabIndex = 17;
             this.btnRemoveItem.Text = "Remove Item";
-            this.btnRemoveItem.UseVisualStyleBackColor = true;
+            this.btnRemoveItem.UseVisualStyleBackColor = false;
             this.btnRemoveItem.Click += new System.EventHandler(this.btnRemoveItem_Click_1);
             // 
             // orderTableAdapter
@@ -468,11 +422,9 @@
             // 
             // dgvCustomers
             // 
-            this.dgvCustomers.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvCustomers.AutoGenerateColumns = false;
-            this.dgvCustomers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(21)))), ((int)(((byte)(48)))));
+            this.dgvCustomers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCustomers.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FirstName,
@@ -481,47 +433,12 @@
             this.emailDataGridViewTextBoxColumn,
             this.CustomerID});
             this.dgvCustomers.DataSource = this.customerTableBindingSource;
-            this.dgvCustomers.Location = new System.Drawing.Point(84, 141);
+            this.dgvCustomers.Location = new System.Drawing.Point(22, 141);
             this.dgvCustomers.Name = "dgvCustomers";
-            this.dgvCustomers.Size = new System.Drawing.Size(855, 319);
+            this.dgvCustomers.Size = new System.Drawing.Size(917, 319);
             this.dgvCustomers.TabIndex = 19;
             this.dgvCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellClick);
             this.dgvCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellContentClick);
-            // 
-            // FirstName
-            // 
-            this.FirstName.DataPropertyName = "FirstName";
-            this.FirstName.HeaderText = "First Name";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.Width = 150;
-            // 
-            // Surname
-            // 
-            this.Surname.DataPropertyName = "Surname";
-            this.Surname.HeaderText = "Surname";
-            this.Surname.Name = "Surname";
-            this.Surname.Width = 150;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            this.addressDataGridViewTextBoxColumn.Width = 210;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.Width = 170;
-            // 
-            // CustomerID
-            // 
-            this.CustomerID.DataPropertyName = "CustomerID";
-            this.CustomerID.HeaderText = "Customer ID";
-            this.CustomerID.Name = "CustomerID";
-            this.CustomerID.ReadOnly = true;
             // 
             // customerTableBindingSource
             // 
@@ -535,15 +452,16 @@
             // 
             // btnBack
             // 
+            this.btnBack.BackColor = System.Drawing.Color.White;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnBack.Location = new System.Drawing.Point(1287, 896);
             this.btnBack.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(100, 28);
             this.btnBack.TabIndex = 20;
             this.btnBack.Text = "Home";
-            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // testCustomerBindingSource
@@ -632,7 +550,7 @@
             "Event"});
             this.cmbOrderType.Location = new System.Drawing.Point(358, 423);
             this.cmbOrderType.Name = "cmbOrderType";
-            this.cmbOrderType.Size = new System.Drawing.Size(204, 21);
+            this.cmbOrderType.Size = new System.Drawing.Size(204, 24);
             this.cmbOrderType.TabIndex = 21;
             this.cmbOrderType.SelectedIndexChanged += new System.EventHandler(this.cmbOrderType_SelectedIndexChanged);
             // 
@@ -643,16 +561,16 @@
             this.lblOrderType.ForeColor = System.Drawing.SystemColors.Control;
             this.lblOrderType.Location = new System.Drawing.Point(140, 422);
             this.lblOrderType.Name = "lblOrderType";
-            this.lblOrderType.Size = new System.Drawing.Size(149, 18);
+            this.lblOrderType.Size = new System.Drawing.Size(144, 18);
             this.lblOrderType.TabIndex = 22;
-            this.lblOrderType.Text = "Select Order Type:";
+            this.lblOrderType.Text = "Select Order Type";
             // 
             // dtpEventDate
             // 
             this.dtpEventDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpEventDate.Location = new System.Drawing.Point(358, 480);
             this.dtpEventDate.Name = "dtpEventDate";
-            this.dtpEventDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpEventDate.Size = new System.Drawing.Size(200, 22);
             this.dtpEventDate.TabIndex = 23;
             // 
             // dtpEventTime
@@ -661,7 +579,7 @@
             this.dtpEventTime.Location = new System.Drawing.Point(362, 536);
             this.dtpEventTime.Name = "dtpEventTime";
             this.dtpEventTime.ShowUpDown = true;
-            this.dtpEventTime.Size = new System.Drawing.Size(200, 20);
+            this.dtpEventTime.Size = new System.Drawing.Size(200, 22);
             this.dtpEventTime.TabIndex = 24;
             // 
             // lblEventDate
@@ -671,9 +589,9 @@
             this.lblEventDate.ForeColor = System.Drawing.SystemColors.Control;
             this.lblEventDate.Location = new System.Drawing.Point(192, 480);
             this.lblEventDate.Name = "lblEventDate";
-            this.lblEventDate.Size = new System.Drawing.Size(95, 18);
+            this.lblEventDate.Size = new System.Drawing.Size(90, 18);
             this.lblEventDate.TabIndex = 25;
-            this.lblEventDate.Text = "Event Date:";
+            this.lblEventDate.Text = "Event Date";
             // 
             // lblEventTime
             // 
@@ -682,34 +600,36 @@
             this.lblEventTime.ForeColor = System.Drawing.SystemColors.Control;
             this.lblEventTime.Location = new System.Drawing.Point(192, 536);
             this.lblEventTime.Name = "lblEventTime";
-            this.lblEventTime.Size = new System.Drawing.Size(97, 18);
+            this.lblEventTime.Size = new System.Drawing.Size(92, 18);
             this.lblEventTime.TabIndex = 26;
-            this.lblEventTime.Text = "Event Time:";
+            this.lblEventTime.Text = "Event Time";
             // 
             // btnClearCustName
             // 
+            this.btnClearCustName.BackColor = System.Drawing.Color.White;
             this.btnClearCustName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearCustName.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnClearCustName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnClearCustName.Location = new System.Drawing.Point(570, 94);
             this.btnClearCustName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnClearCustName.Name = "btnClearCustName";
             this.btnClearCustName.Size = new System.Drawing.Size(88, 24);
             this.btnClearCustName.TabIndex = 27;
             this.btnClearCustName.Text = "Clear";
-            this.btnClearCustName.UseVisualStyleBackColor = true;
+            this.btnClearCustName.UseVisualStyleBackColor = false;
             this.btnClearCustName.Click += new System.EventHandler(this.btnClearCustName_Click);
             // 
             // btnHelp
             // 
+            this.btnHelp.BackColor = System.Drawing.Color.White;
             this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHelp.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnHelp.Location = new System.Drawing.Point(1417, 896);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(101, 28);
             this.btnHelp.TabIndex = 28;
             this.btnHelp.Text = "Help";
-            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.UseVisualStyleBackColor = false;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // testCustomerTableAdapter
@@ -738,15 +658,16 @@
             // 
             // btnAddNewCust
             // 
+            this.btnAddNewCust.BackColor = System.Drawing.Color.White;
             this.btnAddNewCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddNewCust.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnAddNewCust.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnAddNewCust.Location = new System.Drawing.Point(643, 33);
             this.btnAddNewCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddNewCust.Name = "btnAddNewCust";
             this.btnAddNewCust.Size = new System.Drawing.Size(198, 30);
             this.btnAddNewCust.TabIndex = 29;
             this.btnAddNewCust.Text = "Add New Customer";
-            this.btnAddNewCust.UseVisualStyleBackColor = true;
+            this.btnAddNewCust.UseVisualStyleBackColor = false;
             this.btnAddNewCust.Click += new System.EventHandler(this.btnAddNewCust_Click);
             // 
             // groupBox1
@@ -760,6 +681,7 @@
             this.groupBox1.Controls.Add(this.txtSearchedName);
             this.groupBox1.Controls.Add(this.lblCustName);
             this.groupBox1.Controls.Add(this.dgvCustomers);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox1.Location = new System.Drawing.Point(28, 21);
             this.groupBox1.Name = "groupBox1";
@@ -778,6 +700,7 @@
             this.groupBox2.Controls.Add(this.lblSearchItems);
             this.groupBox2.Controls.Add(this.btnSearchItem);
             this.groupBox2.Controls.Add(this.btnAddToCart);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox2.Location = new System.Drawing.Point(28, 554);
             this.groupBox2.Name = "groupBox2";
@@ -789,15 +712,16 @@
             // 
             // btnClearItemSearch
             // 
+            this.btnClearItemSearch.BackColor = System.Drawing.Color.White;
             this.btnClearItemSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearItemSearch.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnClearItemSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnClearItemSearch.Location = new System.Drawing.Point(728, 29);
             this.btnClearItemSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnClearItemSearch.Name = "btnClearItemSearch";
             this.btnClearItemSearch.Size = new System.Drawing.Size(88, 33);
             this.btnClearItemSearch.TabIndex = 12;
             this.btnClearItemSearch.Text = "Clear";
-            this.btnClearItemSearch.UseVisualStyleBackColor = true;
+            this.btnClearItemSearch.UseVisualStyleBackColor = false;
             this.btnClearItemSearch.Click += new System.EventHandler(this.btnClearItemSearch_Click);
             // 
             // groupBox3
@@ -815,6 +739,7 @@
             this.groupBox3.Controls.Add(this.dtpEventDate);
             this.groupBox3.Controls.Add(this.lblOrderType);
             this.groupBox3.Controls.Add(this.cmbOrderType);
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox3.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox3.Location = new System.Drawing.Point(1029, 132);
             this.groupBox3.Name = "groupBox3";
@@ -850,23 +775,144 @@
             // 
             // btnCancelOrder
             // 
+            this.btnCancelOrder.BackColor = System.Drawing.Color.White;
             this.btnCancelOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelOrder.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnCancelOrder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnCancelOrder.Location = new System.Drawing.Point(1118, 896);
             this.btnCancelOrder.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnCancelOrder.Name = "btnCancelOrder";
             this.btnCancelOrder.Size = new System.Drawing.Size(129, 28);
             this.btnCancelOrder.TabIndex = 33;
             this.btnCancelOrder.Text = "Cancel Order";
-            this.btnCancelOrder.UseVisualStyleBackColor = true;
+            this.btnCancelOrder.UseVisualStyleBackColor = false;
             this.btnCancelOrder.Click += new System.EventHandler(this.btnCancelOrder_Click);
+            // 
+            // ItemQty
+            // 
+            this.ItemQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ItemQty.HeaderText = "Quantity";
+            this.ItemQty.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.ItemQty.Name = "ItemQty";
+            this.ItemQty.ReadOnly = true;
+            this.ItemQty.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ItemQty.Width = 69;
+            // 
+            // MenuItemID
+            // 
+            this.MenuItemID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.MenuItemID.DataPropertyName = "MenuItemID";
+            this.MenuItemID.HeaderText = "Menu Item ID";
+            this.MenuItemID.Name = "MenuItemID";
+            this.MenuItemID.ReadOnly = true;
+            this.MenuItemID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.MenuItemID.Width = 97;
+            // 
+            // MenuItemName
+            // 
+            this.MenuItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.MenuItemName.DataPropertyName = "MenuItemName";
+            this.MenuItemName.HeaderText = "Item Name";
+            this.MenuItemName.Name = "MenuItemName";
+            this.MenuItemName.ReadOnly = true;
+            this.MenuItemName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.MenuItemName.Width = 97;
+            // 
+            // sellingPrice
+            // 
+            this.sellingPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.sellingPrice.DataPropertyName = "SellingPrice";
+            this.sellingPrice.HeaderText = "Selling Price";
+            this.sellingPrice.Name = "sellingPrice";
+            this.sellingPrice.ReadOnly = true;
+            this.sellingPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.sellingPrice.Width = 110;
+            // 
+            // Category
+            // 
+            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Category.DataPropertyName = "Category";
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            this.Category.ReadOnly = true;
+            this.Category.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Category.Width = 95;
+            // 
+            // PreparationTime
+            // 
+            this.PreparationTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.PreparationTime.DataPropertyName = "PreparationTime";
+            this.PreparationTime.HeaderText = "Preparation Time";
+            this.PreparationTime.Name = "PreparationTime";
+            this.PreparationTime.ReadOnly = true;
+            this.PreparationTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.PreparationTime.Width = 139;
+            // 
+            // FirstName
+            // 
+            this.FirstName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.FirstName.DataPropertyName = "FirstName";
+            this.FirstName.HeaderText = "First Name";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
+            this.FirstName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.FirstName.Width = 107;
+            // 
+            // Surname
+            // 
+            this.Surname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Surname.DataPropertyName = "Surname";
+            this.Surname.HeaderText = "Surname";
+            this.Surname.Name = "Surname";
+            this.Surname.ReadOnly = true;
+            this.Surname.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Surname.Width = 93;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
+            this.addressDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.addressDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            this.emailDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.emailDataGridViewTextBoxColumn.Width = 71;
+            // 
+            // CustomerID
+            // 
+            this.CustomerID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.CustomerID.DataPropertyName = "CustomerID";
+            this.CustomerID.HeaderText = "Customer ID";
+            this.CustomerID.Name = "CustomerID";
+            this.CustomerID.ReadOnly = true;
+            this.CustomerID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CustomerID.Width = 116;
             // 
             // frmNewOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.BackColor = System.Drawing.Color.MidnightBlue;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.ClientSize = new System.Drawing.Size(1733, 999);
             this.Controls.Add(this.btnCancelOrder);
             this.Controls.Add(this.groupBox3);
@@ -969,17 +1015,6 @@
         private System.Windows.Forms.Label lblEventDate;
         private System.Windows.Forms.Label lblEventTime;
         private System.Windows.Forms.Button btnClearCustName;
-        private System.Windows.Forms.DataGridViewComboBoxColumn ItemQty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MenuItemID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MenuItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sellingPrice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PreparationTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
-        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;
         private System.Windows.Forms.Button btnHelp;
         private System.Windows.Forms.Button btnAddNewCust;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -996,5 +1031,16 @@
         private dsCafe101HubTableAdapters.IngredientTableTableAdapter ingredientTableTableAdapter1;
         private System.Windows.Forms.Button btnCancelOrder;
         private System.Windows.Forms.Button btnClearItemSearch;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ItemQty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MenuItemID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MenuItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sellingPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Category;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PreparationTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Surname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn addressDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerID;
     }
 }

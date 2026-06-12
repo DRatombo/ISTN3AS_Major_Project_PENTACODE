@@ -47,107 +47,109 @@
             this.custTxt = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(45, 70);
+            this.label1.Location = new System.Drawing.Point(144, 114);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 20);
+            this.label1.Size = new System.Drawing.Size(72, 18);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Order ID : ";
+            this.label1.Text = "Order ID";
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(45, 119);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(139, 163);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 20);
+            this.label2.Size = new System.Drawing.Size(91, 18);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Date : ";
+            this.label2.Text = "Order Date";
             // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(47, 223);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(139, 271);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 20);
+            this.label4.Size = new System.Drawing.Size(115, 18);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Cashier :";
+            this.label4.Text = "Cashier Name";
             // 
             // label5
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(45, 284);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(139, 329);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(141, 20);
+            this.label5.Size = new System.Drawing.Size(139, 18);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Payment Method : ";
+            this.label5.Text = "Payment Method ";
             // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(40, 330);
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(139, 386);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(116, 20);
+            this.label6.Size = new System.Drawing.Size(108, 18);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Total Amount : ";
+            this.label6.Text = "Total Amount";
             // 
             // label7
             // 
             this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(45, 392);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(144, 442);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(112, 20);
+            this.label7.Size = new System.Drawing.Size(103, 18);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Amount Paid : ";
+            this.label7.Text = "Amount Paid";
             // 
             // label8
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(45, 455);
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(144, 499);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(77, 20);
+            this.label8.Size = new System.Drawing.Size(65, 18);
             this.label8.TabIndex = 7;
-            this.label8.Text = "Change : ";
+            this.label8.Text = "Change";
             // 
             // orderIDTxt
             // 
             this.orderIDTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.orderIDTxt.Location = new System.Drawing.Point(204, 72);
+            this.orderIDTxt.Location = new System.Drawing.Point(303, 116);
             this.orderIDTxt.Margin = new System.Windows.Forms.Padding(2);
             this.orderIDTxt.Name = "orderIDTxt";
             this.orderIDTxt.ReadOnly = true;
-            this.orderIDTxt.Size = new System.Drawing.Size(376, 20);
+            this.orderIDTxt.Size = new System.Drawing.Size(138, 20);
             this.orderIDTxt.TabIndex = 8;
             // 
             // dateTxt
             // 
             this.dateTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dateTxt.Location = new System.Drawing.Point(204, 119);
+            this.dateTxt.Location = new System.Drawing.Point(303, 163);
             this.dateTxt.Margin = new System.Windows.Forms.Padding(2);
             this.dateTxt.Name = "dateTxt";
             this.dateTxt.ReadOnly = true;
@@ -157,7 +159,7 @@
             // cashierTxt
             // 
             this.cashierTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.cashierTxt.Location = new System.Drawing.Point(204, 225);
+            this.cashierTxt.Location = new System.Drawing.Point(303, 269);
             this.cashierTxt.Margin = new System.Windows.Forms.Padding(2);
             this.cashierTxt.Name = "cashierTxt";
             this.cashierTxt.ReadOnly = true;
@@ -167,7 +169,7 @@
             // payTxt
             // 
             this.payTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.payTxt.Location = new System.Drawing.Point(204, 286);
+            this.payTxt.Location = new System.Drawing.Point(303, 330);
             this.payTxt.Margin = new System.Windows.Forms.Padding(2);
             this.payTxt.Name = "payTxt";
             this.payTxt.ReadOnly = true;
@@ -178,19 +180,19 @@
             // 
             this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label9.Location = new System.Drawing.Point(239, 17);
+            this.label9.Location = new System.Drawing.Point(211, 46);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(158, 20);
+            this.label9.Size = new System.Drawing.Size(173, 20);
             this.label9.TabIndex = 13;
             this.label9.Text = "PAYMENT RECEIPT";
             // 
             // totTxt
             // 
             this.totTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.totTxt.Location = new System.Drawing.Point(204, 330);
+            this.totTxt.Location = new System.Drawing.Point(303, 386);
             this.totTxt.Margin = new System.Windows.Forms.Padding(2);
             this.totTxt.Name = "totTxt";
             this.totTxt.ReadOnly = true;
@@ -200,7 +202,7 @@
             // amountTxt
             // 
             this.amountTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.amountTxt.Location = new System.Drawing.Point(204, 394);
+            this.amountTxt.Location = new System.Drawing.Point(303, 444);
             this.amountTxt.Margin = new System.Windows.Forms.Padding(2);
             this.amountTxt.Name = "amountTxt";
             this.amountTxt.ReadOnly = true;
@@ -210,7 +212,7 @@
             // changeTxt
             // 
             this.changeTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.changeTxt.Location = new System.Drawing.Point(204, 457);
+            this.changeTxt.Location = new System.Drawing.Point(303, 501);
             this.changeTxt.Margin = new System.Windows.Forms.Padding(2);
             this.changeTxt.Name = "changeTxt";
             this.changeTxt.ReadOnly = true;
@@ -223,20 +225,20 @@
             this.btnClose.BackColor = System.Drawing.Color.White;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(84)))), ((int)(((byte)(241)))));
-            this.btnClose.Location = new System.Drawing.Point(257, 517);
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
+            this.btnClose.Location = new System.Drawing.Point(329, 565);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(112, 27);
             this.btnClose.TabIndex = 17;
-            this.btnClose.Text = "CLOSE";
+            this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // custTxt
             // 
             this.custTxt.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.custTxt.Location = new System.Drawing.Point(204, 171);
+            this.custTxt.Location = new System.Drawing.Point(303, 215);
             this.custTxt.Margin = new System.Windows.Forms.Padding(2);
             this.custTxt.Name = "custTxt";
             this.custTxt.ReadOnly = true;
@@ -248,13 +250,13 @@
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(45, 169);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(139, 214);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(90, 20);
+            this.label3.Size = new System.Drawing.Size(131, 18);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Customer : ";
+            this.label3.Text = "Customer Name";
             // 
             // button1
             // 
@@ -262,21 +264,32 @@
             this.button1.BackColor = System.Drawing.Color.White;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.button1.Location = new System.Drawing.Point(148, 517);
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
+            this.button1.Location = new System.Drawing.Point(148, 565);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 32);
+            this.button1.Size = new System.Drawing.Size(75, 27);
             this.button1.TabIndex = 18;
             this.button1.Text = "Print";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
+            this.pictureBox1.Location = new System.Drawing.Point(27, 610);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(120, 113);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 19;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmReceipt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.MidnightBlue;
-            this.ClientSize = new System.Drawing.Size(585, 600);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
+            this.ClientSize = new System.Drawing.Size(585, 744);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.changeTxt);
@@ -301,6 +314,7 @@
             this.Name = "frmReceipt";
             this.Text = "Receipt";
             this.Load += new System.EventHandler(this.frmReceipt_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -327,5 +341,6 @@
         private System.Windows.Forms.TextBox custTxt;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

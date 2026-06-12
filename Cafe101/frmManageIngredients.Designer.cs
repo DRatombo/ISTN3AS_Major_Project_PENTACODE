@@ -15,8 +15,8 @@
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblMain = new System.Windows.Forms.TableLayoutPanel();
             this.pnlSearch = new System.Windows.Forms.Panel();
             this.lblSearch = new System.Windows.Forms.Label();
@@ -41,6 +41,7 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tblMain.SuspendLayout();
             this.pnlSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIngredients)).BeginInit();
@@ -49,10 +50,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numRestockLevel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCostPrice)).BeginInit();
             this.pnlButtons.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tblMain
             // 
+            this.tblMain.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.tblMain.ColumnCount = 1;
             this.tblMain.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblMain.Controls.Add(this.pnlSearch, 0, 0);
@@ -68,8 +71,9 @@
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 40F));
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tblMain.Size = new System.Drawing.Size(1000, 596);
+            this.tblMain.Size = new System.Drawing.Size(1000, 850);
             this.tblMain.TabIndex = 0;
+            this.tblMain.Paint += new System.Windows.Forms.PaintEventHandler(this.tblMain_Paint);
             // 
             // pnlSearch
             // 
@@ -89,9 +93,9 @@
             this.lblSearch.ForeColor = System.Drawing.Color.White;
             this.lblSearch.Location = new System.Drawing.Point(10, 12);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(68, 23);
+            this.lblSearch.Size = new System.Drawing.Size(54, 19);
             this.lblSearch.TabIndex = 0;
-            this.lblSearch.Text = "Search:";
+            this.lblSearch.Text = "Search";
             // 
             // txtSearch
             // 
@@ -100,7 +104,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Location = new System.Drawing.Point(80, 9);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(300, 30);
+            this.txtSearch.Size = new System.Drawing.Size(300, 25);
             this.txtSearch.TabIndex = 1;
             // 
             // btnClearSearch
@@ -123,24 +127,24 @@
             this.dgvIngredients.AllowUserToAddRows = false;
             this.dgvIngredients.AllowUserToDeleteRows = false;
             this.dgvIngredients.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvIngredients.BackgroundColor = System.Drawing.Color.MidnightBlue;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIngredients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvIngredients.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIngredients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvIngredients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvIngredients.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvIngredients.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvIngredients.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvIngredients.EnableHeadersVisualStyles = false;
             this.dgvIngredients.GridColor = System.Drawing.Color.DarkGray;
@@ -152,7 +156,7 @@
             this.dgvIngredients.RowHeadersWidth = 51;
             this.dgvIngredients.RowTemplate.Height = 24;
             this.dgvIngredients.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvIngredients.Size = new System.Drawing.Size(970, 246);
+            this.dgvIngredients.Size = new System.Drawing.Size(970, 373);
             this.dgvIngredients.TabIndex = 0;
             this.dgvIngredients.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvIngredients_CellClick);
             // 
@@ -165,17 +169,19 @@
             this.grpIngredientDetails.Controls.Add(this.txtUnits);
             this.grpIngredientDetails.Controls.Add(this.lblQuantityInStock);
             this.grpIngredientDetails.Controls.Add(this.numQuantityInStock);
+            this.grpIngredientDetails.Controls.Add(this.pictureBox1);
             this.grpIngredientDetails.Controls.Add(this.lblRestockLevel);
             this.grpIngredientDetails.Controls.Add(this.numRestockLevel);
             this.grpIngredientDetails.Controls.Add(this.lblCostPrice);
             this.grpIngredientDetails.Controls.Add(this.numCostPrice);
             this.grpIngredientDetails.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpIngredientDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.grpIngredientDetails.ForeColor = System.Drawing.Color.White;
-            this.grpIngredientDetails.Location = new System.Drawing.Point(15, 326);
+            this.grpIngredientDetails.Location = new System.Drawing.Point(15, 453);
             this.grpIngredientDetails.Margin = new System.Windows.Forms.Padding(3, 3, 3, 12);
             this.grpIngredientDetails.Name = "grpIngredientDetails";
             this.grpIngredientDetails.Padding = new System.Windows.Forms.Padding(12);
-            this.grpIngredientDetails.Size = new System.Drawing.Size(970, 193);
+            this.grpIngredientDetails.Size = new System.Drawing.Size(970, 295);
             this.grpIngredientDetails.TabIndex = 1;
             this.grpIngredientDetails.TabStop = false;
             this.grpIngredientDetails.Text = "Ingredient Details";
@@ -184,61 +190,61 @@
             // 
             this.lblDescription.AutoSize = true;
             this.lblDescription.ForeColor = System.Drawing.Color.White;
-            this.lblDescription.Location = new System.Drawing.Point(16, 20);
+            this.lblDescription.Location = new System.Drawing.Point(21, 53);
             this.lblDescription.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(88, 20);
+            this.lblDescription.Size = new System.Drawing.Size(86, 16);
             this.lblDescription.TabIndex = 0;
-            this.lblDescription.Text = "Description:";
+            this.lblDescription.Text = "Description";
             // 
             // txtDescription
             // 
             this.txtDescription.BackColor = System.Drawing.Color.White;
             this.txtDescription.ForeColor = System.Drawing.Color.Black;
-            this.txtDescription.Location = new System.Drawing.Point(120, 18);
+            this.txtDescription.Location = new System.Drawing.Point(125, 51);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(6);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(300, 27);
+            this.txtDescription.Size = new System.Drawing.Size(300, 22);
             this.txtDescription.TabIndex = 1;
             // 
             // lblUnits
             // 
             this.lblUnits.AutoSize = true;
             this.lblUnits.ForeColor = System.Drawing.Color.White;
-            this.lblUnits.Location = new System.Drawing.Point(430, 20);
+            this.lblUnits.Location = new System.Drawing.Point(468, 53);
             this.lblUnits.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblUnits.Name = "lblUnits";
-            this.lblUnits.Size = new System.Drawing.Size(45, 20);
+            this.lblUnits.Size = new System.Drawing.Size(42, 16);
             this.lblUnits.TabIndex = 2;
-            this.lblUnits.Text = "Units:";
+            this.lblUnits.Text = "Units";
             // 
             // txtUnits
             // 
             this.txtUnits.BackColor = System.Drawing.Color.White;
             this.txtUnits.ForeColor = System.Drawing.Color.Black;
-            this.txtUnits.Location = new System.Drawing.Point(490, 18);
+            this.txtUnits.Location = new System.Drawing.Point(528, 51);
             this.txtUnits.Margin = new System.Windows.Forms.Padding(6);
             this.txtUnits.Name = "txtUnits";
-            this.txtUnits.Size = new System.Drawing.Size(100, 27);
+            this.txtUnits.Size = new System.Drawing.Size(100, 22);
             this.txtUnits.TabIndex = 3;
             // 
             // lblQuantityInStock
             // 
             this.lblQuantityInStock.AutoSize = true;
             this.lblQuantityInStock.ForeColor = System.Drawing.Color.White;
-            this.lblQuantityInStock.Location = new System.Drawing.Point(16, 60);
+            this.lblQuantityInStock.Location = new System.Drawing.Point(20, 106);
             this.lblQuantityInStock.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblQuantityInStock.Name = "lblQuantityInStock";
-            this.lblQuantityInStock.Size = new System.Drawing.Size(91, 20);
+            this.lblQuantityInStock.Size = new System.Drawing.Size(89, 16);
             this.lblQuantityInStock.TabIndex = 4;
-            this.lblQuantityInStock.Text = "Qty In Stock:";
+            this.lblQuantityInStock.Text = "Qty In Stock";
             // 
             // numQuantityInStock
             // 
             this.numQuantityInStock.BackColor = System.Drawing.Color.White;
             this.numQuantityInStock.DecimalPlaces = 2;
             this.numQuantityInStock.ForeColor = System.Drawing.Color.Black;
-            this.numQuantityInStock.Location = new System.Drawing.Point(150, 58);
+            this.numQuantityInStock.Location = new System.Drawing.Point(125, 104);
             this.numQuantityInStock.Margin = new System.Windows.Forms.Padding(6);
             this.numQuantityInStock.Maximum = new decimal(new int[] {
             100000,
@@ -246,7 +252,7 @@
             0,
             0});
             this.numQuantityInStock.Name = "numQuantityInStock";
-            this.numQuantityInStock.Size = new System.Drawing.Size(120, 27);
+            this.numQuantityInStock.Size = new System.Drawing.Size(120, 22);
             this.numQuantityInStock.TabIndex = 5;
             this.numQuantityInStock.ThousandsSeparator = true;
             // 
@@ -254,19 +260,19 @@
             // 
             this.lblRestockLevel.AutoSize = true;
             this.lblRestockLevel.ForeColor = System.Drawing.Color.White;
-            this.lblRestockLevel.Location = new System.Drawing.Point(280, 60);
+            this.lblRestockLevel.Location = new System.Drawing.Point(288, 104);
             this.lblRestockLevel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblRestockLevel.Name = "lblRestockLevel";
-            this.lblRestockLevel.Size = new System.Drawing.Size(101, 20);
+            this.lblRestockLevel.Size = new System.Drawing.Size(106, 16);
             this.lblRestockLevel.TabIndex = 6;
-            this.lblRestockLevel.Text = "Restock Level:";
+            this.lblRestockLevel.Text = "Restock Level";
             // 
             // numRestockLevel
             // 
             this.numRestockLevel.BackColor = System.Drawing.Color.White;
             this.numRestockLevel.DecimalPlaces = 2;
             this.numRestockLevel.ForeColor = System.Drawing.Color.Black;
-            this.numRestockLevel.Location = new System.Drawing.Point(390, 58);
+            this.numRestockLevel.Location = new System.Drawing.Point(410, 102);
             this.numRestockLevel.Margin = new System.Windows.Forms.Padding(6);
             this.numRestockLevel.Maximum = new decimal(new int[] {
             100000,
@@ -274,7 +280,7 @@
             0,
             0});
             this.numRestockLevel.Name = "numRestockLevel";
-            this.numRestockLevel.Size = new System.Drawing.Size(120, 27);
+            this.numRestockLevel.Size = new System.Drawing.Size(120, 22);
             this.numRestockLevel.TabIndex = 7;
             this.numRestockLevel.ThousandsSeparator = true;
             // 
@@ -282,19 +288,19 @@
             // 
             this.lblCostPrice.AutoSize = true;
             this.lblCostPrice.ForeColor = System.Drawing.Color.White;
-            this.lblCostPrice.Location = new System.Drawing.Point(520, 60);
+            this.lblCostPrice.Location = new System.Drawing.Point(612, 104);
             this.lblCostPrice.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblCostPrice.Name = "lblCostPrice";
-            this.lblCostPrice.Size = new System.Drawing.Size(77, 20);
+            this.lblCostPrice.Size = new System.Drawing.Size(78, 16);
             this.lblCostPrice.TabIndex = 8;
-            this.lblCostPrice.Text = "Cost Price:";
+            this.lblCostPrice.Text = "Cost Price";
             // 
             // numCostPrice
             // 
             this.numCostPrice.BackColor = System.Drawing.Color.White;
             this.numCostPrice.DecimalPlaces = 2;
             this.numCostPrice.ForeColor = System.Drawing.Color.Black;
-            this.numCostPrice.Location = new System.Drawing.Point(600, 58);
+            this.numCostPrice.Location = new System.Drawing.Point(706, 102);
             this.numCostPrice.Margin = new System.Windows.Forms.Padding(6);
             this.numCostPrice.Maximum = new decimal(new int[] {
             100000,
@@ -302,7 +308,7 @@
             0,
             0});
             this.numCostPrice.Name = "numCostPrice";
-            this.numCostPrice.Size = new System.Drawing.Size(120, 27);
+            this.numCostPrice.Size = new System.Drawing.Size(122, 22);
             this.numCostPrice.TabIndex = 9;
             this.numCostPrice.ThousandsSeparator = true;
             // 
@@ -317,10 +323,10 @@
             this.pnlButtons.Controls.Add(this.btnHelp);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.pnlButtons.Location = new System.Drawing.Point(15, 537);
+            this.pnlButtons.Location = new System.Drawing.Point(15, 766);
             this.pnlButtons.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(970, 44);
+            this.pnlButtons.Size = new System.Drawing.Size(970, 69);
             this.pnlButtons.TabIndex = 2;
             // 
             // btnBack
@@ -331,7 +337,7 @@
             this.btnBack.FlatAppearance.BorderSize = 2;
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnBack.Location = new System.Drawing.Point(876, 6);
             this.btnBack.Margin = new System.Windows.Forms.Padding(6);
             this.btnBack.Name = "btnBack";
@@ -349,7 +355,7 @@
             this.btnRefresh.FlatAppearance.BorderSize = 2;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnRefresh.Location = new System.Drawing.Point(768, 6);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(6);
             this.btnRefresh.Name = "btnRefresh";
@@ -367,7 +373,7 @@
             this.btnRemove.FlatAppearance.BorderSize = 2;
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnRemove.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnRemove.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnRemove.Location = new System.Drawing.Point(655, 6);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(6);
             this.btnRemove.Name = "btnRemove";
@@ -385,7 +391,7 @@
             this.btnUpdate.FlatAppearance.BorderSize = 2;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnUpdate.Location = new System.Drawing.Point(553, 6);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(6);
             this.btnUpdate.Name = "btnUpdate";
@@ -403,7 +409,7 @@
             this.btnAdd.FlatAppearance.BorderSize = 2;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnAdd.Location = new System.Drawing.Point(431, 6);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(6);
             this.btnAdd.Name = "btnAdd";
@@ -421,7 +427,7 @@
             this.btnHelp.FlatAppearance.BorderSize = 2;
             this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.btnHelp.Location = new System.Drawing.Point(309, 6);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(6);
             this.btnHelp.Name = "btnHelp";
@@ -431,12 +437,22 @@
             this.btnHelp.UseVisualStyleBackColor = false;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click_1);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
+            this.pictureBox1.Location = new System.Drawing.Point(14, 173);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(141, 122);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmManageIngredients
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(112)))));
-            this.ClientSize = new System.Drawing.Size(1000, 596);
+            this.ClientSize = new System.Drawing.Size(1000, 850);
             this.Controls.Add(this.tblMain);
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.MinimumSize = new System.Drawing.Size(800, 480);
@@ -457,6 +473,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numCostPrice)).EndInit();
             this.pnlButtons.ResumeLayout(false);
             this.pnlButtons.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -485,5 +502,6 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnBack;
         private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

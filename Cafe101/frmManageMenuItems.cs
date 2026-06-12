@@ -26,7 +26,8 @@ namespace Cafe101
             lblPrepTimeStatus.AutoSize = true;
             lblPrepTimeStatus.Font = new System.Drawing.Font("Segoe UI", 8F);
             lblPrepTimeStatus.ForeColor = System.Drawing.Color.White;
-            lblPrepTimeStatus.Location = new System.Drawing.Point(120, 185);
+            // Position directly below the Prep Time textbox
+            lblPrepTimeStatus.Location = new System.Drawing.Point(120, 218);
             lblPrepTimeStatus.Name = "lblPrepTimeStatus";
             lblPrepTimeStatus.Size = new System.Drawing.Size(0, 20);
             lblPrepTimeStatus.TabIndex = 11;

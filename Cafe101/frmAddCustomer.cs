@@ -3,6 +3,8 @@ using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Cafe101
 {
@@ -73,6 +75,11 @@ namespace Cafe101
             cmbCountryCode.Items.Add("+91 (India)");
 
             cmbCountryCode.SelectedIndex = 0; // South Africa default
+
+            dgvCustomers.DataSource = customerTableTableAdapter1.GetData();
+
+            if (dgvCustomers.Columns.Contains("Password"))
+                dgvCustomers.Columns["Password"].Visible = false;
         }
 
         private void LoadCustomers()
@@ -437,13 +444,15 @@ namespace Cafe101
                 string countryCode = cmbCountryCode.Text.Split(' ')[0];
                 string fullPhoneNumber = countryCode + txtPhoneNumber.Text.Trim();
 
+                string hashedPassword = HashPassword(txtPassword.Text.Trim());
+
                 customerTableTableAdapter1.InsertCust(
                     txtFirstName.Text.Trim(),
                     txtSurname.Text.Trim(),
                     fullPhoneNumber,
                     txtAddress.Text.Trim(),
                     txtCustEmail.Text.Trim(),
-                    txtPassword.Text.Trim()
+                    hashedPassword
                 );
 
                 MessageBox.Show(
@@ -633,11 +642,36 @@ namespace Cafe101
             }
         }
 
-       /* private void frmAddCustomer_FormClosed(object sender, FormClosedEventArgs e)
+        private void dgvCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (!goingHome && this.Owner != null)
-                this.Owner.Show();
-        }*/
+            dgvCustomers.Columns[5].Visible = false; // Ensure password column stays hidden if user clicks grid
+
+        }
+
+        /* private void frmAddCustomer_FormClosed(object sender, FormClosedEventArgs e)
+         {
+             if (!goingHome && this.Owner != null)
+                 this.Owner.Show();
+         }*/
+
+        //HASHING PASSWORDS
+        private string HashPassword(string password)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] bytes = sha256.ComputeHash(
+                    Encoding.UTF8.GetBytes(password));
+
+                StringBuilder builder = new StringBuilder();
+
+                foreach (byte b in bytes)
+                {
+                    builder.Append(b.ToString("x2"));
+                }
+
+                return builder.ToString();
+            }
+        }
 
     }
 }

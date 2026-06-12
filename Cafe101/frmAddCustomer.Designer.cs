@@ -64,6 +64,8 @@
             this.customerTableTableAdapter1 = new Cafe101.dsCafe101HubTableAdapters.CustomerTableTableAdapter();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbCountryCode = new System.Windows.Forms.ComboBox();
+            this.dsCafe101HubBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.customerTableBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.customerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.surnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,11 +73,14 @@
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.phoneNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101HubBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerTableBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblFirstName
@@ -263,7 +268,7 @@
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
-            this.pictureBox1.Location = new System.Drawing.Point(46, 668);
+            this.pictureBox1.Location = new System.Drawing.Point(23, 668);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(152, 145);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -350,9 +355,9 @@
             this.groupBox1.Controls.Add(this.dgvCustomers);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox1.Location = new System.Drawing.Point(249, 209);
+            this.groupBox1.Location = new System.Drawing.Point(173, 209);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(867, 512);
+            this.groupBox1.Size = new System.Drawing.Size(943, 512);
             this.groupBox1.TabIndex = 29;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "EXISTING CUSTOMERS";
@@ -369,14 +374,16 @@
             this.addressDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn,
             this.passwordDataGridViewTextBoxColumn,
-            this.statusDataGridViewTextBoxColumn});
-            this.dgvCustomers.DataSource = this.customerTableBindingSource;
+            this.statusDataGridViewTextBoxColumn,
+            this.phoneNumberDataGridViewTextBoxColumn});
+            this.dgvCustomers.DataSource = this.customerTableBindingSource1;
             this.dgvCustomers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCustomers.GridColor = System.Drawing.Color.Navy;
             this.dgvCustomers.Location = new System.Drawing.Point(3, 20);
             this.dgvCustomers.Name = "dgvCustomers";
-            this.dgvCustomers.Size = new System.Drawing.Size(861, 489);
+            this.dgvCustomers.Size = new System.Drawing.Size(937, 489);
             this.dgvCustomers.TabIndex = 0;
+            this.dgvCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellContentClick);
             // 
             // customerTableBindingSource
             // 
@@ -473,6 +480,16 @@
             this.cmbCountryCode.Size = new System.Drawing.Size(128, 21);
             this.cmbCountryCode.TabIndex = 37;
             // 
+            // dsCafe101HubBindingSource
+            // 
+            this.dsCafe101HubBindingSource.DataSource = this.dsCafe101Hub;
+            this.dsCafe101HubBindingSource.Position = 0;
+            // 
+            // customerTableBindingSource1
+            // 
+            this.customerTableBindingSource1.DataMember = "CustomerTable";
+            this.customerTableBindingSource1.DataSource = this.dsCafe101HubBindingSource;
+            // 
             // customerIDDataGridViewTextBoxColumn
             // 
             this.customerIDDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
@@ -542,6 +559,16 @@
             this.statusDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.statusDataGridViewTextBoxColumn.Width = 81;
             // 
+            // phoneNumberDataGridViewTextBoxColumn
+            // 
+            this.phoneNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.phoneNumberDataGridViewTextBoxColumn.DataPropertyName = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn.HeaderText = "PhoneNumber";
+            this.phoneNumberDataGridViewTextBoxColumn.Name = "phoneNumberDataGridViewTextBoxColumn";
+            this.phoneNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            this.phoneNumberDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.phoneNumberDataGridViewTextBoxColumn.Width = 140;
+            // 
             // frmAddCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
@@ -586,6 +613,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customerTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsCafe101HubBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.customerTableBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -630,6 +659,8 @@
         private dsCafe101Hub dsCafe101Hub;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbCountryCode;
+        private System.Windows.Forms.BindingSource customerTableBindingSource1;
+        private System.Windows.Forms.BindingSource dsCafe101HubBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn surnameDataGridViewTextBoxColumn;
@@ -637,5 +668,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn phoneNumberDataGridViewTextBoxColumn;
     }
 }

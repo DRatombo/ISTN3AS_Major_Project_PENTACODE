@@ -27,10 +27,10 @@
             this.lblIngredient = new System.Windows.Forms.Label();
             this.cboIngredients = new System.Windows.Forms.ComboBox();
             this.lblQuantity = new System.Windows.Forms.Label();
-            this.numQuantity = new System.Windows.Forms.NumericUpDown();
             this.btnAddToRecipe = new System.Windows.Forms.Button();
             this.btnRemoveLink = new System.Windows.Forms.Button();
             this.btnRefreshRecipe = new System.Windows.Forms.Button();
+            this.numQuantity = new System.Windows.Forms.NumericUpDown();
             this.dgvRecipe = new System.Windows.Forms.DataGridView();
             this.btnHelp = new System.Windows.Forms.Button();
             this.tblMain.SuspendLayout();
@@ -176,7 +176,7 @@
             this.cboMenuItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMenuItems.ForeColor = System.Drawing.Color.Black;
             this.cboMenuItems.FormattingEnabled = true;
-            this.cboMenuItems.Location = new System.Drawing.Point(86, 14);
+            this.cboMenuItems.Location = new System.Drawing.Point(133, 15);
             this.cboMenuItems.Margin = new System.Windows.Forms.Padding(6);
             this.cboMenuItems.Name = "cboMenuItems";
             this.cboMenuItems.Size = new System.Drawing.Size(255, 23);
@@ -202,7 +202,7 @@
             this.cboIngredients.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIngredients.ForeColor = System.Drawing.Color.Black;
             this.cboIngredients.FormattingEnabled = true;
-            this.cboIngredients.Location = new System.Drawing.Point(86, 64);
+            this.cboIngredients.Location = new System.Drawing.Point(133, 68);
             this.cboIngredients.Margin = new System.Windows.Forms.Padding(6);
             this.cboIngredients.Name = "cboIngredients";
             this.cboIngredients.Size = new System.Drawing.Size(255, 23);
@@ -220,36 +220,6 @@
             this.lblQuantity.Size = new System.Drawing.Size(63, 16);
             this.lblQuantity.TabIndex = 6;
             this.lblQuantity.Text = "Quantity";
-            // 
-            // numQuantity
-            // 
-            this.numQuantity.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.numQuantity.BackColor = System.Drawing.Color.White;
-            this.numQuantity.DecimalPlaces = 2;
-            this.numQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.numQuantity.ForeColor = System.Drawing.Color.Black;
-            this.numQuantity.Location = new System.Drawing.Point(774, 67);
-            this.numQuantity.Margin = new System.Windows.Forms.Padding(6);
-            this.numQuantity.Maximum = new decimal(new int[] {
-            999999,
-            0,
-            0,
-            0});
-            this.numQuantity.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numQuantity.Name = "numQuantity";
-            this.numQuantity.Size = new System.Drawing.Size(70, 22);
-            this.numQuantity.TabIndex = 7;
-            this.numQuantity.ThousandsSeparator = true;
-            this.numQuantity.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numQuantity.TextChanged += new System.EventHandler(this.numQuantity_TextChanged);
             // 
             // btnAddToRecipe
             // 
@@ -307,6 +277,36 @@
             this.btnRefreshRecipe.Text = "Refresh";
             this.btnRefreshRecipe.UseVisualStyleBackColor = false;
             this.btnRefreshRecipe.Click += new System.EventHandler(this.btnRefreshRecipe_Click);
+            // 
+            // numQuantity
+            // 
+            this.numQuantity.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.numQuantity.BackColor = System.Drawing.Color.White;
+            this.numQuantity.DecimalPlaces = 2;
+            this.numQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.numQuantity.ForeColor = System.Drawing.Color.Black;
+            this.numQuantity.Location = new System.Drawing.Point(774, 67);
+            this.numQuantity.Margin = new System.Windows.Forms.Padding(6);
+            this.numQuantity.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.numQuantity.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numQuantity.Name = "numQuantity";
+            this.numQuantity.Size = new System.Drawing.Size(70, 22);
+            this.numQuantity.TabIndex = 7;
+            this.numQuantity.ThousandsSeparator = true;
+            this.numQuantity.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numQuantity.TextChanged += new System.EventHandler(this.numQuantity_TextChanged);
             // 
             // dgvRecipe
             // 

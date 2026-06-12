@@ -49,6 +49,7 @@ namespace Cafe101
                     o.OrderStatus AS [Status]
                  FROM [OrderTable] o
                  LEFT JOIN CustomerTable c ON o.CustomerID = c.CustomerID
+                 WHERE CAST(o.OrderDatetime AS DATE) = CAST(GETDATE() AS DATE)
                  ORDER BY o.OrderDatetime DESC";
 
                 using (SqlConnection conn = DBConnection.GetConnection())
@@ -97,6 +98,8 @@ namespace Cafe101
 
         private void btnClose_Click(object sender, EventArgs e)
         {
+            frmSalesReport reportForm = new frmSalesReport();
+            reportForm.Show();
             this.Close();
         }
 

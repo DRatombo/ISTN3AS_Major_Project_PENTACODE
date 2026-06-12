@@ -175,6 +175,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(142, 30);
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(149, 26);
             this.textBox1.TabIndex = 4;
             // 
@@ -182,6 +183,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(142, 82);
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(149, 26);
             this.textBox2.TabIndex = 5;
             // 
@@ -189,6 +191,7 @@
             // 
             this.textBox3.Location = new System.Drawing.Point(142, 133);
             this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             this.textBox3.Size = new System.Drawing.Size(149, 26);
             this.textBox3.TabIndex = 6;
             // 

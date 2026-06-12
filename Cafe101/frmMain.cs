@@ -184,37 +184,69 @@ namespace Cafe101
                 return;
             }
 
-            string stepTitle = "📖 Cafe101 Main Dashboard Guide";
-            string stepDetail =
-                "Once logged in, use the navigation tabs at the top of the screen to access all the core features of the Cafe101 system.\r\n\r\n" +
+            string stepTitle =
+                  $"📖 Welcome {SessionManager.FirstName} - {SessionManager.Role} Dashboard Guide";
+            string stepDetail = "";
 
-                "─────────────────────── The Navigation Tabs ───────────────────────\r\n\r\n" +
+            if (SessionManager.Role == "Cashier")
+            {
+                stepDetail =
+                    "Welcome to Cafe101.\r\n\r\n" +
 
-                " Orders\r\n" +
-                "• New customers can be added into the system before placing an order — regular customers continue as normal.\r\n" +
-                "• Select the items a customer would like to order directly from the menu list.\r\n" +
-                "• Add or remove items as needed before confirming the order.\r\n" +
-                "• Process the customer's payment directly through the same interface once the order is finalised.\r\n\r\n" +
+                    "As a Cashier, your main responsibility is processing customer orders quickly and accurately.\r\n\r\n" +
 
-                " Analytics\r\n" +
-                "• View sales reports that show how much revenue and profit the business is generating.\r\n" +
-                "• See business projections to understand future performance trends over time.\r\n" +
-                "• All data is displayed using charts and graphs to make it easy to read and understand at a glance.\r\n" +
-                "• This tab is primarily used by management to make informed business decisions.\r\n\r\n" +
+                    "──────────────────── Orders ────────────────────\r\n\r\n" +
 
-                " Management\r\n" +
-                "• Add new employees to the system.\r\n" +
-                "• Add new ingredients to the menu with their relevent details.\r\n" +
-                "• Add new menu items or recipes to the system at any time.\r\n" +
-                "• View existing menu items and all their associated details.\r\n" +
-                "• Update information such as prices, ingredients, or descriptions.\r\n" +
-                "• Remove menu items or recipes that are no longer being offered.\r\n" +
-                "• Each operation opens its own dedicated interface, making it easy to focus on one task at a time.\r\n\r\n" +   
+                    "• Search for an existing customer or add a new customer.\r\n" +
+                    "• Select menu items and quantities.\r\n" +
+                    "• Review the cart before confirming the order.\r\n" +
+                    "• Process payment and provide change where necessary.\r\n" +
+                    "• Event orders can be scheduled for a future date and time.\r\n\r\n" +
 
-                " Logout\r\n" +
-                "• Use this option to return to the login screen so that another user can log in.\r\n\r\n" +
+                    "──────────────────── Customers ────────────────────\r\n\r\n" +
 
-                " Note: Some tabs may be hidden depending on your assigned role (Cashier or Manager).";
+                    "• View customer information.\r\n" +
+                    "• Add new customers when they are not already registered.\r\n" +
+                    "• Update customer details if required.\r\n\r\n" +
+
+                    "──────────────────── Logout ────────────────────\r\n\r\n" +
+
+                    "• Logout when your shift ends.\r\n" +
+                    "• This ensures accurate login history tracking.\r\n\r\n" +
+
+                    "⚠ Cashiers cannot access Analytics or Management functions.";
+            }
+            else // Manager
+            {
+                stepDetail =
+                    "Welcome to Cafe101.\r\n\r\n" +
+
+                    "As a Manager, you have full access to operational and analytical functions of the system.\r\n\r\n" +
+
+                    "──────────────────── Orders ────────────────────\r\n\r\n" +
+
+                    "• Create and manage customer orders.\r\n" +
+                    "• Process payments and review order information.\r\n\r\n" +
+
+                    "──────────────────── Analytics ────────────────────\r\n\r\n" +
+
+                    "• View sales reports and revenue trends.\r\n" +
+                    "• Analyse popular products.\r\n" +
+                    "• Monitor business performance using charts and reports.\r\n" +
+                    "• Review low-stock warnings and inventory trends.\r\n\r\n" +
+
+                    "──────────────────── Management ────────────────────\r\n\r\n" +
+
+                    "• Manage employees and cashier accounts.\r\n" +
+                    "• Manage ingredients and stock levels.\r\n" +
+                    "• Create and update menu items.\r\n" +
+                    "• Create and maintain recipes.\r\n" +
+                    "• Manage customer records.\r\n\r\n" +
+
+                    "──────────────────── Logout ────────────────────\r\n\r\n" +
+
+                    "• Logout securely when finished using the system.";
+            }
 
             if (pnlHelpDash == null)
             {

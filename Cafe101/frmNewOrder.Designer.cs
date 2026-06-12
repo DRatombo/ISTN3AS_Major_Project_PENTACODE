@@ -105,6 +105,7 @@
             this.btnAddNewCust = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnClearItemSearch = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.customerTableTableAdapter = new Cafe101.dsCafe101HubTableAdapters.CustomerTableTableAdapter();
             this.menuItemsTableTableAdapter = new Cafe101.dsCafe101HubTableAdapters.MenuItemsTableTableAdapter();
@@ -113,7 +114,6 @@
             this.orderTableTableAdapter1 = new Cafe101.dsCafe101HubTableAdapters.OrderTableTableAdapter();
             this.ingredientTableTableAdapter1 = new Cafe101.dsCafe101HubTableAdapters.IngredientTableTableAdapter();
             this.btnCancelOrder = new System.Windows.Forms.Button();
-            this.btnClearItemSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
@@ -256,7 +256,6 @@
             this.dgvMenuItems.Location = new System.Drawing.Point(22, 97);
             this.dgvMenuItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvMenuItems.Name = "dgvMenuItems";
-           // this.dgvMenuItems.ReadOnly = true;
             this.dgvMenuItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvMenuItems.Size = new System.Drawing.Size(894, 210);
             this.dgvMenuItems.TabIndex = 11;
@@ -768,6 +767,7 @@
             this.groupBox1.TabIndex = 30;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "STEP 1: SELECT A CUSTOMER";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // groupBox2
             // 
@@ -786,6 +786,19 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "STEP 2: SELECT MENU ITEMS AND ADD TO CART";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+            // 
+            // btnClearItemSearch
+            // 
+            this.btnClearItemSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearItemSearch.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.btnClearItemSearch.Location = new System.Drawing.Point(728, 29);
+            this.btnClearItemSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.btnClearItemSearch.Name = "btnClearItemSearch";
+            this.btnClearItemSearch.Size = new System.Drawing.Size(88, 33);
+            this.btnClearItemSearch.TabIndex = 12;
+            this.btnClearItemSearch.Text = "Clear";
+            this.btnClearItemSearch.UseVisualStyleBackColor = true;
+            this.btnClearItemSearch.Click += new System.EventHandler(this.btnClearItemSearch_Click);
             // 
             // groupBox3
             // 
@@ -847,19 +860,6 @@
             this.btnCancelOrder.Text = "Cancel Order";
             this.btnCancelOrder.UseVisualStyleBackColor = true;
             this.btnCancelOrder.Click += new System.EventHandler(this.btnCancelOrder_Click);
-            // 
-            // btnClearItemSearch
-            // 
-            this.btnClearItemSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearItemSearch.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.btnClearItemSearch.Location = new System.Drawing.Point(728, 29);
-            this.btnClearItemSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnClearItemSearch.Name = "btnClearItemSearch";
-            this.btnClearItemSearch.Size = new System.Drawing.Size(88, 33);
-            this.btnClearItemSearch.TabIndex = 12;
-            this.btnClearItemSearch.Text = "Clear";
-            this.btnClearItemSearch.UseVisualStyleBackColor = true;
-            this.btnClearItemSearch.Click += new System.EventHandler(this.btnClearItemSearch_Click);
             // 
             // frmNewOrder
             // 

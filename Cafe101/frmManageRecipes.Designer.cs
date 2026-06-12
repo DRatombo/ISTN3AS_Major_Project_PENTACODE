@@ -78,7 +78,7 @@
             this.lblSearch.ForeColor = System.Drawing.Color.White;
             this.lblSearch.Location = new System.Drawing.Point(10, 12);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(68, 23);
+            this.lblSearch.Size = new System.Drawing.Size(58, 19);
             this.lblSearch.TabIndex = 0;
             this.lblSearch.Text = "Search:";
             // 
@@ -89,7 +89,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Location = new System.Drawing.Point(80, 9);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(300, 30);
+            this.txtSearch.Size = new System.Drawing.Size(300, 25);
             this.txtSearch.TabIndex = 1;
             // 
             // btnClearSearch
@@ -160,10 +160,10 @@
             this.lblMenuItem.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblMenuItem.AutoSize = true;
             this.lblMenuItem.ForeColor = System.Drawing.Color.White;
-            this.lblMenuItem.Location = new System.Drawing.Point(6, 6);
+            this.lblMenuItem.Location = new System.Drawing.Point(6, 18);
             this.lblMenuItem.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblMenuItem.Name = "lblMenuItem";
-            this.lblMenuItem.Size = new System.Drawing.Size(50, 40);
+            this.lblMenuItem.Size = new System.Drawing.Size(68, 15);
             this.lblMenuItem.TabIndex = 0;
             this.lblMenuItem.Text = "Menu Item:";
             // 
@@ -174,10 +174,10 @@
             this.cboMenuItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMenuItems.ForeColor = System.Drawing.Color.Black;
             this.cboMenuItems.FormattingEnabled = true;
-            this.cboMenuItems.Location = new System.Drawing.Point(86, 12);
+            this.cboMenuItems.Location = new System.Drawing.Point(86, 15);
             this.cboMenuItems.Margin = new System.Windows.Forms.Padding(6);
             this.cboMenuItems.Name = "cboMenuItems";
-            this.cboMenuItems.Size = new System.Drawing.Size(193, 28);
+            this.cboMenuItems.Size = new System.Drawing.Size(193, 23);
             this.cboMenuItems.TabIndex = 1;
             // 
             // lblIngredient
@@ -185,10 +185,10 @@
             this.lblIngredient.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblIngredient.AutoSize = true;
             this.lblIngredient.ForeColor = System.Drawing.Color.White;
-            this.lblIngredient.Location = new System.Drawing.Point(6, 58);
+            this.lblIngredient.Location = new System.Drawing.Point(6, 71);
             this.lblIngredient.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblIngredient.Name = "lblIngredient";
-            this.lblIngredient.Size = new System.Drawing.Size(64, 40);
+            this.lblIngredient.Size = new System.Drawing.Size(64, 15);
             this.lblIngredient.TabIndex = 2;
             this.lblIngredient.Text = "Ingredient:";
             // 
@@ -199,10 +199,10 @@
             this.cboIngredients.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIngredients.ForeColor = System.Drawing.Color.Black;
             this.cboIngredients.FormattingEnabled = true;
-            this.cboIngredients.Location = new System.Drawing.Point(86, 66);
+            this.cboIngredients.Location = new System.Drawing.Point(86, 68);
             this.cboIngredients.Margin = new System.Windows.Forms.Padding(6);
             this.cboIngredients.Name = "cboIngredients";
-            this.cboIngredients.Size = new System.Drawing.Size(193, 28);
+            this.cboIngredients.Size = new System.Drawing.Size(193, 23);
             this.cboIngredients.TabIndex = 3;
             // 
             // lblQuantity
@@ -210,10 +210,10 @@
             this.lblQuantity.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.ForeColor = System.Drawing.Color.White;
-            this.lblQuantity.Location = new System.Drawing.Point(518, 68);
+            this.lblQuantity.Location = new System.Drawing.Point(518, 71);
             this.lblQuantity.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(68, 20);
+            this.lblQuantity.Size = new System.Drawing.Size(56, 15);
             this.lblQuantity.TabIndex = 6;
             this.lblQuantity.Text = "Quantity:";
             // 
@@ -223,7 +223,7 @@
             this.numQuantity.BackColor = System.Drawing.Color.White;
             this.numQuantity.DecimalPlaces = 2;
             this.numQuantity.ForeColor = System.Drawing.Color.Black;
-            this.numQuantity.Location = new System.Drawing.Point(631, 65);
+            this.numQuantity.Location = new System.Drawing.Point(631, 67);
             this.numQuantity.Margin = new System.Windows.Forms.Padding(6);
             this.numQuantity.Maximum = new decimal(new int[] {
             999999,
@@ -236,7 +236,7 @@
             0,
             0});
             this.numQuantity.Name = "numQuantity";
-            this.numQuantity.Size = new System.Drawing.Size(70, 27);
+            this.numQuantity.Size = new System.Drawing.Size(70, 23);
             this.numQuantity.TabIndex = 7;
             this.numQuantity.ThousandsSeparator = true;
             this.numQuantity.Value = new decimal(new int[] {
@@ -343,7 +343,7 @@
             // 
             // frmManageRecipes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(792, 517);

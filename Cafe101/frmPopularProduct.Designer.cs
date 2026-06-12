@@ -290,6 +290,7 @@
             this.menuItemNameDataGridViewTextBoxColumn.Name = "menuItemNameDataGridViewTextBoxColumn";
             this.menuItemNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.menuItemNameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.menuItemNameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // totalSoldDataGridViewTextBoxColumn
             // 
@@ -298,6 +299,7 @@
             this.totalSoldDataGridViewTextBoxColumn.Name = "totalSoldDataGridViewTextBoxColumn";
             this.totalSoldDataGridViewTextBoxColumn.ReadOnly = true;
             this.totalSoldDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.totalSoldDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // frmPopularProduct
             // 

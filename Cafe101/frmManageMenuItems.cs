@@ -24,12 +24,14 @@ namespace Cafe101
 
         private void CreatePrepTimeStatusLabel()
         {
-            // Create status label for Prep Time (positioned below the Prep Time textbox)
+            // Create status label for Prep Time (positioned directly below the Prep Time textbox)
             lblPrepTimeStatus = new Label();
             lblPrepTimeStatus.AutoSize = true;
             lblPrepTimeStatus.Font = new System.Drawing.Font("Segoe UI", 8F);
             lblPrepTimeStatus.ForeColor = System.Drawing.Color.White;
-            lblPrepTimeStatus.Location = new System.Drawing.Point(120, 172); // Adjust X,Y as needed
+            lblPrepTimeStatus.Location = new System.Drawing.Point(
+                txtPrepTime.Left,
+                txtPrepTime.Bottom + 2);
             lblPrepTimeStatus.Name = "lblPrepTimeStatus";
             lblPrepTimeStatus.Size = new System.Drawing.Size(0, 20);
             lblPrepTimeStatus.TabIndex = 11;
@@ -122,7 +124,13 @@ namespace Cafe101
             }
 
             // Optional: Check for reasonable range (e.g., 1-999 minutes)
-            int prepTime = int.Parse(value);
+            if (!int.TryParse(value, out int prepTime))
+            {
+                txtPrepTime.BackColor = Color.FromArgb(255, 220, 220);
+                lblPrepTimeStatus.Text = "⚠️ Invalid number";
+                lblPrepTimeStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
             if (prepTime < 1)
             {
                 txtPrepTime.BackColor = Color.FromArgb(255, 220, 220);

@@ -31,9 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.menuItemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.menuItemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalSoldDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.topSellingItemBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101Hub = new Cafe101.dsCafe101Hub();
             this.topSellingItemBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -54,6 +51,9 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.menuItemIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.menuItemNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.totalSoldDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.topSellingItemBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
@@ -98,27 +98,6 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(814, 698);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // menuItemIDDataGridViewTextBoxColumn
-            // 
-            this.menuItemIDDataGridViewTextBoxColumn.DataPropertyName = "MenuItemID";
-            this.menuItemIDDataGridViewTextBoxColumn.HeaderText = "MenuItemID";
-            this.menuItemIDDataGridViewTextBoxColumn.Name = "menuItemIDDataGridViewTextBoxColumn";
-            this.menuItemIDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // menuItemNameDataGridViewTextBoxColumn
-            // 
-            this.menuItemNameDataGridViewTextBoxColumn.DataPropertyName = "MenuItemName";
-            this.menuItemNameDataGridViewTextBoxColumn.HeaderText = "MenuItemName";
-            this.menuItemNameDataGridViewTextBoxColumn.Name = "menuItemNameDataGridViewTextBoxColumn";
-            this.menuItemNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // totalSoldDataGridViewTextBoxColumn
-            // 
-            this.totalSoldDataGridViewTextBoxColumn.DataPropertyName = "TotalSold";
-            this.totalSoldDataGridViewTextBoxColumn.HeaderText = "TotalSold";
-            this.totalSoldDataGridViewTextBoxColumn.Name = "totalSoldDataGridViewTextBoxColumn";
-            this.totalSoldDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // topSellingItemBindingSource1
             // 
@@ -295,6 +274,33 @@
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // menuItemIDDataGridViewTextBoxColumn
+            // 
+            this.menuItemIDDataGridViewTextBoxColumn.DataPropertyName = "MenuItemID";
+            this.menuItemIDDataGridViewTextBoxColumn.HeaderText = "MenuItemID";
+            this.menuItemIDDataGridViewTextBoxColumn.Name = "menuItemIDDataGridViewTextBoxColumn";
+            this.menuItemIDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.menuItemIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.menuItemIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // menuItemNameDataGridViewTextBoxColumn
+            // 
+            this.menuItemNameDataGridViewTextBoxColumn.DataPropertyName = "MenuItemName";
+            this.menuItemNameDataGridViewTextBoxColumn.HeaderText = "MenuItemName";
+            this.menuItemNameDataGridViewTextBoxColumn.Name = "menuItemNameDataGridViewTextBoxColumn";
+            this.menuItemNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.menuItemNameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.menuItemNameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // totalSoldDataGridViewTextBoxColumn
+            // 
+            this.totalSoldDataGridViewTextBoxColumn.DataPropertyName = "TotalSold";
+            this.totalSoldDataGridViewTextBoxColumn.HeaderText = "TotalSold";
+            this.totalSoldDataGridViewTextBoxColumn.Name = "totalSoldDataGridViewTextBoxColumn";
+            this.totalSoldDataGridViewTextBoxColumn.ReadOnly = true;
+            this.totalSoldDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.totalSoldDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
             // frmPopularProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -333,9 +339,6 @@
         private dsCafe101Test dsCafe101Test;
         private System.Windows.Forms.BindingSource topSellingItemBindingSource;
         private dsCafe101TestTableAdapters.TopSellingItemTableAdapter topSellingItemTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn menuItemIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn menuItemNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn totalSoldDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label1;
         private dsCafe101Hub dsCafe101Hub;
         private System.Windows.Forms.BindingSource topSellingItemBindingSource1;
@@ -353,5 +356,8 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn menuItemIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn menuItemNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn totalSoldDataGridViewTextBoxColumn;
     }
 }

@@ -11,11 +11,27 @@ namespace Cafe101
         private DataTable originalEmployeeData;
         private bool helpVisible = false;
         private Panel pnlHelp = null;
+        private Label lblAddressStatus;   // Status label for Address validation
 
         public frmManageEmployees()
         {
             InitializeComponent();
+            CreateAddressStatusLabel();
             AttachValidationEvents();
+        }
+
+        private void CreateAddressStatusLabel()
+        {
+            lblAddressStatus = new Label();
+            lblAddressStatus.AutoSize = true;
+            lblAddressStatus.Font = new System.Drawing.Font("Segoe UI", 8F);
+            lblAddressStatus.ForeColor = System.Drawing.Color.White;
+            // Position directly below the Password textbox (Y = 224 + 27 = 251, plus 3px gap = 254)
+            lblAddressStatus.Location = new System.Drawing.Point(110, 264);
+            lblAddressStatus.Name = "lblAddressStatus";
+            lblAddressStatus.Size = new System.Drawing.Size(0, 20);
+            lblAddressStatus.TabIndex = 16;
+            this.grpEmployeeDetails.Controls.Add(lblAddressStatus);
         }
 
         private void AttachValidationEvents()
@@ -24,6 +40,7 @@ namespace Cafe101
             txtSurname.TextChanged += txtSurname_TextChanged;
             txtEmail.TextChanged += txtEmail_TextChanged;
             txtPassword.TextChanged += txtPassword_TextChanged;
+            txtAddress.TextChanged += txtAddress_TextChanged;
         }
 
         // ============================================================
@@ -48,6 +65,11 @@ namespace Cafe101
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
             ValidatePassword();
+        }
+
+        private void txtAddress_TextChanged(object sender, EventArgs e)
+        {
+            ValidateAddress();
         }
 
         private bool ValidateFirstName()
@@ -92,7 +114,6 @@ namespace Cafe101
                 return false;
             }
 
-            // Check for letters only (no spaces, no numbers, no special characters)
             foreach (char c in value)
             {
                 if (!char.IsLetter(c))
@@ -172,9 +193,61 @@ namespace Cafe101
             return true;
         }
 
+        private bool ValidateAddress()
+        {
+            string address = txtAddress.Text.Trim();
+
+            if (string.IsNullOrWhiteSpace(address))
+            {
+                txtAddress.BackColor = Color.FromArgb(255, 220, 220);
+                lblAddressStatus.Text = "⚠️Required.Format: Streetnumber/name,Suburb,City";
+                lblAddressStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            // Check for at least one digit (street number)
+            bool hasDigit = false;
+            foreach (char c in address)
+            {
+                if (char.IsDigit(c))
+                {
+                    hasDigit = true;
+                    break;
+                }
+            }
+
+            // Count commas (should be at least 2 to separate street, suburb, city)
+            int commaCount = 0;
+            foreach (char c in address)
+            {
+                if (c == ',') commaCount++;
+            }
+
+            if (!hasDigit)
+            {
+                txtAddress.BackColor = Color.FromArgb(255, 220, 220);
+                lblAddressStatus.Text = "⚠️ Missing street number.";
+                lblAddressStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            if (commaCount < 2)
+            {
+                txtAddress.BackColor = Color.FromArgb(255, 220, 220);
+                lblAddressStatus.Text = "⚠️ Need street, suburb, and city separated by commas.";
+                lblAddressStatus.ForeColor = Color.FromArgb(255, 80, 80);
+                return false;
+            }
+
+            txtAddress.BackColor = Color.FromArgb(220, 245, 220);
+            lblAddressStatus.Text = "✓ Valid address format";
+            lblAddressStatus.ForeColor = Color.FromArgb(50, 180, 100);
+            return true;
+        }
+
         private bool IsFormValid()
         {
-            return ValidateFirstName() && ValidateSurname() && ValidateEmail() && ValidatePassword();
+            return ValidateFirstName() && ValidateSurname() && ValidateEmail() && ValidatePassword() && ValidateAddress();
         }
 
         // ============================================================
@@ -251,10 +324,12 @@ namespace Cafe101
             txtSurname.BackColor = System.Drawing.Color.White;
             txtEmail.BackColor = System.Drawing.Color.White;
             txtPassword.BackColor = System.Drawing.Color.White;
+            txtAddress.BackColor = System.Drawing.Color.White;
             lblFirstNameStatus.Text = "";
             lblSurnameStatus.Text = "";
             lblEmailStatus.Text = "";
             lblPasswordStatus.Text = "";
+            lblAddressStatus.Text = "";
         }
 
         private bool IsEmployeeDuplicate(string firstName, string surname, int? excludeEmployeeId = null)
@@ -319,7 +394,7 @@ namespace Cafe101
         {
             if (!IsFormValid())
             {
-                MessageBox.Show("Please correct the highlighted fields before adding.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please correct the highlighted fields before adding.\n\nAddress must follow format: street number street name, suburb, city\n(e.g., 46 Lion Road, Amanzimtoti, Durban)", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -401,6 +476,7 @@ namespace Cafe101
                 ValidateSurname();
                 ValidateEmail();
                 ValidatePassword();
+                ValidateAddress();
             }
         }
 
@@ -414,7 +490,7 @@ namespace Cafe101
 
             if (!IsFormValid())
             {
-                MessageBox.Show("Please correct the highlighted fields before updating.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please correct the highlighted fields before updating.\n\nAddress must follow format: street number street name, suburb, city\n(e.g., 46 Lion Road, Amanzimtoti, Durban)", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -571,6 +647,7 @@ namespace Cafe101
                     "• Fill in: First Name, Surname, Email, Address,\r\n" +
                     "  Role (Manager/Cashier), and Password.\r\n" +
                     "• First Name and Surname: LETTERS ONLY (no spaces, numbers, or special characters)\r\n" +
+                    "• Address format: street number street name, suburb, city (e.g., 46 Lion Road, Amanzimtoti, Durban)\r\n" +
                     "• Password: minimum 6 characters\r\n" +
                     "• Click the 'Add' button.\r\n\r\n" +
                     "✏️ EDIT EXISTING EMPLOYEE:\r\n" +
@@ -579,7 +656,7 @@ namespace Cafe101
                     "• Edit the fields as needed.\r\n" +
                     "• Click 'Update' to save changes.\r\n\r\n" +
                     "🔍 SEARCH:\r\n" +
-                    "• Type name, email, or role in the search box.\r\n" +
+                    "• Type name, email, role, or address in the search box.\r\n" +
                     "• Results filter automatically as you type.\r\n" +
                     "• Click 'Clear' to reset search.\r\n\r\n" +
                     "🔄 REFRESH:\r\n" +
@@ -600,7 +677,8 @@ namespace Cafe101
                     "Employee selected: " + txtFirstName.Text + " " + txtSurname.Text + "\r\n\r\n" +
                     "✏️ TO UPDATE:\r\n" +
                     "• Edit the fields you want to change.\r\n" +
-                    "• First Name and Surname: LETTERS ONLY (no spaces, numbers, or special characters)\r\n" +
+                    "• First Name and Surname: LETTERS ONLY\r\n" +
+                    "• Address must follow format: number street, suburb, city\r\n" +
                     "• Click 'Update' to save changes.\r\n" +
                     "• Click 'Refresh' to see all employees again.\r\n\r\n" +
                     "🗑️ TO DELETE:\r\n" +
@@ -617,7 +695,7 @@ namespace Cafe101
             if (pnlHelp == null)
             {
                 pnlHelp = new Panel();
-                pnlHelp.Size = new System.Drawing.Size(370, 420);
+                pnlHelp.Size = new System.Drawing.Size(370, 440);
                 pnlHelp.BackColor = System.Drawing.Color.FromArgb(20, 40, 100);
                 pnlHelp.BorderStyle = BorderStyle.FixedSingle;
                 this.Controls.Add(pnlHelp);
@@ -639,12 +717,12 @@ namespace Cafe101
             lblDetail.Font = new System.Drawing.Font("Segoe UI", 9);
             lblDetail.ForeColor = System.Drawing.Color.LightGray;
             lblDetail.Location = new System.Drawing.Point(10, 50);
-            lblDetail.Size = new System.Drawing.Size(350, 320);
+            lblDetail.Size = new System.Drawing.Size(350, 340);
 
             Button btnClose = new Button();
             btnClose.Text = "✕ Close";
             btnClose.Size = new System.Drawing.Size(100, 30);
-            btnClose.Location = new System.Drawing.Point(255, 380);
+            btnClose.Location = new System.Drawing.Point(255, 400);
             btnClose.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
             btnClose.ForeColor = System.Drawing.Color.White;
             btnClose.FlatStyle = FlatStyle.Flat;
@@ -687,7 +765,7 @@ namespace Cafe101
     // ============================================================
     // DbHelper Class
     // ============================================================
-   /* public static class DbHelper
+    /* public static class DbHelper
     {
         private static string server = "146.230.177.46";
         private static string database = "GroupWst22";

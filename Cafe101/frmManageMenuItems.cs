@@ -26,7 +26,6 @@ namespace Cafe101
             lblPrepTimeStatus.AutoSize = true;
             lblPrepTimeStatus.Font = new System.Drawing.Font("Segoe UI", 8F);
             lblPrepTimeStatus.ForeColor = System.Drawing.Color.White;
-            // Position directly below the Prep Time textbox
             lblPrepTimeStatus.Location = new System.Drawing.Point(120, 218);
             lblPrepTimeStatus.Name = "lblPrepTimeStatus";
             lblPrepTimeStatus.Size = new System.Drawing.Size(0, 20);
@@ -75,7 +74,6 @@ namespace Cafe101
                 return false;
             }
 
-            // Check for letters and spaces only (no numbers or special characters)
             foreach (char c in value)
             {
                 if (!char.IsLetter(c) && c != ' ')
@@ -529,10 +527,16 @@ namespace Cafe101
                     "• Returns to the main menu.";
             }
 
+            // ============================================================
+            // HELP PANEL — dynamic height, positioned RIGHT of Help button
+            // ============================================================
+
+            int panelWidth = 400;
+            int padding = 10;
+
             if (pnlHelp == null)
             {
                 pnlHelp = new Panel();
-                pnlHelp.Size = new System.Drawing.Size(370, 380);
                 pnlHelp.BackColor = System.Drawing.Color.FromArgb(20, 40, 100);
                 pnlHelp.BorderStyle = BorderStyle.FixedSingle;
                 this.Controls.Add(pnlHelp);
@@ -541,24 +545,27 @@ namespace Cafe101
 
             pnlHelp.Controls.Clear();
 
+            // Title label
             Label lblTitle = new Label();
             lblTitle.Text = stepTitle;
             lblTitle.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Bold);
             lblTitle.ForeColor = System.Drawing.Color.White;
-            lblTitle.Location = new System.Drawing.Point(10, 10);
-            lblTitle.Size = new System.Drawing.Size(350, 30);
+            lblTitle.Location = new System.Drawing.Point(padding, padding);
+            lblTitle.Size = new System.Drawing.Size(panelWidth - padding * 2, 30);
 
+            // Detail label — AutoSize so it grows to fit ALL content, never cuts off
             Label lblDetail = new Label();
             lblDetail.Text = stepDetail;
             lblDetail.Font = new System.Drawing.Font("Segoe UI", 9);
             lblDetail.ForeColor = System.Drawing.Color.LightGray;
-            lblDetail.Location = new System.Drawing.Point(10, 50);
-            lblDetail.Size = new System.Drawing.Size(350, 280);
+            lblDetail.Location = new System.Drawing.Point(padding, 50);
+            lblDetail.MaximumSize = new System.Drawing.Size(panelWidth - padding * 2, 0);
+            lblDetail.AutoSize = true;
 
+            // Close button
             Button btnClose = new Button();
             btnClose.Text = "✕ Close";
             btnClose.Size = new System.Drawing.Size(100, 30);
-            btnClose.Location = new System.Drawing.Point(255, 340);
             btnClose.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
             btnClose.ForeColor = System.Drawing.Color.White;
             btnClose.FlatStyle = FlatStyle.Flat;
@@ -569,30 +576,45 @@ namespace Cafe101
                 btnHelp.Text = "❓ Help";
             };
 
+            // Add title and detail first so layout can be measured
             pnlHelp.Controls.Add(lblTitle);
             pnlHelp.Controls.Add(lblDetail);
+
+            // Force layout so lblDetail.Height is calculated before we use it
+            pnlHelp.PerformLayout();
+            lblDetail.PerformLayout();
+
+            // Place close button below the detail label with some spacing
+            int closeButtonY = lblDetail.Bottom + 10;
+            btnClose.Location = new System.Drawing.Point(panelWidth - 110, closeButtonY);
+
+            // Panel height = close button bottom + padding
+            int panelHeight = closeButtonY + btnClose.Height + padding;
+            pnlHelp.Size = new System.Drawing.Size(panelWidth, panelHeight);
             pnlHelp.Controls.Add(btnClose);
 
-            int xPos = btnHelp.Left + btnHelp.Width + 5;
-            int yPos = btnHelp.Top - 10;
+            // ---- Positioning: always to the RIGHT of the Help button ----
+            // Convert button's screen position to form client coordinates
+            Point btnScreenPos = btnHelp.PointToScreen(Point.Empty);
+            Point btnFormPos = this.PointToClient(btnScreenPos);
 
-            if (xPos + pnlHelp.Width > this.ClientSize.Width)
-            {
-                xPos = btnHelp.Left - pnlHelp.Width - 5;
-            }
+            int xPos = btnFormPos.X + btnHelp.Width + 5;       // right of button
+            int yPos = btnFormPos.Y - (panelHeight / 2);        // vertically centred on button
 
-            if (yPos + pnlHelp.Height > this.ClientSize.Height)
-            {
-                yPos = this.ClientSize.Height - pnlHelp.Height - 10;
-            }
+            // If panel won't fit to the right, flip it to the left
+            if (xPos + panelWidth > this.ClientSize.Width - 5)
+                xPos = btnFormPos.X - panelWidth - 5;
 
-            if (yPos < 0)
-            {
+            // Keep panel within vertical bounds of the form
+            if (yPos + panelHeight > this.ClientSize.Height - 5)
+                yPos = this.ClientSize.Height - panelHeight - 5;
+
+            if (yPos < 5)
                 yPos = 5;
-            }
 
             pnlHelp.Location = new System.Drawing.Point(xPos, yPos);
             pnlHelp.Visible = true;
+            pnlHelp.BringToFront();
             helpVisible = true;
             btnHelp.Text = "❓ Help (ON)";
         }

@@ -830,7 +830,7 @@ namespace Cafe101 {
                 this.columnEmail.AllowDBNull = false;
                 this.columnEmail.MaxLength = 255;
                 this.columnPassword.AllowDBNull = false;
-                this.columnPassword.MaxLength = 20;
+                this.columnPassword.MaxLength = 255;
                 this.columnStatus.AllowDBNull = false;
                 this.columnStatus.MaxLength = 20;
                 this.columnPhoneNumber.MaxLength = 10;

@@ -627,20 +627,19 @@ namespace Cafe101
             if (orderTotal < 0) orderTotal = 0;
             lblAmount.Text = "R " + orderTotal.ToString("0.00");
 
-             dgvCart.Rows.Remove(row);
+            dgvCart.Rows.Remove(row); // remove ONCE only
 
-              // Reset the quantity dropdown in dgvMenuItems for this item
-              foreach (DataGridViewRow menuRow in dgvMenuItems.Rows)
-              {
-                  if (menuRow.IsNewRow) continue;
-                  if (Convert.ToInt32(menuRow.Cells[0].Value) == removedMenuItemID)
-                  {
-                      menuRow.Cells["ItemQty"].Value = null;
-                      break;
-                  }
-              }
+            // Reset the quantity dropdown in dgvMenuItems for this item
+            foreach (DataGridViewRow menuRow in dgvMenuItems.Rows)
+            {
+                if (menuRow.IsNewRow) continue;
+                if (Convert.ToInt32(menuRow.Cells[0].Value) == removedMenuItemID)
+                {
+                    menuRow.Cells["ItemQty"].Value = null;
+                    break;
+                }
+            }
 
-            dgvCart.Rows.Remove(row);
             RebuildQtyColumnWithCart();
         }
 
@@ -1379,10 +1378,20 @@ namespace Cafe101
 
         public void RefreshCustomerList()
         {
-            customerTableTableAdapter.Fill(dsCafe101Hub.CustomerTable);
+            try
+            {
+                dsCafe101Hub.CustomerTable.Clear();
+                customerTableTableAdapter.Fill(dsCafe101Hub.CustomerTable);
+            }
+            catch (System.Data.ConstraintException)
+            {
+                dsCafe101Hub.EnforceConstraints = false;
+                dsCafe101Hub.CustomerTable.Clear();
+                customerTableTableAdapter.Fill(dsCafe101Hub.CustomerTable);
+                dsCafe101Hub.EnforceConstraints = true;
+            }
 
             PopulateCustomerGrid("");
-
             dgvCustomers.Refresh();
         }
     }

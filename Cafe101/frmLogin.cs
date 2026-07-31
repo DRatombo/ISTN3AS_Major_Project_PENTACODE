@@ -21,8 +21,9 @@ namespace Cafe101
 
         public frmLogin()
         {
+
             InitializeComponent();
-            //this.DoubleBuffered = true;
+            this.DoubleBuffered = true;
         }
 
         private bool ValidateEmail()
@@ -114,9 +115,15 @@ namespace Cafe101
             }
             if (isValid)
             {
-                frmMain mainMenu = new frmMain();
-                mainMenu.Show();
                 this.Hide();
+
+                frmMain main = new frmMain();
+
+                main.Owner = this;
+
+                
+
+                main.Show();
             }
             else
             {

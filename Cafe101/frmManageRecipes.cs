@@ -14,7 +14,9 @@ namespace Cafe101
 
         public frmManageRecipes()
         {
+            
             InitializeComponent();
+            this.DoubleBuffered = true;
             AttachValidationEvents();
         }
 

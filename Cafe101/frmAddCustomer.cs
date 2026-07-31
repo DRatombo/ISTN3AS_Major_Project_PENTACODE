@@ -18,7 +18,9 @@ namespace Cafe101
 
         public frmAddCustomer(Form caller)
         {
+
             InitializeComponent();
+            this.DoubleBuffered = true;
             parentForm = caller;
             txtPassword.PasswordChar = '*';
         }

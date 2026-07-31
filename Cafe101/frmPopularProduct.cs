@@ -14,7 +14,9 @@ namespace Cafe101
     {
         public frmPopularProduct()
         {
+
             InitializeComponent();
+            this.DoubleBuffered = true;
         }
         private Panel pnlHelp = null;
         private bool helpVisible = false;

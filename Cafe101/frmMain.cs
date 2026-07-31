@@ -19,15 +19,32 @@ namespace Cafe101
         private bool helpVisibleDash = false;
         public frmMain()
         {
+
             InitializeComponent();
+
+            // Fix flickering
+            this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.OptimizedDoubleBuffer |
+                          ControlStyles.AllPaintingInWmPaint |
+                          ControlStyles.UserPaint, true);
+            this.UpdateStyles();
+
+            // Also double-buffer the panel that holds the logo
+            typeof(Panel).InvokeMember("DoubleBuffered",
+                System.Reflection.BindingFlags.SetProperty |
+                System.Reflection.BindingFlags.Instance |
+                System.Reflection.BindingFlags.NonPublic,
+                null, panel1, new object[] { true });
 
         }
 
         private void ordersToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmNewOrder newOrder = new frmNewOrder();
-            //newOrder.ShowDialog();
-            newOrder.Show();
+            frmNewOrder order = new frmNewOrder();
+
+            order.Owner = this;
+
+            order.Show();
             this.Hide();
         }
 
@@ -355,6 +372,11 @@ namespace Cafe101
             frmManageCustomers frmCust = new frmManageCustomers();
             frmCust.Show();
             this.Hide();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

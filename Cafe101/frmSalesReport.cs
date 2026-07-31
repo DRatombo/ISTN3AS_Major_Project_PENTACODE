@@ -24,7 +24,9 @@ namespace Cafe101
 
         public frmSalesReport()
         {
+            
             InitializeComponent();
+            this.DoubleBuffered = true;
 
             // Centralized Event Subscription to protect memory lifecycle
             printDoc.PrintPage += PrintDoc_PrintPage;

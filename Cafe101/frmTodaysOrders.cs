@@ -21,7 +21,9 @@ namespace Cafe101
 
         public frmTodaysOrders()
         {
+            
             InitializeComponent();
+            this.DoubleBuffered = true;
 
             // Link the printing event handler to the print document object
             printDoc.PrintPage += new PrintPageEventHandler(printDoc_PrintPage);

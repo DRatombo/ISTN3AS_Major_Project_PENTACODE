@@ -17,6 +17,9 @@ namespace Cafe101
         public frmNewOrder()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            dgvCart.DataSource = null;
+            dgvCart.Rows.Clear();
         }
 
         private void frmNewOrder_Load(object sender, EventArgs e)
@@ -112,6 +115,10 @@ namespace Cafe101
                 dgvMenuItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
                 RebuildQtyColumn();
+                
+                //new 
+                dgvMenuItems.ClearSelection();
+                dgvMenuItems.CurrentCell = null;
 
                 // Reset total label
                 lblAmount.Text = "R0.00";
@@ -301,6 +308,10 @@ namespace Cafe101
                     this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
                     dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable;
                      RebuildQtyColumn();
+                    
+                    //new2
+                    dgvMenuItems.ClearSelection();
+                    dgvMenuItems.CurrentCell = null;
                     return;
                 }
 
@@ -317,6 +328,8 @@ namespace Cafe101
                     if (!row.IsNewRow)
                         row.Cells["ItemQty"].Value = 1;
                 }
+                dgvMenuItems.ClearSelection();
+                dgvMenuItems.CurrentCell = null;
             }
             catch (Exception ex)
             {
@@ -445,31 +458,31 @@ namespace Cafe101
                      {
                          int existingQty = Convert.ToInt32(row.Cells["Qty"].Value);
                          newCartQty = existingQty + quantity;
-                         decimal newSubtotal = newCartQty * price;
-                         row.Cells["Qty"].Value = newCartQty;
-                         row.Cells["Subtotal"].Value = "R " + newSubtotal.ToString("0.00");
-                         orderTotal += quantity * price;
-                         lblAmount.Text = "R " + orderTotal.ToString("0.00");
+                        decimal newSubtotal = newCartQty * price;
+                        row.Cells["Qty"].Value = newCartQty;
+                        row.Cells["Subtotal"].Value = "R " + newSubtotal.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+                        orderTotal += quantity * price;
+                        lblAmount.Text = "R " + orderTotal.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
 
-                         // Update dropdown for existing item
-                         UpdateDropdown(menuItemID, maxCanMake, newCartQty);
+                        // Update dropdown for existing item
+                        UpdateDropdown(menuItemID, maxCanMake, newCartQty);
                          return;
                      }
                  }
 
-                 // New row
-                 dgvCart.Rows.Add(
-                     menuItemID,
-                     itemName,
-                     quantity,
-                     "R " + price.ToString("0.00"),
-                     "R " + (quantity * price).ToString("0.00"));
+                
+                dgvCart.Rows.Add(
+                                     menuItemID,
+                                     itemName,
+                                     quantity,
+                                     "R " + price.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture),
+                                     "R " + (quantity * price).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture));
 
-                 orderTotal += quantity * price;
-                 lblAmount.Text = "R " + orderTotal.ToString("0.00");
+                orderTotal += quantity * price;
+                lblAmount.Text = "R " + orderTotal.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
 
-                 // Update dropdown for new item
-                 UpdateDropdown(menuItemID, maxCanMake, newCartQty);
+                // Update dropdown for new item
+                UpdateDropdown(menuItemID, maxCanMake, newCartQty);
              }
              catch (Exception ex)
              {
@@ -593,7 +606,7 @@ namespace Cafe101
             {
                 orderTotal -= price;
                 if (orderTotal < 0) orderTotal = 0;
-                lblAmount.Text = "R " + orderTotal.ToString("0.00");
+                lblAmount.Text = "R " + orderTotal.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
                 dgvCart.Rows.Remove(row);
                 btnClearCustName.Enabled = dgvCart.Rows.Count > 0;
                 RebuildQtyColumnWithCart();
@@ -603,10 +616,10 @@ namespace Cafe101
                 int newQty = currentQty - 1;
                 decimal newSubtotal = newQty * price;
                 row.Cells["Qty"].Value = newQty;
-                row.Cells["Subtotal"].Value = "R " + newSubtotal.ToString("0.00");
+                row.Cells["Subtotal"].Value = "R " + newSubtotal.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
                 orderTotal -= price;
                 if (orderTotal < 0) orderTotal = 0;
-                lblAmount.Text = "R " + orderTotal.ToString("0.00");
+                lblAmount.Text = "R " + orderTotal.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
                 RebuildQtyColumnWithCart();
             }
         }
@@ -621,8 +634,7 @@ namespace Cafe101
 
             DataGridViewRow row = dgvCart.SelectedRows[0];
             int removedMenuItemID = Convert.ToInt32(row.Cells["MenuItemID"].Value);
-            decimal subtotal = Convert.ToDecimal(row.Cells["Subtotal"].Value.ToString().Replace("R ", "").Trim());
-
+            decimal subtotal = decimal.Parse(row.Cells["Subtotal"].Value.ToString().Replace("R ", "").Trim(),System.Globalization.CultureInfo.InvariantCulture);
             orderTotal -= subtotal;
             if (orderTotal < 0) orderTotal = 0;
             lblAmount.Text = "R " + orderTotal.ToString("0.00");
@@ -704,7 +716,7 @@ namespace Cafe101
                     using (System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@CustomerID", selectedCustomerID);
-                        cmd.Parameters.AddWithValue("@EmployeeID", 1);
+                        cmd.Parameters.AddWithValue("@EmployeeID", SessionManager.EmployeeID);
                         cmd.Parameters.AddWithValue("@OrderType", cmbOrderType.SelectedItem.ToString());
                         cmd.Parameters.AddWithValue("@OrderDateTime", DateTime.Now);
 
@@ -746,11 +758,27 @@ namespace Cafe101
 
                     int menuItemID = Convert.ToInt32(row.Cells["MenuItemID"].Value);
                     int qty = Convert.ToInt32(row.Cells["Qty"].Value);
-                    decimal subtotal = Convert.ToDecimal(row.Cells["Subtotal"].Value.ToString().Replace("R ", "").Trim());
+                    decimal subtotal = decimal.Parse(row.Cells["Subtotal"].Value.ToString().Replace("R ", "").Trim(),System.Globalization.CultureInfo.InvariantCulture);
+
 
                     try
                     {
-                        orderItemTableTableAdapter1.InsertItemOrder(newOrderID, menuItemID, qty, subtotal);
+                        using (System.Data.SqlClient.SqlConnection itemConn = new System.Data.SqlClient.SqlConnection(
+                            orderTableTableAdapter1.Connection.ConnectionString))
+                        {
+                            itemConn.Open();
+                            string itemSql = @"INSERT INTO ItemOrder (OrderID, MenuItemID, QuantityOrdered, Subtotal)
+                                                VALUES (@OrderID, @MenuItemID, @QuantityOrdered, @Subtotal)";
+
+                            using (System.Data.SqlClient.SqlCommand itemCmd = new System.Data.SqlClient.SqlCommand(itemSql, itemConn))
+                            {
+                                itemCmd.Parameters.AddWithValue("@OrderID", newOrderID);
+                                itemCmd.Parameters.AddWithValue("@MenuItemID", menuItemID);
+                                itemCmd.Parameters.AddWithValue("@QuantityOrdered", qty);
+                                itemCmd.Parameters.AddWithValue("@Subtotal", subtotal);
+                                itemCmd.ExecuteNonQuery();
+                            }
+                        }
                     }
                     catch (Exception exItem)
                     {
@@ -767,17 +795,16 @@ namespace Cafe101
                 frmCheckout checkout = new frmCheckout(newOrderID, orderTotal);
                 checkout.Owner = this;
                 checkout.Show();
-                this.Hide();   
+                this.Hide();
 
-               
+                ResetOrder();
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error confirming order: " + ex.Message);
             }
         }
-
-
         public void ResetOrder()
         {
             dgvCart.Rows.Clear();
@@ -938,12 +965,16 @@ namespace Cafe101
                     this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
                     dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable;
                     RebuildQtyColumn();
+                    dgvMenuItems.ClearSelection();
+                    dgvMenuItems.CurrentCell = null;
                     return;
                 }
 
                 this.menuItemsTableTableAdapter.FillByMenuItems(this.dsCafe101Hub.MenuItemsTable, textItemSearch.Text);
                 dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable;
                 RebuildQtyColumn();
+                dgvMenuItems.ClearSelection();
+                dgvMenuItems.CurrentCell = null;
             }
             catch (Exception ex)
             {
@@ -1346,6 +1377,8 @@ namespace Cafe101
             this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
             dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable;
             RebuildQtyColumn();
+            dgvMenuItems.ClearSelection();
+            dgvMenuItems.CurrentCell = null;
         }
 
         private void dgvMenuItems_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

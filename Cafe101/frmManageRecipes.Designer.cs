@@ -79,7 +79,7 @@
             this.lblSearch.ForeColor = System.Drawing.Color.White;
             this.lblSearch.Location = new System.Drawing.Point(10, 12);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(54, 19);
+            this.lblSearch.Size = new System.Drawing.Size(63, 23);
             this.lblSearch.TabIndex = 0;
             this.lblSearch.Text = "Search";
             // 
@@ -90,7 +90,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Location = new System.Drawing.Point(80, 9);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(300, 25);
+            this.txtSearch.Size = new System.Drawing.Size(300, 30);
             this.txtSearch.TabIndex = 1;
             // 
             // btnClearSearch
@@ -162,10 +162,10 @@
             this.lblMenuItem.AutoSize = true;
             this.lblMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.lblMenuItem.ForeColor = System.Drawing.Color.White;
-            this.lblMenuItem.Location = new System.Drawing.Point(6, 18);
+            this.lblMenuItem.Location = new System.Drawing.Point(6, 16);
             this.lblMenuItem.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblMenuItem.Name = "lblMenuItem";
-            this.lblMenuItem.Size = new System.Drawing.Size(77, 16);
+            this.lblMenuItem.Size = new System.Drawing.Size(96, 20);
             this.lblMenuItem.TabIndex = 0;
             this.lblMenuItem.Text = "Menu Item";
             // 
@@ -176,10 +176,10 @@
             this.cboMenuItems.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMenuItems.ForeColor = System.Drawing.Color.Black;
             this.cboMenuItems.FormattingEnabled = true;
-            this.cboMenuItems.Location = new System.Drawing.Point(133, 15);
+            this.cboMenuItems.Location = new System.Drawing.Point(133, 14);
             this.cboMenuItems.Margin = new System.Windows.Forms.Padding(6);
             this.cboMenuItems.Name = "cboMenuItems";
-            this.cboMenuItems.Size = new System.Drawing.Size(255, 23);
+            this.cboMenuItems.Size = new System.Drawing.Size(255, 28);
             this.cboMenuItems.TabIndex = 1;
             // 
             // lblIngredient
@@ -188,10 +188,10 @@
             this.lblIngredient.AutoSize = true;
             this.lblIngredient.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.lblIngredient.ForeColor = System.Drawing.Color.White;
-            this.lblIngredient.Location = new System.Drawing.Point(6, 70);
+            this.lblIngredient.Location = new System.Drawing.Point(6, 68);
             this.lblIngredient.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblIngredient.Name = "lblIngredient";
-            this.lblIngredient.Size = new System.Drawing.Size(76, 16);
+            this.lblIngredient.Size = new System.Drawing.Size(92, 20);
             this.lblIngredient.TabIndex = 2;
             this.lblIngredient.Text = "Ingredient";
             // 
@@ -202,10 +202,10 @@
             this.cboIngredients.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboIngredients.ForeColor = System.Drawing.Color.Black;
             this.cboIngredients.FormattingEnabled = true;
-            this.cboIngredients.Location = new System.Drawing.Point(133, 68);
+            this.cboIngredients.Location = new System.Drawing.Point(133, 66);
             this.cboIngredients.Margin = new System.Windows.Forms.Padding(6);
             this.cboIngredients.Name = "cboIngredients";
-            this.cboIngredients.Size = new System.Drawing.Size(255, 23);
+            this.cboIngredients.Size = new System.Drawing.Size(255, 28);
             this.cboIngredients.TabIndex = 3;
             // 
             // lblQuantity
@@ -214,10 +214,10 @@
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.lblQuantity.ForeColor = System.Drawing.Color.White;
-            this.lblQuantity.Location = new System.Drawing.Point(661, 70);
+            this.lblQuantity.Location = new System.Drawing.Point(661, 68);
             this.lblQuantity.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(63, 16);
+            this.lblQuantity.Size = new System.Drawing.Size(79, 20);
             this.lblQuantity.TabIndex = 6;
             this.lblQuantity.Text = "Quantity";
             // 
@@ -285,7 +285,7 @@
             this.numQuantity.DecimalPlaces = 2;
             this.numQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
             this.numQuantity.ForeColor = System.Drawing.Color.Black;
-            this.numQuantity.Location = new System.Drawing.Point(774, 67);
+            this.numQuantity.Location = new System.Drawing.Point(774, 65);
             this.numQuantity.Margin = new System.Windows.Forms.Padding(6);
             this.numQuantity.Maximum = new decimal(new int[] {
             999999,
@@ -298,7 +298,7 @@
             0,
             0});
             this.numQuantity.Name = "numQuantity";
-            this.numQuantity.Size = new System.Drawing.Size(70, 22);
+            this.numQuantity.Size = new System.Drawing.Size(70, 26);
             this.numQuantity.TabIndex = 7;
             this.numQuantity.ThousandsSeparator = true;
             this.numQuantity.Value = new decimal(new int[] {
@@ -349,7 +349,7 @@
             // 
             // frmManageRecipes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(978, 517);

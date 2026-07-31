@@ -14,7 +14,9 @@ namespace Cafe101
     {
         public frmManageCustomers()
         {
+
             InitializeComponent();
+            this.DoubleBuffered = true;
             dataGridView1.CellDoubleClick += dataGridView1_CellDoubleClick;
         }
 

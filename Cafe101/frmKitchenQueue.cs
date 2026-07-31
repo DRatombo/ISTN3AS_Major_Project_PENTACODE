@@ -14,7 +14,14 @@ namespace Cafe101
     {
         public frmKitchenQueue()
         {
+
             InitializeComponent();
+            this.DoubleBuffered = true;
+        }
+
+        private void frmKitchenQueue_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

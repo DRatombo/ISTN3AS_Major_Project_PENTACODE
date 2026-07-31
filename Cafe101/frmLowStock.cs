@@ -19,7 +19,9 @@ namespace Cafe101
 
         public frmLowStock()
         {
+
             InitializeComponent();
+            this.DoubleBuffered = true;
 
             // Centralized Event Subscription: Keeps memory footprint minimal
             printDocument.PrintPage += PrintPageHandler;

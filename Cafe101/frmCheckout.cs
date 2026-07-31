@@ -10,6 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+//NEW
+using System.IO;
+using System.Net;
+using System.Net.Mail;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+
 namespace Cafe101
 {
     public partial class frmCheckout : Form
@@ -21,7 +28,9 @@ namespace Cafe101
 
         public frmCheckout(int orderID, decimal orderTotal)
         {
+
             InitializeComponent();
+            this.DoubleBuffered = true;
             this.WindowState = FormWindowState.Maximized;
             _orderID = orderID;
             _orderTotal = orderTotal;
@@ -228,14 +237,39 @@ namespace Cafe101
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                 }
+                //NEW 3
+                SendReceiptEmail(_orderID, _orderTotal, amountTendered, change, paymentMethod);
 
-                ((frmNewOrder)this.Owner).ResetOrder();
+                //NEW 2
+                // Create receipt object but NEVER show the form
+                frmReceipt formR = new frmReceipt(_orderID, _orderTotal, amountTendered, change, paymentMethod);
+                formR.PopulateReceiptData();          // necessary because form is never shown
+                
+                formR.ShowPrintPreview();             // opens Print Preview (modal)
+
+                // This code only runs AFTER the user closes the Print Preview
+                formR.Dispose();
+
+                // Clean up previous screens
+                if (this.Owner != null)
+                {
+                    ((frmNewOrder)this.Owner).ResetOrder();
+                    this.Owner.Close();
+                }
+                this.Close();
+
+                // Go to Main
+                frmMain mainForm = new frmMain();
+                mainForm.Show();
+
+
+                /*((frmNewOrder)this.Owner).ResetOrder();
                 ((frmNewOrder)this.Owner).Close();
 
                 this.Close();
 
                 frmReceipt formR = new frmReceipt(_orderID, _orderTotal, amountTendered, change, paymentMethod);
-                formR.Show();
+                formR.Show();*/
             }
             catch (Exception ex)
             {
@@ -270,26 +304,202 @@ namespace Cafe101
         {
         }
 
-       /* private void button1_Click(object sender, EventArgs e)
-        {
-            frmTodaysOrders orders = new frmTodaysOrders();
-            orders.Show();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            frmTodaysOrders orders = new frmTodaysOrders();
-            orders.Show();
-        }
-
-        /* private void btnHelp_Click(object sender, EventArgs e)
+        /* private void button1_Click(object sender, EventArgs e)
          {
+             frmTodaysOrders orders = new frmTodaysOrders();
+             orders.Show();
+         }
 
-         }*/
+         private void label1_Click(object sender, EventArgs e)
+         {
+         }
+
+         private void button1_Click_1(object sender, EventArgs e)
+         {
+             frmTodaysOrders orders = new frmTodaysOrders();
+             orders.Show();
+         }
+
+         /* private void btnHelp_Click(object sender, EventArgs e)
+          {
+
+          }*/
+
+        // ---------------------------------------------------------------
+        // GET CUSTOMER EMAIL FROM DATABASE
+        // ---------------------------------------------------------------
+        private string GetCustomerEmail(int orderID)
+        {
+            string email = null;
+            string query = @"SELECT c.Email
+                     FROM [OrderTable] o
+                     JOIN CustomerTable c ON o.CustomerID = c.CustomerID
+                     WHERE o.OrderID = @orderID";
+
+            using (SqlConnection conn = DBConnection.GetConnection())
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@orderID", orderID);
+                conn.Open();
+                object result = cmd.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                    email = result.ToString().Trim();
+            }
+            return email;
+        }
+
+        // ---------------------------------------------------------------
+        // CREATE PDF RECEIPT + SEND EMAIL
+        // ---------------------------------------------------------------
+        // ---------------------------------------------------------------
+        // CREATE PDF RECEIPT + SEND EMAIL  (FIXED)
+        // ---------------------------------------------------------------
+        private void SendReceiptEmail(int orderID, decimal orderTotal, decimal amountPaid,
+                                      decimal change, string paymentMethod)
+        {
+            string customerEmail = GetCustomerEmail(orderID);
+
+            if (string.IsNullOrWhiteSpace(customerEmail))
+            {
+                return; // No email on file – skip silently
+            }
+
+            string pdfPath = Path.Combine(Path.GetTempPath(),
+                $"Receipt_{orderID}_{DateTime.Now:yyyyMMddHHmmss}.pdf");
+
+            string customerName = "";
+            string cashierName = "";
+            DataTable items = new DataTable();
+
+            // Load customer, cashier and items
+            string queryInfo = @"SELECT
+                            c.FirstName + ' ' + c.Surname AS CustomerName,
+                            e.FirstName + ' ' + e.Surname AS CashierName
+                         FROM [OrderTable] o
+                         JOIN CustomerTable c ON o.CustomerID = c.CustomerID
+                         JOIN EmployeeTable e ON o.EmployeeID = e.EmployeeID
+                         WHERE o.OrderID = @orderID";
+
+            using (SqlConnection conn = DBConnection.GetConnection())
+            {
+                conn.Open();
+
+                using (SqlCommand cmd = new SqlCommand(queryInfo, conn))
+                {
+                    cmd.Parameters.AddWithValue("@orderID", orderID);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            customerName = reader["CustomerName"].ToString();
+                            cashierName = reader["CashierName"].ToString();
+                        }
+                    }
+                }
+
+                string queryItems = @"SELECT
+                                m.MenuItemName,
+                                io.QuantityOrdered,
+                                m.SellingPrice,
+                                io.Subtotal
+                             FROM ItemOrder io
+                             JOIN MenuItemsTable m ON io.MenuItemID = m.MenuItemID
+                             WHERE io.OrderID = @orderID";
+
+                using (SqlCommand cmd = new SqlCommand(queryItems, conn))
+                {
+                    cmd.Parameters.AddWithValue("@orderID", orderID);
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(items);
+                    }
+                }
+            }
+
+            // ===== Generate PDF =====
+            using (iTextSharp.text.Document doc = new iTextSharp.text.Document(iTextSharp.text.PageSize.A4, 40, 40, 40, 40))
+            {
+                iTextSharp.text.pdf.PdfWriter.GetInstance(doc, new FileStream(pdfPath, FileMode.Create));
+                doc.Open();
+
+                // Fully qualified fonts to avoid conflict with System.Drawing.Font
+                iTextSharp.text.Font titleFont = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.COURIER_BOLD, 14);
+                iTextSharp.text.Font boldFont = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.COURIER_BOLD, 10);
+                iTextSharp.text.Font normalFont = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.COURIER, 10);
+                iTextSharp.text.Font smallFont = iTextSharp.text.FontFactory.GetFont(iTextSharp.text.FontFactory.COURIER, 9);
+
+                doc.Add(new iTextSharp.text.Paragraph("CAFE 101", titleFont) { Alignment = iTextSharp.text.Element.ALIGN_CENTER });
+                doc.Add(new iTextSharp.text.Paragraph("CUSTOMER TRANSACTION RECEIPT", boldFont) { Alignment = iTextSharp.text.Element.ALIGN_CENTER });
+                doc.Add(new iTextSharp.text.Paragraph("479 Varsity Road, Durban, KZN", smallFont) { Alignment = iTextSharp.text.Element.ALIGN_CENTER });
+                doc.Add(new iTextSharp.text.Paragraph("Tel: 031 896 0230 | VAT No: 4123456789", smallFont) { Alignment = iTextSharp.text.Element.ALIGN_CENTER });
+                doc.Add(new iTextSharp.text.Paragraph("----------------------------------------"));
+
+                doc.Add(new iTextSharp.text.Paragraph($"Order ID:          {orderID}", normalFont));
+                doc.Add(new iTextSharp.text.Paragraph($"Date & Time:       {DateTime.Now:dd MMM yyyy HH:mm}", normalFont));
+                doc.Add(new iTextSharp.text.Paragraph($"Cashier:           {cashierName}", normalFont));
+                doc.Add(new iTextSharp.text.Paragraph($"Customer:          {customerName}", normalFont));
+                doc.Add(new iTextSharp.text.Paragraph("----------------------------------------"));
+
+                doc.Add(new iTextSharp.text.Paragraph("Item                      Qty    Price     Subtotal", boldFont));
+                doc.Add(new iTextSharp.text.Paragraph("----------------------------------------"));
+
+                foreach (DataRow row in items.Rows)
+                {
+                    string name = row["MenuItemName"].ToString();
+                    if (name.Length > 22) name = name.Substring(0, 22);
+
+                    string line = string.Format("{0,-24} {1,3}  R{2,7:0.00}  R{3,7:0.00}",
+                        name,
+                        Convert.ToInt32(Convert.ToDecimal(row["QuantityOrdered"])),
+                        Convert.ToDecimal(row["SellingPrice"]),
+                        Convert.ToDecimal(row["Subtotal"]));
+
+                    doc.Add(new iTextSharp.text.Paragraph(line, smallFont));
+                }
+
+                doc.Add(new iTextSharp.text.Paragraph("----------------------------------------"));
+                doc.Add(new iTextSharp.text.Paragraph($"Payment Method:    {paymentMethod}", normalFont));
+                doc.Add(new iTextSharp.text.Paragraph($"Total Amount:      R {orderTotal:0.00}", boldFont));
+                doc.Add(new iTextSharp.text.Paragraph($"Amount Paid:       R {amountPaid:0.00}", normalFont));
+                doc.Add(new iTextSharp.text.Paragraph(
+                    $"Change Due:        {(paymentMethod == "Card" ? "N/A" : "R " + change.ToString("0.00"))}", normalFont));
+                doc.Add(new iTextSharp.text.Paragraph("----------------------------------------"));
+                doc.Add(new iTextSharp.text.Paragraph("Thank you for dining at Cafe 101!", boldFont)
+                { Alignment = iTextSharp.text.Element.ALIGN_CENTER });
+
+                doc.Close();
+            }
+
+            // ===== Send the email =====
+            try
+            {
+                string fromEmail = "mayisesnakhokonke7@gmail.com";
+                string appPassword = "nkwl wept pruf ljyk";   // ← change to a NEW app password!
+
+                using (MailMessage mail = new MailMessage())
+                {
+                    mail.From = new MailAddress(fromEmail, "Cafe 101");
+                    mail.To.Add(customerEmail);
+                    mail.Subject = $"Cafe 101 Receipt – Order #{orderID}";
+                    mail.Body = "Thank you for dining at Cafe 101.\n\nPlease find your receipt attached.";
+                    mail.Attachments.Add(new Attachment(pdfPath));
+
+                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        smtp.EnableSsl = true;
+                        smtp.Credentials = new NetworkCredential(fromEmail, appPassword);
+                        smtp.Send(mail);
+                    }
+                }
+
+                try { File.Delete(pdfPath); } catch { }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Payment was successful, but the email could not be sent:\n" + ex.Message,
+                    "Email Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         private void btnHelp_Click(object sender, EventArgs e)
         {
             if (helpVisible)

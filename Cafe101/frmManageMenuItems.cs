@@ -15,7 +15,9 @@ namespace Cafe101
 
         public frmManageMenuItems()
         {
+
             InitializeComponent();
+            this.DoubleBuffered = true;
             CreatePrepTimeStatusLabel();
             AttachValidationEvents();
         }

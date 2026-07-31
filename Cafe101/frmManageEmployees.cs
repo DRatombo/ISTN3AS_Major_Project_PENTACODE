@@ -15,7 +15,9 @@ namespace Cafe101
 
         public frmManageEmployees()
         {
+
             InitializeComponent();
+            this.DoubleBuffered = true;
             CreateAddressStatusLabel();
             AttachValidationEvents();
         }

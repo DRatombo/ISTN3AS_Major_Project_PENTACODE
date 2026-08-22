@@ -220,10 +220,16 @@ namespace Cafe101
                             maxCanMake = canMake;
                     }
                 }
-
                 cell.Items.Clear();
 
-                if (!hasRecipe || maxCanMake == int.MaxValue || maxCanMake <= 0)
+                // Menu item exists but does not have a recipe
+                if (!hasRecipe)
+                {
+                    cell.Items.Add("No recipe");
+                    cell.Value = "No recipe";
+                }
+                // Recipe exists, but ingredients cannot currently make the item
+                else if (maxCanMake == int.MaxValue || maxCanMake <= 0)
                 {
                     cell.Items.Add("Out of stock");
                     cell.Value = "Out of stock";
@@ -232,11 +238,12 @@ namespace Cafe101
                 {
                     for (int i = 1; i <= maxCanMake; i++)
                         cell.Items.Add(i.ToString());
+
                     cell.Value = null;
                 }
             }
         }
-        private void btnSearchCust_Click(object sender, EventArgs e)
+      /*  private void btnSearchCust_Click(object sender, EventArgs e)
         {
             try
             {
@@ -253,9 +260,9 @@ namespace Cafe101
                     c.FirstName.ToLower().Contains(txtSearchedCust.Text.ToLower()) ||
                     c.Surname.ToLower().Contains(txtSearchedCust.Text.ToLower()));
 
-                /*var results = this.dsCafe101Test.TestCustomer.Where(c =>
+                *//*var results = this.dsCafe101Test.TestCustomer.Where(c =>
                     c.FirstName.ToLower().Contains(txtSearchedCust.Text.ToLower()) ||
-                    c.Surname.ToLower().Contains(txtSearchedCust.Text.ToLower()));*/
+                    c.Surname.ToLower().Contains(txtSearchedCust.Text.ToLower()));*//*
 
                 if (results.Any())
                 {
@@ -274,8 +281,8 @@ namespace Cafe101
                 else
                 {
                     // Show grid with all customers so cashier can browse
-/*                    dgvCustomers.DataSource = this.dsCafe101Test.TestCustomer;
- */                 dgvCustomers.DataSource = this.dsCafe101Hub.CustomerTable;
+*//*                    dgvCustomers.DataSource = this.dsCafe101Test.TestCustomer;
+ *//*                 dgvCustomers.DataSource = this.dsCafe101Hub.CustomerTable;
                     dgvCustomers.Visible = true;
 
                     DialogResult result = MessageBox.Show(
@@ -302,8 +309,8 @@ namespace Cafe101
                 // If search box is empty - show all menu items
                 if (string.IsNullOrWhiteSpace(textItemSearch.Text))
                 {
-                    /*this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
-                    dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;*/
+                    *//*this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
+                    dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;*//*
 
                     this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
                     dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable;
@@ -316,8 +323,8 @@ namespace Cafe101
                 }
 
                 // Use the FillByMenuItem query to filter by name
-                /*this.testMenuItemsTableAdapter.FillByMenuItems(this.dsCafe101Test.TestMenuItems, textItemSearch.Text);
-                dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;*/
+                *//*this.testMenuItemsTableAdapter.FillByMenuItems(this.dsCafe101Test.TestMenuItems, textItemSearch.Text);
+                dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;*//*
 
                 this.menuItemsTableTableAdapter.FillByMenuItems(this.dsCafe101Hub.MenuItemsTable, textItemSearch.Text);
                 dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable; 
@@ -335,7 +342,7 @@ namespace Cafe101
             {
                 MessageBox.Show("Error searching menu items: " + ex.Message);
             }
-        }
+        }*/
 
         /* private void txtSearchedCust_TextChanged(object sender, EventArgs e)
          {
@@ -387,109 +394,220 @@ namespace Cafe101
          }
 
         */
-         private void btnAddToCart_Click(object sender, EventArgs e)
-         {
-             try
-             {
-                 if (selectedCustomerID == 0)
-                 {
-                     MessageBox.Show("Please select a customer before adding items to the cart.");
-                     return;
-                 }
+        private void btnAddToCart_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (selectedCustomerID == 0)
+                {
+                    MessageBox.Show("Please select a customer before adding items to the cart.");
+                    return;
+                }
 
-                 if (dgvMenuItems.SelectedRows.Count == 0)
-                 {
-                     MessageBox.Show("Please select an item to order.");
-                     return;
-                 }
+                // Load stock information once
+                DataTable recipes = recipeTableTableAdapter1.GetData();
+                DataTable ingredients = ingredientTableTableAdapter1.GetData();
 
-                 int menuItemID = Convert.ToInt32(dgvMenuItems.SelectedRows[0].Cells["MenuItemID"].Value);
-                 string itemName = dgvMenuItems.SelectedRows[0].Cells["MenuItemName"].Value.ToString();
-                 string priceStr = dgvMenuItems.SelectedRows[0].Cells["SellingPrice"].Value.ToString()
-                     .Replace(",", ".").Trim();
-                 decimal price = decimal.Parse(priceStr, System.Globalization.CultureInfo.InvariantCulture);
+                bool itemAdded = false;
 
-                 string qtyRaw = dgvMenuItems.SelectedRows[0].Cells["ItemQty"].Value?.ToString() ?? "";
-                 if (string.IsNullOrEmpty(qtyRaw) || qtyRaw == "0" || qtyRaw == "Out of stock")
-                 {
-                     MessageBox.Show("Please select a quantity first.");
-                     return;
-                 }
+                // Go through EVERY menu item row
+                foreach (DataGridViewRow menuRow in dgvMenuItems.Rows)
+                {
+                    if (menuRow.IsNewRow)
+                        continue;
 
-                 int quantity = Convert.ToInt32(qtyRaw);
+                    string qtyRaw = menuRow.Cells["ItemQty"].Value?.ToString() ?? "";
 
-                 // ── Calculate max stock for this item ──────────────────────────
-                 DataTable recipes = recipeTableTableAdapter1.GetData();
-                 DataTable ingredients = ingredientTableTableAdapter1.GetData();
-                 int maxCanMake = int.MaxValue;
+                    // Ignore items where no quantity was selected
+                    if (string.IsNullOrWhiteSpace(qtyRaw) ||
+                         qtyRaw == "0" ||
+                         qtyRaw == "Out of stock" ||
+                         qtyRaw == "No recipe")
+                    {
+                        continue;
+                    }
 
-                 foreach (DataRow recipe in recipes.Rows)
-                 {
-                     if (recipe["MenuItemID"] == DBNull.Value ||
-                         recipe["IngredientID"] == DBNull.Value ||
-                         recipe["QuantityNeeded"] == DBNull.Value) continue;
-                     if (Convert.ToInt32(recipe["MenuItemID"]) != menuItemID) continue;
+                    int quantity;
 
-                     int ingredientID = Convert.ToInt32(recipe["IngredientID"]);
-                     int quantityNeeded = Convert.ToInt32(recipe["QuantityNeeded"]);
-                     if (quantityNeeded <= 0) continue;
+                    if (!int.TryParse(qtyRaw, out quantity) || quantity <= 0)
+                        continue;
 
-                     foreach (DataRow ingredient in ingredients.Rows)
-                     {
-                         if (ingredient["IngredientID"] == DBNull.Value ||
-                             ingredient["QuantityOnHand"] == DBNull.Value) continue;
-                         if (Convert.ToInt32(ingredient["IngredientID"]) != ingredientID) continue;
+                    // Get item information
+                    int menuItemID =
+                        Convert.ToInt32(menuRow.Cells["MenuItemID"].Value);
 
-                         int onHand = Convert.ToInt32(ingredient["QuantityOnHand"]);
-                         int canMake = onHand / quantityNeeded;
-                         if (canMake < maxCanMake) maxCanMake = canMake;
-                     }
-                 }
+                    string itemName =
+                        menuRow.Cells["MenuItemName"].Value?.ToString() ?? "";
 
-                 if (maxCanMake == int.MaxValue) maxCanMake = 0;
+                    string priceStr =
+                        menuRow.Cells["SellingPrice"].Value?.ToString()
+                        .Replace(",", ".")
+                        .Trim();
 
-                 // ── Add to cart or update existing ────────────────────────────
-                 int newCartQty = quantity;
+                    decimal price = decimal.Parse(
+                        priceStr,
+                        System.Globalization.CultureInfo.InvariantCulture);
 
-                 foreach (DataGridViewRow row in dgvCart.Rows)
-                 {
-                     if (row.Cells["MenuItemID"].Value == null) continue;
-                     if (Convert.ToInt32(row.Cells["MenuItemID"].Value) == menuItemID)
-                     {
-                         int existingQty = Convert.ToInt32(row.Cells["Qty"].Value);
-                         newCartQty = existingQty + quantity;
-                        decimal newSubtotal = newCartQty * price;
-                        row.Cells["Qty"].Value = newCartQty;
-                        row.Cells["Subtotal"].Value = "R " + newSubtotal.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+                    // ─────────────────────────────────────────────
+                    // Calculate maximum stock for this menu item
+                    // ─────────────────────────────────────────────
+
+                    int maxCanMake = int.MaxValue;
+                    bool hasRecipe = false;
+
+                    foreach (DataRow recipe in recipes.Rows)
+                    {
+                        if (recipe["MenuItemID"] == DBNull.Value ||
+                            recipe["IngredientID"] == DBNull.Value ||
+                            recipe["QuantityNeeded"] == DBNull.Value)
+                        {
+                            continue;
+                        }
+
+                        if (Convert.ToInt32(recipe["MenuItemID"]) != menuItemID)
+                            continue;
+
+                        hasRecipe = true;
+
+                        int ingredientID =
+                            Convert.ToInt32(recipe["IngredientID"]);
+
+                        int quantityNeeded =
+                            Convert.ToInt32(recipe["QuantityNeeded"]);
+
+                        if (quantityNeeded <= 0)
+                            continue;
+
+                        foreach (DataRow ingredient in ingredients.Rows)
+                        {
+                            if (ingredient["IngredientID"] == DBNull.Value ||
+                                ingredient["QuantityOnHand"] == DBNull.Value)
+                            {
+                                continue;
+                            }
+
+                            if (Convert.ToInt32(ingredient["IngredientID"]) != ingredientID)
+                                continue;
+
+                            int onHand =
+                                Convert.ToInt32(ingredient["QuantityOnHand"]);
+
+                            int canMake = onHand / quantityNeeded;
+
+                            if (canMake < maxCanMake)
+                                maxCanMake = canMake;
+                        }
+                    }
+
+                    if (!hasRecipe)
+                    {
+                        MessageBox.Show(
+                            itemName + " cannot be ordered because no recipe has been created for it.\n\n" +
+                            "Please ask a manager to create the recipe first.",
+                            "Recipe Required",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+
+                        continue;
+                    }
+
+                    if (maxCanMake == int.MaxValue)
+                        maxCanMake = 0;
+
+                    // ─────────────────────────────────────────────
+                    // Check whether item already exists in cart
+                    // ─────────────────────────────────────────────
+
+                    bool alreadyInCart = false;
+                    int newCartQty = quantity;
+
+                    foreach (DataGridViewRow cartRow in dgvCart.Rows)
+                    {
+                        if (cartRow.IsNewRow)
+                            continue;
+
+                        if (cartRow.Cells["MenuItemID"].Value == null)
+                            continue;
+
+                        if (Convert.ToInt32(cartRow.Cells["MenuItemID"].Value) == menuItemID)
+                        {
+                            int existingQty =
+                                Convert.ToInt32(cartRow.Cells["Qty"].Value);
+
+                            newCartQty = existingQty + quantity;
+
+                            decimal newSubtotal = newCartQty * price;
+
+                            cartRow.Cells["Qty"].Value = newCartQty;
+
+                            cartRow.Cells["Subtotal"].Value =
+                                "R " + newSubtotal.ToString(
+                                    "0.00",
+                                    System.Globalization.CultureInfo.InvariantCulture);
+
+                            orderTotal += quantity * price;
+
+                            alreadyInCart = true;
+
+                            UpdateDropdown(
+                                menuItemID,
+                                maxCanMake,
+                                newCartQty);
+
+                            break;
+                        }
+                    }
+
+                    // ─────────────────────────────────────────────
+                    // Add new cart row
+                    // ─────────────────────────────────────────────
+
+                    if (!alreadyInCart)
+                    {
+                        dgvCart.Rows.Add(
+                            menuItemID,
+                            itemName,
+                            quantity,
+                            "R " + price.ToString(
+                                "0.00",
+                                System.Globalization.CultureInfo.InvariantCulture),
+                            "R " + (quantity * price).ToString(
+                                "0.00",
+                                System.Globalization.CultureInfo.InvariantCulture));
+
                         orderTotal += quantity * price;
-                        lblAmount.Text = "R " + orderTotal.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
 
-                        // Update dropdown for existing item
-                        UpdateDropdown(menuItemID, maxCanMake, newCartQty);
-                         return;
-                     }
-                 }
+                        UpdateDropdown(
+                            menuItemID,
+                            maxCanMake,
+                            newCartQty);
+                    }
 
-                
-                dgvCart.Rows.Add(
-                                     menuItemID,
-                                     itemName,
-                                     quantity,
-                                     "R " + price.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture),
-                                     "R " + (quantity * price).ToString("0.00", System.Globalization.CultureInfo.InvariantCulture));
+                    itemAdded = true;
+                }
 
-                orderTotal += quantity * price;
-                lblAmount.Text = "R " + orderTotal.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+                // Nothing anywhere in the grid had a quantity
+                if (!itemAdded)
+                {
+                    MessageBox.Show(
+                        "Please select a quantity for at least one menu item.");
 
-                // Update dropdown for new item
-                UpdateDropdown(menuItemID, maxCanMake, newCartQty);
-             }
-             catch (Exception ex)
-             {
-                 MessageBox.Show("Error adding to cart: " + ex.Message);
-             }
-         }
- 
+                    return;
+                }
+
+                // Update total once everything has been added
+                lblAmount.Text =
+                    "R " + orderTotal.ToString(
+                        "0.00",
+                        System.Globalization.CultureInfo.InvariantCulture);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "Error adding items to cart: " + ex.Message);
+            }
+        }
+
 
         private void txtSearchedCust_TextChanged(object sender, EventArgs e)
         {
@@ -666,6 +784,7 @@ namespace Cafe101
                 }
 
                 int itemCount = 0;
+
                 foreach (DataGridViewRow row in dgvCart.Rows)
                 {
                     if (row.Cells["MenuItemID"].Value != null)
@@ -681,10 +800,11 @@ namespace Cafe101
                 if (!CheckStock())
                     return;
 
-
                 if (cmbOrderType.SelectedItem.ToString() == "Event")
                 {
-                    DateTime eventDateTime = dtpEventDate.Value.Date + dtpEventTime.Value.TimeOfDay;
+                    DateTime eventDateTime =
+                        dtpEventDate.Value.Date + dtpEventTime.Value.TimeOfDay;
+
                     if (eventDateTime <= DateTime.Now)
                     {
                         MessageBox.Show(
@@ -692,119 +812,206 @@ namespace Cafe101
                             "Invalid Event Date",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
+
                         return;
                     }
                 }
 
-                // Replace the orderTableTableAdapter1.SaveOrder(...) or Insert(...) call
-                // with this direct SQL approach
-
                 int newOrderID = 0;
 
-                using (System.Data.SqlClient.SqlConnection conn = new System.Data.SqlClient.SqlConnection(
-                    orderTableTableAdapter1.Connection.ConnectionString))
+                using (System.Data.SqlClient.SqlConnection conn =
+                    new System.Data.SqlClient.SqlConnection(
+                        orderTableTableAdapter1.Connection.ConnectionString))
                 {
                     conn.Open();
-                    string sql = @"INSERT INTO OrderTable 
-                        (CustomerID, EmployeeID, OrderType, OrderDateTime, EventDate, EventTime, 
-                         OrderStatus, PaymentMethod, TotalAmountDue, TotalChangeDue)
-                        VALUES 
-                        (@CustomerID, @EmployeeID, @OrderType, @OrderDateTime, @EventDate, @EventTime,
-                         @OrderStatus, @PaymentMethod, @TotalAmountDue, @TotalChangeDue)
-                        SELECT SCOPE_IDENTITY()";
 
-                    using (System.Data.SqlClient.SqlCommand cmd = new System.Data.SqlClient.SqlCommand(sql, conn))
+                    string sql = @"INSERT INTO OrderTable
+                (CustomerID, EmployeeID, OrderType, OrderDateTime,
+                 EventDate, EventTime, OrderStatus, PaymentMethod,
+                 TotalAmountDue, TotalChangeDue)
+                VALUES
+                (@CustomerID, @EmployeeID, @OrderType, @OrderDateTime,
+                 @EventDate, @EventTime, @OrderStatus, @PaymentMethod,
+                 @TotalAmountDue, @TotalChangeDue);
+
+                SELECT SCOPE_IDENTITY();";
+
+                    using (System.Data.SqlClient.SqlCommand cmd =
+                        new System.Data.SqlClient.SqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@CustomerID", selectedCustomerID);
-                        cmd.Parameters.AddWithValue("@EmployeeID", SessionManager.EmployeeID);
-                        cmd.Parameters.AddWithValue("@OrderType", cmbOrderType.SelectedItem.ToString());
-                        cmd.Parameters.AddWithValue("@OrderDateTime", DateTime.Now);
+                        cmd.Parameters.AddWithValue(
+                            "@CustomerID",
+                            selectedCustomerID);
+
+                        cmd.Parameters.AddWithValue(
+                            "@EmployeeID",
+                            SessionManager.EmployeeID);
+
+                        cmd.Parameters.AddWithValue(
+                            "@OrderType",
+                            cmbOrderType.SelectedItem.ToString());
+
+                        cmd.Parameters.AddWithValue(
+                            "@OrderDateTime",
+                            DateTime.Now);
 
                         if (cmbOrderType.SelectedItem.ToString() == "Event")
                         {
-                            cmd.Parameters.AddWithValue("@EventDate", dtpEventDate.Value.Date);
-                            cmd.Parameters.AddWithValue("@EventTime", dtpEventDate.Value.TimeOfDay);
+                            cmd.Parameters.AddWithValue(
+                                "@EventDate",
+                                dtpEventDate.Value.Date);
+
+                            cmd.Parameters.AddWithValue(
+                                "@EventTime",
+                                dtpEventTime.Value.TimeOfDay);
                         }
                         else
                         {
-                            cmd.Parameters.AddWithValue("@EventDate", DBNull.Value);
-                            cmd.Parameters.AddWithValue("@EventTime", DBNull.Value);
+                            cmd.Parameters.AddWithValue(
+                                "@EventDate",
+                                DBNull.Value);
+
+                            cmd.Parameters.AddWithValue(
+                                "@EventTime",
+                                DBNull.Value);
                         }
 
-                        cmd.Parameters.AddWithValue("@OrderStatus", "Pending");
-                        cmd.Parameters.AddWithValue("@PaymentMethod", "Cash");
-                        cmd.Parameters.AddWithValue("@TotalAmountDue", orderTotal);
-                        cmd.Parameters.AddWithValue("@TotalChangeDue", 0m);
+                        cmd.Parameters.AddWithValue(
+                            "@OrderStatus",
+                            "Pending");
+
+                        cmd.Parameters.AddWithValue(
+                            "@PaymentMethod",
+                            "Cash");
+
+                        cmd.Parameters.AddWithValue(
+                            "@TotalAmountDue",
+                            orderTotal);
+
+                        cmd.Parameters.AddWithValue(
+                            "@TotalChangeDue",
+                            0m);
 
                         object result = cmd.ExecuteScalar();
+
                         if (result == null || result == DBNull.Value)
                         {
-                            MessageBox.Show("Order could not be saved.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(
+                                "Order could not be saved.",
+                                "Error",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+
                             return;
                         }
+
                         newOrderID = Convert.ToInt32(result);
                     }
                 }
 
                 if (newOrderID <= 0)
                 {
-                    MessageBox.Show("Order saved but ID could not be retrieved.", "Warning");
+                    MessageBox.Show(
+                        "Order saved but ID could not be retrieved.",
+                        "Warning");
+
                     return;
                 }
-                // Insert each cart item into ItemOrder table
+
+                // Save every cart item
                 foreach (DataGridViewRow row in dgvCart.Rows)
                 {
-                    if (row.Cells["MenuItemID"].Value == null) continue;
+                    if (row.Cells["MenuItemID"].Value == null)
+                        continue;
 
-                    int menuItemID = Convert.ToInt32(row.Cells["MenuItemID"].Value);
-                    int qty = Convert.ToInt32(row.Cells["Qty"].Value);
-                    decimal subtotal = decimal.Parse(row.Cells["Subtotal"].Value.ToString().Replace("R ", "").Trim(),System.Globalization.CultureInfo.InvariantCulture);
+                    int menuItemID =
+                        Convert.ToInt32(row.Cells["MenuItemID"].Value);
 
+                    int qty =
+                        Convert.ToInt32(row.Cells["Qty"].Value);
+
+                    decimal subtotal = decimal.Parse(
+                        row.Cells["Subtotal"].Value
+                            .ToString()
+                            .Replace("R ", "")
+                            .Trim(),
+                        System.Globalization.CultureInfo.InvariantCulture);
 
                     try
                     {
-                        using (System.Data.SqlClient.SqlConnection itemConn = new System.Data.SqlClient.SqlConnection(
-                            orderTableTableAdapter1.Connection.ConnectionString))
+                        using (System.Data.SqlClient.SqlConnection itemConn =
+                            new System.Data.SqlClient.SqlConnection(
+                                orderTableTableAdapter1.Connection.ConnectionString))
                         {
                             itemConn.Open();
-                            string itemSql = @"INSERT INTO ItemOrder (OrderID, MenuItemID, QuantityOrdered, Subtotal)
-                                                VALUES (@OrderID, @MenuItemID, @QuantityOrdered, @Subtotal)";
 
-                            using (System.Data.SqlClient.SqlCommand itemCmd = new System.Data.SqlClient.SqlCommand(itemSql, itemConn))
+                            string itemSql = @"INSERT INTO ItemOrder
+                        (OrderID, MenuItemID, QuantityOrdered, Subtotal)
+                        VALUES
+                        (@OrderID, @MenuItemID, @QuantityOrdered, @Subtotal)";
+
+                            using (System.Data.SqlClient.SqlCommand itemCmd =
+                                new System.Data.SqlClient.SqlCommand(
+                                    itemSql,
+                                    itemConn))
                             {
-                                itemCmd.Parameters.AddWithValue("@OrderID", newOrderID);
-                                itemCmd.Parameters.AddWithValue("@MenuItemID", menuItemID);
-                                itemCmd.Parameters.AddWithValue("@QuantityOrdered", qty);
-                                itemCmd.Parameters.AddWithValue("@Subtotal", subtotal);
+                                itemCmd.Parameters.AddWithValue(
+                                    "@OrderID",
+                                    newOrderID);
+
+                                itemCmd.Parameters.AddWithValue(
+                                    "@MenuItemID",
+                                    menuItemID);
+
+                                itemCmd.Parameters.AddWithValue(
+                                    "@QuantityOrdered",
+                                    qty);
+
+                                itemCmd.Parameters.AddWithValue(
+                                    "@Subtotal",
+                                    subtotal);
+
                                 itemCmd.ExecuteNonQuery();
                             }
                         }
                     }
                     catch (Exception exItem)
                     {
-                        MessageBox.Show("OrderItem insert failed: " + exItem.Message + "\nOrderID=" + newOrderID + " MenuItemID=" + menuItemID);
+                        MessageBox.Show(
+                            "Order item could not be saved.\n\n" +
+                            exItem.Message,
+                            "Order Item Error",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+
                         return;
                     }
                 }
 
+                // Deduct ingredients from stock
                 DeductStock();
-                MessageBox.Show("Order #" + newOrderID + " saved successfully!\nTotal: R " + orderTotal.ToString("0.00") + "\nHandling payment in Checkout...");
 
-                // Uncomment when frmCheckout is ready
+                // Go directly to Checkout — no success message
+                frmCheckout checkout =
+                    new frmCheckout(newOrderID, orderTotal);
 
-                frmCheckout checkout = new frmCheckout(newOrderID, orderTotal);
                 checkout.Owner = this;
                 checkout.Show();
+
                 this.Hide();
 
                 ResetOrder();
-
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error confirming order: " + ex.Message);
+                MessageBox.Show(
+                    "Error confirming order: " + ex.Message,
+                    "Order Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
+
         public void ResetOrder()
         {
             dgvCart.Rows.Clear();
@@ -820,32 +1027,90 @@ namespace Cafe101
         {
             foreach (DataGridViewRow row in dgvCart.Rows)
             {
-                if (row.Cells["MenuItemID"].Value == null) continue;
+                if (row.Cells["MenuItemID"].Value == null)
+                    continue;
 
                 int menuItemID = Convert.ToInt32(row.Cells["MenuItemID"].Value);
                 int qtyOrdered = Convert.ToInt32(row.Cells["Qty"].Value);
+                string itemName = row.Cells["ItemName"].Value.ToString();
 
                 DataTable allRecipes = recipeTableTableAdapter1.GetData();
 
+                // ─────────────────────────────────────────────
+                // CHECK 1: Make sure a recipe exists
+                // ─────────────────────────────────────────────
+
+                bool recipeExists = false;
+
                 foreach (DataRow recipe in allRecipes.Rows)
                 {
-                    if (Convert.ToInt32(recipe["MenuItemID"]) != menuItemID) continue;
+                    if (recipe["MenuItemID"] == DBNull.Value)
+                        continue;
 
-                    int ingredientID = Convert.ToInt32(recipe["IngredientID"]);
-                    int quantityNeeded = Convert.ToInt32(recipe["QuantityNeeded"]);
-                    int amountNeeded = quantityNeeded * qtyOrdered;
+                    if (Convert.ToInt32(recipe["MenuItemID"]) == menuItemID)
+                    {
+                        recipeExists = true;
+                        break;
+                    }
+                }
 
-                    DataTable allStock = ingredientTableTableAdapter1.GetData();
+                // Stop the order if this menu item has no recipe
+                if (!recipeExists)
+                {
+                    MessageBox.Show(
+                        itemName + " cannot be ordered because no recipe has been created for it.\n\n" +
+                        "Please ask a manager to create the recipe first.",
+                        "Recipe Required",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    return false;
+                }
+
+                // ─────────────────────────────────────────────
+                // CHECK 2: Make sure there is enough stock
+                // ─────────────────────────────────────────────
+
+                foreach (DataRow recipe in allRecipes.Rows)
+                {
+                    if (recipe["MenuItemID"] == DBNull.Value ||
+                        recipe["IngredientID"] == DBNull.Value ||
+                        recipe["QuantityNeeded"] == DBNull.Value)
+                    {
+                        continue;
+                    }
+
+                    if (Convert.ToInt32(recipe["MenuItemID"]) != menuItemID)
+                        continue;
+
+                    int ingredientID =
+                        Convert.ToInt32(recipe["IngredientID"]);
+
+                    int quantityNeeded =
+                        Convert.ToInt32(recipe["QuantityNeeded"]);
+
+                    int amountNeeded =
+                        quantityNeeded * qtyOrdered;
+
+                    DataTable allStock =
+                        ingredientTableTableAdapter1.GetData();
 
                     foreach (DataRow stockRow in allStock.Rows)
                     {
-                        if (Convert.ToInt32(stockRow["IngredientID"]) != ingredientID) continue;
+                        if (stockRow["IngredientID"] == DBNull.Value ||
+                            stockRow["QuantityOnHand"] == DBNull.Value)
+                        {
+                            continue;
+                        }
 
-                        int quantityOnHand = Convert.ToInt32(stockRow["QuantityOnHand"]);
+                        if (Convert.ToInt32(stockRow["IngredientID"]) != ingredientID)
+                            continue;
+
+                        int quantityOnHand =
+                            Convert.ToInt32(stockRow["QuantityOnHand"]);
 
                         if (quantityOnHand < amountNeeded)
                         {
-                            string itemName = row.Cells["ItemName"].Value.ToString();
                             MessageBox.Show(
                                 "Not enough stock to complete this order.\n" +
                                 "Item: " + itemName + "\n" +
@@ -854,13 +1119,16 @@ namespace Cafe101
                                 "Insufficient Stock",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
+
                             return false;
                         }
                     }
                 }
             }
+
+            // Every item has a recipe AND enough stock
             return true;
-        }
+        } 
 
         private void DeductStock()
         {
@@ -1067,9 +1335,12 @@ namespace Cafe101
 
                 // Subtract what's already in the cart for this item
                 int inCart = 0;
+
                 foreach (DataGridViewRow cartRow in dgvCart.Rows)
                 {
-                    if (cartRow.Cells["MenuItemID"].Value == null) continue;
+                    if (cartRow.Cells["MenuItemID"].Value == null)
+                        continue;
+
                     if (Convert.ToInt32(cartRow.Cells["MenuItemID"].Value) == menuItemID)
                     {
                         inCart = Convert.ToInt32(cartRow.Cells["Qty"].Value);
@@ -1077,19 +1348,33 @@ namespace Cafe101
                     }
                 }
 
-                int remaining = maxCanMake - inCart;
-
                 cell.Items.Clear();
-                if (remaining <= 0)
+
+                // Menu item has not been linked to a recipe
+                if (!hasRecipe)
                 {
-                    cell.Items.Add("Out of stock");
-                    cell.Value = "Out of stock";
+                    cell.Items.Add("No recipe");
+                    cell.Value = "No recipe";
                 }
                 else
                 {
-                    for (int i = 1; i <= remaining; i++)
-                        cell.Items.Add(i.ToString());
-                    cell.Value = null;
+                    if (maxCanMake == int.MaxValue)
+                        maxCanMake = 0;
+
+                    int remaining = maxCanMake - inCart;
+
+                    if (remaining <= 0)
+                    {
+                        cell.Items.Add("Out of stock");
+                        cell.Value = "Out of stock";
+                    }
+                    else
+                    {
+                        for (int i = 1; i <= remaining; i++)
+                            cell.Items.Add(i.ToString());
+
+                        cell.Value = null;
+                    }
                 }
             }
         }
@@ -1232,50 +1517,46 @@ namespace Cafe101
 
         private void btnCancelOrder_Click(object sender, EventArgs e)
         {
-            // Nothing in cart
-            if (dgvCart.Rows.Count == 0)
+            try
             {
-                MessageBox.Show(
-                    "There is no order to cancel because the cart is empty.\n\n" +
-                    "You can either:\n" +
-                    "• Return to the Home screen\n" +
-                    "• Continue building a new order",
-                    "Cart Empty",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                // If there is nothing in the cart, simply return to Main
+                if (dgvCart.Rows.Count == 0)
+                {
+                    frmMain mainForm = new frmMain();
+                    mainForm.Show();
+                    this.Close();
+                    return;
+                }
 
-                return;
+                // Confirm before cancelling an order that has items
+                DialogResult confirm = MessageBox.Show(
+                    "Are you sure you want to cancel this order?\nAll cart items will be removed.",
+                    "Cancel Order",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (confirm == DialogResult.Yes)
+                {
+                    // Clear current order
+                    dgvCart.Rows.Clear();
+                    orderTotal = 0;
+                    selectedCustomerID = 0;
+
+                    // Return to Main
+                    frmMain mainForm = new frmMain();
+                    mainForm.Show();
+                    this.Close();
+                }
             }
-
-            DialogResult confirm = MessageBox.Show(
-                "Are you sure you want to cancel this order?\nAll cart items will be removed.",
-                "Cancel Order",
-                MessageBoxButtons.YesNo,
-                MessageBoxIcon.Warning);
-
-            if (confirm == DialogResult.Yes)
+            catch (Exception ex)
             {
-                dgvCart.Rows.Clear();
-                orderTotal = 0;
-                lblAmount.Text = "R0.00";
-
-                selectedCustomerID = 0;
-                txtSearchedName.Text = "";
-                txtSearchedCust.Text = "";
-
-                btnClearCustName.Enabled = true;
-
-                RebuildQtyColumnWithCart();
-                PopulateCustomerGrid("");
-
                 MessageBox.Show(
-                    "Order cancelled successfully.",
-                    "Order Cancelled",
+                    "Unable to cancel the order. Please try again.\n\n" + ex.Message,
+                    "Error",
                     MessageBoxButtons.OK,
-                    MessageBoxIcon.Information);
+                    MessageBoxIcon.Error);
             }
         }
-
         private void PopulateCustomerGrid(string search)
         {
             try
@@ -1427,6 +1708,7 @@ namespace Cafe101
             PopulateCustomerGrid("");
             dgvCustomers.Refresh();
         }
+
     }
     
 }

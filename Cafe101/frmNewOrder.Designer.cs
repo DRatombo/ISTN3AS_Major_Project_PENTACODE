@@ -31,14 +31,18 @@
             this.components = new System.ComponentModel.Container();
             this.lblSearchCust = new System.Windows.Forms.Label();
             this.txtSearchedCust = new System.Windows.Forms.TextBox();
-            this.btnSearchCust = new System.Windows.Forms.Button();
             this.lblCustName = new System.Windows.Forms.Label();
             this.txtSearchedName = new System.Windows.Forms.TextBox();
             this.lblSearchItems = new System.Windows.Forms.Label();
             this.textItemSearch = new System.Windows.Forms.TextBox();
-            this.btnSearchItem = new System.Windows.Forms.Button();
             this.btnAddToCart = new System.Windows.Forms.Button();
             this.dgvMenuItems = new System.Windows.Forms.DataGridView();
+            this.ItemQty = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.MenuItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MenuItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PreparationTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuItemsTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsCafe101Hub = new Cafe101.dsCafe101Hub();
             this.testMenuItemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -61,6 +65,11 @@
             this.recipeItemTableAdapter1 = new Cafe101.dsCafe101TableAdapters.RecipeItemTableAdapter();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvCustomers = new System.Windows.Forms.DataGridView();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.testCustomerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.btnBack = new System.Windows.Forms.Button();
@@ -94,7 +103,6 @@
             this.btnAddNewCust = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnClearItemSearch = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.customerTableTableAdapter = new Cafe101.dsCafe101HubTableAdapters.CustomerTableTableAdapter();
             this.menuItemsTableTableAdapter = new Cafe101.dsCafe101HubTableAdapters.MenuItemsTableTableAdapter();
@@ -103,17 +111,6 @@
             this.orderTableTableAdapter1 = new Cafe101.dsCafe101HubTableAdapters.OrderTableTableAdapter();
             this.ingredientTableTableAdapter1 = new Cafe101.dsCafe101HubTableAdapters.IngredientTableTableAdapter();
             this.btnCancelOrder = new System.Windows.Forms.Button();
-            this.ItemQty = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.MenuItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MenuItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sellingPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PreparationTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Surname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.addressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMenuItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemsTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101Hub)).BeginInit();
@@ -143,51 +140,37 @@
             this.lblSearchCust.Location = new System.Drawing.Point(81, 39);
             this.lblSearchCust.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearchCust.Name = "lblSearchCust";
-            this.lblSearchCust.Size = new System.Drawing.Size(140, 18);
+            this.lblSearchCust.Size = new System.Drawing.Size(119, 18);
             this.lblSearchCust.TabIndex = 0;
-            this.lblSearchCust.Text = "Search Customer";
+            this.lblSearchCust.Text = "Find Customer";
             // 
             // txtSearchedCust
             // 
-            this.txtSearchedCust.Location = new System.Drawing.Point(253, 40);
+            this.txtSearchedCust.Location = new System.Drawing.Point(276, 39);
             this.txtSearchedCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearchedCust.Name = "txtSearchedCust";
-            this.txtSearchedCust.Size = new System.Drawing.Size(204, 22);
+            this.txtSearchedCust.Size = new System.Drawing.Size(260, 22);
             this.txtSearchedCust.TabIndex = 1;
             this.txtSearchedCust.TextChanged += new System.EventHandler(this.txtSearchedCust_TextChanged);
-            // 
-            // btnSearchCust
-            // 
-            this.btnSearchCust.BackColor = System.Drawing.Color.White;
-            this.btnSearchCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchCust.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnSearchCust.Location = new System.Drawing.Point(497, 33);
-            this.btnSearchCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSearchCust.Name = "btnSearchCust";
-            this.btnSearchCust.Size = new System.Drawing.Size(88, 30);
-            this.btnSearchCust.TabIndex = 2;
-            this.btnSearchCust.Text = "Search";
-            this.btnSearchCust.UseVisualStyleBackColor = false;
-            this.btnSearchCust.Click += new System.EventHandler(this.btnSearchCust_Click);
             // 
             // lblCustName
             // 
             this.lblCustName.AutoSize = true;
             this.lblCustName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCustName.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblCustName.Location = new System.Drawing.Point(193, 94);
+            this.lblCustName.Location = new System.Drawing.Point(81, 99);
             this.lblCustName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCustName.Name = "lblCustName";
-            this.lblCustName.Size = new System.Drawing.Size(131, 18);
+            this.lblCustName.Size = new System.Drawing.Size(152, 18);
             this.lblCustName.TabIndex = 3;
-            this.lblCustName.Text = "Customer Name";
+            this.lblCustName.Text = "Selected Customer";
             // 
             // txtSearchedName
             // 
-            this.txtSearchedName.Location = new System.Drawing.Point(351, 95);
+            this.txtSearchedName.Location = new System.Drawing.Point(276, 94);
             this.txtSearchedName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtSearchedName.Name = "txtSearchedName";
-            this.txtSearchedName.Size = new System.Drawing.Size(195, 22);
+            this.txtSearchedName.Size = new System.Drawing.Size(260, 22);
             this.txtSearchedName.TabIndex = 4;
             // 
             // lblSearchItems
@@ -195,7 +178,7 @@
             this.lblSearchItems.AutoSize = true;
             this.lblSearchItems.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSearchItems.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.lblSearchItems.Location = new System.Drawing.Point(153, 39);
+            this.lblSearchItems.Location = new System.Drawing.Point(24, 35);
             this.lblSearchItems.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearchItems.Name = "lblSearchItems";
             this.lblSearchItems.Size = new System.Drawing.Size(144, 18);
@@ -204,26 +187,12 @@
             // 
             // textItemSearch
             // 
-            this.textItemSearch.Location = new System.Drawing.Point(345, 37);
+            this.textItemSearch.Location = new System.Drawing.Point(216, 33);
             this.textItemSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.textItemSearch.Name = "textItemSearch";
-            this.textItemSearch.Size = new System.Drawing.Size(199, 22);
+            this.textItemSearch.Size = new System.Drawing.Size(245, 22);
             this.textItemSearch.TabIndex = 6;
             this.textItemSearch.TextChanged += new System.EventHandler(this.textItemSearch_TextChanged);
-            // 
-            // btnSearchItem
-            // 
-            this.btnSearchItem.BackColor = System.Drawing.Color.White;
-            this.btnSearchItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnSearchItem.Location = new System.Drawing.Point(603, 29);
-            this.btnSearchItem.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnSearchItem.Name = "btnSearchItem";
-            this.btnSearchItem.Size = new System.Drawing.Size(88, 33);
-            this.btnSearchItem.TabIndex = 7;
-            this.btnSearchItem.Text = "Search";
-            this.btnSearchItem.UseVisualStyleBackColor = false;
-            this.btnSearchItem.Click += new System.EventHandler(this.btnSearchItem_Click);
             // 
             // btnAddToCart
             // 
@@ -256,14 +225,84 @@
             this.Category,
             this.PreparationTime});
             this.dgvMenuItems.DataSource = this.menuItemsTableBindingSource;
-            this.dgvMenuItems.Location = new System.Drawing.Point(22, 97);
+            this.dgvMenuItems.Location = new System.Drawing.Point(22, 71);
             this.dgvMenuItems.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dgvMenuItems.Name = "dgvMenuItems";
             this.dgvMenuItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvMenuItems.Size = new System.Drawing.Size(894, 210);
+            this.dgvMenuItems.Size = new System.Drawing.Size(894, 236);
             this.dgvMenuItems.TabIndex = 11;
             this.dgvMenuItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMenuItems_CellContentClick);
             this.dgvMenuItems.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgvMenuItems_EditingControlShowing);
+            // 
+            // ItemQty
+            // 
+            this.ItemQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.ItemQty.HeaderText = "Quantity";
+            this.ItemQty.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"});
+            this.ItemQty.Name = "ItemQty";
+            this.ItemQty.ReadOnly = true;
+            this.ItemQty.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ItemQty.Width = 69;
+            // 
+            // MenuItemID
+            // 
+            this.MenuItemID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.MenuItemID.DataPropertyName = "MenuItemID";
+            this.MenuItemID.HeaderText = "Menu Item ID";
+            this.MenuItemID.Name = "MenuItemID";
+            this.MenuItemID.ReadOnly = true;
+            this.MenuItemID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.MenuItemID.Width = 97;
+            // 
+            // MenuItemName
+            // 
+            this.MenuItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.MenuItemName.DataPropertyName = "MenuItemName";
+            this.MenuItemName.HeaderText = "Item Name";
+            this.MenuItemName.Name = "MenuItemName";
+            this.MenuItemName.ReadOnly = true;
+            this.MenuItemName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.MenuItemName.Width = 97;
+            // 
+            // sellingPrice
+            // 
+            this.sellingPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.sellingPrice.DataPropertyName = "SellingPrice";
+            this.sellingPrice.HeaderText = "Selling Price";
+            this.sellingPrice.Name = "sellingPrice";
+            this.sellingPrice.ReadOnly = true;
+            this.sellingPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.sellingPrice.Width = 110;
+            // 
+            // Category
+            // 
+            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Category.DataPropertyName = "Category";
+            this.Category.HeaderText = "Category";
+            this.Category.Name = "Category";
+            this.Category.ReadOnly = true;
+            this.Category.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Category.Width = 95;
+            // 
+            // PreparationTime
+            // 
+            this.PreparationTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.PreparationTime.DataPropertyName = "PreparationTime";
+            this.PreparationTime.HeaderText = "Preparation Time";
+            this.PreparationTime.Name = "PreparationTime";
+            this.PreparationTime.ReadOnly = true;
+            this.PreparationTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.PreparationTime.Width = 139;
             // 
             // menuItemsTableBindingSource
             // 
@@ -411,6 +450,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
             this.pictureBox1.Location = new System.Drawing.Point(1560, 842);
             this.pictureBox1.Name = "pictureBox1";
@@ -440,6 +480,56 @@
             this.dgvCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellClick);
             this.dgvCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellContentClick);
             // 
+            // FirstName
+            // 
+            this.FirstName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.FirstName.DataPropertyName = "FirstName";
+            this.FirstName.HeaderText = "First Name";
+            this.FirstName.Name = "FirstName";
+            this.FirstName.ReadOnly = true;
+            this.FirstName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.FirstName.Width = 107;
+            // 
+            // Surname
+            // 
+            this.Surname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.Surname.DataPropertyName = "Surname";
+            this.Surname.HeaderText = "Surname";
+            this.Surname.Name = "Surname";
+            this.Surname.ReadOnly = true;
+            this.Surname.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Surname.Width = 93;
+            // 
+            // addressDataGridViewTextBoxColumn
+            // 
+            this.addressDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
+            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
+            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
+            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
+            this.addressDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.addressDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            this.emailDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.emailDataGridViewTextBoxColumn.Width = 71;
+            // 
+            // CustomerID
+            // 
+            this.CustomerID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.CustomerID.DataPropertyName = "CustomerID";
+            this.CustomerID.HeaderText = "Customer ID";
+            this.CustomerID.Name = "CustomerID";
+            this.CustomerID.ReadOnly = true;
+            this.CustomerID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.CustomerID.Width = 116;
+            // 
             // customerTableBindingSource
             // 
             this.customerTableBindingSource.DataMember = "CustomerTable";
@@ -452,6 +542,7 @@
             // 
             // btnBack
             // 
+            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBack.BackColor = System.Drawing.Color.White;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
@@ -609,17 +700,18 @@
             this.btnClearCustName.BackColor = System.Drawing.Color.White;
             this.btnClearCustName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearCustName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnClearCustName.Location = new System.Drawing.Point(570, 94);
+            this.btnClearCustName.Location = new System.Drawing.Point(603, 88);
             this.btnClearCustName.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnClearCustName.Name = "btnClearCustName";
-            this.btnClearCustName.Size = new System.Drawing.Size(88, 24);
+            this.btnClearCustName.Size = new System.Drawing.Size(198, 29);
             this.btnClearCustName.TabIndex = 27;
-            this.btnClearCustName.Text = "Clear";
+            this.btnClearCustName.Text = "Change Customer";
             this.btnClearCustName.UseVisualStyleBackColor = false;
             this.btnClearCustName.Click += new System.EventHandler(this.btnClearCustName_Click);
             // 
             // btnHelp
             // 
+            this.btnHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnHelp.BackColor = System.Drawing.Color.White;
             this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
@@ -661,7 +753,7 @@
             this.btnAddNewCust.BackColor = System.Drawing.Color.White;
             this.btnAddNewCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddNewCust.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnAddNewCust.Location = new System.Drawing.Point(643, 33);
+            this.btnAddNewCust.Location = new System.Drawing.Point(603, 34);
             this.btnAddNewCust.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnAddNewCust.Name = "btnAddNewCust";
             this.btnAddNewCust.Size = new System.Drawing.Size(198, 30);
@@ -672,8 +764,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.groupBox1.Controls.Add(this.btnSearchCust);
             this.groupBox1.Controls.Add(this.lblSearchCust);
             this.groupBox1.Controls.Add(this.btnAddNewCust);
             this.groupBox1.Controls.Add(this.txtSearchedCust);
@@ -693,12 +783,10 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.groupBox2.Controls.Add(this.btnClearItemSearch);
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.Controls.Add(this.dgvMenuItems);
             this.groupBox2.Controls.Add(this.textItemSearch);
             this.groupBox2.Controls.Add(this.lblSearchItems);
-            this.groupBox2.Controls.Add(this.btnSearchItem);
             this.groupBox2.Controls.Add(this.btnAddToCart);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
@@ -710,23 +798,10 @@
             this.groupBox2.Text = "STEP 2: SELECT MENU ITEMS AND ADD TO CART";
             this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
-            // btnClearItemSearch
-            // 
-            this.btnClearItemSearch.BackColor = System.Drawing.Color.White;
-            this.btnClearItemSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearItemSearch.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnClearItemSearch.Location = new System.Drawing.Point(728, 29);
-            this.btnClearItemSearch.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.btnClearItemSearch.Name = "btnClearItemSearch";
-            this.btnClearItemSearch.Size = new System.Drawing.Size(88, 33);
-            this.btnClearItemSearch.TabIndex = 12;
-            this.btnClearItemSearch.Text = "Clear";
-            this.btnClearItemSearch.UseVisualStyleBackColor = false;
-            this.btnClearItemSearch.Click += new System.EventHandler(this.btnClearItemSearch_Click);
-            // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.dgvCart);
             this.groupBox3.Controls.Add(this.btnRemoveItem);
             this.groupBox3.Controls.Add(this.lblTotalPrice);
@@ -775,6 +850,7 @@
             // 
             // btnCancelOrder
             // 
+            this.btnCancelOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancelOrder.BackColor = System.Drawing.Color.White;
             this.btnCancelOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancelOrder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
@@ -787,131 +863,10 @@
             this.btnCancelOrder.UseVisualStyleBackColor = false;
             this.btnCancelOrder.Click += new System.EventHandler(this.btnCancelOrder_Click);
             // 
-            // ItemQty
-            // 
-            this.ItemQty.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.ItemQty.HeaderText = "Quantity";
-            this.ItemQty.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10"});
-            this.ItemQty.Name = "ItemQty";
-            this.ItemQty.ReadOnly = true;
-            this.ItemQty.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ItemQty.Width = 69;
-            // 
-            // MenuItemID
-            // 
-            this.MenuItemID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.MenuItemID.DataPropertyName = "MenuItemID";
-            this.MenuItemID.HeaderText = "Menu Item ID";
-            this.MenuItemID.Name = "MenuItemID";
-            this.MenuItemID.ReadOnly = true;
-            this.MenuItemID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.MenuItemID.Width = 97;
-            // 
-            // MenuItemName
-            // 
-            this.MenuItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.MenuItemName.DataPropertyName = "MenuItemName";
-            this.MenuItemName.HeaderText = "Item Name";
-            this.MenuItemName.Name = "MenuItemName";
-            this.MenuItemName.ReadOnly = true;
-            this.MenuItemName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.MenuItemName.Width = 97;
-            // 
-            // sellingPrice
-            // 
-            this.sellingPrice.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.sellingPrice.DataPropertyName = "SellingPrice";
-            this.sellingPrice.HeaderText = "Selling Price";
-            this.sellingPrice.Name = "sellingPrice";
-            this.sellingPrice.ReadOnly = true;
-            this.sellingPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.sellingPrice.Width = 110;
-            // 
-            // Category
-            // 
-            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Category.DataPropertyName = "Category";
-            this.Category.HeaderText = "Category";
-            this.Category.Name = "Category";
-            this.Category.ReadOnly = true;
-            this.Category.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Category.Width = 95;
-            // 
-            // PreparationTime
-            // 
-            this.PreparationTime.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.PreparationTime.DataPropertyName = "PreparationTime";
-            this.PreparationTime.HeaderText = "Preparation Time";
-            this.PreparationTime.Name = "PreparationTime";
-            this.PreparationTime.ReadOnly = true;
-            this.PreparationTime.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.PreparationTime.Width = 139;
-            // 
-            // FirstName
-            // 
-            this.FirstName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.FirstName.DataPropertyName = "FirstName";
-            this.FirstName.HeaderText = "First Name";
-            this.FirstName.Name = "FirstName";
-            this.FirstName.ReadOnly = true;
-            this.FirstName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.FirstName.Width = 107;
-            // 
-            // Surname
-            // 
-            this.Surname.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.Surname.DataPropertyName = "Surname";
-            this.Surname.HeaderText = "Surname";
-            this.Surname.Name = "Surname";
-            this.Surname.ReadOnly = true;
-            this.Surname.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Surname.Width = 93;
-            // 
-            // addressDataGridViewTextBoxColumn
-            // 
-            this.addressDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.addressDataGridViewTextBoxColumn.DataPropertyName = "Address";
-            this.addressDataGridViewTextBoxColumn.HeaderText = "Address";
-            this.addressDataGridViewTextBoxColumn.Name = "addressDataGridViewTextBoxColumn";
-            this.addressDataGridViewTextBoxColumn.ReadOnly = true;
-            this.addressDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.addressDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
-            this.emailDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.emailDataGridViewTextBoxColumn.Width = 71;
-            // 
-            // CustomerID
-            // 
-            this.CustomerID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.CustomerID.DataPropertyName = "CustomerID";
-            this.CustomerID.HeaderText = "Customer ID";
-            this.CustomerID.Name = "CustomerID";
-            this.CustomerID.ReadOnly = true;
-            this.CustomerID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.CustomerID.Width = 116;
-            // 
             // frmNewOrder
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
             this.ClientSize = new System.Drawing.Size(1733, 999);
             this.Controls.Add(this.btnCancelOrder);
@@ -958,12 +913,10 @@
 
         private System.Windows.Forms.Label lblSearchCust;
         private System.Windows.Forms.TextBox txtSearchedCust;
-        private System.Windows.Forms.Button btnSearchCust;
         private System.Windows.Forms.Label lblCustName;
         private System.Windows.Forms.TextBox txtSearchedName;
         private System.Windows.Forms.Label lblSearchItems;
         private System.Windows.Forms.TextBox textItemSearch;
-        private System.Windows.Forms.Button btnSearchItem;
         private System.Windows.Forms.Button btnAddToCart;
         private System.Windows.Forms.DataGridView dgvMenuItems;
         private System.Windows.Forms.DataGridView dgvCart;
@@ -1030,7 +983,6 @@
         private dsCafe101HubTableAdapters.OrderTableTableAdapter orderTableTableAdapter1;
         private dsCafe101HubTableAdapters.IngredientTableTableAdapter ingredientTableTableAdapter1;
         private System.Windows.Forms.Button btnCancelOrder;
-        private System.Windows.Forms.Button btnClearItemSearch;
         private System.Windows.Forms.DataGridViewComboBoxColumn ItemQty;
         private System.Windows.Forms.DataGridViewTextBoxColumn MenuItemID;
         private System.Windows.Forms.DataGridViewTextBoxColumn MenuItemName;

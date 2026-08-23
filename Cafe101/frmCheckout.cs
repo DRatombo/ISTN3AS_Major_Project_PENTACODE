@@ -494,10 +494,13 @@ namespace Cafe101
 
                 try { File.Delete(pdfPath); } catch { }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Payment was successful, but the email could not be sent:\n" + ex.Message,
-                    "Email Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(
+                    "Payment was successful, but the receipt email could not be sent from this device.",
+                    "Receipt Email",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
             }
         }
         private void btnHelp_Click(object sender, EventArgs e)

@@ -30,6 +30,17 @@
     margin-top: -15px;
 }
 
+/* ---------------------------------------------------------
+   PRODUCT IMAGE
+   --------------------------------------------------------- */
+
+.product-image {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    background-color: white;
+    padding: 10px;
+}
 
 /* ---------------------------------------------------------
    MAIN CAFE101 BUTTON

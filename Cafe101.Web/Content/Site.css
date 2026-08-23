@@ -1,21 +1,4234 @@
-﻿/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
+﻿/* =========================================================
+   CAFE101 SHARED WEBSITE STYLES
+
+   These styles are shared between the public, customer,
+   staff and manager areas of the Cafe101 website.
+   ========================================================= */
+
+
+/* ---------------------------------------------------------
+   CAFE101 BRAND COLOURS
+   --------------------------------------------------------- */
+
+:root {
+    --brand-navy: #1a2d4c;
+    --brand-navy-dark: #142238;
+}
+
+
+/* ---------------------------------------------------------
+   FULL WIDTH SECTION
+   --------------------------------------------------------- */
+
+.full-bleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-top: -15px;
+}
+
+
+/* ---------------------------------------------------------
+   MAIN CAFE101 BUTTON
+   Example: class="btn btn-brand"
+   --------------------------------------------------------- */
+
+.btn-brand {
+    background-color: var(--brand-navy);
+    border-color: var(--brand-navy);
+    color: #ffffff;
+}
+
+
+    .btn-brand:hover {
+        background-color: var(--brand-navy-dark);
+        border-color: var(--brand-navy-dark);
+        color: #ffffff;
+    }
+
+
+/* ---------------------------------------------------------
+   NAVIGATION SIGN IN BUTTON
+   --------------------------------------------------------- */
+
+.btn-nav-signin {
+    background-color: #ffffff;
+    color: var(--brand-navy);
+    border: 1px solid #ffffff;
+}
+
+
+    .btn-nav-signin:hover {
+        background-color: #d9e2ef;
+        color: var(--brand-navy);
+        border-color: #d9e2ef;
+    }
+
+
+/* ---------------------------------------------------------
+   OUTLINE CAFE101 BUTTON
+   Example: class="btn btn-outline-brand"
+   --------------------------------------------------------- */
+
+.btn-outline-brand {
+    background-color: transparent;
+    border: 1px solid var(--brand-navy);
+    color: var(--brand-navy);
+}
+
+
+    .btn-outline-brand:hover {
+        background-color: var(--brand-navy);
+        color: #ffffff;
+    }
+
+
+/* ---------------------------------------------------------
+   CAFE101 NAVY TEXT
+   --------------------------------------------------------- */
+
+.text-brand {
+    color: var(--brand-navy) !important;
+}
+
+
+/* ---------------------------------------------------------
+   FORM INPUT FOCUS
+   --------------------------------------------------------- */
+
+.form-control:focus {
+    border-color: var(--brand-navy);
+    box-shadow: 0 0 0 0.2rem rgba(26, 45, 76, 0.25);
+}
+
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+
+/* Stops navbar covering About section */
+section#about {
+    scroll-margin-top: 80px;
+}
+
+
+/* ---------------------------------------------------------
+   DEFAULT WEBSITE CONTENT SPACING
+   --------------------------------------------------------- */
+
 .body-content {
     margin-top: 15px;
     padding-left: 15px;
     padding-right: 15px;
 }
 
-/* Set widths on the form inputs since otherwise they're 100% wide */
+
+/* Prevent form inputs from becoming unnecessarily wide */
 input,
 select,
 textarea {
     max-width: 280px;
 }
 
-/* Responsive: Portrait tablets and up */
+
+/* ---------------------------------------------------------
+   RESPONSIVE WEBSITE LAYOUT
+   --------------------------------------------------------- */
+
 @media screen and (min-width: 768px) {
+
     .body-content {
         padding: 0;
     }
 }
+
+
+/* =========================================================
+   STAFF SYSTEM SHELL
+   ========================================================= */
+
+.staff-shell {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f6f7f9;
+}
+
+
+/* =========================================================
+   TOP NAVY BAR
+   ========================================================= */
+
+.staff-header {
+    min-height: 68px;
+    background-color: var(--brand-navy);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 10;
+}
+
+
+.staff-header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+
+.staff-header-menu {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.10);
+    color: #ffffff;
+    font-size: 21px;
+    cursor: pointer;
+}
+
+
+    .staff-header-menu:hover {
+        background-color: rgba(255, 255, 255, 0.18);
+    }
+
+
+.staff-header-brand {
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+
+.staff-header-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+    .staff-header-user small {
+        display: block;
+        color: rgba(255, 255, 255, 0.72);
+    }
+
+
+.staff-header-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    color: var(--brand-navy);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STAFF BODY
+   ========================================================= */
+
+.staff-body {
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    min-width: 0;
+    background-color: #f6f7f9;
+}
+
+
+/* =========================================================
+   SIDEBAR
+   ========================================================= */
+
+.staff-sidebar {
+    width: 225px;
+    min-width: 225px;
+    min-height: calc(100vh - 68px);
+    background-color: var(--brand-navy);
+    color: #ffffff;
+    padding: 22px 14px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+
+.staff-sidebar-title {
+    padding: 2px 14px 25px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+    color: rgba(255, 255, 255, 0.60);
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   STAFF NAVIGATION
+   ========================================================= */
+
+.staff-nav {
+    flex: 1;
+}
+
+
+    .staff-nav a,
+    .staff-logout {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 14px;
+        margin-bottom: 7px;
+        border-radius: 8px;
+        color: rgba(255, 255, 255, 0.88);
+        text-decoration: none;
+        white-space: nowrap;
+        transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+
+        .staff-nav a:hover,
+        .staff-logout:hover {
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.10);
+            text-decoration: none;
+        }
+
+
+        .staff-nav a.active {
+            background-color: rgba(255, 255, 255, 0.16);
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+
+.staff-nav-icon {
+    width: 22px;
+    flex-shrink: 0;
+    text-align: center;
+    font-size: 19px;
+}
+
+
+.staff-sidebar-bottom {
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================================================
+   COLLAPSED SIDEBAR
+   ========================================================= */
+
+.staff-body.sidebar-collapsed .staff-sidebar {
+    width: 68px;
+    min-width: 68px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+
+.staff-body.sidebar-collapsed .staff-sidebar-title {
+    visibility: hidden;
+}
+
+
+.staff-body.sidebar-collapsed .staff-nav-text {
+    display: none;
+}
+
+
+.staff-body.sidebar-collapsed .staff-nav a,
+.staff-body.sidebar-collapsed .staff-logout {
+    justify-content: center;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+
+/* =========================================================
+   MAIN STAFF AREA
+   ========================================================= */
+
+.staff-main {
+    flex: 1;
+    min-width: 0;
+    padding: 26px;
+    background-color: #f6f7f9;
+}
+
+
+/* =========================================================
+   PAGE HEADING
+   ========================================================= */
+
+.staff-page-heading {
+    margin-bottom: 20px;
+}
+
+
+    .staff-page-heading h3 {
+        margin: 0;
+        color: var(--brand-navy);
+        font-size: 24px;
+        font-weight: 700;
+    }
+
+
+    .staff-page-heading p {
+        margin: 3px 0 0;
+        color: #7b818b;
+    }
+
+
+/* =========================================================
+   MATTE DASHBOARD CARDS
+   ========================================================= */
+
+.staff-welcome-card,
+.staff-metric-card,
+.staff-dashboard-panel {
+    background-color: #ffffff;
+    border: 1px solid #e5e8ed;
+    border-radius: 12px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.025);
+}
+
+
+/* =========================================================
+   WELCOME
+   ========================================================= */
+
+.staff-welcome-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+
+.staff-welcome-text h4 {
+    margin: 0 0 4px;
+    color: #20242a;
+    font-weight: 700;
+}
+
+
+.staff-welcome-text p {
+    margin: 0;
+    color: #7a8089;
+}
+
+
+/* =========================================================
+   ICON BOXES
+   ========================================================= */
+
+.staff-icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Soft matte colours */
+
+.icon-green {
+    background-color: #e5f1e6;
+    color: #30633c;
+}
+
+
+.icon-orange {
+    background-color: #ffedd9;
+    color: #a95e17;
+}
+
+
+.icon-blue {
+    background-color: #e5edf8;
+    color: #315a8d;
+}
+
+
+.icon-purple {
+    background-color: #efe6f6;
+    color: #6b4881;
+}
+
+
+.icon-beige {
+    background-color: #f5ead8;
+    color: #7a542a;
+}
+
+
+/* =========================================================
+   METRIC CARDS
+   ========================================================= */
+
+.staff-metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+
+.staff-metric-card {
+    min-width: 0;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.staff-metric-label {
+    color: #777e87;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+
+.staff-metric-card h3 {
+    color: var(--brand-navy);
+    font-size: 28px;
+    font-weight: 700;
+    margin: 3px 0;
+}
+
+
+.staff-metric-card p {
+    margin: 0;
+    color: #8b9098;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   MAIN DASHBOARD GRID
+   ========================================================= */
+
+.staff-dashboard-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+
+.staff-dashboard-panel {
+    min-width: 0;
+    padding: 18px;
+}
+
+
+.staff-panel-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 16px;
+}
+
+
+    .staff-panel-heading h5 {
+        margin: 0;
+        color: #272b31;
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+
+    .staff-panel-heading small {
+        color: #8a8f97;
+    }
+
+
+.staff-text-link {
+    color: var(--brand-navy);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+    .staff-text-link:hover {
+        color: var(--brand-navy-dark);
+        text-decoration: none;
+    }
+
+
+/* =========================================================
+   ORDER TABLE
+   ========================================================= */
+
+.staff-orders-table {
+    width: 100%;
+    margin: 0;
+}
+
+
+    .staff-orders-table thead th {
+        border-top: none;
+        color: #757b84;
+        font-size: 12px;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+
+    .staff-orders-table tbody td {
+        color: #41464d;
+        font-size: 13px;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+
+/* =========================================================
+   MATTE ORDER STATUS PILLS
+   ========================================================= */
+
+.order-status {
+    display: inline-block;
+    padding: 5px 11px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* Pending */
+.status-pending {
+    background-color: #fff1d7;
+    color: #9a6407;
+}
+
+
+/* Preparing */
+.status-preparing {
+    background-color: #ffeadb;
+    color: #aa5b19;
+}
+
+
+/* Ready */
+.status-ready {
+    background-color: #e2ebf8;
+    color: #315986;
+}
+
+
+/* Completed */
+.status-completed {
+    background-color: #e3f1e5;
+    color: #35663d;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+   ========================================================= */
+
+.staff-action-grid {
+    display: grid;
+    gap: 12px;
+}
+
+
+.staff-action-tile {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px;
+    border: 1px solid #e8eaee;
+    border-radius: 10px;
+    color: #30343a;
+    text-decoration: none;
+    background-color: #fbfbfc;
+}
+
+
+    .staff-action-tile:hover {
+        color: #30343a;
+        text-decoration: none;
+        border-color: #ccd4df;
+        background-color: #f7f8fa;
+    }
+
+
+    .staff-action-tile strong {
+        display: block;
+    }
+
+
+    .staff-action-tile small {
+        display: block;
+        margin-top: 2px;
+        color: #888e96;
+    }
+
+
+/* =========================================================
+   SALES / POWER BI PLACEHOLDER
+   ========================================================= */
+
+.staff-chart-placeholder {
+    min-height: 270px;
+    border: 1px dashed #ccd2da;
+    border-radius: 10px;
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+}
+
+
+    .staff-chart-placeholder h5 {
+        margin: 12px 0 5px;
+        color: var(--brand-navy);
+    }
+
+
+    .staff-chart-placeholder p {
+        margin: 0;
+        max-width: 350px;
+        color: #92979f;
+        font-size: 13px;
+    }
+
+
+/* =========================================================
+   NOTICES & ALERTS
+   ========================================================= */
+
+.staff-alert-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 0;
+    border-top: 1px solid #edf0f3;
+}
+
+
+.staff-alert-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.alert-blue {
+    color: #315a8d;
+    background-color: #e5edf8;
+}
+
+
+.alert-orange {
+    color: #a95e17;
+    background-color: #ffedd9;
+}
+
+
+.alert-green {
+    color: #35663d;
+    background-color: #e3f1e5;
+}
+
+
+.staff-alert-text {
+    min-width: 0;
+    flex: 1;
+}
+
+
+    .staff-alert-text strong {
+        display: block;
+        font-size: 13px;
+    }
+
+
+    .staff-alert-text small {
+        display: block;
+        margin-top: 2px;
+        color: #858b93;
+    }
+
+
+.staff-alert-time {
+    color: #999ea5;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.staff-footer {
+    padding: 18px 0 5px;
+    color: #999ea5;
+    font-size: 12px;
+    text-align: center;
+}
+
+
+/* =========================================================
+   HIDE DEFAULT ASP.NET LAYOUT ON STAFF PAGES
+   ========================================================= */
+
+/* Hides default navbar from Site.Master */
+body.staff-page .navbar {
+    display: none !important;
+}
+
+
+/* Removes default Site.Master container */
+body.staff-page .body-content {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Hides default ASP.NET footer */
+body.staff-page footer {
+    display: none !important;
+}
+
+
+/* Removes default footer line */
+body.staff-page hr {
+    display: none !important;
+}
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   STAFF ORDERS TOOLBAR
+   ========================================================= */
+
+.staff-orders-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    background-color: #ffffff;
+    border: 1px solid #e5e8ed;
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 18px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.025);
+}
+
+
+/* Left side */
+
+.staff-orders-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* Search field */
+
+.staff-search-box {
+    position: relative;
+    flex: 1;
+    max-width: 390px;
+}
+
+
+.staff-search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #8a8f97;
+    z-index: 2;
+    pointer-events: none;
+}
+
+
+.staff-search-box .form-control {
+    width: 100%;
+    max-width: none;
+    padding-left: 38px;
+}
+
+
+/* ---------------------------------------------------------
+   STATUS FILTER
+   --------------------------------------------------------- */
+
+.staff-filter-box {
+    position: relative;
+    width: 190px;
+    flex-shrink: 0;
+}
+
+
+.staff-filter-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7f858e;
+    z-index: 2;
+    pointer-events: none;
+}
+
+
+.staff-status-filter {
+    width: 100%;
+    max-width: none;
+    padding-left: 38px;
+    padding-right: 34px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-color: #ffffff;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23757b84' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 11px center;
+}
+
+
+/* Right-side toolbar buttons */
+
+.staff-orders-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   FULL-WIDTH ORDERS TABLE
+   ========================================================= */
+
+.staff-orders-full {
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    box-sizing: border-box;
+    margin-bottom: 0;
+}
+
+
+    /* Lets table stay usable when details panel opens */
+
+    .staff-orders-full .table-responsive {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+
+    .staff-orders-full .staff-orders-table {
+        width: 100%;
+        margin-bottom: 0;
+        table-layout: auto;
+    }
+
+
+/* =========================================================
+   ORDERS TABLE + DETAILS WORKSPACE
+
+   Closed:
+   Table uses the full width.
+
+   Open:
+   Table becomes the left column and the details panel
+   appears on the right.
+   ========================================================= */
+
+.staff-orders-workspace {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 0;
+    gap: 0;
+    align-items: start;
+    transition: grid-template-columns 0.3s ease, gap 0.3s ease;
+}
+
+
+    /* When View Details is clicked */
+
+    .staff-orders-workspace.details-open {
+        grid-template-columns: minmax(0, 1fr) 330px;
+        gap: 16px;
+    }
+
+
+    /* Table must be able to shrink */
+
+    .staff-orders-workspace .staff-orders-full {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+/* =========================================================
+   ORDER DETAILS SIDE PANEL
+   ========================================================= */
+
+.staff-order-details {
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(15px);
+    background-color: #ffffff;
+    border: 1px solid transparent;
+    border-radius: 12px;
+    padding: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease, padding 0.25s ease, border-color 0.25s ease;
+}
+
+
+/* Visible panel */
+
+.staff-orders-workspace.details-open
+.staff-order-details {
+    opacity: 1;
+    transform: translateX(0);
+    padding: 18px;
+    border-color: #e5e8ed;
+    pointer-events: auto;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.025);
+}
+
+
+/* =========================================================
+   ORDER DETAILS HEADER
+   ========================================================= */
+
+.staff-order-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #eceef1;
+}
+
+    .staff-order-details-header h4 {
+        margin: 0;
+        color: var(--brand-navy);
+        font-size: 17px;
+        font-weight: 700;
+    }
+
+.staff-order-placed {
+    margin: 4px 0 0;
+    color: #8a8f97;
+    font-size: 12px;
+}
+
+
+/* Close button */
+
+.staff-details-close {
+    border: none;
+    background: transparent;
+    color: #7d838c;
+    font-size: 24px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   ORDER DETAILS CONTENT
+   ========================================================= */
+
+.staff-detail-label {
+    display: block;
+    color: #8a8f97;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.6px;
+}
+
+
+.staff-details-status {
+    padding: 14px 0;
+}
+
+/* Customer information inside selected order */
+.staff-customer-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+
+.staff-customer-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e5edf8;
+    color: #315a8d;
+    flex-shrink: 0;
+}
+
+
+.staff-customer-row strong {
+    margin: 0;
+    font-size: 13px;
+    color: #30343a;
+}
+
+
+.staff-customer-number {
+    display: block;
+    margin-top: 2px;
+    color: #8a8f97;
+    font-size: 11px;
+}
+
+
+.staff-details-section {
+    padding: 14px 0;
+    border-top: 1px solid #eceef1;
+}
+
+
+    .staff-details-section strong {
+        display: block;
+        margin-top: 4px;
+        color: #30343a;
+    }
+
+
+.staff-detail-secondary {
+    margin: 3px 0 0;
+    color: #90959c;
+    font-size: 12px;
+}
+
+
+/* Time + total */
+
+.staff-details-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 14px 0;
+    border-top: 1px solid #eceef1;
+}
+
+
+/* =========================================================
+   ORDER ITEMS
+   ========================================================= */
+
+.staff-order-items-heading {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+
+/* The (3), (2), etc. beside ORDER ITEMS */
+.staff-order-item-count {
+    color: #8a8f97;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+.staff-detail-items {
+    margin-top: 10px;
+}
+
+
+/* Each item row */
+.staff-detail-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f0f1f3;
+    font-size: 12px;
+}
+
+
+/* Item name on the left */
+.staff-detail-item-name {
+    color: #40454c;
+}
+
+
+/* Quantity and price on the right */
+.staff-detail-item-price {
+    color: #8a8f97;
+    white-space: nowrap;
+}
+
+
+/* Remove divider under final item */
+.staff-detail-item:last-child {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   ORDER TOTAL
+   ========================================================= */
+
+.staff-order-total-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px solid #e5e8ed;
+}
+
+
+    .staff-order-total-row strong {
+        margin: 0;
+        color: var(--brand-navy);
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+
+/* =========================================================
+   UPDATE STATUS BUTTON
+   ========================================================= */
+
+.staff-details-actions {
+    padding-top: 15px;
+    border-top: 1px solid #eceef1;
+}
+
+
+.staff-update-status-menu {
+    width: 100%;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border: none;
+    border-radius: 8px;
+    background-color: #f5ead8;
+    color: #7a542a;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+.staff-update-status-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.staff-update-status-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.staff-update-status-menu:hover {
+    background-color: #efe0c8;
+}
+
+
+.staff-details-actions .form-control {
+    width: 100%;
+    max-width: none;
+    margin: 6px 0 10px;
+}
+
+
+.staff-details-actions .btn {
+    width: 100%;
+}
+
+
+/* =========================================================
+   RESPONSIVE DESIGN
+   ========================================================= */
+
+@media screen and (max-width: 1100px) {
+
+    .staff-metric-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media screen and (max-width: 950px) {
+
+    /* Side panel moves underneath the table */
+
+    .staff-orders-workspace.details-open {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+
+    .staff-order-details {
+        width: 100%;
+        min-width: 0;
+        align-self: start;
+        margin-top: 0;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateX(15px);
+        background-color: #ffffff;
+        border: 1px solid transparent;
+        border-radius: 12px;
+        padding: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease, transform 0.25s ease, padding 0.25s ease, border-color 0.25s ease;
+    }
+
+
+    .staff-orders-workspace.details-open
+    .staff-order-details {
+        display: block;
+    }
+}
+
+
+@media screen and (max-width: 850px) {
+
+    .staff-dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .staff-orders-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    .staff-orders-toolbar-left,
+    .staff-orders-toolbar-right {
+        width: 100%;
+    }
+
+
+    .staff-orders-toolbar-left {
+        flex-wrap: wrap;
+    }
+
+
+    .staff-search-box {
+        width: 100%;
+        max-width: none;
+    }
+
+
+    .staff-filter-box {
+        width: 190px;
+    }
+
+
+    .staff-orders-toolbar-right {
+        justify-content: flex-end;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+
+    .staff-header {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+
+    .staff-header-user {
+        display: none;
+    }
+
+
+    .staff-sidebar {
+        width: 68px;
+        min-width: 68px;
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+
+    .staff-sidebar-title,
+    .staff-nav-text {
+        display: none;
+    }
+
+
+    .staff-nav a,
+    .staff-logout {
+        justify-content: center;
+    }
+
+
+    .staff-main {
+        padding: 16px 12px;
+    }
+
+
+    .staff-metric-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .staff-orders-toolbar-left {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    .staff-filter-box {
+        width: 100%;
+    }
+}
+
+/* =========================================================
+   STATUS DROPDOWN MENU
+   ========================================================= */
+
+.staff-status-dropdown {
+    position: relative;
+    width: 100%;
+}
+
+
+.staff-status-dropdown-menu {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    /* Opens upward because the button is near the bottom */
+    bottom: calc(100% + 6px);
+    background-color: #ffffff;
+    border: 1px solid #e5e8ed;
+    border-radius: 8px;
+    padding: 6px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.10);
+    z-index: 50;
+}
+
+
+/* Show dropdown */
+.staff-status-dropdown.open .staff-status-dropdown-menu {
+    display: block;
+}
+
+
+/* Each status option */
+.staff-status-dropdown-menu button {
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    background-color: transparent;
+    padding: 10px 12px;
+    text-align: left;
+    color: #40454c;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+
+    /* Hover */
+    .staff-status-dropdown-menu button:hover {
+        background-color: #f6f7f9;
+    }
+
+
+    /* Small spacing between options */
+    .staff-status-dropdown-menu button + button {
+        margin-top: 2px;
+    }
+
+
+
+
+
+
+
+
+
+
+/* =========================================================
+   STAFF PROFILE PAGE
+   ========================================================= */
+
+
+/* =========================================================
+   PROFILE SUMMARY CARD
+   ========================================================= */
+
+.staff-profile-summary {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 18px;
+}
+
+
+.staff-profile-summary-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* Large SM avatar */
+.staff-profile-avatar {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #efe6f6;
+    color: #6b4881;
+    font-size: 20px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+
+.staff-profile-main-info {
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* Name and Employee tag */
+.staff-profile-name-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 11px;
+    flex-wrap: nowrap;
+}
+
+
+    .staff-profile-name-row h4 {
+        margin: 0;
+        color: var(--brand-navy);
+        font-size: 18px;
+        font-weight: 700;
+        white-space: nowrap;
+    }
+
+
+.staff-profile-role-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 5px;
+    background-color: #efe6f6;
+    color: #6b4881;
+    font-size: 10px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* Email / Phone / Member Since */
+.staff-profile-contact-grid {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+
+
+.staff-profile-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+}
+
+
+.staff-profile-contact-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #697381;
+    flex-shrink: 0;
+}
+
+
+.staff-profile-contact-item small {
+    display: block;
+    color: #8a8f97;
+    font-size: 11px;
+}
+
+
+.staff-profile-contact-item strong {
+    display: block;
+    margin-top: 2px;
+    color: #40454c;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+
+/* Edit Profile */
+.staff-profile-summary-right {
+    flex-shrink: 0;
+    margin-left: auto;
+    align-self: flex-start;
+}
+
+
+.staff-edit-profile-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   LOWER PROFILE GRID
+   ========================================================= */
+
+.staff-profile-content-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+    gap: 16px;
+    align-items: start;
+}
+
+
+/* =========================================================
+   PROFILE SECTION HEADINGS
+   ========================================================= */
+
+.staff-profile-section-heading {
+    margin-bottom: 10px;
+}
+
+
+    .staff-profile-section-heading h5 {
+        margin: 0;
+        color: #272b31;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+
+/* =========================================================
+   PERSONAL INFORMATION
+   ========================================================= */
+
+.staff-profile-info-card {
+    padding: 18px;
+}
+
+
+.staff-profile-info-row {
+    min-height: 43px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 9px 0;
+    border-top: 1px solid #edf0f3;
+}
+
+
+    .staff-profile-info-row:first-of-type {
+        border-top: none;
+    }
+
+
+.staff-profile-info-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #525861;
+    font-size: 12px;
+    min-width: 0;
+}
+
+
+.staff-profile-small-icon {
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background-color: #f4f5f8;
+    color: #6b7280;
+    flex-shrink: 0;
+}
+
+
+.staff-profile-info-row strong {
+    color: #40454c;
+    font-size: 12px;
+    font-weight: 500;
+    text-align: right;
+}
+
+
+/* =========================================================
+   RIGHT PROFILE COLUMN
+   ========================================================= */
+
+.staff-profile-right-column {
+    display: grid;
+    gap: 16px;
+}
+
+
+/* =========================================================
+   ACCOUNT SECURITY
+   ========================================================= */
+
+.staff-profile-small-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 16px;
+}
+
+
+.staff-profile-small-card-content {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    min-width: 0;
+}
+
+
+.staff-profile-security-icon {
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9px;
+    background-color: #e3f1e5;
+    color: #35663d;
+    flex-shrink: 0;
+}
+
+
+.staff-profile-small-card-content strong {
+    display: block;
+    color: #30343a;
+    font-size: 13px;
+}
+
+
+.staff-profile-small-card-content small {
+    display: block;
+    margin-top: 2px;
+    color: #8a8f97;
+    font-size: 11px;
+}
+
+
+.staff-profile-small-card-content p {
+    margin: 3px 0 0;
+    color: #999ea5;
+    font-size: 10px;
+}
+
+
+.staff-security-btn {
+    flex-shrink: 0;
+    border: none;
+    border-radius: 6px;
+    background-color: #e3f1e5;
+    color: #35663d;
+    padding: 7px 10px;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+    .staff-security-btn:hover {
+        background-color: #d7eadb;
+    }
+
+
+/* =========================================================
+   WORK INFORMATION
+   ========================================================= */
+
+.staff-profile-work-card {
+    padding: 18px;
+}
+
+
+.staff-profile-status-active {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 5px;
+    background-color: #e3f1e5;
+    color: #35663d;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   PROFILE QUICK ACTIONS
+   ========================================================= */
+
+.staff-profile-quick-card {
+    padding: 18px;
+}
+
+
+.staff-profile-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 9px;
+}
+
+
+.staff-profile-quick-action {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    padding: 10px;
+    border: 1px solid #e6e9ed;
+    border-radius: 8px;
+    background-color: #ffffff;
+    text-align: left;
+    cursor: pointer;
+}
+
+
+    .staff-profile-quick-action:hover {
+        background-color: #fafbfc;
+    }
+
+
+.staff-profile-quick-icon {
+    width: 31px;
+    height: 31px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    flex-shrink: 0;
+}
+
+
+.staff-profile-quick-action strong {
+    display: block;
+    color: #363b42;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+
+.staff-profile-quick-action small {
+    display: block;
+    margin-top: 2px;
+    color: #969ba3;
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   PROFILE RESPONSIVE DESIGN
+   ========================================================= */
+
+@media screen and (max-width: 1050px) {
+
+    .staff-profile-content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media screen and (max-width: 850px) {
+
+    .staff-profile-summary {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    .staff-profile-summary-right {
+        margin-left: 82px;
+        align-self: flex-start;
+    }
+
+
+    .staff-profile-quick-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+
+    .staff-profile-summary-left {
+        align-items: flex-start;
+    }
+
+
+    .staff-profile-contact-grid {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+
+    .staff-profile-info-row {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+
+        .staff-profile-info-row strong {
+            text-align: left;
+        }
+
+
+    .staff-profile-summary-right {
+        margin-left: 0;
+    }
+
+
+    .staff-profile-small-card {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}
+
+
+/* =========================================================
+   CAFE101 MANAGER DASHBOARD
+   ========================================================= */
+
+
+/* =========================================================
+   MANAGER WELCOME CARD
+   ========================================================= */
+
+.manager-welcome-card {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+}
+
+
+.manager-welcome-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+    .manager-welcome-left h4 {
+        margin: 0 0 4px;
+        color: var(--brand-navy);
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+
+    .manager-welcome-left p {
+        margin: 0;
+        color: #7f858e;
+        font-size: 12px;
+    }
+
+
+/* Date box */
+.manager-date-box {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 11px;
+    border-radius: 8px;
+    background-color: #f7f8fa;
+    color: #5d6570;
+    flex-shrink: 0;
+}
+
+
+    .manager-date-box strong {
+        display: block;
+        font-size: 10px;
+        font-weight: 600;
+    }
+
+
+    .manager-date-box small {
+        display: block;
+        margin-top: 2px;
+        color: #969ba3;
+        font-size: 9px;
+    }
+
+
+/* =========================================================
+   MANAGER METRIC EXTRAS
+   ========================================================= */
+
+.manager-money-icon {
+    font-size: 19px;
+    font-weight: 700;
+}
+
+
+.manager-icon-red {
+    background-color: #f8e3e3;
+    color: #a54949;
+}
+
+
+.manager-positive-text {
+    color: #4d8657 !important;
+}
+
+
+.manager-alert-text {
+    color: #a65d5d !important;
+}
+
+
+/* =========================================================
+   SALES + RECENT ORDERS
+   ========================================================= */
+
+.manager-main-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+
+.manager-period-filter {
+    width: 115px;
+    max-width: 115px;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   SALES CHART PLACEHOLDER
+   ========================================================= */
+
+.manager-sales-chart {
+    min-height: 235px;
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 8px;
+    padding-top: 10px;
+}
+
+
+.manager-chart-y-axis {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 190px;
+    padding-bottom: 10px;
+    color: #9a9fa6;
+    font-size: 9px;
+}
+
+
+.manager-chart-area {
+    min-width: 0;
+}
+
+
+.manager-chart-svg {
+    width: 100%;
+    height: 190px;
+    color: #4778ae;
+    overflow: visible;
+    border-bottom: 1px solid #e7e9ed;
+    background-image: linear-gradient( to bottom, transparent 24%, #eef0f3 25%, transparent 26%, transparent 49%, #eef0f3 50%, transparent 51%, transparent 74%, #eef0f3 75%, transparent 76% );
+}
+
+
+    .manager-chart-svg circle {
+        fill: #ffffff;
+        stroke: currentColor;
+        stroke-width: 3;
+    }
+
+
+.manager-chart-days {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 7px;
+    color: #8e949c;
+    font-size: 9px;
+}
+
+
+/* =========================================================
+   LOWER MANAGER GRID
+   ========================================================= */
+
+.manager-bottom-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    align-items: stretch;
+}
+
+
+    .manager-bottom-grid > .staff-dashboard-panel {
+        padding: 16px;
+    }
+
+
+.manager-bottom-link {
+    display: block;
+    margin-top: 12px;
+    text-align: center;
+    font-size: 10px;
+}
+
+
+/* =========================================================
+   POPULAR ITEMS
+   ========================================================= */
+
+.manager-popular-table {
+    font-size: 11px;
+}
+
+
+.manager-popular-header,
+.manager-popular-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 85px;
+    gap: 10px;
+    align-items: center;
+}
+
+
+.manager-popular-header {
+    padding-bottom: 7px;
+    color: #858b93;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+.manager-popular-row {
+    padding: 7px 0;
+    border-top: 1px solid #edf0f3;
+    color: #4c525a;
+}
+
+
+    .manager-popular-row strong {
+        text-align: right;
+        color: #30343a;
+    }
+
+
+/* =========================================================
+   STAFF ON SHIFT
+   ========================================================= */
+
+.manager-shift-table {
+    font-size: 10px;
+}
+
+
+.manager-shift-header,
+.manager-shift-row {
+    display: grid;
+    grid-template-columns: 0.9fr 1fr 0.9fr;
+    gap: 7px;
+    align-items: center;
+}
+
+
+.manager-shift-header {
+    padding-bottom: 7px;
+    color: #858b93;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+
+.manager-shift-row {
+    padding: 7px 0;
+    border-top: 1px solid #edf0f3;
+    color: #4c525a;
+}
+
+
+.manager-shift-time {
+    display: inline-block;
+    padding: 3px 5px;
+    border-radius: 5px;
+    background-color: #e3f1e5;
+    color: #35663d;
+    text-align: center;
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   LOW STOCK ALERTS
+   ========================================================= */
+
+.manager-stock-list {
+    display: grid;
+}
+
+
+.manager-stock-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 8px 0;
+    border-top: 1px solid #edf0f3;
+}
+
+
+    .manager-stock-item:first-child {
+        border-top: none;
+    }
+
+
+    .manager-stock-item strong {
+        display: block;
+        color: #40454c;
+        font-size: 11px;
+    }
+
+
+    .manager-stock-item small {
+        display: block;
+        margin-top: 2px;
+        color: #91969d;
+        font-size: 9px;
+    }
+
+
+.manager-stock-critical,
+.manager-stock-high,
+.manager-stock-medium,
+.manager-stock-low {
+    display: inline-block;
+    padding: 3px 6px;
+    border-radius: 5px;
+    font-size: 8px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+.manager-stock-critical {
+    background-color: #f8e3e3;
+    color: #a54949;
+}
+
+
+.manager-stock-high {
+    background-color: #ffeadb;
+    color: #aa5b19;
+}
+
+
+.manager-stock-medium {
+    background-color: #fff1d7;
+    color: #9a6407;
+}
+
+
+.manager-stock-low {
+    background-color: #e5edf8;
+    color: #315986;
+}
+
+
+/* =========================================================
+   MANAGER QUICK ACTIONS
+   ========================================================= */
+
+.manager-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+}
+
+
+.manager-quick-action {
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px;
+    border: 1px solid #e7e9ed;
+    border-radius: 8px;
+    background-color: #ffffff;
+    color: #3f454c;
+    text-decoration: none;
+}
+
+
+    .manager-quick-action:hover {
+        color: #3f454c;
+        text-decoration: none;
+        background-color: #fafbfc;
+    }
+
+
+    .manager-quick-action .staff-icon-box {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+    }
+
+
+    .manager-quick-action strong {
+        display: block;
+        font-size: 10px;
+    }
+
+
+    .manager-quick-action small {
+        display: block;
+        margin-top: 2px;
+        color: #949aa2;
+        font-size: 8px;
+    }
+
+
+/* =========================================================
+   MANAGER RESPONSIVE DESIGN
+   ========================================================= */
+
+@media screen and (max-width: 1200px) {
+
+    .manager-bottom-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+
+    .manager-main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media screen and (max-width: 850px) {
+
+    .manager-welcome-card {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+
+    .manager-date-box {
+        align-self: stretch;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+
+    .manager-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .manager-quick-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+
+/* =========================================================
+   MANAGER ORDERS PAGE
+   ========================================================= */
+
+
+/* =========================================================
+   MANAGER ORDERS TOOLBAR
+   ========================================================= */
+
+.manager-orders-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px;
+    margin-bottom: 18px;
+    background-color: #ffffff;
+    border: 1px solid #e5e8ed;
+    border-radius: 12px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.025);
+}
+
+
+.manager-orders-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+
+.manager-orders-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+
+/* Date filter */
+
+.manager-date-filter {
+    position: relative;
+    width: 190px;
+    flex-shrink: 0;
+}
+
+
+    .manager-date-filter svg {
+        position: absolute;
+        left: 11px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #7f858e;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+
+    .manager-date-filter .form-control {
+        width: 100%;
+        max-width: none;
+        padding-left: 36px;
+        font-size: 12px;
+    }
+
+
+/* =========================================================
+   ORDERS WORKSPACE
+   ========================================================= */
+
+.manager-orders-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 16px;
+    align-items: start;
+    margin-bottom: 16px;
+}
+
+
+/* =========================================================
+   ALL ORDERS TABLE CARD
+   ========================================================= */
+
+.manager-orders-table-card {
+    min-width: 0;
+    padding: 16px;
+}
+
+
+.manager-orders-table {
+    min-width: 780px;
+}
+
+
+    .manager-orders-table th {
+        font-size: 10px;
+    }
+
+
+    .manager-orders-table td {
+        font-size: 11px;
+    }
+
+
+/* Cancelled pill */
+
+.manager-status-cancelled {
+    background-color: #f8e3e3;
+    color: #a54949;
+}
+
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+.manager-orders-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    padding-top: 12px;
+    border-top: 1px solid #edf0f3;
+}
+
+
+    .manager-orders-pagination > div {
+        display: flex;
+        gap: 4px;
+    }
+
+
+    .manager-orders-pagination button {
+        min-width: 27px;
+        height: 27px;
+        border: 1px solid #dfe3e8;
+        border-radius: 5px;
+        background-color: #ffffff;
+        color: #59616b;
+        font-size: 10px;
+        cursor: pointer;
+    }
+
+
+        .manager-orders-pagination button.active {
+            background-color: var(--brand-navy);
+            border-color: var(--brand-navy);
+            color: #ffffff;
+        }
+
+
+    .manager-orders-pagination small {
+        color: #8f959d;
+        font-size: 9px;
+    }
+
+
+/* =========================================================
+   MANAGER ORDER DETAILS
+   ========================================================= */
+
+.manager-order-details {
+    width: 100%;
+    padding: 16px;
+}
+
+
+.manager-order-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding-bottom: 13px;
+    border-bottom: 1px solid #eceef1;
+}
+
+
+    .manager-order-details-header h4 {
+        margin: 0;
+        color: var(--brand-navy);
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+
+    .manager-order-details-header small {
+        display: block;
+        margin-top: 4px;
+        color: #8a8f97;
+        font-size: 9px;
+    }
+
+
+/* Detail section */
+
+.manager-order-detail-section {
+    padding: 13px 0;
+    border-bottom: 1px solid #edf0f3;
+}
+
+
+    .manager-order-detail-section > strong {
+        display: block;
+        margin-top: 7px;
+        color: #373c43;
+        font-size: 11px;
+    }
+
+
+    .manager-order-detail-section > span {
+        display: block;
+        margin-top: 3px;
+        color: #858b93;
+        font-size: 9px;
+    }
+
+
+/* Items */
+
+.manager-detail-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 5px 0;
+    color: #4b5158;
+    font-size: 10px;
+}
+
+
+    .manager-detail-item strong {
+        color: #3e444b;
+        font-size: 10px;
+    }
+
+
+/* Totals */
+
+.manager-order-total {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 7px 0;
+    color: #555b63;
+    font-size: 10px;
+}
+
+
+    .manager-order-total strong {
+        color: var(--brand-navy);
+    }
+
+
+/* Payment */
+
+.manager-payment-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 0;
+    border-top: 1px solid #edf0f3;
+    color: #666d76;
+    font-size: 9px;
+}
+
+
+    .manager-payment-row strong {
+        color: #3f454c;
+    }
+
+
+/* =========================================================
+   MANAGER ORDER ACTIONS
+   ========================================================= */
+
+.manager-order-actions {
+    display: grid;
+    gap: 7px;
+    margin-top: 10px;
+}
+
+
+.manager-order-action {
+    width: 100%;
+    min-height: 34px;
+    border: 1px solid #e1e5ea;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #4b5159;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+    .manager-order-action:hover {
+        background-color: #f7f8fa;
+    }
+
+
+.manager-action-beige {
+    background-color: #f5ead8;
+    color: #7a542a;
+    border-color: transparent;
+}
+
+
+.manager-action-blue {
+    background-color: #e5edf8;
+    color: #315a8d;
+    border-color: transparent;
+}
+
+
+/* =========================================================
+   FLAGGED ORDERS + RECENT ACTIVITY
+   ========================================================= */
+
+.manager-orders-bottom-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 16px;
+}
+
+
+.manager-flagged-order {
+    display: grid;
+    grid-template-columns: 65px 90px 110px minmax(150px, 1fr) 55px 45px;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 10px;
+    border-top: 1px solid #f1dddd;
+    background-color: #fff9f9;
+    color: #555b62;
+    font-size: 9px;
+}
+
+
+    .manager-flagged-order button {
+        border: none;
+        border-radius: 5px;
+        padding: 4px 7px;
+        background-color: #f8e3e3;
+        color: #a54949;
+        font-size: 8px;
+        cursor: pointer;
+    }
+
+
+/* Recent activity */
+
+.manager-activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    padding: 9px 0;
+    border-top: 1px solid #edf0f3;
+}
+
+
+.manager-activity-dot {
+    width: 7px;
+    height: 7px;
+    margin-top: 5px;
+    border-radius: 50%;
+    background-color: #d7a74a;
+    flex-shrink: 0;
+}
+
+
+.manager-activity-item strong {
+    display: block;
+    color: #454b52;
+    font-size: 9px;
+}
+
+
+.manager-activity-item small {
+    display: block;
+    margin-top: 2px;
+    color: #949aa2;
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   RESPONSIVE MANAGER ORDERS
+   ========================================================= */
+
+@media screen and (max-width: 1150px) {
+
+    .manager-orders-workspace {
+        grid-template-columns: 1fr;
+    }
+
+
+    .manager-order-details {
+        max-width: none;
+    }
+
+
+    .manager-orders-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media screen and (max-width: 950px) {
+
+    .manager-orders-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    .manager-orders-toolbar-left {
+        flex-wrap: wrap;
+    }
+
+
+    .manager-orders-toolbar-right {
+        justify-content: flex-end;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+
+    .manager-orders-toolbar-left {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    .manager-date-filter,
+    .staff-filter-box {
+        width: 100%;
+    }
+
+
+    .manager-orders-toolbar-right {
+        flex-direction: column;
+    }
+
+
+        .manager-orders-toolbar-right .btn {
+            width: 100%;
+        }
+
+
+    .manager-flagged-order {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+
+/* =========================================================
+   MANAGER MENU PAGE
+   ========================================================= */
+
+
+/* =========================================================
+   MENU TOOLBAR
+   ========================================================= */
+
+.manager-menu-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px;
+    margin-bottom: 18px;
+    background-color: #ffffff;
+    border: 1px solid #e5e8ed;
+    border-radius: 12px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.025);
+}
+
+
+.manager-menu-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+
+.manager-menu-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+
+.manager-menu-filter {
+    width: 165px;
+    max-width: 165px;
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   MENU WORKSPACE
+   ========================================================= */
+
+.manager-menu-workspace {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 16px;
+    align-items: start;
+    margin-bottom: 16px;
+}
+
+
+/* =========================================================
+   MENU TABLE
+   ========================================================= */
+
+.manager-menu-table-card {
+    min-width: 0;
+    padding: 16px;
+}
+
+
+.manager-menu-table {
+    min-width: 650px;
+}
+
+
+    .manager-menu-table th {
+        font-size: 10px;
+    }
+
+
+    .manager-menu-table td {
+        font-size: 11px;
+    }
+
+
+.manager-menu-item-name {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+}
+
+
+.manager-menu-item-thumb {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+    background-color: #f5f2ec;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+
+.manager-menu-item-name strong {
+    color: #3c4249;
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   MENU STATUS PILLS
+   ========================================================= */
+
+.manager-menu-status {
+    display: inline-block;
+    padding: 4px 7px;
+    border-radius: 5px;
+    font-size: 9px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+.status-available {
+    background-color: #e3f1e5;
+    color: #35663d;
+}
+
+
+.status-low-stock {
+    background-color: #fff1d7;
+    color: #9a6407;
+}
+
+
+.status-unavailable {
+    background-color: #f8e3e3;
+    color: #a54949;
+}
+
+
+/* =========================================================
+   MENU ROW ACTIONS
+   ========================================================= */
+
+.manager-menu-actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+
+    .manager-menu-actions button {
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #e0e4e9;
+        border-radius: 5px;
+        background-color: #ffffff;
+        color: #59616b;
+        cursor: pointer;
+    }
+
+
+        .manager-menu-actions button:hover {
+            background-color: #f6f7f9;
+        }
+
+
+/* =========================================================
+   SELECTED ITEM
+   ========================================================= */
+
+.manager-selected-item {
+    width: 100%;
+    padding: 16px;
+}
+
+
+.manager-selected-item-heading {
+    margin-bottom: 12px;
+}
+
+
+    .manager-selected-item-heading h5 {
+        margin: 0;
+        color: #272b31;
+        font-size: 15px;
+        font-weight: 700;
+    }
+
+
+.manager-selected-product {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #edf0f3;
+}
+
+
+.manager-selected-product-image {
+    width: 76px;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background-color: #f5f2ec;
+    font-size: 40px;
+    flex-shrink: 0;
+}
+
+
+.manager-selected-product h4 {
+    margin: 0 0 6px;
+    color: var(--brand-navy);
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+/* Item information */
+
+.manager-selected-info {
+    padding: 10px 0;
+}
+
+
+.manager-selected-info-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 6px 0;
+    color: #686f78;
+    font-size: 10px;
+}
+
+
+    .manager-selected-info-row strong {
+        color: #3e444b;
+        font-size: 10px;
+    }
+
+
+/* Description */
+
+.manager-selected-description {
+    padding: 11px 0;
+    border-top: 1px solid #edf0f3;
+    border-bottom: 1px solid #edf0f3;
+}
+
+
+    .manager-selected-description p {
+        margin: 6px 0 0;
+        color: #737a83;
+        font-size: 9px;
+        line-height: 1.5;
+    }
+
+
+/* Item buttons */
+
+.manager-selected-actions {
+    display: grid;
+    gap: 7px;
+    padding-top: 12px;
+}
+
+
+    .manager-selected-actions .btn {
+        width: 100%;
+    }
+
+
+.manager-selected-action {
+    width: 100%;
+    min-height: 34px;
+    border: 1px solid #e2e5e9;
+    border-radius: 6px;
+    background-color: #ffffff;
+    color: #4a5058;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+    .manager-selected-action:hover {
+        background-color: #f7f8fa;
+    }
+
+
+.manager-selected-action-beige {
+    border-color: transparent;
+    background-color: #fff1d7;
+    color: #9a6407;
+}
+
+
+.manager-selected-action-red {
+    border-color: transparent;
+    background-color: #f8e3e3;
+    color: #a54949;
+}
+
+
+/* =========================================================
+   MENU BOTTOM GRID
+   ========================================================= */
+
+.manager-menu-bottom-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 16px;
+}
+
+
+/* =========================================================
+   LOW STOCK ITEMS
+   ========================================================= */
+
+.manager-low-stock-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+}
+
+
+.manager-low-stock-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    padding: 8px;
+    border: 1px solid #eceef1;
+    border-radius: 7px;
+    background-color: #ffffff;
+}
+
+
+.manager-low-stock-icon {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background-color: #f5f2ec;
+    flex-shrink: 0;
+}
+
+
+.manager-low-stock-card div {
+    min-width: 0;
+    flex: 1;
+}
+
+
+.manager-low-stock-card strong {
+    display: block;
+    color: #434950;
+    font-size: 9px;
+    white-space: nowrap;
+}
+
+
+.manager-low-stock-card small {
+    display: block;
+    margin-top: 2px;
+    color: #9399a0;
+    font-size: 8px;
+}
+
+
+/* =========================================================
+   CATEGORY SUMMARY
+   ========================================================= */
+
+.manager-category-summary {
+    display: grid;
+}
+
+
+.manager-category-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 7px 0;
+    border-top: 1px solid #edf0f3;
+    color: #525860;
+    font-size: 10px;
+}
+
+
+    .manager-category-row:first-child {
+        border-top: none;
+    }
+
+
+    .manager-category-row span {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+    }
+
+
+    .manager-category-row strong {
+        color: #474d54;
+        font-size: 9px;
+    }
+
+
+.manager-category-dot {
+    width: 6px;
+    height: 6px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+
+.dot-blue {
+    background-color: #5f86b5;
+}
+
+
+.dot-orange {
+    background-color: #d7964f;
+}
+
+
+.dot-purple {
+    background-color: #8d68a4;
+}
+
+
+.dot-green {
+    background-color: #62906a;
+}
+
+
+.dot-beige {
+    background-color: #ae8659;
+}
+
+
+/* =========================================================
+   MANAGER MENU RESPONSIVE
+   ========================================================= */
+
+@media screen and (max-width: 1150px) {
+
+    .manager-menu-workspace {
+        grid-template-columns: 1fr;
+    }
+
+
+    .manager-menu-bottom-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .manager-low-stock-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media screen and (max-width: 950px) {
+
+    .manager-menu-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    .manager-menu-toolbar-left {
+        flex-wrap: wrap;
+    }
+
+
+    .manager-menu-toolbar-right {
+        justify-content: flex-end;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+
+    .manager-menu-toolbar-left {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    .manager-menu-filter {
+        width: 100%;
+        max-width: none;
+    }
+
+
+    .manager-menu-toolbar-right {
+        flex-direction: column;
+    }
+
+
+        .manager-menu-toolbar-right .btn {
+            width: 100%;
+        }
+
+
+    .manager-low-stock-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* =========================================================
+   MANAGER STAFF MANAGEMENT PAGE
+   ========================================================= */
+
+
+/* =========================================================
+   STAFF MANAGEMENT TOOLBAR
+   ========================================================= */
+
+.manager-staff-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px;
+    margin-bottom: 18px;
+    background-color: #ffffff;
+    border: 1px solid #e5e8ed;
+    border-radius: 12px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.025);
+}
+
+
+/* Left side of toolbar */
+
+.manager-staff-toolbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+}
+
+
+    /* Reuses the existing staff search box */
+
+    .manager-staff-toolbar-left .staff-search-box {
+        max-width: 320px;
+    }
+
+
+/* Role and status filters */
+
+.manager-staff-filter {
+    width: 160px;
+    max-width: 160px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+
+/* Right side buttons */
+
+.manager-staff-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   ALL STAFF MEMBERS TABLE CARD
+   ========================================================= */
+
+.manager-staff-table-card {
+    width: 100%;
+    min-width: 0;
+    padding: 16px;
+    margin-bottom: 0;
+}
+
+
+    /* Allows horizontal scrolling if needed */
+
+    .manager-staff-table-card .table-responsive {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+    }
+
+
+/* =========================================================
+   STAFF TABLE
+   ========================================================= */
+
+.manager-staff-table {
+    width: 100%;
+    min-width: 760px;
+    margin-bottom: 0;
+}
+
+
+    /* Table headings */
+
+    .manager-staff-table thead th {
+        color: #757b84;
+        font-size: 10px;
+        font-weight: 600;
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+
+
+    /* Table cells */
+
+    .manager-staff-table tbody td {
+        color: #41464d;
+        font-size: 10px;
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+
+        /* Employee ID */
+
+        .manager-staff-table tbody td:first-child strong {
+            color: var(--brand-navy);
+            font-weight: 700;
+        }
+
+
+/* =========================================================
+   SHIFT BADGES
+   ========================================================= */
+
+.manager-shift-badge {
+    display: inline-block;
+    padding: 4px 7px;
+    border-radius: 5px;
+    background-color: #e3f1e5;
+    color: #35663d;
+    font-size: 9px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   STAFF STATUS BADGES
+   ========================================================= */
+
+.manager-staff-status {
+    display: inline-block;
+    padding: 4px 7px;
+    border-radius: 5px;
+    font-size: 9px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* Active */
+
+.status-active-staff {
+    background-color: #e3f1e5;
+    color: #35663d;
+}
+
+
+/* On Leave */
+
+.status-on-leave {
+    background-color: #fff1d7;
+    color: #9a6407;
+}
+
+
+/* Off Duty */
+
+.status-off-duty {
+    background-color: #e5edf8;
+    color: #315986;
+}
+
+
+/* Inactive */
+
+.status-inactive-staff {
+    background-color: #f8e3e3;
+    color: #a54949;
+}
+
+
+/* =========================================================
+   STAFF TABLE ACTION BUTTON
+   ========================================================= */
+
+.manager-staff-view-btn {
+    width: 27px;
+    height: 27px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #59616b;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+
+    .manager-staff-view-btn:hover {
+        color: var(--brand-navy);
+        background: transparent;
+    }
+
+
+/* =========================================================
+   STAFF PAGE RESPONSIVE DESIGN
+   ========================================================= */
+
+@media screen and (max-width: 950px) {
+
+    .manager-staff-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    .manager-staff-toolbar-left {
+        flex-wrap: wrap;
+    }
+
+
+    .manager-staff-toolbar-right {
+        justify-content: flex-end;
+    }
+}
+
+
+@media screen and (max-width: 700px) {
+
+    .manager-staff-toolbar-left {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+        .manager-staff-toolbar-left .staff-search-box {
+            width: 100%;
+            max-width: none;
+        }
+
+
+    .manager-staff-filter {
+        width: 100%;
+        max-width: none;
+    }
+
+
+    .manager-staff-toolbar-right {
+        flex-direction: column;
+    }
+
+
+        .manager-staff-toolbar-right .btn {
+            width: 100%;
+        }
+}
+
+
+
+
+
+
+    /* =========================================================
+   MANAGER REPORTS PAGE
+   ========================================================= */
+
+
+    /* =========================================================
+   TOP REPORT CARDS
+
+   Revenue Overview = 50%
+   Sales by Category = 50%
+   ========================================================= */
+
+    .manager-reports-top-grid {
+        width: 100%;
+        display: grid;
+        /* Both cards are the exact same width */
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        margin-bottom: 16px;
+        align-items: stretch;
+    }
+
+
+        /* Both cards fill their half */
+
+        .manager-reports-top-grid > .staff-dashboard-panel {
+            width: 100%;
+            min-width: 0;
+        }
+
+
+        /* =========================================================
+   POWER BI PLACEHOLDERS
+   ========================================================= */
+
+        .manager-reports-top-grid .staff-chart-placeholder {
+            width: 100%;
+            min-height: 250px;
+            box-sizing: border-box;
+        }
+
+
+            /* Placeholder icons */
+
+            .manager-reports-top-grid .staff-chart-placeholder > svg {
+                color: #6f7f94;
+            }
+
+
+    /* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+    @media screen and (max-width: 850px) {
+
+        .manager-reports-top-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+
+
+    /* =========================================================
+   SALES BY CATEGORY
+   ========================================================= */
+
+    .manager-reports-category-layout {
+        min-height: 250px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 22px;
+    }
+
+
+    /* =========================================================
+   CATEGORY DONUT
+   ========================================================= */
+
+    .manager-reports-donut {
+        position: relative;
+        width: 145px;
+        height: 145px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: conic-gradient( #5f86b5 0% 38.5%, #d7964f 38.5% 71.1%, #8d68a4 71.1% 89.2%, #62906a 89.2% 100% );
+    }
+
+
+        /* White centre */
+
+        .manager-reports-donut::after {
+            content: "";
+            position: absolute;
+            inset: 27px;
+            border-radius: 50%;
+            background-color: #ffffff;
+        }
+
+
+    /* Text inside donut */
+
+    .manager-reports-donut-center {
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+
+        .manager-reports-donut-center strong {
+            color: var(--brand-navy);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+
+        .manager-reports-donut-center small {
+            display: block;
+            margin-top: 2px;
+            color: #8a8f97;
+            font-size: 9px;
+        }
+
+
+    /* =========================================================
+   CATEGORY LIST
+   ========================================================= */
+
+    .manager-reports-category-list {
+        min-width: 145px;
+        flex: 1;
+    }
+
+
+    .manager-reports-category-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 9px 0;
+        border-top: 1px solid #edf0f3;
+        color: #525860;
+        font-size: 11px;
+    }
+
+
+        .manager-reports-category-row:first-child {
+            border-top: none;
+        }
+
+
+        .manager-reports-category-row span {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+
+        .manager-reports-category-row strong {
+            color: #474d54;
+            font-size: 10px;
+        }
+
+
+    /* =========================================================
+   BOTTOM REPORT AREA
+   ========================================================= */
+
+.manager-reports-bottom-grid {
+    width: 100%;
+    display: grid;
+    /* Left 50% | Right 50% */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
+    align-items: stretch;
+}
+
+
+    /* =========================================================
+   TOP SELLING ITEMS
+   ========================================================= */
+
+    .manager-reports-selling {
+        width: 100%;
+        min-width: 0;
+    }
+
+
+        .manager-reports-selling .table-responsive {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+
+        .manager-reports-selling .staff-orders-table {
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+
+            .manager-reports-selling .staff-orders-table th {
+                font-size: 11px;
+            }
+
+
+            .manager-reports-selling .staff-orders-table td {
+                font-size: 11px;
+            }
+
+
+    /* Footer under table */
+
+    .manager-reports-table-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding-top: 13px;
+        margin-top: 3px;
+        border-top: 1px solid #edf0f3;
+    }
+
+
+        .manager-reports-table-footer small {
+            color: #8f959d;
+            font-size: 10px;
+        }
+
+
+    /* =========================================================
+   RIGHT LOWER SECTION
+
+   Splits the area beneath Sales by Category into:
+
+   50% Payment / Insights
+   50% Quick Actions
+   ========================================================= */
+
+.manager-reports-right-lower {
+    min-width: 0;
+    display: grid;
+    /* Of the right-hand 50%:
+       60% goes to Payment/Insights
+       40% goes to Quick Actions
+
+       Overall page:
+       30% | 20%
+    */
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 16px;
+    align-items: stretch;
+}
+
+
+    /* =========================================================
+   PAYMENT + INSIGHTS COLUMN
+   ========================================================= */
+
+.manager-reports-summary-column {
+    min-width: 0;
+    display: grid;
+    /* Both cards exactly equal height */
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+
+
+        .manager-reports-summary-column > .staff-dashboard-panel {
+            min-width: 0;
+        }
+
+
+    /* =========================================================
+   PAYMENT SUMMARY
+   ========================================================= */
+
+    .manager-reports-payment-list {
+        width: 100%;
+    }
+
+
+    .manager-reports-payment-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 0;
+        border-top: 1px solid #edf0f3;
+        color: #525860;
+        font-size: 11px;
+    }
+
+
+        .manager-reports-payment-row:first-child {
+            border-top: none;
+        }
+
+
+        .manager-reports-payment-row strong {
+            color: #41474e;
+            font-size: 10px;
+            white-space: nowrap;
+        }
+
+
+        /* Smaller status badge inside payment rows */
+
+        .manager-reports-payment-row .order-status {
+            padding: 4px 6px;
+            font-size: 9px;
+            white-space: nowrap;
+        }
+
+
+    /* Total Payments */
+
+    .manager-reports-payment-total {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding-top: 11px;
+        margin-top: 4px;
+        border-top: 1px solid #dfe3e8;
+        color: #444a51;
+        font-size: 11px;
+        font-weight: 600;
+    }
+
+
+        .manager-reports-payment-total strong {
+            color: var(--brand-navy);
+            white-space: nowrap;
+        }
+
+
+    /* =========================================================
+   QUICK INSIGHTS
+
+   Most styling inherited from existing
+   .staff-alert-item classes
+   ========================================================= */
+
+    .manager-reports-summary-column .staff-alert-item {
+        padding: 10px 0;
+    }
+
+
+        .manager-reports-summary-column .staff-alert-item:first-of-type {
+            border-top: none;
+        }
+
+
+    .manager-reports-summary-column .staff-alert-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 13px;
+    }
+
+
+    .manager-reports-summary-column .staff-alert-text strong {
+        font-size: 11px;
+    }
+
+
+    .manager-reports-summary-column .staff-alert-text small {
+        font-size: 9px;
+    }
+
+
+    /* =========================================================
+   QUICK ACTIONS CARD
+   ========================================================= */
+        .manager-reports-quick-card {
+            width: 100%;
+         min-width: 0;
+          height: 100%;
+        }
+
+
+        /* Reuses existing staff-action-grid / tile styling */
+
+        .manager-reports-quick-card .staff-action-grid {
+            gap: 10px;
+        }
+
+
+        .manager-reports-quick-card .staff-action-tile {
+            padding: 11px;
+        }
+
+
+            .manager-reports-quick-card .staff-action-tile .staff-icon-box {
+                width: 38px;
+                height: 38px;
+                border-radius: 9px;
+            }
+
+
+            .manager-reports-quick-card .staff-action-tile strong {
+                font-size: 11px;
+            }
+
+
+            .manager-reports-quick-card .staff-action-tile small {
+                font-size: 9px;
+            }
+
+
+    /* =========================================================
+   REPORT RESPONSIVE DESIGN
+   ========================================================= */
+
+    @media screen and (max-width: 1200px) {
+
+        .manager-reports-right-lower {
+            grid-template-columns: 1fr;
+        }
+    }
+
+
+    @media screen and (max-width: 1050px) {
+
+        .manager-reports-top-grid {
+            grid-template-columns: 1fr;
+        }
+
+
+        .manager-reports-bottom-grid {
+            grid-template-columns: 1fr;
+        }
+
+
+        .manager-reports-right-lower {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+
+    @media screen and (max-width: 750px) {
+
+        .manager-reports-category-layout {
+            flex-direction: column;
+        }
+
+
+        .manager-reports-category-list {
+            width: 100%;
+        }
+
+
+        .manager-reports-right-lower {
+            grid-template-columns: 1fr;
+        }
+    }
+
+/* =========================================================
+   MANAGER PROFILE PAGE
+   ========================================================= */
+
+
+/* =========================================================
+   PERMISSIONS / ACCESS
+   ========================================================= */
+
+.manager-profile-permissions {
+    margin-top: 16px;
+    padding: 18px;
+}
+
+
+    .manager-profile-permissions
+    .staff-profile-section-heading small {
+        display: block;
+        margin-top: 3px;
+        color: #8a8f97;
+        font-size: 10px;
+    }
+
+
+.manager-profile-permission-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+
+.manager-profile-permission {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 6px 9px;
+    border-radius: 6px;
+    background-color: #e3f1e5;
+    color: #35663d;
+    font-size: 9px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   MANAGER PROFILE QUICK ACTIONS
+   ========================================================= */
+
+.manager-profile-quick-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 9px;
+}
+
+
+    /* Allows the existing quick action design to shrink nicely */
+
+    .manager-profile-quick-grid
+    .staff-profile-quick-action {
+        min-width: 0;
+    }
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media screen and (max-width: 1150px) {
+
+    .manager-profile-quick-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+
+    .manager-profile-quick-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+

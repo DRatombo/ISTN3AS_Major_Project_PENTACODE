@@ -1,0 +1,1094 @@
+﻿<%@ Page Title="Manager Profile"
+    Language="C#"
+    MasterPageFile="~/Site.Master"
+    AutoEventWireup="true"
+    CodeBehind="ManagerProfile.aspx.cs"
+    Inherits="Cafe101.Web.ManagerProfile" %>
+
+
+<asp:Content ID="Content1"
+    ContentPlaceHolderID="MainContent"
+    runat="server">
+
+
+    <div class="staff-shell">
+
+        <%-- =====================================================
+             TOP HEADER
+             ===================================================== --%>
+
+        <header class="staff-header">
+
+            <div class="staff-header-left">
+
+                <button type="button"
+                    id="sidebarToggle"
+                    class="staff-header-menu">
+                    ☰
+                </button>
+
+                <div class="staff-header-brand">
+                    Cafe101
+                </div>
+
+            </div>
+
+
+            <div class="staff-header-user">
+
+                <div class="staff-header-avatar">
+                    MA
+                </div>
+
+                <div>
+                    <strong>Manager</strong>
+                    <small>Administrator</small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <div class="staff-body">
+
+
+            <%-- =====================================================
+                 MANAGER SIDEBAR
+                 ===================================================== --%>
+
+            <aside class="staff-sidebar">
+
+                <div class="staff-sidebar-title">
+                    MANAGER SYSTEM
+                </div>
+
+
+                <nav class="staff-nav">
+
+
+                    <%-- Dashboard --%>
+
+                    <a href="ManagerDashboard.aspx">
+
+                        <span class="staff-nav-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                width="19"
+                                height="19"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2">
+
+                                <rect x="3" y="3" width="7" height="7" />
+                                <rect x="14" y="3" width="7" height="7" />
+                                <rect x="3" y="14" width="7" height="7" />
+                                <rect x="14" y="14" width="7" height="7" />
+
+                            </svg>
+
+                        </span>
+
+                        <span class="staff-nav-text">
+                            Dashboard
+                        </span>
+
+                    </a>
+
+
+
+                    <%-- Orders --%>
+
+                    <a href="ManagerOrders.aspx">
+
+                        <span class="staff-nav-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                width="19"
+                                height="19"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2">
+
+                                <path d="M6 3h12v18H6z" />
+                                <path d="M9 8h6" />
+                                <path d="M9 12h6" />
+                                <path d="M9 16h4" />
+
+                            </svg>
+
+                        </span>
+
+                        <span class="staff-nav-text">
+                            Orders
+                        </span>
+
+                    </a>
+
+
+
+                    <%-- Menu --%>
+
+                    <a href="ManagerMenu.aspx">
+
+                        <span class="staff-nav-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                width="19"
+                                height="19"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2">
+
+                                <path d="M4 4h16v16H4z" />
+                                <path d="M8 8h8" />
+                                <path d="M8 12h8" />
+                                <path d="M8 16h5" />
+
+                            </svg>
+
+                        </span>
+
+                        <span class="staff-nav-text">
+                            Menu
+                        </span>
+
+                    </a>
+
+
+
+                    <%-- Staff --%>
+
+                    <a href="ManagerStaff.aspx">
+
+                        <span class="staff-nav-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                width="19"
+                                height="19"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2">
+
+                                <circle cx="9" cy="8" r="3" />
+                                <circle cx="17" cy="10" r="2" />
+
+                                <path d="M3 20c0-4 2.5-7 6-7s6 3 6 7" />
+                                <path d="M15 15c3 0 5 2 5 5" />
+
+                            </svg>
+
+                        </span>
+
+                        <span class="staff-nav-text">
+                            Staff
+                        </span>
+
+                    </a>
+
+
+
+                    <%-- Reports --%>
+
+                    <a href="ManagerReports.aspx">
+
+                        <span class="staff-nav-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                width="19"
+                                height="19"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2">
+
+                                <path d="M4 20V10" />
+                                <path d="M10 20V4" />
+                                <path d="M16 20v-7" />
+                                <path d="M22 20H2" />
+
+                            </svg>
+
+                        </span>
+
+                        <span class="staff-nav-text">
+                            Reports
+                        </span>
+
+                    </a>
+
+
+
+                    <%-- Profile --%>
+
+                    <a href="ManagerProfile.aspx"
+                        class="active">
+
+                        <span class="staff-nav-icon">
+
+                            <svg viewBox="0 0 24 24"
+                                width="19"
+                                height="19"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2">
+
+                                <circle cx="12" cy="8" r="4" />
+
+                                <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" />
+
+                            </svg>
+
+                        </span>
+
+                        <span class="staff-nav-text">
+                            Profile
+                        </span>
+
+                    </a>
+
+                </nav>
+
+
+
+                <%-- Log Out --%>
+
+                <div class="staff-sidebar-bottom">
+
+                    <a href="#"
+                        class="staff-logout">
+
+                        <span class="staff-nav-icon">&#10140;
+                            
+                        </span>
+
+                        <span class="staff-nav-text">
+                            Log Out
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </aside>
+
+
+
+            <%-- =====================================================
+                 MAIN PROFILE AREA
+                 ===================================================== --%>
+
+            <main class="staff-main">
+
+
+                <%-- =================================================
+                     PAGE HEADING
+                     ================================================= --%>
+
+                <div class="staff-page-heading">
+
+                    <h3>
+                        My Profile
+                    </h3>
+
+                    <p>
+                        View and manage your manager account information.
+                    </p>
+
+                </div>
+
+
+
+                <%-- =================================================
+                     PROFILE SUMMARY
+                     Reuses Staff Profile styling
+                     ================================================= --%>
+
+                <section class="staff-dashboard-panel staff-profile-summary">
+
+
+                    <div class="staff-profile-summary-left">
+
+
+                        <div class="staff-profile-avatar">
+                            MA
+                        </div>
+
+
+                        <div class="staff-profile-main-info">
+
+
+                            <div class="staff-profile-name-row">
+
+                                <h4>
+                                    Manager Admin
+                                </h4>
+
+                                <span class="staff-profile-role-badge">
+                                    Administrator
+                                </span>
+
+                            </div>
+
+
+
+                            <div class="staff-profile-contact-grid">
+
+
+                                <%-- Email --%>
+
+                                <div class="staff-profile-contact-item">
+
+                                    <span class="staff-profile-contact-icon">
+
+                                        <svg viewBox="0 0 24 24"
+                                            width="17"
+                                            height="17"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2">
+
+                                            <rect x="3"
+                                                y="5"
+                                                width="18"
+                                                height="14"
+                                                rx="2" />
+
+                                            <path d="m3 7 9 6 9-6" />
+
+                                        </svg>
+
+                                    </span>
+
+                                    <div>
+
+                                        <small>Email</small>
+
+                                        <strong>
+                                            manager@cafe101.com
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <%-- Phone --%>
+
+                                <div class="staff-profile-contact-item">
+
+                                    <span class="staff-profile-contact-icon">
+
+                                        <svg viewBox="0 0 24 24"
+                                            width="17"
+                                            height="17"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2">
+
+                                            <path d="M5 4h4l2 5-3 2c1 3 3 5 6 6l2-3 5 2v4c0 1-1 2-2 2C10 22 2 14 2 6c0-1 1-2 3-2z" />
+
+                                        </svg>
+
+                                    </span>
+
+                                    <div>
+
+                                        <small>Phone</small>
+
+                                        <strong>
+                                            +27 61 234 5678
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <%-- Member Since --%>
+
+                                <div class="staff-profile-contact-item">
+
+                                    <span class="staff-profile-contact-icon">
+
+                                        <svg viewBox="0 0 24 24"
+                                            width="17"
+                                            height="17"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2">
+
+                                            <rect x="3"
+                                                y="5"
+                                                width="18"
+                                                height="16"
+                                                rx="2" />
+
+                                            <path d="M8 3v4" />
+                                            <path d="M16 3v4" />
+                                            <path d="M3 10h18" />
+
+                                        </svg>
+
+                                    </span>
+
+                                    <div>
+
+                                        <small>Member Since</small>
+
+                                        <strong>
+                                            10 January 2024
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <%-- Edit Profile --%>
+
+                    <div class="staff-profile-summary-right">
+
+                        <button type="button"
+                            class="btn btn-outline-brand staff-edit-profile-btn">
+
+                            ✎ Edit Profile
+
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+
+                <%-- =================================================
+                     LOWER PROFILE GRID
+                     ================================================= --%>
+
+                <div class="staff-profile-content-grid">
+
+
+                    <%-- =================================================
+                         LEFT COLUMN
+                         ================================================= --%>
+
+                    <div>
+
+
+                        <%-- =============================================
+                             PERSONAL INFORMATION
+                             ============================================= --%>
+
+                        <section class="staff-dashboard-panel staff-profile-info-card">
+
+
+                            <div class="staff-profile-section-heading">
+
+                                <h5>
+                                    Personal Information
+                                </h5>
+
+                            </div>
+
+
+
+                            <%-- Full Name --%>
+
+                            <div class="staff-profile-info-row">
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ♙
+                                    </span>
+
+                                    Full Name
+
+                                </span>
+
+                                <strong>
+                                    Manager Admin
+                                </strong>
+
+                            </div>
+
+
+
+                            <%-- Email --%>
+
+                            <div class="staff-profile-info-row">
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ✉
+                                    </span>
+
+                                    Email Address
+
+                                </span>
+
+                                <strong>
+                                    manager@cafe101.com
+                                </strong>
+
+                            </div>
+
+
+
+                            <%-- Phone --%>
+
+                            <div class="staff-profile-info-row">
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ☎
+                                    </span>
+
+                                    Phone Number
+
+                                </span>
+
+                                <strong>
+                                    +27 61 234 5678
+                                </strong>
+
+                            </div>
+
+
+
+                            <%-- Date of Birth --%>
+
+                            <div class="staff-profile-info-row">
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ◫
+                                    </span>
+
+                                    Date of Birth
+
+                                </span>
+
+                                <strong>
+                                    15 April 1985
+                                </strong>
+
+                            </div>
+
+
+
+                            <%-- Address --%>
+
+                            <div class="staff-profile-info-row">
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ⌖
+                                    </span>
+
+                                    Address
+
+                                </span>
+
+                                <strong>
+                                    123 Main Street, Durban, 4001
+                                </strong>
+
+                            </div>
+
+
+
+                            <%-- Role --%>
+
+                            <div class="staff-profile-info-row">
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ♙
+                                    </span>
+
+                                    Role
+
+                                </span>
+
+                                <strong>
+                                    Administrator
+                                </strong>
+
+                            </div>
+
+
+
+                            <%-- Department --%>
+
+                            <div class="staff-profile-info-row">
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ▦
+                                    </span>
+
+                                    Department
+
+                                </span>
+
+                                <strong>
+                                    Operations
+                                </strong>
+
+                            </div>
+
+                        </section>
+
+
+
+                        <%-- =============================================
+                             PERMISSIONS / ACCESS
+                             ============================================= --%>
+
+                        <section class="staff-dashboard-panel manager-profile-permissions">
+
+
+                            <div class="staff-profile-section-heading">
+
+                                <h5>
+                                    Permissions / Access
+                                </h5>
+
+                                <small>
+                                    As an administrator, you have access to the following areas.
+                                </small>
+
+                            </div>
+
+
+
+                            <div class="manager-profile-permission-list">
+
+
+                                <span class="manager-profile-permission">
+                                    ✓ Orders
+                                </span>
+
+
+                                <span class="manager-profile-permission">
+                                    ✓ Menu Management
+                                </span>
+
+
+                                <span class="manager-profile-permission">
+                                    ✓ Staff Management
+                                </span>
+
+
+                                <span class="manager-profile-permission">
+                                    ✓ Reports
+                                </span>
+
+
+                                <span class="manager-profile-permission">
+                                    ✓ System Settings
+                                </span>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+
+                    <%-- =================================================
+                         RIGHT COLUMN
+                         ================================================= --%>
+
+                    <div class="staff-profile-right-column">
+
+
+                        <%-- =============================================
+                             ACCOUNT SECURITY
+                             ============================================= --%>
+
+                        <section class="staff-dashboard-panel staff-profile-small-card">
+
+
+                            <div class="staff-profile-small-card-content">
+
+                                <div class="staff-profile-security-icon">
+
+                                    <svg viewBox="0 0 24 24"
+                                        width="18"
+                                        height="18"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2">
+
+                                        <rect x="5"
+                                            y="10"
+                                            width="14"
+                                            height="11"
+                                            rx="2" />
+
+                                        <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+
+                                    </svg>
+
+                                </div>
+
+
+                                <div>
+
+                                    <strong>
+                                        Account Security
+                                    </strong>
+
+                                    <small>
+                                        Keep your account secure
+                                    </small>
+
+                                    <p>
+                                        Last password change: 12 days ago
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+
+                            <button type="button"
+                                class="staff-security-btn">
+
+                                Change Password
+
+                            </button>
+
+                        </section>
+
+
+
+                        <%-- =============================================
+                             WORK INFORMATION
+                             ============================================= --%>
+
+                        <section class="staff-dashboard-panel staff-profile-work-card">
+
+
+                            <div class="staff-profile-section-heading">
+
+                                <h5>
+                                    Work Information
+                                </h5>
+
+                            </div>
+
+
+
+                            <div class="staff-profile-info-row">
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ▣
+                                    </span>
+
+                                    Employee ID
+
+                                </span>
+
+                                <strong>
+                                    MGR1001
+                                </strong>
+
+                            </div>
+
+
+
+                            <div class="staff-profile-info-row">
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ◫
+                                    </span>
+
+                                    Hire Date
+
+                                </span>
+
+                                <strong>
+                                    10 January 2024
+                                </strong>
+
+                            </div>
+
+
+
+                            <div class="staff-profile-info-row">
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ◷
+                                    </span>
+
+                                    Shift / Work Hours
+
+                                </span>
+
+                                <strong>
+                                    Mon - Fri, 08:00 - 17:00
+                                </strong>
+
+                            </div>
+
+
+
+                            <div class="staff-profile-info-row">
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ⌂
+                                    </span>
+
+                                    Branch
+
+                                </span>
+
+                                <strong>
+                                    Cafe101 University Branch
+                                </strong>
+
+                            </div>
+
+
+
+                            <div class="staff-profile-info-row">
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ✓
+                                    </span>
+
+                                    Status
+
+                                </span>
+
+                                <span class="staff-profile-status-active">
+                                    Active
+                                </span>
+
+                            </div>
+
+                        </section>
+
+
+
+                        <%-- =============================================
+                             QUICK ACTIONS
+                             ============================================= --%>
+
+                        <section class="staff-dashboard-panel staff-profile-quick-card">
+
+
+                            <div class="staff-profile-section-heading">
+
+                                <h5>
+                                    Quick Actions
+                                </h5>
+
+                            </div>
+
+
+
+                            <div class="manager-profile-quick-grid">
+
+
+                                <%-- Update Profile --%>
+
+                                <button type="button"
+                                    class="staff-profile-quick-action">
+
+                                    <span class="staff-profile-quick-icon icon-purple">
+                                        ✎
+                                    </span>
+
+                                    <span>
+
+                                        <strong>
+                                            Update Profile
+                                        </strong>
+
+                                        <small>
+                                            Edit your information
+                                        </small>
+
+                                    </span>
+
+                                </button>
+
+
+
+                                <%-- Password --%>
+
+                                <button type="button"
+                                    class="staff-profile-quick-action">
+
+                                    <span class="staff-profile-quick-icon icon-beige">
+                                        🔒
+                                    </span>
+
+                                    <span>
+
+                                        <strong>
+                                            Change Password
+                                        </strong>
+
+                                        <small>
+                                            Update your password
+                                        </small>
+
+                                    </span>
+
+                                </button>
+
+
+
+                                <%-- Reports --%>
+
+                                <button type="button"
+                                    class="staff-profile-quick-action"
+                                    onclick="window.location.href='ManagerReports.aspx';">
+
+                                    <span class="staff-profile-quick-icon icon-blue">
+                                        ▥
+                                    </span>
+
+                                    <span>
+
+                                        <strong>
+                                            View Reports
+                                        </strong>
+
+                                        <small>
+                                            Sales and performance
+                                        </small>
+
+                                    </span>
+
+                                </button>
+
+
+
+                                <%-- Staff --%>
+
+                                <button type="button"
+                                    class="staff-profile-quick-action"
+                                    onclick="window.location.href='ManagerStaff.aspx';">
+
+                                    <span class="staff-profile-quick-icon icon-green">
+                                        ♙
+                                    </span>
+
+                                    <span>
+
+                                        <strong>
+                                            Manage Staff
+                                        </strong>
+
+                                        <small>
+                                            View and manage staff
+                                        </small>
+
+                                    </span>
+
+                                </button>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                </div>
+
+
+
+                <%-- =================================================
+                     FOOTER
+                     ================================================= --%>
+
+                <div class="staff-footer">
+                    © 2026 Cafe101. All rights reserved.
+                </div>
+
+            </main>
+
+        </div>
+
+    </div>
+
+
+
+    <%-- =====================================================
+         SHARED PAGE SCRIPT
+         ===================================================== --%>
+
+    <script>
+
+        document.body.classList.add("staff-page");
+
+
+        const bodyContent =
+            document.querySelector(".body-content");
+
+
+        if (bodyContent) {
+
+            bodyContent.classList.remove("container");
+
+            bodyContent.style.width = "100%";
+            bodyContent.style.maxWidth = "none";
+            bodyContent.style.margin = "0";
+            bodyContent.style.padding = "0";
+
+        }
+
+
+        const sidebarToggle =
+            document.getElementById("sidebarToggle");
+
+        const staffBody =
+            document.querySelector(".staff-body");
+
+
+        if (sidebarToggle && staffBody) {
+
+            sidebarToggle.addEventListener("click", function () {
+
+                staffBody.classList.toggle("sidebar-collapsed");
+
+            });
+
+        }
+
+    </script>
+
+
+</asp:Content>

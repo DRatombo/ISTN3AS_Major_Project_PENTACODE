@@ -402,7 +402,7 @@ namespace Cafe101
         {
             Form form = new frmMain();
             form.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnHelp_Click_1(object sender, EventArgs e)

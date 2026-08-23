@@ -11,27 +11,28 @@ namespace Cafe101
         private DataTable originalEmployeeData;
         private bool helpVisible = false;
         private Panel pnlHelp = null;
-        private Label lblAddressStatus;   // Status label for Address validation
+        private Label lblAddressStatus;
+        private ChatbotControl chatbot;
 
         public frmManageEmployees()
         {
-
             InitializeComponent();
             this.DoubleBuffered = true;
             CreateAddressStatusLabel();
             AttachValidationEvents();
+            this.Load += frmManageEmployees_Load;
+            this.Resize += frmManageEmployees_Resize;
         }
 
         private void CreateAddressStatusLabel()
         {
             lblAddressStatus = new Label();
             lblAddressStatus.AutoSize = true;
-            lblAddressStatus.Font = new System.Drawing.Font("Segoe UI", 8F);
-            lblAddressStatus.ForeColor = System.Drawing.Color.White;
-            // Position directly below the Password textbox (Y = 224 + 27 = 251, plus 3px gap = 254)
-            lblAddressStatus.Location = new System.Drawing.Point(110, 264);
+            lblAddressStatus.Font = new Font("Segoe UI", 8F);
+            lblAddressStatus.ForeColor = Color.White;
+            lblAddressStatus.Location = new Point(110, 264);
             lblAddressStatus.Name = "lblAddressStatus";
-            lblAddressStatus.Size = new System.Drawing.Size(0, 20);
+            lblAddressStatus.Size = new Size(0, 20);
             lblAddressStatus.TabIndex = 16;
             this.grpEmployeeDetails.Controls.Add(lblAddressStatus);
         }
@@ -86,7 +87,6 @@ namespace Cafe101
                 return false;
             }
 
-            // Check for letters only (no spaces, no numbers, no special characters)
             foreach (char c in value)
             {
                 if (!char.IsLetter(c))
@@ -202,12 +202,11 @@ namespace Cafe101
             if (string.IsNullOrWhiteSpace(address))
             {
                 txtAddress.BackColor = Color.FromArgb(255, 220, 220);
-                lblAddressStatus.Text = "⚠️Required.Format: Streetnumber/name,Suburb,City";
+                lblAddressStatus.Text = "⚠️ Required. Format: number street, suburb, city";
                 lblAddressStatus.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
 
-            // Check for at least one digit (street number)
             bool hasDigit = false;
             foreach (char c in address)
             {
@@ -218,7 +217,6 @@ namespace Cafe101
                 }
             }
 
-            // Count commas (should be at least 2 to separate street, suburb, city)
             int commaCount = 0;
             foreach (char c in address)
             {
@@ -236,13 +234,13 @@ namespace Cafe101
             if (commaCount < 2)
             {
                 txtAddress.BackColor = Color.FromArgb(255, 220, 220);
-                lblAddressStatus.Text = "⚠️ Need street, suburb, and city separated by commas.";
+                lblAddressStatus.Text = "⚠️ Need street, suburb, city (commas)";
                 lblAddressStatus.ForeColor = Color.FromArgb(255, 80, 80);
                 return false;
             }
 
             txtAddress.BackColor = Color.FromArgb(220, 245, 220);
-            lblAddressStatus.Text = "✓ Valid address format";
+            lblAddressStatus.Text = "✓ Valid address";
             lblAddressStatus.ForeColor = Color.FromArgb(50, 180, 100);
             return true;
         }
@@ -253,14 +251,53 @@ namespace Cafe101
         }
 
         // ============================================================
-        // END OF VALIDATION METHODS
+        // FORM LOAD & RESIZE
         // ============================================================
 
         private void frmManageEmployees_Load(object sender, EventArgs e)
         {
             LoadEmployees();
             this.txtSearch.TextChanged += txtSearch_TextChanged;
+            // LoadChatbot();
         }
+
+        private void frmManageEmployees_Resize(object sender, EventArgs e)
+        {
+            if (chatbot != null && chatbot.Visible)
+            {
+                chatbot.Location = new Point(
+                    this.ClientSize.Width - chatbot.Width - 20,
+                    this.ClientSize.Height - chatbot.Height - 20
+                );
+            }
+        }
+
+        /* private void LoadChatbot()
+         {
+             try
+             {
+                 chatbot = new ChatbotControl();
+                 chatbot.Location = new Point(
+                     this.ClientSize.Width - chatbot.Width - 20,
+                     this.ClientSize.Height - chatbot.Height - 20
+                 );
+                 chatbot.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+                 chatbot.BringToFront();
+                 chatbot.Visible = true;
+                 this.Controls.Add(chatbot);
+                 chatbot.BringToFront();
+                 chatbot.Refresh();
+             }
+             catch (Exception ex)
+             {
+                 // Silently fail - chatbot is optional
+                 Console.WriteLine($"Chatbot error: {ex.Message}");
+             }
+         }*/
+
+        // ============================================================
+        // DATABASE OPERATIONS
+        // ============================================================
 
         private void LoadEmployees()
         {
@@ -305,13 +342,6 @@ namespace Cafe101
                 dgvEmployees.Columns[0].Visible = false;
         }
 
-        private void btnClearSearch_Click(object sender, EventArgs e)
-        {
-            txtSearch.Text = "";
-            ClearFields();
-            LoadEmployees();
-        }
-
         private void ClearFields()
         {
             txtFirstName.Text = "";
@@ -322,11 +352,11 @@ namespace Cafe101
             cboRole.SelectedIndex = -1;
             btnUpdate.Tag = null;
 
-            txtFirstName.BackColor = System.Drawing.Color.White;
-            txtSurname.BackColor = System.Drawing.Color.White;
-            txtEmail.BackColor = System.Drawing.Color.White;
-            txtPassword.BackColor = System.Drawing.Color.White;
-            txtAddress.BackColor = System.Drawing.Color.White;
+            txtFirstName.BackColor = Color.White;
+            txtSurname.BackColor = Color.White;
+            txtEmail.BackColor = Color.White;
+            txtPassword.BackColor = Color.White;
+            txtAddress.BackColor = Color.White;
             lblFirstNameStatus.Text = "";
             lblSurnameStatus.Text = "";
             lblEmailStatus.Text = "";
@@ -392,11 +422,16 @@ namespace Cafe101
             }
         }
 
+        // ============================================================
+        // BUTTON EVENTS
+        // ============================================================
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (!IsFormValid())
             {
-                MessageBox.Show("Please correct the highlighted fields before adding.\n\nAddress must follow format: street number street name, suburb, city\n(e.g., 46 Lion Road, Amanzimtoti, Durban)", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please correct the highlighted fields before adding.\n\nAddress format: number street, suburb, city\n(e.g., 46 Lion Road, Amanzimtoti, Durban)",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -449,39 +484,6 @@ namespace Cafe101
             }
         }
 
-        private void dgvEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dgvEmployees.Rows[e.RowIndex];
-                DataRowView rowView = row.DataBoundItem as DataRowView;
-                if (rowView == null) return;
-
-                txtFirstName.Text = rowView["FirstName"]?.ToString() ?? "";
-                txtSurname.Text = rowView["Surname"]?.ToString() ?? "";
-                txtAddress.Text = rowView["Address"]?.ToString() ?? "";
-                txtEmail.Text = rowView["Email"]?.ToString() ?? "";
-                cboRole.Text = rowView["Role"]?.ToString() ?? "";
-                txtPassword.Text = "";
-                btnUpdate.Tag = rowView["EmployeeID"];
-
-                DataView dv = originalEmployeeData.DefaultView;
-                dv.RowFilter = $"EmployeeID = {btnUpdate.Tag}";
-                dgvEmployees.DataSource = dv;
-
-                if (dgvEmployees.Columns.Count > 0)
-                    dgvEmployees.Columns[0].Visible = false;
-
-                txtSearch.Text = "";
-
-                ValidateFirstName();
-                ValidateSurname();
-                ValidateEmail();
-                ValidatePassword();
-                ValidateAddress();
-            }
-        }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (btnUpdate.Tag == null)
@@ -492,7 +494,8 @@ namespace Cafe101
 
             if (!IsFormValid())
             {
-                MessageBox.Show("Please correct the highlighted fields before updating.\n\nAddress must follow format: street number street name, suburb, city\n(e.g., 46 Lion Road, Amanzimtoti, Durban)", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please correct the highlighted fields before updating.\n\nAddress format: number street, suburb, city\n(e.g., 46 Lion Road, Amanzimtoti, Durban)",
+                    "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -540,13 +543,46 @@ namespace Cafe101
                     cmd.ExecuteNonQuery();
                     conn.Close();
                 }
-                MessageBox.Show("Employee updated.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Employee updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadEmployees();
                 ClearFields();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Update failed: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvEmployees.Rows[e.RowIndex];
+                DataRowView rowView = row.DataBoundItem as DataRowView;
+                if (rowView == null) return;
+
+                txtFirstName.Text = rowView["FirstName"]?.ToString() ?? "";
+                txtSurname.Text = rowView["Surname"]?.ToString() ?? "";
+                txtAddress.Text = rowView["Address"]?.ToString() ?? "";
+                txtEmail.Text = rowView["Email"]?.ToString() ?? "";
+                cboRole.Text = rowView["Role"]?.ToString() ?? "";
+                txtPassword.Text = "";
+                btnUpdate.Tag = rowView["EmployeeID"];
+
+                DataView dv = originalEmployeeData.DefaultView;
+                dv.RowFilter = $"EmployeeID = {btnUpdate.Tag}";
+                dgvEmployees.DataSource = dv;
+
+                if (dgvEmployees.Columns.Count > 0)
+                    dgvEmployees.Columns[0].Visible = false;
+
+                txtSearch.Text = "";
+
+                ValidateFirstName();
+                ValidateSurname();
+                ValidateEmail();
+                ValidatePassword();
+                ValidateAddress();
             }
         }
 
@@ -585,7 +621,7 @@ namespace Cafe101
                 MessageBox.Show("Select an employee to remove.", "Validation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
-            DialogResult dr = MessageBox.Show("Delete this employee? This cannot be undone.", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult dr = MessageBox.Show("Delete this employee? This cannot be undone.", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dr == DialogResult.Yes)
             {
                 try
@@ -599,7 +635,7 @@ namespace Cafe101
                         cmd.ExecuteNonQuery();
                         conn.Close();
                     }
-                    MessageBox.Show("Employee removed.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Employee removed successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     LoadEmployees();
                     ClearFields();
                 }
@@ -617,12 +653,23 @@ namespace Cafe101
             ClearFields();
         }
 
+        private void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+            ClearFields();
+            LoadEmployees();
+        }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             Form form = new frmMain();
             form.Show();
-            this.Hide();
+            this.Close();
         }
+
+        // ============================================================
+        // HELP BUTTON
+        // ============================================================
 
         private void btnHelp_Click_1(object sender, EventArgs e)
         {
@@ -649,7 +696,7 @@ namespace Cafe101
                     "• Fill in: First Name, Surname, Email, Address,\r\n" +
                     "  Role (Manager/Cashier), and Password.\r\n" +
                     "• First Name and Surname: LETTERS ONLY (no spaces, numbers, or special characters)\r\n" +
-                    "• Address format: street number street name, suburb, city (e.g., 46 Lion Road, Amanzimtoti, Durban)\r\n" +
+                    "• Address format: number street, suburb, city (e.g., 46 Lion Road, Amanzimtoti, Durban)\r\n" +
                     "• Password: minimum 6 characters\r\n" +
                     "• Click the 'Add' button.\r\n\r\n" +
                     "✏️ EDIT EXISTING EMPLOYEE:\r\n" +
@@ -697,8 +744,8 @@ namespace Cafe101
             if (pnlHelp == null)
             {
                 pnlHelp = new Panel();
-                pnlHelp.Size = new System.Drawing.Size(370, 440);
-                pnlHelp.BackColor = System.Drawing.Color.FromArgb(20, 40, 100);
+                pnlHelp.Size = new Size(370, 440);
+                pnlHelp.BackColor = Color.FromArgb(20, 40, 100);
                 pnlHelp.BorderStyle = BorderStyle.FixedSingle;
                 this.Controls.Add(pnlHelp);
                 pnlHelp.BringToFront();
@@ -708,25 +755,25 @@ namespace Cafe101
 
             Label lblTitle = new Label();
             lblTitle.Text = stepTitle;
-            lblTitle.Font = new System.Drawing.Font("Segoe UI", 10, System.Drawing.FontStyle.Bold);
-            lblTitle.ForeColor = System.Drawing.Color.White;
-            lblTitle.Location = new System.Drawing.Point(10, 10);
-            lblTitle.Size = new System.Drawing.Size(350, 30);
+            lblTitle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(10, 10);
+            lblTitle.Size = new Size(350, 30);
             lblTitle.TextAlign = ContentAlignment.MiddleLeft;
 
             Label lblDetail = new Label();
             lblDetail.Text = stepDetail;
-            lblDetail.Font = new System.Drawing.Font("Segoe UI", 9);
-            lblDetail.ForeColor = System.Drawing.Color.LightGray;
-            lblDetail.Location = new System.Drawing.Point(10, 50);
-            lblDetail.Size = new System.Drawing.Size(350, 340);
+            lblDetail.Font = new Font("Segoe UI", 9);
+            lblDetail.ForeColor = Color.LightGray;
+            lblDetail.Location = new Point(10, 50);
+            lblDetail.Size = new Size(350, 340);
 
             Button btnClose = new Button();
             btnClose.Text = "✕ Close";
-            btnClose.Size = new System.Drawing.Size(100, 30);
-            btnClose.Location = new System.Drawing.Point(255, 400);
-            btnClose.BackColor = System.Drawing.Color.FromArgb(0, 120, 215);
-            btnClose.ForeColor = System.Drawing.Color.White;
+            btnClose.Size = new Size(100, 30);
+            btnClose.Location = new Point(255, 400);
+            btnClose.BackColor = Color.FromArgb(0, 120, 215);
+            btnClose.ForeColor = Color.White;
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Click += (s, ev) =>
             {
@@ -757,27 +804,10 @@ namespace Cafe101
                 yPos = 5;
             }
 
-            pnlHelp.Location = new System.Drawing.Point(xPos, yPos);
+            pnlHelp.Location = new Point(xPos, yPos);
             pnlHelp.Visible = true;
             helpVisible = true;
             btnHelp.Text = "❓ Help (ON)";
         }
     }
-
-    // ============================================================
-    // DbHelper Class
-    // ============================================================
-    /* public static class DbHelper
-    {
-        private static string server = "146.230.177.46";
-        private static string database = "GroupWst22";
-        private static string username = "GroupWst22";
-        private static string password = "n38mc";
-        private static string connectionString = $"Server={server};Database={database};User Id={username};Password={password};Connection Timeout=30;";
-
-        public static SqlConnection GetConnection()
-        {
-            return new SqlConnection(connectionString);
-        }
-    }*/
 }

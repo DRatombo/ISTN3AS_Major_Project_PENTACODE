@@ -113,6 +113,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChatbotControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ChatbotControl.Designer.cs">
+      <DependentUpon>ChatbotControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="DBConnection.cs" />
     <Compile Include="dsCafe101.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -139,6 +145,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsLogin.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="FloatingChatbot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FloatingChatbot.Designer.cs">
+      <DependentUpon>FloatingChatbot.cs</DependentUpon>
     </Compile>
     <Compile Include="frmCheckout.cs">
       <SubType>Form</SubType>
@@ -245,6 +257,13 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SessionManager.cs" />
+    <Compile Include="SmartChatbotHelper.cs" />
+    <EmbeddedResource Include="ChatbotControl.resx">
+      <DependentUpon>ChatbotControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FloatingChatbot.resx">
+      <DependentUpon>FloatingChatbot.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAddCustomer.resx">
       <DependentUpon>frmAddCustomer.cs</DependentUpon>
     </EmbeddedResource>

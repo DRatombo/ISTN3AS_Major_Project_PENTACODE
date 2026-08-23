@@ -14,7 +14,7 @@ namespace Cafe101
 
         public frmManageRecipes()
         {
-            
+
             InitializeComponent();
             this.DoubleBuffered = true;
             AttachValidationEvents();
@@ -329,7 +329,7 @@ namespace Cafe101
                     cmdIns.ExecuteNonQuery();
                     conn.Close();
                 }
-                MessageBox.Show("Recipe link saved.", "Success");
+                MessageBox.Show("Recipe link saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadAllRecipes();
             }
             catch (Exception ex)
@@ -387,7 +387,7 @@ namespace Cafe101
         {
             Form form = new frmMain();
             form.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnHelp_Click_1(object sender, EventArgs e)

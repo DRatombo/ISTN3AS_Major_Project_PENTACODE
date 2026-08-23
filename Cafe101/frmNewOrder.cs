@@ -34,17 +34,17 @@ namespace Cafe101
             //this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
             this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
             // TODO: This line of code loads data into the 'dsCafe101Test.TestCustomer' table. You can move, or remove it, as needed.
-           // this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
+            // this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
 
             this.customerTableTableAdapter.Fill(this.dsCafe101Hub.CustomerTable);
 
-           // dgvCustomers.DataSource = dsCafe101Hub.CustomerTable;
+            // dgvCustomers.DataSource = dsCafe101Hub.CustomerTable;
 
-           /* dgvCustomers.DataSource = dsCafe101Hub.CustomerTable;
-            dgvCustomers.Columns["CustomerID"].Visible = false;
-            dgvCustomers.Columns["CustomerID"].Visible = false;
-            dgvCustomers.Columns["FirstName"].Width = 100;
-            dgvCustomers.Columns["Surname"].Width = 100;*/
+            /* dgvCustomers.DataSource = dsCafe101Hub.CustomerTable;
+             dgvCustomers.Columns["CustomerID"].Visible = false;
+             dgvCustomers.Columns["CustomerID"].Visible = false;
+             dgvCustomers.Columns["FirstName"].Width = 100;
+             dgvCustomers.Columns["Surname"].Width = 100;*/
 
             dgvMenuItems.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
             dgvMenuItems.DefaultCellStyle.BackColor = System.Drawing.Color.White;
@@ -76,7 +76,7 @@ namespace Cafe101
 
             dgvMenuItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCart.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-           // dgvCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            // dgvCustomers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
             dgvMenuItems.BackgroundColor = System.Drawing.Color.FromArgb(13, 27, 62);
             dgvCart.BackgroundColor = System.Drawing.Color.FromArgb(13, 27, 62);
@@ -105,8 +105,8 @@ namespace Cafe101
 
 
                 // Load all menu items from database into the grid
-              /*  this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
-                dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;*/
+                /*  this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
+                  dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;*/
 
                 this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
                 dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable;
@@ -115,7 +115,7 @@ namespace Cafe101
                 dgvMenuItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
 
                 RebuildQtyColumn();
-                
+
                 //new 
                 dgvMenuItems.ClearSelection();
                 dgvMenuItems.CurrentCell = null;
@@ -243,106 +243,106 @@ namespace Cafe101
                 }
             }
         }
-      /*  private void btnSearchCust_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (string.IsNullOrEmpty(txtSearchedCust.Text))
-                {
-                    MessageBox.Show("Please enter a customer name to search for.");
-                    return;
-                }
+        /*  private void btnSearchCust_Click(object sender, EventArgs e)
+          {
+              try
+              {
+                  if (string.IsNullOrEmpty(txtSearchedCust.Text))
+                  {
+                      MessageBox.Show("Please enter a customer name to search for.");
+                      return;
+                  }
 
-              //  this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
-              this.customerTableTableAdapter.Fill(this.dsCafe101Hub.CustomerTable); 
+                //  this.testCustomerTableAdapter.Fill(this.dsCafe101Test.TestCustomer);
+                this.customerTableTableAdapter.Fill(this.dsCafe101Hub.CustomerTable); 
 
-                var results = this.dsCafe101Hub.CustomerTable.Where(c =>
-                    c.FirstName.ToLower().Contains(txtSearchedCust.Text.ToLower()) ||
-                    c.Surname.ToLower().Contains(txtSearchedCust.Text.ToLower()));
+                  var results = this.dsCafe101Hub.CustomerTable.Where(c =>
+                      c.FirstName.ToLower().Contains(txtSearchedCust.Text.ToLower()) ||
+                      c.Surname.ToLower().Contains(txtSearchedCust.Text.ToLower()));
 
-                *//*var results = this.dsCafe101Test.TestCustomer.Where(c =>
-                    c.FirstName.ToLower().Contains(txtSearchedCust.Text.ToLower()) ||
-                    c.Surname.ToLower().Contains(txtSearchedCust.Text.ToLower()));*//*
+                  *//*var results = this.dsCafe101Test.TestCustomer.Where(c =>
+                      c.FirstName.ToLower().Contains(txtSearchedCust.Text.ToLower()) ||
+                      c.Surname.ToLower().Contains(txtSearchedCust.Text.ToLower()));*//*
 
-                if (results.Any())
-                {
-                    var customer = results.First();
-                    selectedCustomerID = customer.CustomerID;
-                    txtSearchedName.Text = customer.FirstName + " " + customer.Surname;
-                    suppressCustomerSearch = true;
-                    dgvCustomers.DataSource = null;
-                    dgvCustomers.Visible = false;
-                    suppressCustomerSearch = false;
+                  if (results.Any())
+                  {
+                      var customer = results.First();
+                      selectedCustomerID = customer.CustomerID;
+                      txtSearchedName.Text = customer.FirstName + " " + customer.Surname;
+                      suppressCustomerSearch = true;
+                      dgvCustomers.DataSource = null;
+                      dgvCustomers.Visible = false;
+                      suppressCustomerSearch = false;
 
-                    // Hide grid once customer is selected
-                    dgvCustomers.DataSource = null;
-                    dgvCustomers.Visible = false;
-                }
-                else
-                {
-                    // Show grid with all customers so cashier can browse
-*//*                    dgvCustomers.DataSource = this.dsCafe101Test.TestCustomer;
- *//*                 dgvCustomers.DataSource = this.dsCafe101Hub.CustomerTable;
-                    dgvCustomers.Visible = true;
+                      // Hide grid once customer is selected
+                      dgvCustomers.DataSource = null;
+                      dgvCustomers.Visible = false;
+                  }
+                  else
+                  {
+                      // Show grid with all customers so cashier can browse
+  *//*                    dgvCustomers.DataSource = this.dsCafe101Test.TestCustomer;
+   *//*                 dgvCustomers.DataSource = this.dsCafe101Hub.CustomerTable;
+                      dgvCustomers.Visible = true;
 
-                    DialogResult result = MessageBox.Show(
-                        "Customer not found. Do you want to create a new customer?",
-                        "Customer Not Found",
-                        MessageBoxButtons.YesNo);
+                      DialogResult result = MessageBox.Show(
+                          "Customer not found. Do you want to create a new customer?",
+                          "Customer Not Found",
+                          MessageBoxButtons.YesNo);
 
-                    if (result == DialogResult.Yes)
-                    {
-                        frmAddCustomer addCust = new frmAddCustomer(this);
-                        addCust.ShowDialog();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred while searching for the customer: " + ex.Message);
-            }
-        }
-        private void btnSearchItem_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                // If search box is empty - show all menu items
-                if (string.IsNullOrWhiteSpace(textItemSearch.Text))
-                {
-                    *//*this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
-                    dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;*//*
+                      if (result == DialogResult.Yes)
+                      {
+                          frmAddCustomer addCust = new frmAddCustomer(this);
+                          addCust.ShowDialog();
+                      }
+                  }
+              }
+              catch (Exception ex)
+              {
+                  MessageBox.Show("An error occurred while searching for the customer: " + ex.Message);
+              }
+          }
+          private void btnSearchItem_Click(object sender, EventArgs e)
+          {
+              try
+              {
+                  // If search box is empty - show all menu items
+                  if (string.IsNullOrWhiteSpace(textItemSearch.Text))
+                  {
+                      *//*this.testMenuItemsTableAdapter.Fill(this.dsCafe101Test.TestMenuItems);
+                      dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;*//*
 
-                    this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
-                    dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable;
-                     RebuildQtyColumn();
-                    
-                    //new2
-                    dgvMenuItems.ClearSelection();
-                    dgvMenuItems.CurrentCell = null;
-                    return;
-                }
+                      this.menuItemsTableTableAdapter.Fill(this.dsCafe101Hub.MenuItemsTable);
+                      dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable;
+                       RebuildQtyColumn();
 
-                // Use the FillByMenuItem query to filter by name
-                *//*this.testMenuItemsTableAdapter.FillByMenuItems(this.dsCafe101Test.TestMenuItems, textItemSearch.Text);
-                dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;*//*
+                      //new2
+                      dgvMenuItems.ClearSelection();
+                      dgvMenuItems.CurrentCell = null;
+                      return;
+                  }
 
-                this.menuItemsTableTableAdapter.FillByMenuItems(this.dsCafe101Hub.MenuItemsTable, textItemSearch.Text);
-                dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable; 
+                  // Use the FillByMenuItem query to filter by name
+                  *//*this.testMenuItemsTableAdapter.FillByMenuItems(this.dsCafe101Test.TestMenuItems, textItemSearch.Text);
+                  dgvMenuItems.DataSource = this.dsCafe101Test.TestMenuItems;*//*
 
-                // Reset quantity dropdown to 1 after search
-                foreach (DataGridViewRow row in dgvMenuItems.Rows)
-                {
-                    if (!row.IsNewRow)
-                        row.Cells["ItemQty"].Value = 1;
-                }
-                dgvMenuItems.ClearSelection();
-                dgvMenuItems.CurrentCell = null;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error searching menu items: " + ex.Message);
-            }
-        }*/
+                  this.menuItemsTableTableAdapter.FillByMenuItems(this.dsCafe101Hub.MenuItemsTable, textItemSearch.Text);
+                  dgvMenuItems.DataSource = this.dsCafe101Hub.MenuItemsTable; 
+
+                  // Reset quantity dropdown to 1 after search
+                  foreach (DataGridViewRow row in dgvMenuItems.Rows)
+                  {
+                      if (!row.IsNewRow)
+                          row.Cells["ItemQty"].Value = 1;
+                  }
+                  dgvMenuItems.ClearSelection();
+                  dgvMenuItems.CurrentCell = null;
+              }
+              catch (Exception ex)
+              {
+                  MessageBox.Show("Error searching menu items: " + ex.Message);
+              }
+          }*/
 
         /* private void txtSearchedCust_TextChanged(object sender, EventArgs e)
          {
@@ -752,7 +752,7 @@ namespace Cafe101
 
             DataGridViewRow row = dgvCart.SelectedRows[0];
             int removedMenuItemID = Convert.ToInt32(row.Cells["MenuItemID"].Value);
-            decimal subtotal = decimal.Parse(row.Cells["Subtotal"].Value.ToString().Replace("R ", "").Trim(),System.Globalization.CultureInfo.InvariantCulture);
+            decimal subtotal = decimal.Parse(row.Cells["Subtotal"].Value.ToString().Replace("R ", "").Trim(), System.Globalization.CultureInfo.InvariantCulture);
             orderTotal -= subtotal;
             if (orderTotal < 0) orderTotal = 0;
             lblAmount.Text = "R " + orderTotal.ToString("0.00");
@@ -1128,7 +1128,7 @@ namespace Cafe101
 
             // Every item has a recipe AND enough stock
             return true;
-        } 
+        }
 
         private void DeductStock()
         {
@@ -1176,8 +1176,8 @@ namespace Cafe101
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             frmMain backMain = new frmMain();
-            backMain.Show();    
-            this.Hide();    
+            backMain.Show();
+            this.Hide();
         }
 
         private void dgvMenuItems_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -1407,7 +1407,7 @@ namespace Cafe101
                     "• Or click any row in the customer list\r\n" +
                     "  to select them directly.\r\n\r\n" +
                     "• If the customer isn't in the system,\r\n" +
-                    "  click Add New Customer to register them.\r\n\r\n" +
+                    "  click Manage Customers to add them.\r\n\r\n" +
                     "💡 You cannot add items to the cart until\r\n" +
                     "   a customer is selected.";
             }
@@ -1499,10 +1499,12 @@ namespace Cafe101
             btnHelp.Text = "? Help (ON)";
         }
 
+        // FIXED: Now opens frmManageCustomers instead of frmAddCustomer
         private void btnAddNewCust_Click(object sender, EventArgs e)
         {
-            frmAddCustomer addCust = new frmAddCustomer(this);
-            addCust.ShowDialog();
+            frmManageCustomers manageCust = new frmManageCustomers();
+            manageCust.ShowDialog();
+            RefreshCustomerList();
         }
 
         private void groupBox2_Enter(object sender, EventArgs e)
@@ -1710,5 +1712,5 @@ namespace Cafe101
         }
 
     }
-    
+
 }

@@ -60,26 +60,32 @@
 
 
             <%-- Right side: logged-in staff member --%>
-            <div class="staff-header-user">
+            <a href="StaffProfile.aspx"
+     class="staff-header-user text-decoration-none">
 
+            <div class="staff-header-avatar">
 
-                <%-- Temporary staff initials --%>
-                <div class="staff-header-avatar">
-                    SM
-                </div>
-
-
-                <div>
-
-                    <strong>Staff Member
-                    </strong>
-
-                    <small>Employee
-                    </small>
-
-                </div>
+                <asp:Label
+                    ID="lblStaffInitials"
+                    runat="server">
+                </asp:Label>
 
             </div>
+
+            <div>
+
+                <strong>
+                    <asp:Label
+                        ID="lblTopStaffName"
+                        runat="server">
+                    </asp:Label>
+                </strong>
+
+                <small>Employee</small>
+
+            </div>
+
+        </a>
 
         </header>
 
@@ -196,18 +202,23 @@
                      ============================================= --%>
                 <div class="staff-sidebar-bottom">
 
-                    <a href="#"
-                        class="staff-logout">
+    <asp:LinkButton
+        ID="lnkLogout"
+        runat="server"
+        CssClass="staff-logout"
+        OnClick="lnkLogout_Click">
 
-                        <span class="staff-nav-icon">&#10140;
-                        </span>
+        <span class="staff-nav-icon">
+            &#10140;
+        </span>
 
-                        <span class="staff-nav-text">Logout
-                        </span>
+        <span class="staff-nav-text">
+            Logout
+        </span>
 
-                    </a>
+    </asp:LinkButton>
 
-                </div>
+</div>
 
             </aside>
 
@@ -269,7 +280,12 @@
                     <%-- Welcome text --%>
                     <div class="staff-welcome-text">
 
-                        <h4>Welcome back!
+                       <h4>
+                            Welcome back,
+                            <asp:Label
+                                ID="lblStaffName"
+                                runat="server">
+                            </asp:Label>!
                         </h4>
 
                         <p>

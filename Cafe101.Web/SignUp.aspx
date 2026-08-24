@@ -28,14 +28,14 @@
         <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" placeholder="Phone number" TextMode="Phone" />
     </div>
     <div class="mb-3">
-        <asp:TextBox ID="TextBox1" runat="server" CssClass="form-control" placeholder="Street address" />
+        <asp:TextBox ID="txtStreetAddress" runat="server" CssClass="form-control" placeholder="Street address" />
     </div>
     <div class="row g-2 mb-4">
         <div class="col-6">
-            <asp:TextBox ID="TextBox2" runat="server" CssClass="form-control" placeholder="Suburb" />
+            <asp:TextBox ID="txtSuburb" runat="server" CssClass="form-control" placeholder="Suburb" />
         </div>
         <div class="col-6">
-            <asp:TextBox ID="TextBox3" runat="server" CssClass="form-control" placeholder="City" />
+            <asp:TextBox ID="txtCity" runat="server" CssClass="form-control" placeholder="City" />
         </div>
     </div>
 
@@ -55,6 +55,12 @@
             I agree to Cafe101's Terms of Use and Privacy Statement.
         </label>
     </div>
+
+    <asp:Label
+    ID="lblMessage"
+    runat="server"
+    CssClass="d-block text-danger small mb-3">
+</asp:Label>
 
      <asp:Button ID="btnJoin" runat="server" Text="Join Cafe101" CssClass="btn btn-brand w-100 py-2" OnClick="btnJoin_Click" />
 

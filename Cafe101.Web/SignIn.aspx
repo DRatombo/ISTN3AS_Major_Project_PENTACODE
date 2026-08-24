@@ -26,6 +26,12 @@
                     <a href="~/ForgotPassword.aspx" runat="server" class="text-brand small">Forgot your password?</a>
                 </p>
 
+                <asp:Label
+                    ID="lblMessage"
+                    runat="server"
+                    CssClass="d-block text-danger small mb-3">
+                </asp:Label>
+
               <asp:Button ID="btnSignIn" runat="server" Text="Sign in" CssClass="btn btn-brand w-100 py-2 mb-4" OnClick="btnSignIn_Click" />
 
                 <p class="mt-4 mb-0 small">

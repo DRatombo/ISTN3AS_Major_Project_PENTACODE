@@ -43,7 +43,8 @@
 
 
             <%-- Temporary logged-in manager information --%>
-            <div class="staff-header-user">
+            <a href="ManagerProfile.aspx"
+               class="staff-header-user text-decoration-none">
 
                 <div class="staff-header-avatar">
                     MA
@@ -51,17 +52,19 @@
 
                 <div>
 
-                    <strong>Manager
+                    <strong>
+                        <asp:Label
+                            ID="lblTopManagerName"
+                            runat="server">
+                        </asp:Label>
                     </strong>
 
-                    <small>Administrator
-                    </small>
+                    <small>Administrator</small>
 
                 </div>
 
-            </div>
-
-        </header>
+            </a>
+     </header>
 
 
 
@@ -254,16 +257,23 @@
                 <%-- Logout --%>
                 <div class="staff-sidebar-bottom">
 
-                    <a href="#"
-                        class="staff-logout">
+                    <div class="staff-sidebar-bottom">
 
-                        <span class="staff-nav-icon">&#10140;
-                        </span>
+                        <asp:LinkButton
+                            ID="lnkLogout"
+                            runat="server"
+                            CssClass="staff-logout"
+                            OnClick="lnkLogout_Click">
 
-                        <span class="staff-nav-text">Logout
-                        </span>
+                            <span class="staff-nav-icon">&#10140;</span>
 
-                    </a>
+                            <span class="staff-nav-text">
+                                Logout
+                            </span>
+
+                        </asp:LinkButton>
+
+                    </div>
 
                 </div>
 
@@ -326,7 +336,7 @@
 
                         <div>
 
-                            <h4>Welcome back, Manager!
+                            <h4>Welcome back, <asp:Label ID="lblManagerName" runat="server"></asp:Label>!
                             </h4>
 
                             <p>

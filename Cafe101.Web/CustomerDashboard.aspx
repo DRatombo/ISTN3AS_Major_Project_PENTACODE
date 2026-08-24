@@ -20,21 +20,72 @@
             Cafe101
         </span>
     </div>
+   <!-- Customer profile and cart -->
+<div class="d-flex align-items-center gap-4">
+
+   <!-- Customer Profile -->
+<a href="~/MyAccount.aspx"
+   runat="server"
+   class="text-decoration-none">
+
+    <div class="d-flex align-items-center text-white">
+
+        <!-- Profile Initial -->
+        <div class="rounded-circle bg-white text-dark
+                    d-flex align-items-center justify-content-center me-2"
+             style="width: 38px;
+                    height: 38px;
+                    font-weight: bold;
+                    cursor: pointer;">
+
+            <asp:Label
+                ID="lblCustomerInitials"
+                runat="server">
+            </asp:Label>
+
+        </div>
+
+        <!-- Customer Name -->
+        <div class="d-flex flex-column"
+             style="cursor: pointer;">
+
+            <strong>
+                <asp:Label
+                    ID="lblTopCustomerName"
+                    runat="server">
+                </asp:Label>
+            </strong>
+
+            <small>Customer</small>
+
+        </div>
+
+    </div>
+
+</a>
+
+
     <!-- Cart -->
     <div>
-        <a href="~/CartandPayment.aspx" 
-           runat="server" 
+
+        <a href="~/CartandPayment.aspx"
+           runat="server"
            class="btn p-0 border-0 position-relative">
 
-            <span style="font-size: 1.4rem; color: #fff;">&#128722;</span>
+            <span style="font-size: 1.4rem; color: #fff;">
+                &#128722;
+            </span>
 
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" 
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                   style="font-size: 0.6rem;">
                 2
             </span>
 
         </a>
+
     </div>
+
+</div>
 
 </div>
        

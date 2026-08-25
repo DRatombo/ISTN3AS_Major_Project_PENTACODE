@@ -1,52 +1,266 @@
-﻿<%@ Page Title="Sign In" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SignIn.aspx.cs" Inherits="Cafe101.Web.SignIn" %>
+﻿<%@ Page Title="Sign In"
+    Language="C#"
+    MasterPageFile="~/Site.Master"
+    AutoEventWireup="true"
+    CodeBehind="SignIn.aspx.cs"
+    Inherits="Cafe101.Web.SignIn" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="BodyContent"
+    ContentPlaceHolderID="MainContent"
+    runat="server">
 
     <div class="row g-0 min-vh-100 full-bleed">
 
-        <!-- Left: form -->
-    <div class="col-lg-6 d-flex align-items-start justify-content-center pt-5 pt-lg-5">
-            <div class="w-100 px-4 px-lg-5 py-5" style="max-width: 480px;">
+        <!-- Left: Form -->
+        <div class="col-lg-6 d-flex align-items-start justify-content-center pt-5 pt-lg-5">
 
-               <a href="~/Default.aspx" runat="server" class="text-decoration-none text-dark d-inline-flex align-items-center mb-4">
-                &laquo; Back 
-               </a>
-                <h2 class="fw-bold mb-2 text-brand">Sign in</h2>
-                <p class="text-muted small mb-4">Required fields are marked with an asterisk*</p>
+            <div class="w-100 px-4 px-lg-5 py-5"
+                style="max-width: 480px;">
 
-                <div class="mb-3">
-                    <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" placeholder="*Enter your email" TextMode="Email" />
-                </div>
+                <!-- Back -->
+                <a href="~/Default.aspx"
+                    runat="server"
+                    class="text-decoration-none text-dark d-inline-flex align-items-center mb-4">
+                    &laquo; Back
+                </a>
 
-                <div class="mb-2">
-                    <asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" placeholder="*Enter password" TextMode="Password" />
-                </div>
 
-                <p class="mb-4">
-                    <a href="~/ForgotPassword.aspx" runat="server" class="text-brand small">Forgot your password?</a>
+                <!-- Heading -->
+                <h2 class="fw-bold mb-2 text-brand">
+                    Sign in
+                </h2>
+
+                <p class="text-muted small mb-4">
+                    Required fields are marked with an asterisk*
                 </p>
 
+
+                <!-- Email -->
+                <div class="mb-3">
+
+                    <asp:TextBox
+                        ID="txtEmail"
+                        runat="server"
+                        CssClass="form-control"
+                        placeholder="*Enter your email"
+                        TextMode="Email">
+                    </asp:TextBox>
+
+                </div>
+
+
+                <!-- Password -->
+                <div class="mb-2">
+
+                    <div class="password-wrapper">
+
+                        <asp:TextBox
+                            ID="txtPassword"
+                            runat="server"
+                            TextMode="Password"
+                            CssClass="form-control password-input"
+                            placeholder="*Enter password">
+                        </asp:TextBox>
+
+
+                        <button
+                            type="button"
+                            id="btnTogglePassword"
+                            class="password-toggle"
+                            onclick="togglePassword()"
+                            aria-label="Show or hide password">
+
+                            Show
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Forgot Password -->
+                <p class="mb-4">
+
+                    <a href="~/ForgotPassword.aspx"
+                        runat="server"
+                        class="text-brand small">
+                        Forgot your password?
+                    </a>
+
+                </p>
+
+
+                <!-- Error / Validation Message -->
                 <asp:Label
                     ID="lblMessage"
                     runat="server"
                     CssClass="d-block text-danger small mb-3">
                 </asp:Label>
 
-              <asp:Button ID="btnSignIn" runat="server" Text="Sign in" CssClass="btn btn-brand w-100 py-2 mb-4" OnClick="btnSignIn_Click" />
 
+                <!-- Sign In -->
+                <asp:Button
+                    ID="btnSignIn"
+                    runat="server"
+                    Text="Sign in"
+                    CssClass="btn btn-brand w-100 py-2 mb-4"
+                    OnClick="btnSignIn_Click" />
+
+
+                <!-- Create Account -->
                 <p class="mt-4 mb-0 small">
+
                     New to Cafe101?
-                    <a href="~/SignUp.aspx" runat="server" class="text-brand fw-bold">Create an account</a>
+
+                    <a href="~/SignUp.aspx"
+                        runat="server"
+                        class="text-brand fw-bold">
+                        Create an account
+                    </a>
+
                 </p>
 
             </div>
+
         </div>
 
-        <!-- Right: image -->
-        <div class="col-lg-6 d-none d-lg-block p-0" style="height: 100vh;">
-    <img src="~/Content/images/Cafe101 Logo.jpeg" runat="server" alt="Cafe101" class="w-100 h-100" style="object-fit: cover; display: block;" />
-</div>
+
+        <!-- Right: Cafe101 Image -->
+        <div class="col-lg-6 d-none d-lg-block p-0"
+            style="height: 100vh;">
+
+            <img
+                src="~/Content/images/Cafe101 Logo.jpeg"
+                runat="server"
+                alt="Cafe101"
+                class="w-100 h-100"
+                style="object-fit: cover; display: block;" />
+
+        </div>
 
     </div>
+
+
+    <!-- ========================================================= -->
+    <!-- PASSWORD SHOW / HIDE STYLING -->
+    <!-- ========================================================= -->
+
+    <style>
+
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+
+        .password-input {
+            width: 100% !important;
+
+            /* Gives Show/Hide enough room */
+            padding-right: 65px !important;
+        }
+
+
+        .password-toggle {
+            position: absolute;
+
+            right: 10px;
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            border: none;
+            background: transparent;
+
+            color: #1d3557;
+
+            font-size: 12px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            padding: 4px 5px;
+
+            z-index: 10;
+        }
+
+
+        .password-toggle:hover {
+            text-decoration: underline;
+        }
+
+
+        .password-toggle:focus {
+            outline: none;
+        }
+
+
+        .password-toggle:focus-visible {
+            outline: 2px solid #1d3557;
+            outline-offset: 2px;
+            border-radius: 3px;
+        }
+
+    </style>
+
+
+    <!-- ========================================================= -->
+    <!-- PASSWORD SHOW / HIDE SCRIPT -->
+    <!-- ========================================================= -->
+
+    <script type="text/javascript">
+
+        function togglePassword() {
+
+            // Find the ASP.NET password textbox
+            var passwordBox =
+                document.getElementById(
+                    '<%= txtPassword.ClientID %>'
+                );
+
+
+            // Find the Show / Hide button
+            var toggleButton =
+                document.getElementById(
+                    'btnTogglePassword'
+                );
+
+
+            // If password is currently hidden
+            if (passwordBox.type === "password") {
+
+                // Show password
+                passwordBox.type = "text";
+
+                // Change button text
+                toggleButton.innerText = "Hide";
+
+                // Accessibility
+                toggleButton.setAttribute(
+                    "aria-label",
+                    "Hide password"
+                );
+
+            }
+
+            else {
+
+                // Hide password
+                passwordBox.type = "password";
+
+                // Change button text
+                toggleButton.innerText = "Show";
+
+                // Accessibility
+                toggleButton.setAttribute(
+                    "aria-label",
+                    "Show password"
+                );
+
+            }
+        }
+
+    </script>
 
 </asp:Content>

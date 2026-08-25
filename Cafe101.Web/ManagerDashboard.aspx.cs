@@ -38,7 +38,7 @@ namespace Cafe101.Web
             }
         }
 
-        protected void btnLogout_Click(
+      /*  protected void btnLogout_Click(
             object sender,
             EventArgs e)
         {
@@ -46,7 +46,7 @@ namespace Cafe101.Web
             Session.Abandon();
 
             Response.Redirect("~/Default.aspx");
-        }
+        }*/
 
         protected void lnkLogout_Click(object sender, EventArgs e)
         {

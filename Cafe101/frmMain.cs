@@ -1,4 +1,5 @@
 ﻿using Cafe101;           // or your project's namespace
+using PowerBI_Reports_Demo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -377,6 +378,13 @@ namespace Cafe101
         private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void powerBIReportsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PowerBiReports frmBI = new PowerBiReports(this);
+            frmBI.Show();
+            this.Hide();
         }
     }
 }

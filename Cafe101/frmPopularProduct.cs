@@ -35,7 +35,7 @@ namespace Cafe101
 
         private void button2_Click(object sender, EventArgs e)
         {
-            frmLowStock lowStock = new frmLowStock();
+            frmManageIngredients lowStock = new frmManageIngredients();
             lowStock.Show();
             this.Hide();
         }

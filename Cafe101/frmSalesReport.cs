@@ -236,7 +236,7 @@ namespace Cafe101
 
         private void today_Click(object sender, EventArgs e)
         {
-            try
+           /* try
             {
                 // CORRECT: Set From Date to Today at 00:00 and To Date to Today at 23:59
                 dateTimePicker1.Value = DateTime.Today;
@@ -247,7 +247,11 @@ namespace Cafe101
             {
                 MessageBox.Show($"Error loading today's orders:\n\n{ex.Message}",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            }*/
+           frmTodaysOrders today = new frmTodaysOrders();
+           today.Show();
+          // today.Hide();
+
         }
 
         private void btnPrintReport_Click(object sender, EventArgs e)

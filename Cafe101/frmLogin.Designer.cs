@@ -120,10 +120,10 @@
             // 
             // lblEmailMsg
             // 
-            this.lblEmailMsg.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblEmailMsg.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblEmailMsg.AutoSize = true;
             this.lblEmailMsg.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmailMsg.Location = new System.Drawing.Point(624, 399);
+            this.lblEmailMsg.Location = new System.Drawing.Point(699, 463);
             this.lblEmailMsg.Name = "lblEmailMsg";
             this.lblEmailMsg.Size = new System.Drawing.Size(0, 22);
             this.lblEmailMsg.TabIndex = 15;

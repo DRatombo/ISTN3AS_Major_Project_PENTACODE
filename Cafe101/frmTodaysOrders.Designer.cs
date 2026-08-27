@@ -35,13 +35,6 @@
             this.orderTableAdapter = new Cafe101.dsCafe101TableAdapters.OrderTableAdapter();
             this.tableAdapterManager = new Cafe101.dsCafe101TableAdapters.TableAdapterManager();
             this.orderDataGridView = new System.Windows.Forms.DataGridView();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.numOrders = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cashierIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +44,13 @@
             this.totalAmountDueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.totalChangeDueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deliveryCostDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.numOrders = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dsCafe101)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.orderDataGridView)).BeginInit();
@@ -109,106 +109,13 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.orderDataGridView.DefaultCellStyle = dataGridViewCellStyle1;
-            this.orderDataGridView.Location = new System.Drawing.Point(4, 4);
-            this.orderDataGridView.Margin = new System.Windows.Forms.Padding(2);
+            this.orderDataGridView.Location = new System.Drawing.Point(5, 5);
+            this.orderDataGridView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.orderDataGridView.Name = "orderDataGridView";
             this.orderDataGridView.RowHeadersWidth = 51;
             this.orderDataGridView.RowTemplate.Height = 24;
-            this.orderDataGridView.Size = new System.Drawing.Size(1279, 631);
+            this.orderDataGridView.Size = new System.Drawing.Size(1705, 777);
             this.orderDataGridView.TabIndex = 2;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnRefresh.BackColor = System.Drawing.Color.White;
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnRefresh.Location = new System.Drawing.Point(519, 731);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(2);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(103, 35);
-            this.btnRefresh.TabIndex = 3;
-            this.btnRefresh.Text = "Refresh";
-            this.btnRefresh.UseVisualStyleBackColor = false;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnClose.BackColor = System.Drawing.Color.White;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
-            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnClose.Location = new System.Drawing.Point(688, 731);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(83, 35);
-            this.btnClose.TabIndex = 4;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // numOrders
-            // 
-            this.numOrders.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.numOrders.AutoSize = true;
-            this.numOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numOrders.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.numOrders.Location = new System.Drawing.Point(515, 685);
-            this.numOrders.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.numOrders.Name = "numOrders";
-            this.numOrders.Size = new System.Drawing.Size(115, 24);
-            this.numOrders.TabIndex = 6;
-            this.numOrders.Text = "orderCount";
-            // 
-            // button1
-            // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.BackColor = System.Drawing.Color.White;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.button1.Location = new System.Drawing.Point(834, 731);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 34);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Print";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(660, 652);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(124, 26);
-            this.textBox1.TabIndex = 8;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(515, 650);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 20);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Revenue :";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
-            this.pictureBox1.Location = new System.Drawing.Point(32, 642);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(141, 114);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
             // 
             // orderIDDataGridViewTextBoxColumn
             // 
@@ -299,12 +206,108 @@
             this.deliveryCostDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.deliveryCostDataGridViewTextBoxColumn.Width = 125;
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRefresh.BackColor = System.Drawing.Color.White;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
+            this.btnRefresh.Location = new System.Drawing.Point(692, 900);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(137, 43);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnClose.BackColor = System.Drawing.Color.White;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
+            this.btnClose.Location = new System.Drawing.Point(917, 900);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(111, 43);
+            this.btnClose.TabIndex = 4;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // numOrders
+            // 
+            this.numOrders.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.numOrders.AutoSize = true;
+            this.numOrders.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numOrders.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.numOrders.Location = new System.Drawing.Point(687, 843);
+            this.numOrders.Name = "numOrders";
+            this.numOrders.Size = new System.Drawing.Size(163, 29);
+            this.numOrders.TabIndex = 6;
+            this.numOrders.Text = "Order Count:";
+            // 
+            // button1
+            // 
+            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
+            this.button1.Location = new System.Drawing.Point(1112, 900);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 42);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Print";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(880, 802);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(164, 30);
+            this.textBox1.TabIndex = 8;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(687, 800);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(110, 25);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Revenue :";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.pictureBox1.Image = global::Cafe101.Properties.Resources.Logo_jpg;
+            this.pictureBox1.Location = new System.Drawing.Point(43, 790);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(188, 140);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            // 
             // frmTodaysOrders
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.ClientSize = new System.Drawing.Size(1292, 777);
+            this.ClientSize = new System.Drawing.Size(1723, 956);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
@@ -314,7 +317,7 @@
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.orderDataGridView);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "frmTodaysOrders";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Today\'s Orders";

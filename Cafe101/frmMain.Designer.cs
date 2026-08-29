@@ -49,6 +49,7 @@
             this.lblUser = new System.Windows.Forms.Label();
             this.testLoginHistoryTableAdapter1 = new Cafe101.dsCafe101TestTableAdapters.TestLoginHistoryTableAdapter();
             this.loginHistoryTableTableAdapter1 = new Cafe101.dsCafe101HubTableAdapters.LoginHistoryTableTableAdapter();
+            this.powerBIReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +60,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1683, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1683, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -91,7 +92,8 @@
             this.mnuAnalytics.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.salesReportToolStripMenuItem,
             this.popularityAnalyticsToolStripMenuItem,
-            this.lowStockReportToolStripMenuItem});
+            this.lowStockReportToolStripMenuItem,
+            this.powerBIReportsToolStripMenuItem});
             this.mnuAnalytics.Name = "mnuAnalytics";
             this.mnuAnalytics.Size = new System.Drawing.Size(118, 24);
             this.mnuAnalytics.Text = "View Analytics";
@@ -99,21 +101,21 @@
             // salesReportToolStripMenuItem
             // 
             this.salesReportToolStripMenuItem.Name = "salesReportToolStripMenuItem";
-            this.salesReportToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
+            this.salesReportToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.salesReportToolStripMenuItem.Text = "Sales Report";
             this.salesReportToolStripMenuItem.Click += new System.EventHandler(this.salesReportToolStripMenuItem_Click);
             // 
             // popularityAnalyticsToolStripMenuItem
             // 
             this.popularityAnalyticsToolStripMenuItem.Name = "popularityAnalyticsToolStripMenuItem";
-            this.popularityAnalyticsToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
+            this.popularityAnalyticsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.popularityAnalyticsToolStripMenuItem.Text = "Popularity Analytics";
             this.popularityAnalyticsToolStripMenuItem.Click += new System.EventHandler(this.popularityAnalyticsToolStripMenuItem_Click);
             // 
             // lowStockReportToolStripMenuItem
             // 
             this.lowStockReportToolStripMenuItem.Name = "lowStockReportToolStripMenuItem";
-            this.lowStockReportToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
+            this.lowStockReportToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.lowStockReportToolStripMenuItem.Text = "Low Stock Report";
             this.lowStockReportToolStripMenuItem.Click += new System.EventHandler(this.lowStockReportToolStripMenuItem_Click);
             // 
@@ -183,10 +185,10 @@
             this.panel1.Controls.Add(this.lblDateTime);
             this.panel1.Controls.Add(this.menuStrip2);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 28);
+            this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1683, 834);
+            this.panel1.Size = new System.Drawing.Size(1683, 838);
             this.panel1.TabIndex = 1;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -196,7 +198,7 @@
             this.btnHelp.BackColor = System.Drawing.Color.White;
             this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnHelp.Location = new System.Drawing.Point(12, 781);
+            this.btnHelp.Location = new System.Drawing.Point(12, 786);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(147, 44);
@@ -207,11 +209,11 @@
             // 
             // btnExit
             // 
-            this.btnExit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnExit.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.btnExit.BackColor = System.Drawing.Color.White;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnExit.Location = new System.Drawing.Point(1524, 781);
+            this.btnExit.Location = new System.Drawing.Point(1451, 786);
             this.btnExit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(147, 44);
@@ -251,6 +253,13 @@
             // loginHistoryTableTableAdapter1
             // 
             this.loginHistoryTableTableAdapter1.ClearBeforeFill = true;
+            // 
+            // powerBIReportsToolStripMenuItem
+            // 
+            this.powerBIReportsToolStripMenuItem.Name = "powerBIReportsToolStripMenuItem";
+            this.powerBIReportsToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.powerBIReportsToolStripMenuItem.Text = "Power BI Reports";
+            this.powerBIReportsToolStripMenuItem.Click += new System.EventHandler(this.powerBIReportsToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -301,5 +310,6 @@
         private dsCafe101TestTableAdapters.TestLoginHistoryTableAdapter testLoginHistoryTableAdapter1;
         private dsCafe101HubTableAdapters.LoginHistoryTableTableAdapter loginHistoryTableTableAdapter1;
         private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem powerBIReportsToolStripMenuItem;
     }
 }

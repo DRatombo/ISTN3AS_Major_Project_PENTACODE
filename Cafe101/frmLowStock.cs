@@ -19,13 +19,16 @@ namespace Cafe101
 
         public frmLowStock()
         {
-
             InitializeComponent();
             this.DoubleBuffered = true;
 
-            // Centralized Event Subscription: Keeps memory footprint minimal
             printDocument.PrintPage += PrintPageHandler;
+
+            // Auto-refresh on activation
+            this.Activated += (s, e) => LoadLowStockData();
         }
+
+        #region Button Events
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -34,57 +37,24 @@ namespace Cafe101
             this.Hide();
         }
 
-        private void frmLowStock_Load(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            int count = 0;
-
-            try
-            {
-                // Removed duplicate Fill call to streamline system database connection execution
-                this.ingredientTableTableAdapter.Fill(this.dsCafe101Hub.IngredientTable);
-
-                var ingredients = dsCafe101Hub.IngredientTable.AsEnumerable();
-
-                var lowStock = ingredients.Where(r =>
-                {
-                    double qty = Convert.ToDouble(r["QuantityOnHand"]);
-                    double restock = Convert.ToDouble(r["RestockLevel"]);
-
-                    return qty < restock;
-                }).ToList();
-
-                count = lowStock.Count;
-
-                dataGridView1.DataSource = lowStock.Any()
-                    ? lowStock.CopyToDataTable()
-                    : null;
-
-                textBox1.Text = count.ToString();
-
-                SetupGrid();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error loading low stock items:\n\n" + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void SetupGrid()
-        {
-            dataGridView1.ReadOnly = true;
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            if (dataGridView1.Columns.Contains("IngredientID"))
-                dataGridView1.Columns["IngredientID"].Visible = false;
+            frmManageIngredients manageIngredientsForm = new frmManageIngredients();
+            manageIngredientsForm.Show();
+            this.Hide();
         }
 
         private void btnPrintLowStock_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.Rows.Count == 0)
+            {
+                MessageBox.Show("No data available to print. Please refresh the data first.",
+                    "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             try
             {
-                // Reset tracking markers before the runtime print execution layout loop kicks off
                 printRowIndex = 0;
                 pageNumber = 0;
 
@@ -98,9 +68,144 @@ namespace Cafe101
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Print engine initialization error:\n\n" + ex.Message, "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Print engine initialization error:\n\n{ex.Message}",
+                    "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        // Refresh button click handler
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            LoadLowStockData();
+            MessageBox.Show("Data refreshed successfully!",
+                "Refresh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        #endregion
+
+        #region Form Events
+
+        private void frmLowStock_Load(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            try
+            {
+                LoadLowStockData();
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        #endregion
+
+        #region Data Methods
+
+        private void LoadLowStockData()
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+
+                this.ingredientTableTableAdapter.Fill(this.dsCafe101Hub.IngredientTable);
+
+                var ingredients = dsCafe101Hub.IngredientTable.AsEnumerable();
+
+                var lowStock = ingredients.Where(r =>
+                {
+                    double qty = Convert.ToDouble(r["QuantityOnHand"]);
+                    double restock = Convert.ToDouble(r["RestockLevel"]);
+                    return qty < restock;
+                }).ToList();
+
+                int count = lowStock.Count;
+
+                dataGridView1.DataSource = lowStock.Any()
+                    ? lowStock.CopyToDataTable()
+                    : null;
+
+                // Update the label with the count (using lblLowStockValue instead of textBox1)
+                if (lblLowStockValue != null)
+                {
+                    lblLowStockValue.Text = count.ToString();
+                }
+
+                UpdateStatistics();
+                SetupGrid();
+
+                // Handle empty state
+                if (!lowStock.Any())
+                {
+                    dataGridView1.Rows.Clear();
+                    dataGridView1.Rows.Add();
+                    dataGridView1.Rows[0].Cells[0].Value = "No low stock items found";
+                    dataGridView1.Rows[0].Cells[0].Style.ForeColor = Color.LightGray;
+                    dataGridView1.Rows[0].Cells[0].Style.Font = new Font("Segoe UI", 12, FontStyle.Italic);
+                    dataGridView1.Rows[0].Cells[0].Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading low stock items:\n\n{ex.Message}",
+                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
+        }
+
+        private void UpdateStatistics()
+        {
+            try
+            {
+                var ingredients = dsCafe101Hub.IngredientTable.AsEnumerable();
+
+                // Total items
+                int totalItems = ingredients.Count();
+                if (lblTotalItemsValue != null)
+                    lblTotalItemsValue.Text = totalItems.ToString();
+
+                // Below restock level (Low Stock)
+                int belowRestock = ingredients.Count(r =>
+                    Convert.ToDouble(r["QuantityOnHand"]) < Convert.ToDouble(r["RestockLevel"]));
+                if (lblLowStockValue != null)
+                    lblLowStockValue.Text = belowRestock.ToString();
+
+                // Critical (Zero stock)
+                int critical = ingredients.Count(r =>
+                    Convert.ToDouble(r["QuantityOnHand"]) == 0);
+                if (lblCriticalValue != null)
+                    lblCriticalValue.Text = critical.ToString();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Stats error: {ex.Message}");
+            }
+        }
+
+        private void SetupGrid()
+        {
+            dataGridView1.ReadOnly = true;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            if (dataGridView1.Columns.Contains("IngredientID"))
+                dataGridView1.Columns["IngredientID"].Visible = false;
+
+            // Format currency column
+            if (dataGridView1.Columns.Contains("CostPrice"))
+            {
+                dataGridView1.Columns["CostPrice"].DefaultCellStyle.Format = "C2";
+                dataGridView1.Columns["CostPrice"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            }
+        }
+
+        #endregion
+
+        #region Print Methods
 
         private void PrintPageHandler(object sender, PrintPageEventArgs e)
         {
@@ -223,6 +328,15 @@ namespace Cafe101
 
                     string value = row.Cells[column.Index].Value?.ToString() ?? "";
 
+                    // Format currency
+                    if (column.Name == "CostPrice" && !string.IsNullOrEmpty(value))
+                    {
+                        if (decimal.TryParse(value, out decimal cost))
+                        {
+                            value = cost.ToString("C2");
+                        }
+                    }
+
                     e.Graphics.DrawString(
                         value,
                         cellFont,
@@ -249,7 +363,7 @@ namespace Cafe101
             e.Graphics.DrawLine(linePen, marginLeft, currentY, marginRight, currentY);
             currentY += 10;
 
-            string totalItemsCount = string.IsNullOrWhiteSpace(textBox1.Text) ? "0" : textBox1.Text;
+            string totalItemsCount = lblLowStockValue != null ? lblLowStockValue.Text : "0";
             e.Graphics.DrawString(
                 $"Total Low Stock Line Items Identified: {totalItemsCount}",
                 headerFont,
@@ -264,21 +378,10 @@ namespace Cafe101
             e.HasMorePages = false;
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // Event hook placeholder
-        }
+        #endregion
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-            // Event hook placeholder
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            frmManageIngredients manageIngredientsForm = new frmManageIngredients();
-            manageIngredientsForm.Show();
-            this.Hide();
-        }
+        // Legacy event handlers kept for compatibility
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
+        private void label1_Click(object sender, EventArgs e) { }
     }
 }

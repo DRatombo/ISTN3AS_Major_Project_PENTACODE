@@ -15,8 +15,8 @@
 
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblMain = new System.Windows.Forms.TableLayoutPanel();
             this.pnlSearch = new System.Windows.Forms.Panel();
             this.lblSearch = new System.Windows.Forms.Label();
@@ -72,7 +72,6 @@
             this.tblMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tblMain.Size = new System.Drawing.Size(1000, 684);
             this.tblMain.TabIndex = 0;
-           // this.tblMain.Paint += new System.Windows.Forms.PaintEventHandler(this.tblMain_Paint);
             // 
             // pnlSearch
             // 
@@ -92,7 +91,7 @@
             this.lblSearch.ForeColor = System.Drawing.Color.White;
             this.lblSearch.Location = new System.Drawing.Point(10, 12);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(54, 19);
+            this.lblSearch.Size = new System.Drawing.Size(63, 23);
             this.lblSearch.TabIndex = 0;
             this.lblSearch.Text = "Search";
             // 
@@ -103,7 +102,7 @@
             this.txtSearch.ForeColor = System.Drawing.Color.Black;
             this.txtSearch.Location = new System.Drawing.Point(80, 9);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(300, 25);
+            this.txtSearch.Size = new System.Drawing.Size(300, 30);
             this.txtSearch.TabIndex = 1;
             // 
             // btnClearSearch
@@ -127,23 +126,23 @@
             this.dgvIngredients.AllowUserToDeleteRows = false;
             this.dgvIngredients.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvIngredients.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.LightGray;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvIngredients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvIngredients.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvIngredients.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvIngredients.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(84)))), ((int)(((byte)(204)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvIngredients.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvIngredients.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvIngredients.EnableHeadersVisualStyles = false;
             this.dgvIngredients.GridColor = System.Drawing.Color.DarkGray;
@@ -191,7 +190,7 @@
             this.lblDescription.Location = new System.Drawing.Point(23, 45);
             this.lblDescription.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(86, 16);
+            this.lblDescription.Size = new System.Drawing.Size(106, 20);
             this.lblDescription.TabIndex = 0;
             this.lblDescription.Text = "Description";
             // 
@@ -202,7 +201,7 @@
             this.txtDescription.Location = new System.Drawing.Point(127, 42);
             this.txtDescription.Margin = new System.Windows.Forms.Padding(6);
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(300, 22);
+            this.txtDescription.Size = new System.Drawing.Size(300, 26);
             this.txtDescription.TabIndex = 1;
             this.txtDescription.TextChanged += new System.EventHandler(this.txtDescription_TextChanged);
             // 
@@ -213,7 +212,7 @@
             this.lblDescriptionStatus.ForeColor = System.Drawing.Color.White;
             this.lblDescriptionStatus.Location = new System.Drawing.Point(155, 79);
             this.lblDescriptionStatus.Name = "lblDescriptionStatus";
-            this.lblDescriptionStatus.Size = new System.Drawing.Size(0, 13);
+            this.lblDescriptionStatus.Size = new System.Drawing.Size(0, 19);
             this.lblDescriptionStatus.TabIndex = 14;
             // 
             // lblQuantityInStock
@@ -223,7 +222,7 @@
             this.lblQuantityInStock.Location = new System.Drawing.Point(23, 121);
             this.lblQuantityInStock.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblQuantityInStock.Name = "lblQuantityInStock";
-            this.lblQuantityInStock.Size = new System.Drawing.Size(93, 16);
+            this.lblQuantityInStock.Size = new System.Drawing.Size(118, 20);
             this.lblQuantityInStock.TabIndex = 2;
             this.lblQuantityInStock.Text = "Qty In Stock:";
             // 
@@ -240,7 +239,7 @@
             0,
             0});
             this.numQuantityInStock.Name = "numQuantityInStock";
-            this.numQuantityInStock.Size = new System.Drawing.Size(120, 22);
+            this.numQuantityInStock.Size = new System.Drawing.Size(120, 26);
             this.numQuantityInStock.TabIndex = 3;
             this.numQuantityInStock.ThousandsSeparator = true;
             // 
@@ -261,7 +260,7 @@
             this.lblRestockLevel.Location = new System.Drawing.Point(301, 125);
             this.lblRestockLevel.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblRestockLevel.Name = "lblRestockLevel";
-            this.lblRestockLevel.Size = new System.Drawing.Size(110, 16);
+            this.lblRestockLevel.Size = new System.Drawing.Size(134, 20);
             this.lblRestockLevel.TabIndex = 4;
             this.lblRestockLevel.Text = "Restock Level:";
             // 
@@ -278,7 +277,7 @@
             0,
             0});
             this.numRestockLevel.Name = "numRestockLevel";
-            this.numRestockLevel.Size = new System.Drawing.Size(120, 22);
+            this.numRestockLevel.Size = new System.Drawing.Size(120, 26);
             this.numRestockLevel.TabIndex = 5;
             this.numRestockLevel.ThousandsSeparator = true;
             // 
@@ -289,7 +288,7 @@
             this.lblCostPrice.Location = new System.Drawing.Point(588, 129);
             this.lblCostPrice.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblCostPrice.Name = "lblCostPrice";
-            this.lblCostPrice.Size = new System.Drawing.Size(82, 16);
+            this.lblCostPrice.Size = new System.Drawing.Size(104, 20);
             this.lblCostPrice.TabIndex = 6;
             this.lblCostPrice.Text = "Cost Price:";
             // 
@@ -306,7 +305,7 @@
             0,
             0});
             this.numCostPrice.Name = "numCostPrice";
-            this.numCostPrice.Size = new System.Drawing.Size(120, 22);
+            this.numCostPrice.Size = new System.Drawing.Size(120, 26);
             this.numCostPrice.TabIndex = 7;
             this.numCostPrice.ThousandsSeparator = true;
             // 
@@ -320,7 +319,6 @@
             this.pnlButtons.Controls.Add(this.btnAdd);
             this.pnlButtons.Controls.Add(this.btnHelp);
             this.pnlButtons.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.pnlButtons.Location = new System.Drawing.Point(15, 617);
             this.pnlButtons.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.pnlButtons.Name = "pnlButtons";
@@ -336,7 +334,7 @@
             this.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBack.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnBack.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnBack.Location = new System.Drawing.Point(876, 6);
+            this.btnBack.Location = new System.Drawing.Point(6, 6);
             this.btnBack.Margin = new System.Windows.Forms.Padding(6);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(88, 38);
@@ -354,7 +352,7 @@
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnRefresh.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnRefresh.Location = new System.Drawing.Point(768, 6);
+            this.btnRefresh.Location = new System.Drawing.Point(106, 6);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(6);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(96, 38);
@@ -372,7 +370,7 @@
             this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemove.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnRemove.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnRemove.Location = new System.Drawing.Point(655, 6);
+            this.btnRemove.Location = new System.Drawing.Point(214, 6);
             this.btnRemove.Margin = new System.Windows.Forms.Padding(6);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(101, 38);
@@ -390,7 +388,7 @@
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnUpdate.Location = new System.Drawing.Point(553, 6);
+            this.btnUpdate.Location = new System.Drawing.Point(327, 6);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(6);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(90, 38);
@@ -408,7 +406,7 @@
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnAdd.Location = new System.Drawing.Point(431, 6);
+            this.btnAdd.Location = new System.Drawing.Point(429, 6);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(6);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(110, 38);
@@ -426,7 +424,7 @@
             this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHelp.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold);
             this.btnHelp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnHelp.Location = new System.Drawing.Point(309, 6);
+            this.btnHelp.Location = new System.Drawing.Point(551, 6);
             this.btnHelp.Margin = new System.Windows.Forms.Padding(6);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(110, 38);
@@ -437,7 +435,7 @@
             // 
             // frmManageIngredients
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(18)))), ((int)(((byte)(18)))), ((int)(((byte)(112)))));
             this.ClientSize = new System.Drawing.Size(1000, 684);

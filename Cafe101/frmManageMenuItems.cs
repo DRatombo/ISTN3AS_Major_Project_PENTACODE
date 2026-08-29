@@ -12,6 +12,8 @@ namespace Cafe101
         private bool helpVisible = false;
         private Panel pnlHelp = null;
         private Label lblPrepTimeStatus;
+        private int pendingMenuItemId = -1;
+        private bool isAddingWithRecipe = false;
 
         public frmManageMenuItems()
         {
@@ -216,6 +218,8 @@ namespace Cafe101
             cboCategory.SelectedIndex = -1;
             txtPrepTime.Text = "";
             btnUpdate.Tag = null;
+            isAddingWithRecipe = false;
+            pendingMenuItemId = -1;
 
             txtItemName.BackColor = System.Drawing.Color.White;
             txtPrepTime.BackColor = System.Drawing.Color.White;
@@ -239,6 +243,83 @@ namespace Cafe101
                 int count = (int)cmd.ExecuteScalar();
                 conn.Close();
                 return count > 0;
+            }
+        }
+
+        // ============================================================
+        // Check if menu item has at least one recipe
+        // ============================================================
+        private bool HasRecipe(int menuItemId)
+        {
+            string query = "SELECT COUNT(*) FROM RecipeTable WHERE MenuItemID = @menuItemId";
+            using (SqlConnection conn = DbHelper.GetConnection())
+            {
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@menuItemId", menuItemId);
+                conn.Open();
+                int count = (int)cmd.ExecuteScalar();
+                conn.Close();
+                return count > 0;
+            }
+        }
+
+        // ============================================================
+        // Delete menu item (called if user cancels recipe addition)
+        // ============================================================
+        public void DeletePendingMenuItem()
+        {
+            if (pendingMenuItemId > 0)
+            {
+                try
+                {
+                    string query = "DELETE FROM MenuItemsTable WHERE MenuItemID = @id";
+                    using (SqlConnection conn = DbHelper.GetConnection())
+                    {
+                        SqlCommand cmd = new SqlCommand(query, conn);
+                        cmd.Parameters.AddWithValue("@id", pendingMenuItemId);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                    pendingMenuItemId = -1;
+                    isAddingWithRecipe = false;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine($"Error deleting pending menu item: {ex.Message}");
+                }
+            }
+        }
+
+        // ============================================================
+        // Save menu item and return the new ID
+        // ============================================================
+        private int SaveMenuItem()
+        {
+            string query = @"INSERT INTO MenuItemsTable (MenuItemName, SellingPrice, CostToMake, Category, PreparationTime) 
+                              VALUES (@name, @price, @cost, @cat, @prep);
+                              SELECT SCOPE_IDENTITY();";
+            using (SqlConnection conn = DbHelper.GetConnection())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@name", txtItemName.Text.Trim());
+                    cmd.Parameters.AddWithValue("@price", numSellingPrice.Value);
+                    cmd.Parameters.AddWithValue("@cost", numCostPrice.Value);
+                    cmd.Parameters.AddWithValue("@cat", cboCategory.SelectedItem?.ToString() ?? "");
+                    cmd.Parameters.AddWithValue("@prep", txtPrepTime.Text.Trim());
+
+                    conn.Open();
+                    int newId = Convert.ToInt32(cmd.ExecuteScalar());
+                    conn.Close();
+                    return newId;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Failed to add item: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return 0;
+                }
             }
         }
 
@@ -272,34 +353,90 @@ namespace Cafe101
                 return;
             }
 
-            string query = @"INSERT INTO MenuItemsTable (MenuItemName, SellingPrice, CostToMake, Category, PreparationTime) 
-                              VALUES (@name, @price, @cost, @cat, @prep)";
-            using (SqlConnection conn = DbHelper.GetConnection())
+            // ============================================================
+            // Force user to add a recipe first - Save the item first
+            // ============================================================
+            DialogResult result = MessageBox.Show(
+                "You must add ingredients (recipe) for this menu item.\n\n" +
+                "The menu item will be saved temporarily, and you will be taken to\n" +
+                "the Manage Recipes form to add ingredients.\n\n" +
+                "If you close Manage Recipes without adding any ingredients,\n" +
+                "this menu item will be automatically deleted.\n\n" +
+                "Do you want to continue?",
+                "Recipe Required",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
             {
-                try
+                // Save the menu item first
+                int newId = SaveMenuItem();
+                if (newId > 0)
                 {
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@name", txtItemName.Text.Trim());
-                    cmd.Parameters.AddWithValue("@price", numSellingPrice.Value);
-                    cmd.Parameters.AddWithValue("@cost", numCostPrice.Value);
-                    cmd.Parameters.AddWithValue("@cat", cboCategory.SelectedItem?.ToString() ?? "");
-                    cmd.Parameters.AddWithValue("@prep", txtPrepTime.Text.Trim());
+                    pendingMenuItemId = newId;
+                    isAddingWithRecipe = true;
 
-                    conn.Open();
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    conn.Close();
+                    // Refresh the grid to show the new item
+                    LoadMenuItems();
 
-                    if (rowsAffected > 0)
+                    // Open Manage Recipes form
+                    frmManageRecipes recipesForm = new frmManageRecipes();
+                    recipesForm.FormClosed += RecipesForm_FormClosed;
+                    recipesForm.Show();
+                    this.Hide();
+                }
+            }
+        }
+
+        // ============================================================
+        // EVENT HANDLER: When Manage Recipes form closes
+        // ============================================================
+        private void RecipesForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (isAddingWithRecipe && pendingMenuItemId > 0)
+            {
+                // Check if the menu item now has recipes
+                if (!HasRecipe(pendingMenuItemId))
+                {
+                    // No recipe was added - delete the menu item
+                    DialogResult result = MessageBox.Show(
+                        "No ingredients were added for this menu item.\n\n" +
+                        "The menu item will be deleted because it requires at least one ingredient.\n\n" +
+                        "Do you want to keep the menu item without ingredients?",
+                        "Recipe Not Added",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning
+                    );
+
+                    if (result == DialogResult.No)
                     {
-                        MessageBox.Show("Menu item added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadMenuItems();
-                        ClearFields();
+                        // Delete the menu item
+                        DeletePendingMenuItem();
+                        MessageBox.Show("Menu item has been deleted.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        // User chose to keep it without recipe
+                        MessageBox.Show("Menu item saved without ingredients. This is not recommended.", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Failed to add item: " + ex.Message, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Menu item added successfully with all ingredients!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
+                // Reset flags
+                isAddingWithRecipe = false;
+                pendingMenuItemId = -1;
+                LoadMenuItems();
+                ClearFields();
+                this.Show();
+            }
+            else
+            {
+                // Not adding a new item, just show this form again
+                this.Show();
             }
         }
 
@@ -381,6 +518,36 @@ namespace Cafe101
                 return;
             }
 
+            // Check if the menu item has a recipe before allowing update
+            if (!HasRecipe(currentId))
+            {
+                DialogResult result = MessageBox.Show(
+                    "This menu item does not have any ingredients linked to it.\n\n" +
+                    "Would you like to add ingredients now?\n\n" +
+                    "• Click 'Yes' to go to Manage Recipes\n" +
+                    "• Click 'No' to update anyway (not recommended)\n" +
+                    "• Click 'Cancel' to cancel updating",
+                    "Recipe Required",
+                    MessageBoxButtons.YesNoCancel,
+                    MessageBoxIcon.Question
+                );
+
+                if (result == DialogResult.Yes)
+                {
+                    // Open Manage Recipes form
+                    frmManageRecipes recipesForm = new frmManageRecipes();
+                    recipesForm.Show();
+                    this.Hide();
+                    return;
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    return; // Cancel updating
+                }
+                // If No, continue with updating (user chose to update without recipe)
+            }
+
+            // Update the menu item
             string query = @"UPDATE MenuItemsTable 
                              SET MenuItemName = @name, SellingPrice = @price, CostToMake = @cost, 
                                  Category = @cat, PreparationTime = @prep
@@ -462,7 +629,7 @@ namespace Cafe101
         {
             Form form = new frmMain();
             form.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnHelp_Click_1(object sender, EventArgs e)
@@ -489,7 +656,10 @@ namespace Cafe101
                     "➕ ADD NEW MENU ITEM:\r\n" +
                     "• Fill in: Name (LETTERS and SPACES only),\r\n" +
                     "  Selling Price, Cost Price, Category, and Preparation Time (NUMBERS ONLY).\r\n" +
-                    "• Click 'Add New' button.\r\n\r\n" +
+                    "• Click 'Add New' button.\r\n" +
+                    "• You MUST add a recipe (ingredients) for this item.\r\n" +
+                    "• The menu item will be saved temporarily, then you'll add ingredients.\r\n" +
+                    "• If you don't add any ingredients, the menu item will be deleted.\r\n\r\n" +
                     "✏️ EDIT EXISTING MENU ITEM:\r\n" +
                     "• Click any row in the list to select an item.\r\n" +
                     "• Only that item will remain visible.\r\n" +

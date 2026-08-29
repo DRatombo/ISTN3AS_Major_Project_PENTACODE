@@ -41,9 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticationService.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="CustomerAccountDetails.cs" />
+    <Compile Include="CustomerAccountService.cs" />
+    <Compile Include="CustomerProfile.cs" />
+    <Compile Include="CustomerProfileService.cs" />
     <Compile Include="DatabaseTestService.cs" />
+    <Compile Include="EmployeeAccountDetails.cs" />
+    <Compile Include="EmployeeAccountService.cs" />
+    <Compile Include="EmployeeManagementService.cs" />
+    <Compile Include="EmployeeProfile.cs" />
+    <Compile Include="EmployeeProfileService.cs" />
+    <Compile Include="LoginResult.cs" />
+    <Compile Include="MenuItemDetails.cs" />
+    <Compile Include="MenuService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SignUpResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Cafe101.Data\Cafe101.Data.csproj">

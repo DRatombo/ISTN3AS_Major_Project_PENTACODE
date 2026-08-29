@@ -1,18 +1,9 @@
 ﻿################################################################################
-# Visual Studio generated files
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-.vs/
-bin/
-obj/
-
-*.user
-*.suo
-*.cache
-*.tmp
-*.log
-/Cafe101.Data/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
-/Cafe101.Logic/obj/Debug/Cafe101.Logic.csproj.AssemblyReference.cache
-/Cafe101.Logic/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
-/Cafe101.Web/obj/Debug/Cafe101.Web.csproj.AssemblyReference.cache
-/Cafe101.Web/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/Cafe101.Web/.vs
+/Cafe101.Web/obj/Debug
+/Cafe101/UpgradeLog8.htm
+/.vs/Cafe101 29 AUG/v17/.wsuo
+/.vs/Cafe101 29 AUG/v17/DocumentLayout.json

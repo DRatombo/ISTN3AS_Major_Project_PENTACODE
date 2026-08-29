@@ -1,0 +1,18 @@
+﻿################################################################################
+# Visual Studio generated files
+################################################################################
+
+.vs/
+bin/
+obj/
+
+*.user
+*.suo
+*.cache
+*.tmp
+*.log
+/Cafe101.Data/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/Cafe101.Logic/obj/Debug/Cafe101.Logic.csproj.AssemblyReference.cache
+/Cafe101.Logic/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/Cafe101.Web/obj/Debug/Cafe101.Web.csproj.AssemblyReference.cache
+/Cafe101.Web/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache

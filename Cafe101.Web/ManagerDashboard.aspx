@@ -11,10 +11,6 @@
     runat="server">
 
 
-    <%-- =================================================
-          MANAGER DASHBOARD
-         ================================================= --%>
-
     <div class="staff-shell manager-shell">
 
 
@@ -24,14 +20,15 @@
 
         <header class="staff-header">
 
+
             <div class="staff-header-left">
+
 
                 <button type="button"
                     id="sidebarToggle"
                     class="staff-header-menu"
                     aria-label="Toggle manager navigation">
                     ☰
-
                 </button>
 
 
@@ -39,32 +36,57 @@
                     Cafe101
                 </div>
 
+
             </div>
 
 
-            <%-- Temporary logged-in manager information --%>
+
+            <%-- Logged-in manager --%>
+
             <a href="ManagerProfile.aspx"
-               class="staff-header-user text-decoration-none">
+                class="staff-header-user text-decoration-none">
+
 
                 <div class="staff-header-avatar">
-                    MA
+
+                    <asp:Label
+                        ID="lblTopManagerInitials"
+                        runat="server">
+                    </asp:Label>
+
                 </div>
+
 
                 <div>
 
+
                     <strong>
+
                         <asp:Label
                             ID="lblTopManagerName"
                             runat="server">
                         </asp:Label>
+
                     </strong>
 
-                    <small>Administrator</small>
+
+                    <small>
+
+                        <asp:Label
+                            ID="lblTopManagerRole"
+                            runat="server">
+                        </asp:Label>
+
+                    </small>
+
 
                 </div>
 
+
             </a>
-     </header>
+
+
+        </header>
 
 
 
@@ -76,27 +98,32 @@
 
 
             <%-- =================================================
-                 MANAGER SIDEBAR
+                 SIDEBAR
                  ================================================= --%>
 
             <aside class="staff-sidebar">
+
 
                 <div class="staff-sidebar-title">
                     MANAGER SYSTEM
                 </div>
 
 
+
                 <nav class="staff-nav">
 
 
                     <%-- Dashboard --%>
+
                     <a href="ManagerDashboard.aspx"
                         class="active">
 
-                        <span class="staff-nav-icon">&#8962;
+                        <span class="staff-nav-icon">
+                            &#8962;
                         </span>
 
-                        <span class="staff-nav-text">Dashboard
+                        <span class="staff-nav-text">
+                            Dashboard
                         </span>
 
                     </a>
@@ -125,7 +152,8 @@
 
                         </span>
 
-                        <span class="staff-nav-text">Orders
+                        <span class="staff-nav-text">
+                            Orders
                         </span>
 
                     </a>
@@ -133,6 +161,7 @@
 
 
                     <%-- Menu --%>
+
                     <a href="ManagerMenu.aspx">
 
                         <span class="staff-nav-icon">
@@ -153,7 +182,8 @@
 
                         </span>
 
-                        <span class="staff-nav-text">Menu
+                        <span class="staff-nav-text">
+                            Menu
                         </span>
 
                     </a>
@@ -161,6 +191,7 @@
 
 
                     <%-- Staff --%>
+
                     <a href="ManagerStaff.aspx">
 
                         <span class="staff-nav-icon">
@@ -187,7 +218,8 @@
 
                         </span>
 
-                        <span class="staff-nav-text">Staff
+                        <span class="staff-nav-text">
+                            Staff
                         </span>
 
                     </a>
@@ -195,6 +227,7 @@
 
 
                     <%-- Reports --%>
+
                     <a href="ManagerReports.aspx">
 
                         <span class="staff-nav-icon">
@@ -215,7 +248,8 @@
 
                         </span>
 
-                        <span class="staff-nav-text">Reports
+                        <span class="staff-nav-text">
+                            Reports
                         </span>
 
                     </a>
@@ -223,6 +257,7 @@
 
 
                     <%-- Profile --%>
+
                     <a href="ManagerProfile.aspx">
 
                         <span class="staff-nav-icon">
@@ -244,7 +279,8 @@
 
                         </span>
 
-                        <span class="staff-nav-text">Profile
+                        <span class="staff-nav-text">
+                            Profile
                         </span>
 
                     </a>
@@ -254,26 +290,32 @@
 
 
 
-                <%-- Logout --%>
+                <%-- =================================================
+                     LOGOUT
+                     ================================================= --%>
+
                 <div class="staff-sidebar-bottom">
 
-                    <div class="staff-sidebar-bottom">
 
-                        <asp:LinkButton
-                            ID="lnkLogout"
-                            runat="server"
-                            CssClass="staff-logout"
-                            OnClick="lnkLogout_Click">
+                    <asp:LinkButton
+                        ID="lnkLogout"
+                        runat="server"
+                        CssClass="staff-logout"
+                        OnClick="LnkLogout_Click">
 
-                            <span class="staff-nav-icon">&#10140;</span>
 
-                            <span class="staff-nav-text">
-                                Logout
-                            </span>
+                        <span class="staff-nav-icon">
+                            &#10140;
+                        </span>
 
-                        </asp:LinkButton>
 
-                    </div>
+                        <span class="staff-nav-text">
+                            Logout
+                        </span>
+
+
+                    </asp:LinkButton>
+
 
                 </div>
 
@@ -295,25 +337,30 @@
 
                 <div class="staff-page-heading">
 
-                    <h3>Manager Dashboard
+
+                    <h3>
+                        Manager Dashboard
                     </h3>
+
 
                     <p>
                         Overview of Cafe101 operations and performance.
                     </p>
+
 
                 </div>
 
 
 
                 <%-- =================================================
-                     MANAGER WELCOME CARD
+                     WELCOME CARD
                      ================================================= --%>
 
                 <section class="staff-dashboard-panel manager-welcome-card">
 
 
                     <div class="manager-welcome-left">
+
 
                         <div class="staff-icon-box icon-beige">
 
@@ -334,23 +381,38 @@
                         </div>
 
 
+
                         <div>
 
-                            <h4>Welcome back, <asp:Label ID="lblManagerName" runat="server"></asp:Label>!
+
+                            <h4>
+
+                                Welcome back,
+
+                                <asp:Label
+                                    ID="lblManagerName"
+                                    runat="server">
+                                </asp:Label>!
+
                             </h4>
+
 
                             <p>
                                 Here's an overview of today's performance and key metrics.
                             </p>
 
+
                         </div>
+
 
                     </div>
 
 
 
-                    <%-- Mock date --%>
+                    <%-- Dynamic current date --%>
+
                     <div class="manager-date-box">
+
 
                         <svg viewBox="0 0 24 24"
                             width="17"
@@ -374,13 +436,24 @@
 
                         <div>
 
-                            <strong>Sunday, 23 August 2026
+
+                            <strong>
+
+                                <asp:Label
+                                    ID="lblCurrentDate"
+                                    runat="server">
+                                </asp:Label>
+
                             </strong>
 
-                            <small>University Time
+
+                            <small>
+                                Cafe101
                             </small>
 
+
                         </div>
+
 
                     </div>
 
@@ -390,14 +463,17 @@
 
 
                 <%-- =================================================
-                     MANAGER METRIC CARDS
+                     METRIC CARDS
+                     CURRENTLY MOCK DATA
                      ================================================= --%>
 
                 <div class="staff-metric-grid">
 
 
-                    <%-- Total orders --%>
+                    <%-- TOTAL ORDERS --%>
+
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box icon-green">
 
@@ -418,28 +494,38 @@
 
                         <div>
 
-                            <span class="staff-metric-label">TOTAL ORDERS TODAY
+
+                            <span class="staff-metric-label">
+                                TOTAL ORDERS TODAY
                             </span>
 
-                            <h3>86
+
+                            <h3>
+                                86
                             </h3>
+
 
                             <p class="manager-positive-text">
                                 ↑ 12% from yesterday
                             </p>
 
+
                         </div>
+
 
                     </div>
 
 
 
-                    <%-- Revenue --%>
+                    <%-- REVENUE --%>
+
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box icon-blue">
 
-                            <span class="manager-money-icon">R
+                            <span class="manager-money-icon">
+                                R
                             </span>
 
                         </div>
@@ -447,24 +533,33 @@
 
                         <div>
 
-                            <span class="staff-metric-label">REVENUE TODAY
+
+                            <span class="staff-metric-label">
+                                REVENUE TODAY
                             </span>
 
-                            <h3>R8,420.00
+
+                            <h3>
+                                R8,420.00
                             </h3>
+
 
                             <p class="manager-positive-text">
                                 ↑ 8.4% from yesterday
                             </p>
 
+
                         </div>
+
 
                     </div>
 
 
 
-                    <%-- Pending --%>
+                    <%-- PENDING --%>
+
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box icon-orange">
 
@@ -488,24 +583,33 @@
 
                         <div>
 
-                            <span class="staff-metric-label">PENDING ORDERS
+
+                            <span class="staff-metric-label">
+                                PENDING ORDERS
                             </span>
 
-                            <h3>12
+
+                            <h3>
+                                12
                             </h3>
+
 
                             <p>
                                 Orders waiting to be processed
                             </p>
 
+
                         </div>
+
 
                     </div>
 
 
 
-                    <%-- Low stock --%>
+                    <%-- LOW STOCK --%>
+
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box manager-icon-red">
 
@@ -527,17 +631,24 @@
 
                         <div>
 
-                            <span class="staff-metric-label">LOW STOCK ITEMS
+
+                            <span class="staff-metric-label">
+                                LOW STOCK ITEMS
                             </span>
 
-                            <h3>7
+
+                            <h3>
+                                7
                             </h3>
+
 
                             <p class="manager-alert-text">
                                 Requires immediate attention
                             </p>
 
+
                         </div>
+
 
                     </div>
 
@@ -547,24 +658,28 @@
 
 
                 <%-- =================================================
-                     SALES OVERVIEW + RECENT ORDERS
+                     SALES + RECENT ORDERS
                      ================================================= --%>
 
                 <div class="manager-main-grid">
 
 
                     <%-- SALES OVERVIEW --%>
+
                     <section class="staff-dashboard-panel">
 
 
                         <div class="staff-panel-heading">
 
+
                             <div>
 
-                                <h5>Sales Overview
+                                <h5>
+                                    Sales Overview
                                 </h5>
 
-                                <small>Daily revenue over the last 7 days
+                                <small>
+                                    Daily revenue over the last 7 days
                                 </small>
 
                             </div>
@@ -572,19 +687,21 @@
 
                             <select class="form-control manager-period-filter">
 
-                                <option>Last 7 Days
+                                <option>
+                                    Last 7 Days
                                 </option>
 
-                                <option>Last 30 Days
+                                <option>
+                                    Last 30 Days
                                 </option>
 
                             </select>
+
 
                         </div>
 
 
 
-                        <%-- Placeholder for Power BI / chart integration --%>
                         <div class="manager-sales-chart">
 
 
@@ -599,7 +716,9 @@
                             </div>
 
 
+
                             <div class="manager-chart-area">
+
 
                                 <svg viewBox="0 0 700 220"
                                     preserveAspectRatio="none"
@@ -611,35 +730,16 @@
                                         stroke="currentColor"
                                         stroke-width="3" />
 
-                                    <circle cx="0"
-                                        cy="150"
-                                        r="4" />
-
-                                    <circle cx="115"
-                                        cy="135"
-                                        r="4" />
-
-                                    <circle cx="230"
-                                        cy="165"
-                                        r="4" />
-
-                                    <circle cx="345"
-                                        cy="120"
-                                        r="4" />
-
-                                    <circle cx="460"
-                                        cy="145"
-                                        r="4" />
-
-                                    <circle cx="575"
-                                        cy="125"
-                                        r="4" />
-
-                                    <circle cx="700"
-                                        cy="55"
-                                        r="4" />
+                                    <circle cx="0" cy="150" r="4" />
+                                    <circle cx="115" cy="135" r="4" />
+                                    <circle cx="230" cy="165" r="4" />
+                                    <circle cx="345" cy="120" r="4" />
+                                    <circle cx="460" cy="145" r="4" />
+                                    <circle cx="575" cy="125" r="4" />
+                                    <circle cx="700" cy="55" r="4" />
 
                                 </svg>
+
 
 
                                 <div class="manager-chart-days">
@@ -654,6 +754,7 @@
 
                                 </div>
 
+
                             </div>
 
 
@@ -665,26 +766,33 @@
 
 
                     <%-- RECENT ORDERS --%>
+
                     <section class="staff-dashboard-panel">
 
 
                         <div class="staff-panel-heading">
 
+
                             <div>
 
-                                <h5>Recent Orders
+                                <h5>
+                                    Recent Orders
                                 </h5>
 
-                                <small>Latest customer orders
+                                <small>
+                                    Latest customer orders
                                 </small>
 
                             </div>
 
 
-                            <a href="#"
-                                class="staff-text-link">View All Orders →
+                            <a href="ManagerOrders.aspx"
+                                class="staff-text-link">
+
+                                View All Orders →
 
                             </a>
+
 
                         </div>
 
@@ -692,7 +800,9 @@
 
                         <div class="table-responsive">
 
+
                             <table class="table staff-orders-table">
+
 
                                 <thead>
 
@@ -719,21 +829,28 @@
                                             <strong>#1023</strong>
                                         </td>
 
-                                        <td>Sarah M.
-                                        </td>
-
-                                        <td>3
-                                        </td>
-
-                                        <td>R145.00
+                                        <td>
+                                            Sarah M.
                                         </td>
 
                                         <td>
-                                            <span class="order-status status-pending">Pending
-                                            </span>
+                                            3
                                         </td>
 
-                                        <td>14:32
+                                        <td>
+                                            R145.00
+                                        </td>
+
+                                        <td>
+
+                                            <span class="order-status status-pending">
+                                                Pending
+                                            </span>
+
+                                        </td>
+
+                                        <td>
+                                            14:32
                                         </td>
 
                                     </tr>
@@ -746,21 +863,28 @@
                                             <strong>#1022</strong>
                                         </td>
 
-                                        <td>Sarah M.
-                                        </td>
-
-                                        <td>2
-                                        </td>
-
-                                        <td>R98.00
+                                        <td>
+                                            Sarah M.
                                         </td>
 
                                         <td>
-                                            <span class="order-status status-preparing">Preparing
-                                            </span>
+                                            2
                                         </td>
 
-                                        <td>14:21
+                                        <td>
+                                            R98.00
+                                        </td>
+
+                                        <td>
+
+                                            <span class="order-status status-preparing">
+                                                Preparing
+                                            </span>
+
+                                        </td>
+
+                                        <td>
+                                            14:21
                                         </td>
 
                                     </tr>
@@ -773,21 +897,28 @@
                                             <strong>#1021</strong>
                                         </td>
 
-                                        <td>Michael P.
-                                        </td>
-
-                                        <td>4
-                                        </td>
-
-                                        <td>R210.00
+                                        <td>
+                                            Michael P.
                                         </td>
 
                                         <td>
-                                            <span class="order-status status-ready">Ready
-                                            </span>
+                                            4
                                         </td>
 
-                                        <td>14:05
+                                        <td>
+                                            R210.00
+                                        </td>
+
+                                        <td>
+
+                                            <span class="order-status status-ready">
+                                                Ready
+                                            </span>
+
+                                        </td>
+
+                                        <td>
+                                            14:05
                                         </td>
 
                                     </tr>
@@ -800,21 +931,28 @@
                                             <strong>#1020</strong>
                                         </td>
 
-                                        <td>Emma T.
-                                        </td>
-
-                                        <td>1
-                                        </td>
-
-                                        <td>R55.00
+                                        <td>
+                                            Emma T.
                                         </td>
 
                                         <td>
-                                            <span class="order-status status-completed">Completed
-                                            </span>
+                                            1
                                         </td>
 
-                                        <td>13:48
+                                        <td>
+                                            R55.00
+                                        </td>
+
+                                        <td>
+
+                                            <span class="order-status status-completed">
+                                                Completed
+                                            </span>
+
+                                        </td>
+
+                                        <td>
+                                            13:48
                                         </td>
 
                                     </tr>
@@ -822,7 +960,9 @@
 
                                 </tbody>
 
+
                             </table>
+
 
                         </div>
 
@@ -835,15 +975,13 @@
 
 
                 <%-- =================================================
-                     LOWER MANAGER DASHBOARD
+                     LOWER DASHBOARD
                      ================================================= --%>
 
                 <div class="manager-bottom-grid">
 
 
-                    <%-- =================================================
-                         POPULAR ITEMS
-                         ================================================= --%>
+                    <%-- POPULAR ITEMS --%>
 
                     <section class="staff-dashboard-panel">
 
@@ -852,10 +990,12 @@
 
                             <div>
 
-                                <h5>Popular Items
+                                <h5>
+                                    Popular Items
                                 </h5>
 
-                                <small>Top selling menu items today
+                                <small>
+                                    Top selling menu items today
                                 </small>
 
                             </div>
@@ -869,10 +1009,12 @@
 
                             <div class="manager-popular-header">
 
-                                <span>Item
+                                <span>
+                                    Item
                                 </span>
 
-                                <span>Quantity Sold
+                                <span>
+                                    Quantity Sold
                                 </span>
 
                             </div>
@@ -880,55 +1022,40 @@
 
                             <div class="manager-popular-row">
 
-                                <span>☕ Cappuccino
-                                </span>
-
-                                <strong>32
-                                </strong>
+                                <span>☕ Cappuccino</span>
+                                <strong>32</strong>
 
                             </div>
 
 
                             <div class="manager-popular-row">
 
-                                <span>🥙 Chicken Wrap
-                                </span>
-
-                                <strong>28
-                                </strong>
+                                <span>🥙 Chicken Wrap</span>
+                                <strong>28</strong>
 
                             </div>
 
 
                             <div class="manager-popular-row">
 
-                                <span>🧁 Vanilla Muffin
-                                </span>
-
-                                <strong>24
-                                </strong>
+                                <span>🧁 Vanilla Muffin</span>
+                                <strong>24</strong>
 
                             </div>
 
 
                             <div class="manager-popular-row">
 
-                                <span>🥤 Iced Latte
-                                </span>
-
-                                <strong>20
-                                </strong>
+                                <span>🥤 Iced Latte</span>
+                                <strong>20</strong>
 
                             </div>
 
 
                             <div class="manager-popular-row">
 
-                                <span>🥐 Classic Burger
-                                </span>
-
-                                <strong>18
-                                </strong>
+                                <span>🍔 Classic Burger</span>
+                                <strong>18</strong>
 
                             </div>
 
@@ -936,8 +1063,11 @@
                         </div>
 
 
-                        <a href="#"
-                            class="staff-text-link manager-bottom-link">View Full Menu Report →
+
+                        <a href="ManagerReports.aspx"
+                            class="staff-text-link manager-bottom-link">
+
+                            View Full Menu Report →
 
                         </a>
 
@@ -946,9 +1076,7 @@
 
 
 
-                    <%-- =================================================
-                         STAFF ON SHIFT
-                         ================================================= --%>
+                    <%-- STAFF --%>
 
                     <section class="staff-dashboard-panel">
 
@@ -957,10 +1085,12 @@
 
                             <div>
 
-                                <h5>Staff on Shift
+                                <h5>
+                                    Staff
                                 </h5>
 
-                                <small>Current staff working
+                                <small>
+                                    Cafe101 employees
                                 </small>
 
                             </div>
@@ -976,34 +1106,18 @@
 
                                 <span>Name</span>
                                 <span>Role</span>
-                                <span>Shift</span>
+                                <span>Status</span>
 
                             </div>
 
 
                             <div class="manager-shift-row">
 
-                                <span>Sarah M.
-                                </span>
+                                <span>Sarah M.</span>
+                                <span>Manager</span>
 
-                                <span>Shift Supervisor
-                                </span>
-
-                                <span class="manager-shift-time">08:00 - 16:00
-                                </span>
-
-                            </div>
-
-
-                            <div class="manager-shift-row">
-
-                                <span>James R.
-                                </span>
-
-                                <span>Barista
-                                </span>
-
-                                <span class="manager-shift-time">09:00 - 17:00
+                                <span class="manager-shift-time">
+                                    Active
                                 </span>
 
                             </div>
@@ -1011,13 +1125,11 @@
 
                             <div class="manager-shift-row">
 
-                                <span>Chloe T.
-                                </span>
+                                <span>James R.</span>
+                                <span>Cashier</span>
 
-                                <span>Cashier
-                                </span>
-
-                                <span class="manager-shift-time">08:00 - 16:00
+                                <span class="manager-shift-time">
+                                    Active
                                 </span>
 
                             </div>
@@ -1025,13 +1137,23 @@
 
                             <div class="manager-shift-row">
 
-                                <span>Daniel K.
+                                <span>Chloe T.</span>
+                                <span>Cashier</span>
+
+                                <span class="manager-shift-time">
+                                    Active
                                 </span>
 
-                                <span>Kitchen Staff
-                                </span>
+                            </div>
 
-                                <span class="manager-shift-time">08:00 - 16:00
+
+                            <div class="manager-shift-row">
+
+                                <span>Daniel K.</span>
+                                <span>Kitchen Staff</span>
+
+                                <span class="manager-shift-time">
+                                    Active
                                 </span>
 
                             </div>
@@ -1040,8 +1162,11 @@
                         </div>
 
 
-                        <a href="#"
-                            class="staff-text-link manager-bottom-link">Manage Staff Schedule →
+
+                        <a href="ManagerStaff.aspx"
+                            class="staff-text-link manager-bottom-link">
+
+                            Manage Staff →
 
                         </a>
 
@@ -1050,9 +1175,7 @@
 
 
 
-                    <%-- =================================================
-                         LOW STOCK ALERTS
-                         ================================================= --%>
+                    <%-- LOW STOCK --%>
 
                     <section class="staff-dashboard-panel">
 
@@ -1061,10 +1184,12 @@
 
                             <div>
 
-                                <h5>Low Stock Alerts
+                                <h5>
+                                    Low Stock Alerts
                                 </h5>
 
-                                <small>Items that need restocking
+                                <small>
+                                    Items that need restocking
                                 </small>
 
                             </div>
@@ -1080,15 +1205,18 @@
 
                                 <div>
 
-                                    <strong>Milk (1L)
+                                    <strong>
+                                        Milk (1L)
                                     </strong>
 
-                                    <small>5 units left
+                                    <small>
+                                        5 units left
                                     </small>
 
                                 </div>
 
-                                <span class="manager-stock-critical">Critical
+                                <span class="manager-stock-critical">
+                                    Critical
                                 </span>
 
                             </div>
@@ -1099,15 +1227,18 @@
 
                                 <div>
 
-                                    <strong>Chicken Fillet
+                                    <strong>
+                                        Chicken Fillet
                                     </strong>
 
-                                    <small>12 kg left
+                                    <small>
+                                        12 units left
                                     </small>
 
                                 </div>
 
-                                <span class="manager-stock-high">High
+                                <span class="manager-stock-high">
+                                    High
                                 </span>
 
                             </div>
@@ -1118,15 +1249,18 @@
 
                                 <div>
 
-                                    <strong>Brown Sugar
+                                    <strong>
+                                        Brown Sugar
                                     </strong>
 
-                                    <small>1.2 kg left
+                                    <small>
+                                        Low stock
                                     </small>
 
                                 </div>
 
-                                <span class="manager-stock-medium">Medium
+                                <span class="manager-stock-medium">
+                                    Medium
                                 </span>
 
                             </div>
@@ -1137,15 +1271,18 @@
 
                                 <div>
 
-                                    <strong>Cappuccino Cups
+                                    <strong>
+                                        Cappuccino Cups
                                     </strong>
 
-                                    <small>8 units left
+                                    <small>
+                                        8 units left
                                     </small>
 
                                 </div>
 
-                                <span class="manager-stock-low">Low
+                                <span class="manager-stock-low">
+                                    Low
                                 </span>
 
                             </div>
@@ -1154,19 +1291,11 @@
                         </div>
 
 
-                        <a href="#"
-                            class="staff-text-link manager-bottom-link">View All Inventory →
-
-                        </a>
-
-
                     </section>
 
 
 
-                    <%-- =================================================
-                         QUICK ACTIONS
-                         ================================================= --%>
+                    <%-- QUICK ACTIONS --%>
 
                     <section class="staff-dashboard-panel">
 
@@ -1175,10 +1304,12 @@
 
                             <div>
 
-                                <h5>Quick Actions
+                                <h5>
+                                    Quick Actions
                                 </h5>
 
-                                <small>Common management tasks
+                                <small>
+                                    Common management tasks
                                 </small>
 
                             </div>
@@ -1190,8 +1321,9 @@
                         <div class="manager-quick-grid">
 
 
-                            <a href="#"
+                            <a href="ManagerMenu.aspx"
                                 class="manager-quick-action">
+
 
                                 <span class="staff-icon-box icon-green">
 
@@ -1209,22 +1341,27 @@
 
                                 </span>
 
+
                                 <div>
 
-                                    <strong>Manage Menu
+                                    <strong>
+                                        Manage Menu
                                     </strong>
 
-                                    <small>Add or edit menu items
+                                    <small>
+                                        Add or edit menu items
                                     </small>
 
                                 </div>
+
 
                             </a>
 
 
 
-                            <a href="#"
+                            <a href="ManagerStaff.aspx"
                                 class="manager-quick-action">
+
 
                                 <span class="staff-icon-box icon-blue">
 
@@ -1245,22 +1382,27 @@
 
                                 </span>
 
+
                                 <div>
 
-                                    <strong>Add Staff
+                                    <strong>
+                                        Manage Staff
                                     </strong>
 
-                                    <small>Create new staff account
+                                    <small>
+                                        View staff accounts
                                     </small>
 
                                 </div>
+
 
                             </a>
 
 
 
-                            <a href="#"
+                            <a href="ManagerReports.aspx"
                                 class="manager-quick-action">
+
 
                                 <span class="staff-icon-box icon-purple">
 
@@ -1279,22 +1421,27 @@
 
                                 </span>
 
+
                                 <div>
 
-                                    <strong>View Reports
+                                    <strong>
+                                        View Reports
                                     </strong>
 
-                                    <small>Sales and performance
+                                    <small>
+                                        Sales and performance
                                     </small>
 
                                 </div>
+
 
                             </a>
 
 
 
-                            <a href="#"
+                            <a href="ManagerOrders.aspx"
                                 class="manager-quick-action">
+
 
                                 <span class="staff-icon-box icon-beige">
 
@@ -1313,15 +1460,19 @@
 
                                 </span>
 
+
                                 <div>
 
-                                    <strong>View Orders
+                                    <strong>
+                                        View Orders
                                     </strong>
 
-                                    <small>Browse all orders
+                                    <small>
+                                        Browse all orders
                                     </small>
 
                                 </div>
+
 
                             </a>
 
@@ -1336,35 +1487,46 @@
 
 
 
-                <%-- Manager footer --%>
+                <%-- =================================================
+                     FOOTER
+                     ================================================= --%>
+
                 <div class="staff-footer">
                     © 2026 Cafe101 Manager System
                 </div>
 
 
             </main>
-            <%-- END OF staff-main --%>
+
+
         </div>
-        <%-- END OF staff-body --%>
+
+
     </div>
-    <%-- END OF manager-shell --%>
 
 
 
     <%-- =================================================
-         MANAGER PAGE JAVASCRIPT
+         JAVASCRIPT
          ================================================= --%>
 
     <script>
 
-        // Make this page use the private staff/manager layout
         document.body.classList.add("staff-page");
 
 
-        // Remove Site.Master Bootstrap container
+        // Hide normal Site.Master navbar
+        const publicNavbar =
+            document.querySelector(".navbar");
+
+        if (publicNavbar) {
+            publicNavbar.style.display = "none";
+        }
+
+
+        // Remove normal Site.Master container spacing
         const bodyContent =
             document.querySelector(".body-content");
-
 
         if (bodyContent) {
 
@@ -1378,11 +1540,26 @@
         }
 
 
+        // Hide normal Site.Master footer
+        const masterFooter =
+            document.querySelector(".body-content > footer");
+
+        if (masterFooter) {
+            masterFooter.style.display = "none";
+        }
+
+
+        const masterFooterLine =
+            document.querySelector(".body-content > hr");
+
+        if (masterFooterLine) {
+            masterFooterLine.style.display = "none";
+        }
+
 
         // Sidebar collapse
         const sidebarToggle =
             document.getElementById("sidebarToggle");
-
 
         const staffBody =
             document.querySelector(".staff-body");
@@ -1390,11 +1567,15 @@
 
         if (sidebarToggle && staffBody) {
 
-            sidebarToggle.addEventListener("click", function () {
+            sidebarToggle.addEventListener(
+                "click",
+                function () {
 
-                staffBody.classList.toggle("sidebar-collapsed");
+                    staffBody.classList.toggle(
+                        "sidebar-collapsed"
+                    );
 
-            });
+                });
 
         }
 

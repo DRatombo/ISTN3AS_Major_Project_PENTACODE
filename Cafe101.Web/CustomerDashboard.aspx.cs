@@ -5,9 +5,10 @@ namespace Cafe101.Web
     public partial class CustomerDashboard :
         System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Load(
+            object sender,
+            EventArgs e)
         {
-            // User must be logged in
             if (Session["UserID"] == null ||
                 Session["UserType"] == null)
             {
@@ -15,7 +16,6 @@ namespace Cafe101.Web
                 return;
             }
 
-            // User must be a customer
             if (!Session["UserType"]
                 .ToString()
                 .Equals(
@@ -28,29 +28,67 @@ namespace Cafe101.Web
 
             if (!IsPostBack)
             {
-                if (Session["FirstName"] != null)
-                {
-                    string firstName =
-                        Session["FirstName"].ToString();
-
-                    // Welcome message
-                    litFirstName.Text = firstName;
-
-                    // Name in top-right corner
-                    lblTopCustomerName.Text = firstName;
-
-                    // First letter for profile circle
-                    if (!string.IsNullOrWhiteSpace(firstName))
-                    {
-                        lblCustomerInitials.Text =
-                            firstName.Substring(0, 1).ToUpper();
-                    }
-                }
+                LoadLoggedInCustomer();
             }
         }
 
 
-        protected void lnkLogOut_Click(object sender, EventArgs e)
+        private void LoadLoggedInCustomer()
+        {
+            string firstName =
+                Session["FirstName"]?.ToString() ?? "";
+
+            string surname =
+                Session["Surname"]?.ToString() ?? "";
+
+            string fullName =
+                (firstName + " " + surname).Trim();
+
+            if (string.IsNullOrWhiteSpace(fullName))
+            {
+                fullName = "Customer";
+            }
+
+            // Welcome message
+            litFirstName.Text =
+                !string.IsNullOrWhiteSpace(firstName)
+                ? firstName
+                : "Customer";
+
+            // Top-right full name
+            lblTopCustomerName.Text =
+                fullName;
+
+            // Initials
+            string initials = "";
+
+            if (!string.IsNullOrWhiteSpace(firstName))
+            {
+                initials += firstName
+                    .Substring(0, 1)
+                    .ToUpper();
+            }
+
+            if (!string.IsNullOrWhiteSpace(surname))
+            {
+                initials += surname
+                    .Substring(0, 1)
+                    .ToUpper();
+            }
+
+            if (string.IsNullOrWhiteSpace(initials))
+            {
+                initials = "C";
+            }
+
+            lblCustomerInitials.Text =
+                initials;
+        }
+
+
+        protected void lnkLogOut_Click(
+            object sender,
+            EventArgs e)
         {
             Session.Clear();
             Session.Abandon();

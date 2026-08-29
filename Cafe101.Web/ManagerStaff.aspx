@@ -5,11 +5,14 @@
     CodeBehind="ManagerStaff.aspx.cs"
     Inherits="Cafe101.Web.ManagerStaff" %>
 
+
 <asp:Content ID="Content1"
     ContentPlaceHolderID="MainContent"
     runat="server">
 
+
     <div class="staff-shell manager-shell">
+
 
         <%-- =================================================
              TOP HEADER
@@ -17,66 +20,109 @@
 
         <header class="staff-header">
 
+
             <div class="staff-header-left">
+
 
                 <button type="button"
                     id="sidebarToggle"
                     class="staff-header-menu"
                     aria-label="Toggle manager navigation">
+
                     ☰
+
                 </button>
+
 
                 <div class="staff-header-brand">
                     Cafe101
                 </div>
 
+
             </div>
 
 
-            <div class="staff-header-user">
+
+            <a href="ManagerProfile.aspx"
+                class="staff-header-user text-decoration-none">
+
 
                 <div class="staff-header-avatar">
-                    MA
+
+                    <asp:Label
+                        ID="lblTopManagerInitials"
+                        runat="server">
+                    </asp:Label>
+
                 </div>
+
 
                 <div>
-                    <strong>Manager</strong>
-                    <small>Administrator</small>
+
+
+                    <strong>
+
+                        <asp:Label
+                            ID="lblTopManagerName"
+                            runat="server">
+                        </asp:Label>
+
+                    </strong>
+
+
+                    <small>
+
+                        <asp:Label
+                            ID="lblTopManagerRole"
+                            runat="server">
+                        </asp:Label>
+
+                    </small>
+
+
                 </div>
 
-            </div>
+
+            </a>
+
 
         </header>
 
 
+
         <div class="staff-body">
 
+
             <%-- =================================================
-                 MANAGER SIDEBAR
+                 SIDEBAR
                  ================================================= --%>
 
             <aside class="staff-sidebar">
+
 
                 <div class="staff-sidebar-title">
                     MANAGER SYSTEM
                 </div>
 
 
+
                 <nav class="staff-nav">
 
-                    <%-- Dashboard --%>
+
                     <a href="ManagerDashboard.aspx">
 
-                        <span class="staff-nav-icon">&#8962;
+                        <span class="staff-nav-icon">
+                            &#8962;
                         </span>
 
-                        <span class="staff-nav-text">Dashboard
+                        <span class="staff-nav-text">
+                            Dashboard
                         </span>
 
                     </a>
 
 
-                    <%-- Orders --%>
+
                     <a href="ManagerOrders.aspx">
 
                         <span class="staff-nav-icon">
@@ -97,13 +143,14 @@
 
                         </span>
 
-                        <span class="staff-nav-text">Orders
+                        <span class="staff-nav-text">
+                            Orders
                         </span>
 
                     </a>
 
 
-                    <%-- Menu --%>
+
                     <a href="ManagerMenu.aspx">
 
                         <span class="staff-nav-icon">
@@ -124,13 +171,14 @@
 
                         </span>
 
-                        <span class="staff-nav-text">Menu
+                        <span class="staff-nav-text">
+                            Menu
                         </span>
 
                     </a>
 
 
-                    <%-- Staff --%>
+
                     <a href="ManagerStaff.aspx"
                         class="active">
 
@@ -143,23 +191,30 @@
                                 stroke="currentColor"
                                 stroke-width="2">
 
-                                <circle cx="9" cy="8" r="3" />
-                                <circle cx="17" cy="10" r="2" />
+                                <circle cx="9"
+                                    cy="8"
+                                    r="3" />
+
+                                <circle cx="17"
+                                    cy="10"
+                                    r="2" />
 
                                 <path d="M3 20c0-4 2.5-7 6-7s6 3 6 7" />
+
                                 <path d="M15 15c3 0 5 2 5 5" />
 
                             </svg>
 
                         </span>
 
-                        <span class="staff-nav-text">Staff
+                        <span class="staff-nav-text">
+                            Staff
                         </span>
 
                     </a>
 
 
-                    <%-- Reports --%>
+
                     <a href="ManagerReports.aspx">
 
                         <span class="staff-nav-icon">
@@ -180,13 +235,14 @@
 
                         </span>
 
-                        <span class="staff-nav-text">Reports
+                        <span class="staff-nav-text">
+                            Reports
                         </span>
 
                     </a>
 
 
-                    <%-- Profile --%>
+
                     <a href="ManagerProfile.aspx">
 
                         <span class="staff-nav-icon">
@@ -198,7 +254,9 @@
                                 stroke="currentColor"
                                 stroke-width="2">
 
-                                <circle cx="12" cy="8" r="4" />
+                                <circle cx="12"
+                                    cy="8"
+                                    r="4" />
 
                                 <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" />
 
@@ -206,65 +264,86 @@
 
                         </span>
 
-                        <span class="staff-nav-text">Profile
+                        <span class="staff-nav-text">
+                            Profile
                         </span>
 
                     </a>
+
 
                 </nav>
 
 
-                <%-- Logout --%>
+
                 <div class="staff-sidebar-bottom">
 
-                    <a href="#"
-                        class="staff-logout">
 
-                        <span class="staff-nav-icon">&#10140;
+                    <asp:LinkButton
+                        ID="lnkLogout"
+                        runat="server"
+                        CssClass="staff-logout"
+                        OnClick="LnkLogout_Click">
+
+                        <span class="staff-nav-icon">
+                            &#10140;
                         </span>
 
-                        <span class="staff-nav-text">Logout
+                        <span class="staff-nav-text">
+                            Logout
                         </span>
 
-                    </a>
+                    </asp:LinkButton>
+
 
                 </div>
+
 
             </aside>
 
 
+
             <%-- =================================================
-                 MAIN STAFF MANAGEMENT AREA
+                 MAIN AREA
                  ================================================= --%>
 
             <main class="staff-main">
 
-                <%-- =================================================
-                     PAGE HEADING
-                     ================================================= --%>
 
                 <div class="staff-page-heading">
 
-                    <h3>Staff Management
+                    <h3>
+                        Staff Management
                     </h3>
 
                     <p>
-                        Manage employee accounts, roles and shift assignments.
+                        View and manage Cafe101 employee accounts,
+                        roles and account status.
                     </p>
 
                 </div>
 
 
+
+                <asp:Label
+                    ID="lblMessage"
+                    runat="server"
+                    CssClass="d-none">
+                </asp:Label>
+
+
+
                 <%-- =================================================
-                     STAFF TOOLBAR
+                     TOOLBAR
                      ================================================= --%>
 
                 <div class="manager-staff-toolbar">
 
+
                     <div class="manager-staff-toolbar-left">
 
-                        <%-- Search --%>
+
                         <div class="staff-search-box">
+
 
                             <span class="staff-search-icon">
 
@@ -285,797 +364,789 @@
 
                             </span>
 
-                            <input type="text"
-                                class="form-control"
-                                placeholder="Search by name, ID or email..." />
+
+                            <asp:TextBox
+                                ID="txtSearch"
+                                runat="server"
+                                CssClass="form-control"
+                                placeholder="Search by name, employee ID or email...">
+                            </asp:TextBox>
+
 
                         </div>
 
 
-                        <%-- Role filter --%>
-                        <select class="form-control manager-staff-filter">
 
-                            <option>All Roles</option>
-                            <option>Shift Supervisor</option>
-                            <option>Barista</option>
-                            <option>Cashier</option>
-                            <option>Kitchen Staff</option>
-                            <option>Cleaner</option>
-
-                        </select>
+                        <asp:DropDownList
+                            ID="ddlRole"
+                            runat="server"
+                            CssClass="form-control manager-staff-filter"
+                            AutoPostBack="true"
+                            OnSelectedIndexChanged="DdlRole_SelectedIndexChanged">
+                        </asp:DropDownList>
 
 
-                        <%-- Status filter --%>
-                        <select class="form-control manager-staff-filter">
 
-                            <option>All Statuses</option>
-                            <option>Active</option>
-                            <option>On Leave</option>
-                            <option>Off Duty</option>
-                            <option>Inactive</option>
+                        <asp:DropDownList
+                            ID="ddlStatus"
+                            runat="server"
+                            CssClass="form-control manager-staff-filter"
+                            AutoPostBack="true"
+                            OnSelectedIndexChanged="DdlStatus_SelectedIndexChanged">
 
-                        </select>
+
+                            <asp:ListItem
+                                Text="All Statuses"
+                                Value="">
+                            </asp:ListItem>
+
+
+                            <asp:ListItem
+                                Text="Active"
+                                Value="Active">
+                            </asp:ListItem>
+
+
+                            <asp:ListItem
+                                Text="Inactive"
+                                Value="Inactive">
+                            </asp:ListItem>
+
+
+                        </asp:DropDownList>
+
 
                     </div>
+
 
 
                     <div class="manager-staff-toolbar-right">
 
-                        <button type="button"
-                            class="btn btn-brand">
-                            + Add New Staff
 
-                        </button>
+                        <asp:Button
+                            ID="btnSearch"
+                            runat="server"
+                            Text="Search"
+                            CssClass="btn btn-brand"
+                            OnClick="BtnSearch_Click" />
 
-                        <button type="button"
-                            class="btn btn-outline-brand">
-                            ↻ Refresh
 
-                        </button>
+                        <asp:Button
+                            ID="btnRefresh"
+                            runat="server"
+                            Text="↻ Refresh"
+                            CssClass="btn btn-outline-brand"
+                            OnClick="BtnRefresh_Click" />
+
 
                     </div>
+
 
                 </div>
 
 
+
                 <%-- =================================================
-                     STAFF SUMMARY CARDS
+                     SUMMARY CARDS
                      ================================================= --%>
 
                 <div class="staff-metric-grid">
 
-                    <%-- Total Staff --%>
+
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box icon-green">
-
-                            <svg viewBox="0 0 24 24"
-                                width="23"
-                                height="23"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <circle cx="9" cy="8" r="3" />
-                                <circle cx="17" cy="10" r="2" />
-                                <path d="M3 20c0-4 2.5-7 6-7s6 3 6 7" />
-                                <path d="M15 15c3 0 5 2 5 5" />
-
-                            </svg>
-
+                            ♙
                         </div>
+
 
                         <div>
 
-                            <span class="staff-metric-label">TOTAL STAFF
+                            <span class="staff-metric-label">
+                                TOTAL STAFF
                             </span>
 
-                            <h3>18
+
+                            <h3>
+
+                                <asp:Label
+                                    ID="lblTotalStaff"
+                                    runat="server">
+                                </asp:Label>
+
                             </h3>
 
+
                             <p>
-                                All employees
+                                All employee accounts
                             </p>
 
                         </div>
 
+
                     </div>
 
 
-                    <%-- Active Staff --%>
+
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box icon-blue">
-
-                            <svg viewBox="0 0 24 24"
-                                width="23"
-                                height="23"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <circle cx="12"
-                                    cy="8"
-                                    r="4" />
-
-                                <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" />
-
-                            </svg>
-
+                            ✓
                         </div>
+
 
                         <div>
 
-                            <span class="staff-metric-label">ACTIVE STAFF
+                            <span class="staff-metric-label">
+                                ACTIVE STAFF
                             </span>
 
-                            <h3>14
+
+                            <h3>
+
+                                <asp:Label
+                                    ID="lblActiveStaff"
+                                    runat="server">
+                                </asp:Label>
+
                             </h3>
 
+
                             <p>
-                                Currently active
+                                Can currently access system
                             </p>
 
                         </div>
 
+
                     </div>
 
 
-                    <%-- On Shift --%>
+
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box icon-orange">
-
-                            <svg viewBox="0 0 24 24"
-                                width="23"
-                                height="23"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <circle cx="12"
-                                    cy="12"
-                                    r="9" />
-
-                                <path d="M12 7v5l3 2" />
-
-                            </svg>
-
+                            ♛
                         </div>
+
 
                         <div>
 
-                            <span class="staff-metric-label">ON SHIFT
+                            <span class="staff-metric-label">
+                                ACTIVE MANAGERS
                             </span>
 
-                            <h3>9
+
+                            <h3>
+
+                                <asp:Label
+                                    ID="lblManagers"
+                                    runat="server">
+                                </asp:Label>
+
                             </h3>
 
+
                             <p>
-                                Working now
+                                Manager accounts
                             </p>
 
                         </div>
 
+
                     </div>
 
 
-                    <%-- Managers / Supervisors --%>
+
                     <div class="staff-metric-card">
 
+
                         <div class="staff-icon-box icon-purple">
-
-                            <svg viewBox="0 0 24 24"
-                                width="23"
-                                height="23"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <path d="M12 3l8 4v5c0 5-3 8-8 9-5-1-8-4-8-9V7l8-4z" />
-
-                                <path d="M9 12l2 2 4-4" />
-
-                            </svg>
-
+                            ♨
                         </div>
+
 
                         <div>
 
-                            <span class="staff-metric-label">MANAGERS / SUPERVISORS
+                            <span class="staff-metric-label">
+                                ACTIVE KITCHEN STAFF
                             </span>
 
-                            <h3>3
+
+                            <h3>
+
+                                <asp:Label
+                                    ID="lblKitchenStaff"
+                                    runat="server">
+                                </asp:Label>
+
                             </h3>
 
+
                             <p>
-                                Leadership roles
+                                Kitchen employee accounts
                             </p>
 
                         </div>
 
+
                     </div>
+
 
                 </div>
 
 
+
                 <%-- =================================================
-                     ALL STAFF MEMBERS
+                     WORKSPACE
                      ================================================= --%>
 
-                <section class="staff-dashboard-panel manager-staff-table-card">
-
-                    <div class="staff-panel-heading">
-
-                        <div>
-
-                            <h5>All Staff Members
-                            </h5>
-
-                            <small>View and manage all employees
-                            </small>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="table-responsive">
-
-                        <table class="table staff-orders-table manager-staff-table">
-
-                            <thead>
-
-                                <tr>
-
-                                    <th>Employee ID</th>
-                                    <th>Name</th>
-                                    <th>Role</th>
-                                    <th>Department</th>
-                                    <th>Shift</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-
-                                </tr>
-
-                            </thead>
-
-
-                            <tbody>
-
-                                <%-- Sarah --%>
-                                <tr>
-
-                                    <td>
-                                        <strong>#EMP1001</strong>
-                                    </td>
-
-                                    <td>Sarah M.
-                                    </td>
-
-                                    <td>Shift Supervisor
-                                    </td>
-
-                                    <td>Front of House
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-shift-badge">08:00 - 16:00
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-staff-status status-active-staff">Active
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button type="button"
-                                            class="manager-staff-view-btn">
-                                            ›
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <%-- James --%>
-                                <tr>
-
-                                    <td>
-                                        <strong>#EMP1002</strong>
-                                    </td>
-
-                                    <td>James R.
-                                    </td>
-
-                                    <td>Barista
-                                    </td>
-
-                                    <td>Front of House
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-shift-badge">09:00 - 17:00
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-staff-status status-active-staff">Active
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button type="button"
-                                            class="manager-staff-view-btn">
-                                            ›
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <%-- Chloe --%>
-                                <tr>
-
-                                    <td>
-                                        <strong>#EMP1003</strong>
-                                    </td>
-
-                                    <td>Chloe T.
-                                    </td>
-
-                                    <td>Cashier
-                                    </td>
-
-                                    <td>Front of House
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-shift-badge">10:00 - 18:00
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-staff-status status-active-staff">Active
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button type="button"
-                                            class="manager-staff-view-btn">
-                                            ›
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <%-- Daniel --%>
-                                <tr>
-
-                                    <td>
-                                        <strong>#EMP1004</strong>
-                                    </td>
-
-                                    <td>Daniel L.
-                                    </td>
-
-                                    <td>Kitchen Staff
-                                    </td>
-
-                                    <td>Kitchen
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-shift-badge">06:00 - 14:00
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-staff-status status-active-staff">Active
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button type="button"
-                                            class="manager-staff-view-btn">
-                                            ›
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <%-- Aisha --%>
-                                <tr>
-
-                                    <td>
-                                        <strong>#EMP1005</strong>
-                                    </td>
-
-                                    <td>Aisha M.
-                                    </td>
-
-                                    <td>Kitchen Staff
-                                    </td>
-
-                                    <td>Kitchen
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-shift-badge">06:00 - 14:00
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-staff-status status-on-leave">On Leave
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button type="button"
-                                            class="manager-staff-view-btn">
-                                            ›
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <%-- Ethan --%>
-                                <tr>
-
-                                    <td>
-                                        <strong>#EMP1006</strong>
-                                    </td>
-
-                                    <td>Ethan P.
-                                    </td>
-
-                                    <td>Barista
-                                    </td>
-
-                                    <td>Front of House
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-shift-badge">12:00 - 20:00
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-staff-status status-active-staff">Active
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button type="button"
-                                            class="manager-staff-view-btn">
-                                            ›
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <%-- Mia --%>
-                                <tr>
-
-                                    <td>
-                                        <strong>#EMP1007</strong>
-                                    </td>
-
-                                    <td>Mia L.
-                                    </td>
-
-                                    <td>Cashier
-                                    </td>
-
-                                    <td>Front of House
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-shift-badge">13:00 - 21:00
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-staff-status status-off-duty">Off Duty
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button type="button"
-                                            class="manager-staff-view-btn">
-                                            ›
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <%-- Lucas --%>
-                                <tr>
-
-                                    <td>
-                                        <strong>#EMP1008</strong>
-                                    </td>
-
-                                    <td>Lucas D.
-                                    </td>
-
-                                    <td>Cleaner
-                                    </td>
-
-                                    <td>Maintenance
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-shift-badge">22:00 - 06:00
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-staff-status status-active-staff">Active
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button type="button"
-                                            class="manager-staff-view-btn">
-                                            ›
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <%-- Sophia --%>
-                                <tr>
-
-                                    <td>
-                                        <strong>#EMP1009</strong>
-                                    </td>
-
-                                    <td>Sophia L.
-                                    </td>
-
-                                    <td>Barista
-                                    </td>
-
-                                    <td>Front of House
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-shift-badge">14:00 - 22:00
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-staff-status status-active-staff">Active
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button type="button"
-                                            class="manager-staff-view-btn">
-                                            ›
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-
-                                <%-- Ryan --%>
-                                <tr>
-
-                                    <td>
-                                        <strong>#EMP1010</strong>
-                                    </td>
-
-                                    <td>Ryan H.
-                                    </td>
-
-                                    <td>Kitchen Staff
-                                    </td>
-
-                                    <td>Kitchen
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-shift-badge">14:00 - 22:00
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <span class="manager-staff-status status-off-duty">Off Duty
-                                        </span>
-
-                                    </td>
-
-                                    <td>
-
-                                        <button type="button"
-                                            class="manager-staff-view-btn">
-                                            ›
-
-                                        </button>
-
-                                    </td>
-
-                                </tr>
-
-                            </tbody>
-
-                        </table>
-
-                    </div>
+                <div class="manager-menu-workspace">
 
 
                     <%-- =================================================
-                         PAGINATION
+                         EMPLOYEE TABLE
                          ================================================= --%>
 
-                    <div class="manager-orders-pagination">
+                    <section class="staff-dashboard-panel manager-staff-table-card">
 
-                        <div>
 
-                            <button type="button">
-                                ‹
-                            </button>
+                        <div class="staff-panel-heading">
 
-                            <button type="button"
-                                class="active">
-                                1
-                            </button>
 
-                            <button type="button">
-                                2
-                            </button>
+                            <div>
 
-                            <button type="button">
-                                3
-                            </button>
+                                <h5>
+                                    All Staff Members
+                                </h5>
 
-                            <button type="button">
-                                ›
-                            </button>
+                                <small>
+                                    Live data from EmployeeTable
+                                </small>
+
+                            </div>
+
 
                         </div>
 
-                        <small>Showing 1-10 of 18 staff members
-                        </small>
-
-                    </div>
-
-                </section>
 
 
-                <%-- =================================================
-                     FOOTER
-                     ================================================= --%>
+                        <div class="table-responsive">
+
+
+                            <table class="table staff-orders-table manager-staff-table">
+
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+                                        <th>Hire Date</th>
+                                        <th>Action</th>
+
+                                    </tr>
+
+                                </thead>
+
+
+
+                                <tbody>
+
+
+                                    <asp:Repeater
+                                        ID="rptEmployees"
+                                        runat="server">
+
+
+                                        <ItemTemplate>
+
+
+                                            <tr>
+
+
+                                                <td>
+
+                                                    <strong>
+
+                                                        #<%#
+                                                            Eval(
+                                                                "EmployeeID")
+                                                        %>
+
+                                                    </strong>
+
+                                                </td>
+
+
+
+                                                <td>
+
+                                                    <%#
+                                                        Eval(
+                                                            "FirstName")
+                                                    %>
+
+                                                    <%#
+                                                        Eval(
+                                                            "Surname")
+                                                    %>
+
+                                                </td>
+
+
+
+                                                <td>
+
+                                                    <%#
+                                                        Eval(
+                                                            "Email")
+                                                    %>
+
+                                                </td>
+
+
+
+                                                <td>
+
+                                                    <%#
+                                                        Eval(
+                                                            "Role")
+                                                    %>
+
+                                                </td>
+
+
+
+                                                <td>
+
+
+                                                    <span class='<%#
+                                                        GetEmployeeStatusClass(
+                                                            Eval(
+                                                                "EmployeeStatus")
+                                                            .ToString())
+                                                    %>'>
+
+                                                        <%#
+                                                            Eval(
+                                                                "EmployeeStatus")
+                                                        %>
+
+                                                    </span>
+
+
+                                                </td>
+
+
+
+                                                <td>
+
+                                                    <%#
+                                                        GetHireDateText(
+                                                            Eval(
+                                                                "HireDate"))
+                                                    %>
+
+                                                </td>
+
+
+
+                                                <td>
+
+
+                                                    <asp:LinkButton
+                                                        ID="btnViewEmployee"
+                                                        runat="server"
+                                                        CssClass="manager-staff-view-btn"
+                                                        CommandArgument='<%#
+                                                            Eval("EmployeeID")
+                                                        %>'
+                                                        OnCommand="SelectEmployee_Command">
+
+                                                        ›
+
+                                                    </asp:LinkButton>
+
+
+                                                </td>
+
+
+                                            </tr>
+
+
+                                        </ItemTemplate>
+
+
+                                    </asp:Repeater>
+
+
+                                </tbody>
+
+
+                            </table>
+
+
+                        </div>
+
+
+
+                        <div class="manager-orders-pagination">
+
+
+                            <small>
+
+                                <asp:Label
+                                    ID="lblShowingStaff"
+                                    runat="server">
+                                </asp:Label>
+
+                            </small>
+
+
+                        </div>
+
+
+                    </section>
+
+
+
+                    <%-- =================================================
+                         SELECTED EMPLOYEE
+                         ================================================= --%>
+
+                    <asp:Panel
+                        ID="pnlSelectedEmployee"
+                        runat="server"
+                        CssClass="staff-dashboard-panel manager-selected-item">
+
+
+                        <div class="manager-selected-item-heading">
+
+                            <h5>
+                                Selected Employee
+                            </h5>
+
+                        </div>
+
+
+
+                        <div class="manager-selected-product">
+
+
+                            <div class="manager-selected-product-image">
+
+                                <asp:Label
+                                    ID="lblSelectedInitials"
+                                    runat="server">
+                                </asp:Label>
+
+                            </div>
+
+
+
+                            <div>
+
+
+                                <h4>
+
+                                    <asp:Label
+                                        ID="lblSelectedName"
+                                        runat="server">
+                                    </asp:Label>
+
+                                </h4>
+
+
+                                <span class="manager-menu-status status-available">
+
+                                    <asp:Label
+                                        ID="lblSelectedRole"
+                                        runat="server">
+                                    </asp:Label>
+
+                                </span>
+
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="manager-selected-info">
+
+
+                            <div class="manager-selected-info-row">
+
+                                <span>
+                                    Employee ID
+                                </span>
+
+
+                                <strong>
+
+                                    <asp:Label
+                                        ID="lblSelectedEmployeeID"
+                                        runat="server">
+                                    </asp:Label>
+
+                                </strong>
+
+                            </div>
+
+
+
+                            <div class="manager-selected-info-row">
+
+                                <span>
+                                    Email
+                                </span>
+
+
+                                <strong>
+
+                                    <asp:Label
+                                        ID="lblSelectedEmail"
+                                        runat="server">
+                                    </asp:Label>
+
+                                </strong>
+
+                            </div>
+
+
+
+                            <div class="manager-selected-info-row">
+
+                                <span>
+                                    Role
+                                </span>
+
+
+                                <strong>
+
+                                    <asp:Label
+                                        ID="lblSelectedRoleDetail"
+                                        runat="server">
+                                    </asp:Label>
+
+                                </strong>
+
+                            </div>
+
+
+
+                            <div class="manager-selected-info-row">
+
+                                <span>
+                                    Status
+                                </span>
+
+
+                                <strong>
+
+                                    <asp:Label
+                                        ID="lblSelectedStatus"
+                                        runat="server">
+                                    </asp:Label>
+
+                                </strong>
+
+                            </div>
+
+
+
+                            <div class="manager-selected-info-row">
+
+                                <span>
+                                    Hire Date
+                                </span>
+
+
+                                <strong>
+
+                                    <asp:Label
+                                        ID="lblSelectedHireDate"
+                                        runat="server">
+                                    </asp:Label>
+
+                                </strong>
+
+                            </div>
+
+
+
+                            <div class="manager-selected-description">
+
+                                <small class="staff-detail-label">
+                                    ADDRESS
+                                </small>
+
+
+                                <p>
+
+                                    <asp:Label
+                                        ID="lblSelectedAddress"
+                                        runat="server">
+                                    </asp:Label>
+
+                                </p>
+
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="manager-selected-actions">
+
+
+                            <asp:Button
+                                ID="btnToggleStatus"
+                                runat="server"
+                                Text="Deactivate Employee"
+                                CssClass="manager-selected-action manager-selected-action-red"
+                                OnClick="BtnToggleStatus_Click"
+                                OnClientClick="return confirm('Are you sure you want to change this employee account status?');" />
+
+
+                        </div>
+
+
+                    </asp:Panel>
+
+
+                </div>
+
+
 
                 <div class="staff-footer">
                     © 2026 Cafe101 Manager System
                 </div>
 
+
             </main>
 
+
         </div>
+
 
     </div>
 
 
-    <%-- =================================================
-         PAGE JAVASCRIPT
-         ================================================= --%>
 
     <script>
 
-        document.body.classList.add("staff-page");
+        document.body.classList.add(
+            "staff-page");
+
+
+        const publicNavbar =
+            document.querySelector(
+                ".navbar");
+
+
+        if (publicNavbar) {
+
+            publicNavbar.style.display =
+                "none";
+
+        }
+
 
 
         const bodyContent =
-            document.querySelector(".body-content");
+            document.querySelector(
+                ".body-content");
 
 
         if (bodyContent) {
 
-            bodyContent.classList.remove("container");
+            bodyContent.classList.remove(
+                "container");
 
-            bodyContent.style.width = "100%";
-            bodyContent.style.maxWidth = "none";
-            bodyContent.style.margin = "0";
-            bodyContent.style.padding = "0";
+            bodyContent.style.width =
+                "100%";
+
+            bodyContent.style.maxWidth =
+                "none";
+
+            bodyContent.style.margin =
+                "0";
+
+            bodyContent.style.padding =
+                "0";
 
         }
 
 
+
+        const masterFooter =
+            document.querySelector(
+                ".body-content > footer");
+
+
+        if (masterFooter) {
+
+            masterFooter.style.display =
+                "none";
+
+        }
+
+
+
+        const masterFooterLine =
+            document.querySelector(
+                ".body-content > hr");
+
+
+        if (masterFooterLine) {
+
+            masterFooterLine.style.display =
+                "none";
+
+        }
+
+
+
         const sidebarToggle =
-            document.getElementById("sidebarToggle");
+            document.getElementById(
+                "sidebarToggle");
 
 
         const staffBody =
-            document.querySelector(".staff-body");
+            document.querySelector(
+                ".staff-body");
 
 
-        if (sidebarToggle && staffBody) {
+        if (sidebarToggle &&
+            staffBody) {
 
-            sidebarToggle.addEventListener("click", function () {
+            sidebarToggle
+                .addEventListener(
+                    "click",
+                    function () {
 
-                staffBody.classList.toggle("sidebar-collapsed");
+                        staffBody
+                            .classList
+                            .toggle(
+                                "sidebar-collapsed");
 
-            });
+                    });
 
         }
 
     </script>
+
 
 </asp:Content>

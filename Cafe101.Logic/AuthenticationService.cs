@@ -95,8 +95,8 @@ namespace Cafe101.Logic
         // ============================================================
 
         private LoginResult CheckEmployee(
-            string email,
-            string password)
+     string email,
+     string password)
         {
             LoginResult result =
                 new LoginResult();
@@ -105,13 +105,19 @@ namespace Cafe101.Logic
                 DatabaseConnection.GetConnection())
             {
                 string sql = @"
-                    SELECT EmployeeID,
-                           FirstName,
-                           Email,
-                           Password,
-                           Role
-                    FROM EmployeeTable
-                    WHERE LOWER(Email) = LOWER(@Email)";
+            SELECT
+                EmployeeID,
+                FirstName,
+                Surname,
+                Address,
+                Email,
+                Password,
+                Role,
+                EmployeeStatus,
+                HireDate
+            FROM EmployeeTable
+            WHERE LOWER(Email) = LOWER(@Email);";
+
 
                 using (SqlCommand command =
                     new SqlCommand(sql, connection))
@@ -120,7 +126,9 @@ namespace Cafe101.Logic
                         "@Email",
                         email);
 
+
                     connection.Open();
+
 
                     using (SqlDataReader reader =
                         command.ExecuteReader())
@@ -130,46 +138,107 @@ namespace Cafe101.Logic
                             return result;
                         }
 
+
+                        // =========================================
+                        // CHECK EMPLOYEE STATUS
+                        // =========================================
+
+                        string employeeStatus =
+                            reader["EmployeeStatus"] == DBNull.Value
+                            ? "Active"
+                            : reader["EmployeeStatus"]
+                                .ToString()
+                                .Trim();
+
+
+                        if (!employeeStatus.Equals(
+                            "Active",
+                            StringComparison.OrdinalIgnoreCase))
+                        {
+                            result.Message =
+                                "This Cafe101 employee account is currently inactive. Please contact a manager for assistance.";
+
+                            return result;
+                        }
+
+
+                        // =========================================
+                        // CHECK PASSWORD
+                        // =========================================
+
                         string storedPassword =
                             reader["Password"]
                             .ToString();
+
 
                         if (storedPassword != password)
                         {
                             return result;
                         }
 
-                        result.Success = true;
+
+                        // =========================================
+                        // LOGIN SUCCESS
+                        // =========================================
+
+                        result.Success =
+                            true;
+
 
                         result.UserID =
                             Convert.ToInt32(
                                 reader["EmployeeID"]);
 
+
                         result.UserType =
                             "Employee";
 
+
                         result.Role =
-                            reader["Role"]
-                            .ToString()
-                            .Trim();
+                            reader["Role"] == DBNull.Value
+                            ? ""
+                            : reader["Role"]
+                                .ToString()
+                                .Trim();
+
 
                         result.FirstName =
-                            reader["FirstName"]
-                            .ToString();
+                            reader["FirstName"] == DBNull.Value
+                            ? ""
+                            : reader["FirstName"]
+                                .ToString();
+
+
+                        result.Surname =
+                            reader["Surname"] == DBNull.Value
+                            ? ""
+                            : reader["Surname"]
+                                .ToString();
+
+
+                        result.Address =
+                            reader["Address"] == DBNull.Value
+                            ? ""
+                            : reader["Address"]
+                                .ToString();
+
 
                         result.Email =
-                            reader["Email"]
-                            .ToString();
+                            reader["Email"] == DBNull.Value
+                            ? ""
+                            : reader["Email"]
+                                .ToString();
+
 
                         result.Message =
                             "Sign in successful.";
+
 
                         return result;
                     }
                 }
             }
         }
-
 
         // ============================================================
         // CUSTOMER LOGIN
@@ -188,9 +257,12 @@ namespace Cafe101.Logic
                 string sql = @"
                     SELECT CustomerID,
                            FirstName,
+                           Surname,
+                           Address,
                            Email,
                            Password,
-                           Status
+                           Status,
+                           PhoneNumber
                     FROM CustomerTable
                     WHERE LOWER(Email) = LOWER(@Email)";
 
@@ -265,12 +337,19 @@ namespace Cafe101.Logic
                             "Customer";
 
                         result.FirstName =
-                            reader["FirstName"]
-                            .ToString();
+                            reader["FirstName"].ToString();
+
+                        result.Surname =
+                            reader["Surname"].ToString();
+
+                        result.Address =
+                            reader["Address"].ToString();
 
                         result.Email =
-                            reader["Email"]
-                            .ToString();
+                            reader["Email"].ToString();
+
+                        result.PhoneNumber =
+                            reader["PhoneNumber"].ToString();
 
                         result.Message =
                             "Sign in successful.";

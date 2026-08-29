@@ -33,15 +33,6 @@ namespace Cafe101.Web
         protected global::System.Web.UI.WebControls.Label lblTopCustomerName;
 
         /// <summary>
-        /// litFirstName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litFirstName;
-
-        /// <summary>
         /// lnkLogOut control.
         /// </summary>
         /// <remarks>
@@ -49,6 +40,15 @@ namespace Cafe101.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkLogOut;
+
+        /// <summary>
+        /// litFirstName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litFirstName;
 
         /// <summary>
         /// txtSearch control.

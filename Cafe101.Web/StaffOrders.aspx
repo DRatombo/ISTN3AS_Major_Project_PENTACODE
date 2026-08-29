@@ -11,10 +11,6 @@
     runat="server">
 
 
-    <%-- =================================================
-         STAFF ORDERS PAGE
-         ================================================= --%>
-
     <div class="staff-shell">
 
 
@@ -26,15 +22,12 @@
 
             <div class="staff-header-left">
 
-                <%-- Opens and closes the sidebar --%>
                 <button type="button"
                     id="sidebarToggle"
                     class="staff-header-menu"
                     aria-label="Toggle staff navigation">
                     ☰
-
                 </button>
-
 
                 <div class="staff-header-brand">
                     Cafe101
@@ -43,20 +36,49 @@
             </div>
 
 
-            <%-- Temporary logged-in staff information --%>
-            <div class="staff-header-user">
+            <%-- =================================================
+                 LOGGED-IN STAFF MEMBER
+                 ================================================= --%>
+
+            <a href="StaffProfile.aspx"
+                class="staff-header-user text-decoration-none">
+
 
                 <div class="staff-header-avatar">
-                    SM
+
+                    <asp:Label
+                        ID="lblTopInitials"
+                        runat="server">
+                    </asp:Label>
+
                 </div>
 
 
                 <div>
-                    <strong>Staff Member</strong>
-                    <small>Employee</small>
+
+                    <strong>
+
+                        <asp:Label
+                            ID="lblTopStaffName"
+                            runat="server">
+                        </asp:Label>
+
+                    </strong>
+
+
+                    <small>
+
+                        <asp:Label
+                            ID="lblTopStaffRole"
+                            runat="server">
+                        </asp:Label>
+
+                    </small>
+
                 </div>
 
-            </div>
+
+            </a>
 
         </header>
 
@@ -64,7 +86,6 @@
 
         <%-- =================================================
              STAFF BODY
-             Sidebar + main content
              ================================================= --%>
 
         <div class="staff-body">
@@ -86,18 +107,23 @@
 
 
                     <%-- Dashboard --%>
+
                     <a href="StaffDashboard.aspx">
 
-                        <span class="staff-nav-icon">&#8962;
+                        <span class="staff-nav-icon">
+                            &#8962;
                         </span>
 
-                        <span class="staff-nav-text">Dashboard
+                        <span class="staff-nav-text">
+                            Dashboard
                         </span>
 
                     </a>
 
 
-                    <%-- Orders - active page --%>
+
+                    <%-- Orders --%>
+
                     <a href="StaffOrders.aspx"
                         class="active">
 
@@ -119,13 +145,16 @@
 
                         </span>
 
-                        <span class="staff-nav-text">Orders
+                        <span class="staff-nav-text">
+                            Orders
                         </span>
 
                     </a>
 
 
+
                     <%-- Profile --%>
+
                     <a href="StaffProfile.aspx">
 
                         <span class="staff-nav-icon">
@@ -147,28 +176,38 @@
 
                         </span>
 
-                        <span class="staff-nav-text">Profile
+                        <span class="staff-nav-text">
+                            Profile
                         </span>
 
                     </a>
+
 
                 </nav>
 
 
 
-                <%-- Logout at bottom --%>
+                <%-- =================================================
+                     LOGOUT
+                     ================================================= --%>
+
                 <div class="staff-sidebar-bottom">
 
-                    <a href="#"
-                        class="staff-logout">
+                    <asp:LinkButton
+                        ID="lnkLogout"
+                        runat="server"
+                        CssClass="staff-logout"
+                        OnClick="lnkLogout_Click">
 
-                        <span class="staff-nav-icon">&#10140;
+                        <span class="staff-nav-icon">
+                            &#10140;
                         </span>
 
-                        <span class="staff-nav-text">Logout
+                        <span class="staff-nav-text">
+                            Logout
                         </span>
 
-                    </a>
+                    </asp:LinkButton>
 
                 </div>
 
@@ -184,13 +223,11 @@
             <main class="staff-main">
 
 
-                <%-- =================================================
-                     PAGE HEADING
-                     ================================================= --%>
-
                 <div class="staff-page-heading">
 
-                    <h3>Orders</h3>
+                    <h3>
+                        Orders
+                    </h3>
 
                     <p>
                         Manage and track customer orders.
@@ -207,11 +244,9 @@
                 <div class="staff-orders-toolbar">
 
 
-                    <%-- Left side --%>
                     <div class="staff-orders-toolbar-left">
 
 
-                        <%-- Search --%>
                         <div class="staff-search-box">
 
                             <span class="staff-search-icon">
@@ -242,7 +277,6 @@
 
 
 
-                        <%-- Status filter --%>
                         <div class="staff-filter-box">
 
                             <span class="staff-filter-icon">
@@ -263,19 +297,24 @@
 
                             <select class="form-control staff-status-filter">
 
-                                <option value="">Filter by status
+                                <option value="">
+                                    Filter by status
                                 </option>
 
-                                <option value="Pending">Pending
+                                <option value="Pending">
+                                    Pending
                                 </option>
 
-                                <option value="Preparing">Preparing
+                                <option value="Preparing">
+                                    Preparing
                                 </option>
 
-                                <option value="Ready">Ready
+                                <option value="Ready">
+                                    Ready
                                 </option>
 
-                                <option value="Completed">Completed
+                                <option value="Completed">
+                                    Completed
                                 </option>
 
                             </select>
@@ -287,24 +326,22 @@
 
 
 
-                    <%-- Right side --%>
                     <div class="staff-orders-toolbar-right">
-
 
                         <button type="button"
                             class="btn btn-outline-brand">
+
                             ↻ Refresh Orders
 
                         </button>
 
 
-                        <%-- UI mock for now --%>
                         <button type="button"
                             class="btn btn-brand">
+
                             + New Order
 
                         </button>
-
 
                     </div>
 
@@ -314,13 +351,14 @@
 
 
                 <%-- =================================================
-                     ORDER STATUS SUMMARY CARDS
+                     ORDER STATUS SUMMARY
                      ================================================= --%>
 
                 <div class="staff-metric-grid">
 
 
                     <%-- NEW ORDERS --%>
+
                     <div class="staff-metric-card">
 
                         <div class="staff-icon-box icon-green">
@@ -342,10 +380,13 @@
 
                         <div>
 
-                            <span class="staff-metric-label">NEW ORDERS
+                            <span class="staff-metric-label">
+                                NEW ORDERS
                             </span>
 
-                            <h3>8</h3>
+                            <h3>
+                                8
+                            </h3>
 
                             <p>
                                 Waiting to be processed
@@ -358,6 +399,7 @@
 
 
                     <%-- PREPARING --%>
+
                     <div class="staff-metric-card">
 
                         <div class="staff-icon-box icon-orange">
@@ -382,10 +424,13 @@
 
                         <div>
 
-                            <span class="staff-metric-label">PREPARING
+                            <span class="staff-metric-label">
+                                PREPARING
                             </span>
 
-                            <h3>4</h3>
+                            <h3>
+                                4
+                            </h3>
 
                             <p>
                                 Currently being prepared
@@ -398,6 +443,7 @@
 
 
                     <%-- READY --%>
+
                     <div class="staff-metric-card">
 
                         <div class="staff-icon-box icon-blue">
@@ -418,10 +464,13 @@
 
                         <div>
 
-                            <span class="staff-metric-label">READY
+                            <span class="staff-metric-label">
+                                READY
                             </span>
 
-                            <h3>3</h3>
+                            <h3>
+                                3
+                            </h3>
 
                             <p>
                                 Ready for collection
@@ -433,7 +482,8 @@
 
 
 
-                    <%-- COMPLETED TODAY --%>
+                    <%-- COMPLETED --%>
+
                     <div class="staff-metric-card">
 
                         <div class="staff-icon-box icon-purple">
@@ -457,10 +507,13 @@
 
                         <div>
 
-                            <span class="staff-metric-label">COMPLETED TODAY
+                            <span class="staff-metric-label">
+                                COMPLETED TODAY
                             </span>
 
-                            <h3>12</h3>
+                            <h3>
+                                12
+                            </h3>
 
                             <p>
                                 Orders completed today
@@ -472,38 +525,30 @@
 
 
                 </div>
-                <%-- END OF staff-metric-grid --%>
 
 
 
                 <%-- =================================================
                      ORDERS WORKSPACE
-
-                     This is important:
-                     BOTH the table and order details panel are
-                     inside this same container.
                      ================================================= --%>
 
                 <div class="staff-orders-workspace"
                     id="ordersWorkspace">
 
 
-                    <%-- =================================================
-                         ALL ORDERS TABLE
-                         ================================================= --%>
-
                     <section class="staff-dashboard-panel staff-orders-full">
 
 
-                        <%-- Table heading --%>
                         <div class="staff-panel-heading">
 
                             <div>
 
-                                <h5>All Orders
+                                <h5>
+                                    All Orders
                                 </h5>
 
-                                <small>View and manage customer orders
+                                <small>
+                                    View and manage customer orders
                                 </small>
 
                             </div>
@@ -512,7 +557,6 @@
 
 
 
-                        <%-- Responsive table container --%>
                         <div class="table-responsive">
 
 
@@ -524,11 +568,17 @@
                                     <tr>
 
                                         <th>Order #</th>
+
                                         <th>Customer</th>
+
                                         <th>Items</th>
+
                                         <th>Total</th>
+
                                         <th>Time</th>
+
                                         <th>Status</th>
+
                                         <th>Action</th>
 
                                     </tr>
@@ -540,9 +590,7 @@
                                 <tbody>
 
 
-                                    <%-- =================================================
-                                         ORDER 1008
-                                         ================================================= --%>
+                                    <%-- 1008 --%>
 
                                     <tr>
 
@@ -550,22 +598,26 @@
                                             <strong>#1008</strong>
                                         </td>
 
-                                        <td>Sarah M.
+                                        <td>
+                                            Sarah M.
                                         </td>
 
-                                        <td>3 items
+                                        <td>
+                                            3 items
                                         </td>
 
-                                        <td>R145.00
+                                        <td>
+                                            R145.00
                                         </td>
 
-                                        <td>14:25
+                                        <td>
+                                            14:25
                                         </td>
-
 
                                         <td>
 
-                                            <span class="order-status status-pending">Pending
+                                            <span class="order-status status-pending">
+                                                Pending
                                             </span>
 
                                         </td>
@@ -581,6 +633,7 @@
                                                 data-total="R145.00"
                                                 data-time="14:25"
                                                 data-status="Pending">
+
                                                 View Details
 
                                             </button>
@@ -591,9 +644,7 @@
 
 
 
-                                    <%-- =================================================
-                                         ORDER 1007
-                                         ================================================= --%>
+                                    <%-- 1007 --%>
 
                                     <tr>
 
@@ -601,22 +652,26 @@
                                             <strong>#1007</strong>
                                         </td>
 
-                                        <td>John D.
+                                        <td>
+                                            John D.
                                         </td>
 
-                                        <td>2 items
+                                        <td>
+                                            2 items
                                         </td>
 
-                                        <td>R98.00
+                                        <td>
+                                            R98.00
                                         </td>
 
-                                        <td>14:18
+                                        <td>
+                                            14:18
                                         </td>
-
 
                                         <td>
 
-                                            <span class="order-status status-preparing">Preparing
+                                            <span class="order-status status-preparing">
+                                                Preparing
                                             </span>
 
                                         </td>
@@ -628,10 +683,11 @@
                                                 class="btn btn-sm btn-outline-brand view-order-details"
                                                 data-order="#1007"
                                                 data-customer="John D."
-                                                data-items="Iced Latte|Butter Croissant"
+                                                data-items="1 × Iced Latte~R53.00|1 × Butter Croissant~R45.00"
                                                 data-total="R98.00"
                                                 data-time="14:18"
                                                 data-status="Preparing">
+
                                                 View Details
 
                                             </button>
@@ -642,9 +698,7 @@
 
 
 
-                                    <%-- =================================================
-                                         ORDER 1006
-                                         ================================================= --%>
+                                    <%-- 1006 --%>
 
                                     <tr>
 
@@ -652,22 +706,26 @@
                                             <strong>#1006</strong>
                                         </td>
 
-                                        <td>Amanda K.
+                                        <td>
+                                            Amanda K.
                                         </td>
 
-                                        <td>4 items
+                                        <td>
+                                            4 items
                                         </td>
 
-                                        <td>R210.00
+                                        <td>
+                                            R210.00
                                         </td>
 
-                                        <td>14:05
+                                        <td>
+                                            14:05
                                         </td>
-
 
                                         <td>
 
-                                            <span class="order-status status-ready">Ready
+                                            <span class="order-status status-ready">
+                                                Ready
                                             </span>
 
                                         </td>
@@ -679,10 +737,11 @@
                                                 class="btn btn-sm btn-outline-brand view-order-details"
                                                 data-order="#1006"
                                                 data-customer="Amanda K."
-                                                data-items="Cappuccino|Cheese Toastie|Muffin|Cold Drink"
+                                                data-items="1 × Cappuccino~R45.00|1 × Cheese Toastie~R65.00|1 × Muffin~R35.00|1 × Cold Drink~R65.00"
                                                 data-total="R210.00"
                                                 data-time="14:05"
                                                 data-status="Ready">
+
                                                 View Details
 
                                             </button>
@@ -693,9 +752,7 @@
 
 
 
-                                    <%-- =================================================
-                                         ORDER 1005
-                                         ================================================= --%>
+                                    <%-- 1005 --%>
 
                                     <tr>
 
@@ -703,22 +760,26 @@
                                             <strong>#1005</strong>
                                         </td>
 
-                                        <td>Michael P.
+                                        <td>
+                                            Michael P.
                                         </td>
 
-                                        <td>1 item
+                                        <td>
+                                            1 item
                                         </td>
 
-                                        <td>R55.00
+                                        <td>
+                                            R55.00
                                         </td>
 
-                                        <td>13:52
+                                        <td>
+                                            13:52
                                         </td>
-
 
                                         <td>
 
-                                            <span class="order-status status-completed">Completed
+                                            <span class="order-status status-completed">
+                                                Completed
                                             </span>
 
                                         </td>
@@ -730,10 +791,11 @@
                                                 class="btn btn-sm btn-outline-brand view-order-details"
                                                 data-order="#1005"
                                                 data-customer="Michael P."
-                                                data-items="Breakfast Combo"
+                                                data-items="1 × Breakfast Combo~R55.00"
                                                 data-total="R55.00"
                                                 data-time="13:52"
                                                 data-status="Completed">
+
                                                 View Details
 
                                             </button>
@@ -744,9 +806,7 @@
 
 
 
-                                    <%-- =================================================
-                                         ORDER 1004
-                                         ================================================= --%>
+                                    <%-- 1004 --%>
 
                                     <tr>
 
@@ -754,22 +814,26 @@
                                             <strong>#1004</strong>
                                         </td>
 
-                                        <td>Lerato N.
+                                        <td>
+                                            Lerato N.
                                         </td>
 
-                                        <td>5 items
+                                        <td>
+                                            5 items
                                         </td>
 
-                                        <td>R275.00
+                                        <td>
+                                            R275.00
                                         </td>
 
-                                        <td>13:41
+                                        <td>
+                                            13:41
                                         </td>
-
 
                                         <td>
 
-                                            <span class="order-status status-preparing">Preparing
+                                            <span class="order-status status-preparing">
+                                                Preparing
                                             </span>
 
                                         </td>
@@ -781,10 +845,11 @@
                                                 class="btn btn-sm btn-outline-brand view-order-details"
                                                 data-order="#1004"
                                                 data-customer="Lerato N."
-                                                data-items="Cappuccino|Toastie|Muffin|Cold Drink|Croissant"
+                                                data-items="1 × Cappuccino~R45.00|1 × Toastie~R65.00|1 × Muffin~R35.00|1 × Cold Drink~R55.00|1 × Croissant~R75.00"
                                                 data-total="R275.00"
                                                 data-time="13:41"
                                                 data-status="Preparing">
+
                                                 View Details
 
                                             </button>
@@ -804,66 +869,80 @@
 
 
                     </section>
-                    <%-- END OF ALL ORDERS TABLE --%>
 
 
 
                     <%-- =================================================
-                         ORDER DETAILS SIDE PANEL
-
-                         This panel is hidden normally.
-                         View Details opens it on the right.
+                         ORDER DETAILS PANEL
                          ================================================= --%>
 
                     <aside class="staff-order-details"
                         id="orderDetailsPanel">
 
 
-                        <%-- =================================================
-                        SELECTED ORDER HEADER
-                           Shows order number, time and current status.
-                         ================================================= --%>
-
                         <div class="staff-order-details-header">
+
 
                             <div class="staff-order-heading-left">
 
-                                <h4 id="detailOrderNumber">Order #1008
+                                <h4 id="detailOrderNumber">
+                                    Order #1008
                                 </h4>
 
                                 <p class="staff-order-placed">
-                                    Placed at <span id="detailHeaderTime">14:25</span>
+
+                                    Placed at
+
+                                    <span id="detailHeaderTime">
+                                        14:25
+                                    </span>
+
                                 </p>
 
                             </div>
 
 
+
                             <div class="staff-order-heading-right">
 
+
                                 <span id="detailStatus"
-                                    class="order-status status-pending">Pending
+                                    class="order-status status-pending">
+
+                                    Pending
+
                                 </span>
+
 
                                 <button type="button"
                                     id="closeOrderDetails"
                                     class="staff-details-close"
                                     aria-label="Close order details">
+
                                     ×
+
                                 </button>
 
+
                             </div>
+
 
                         </div>
 
 
 
-                        <%-- Customer --%>
+                        <%-- CUSTOMER --%>
+
                         <div class="staff-details-section">
 
-                            <small class="staff-detail-label">CUSTOMER
+
+                            <small class="staff-detail-label">
+                                CUSTOMER
                             </small>
 
+
                             <div class="staff-customer-row">
+
 
                                 <div class="staff-customer-icon">
 
@@ -874,79 +953,94 @@
                                         stroke="currentColor"
                                         stroke-width="2">
 
-                                        <circle cx="12" cy="8" r="4" />
+                                        <circle cx="12"
+                                            cy="8"
+                                            r="4" />
+
                                         <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" />
 
                                     </svg>
 
                                 </div>
 
+
                                 <div>
 
-                                    <strong id="detailCustomer">Sarah M.
+                                    <strong id="detailCustomer">
+                                        Sarah M.
                                     </strong>
 
-                                    <small class="staff-customer-number">Customer #C1024
+                                    <small class="staff-customer-number">
+                                        Customer
                                     </small>
 
                                 </div>
 
+
                             </div>
+
 
                         </div>
 
-                        <%-- =================================================
-                                  ORDER ITEMS
-                         Shows how many items are in the selected order.
-                         ================================================= --%>
+
+
+                        <%-- ITEMS --%>
 
                         <div class="staff-details-section">
 
+
                             <div class="staff-order-items-heading">
 
-                                <small class="staff-detail-label">ORDER ITEMS
+                                <small class="staff-detail-label">
+                                    ORDER ITEMS
                                 </small>
 
                                 <small id="detailItemCount"
-                                    class="staff-order-item-count">(3)
+                                    class="staff-order-item-count">
+                                    (3)
                                 </small>
 
                             </div>
 
 
-                            <%-- JavaScript inserts the selected order items here --%>
                             <div id="detailItems"
                                 class="staff-detail-items">
                             </div>
 
 
-                            <%-- Order total --%>
+
                             <div class="staff-order-total-row">
 
-                                <strong>Total
+                                <strong>
+                                    Total
                                 </strong>
 
-                                <strong id="detailItemsTotal">R145.00
+                                <strong id="detailItemsTotal">
+                                    R145.00
                                 </strong>
 
                             </div>
 
+
                         </div>
 
 
-                        <%-- =================================================
-     UPDATE STATUS BUTTON
-     Matches the inspiration style.
-     ================================================= --%>
+
+                        <%-- UPDATE STATUS --%>
+
                         <div class="staff-details-actions">
 
+
                             <div class="staff-status-dropdown">
+
 
                                 <button type="button"
                                     id="updateStatusToggle"
                                     class="staff-update-status-menu">
 
+
                                     <span class="staff-update-status-left">
+
 
                                         <svg viewBox="0 0 24 24"
                                             width="18"
@@ -960,11 +1054,18 @@
 
                                         </svg>
 
-                                        <span>Update Status</span>
+
+                                        <span>
+                                            Update Status
+                                        </span>
+
 
                                     </span>
 
+
+
                                     <span class="staff-update-status-arrow">
+
 
                                         <svg viewBox="0 0 24 24"
                                             width="16"
@@ -979,56 +1080,81 @@
 
                                         </svg>
 
+
                                     </span>
 
+
                                 </button>
+
 
 
                                 <div id="statusDropdownMenu"
                                     class="staff-status-dropdown-menu">
 
-                                    <button type="button" data-status="Pending">
+
+                                    <button type="button"
+                                        data-status="Pending">
+
                                         Pending
+
                                     </button>
 
-                                    <button type="button" data-status="Preparing">
+
+                                    <button type="button"
+                                        data-status="Preparing">
+
                                         Preparing
+
                                     </button>
 
-                                    <button type="button" data-status="Ready">
+
+                                    <button type="button"
+                                        data-status="Ready">
+
                                         Ready
+
                                     </button>
 
-                                    <button type="button" data-status="Completed">
+
+                                    <button type="button"
+                                        data-status="Completed">
+
                                         Completed
+
                                     </button>
+
 
                                 </div>
 
+
                             </div>
+
 
                         </div>
 
+
                     </aside>
-                    <%-- END OF ORDER DETAILS --%>
+
+
                 </div>
-        <%-- END OF staff-orders-workspace --%>
+
+
             </main>
-            <%-- END OF staff-main --%>
-    </div>
-    <%-- END OF staff-body --%>
+
+
+        </div>
 
 
     </div>
-    <%-- END OF staff-shell --%>
 
 
 
     <%-- =================================================
-         STAFF PAGE JAVASCRIPT
+         JAVASCRIPT
          ================================================= --%>
 
     <script>
+
 
         // =====================================================
         // STAFF PAGE SETUP
@@ -1036,305 +1162,418 @@
 
         document.body.classList.add("staff-page");
 
+
+        const publicNavbar =
+            document.querySelector(".navbar");
+
+
+        if (publicNavbar) {
+
+            publicNavbar.style.display = "none";
+
+        }
+
+
+
         const bodyContent =
             document.querySelector(".body-content");
+
 
         if (bodyContent) {
 
             bodyContent.classList.remove("container");
 
             bodyContent.style.width = "100%";
+
             bodyContent.style.maxWidth = "none";
+
             bodyContent.style.margin = "0";
+
             bodyContent.style.padding = "0";
+
+        }
+
+
+
+        const masterFooter =
+            document.querySelector(".body-content > footer");
+
+
+        if (masterFooter) {
+
+            masterFooter.style.display = "none";
+
+        }
+
+
+
+        const masterFooterLine =
+            document.querySelector(".body-content > hr");
+
+
+        if (masterFooterLine) {
+
+            masterFooterLine.style.display = "none";
+
         }
 
 
 
         // =====================================================
-        // SIDEBAR TOGGLE
+        // SIDEBAR
         // =====================================================
 
         const sidebarToggle =
             document.getElementById("sidebarToggle");
 
+
         const staffBody =
             document.querySelector(".staff-body");
 
+
         if (sidebarToggle && staffBody) {
 
-            sidebarToggle.addEventListener("click", function () {
+            sidebarToggle.addEventListener(
+                "click",
+                function () {
 
-                staffBody.classList.toggle("sidebar-collapsed");
+                    staffBody.classList.toggle(
+                        "sidebar-collapsed"
+                    );
 
-            });
+                });
+
         }
 
 
 
         // =====================================================
-        // ORDER DETAILS SIDE PANEL
+        // ORDER DETAILS
         // =====================================================
 
         const ordersWorkspace =
             document.getElementById("ordersWorkspace");
 
+
         const closeOrderDetails =
             document.getElementById("closeOrderDetails");
 
+
         const detailButtons =
-            document.querySelectorAll(".view-order-details");
+            document.querySelectorAll(
+                ".view-order-details"
+            );
 
 
 
         detailButtons.forEach(function (button) {
 
-            button.addEventListener("click", function () {
 
+            button.addEventListener(
+                "click",
+                function () {
 
-                // ---------------------------------------------
-                // GET SELECTED ORDER INFORMATION
-                // ---------------------------------------------
 
-                const order =
-                    button.dataset.order;
+                    const order =
+                        button.dataset.order;
 
-                const customer =
-                    button.dataset.customer;
 
-                const total =
-                    button.dataset.total;
+                    const customer =
+                        button.dataset.customer;
 
-                const time =
-                    button.dataset.time;
 
-                const status =
-                    button.dataset.status;
+                    const total =
+                        button.dataset.total;
 
-                const items =
-                    button.dataset.items.split("|");
 
+                    const time =
+                        button.dataset.time;
 
 
-                // ---------------------------------------------
-                // ORDER HEADER
-                // ---------------------------------------------
+                    const status =
+                        button.dataset.status;
 
-                document.getElementById("detailOrderNumber").textContent =
-                    "Order " + order;
 
-                document.getElementById("detailHeaderTime").textContent =
-                    time;
+                    const items =
+                        button.dataset.items.split("|");
 
 
 
-                // ---------------------------------------------
-                // CUSTOMER
-                // ---------------------------------------------
+                    document.getElementById(
+                        "detailOrderNumber"
+                    ).textContent =
+                        "Order " + order;
 
-                document.getElementById("detailCustomer").textContent =
-                    customer;
 
 
+                    document.getElementById(
+                        "detailHeaderTime"
+                    ).textContent =
+                        time;
 
-                // ---------------------------------------------
-                // STATUS
-                // ---------------------------------------------
 
-                const detailStatus =
-                    document.getElementById("detailStatus");
 
-                detailStatus.textContent =
-                    status;
+                    document.getElementById(
+                        "detailCustomer"
+                    ).textContent =
+                        customer;
 
 
-                // Remove previous status colour
-                detailStatus.className =
-                    "order-status";
 
+                    // =================================================
+                    // STATUS
+                    // =================================================
 
-                // Add correct status colour
-                if (status === "Pending") {
+                    const detailStatus =
+                        document.getElementById(
+                            "detailStatus"
+                        );
 
-                    detailStatus.classList.add("status-pending");
 
-                }
-                else if (status === "Preparing") {
+                    detailStatus.textContent =
+                        status;
 
-                    detailStatus.classList.add("status-preparing");
 
-                }
-                else if (status === "Ready") {
+                    detailStatus.className =
+                        "order-status";
 
-                    detailStatus.classList.add("status-ready");
 
-                }
-                else if (status === "Completed") {
+                    if (status === "Pending") {
 
-                    detailStatus.classList.add("status-completed");
-                    detailStatus.classList.add("status-completed");
+                        detailStatus.classList.add(
+                            "status-pending"
+                        );
 
-                }
+                    }
 
+                    else if (status === "Preparing") {
 
+                        detailStatus.classList.add(
+                            "status-preparing"
+                        );
 
-                // =================================================
-                // ORDER ITEMS
-                // =================================================
+                    }
 
-                const itemsContainer =
-                    document.getElementById("detailItems");
+                    else if (status === "Ready") {
 
+                        detailStatus.classList.add(
+                            "status-ready"
+                        );
 
-                // Remove items from previously selected order
-                itemsContainer.innerHTML = "";
+                    }
 
+                    else if (status === "Completed") {
 
-                // Count actual quantity of items
-                let totalItemCount = 0;
+                        detailStatus.classList.add(
+                            "status-completed"
+                        );
 
+                    }
 
-                items.forEach(function (item) {
 
-                    // Example:
-                    // "1 × Cappuccino~R45.00"
 
-                    const parts =
-                        item.split("~");
+                    // =================================================
+                    // ITEMS
+                    // =================================================
 
+                    const itemsContainer =
+                        document.getElementById(
+                            "detailItems"
+                        );
 
-                    // Left side:
-                    // "1 × Cappuccino"
-                    const itemDetails =
-                        parts[0].trim();
 
+                    itemsContainer.innerHTML =
+                        "";
 
-                    // Right side:
-                    // "R45.00"
-                    const itemPrice =
-                        parts.length > 1
-                            ? parts[1].trim()
-                            : "";
 
+                    let totalItemCount =
+                        0;
 
-                    // ---------------------------------------------
-                    // CALCULATE QUANTITY
-                    // ---------------------------------------------
 
-                    const quantityParts =
-                        itemDetails.split("×");
 
-                    const quantity =
-                        parseInt(quantityParts[0].trim());
+                    items.forEach(
+                        function (item) {
 
 
-                    totalItemCount +=
-                        isNaN(quantity) ? 1 : quantity;
+                            const parts =
+                                item.split("~");
 
 
+                            const itemDetails =
+                                parts[0].trim();
 
-                    // ---------------------------------------------
-                    // CREATE ITEM ROW
-                    // ---------------------------------------------
 
-                    const row =
-                        document.createElement("div");
+                            const itemPrice =
+                                parts.length > 1
+                                    ? parts[1].trim()
+                                    : "";
 
-                    row.className =
-                        "staff-detail-item";
 
 
-                    // Quantity + product name on LEFT
-                    const nameSpan =
-                        document.createElement("span");
+                            const quantityParts =
+                                itemDetails.split("×");
 
-                    nameSpan.className =
-                        "staff-detail-item-name";
 
-                    nameSpan.textContent =
-                        itemDetails;
+                            const quantity =
+                                parseInt(
+                                    quantityParts[0].trim()
+                                );
 
 
-                    // Price on RIGHT
-                    const priceSpan =
-                        document.createElement("span");
+                            totalItemCount +=
+                                isNaN(quantity)
+                                    ? 1
+                                    : quantity;
 
-                    priceSpan.className =
-                        "staff-detail-item-price";
 
-                    priceSpan.textContent =
-                        itemPrice;
 
+                            const row =
+                                document.createElement(
+                                    "div"
+                                );
 
-                    row.appendChild(nameSpan);
-                    row.appendChild(priceSpan);
 
-                    itemsContainer.appendChild(row);
+                            row.className =
+                                "staff-detail-item";
+
+
+
+                            const nameSpan =
+                                document.createElement(
+                                    "span"
+                                );
+
+
+                            nameSpan.className =
+                                "staff-detail-item-name";
+
+
+                            nameSpan.textContent =
+                                itemDetails;
+
+
+
+                            const priceSpan =
+                                document.createElement(
+                                    "span"
+                                );
+
+
+                            priceSpan.className =
+                                "staff-detail-item-price";
+
+
+                            priceSpan.textContent =
+                                itemPrice;
+
+
+
+                            row.appendChild(
+                                nameSpan
+                            );
+
+
+                            row.appendChild(
+                                priceSpan
+                            );
+
+
+                            itemsContainer.appendChild(
+                                row
+                            );
+
+
+                        });
+
+
+
+                    document.getElementById(
+                        "detailItemCount"
+                    ).textContent =
+                        "(" + totalItemCount + ")";
+
+
+
+                    document.getElementById(
+                        "detailItemsTotal"
+                    ).textContent =
+                        total;
+
+
+
+                    if (ordersWorkspace) {
+
+                        ordersWorkspace.classList.add(
+                            "details-open"
+                        );
+
+                    }
+
 
                 });
-
-
-
-                // Show ORDER ITEMS (3)
-                document.getElementById("detailItemCount").textContent =
-                    "(" + totalItemCount + ")";
-
-
-                // Show total at bottom
-                document.getElementById("detailItemsTotal").textContent =
-                    total;
-
-
-
-                // =================================================
-                // OPEN DETAILS PANEL
-                // =================================================
-
-                if (ordersWorkspace) {
-
-                    ordersWorkspace.classList.add("details-open");
-
-                }
-
-            });
 
         });
 
 
 
         // =====================================================
-        // CLOSE ORDER DETAILS
+        // CLOSE DETAILS
         // =====================================================
 
-        if (closeOrderDetails && ordersWorkspace) {
+        if (closeOrderDetails &&
+            ordersWorkspace) {
 
-            closeOrderDetails.addEventListener("click", function () {
 
-                ordersWorkspace.classList.remove("details-open");
+            closeOrderDetails.addEventListener(
+                "click",
+                function () {
 
-            });
+
+                    ordersWorkspace.classList.remove(
+                        "details-open"
+                    );
+
+
+                });
 
         }
+
+
+
         // =====================================================
-        // UPDATE STATUS DROPDOWN
+        // STATUS DROPDOWN
         // =====================================================
 
         const updateStatusToggle =
-            document.getElementById("updateStatusToggle");
+            document.getElementById(
+                "updateStatusToggle"
+            );
+
 
         const statusDropdown =
-            document.querySelector(".staff-status-dropdown");
+            document.querySelector(
+                ".staff-status-dropdown"
+            );
 
 
-        if (updateStatusToggle && statusDropdown) {
+        if (updateStatusToggle &&
+            statusDropdown) {
 
-            updateStatusToggle.addEventListener("click", function () {
 
-                statusDropdown.classList.toggle("open");
+            updateStatusToggle.addEventListener(
+                "click",
+                function () {
 
-            });
+
+                    statusDropdown.classList.toggle(
+                        "open"
+                    );
+
+
+                });
 
         }
+
 
     </script>
 

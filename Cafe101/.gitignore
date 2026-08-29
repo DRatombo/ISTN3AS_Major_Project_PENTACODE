@@ -1,3 +1,31 @@
+# Visual Studio
 .vs/
+**/.vs/
+
+# Build output
 bin/
 obj/
+**/bin/
+**/obj/
+
+# Compiled files
+*.dll
+*.pdb
+*.exe
+
+# Visual Studio / MSBuild cache
+*.cache
+*.dtbcache
+*.dtbcache.json
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# NuGet packages
+packages/

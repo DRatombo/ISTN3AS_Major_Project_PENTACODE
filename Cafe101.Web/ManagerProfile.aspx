@@ -11,57 +11,104 @@
     runat="server">
 
 
-    <div class="staff-shell">
+    <div class="staff-shell manager-shell">
 
-        <%-- =====================================================
+
+        <%-- ================================================
              TOP HEADER
-             ===================================================== --%>
+             ================================================ --%>
 
         <header class="staff-header">
 
+
             <div class="staff-header-left">
+
 
                 <button type="button"
                     id="sidebarToggle"
-                    class="staff-header-menu">
+                    class="staff-header-menu"
+                    aria-label="Toggle manager navigation">
+
                     ☰
+
                 </button>
+
 
                 <div class="staff-header-brand">
                     Cafe101
                 </div>
 
+
             </div>
 
+
+
+            <%-- LOGGED-IN MANAGER --%>
 
             <div class="staff-header-user">
 
+
                 <div class="staff-header-avatar">
-                    MA
+
+                    <asp:Label
+                        ID="lblTopManagerInitials"
+                        runat="server">
+                    </asp:Label>
+
                 </div>
+
 
                 <div>
-                    <strong>Manager</strong>
-                    <small>Administrator</small>
+
+
+                    <strong>
+
+                        <asp:Label
+                            ID="lblTopManagerName"
+                            runat="server">
+                        </asp:Label>
+
+                    </strong>
+
+
+                    <small>
+
+                        <asp:Label
+                            ID="lblTopManagerRole"
+                            runat="server">
+                        </asp:Label>
+
+                    </small>
+
+
                 </div>
 
+
             </div>
+
 
         </header>
 
 
+
+        <%-- ================================================
+             BODY
+             ================================================ --%>
+
         <div class="staff-body">
 
 
-            <%-- =====================================================
-                 MANAGER SIDEBAR
-                 ===================================================== --%>
+            <%-- ================================================
+                 SIDEBAR
+                 ================================================ --%>
 
             <aside class="staff-sidebar">
+
 
                 <div class="staff-sidebar-title">
                     MANAGER SYSTEM
                 </div>
+
 
 
                 <nav class="staff-nav">
@@ -80,10 +127,17 @@
                                 stroke="currentColor"
                                 stroke-width="2">
 
-                                <rect x="3" y="3" width="7" height="7" />
-                                <rect x="14" y="3" width="7" height="7" />
-                                <rect x="3" y="14" width="7" height="7" />
-                                <rect x="14" y="14" width="7" height="7" />
+                                <rect x="3" y="3"
+                                    width="7" height="7" />
+
+                                <rect x="14" y="3"
+                                    width="7" height="7" />
+
+                                <rect x="3" y="14"
+                                    width="7" height="7" />
+
+                                <rect x="14" y="14"
+                                    width="7" height="7" />
 
                             </svg>
 
@@ -170,10 +224,16 @@
                                 stroke="currentColor"
                                 stroke-width="2">
 
-                                <circle cx="9" cy="8" r="3" />
-                                <circle cx="17" cy="10" r="2" />
+                                <circle cx="9"
+                                    cy="8"
+                                    r="3" />
+
+                                <circle cx="17"
+                                    cy="10"
+                                    r="2" />
 
                                 <path d="M3 20c0-4 2.5-7 6-7s6 3 6 7" />
+
                                 <path d="M15 15c3 0 5 2 5 5" />
 
                             </svg>
@@ -232,7 +292,9 @@
                                 stroke="currentColor"
                                 stroke-width="2">
 
-                                <circle cx="12" cy="8" r="4" />
+                                <circle cx="12"
+                                    cy="8"
+                                    r="4" />
 
                                 <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" />
 
@@ -246,62 +308,74 @@
 
                     </a>
 
+
                 </nav>
 
 
 
-                <%-- Log Out --%>
+                <%-- ================================================
+                     LOGOUT
+                     ================================================ --%>
 
                 <div class="staff-sidebar-bottom">
 
-                    <a href="#"
-                        class="staff-logout">
 
-                        <span class="staff-nav-icon">&#10140;
-                            
+                    <asp:LinkButton
+                        ID="lnkLogout"
+                        runat="server"
+                        CssClass="staff-logout"
+                        OnClick="LnkLogout_Click">
+
+
+                        <span class="staff-nav-icon">
+                            &#10140;
                         </span>
+
 
                         <span class="staff-nav-text">
-                            Log Out
+                            Logout
                         </span>
 
-                    </a>
+
+                    </asp:LinkButton>
+
 
                 </div>
+
 
             </aside>
 
 
 
-            <%-- =====================================================
+            <%-- ================================================
                  MAIN PROFILE AREA
-                 ===================================================== --%>
+                 ================================================ --%>
 
             <main class="staff-main">
 
 
-                <%-- =================================================
-                     PAGE HEADING
-                     ================================================= --%>
+                <%-- PAGE HEADING --%>
 
                 <div class="staff-page-heading">
+
 
                     <h3>
                         My Profile
                     </h3>
 
+
                     <p>
-                        View and manage your manager account information.
+                        View your manager account information.
                     </p>
+
 
                 </div>
 
 
 
-                <%-- =================================================
+                <%-- ================================================
                      PROFILE SUMMARY
-                     Reuses Staff Profile styling
-                     ================================================= --%>
+                     ================================================ --%>
 
                 <section class="staff-dashboard-panel staff-profile-summary">
 
@@ -309,9 +383,17 @@
                     <div class="staff-profile-summary-left">
 
 
+                        <%-- INITIALS --%>
+
                         <div class="staff-profile-avatar">
-                            MA
+
+                            <asp:Label
+                                ID="lblProfileInitials"
+                                runat="server">
+                            </asp:Label>
+
                         </div>
+
 
 
                         <div class="staff-profile-main-info">
@@ -319,13 +401,26 @@
 
                             <div class="staff-profile-name-row">
 
+
                                 <h4>
-                                    Manager Admin
+
+                                    <asp:Label
+                                        ID="lblProfileName"
+                                        runat="server">
+                                    </asp:Label>
+
                                 </h4>
 
+
                                 <span class="staff-profile-role-badge">
-                                    Administrator
+
+                                    <asp:Label
+                                        ID="lblProfileRole"
+                                        runat="server">
+                                    </asp:Label>
+
                                 </span>
+
 
                             </div>
 
@@ -334,9 +429,10 @@
                             <div class="staff-profile-contact-grid">
 
 
-                                <%-- Email --%>
+                                <%-- EMAIL --%>
 
                                 <div class="staff-profile-contact-item">
+
 
                                     <span class="staff-profile-contact-icon">
 
@@ -359,23 +455,36 @@
 
                                     </span>
 
+
                                     <div>
 
-                                        <small>Email</small>
+
+                                        <small>
+                                            Email
+                                        </small>
+
 
                                         <strong>
-                                            manager@cafe101.com
+
+                                            <asp:Label
+                                                ID="lblProfileEmail"
+                                                runat="server">
+                                            </asp:Label>
+
                                         </strong>
 
+
                                     </div>
+
 
                                 </div>
 
 
 
-                                <%-- Phone --%>
+                                <%-- EMPLOYEE ID --%>
 
                                 <div class="staff-profile-contact-item">
+
 
                                     <span class="staff-profile-contact-icon">
 
@@ -386,107 +495,129 @@
                                             stroke="currentColor"
                                             stroke-width="2">
 
-                                            <path d="M5 4h4l2 5-3 2c1 3 3 5 6 6l2-3 5 2v4c0 1-1 2-2 2C10 22 2 14 2 6c0-1 1-2 3-2z" />
-
-                                        </svg>
-
-                                    </span>
-
-                                    <div>
-
-                                        <small>Phone</small>
-
-                                        <strong>
-                                            +27 61 234 5678
-                                        </strong>
-
-                                    </div>
-
-                                </div>
-
-
-
-                                <%-- Member Since --%>
-
-                                <div class="staff-profile-contact-item">
-
-                                    <span class="staff-profile-contact-icon">
-
-                                        <svg viewBox="0 0 24 24"
-                                            width="17"
-                                            height="17"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2">
-
-                                            <rect x="3"
-                                                y="5"
-                                                width="18"
+                                            <rect x="4"
+                                                y="4"
+                                                width="16"
                                                 height="16"
                                                 rx="2" />
 
-                                            <path d="M8 3v4" />
-                                            <path d="M16 3v4" />
-                                            <path d="M3 10h18" />
+                                            <path d="M8 9h8" />
+                                            <path d="M8 13h5" />
 
                                         </svg>
 
                                     </span>
 
+
                                     <div>
 
-                                        <small>Member Since</small>
+
+                                        <small>
+                                            Employee ID
+                                        </small>
+
 
                                         <strong>
-                                            10 January 2024
+
+                                            <asp:Label
+                                                ID="lblSummaryEmployeeID"
+                                                runat="server">
+                                            </asp:Label>
+
                                         </strong>
+
 
                                     </div>
 
+
                                 </div>
+
+
+
+                                <%-- STATUS --%>
+
+                                <div class="staff-profile-contact-item">
+
+
+                                    <span class="staff-profile-contact-icon">
+
+                                        <svg viewBox="0 0 24 24"
+                                            width="17"
+                                            height="17"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2">
+
+                                            <circle cx="12"
+                                                cy="12"
+                                                r="9" />
+
+                                            <path d="M8 12l3 3 5-6" />
+
+                                        </svg>
+
+                                    </span>
+
+
+                                    <div>
+
+
+                                        <small>
+                                            Account Status
+                                        </small>
+
+
+                                        <strong>
+                                            Active
+                                        </strong>
+
+
+                                    </div>
+
+
+                                </div>
+
 
                             </div>
 
+
                         </div>
 
-                    </div>
-
-
-
-                    <%-- Edit Profile --%>
-
-                    <div class="staff-profile-summary-right">
-
-                        <button type="button"
-                            class="btn btn-outline-brand staff-edit-profile-btn">
-
-                            ✎ Edit Profile
-
-                        </button>
 
                     </div>
+
 
                 </section>
 
 
 
-                <%-- =================================================
-                     LOWER PROFILE GRID
-                     ================================================= --%>
+                <%-- STATUS / ERROR MESSAGE --%>
+
+                <asp:Label
+                    ID="lblProfileMessage"
+                    runat="server"
+                    CssClass="d-block small mt-3">
+                </asp:Label>
+
+
+
+                <%-- ================================================
+                     PROFILE CONTENT
+                     ================================================ --%>
 
                 <div class="staff-profile-content-grid">
 
 
-                    <%-- =================================================
+                    <%-- ================================================
                          LEFT COLUMN
-                         ================================================= --%>
+                         ================================================ --%>
 
                     <div>
 
 
-                        <%-- =============================================
+                        <%-- ============================================
                              PERSONAL INFORMATION
-                             ============================================= --%>
+                             ============================================ --%>
 
                         <section class="staff-dashboard-panel staff-profile-info-card">
 
@@ -497,13 +628,18 @@
                                     Personal Information
                                 </h5>
 
+                                <small>
+                                    Information stored on your Cafe101 employee account.
+                                </small>
+
                             </div>
 
 
 
-                            <%-- Full Name --%>
+                            <%-- FULL NAME --%>
 
                             <div class="staff-profile-info-row">
+
 
                                 <span class="staff-profile-info-label">
 
@@ -515,17 +651,25 @@
 
                                 </span>
 
+
                                 <strong>
-                                    Manager Admin
+
+                                    <asp:Label
+                                        ID="lblFullName"
+                                        runat="server">
+                                    </asp:Label>
+
                                 </strong>
+
 
                             </div>
 
 
 
-                            <%-- Email --%>
+                            <%-- EMAIL --%>
 
                             <div class="staff-profile-info-row">
+
 
                                 <span class="staff-profile-info-label">
 
@@ -537,61 +681,25 @@
 
                                 </span>
 
+
                                 <strong>
-                                    manager@cafe101.com
+
+                                    <asp:Label
+                                        ID="lblEmail"
+                                        runat="server">
+                                    </asp:Label>
+
                                 </strong>
+
 
                             </div>
 
 
 
-                            <%-- Phone --%>
+                            <%-- ADDRESS --%>
 
                             <div class="staff-profile-info-row">
 
-                                <span class="staff-profile-info-label">
-
-                                    <span class="staff-profile-small-icon">
-                                        ☎
-                                    </span>
-
-                                    Phone Number
-
-                                </span>
-
-                                <strong>
-                                    +27 61 234 5678
-                                </strong>
-
-                            </div>
-
-
-
-                            <%-- Date of Birth --%>
-
-                            <div class="staff-profile-info-row">
-
-                                <span class="staff-profile-info-label">
-
-                                    <span class="staff-profile-small-icon">
-                                        ◫
-                                    </span>
-
-                                    Date of Birth
-
-                                </span>
-
-                                <strong>
-                                    15 April 1985
-                                </strong>
-
-                            </div>
-
-
-
-                            <%-- Address --%>
-
-                            <div class="staff-profile-info-row">
 
                                 <span class="staff-profile-info-label">
 
@@ -603,17 +711,25 @@
 
                                 </span>
 
+
                                 <strong>
-                                    123 Main Street, Durban, 4001
+
+                                    <asp:Label
+                                        ID="lblAddress"
+                                        runat="server">
+                                    </asp:Label>
+
                                 </strong>
+
 
                             </div>
 
 
 
-                            <%-- Role --%>
+                            <%-- ROLE --%>
 
                             <div class="staff-profile-info-row">
+
 
                                 <span class="staff-profile-info-label">
 
@@ -625,60 +741,54 @@
 
                                 </span>
 
+
                                 <strong>
-                                    Administrator
+
+                                    <asp:Label
+                                        ID="lblRole"
+                                        runat="server">
+                                    </asp:Label>
+
                                 </strong>
+
 
                             </div>
 
-
-
-                            <%-- Department --%>
-
-                            <div class="staff-profile-info-row">
-
-                                <span class="staff-profile-info-label">
-
-                                    <span class="staff-profile-small-icon">
-                                        ▦
-                                    </span>
-
-                                    Department
-
-                                </span>
-
-                                <strong>
-                                    Operations
-                                </strong>
-
-                            </div>
 
                         </section>
 
 
 
-                        <%-- =============================================
-                             PERMISSIONS / ACCESS
-                             ============================================= --%>
+                        <%-- ============================================
+                             PERMISSIONS
+                             ============================================ --%>
 
                         <section class="staff-dashboard-panel manager-profile-permissions">
 
 
                             <div class="staff-profile-section-heading">
 
+
                                 <h5>
                                     Permissions / Access
                                 </h5>
 
+
                                 <small>
-                                    As an administrator, you have access to the following areas.
+                                    Manager access within the Cafe101 system.
                                 </small>
+
 
                             </div>
 
 
 
                             <div class="manager-profile-permission-list">
+
+
+                                <span class="manager-profile-permission">
+                                    ✓ Dashboard
+                                </span>
 
 
                                 <span class="manager-profile-permission">
@@ -701,33 +811,142 @@
                                 </span>
 
 
-                                <span class="manager-profile-permission">
-                                    ✓ System Settings
-                                </span>
-
                             </div>
 
+
                         </section>
+
 
                     </div>
 
 
 
-                    <%-- =================================================
+                    <%-- ================================================
                          RIGHT COLUMN
-                         ================================================= --%>
+                         ================================================ --%>
 
                     <div class="staff-profile-right-column">
 
 
-                        <%-- =============================================
+                        <%-- ============================================
+                             WORK INFORMATION
+                             ============================================ --%>
+
+                        <section class="staff-dashboard-panel staff-profile-work-card">
+
+
+                            <div class="staff-profile-section-heading">
+
+                                <h5>
+                                    Work Information
+                                </h5>
+
+                            </div>
+
+
+
+                            <%-- EMPLOYEE ID --%>
+
+                            <div class="staff-profile-info-row">
+
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ▣
+                                    </span>
+
+                                    Employee ID
+
+                                </span>
+
+
+                                <strong>
+
+                                    <asp:Label
+                                        ID="lblEmployeeID"
+                                        runat="server">
+                                    </asp:Label>
+
+                                </strong>
+
+
+                            </div>
+
+
+
+                            <%-- ROLE --%>
+
+                            <div class="staff-profile-info-row">
+
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ♙
+                                    </span>
+
+                                    System Role
+
+                                </span>
+
+
+                                <strong>
+
+                                    <asp:Label
+                                        ID="lblWorkRole"
+                                        runat="server">
+                                    </asp:Label>
+
+                                </strong>
+
+
+                            </div>
+
+
+
+                            <%-- STATUS --%>
+
+                            <div class="staff-profile-info-row">
+
+
+                                <span class="staff-profile-info-label">
+
+                                    <span class="staff-profile-small-icon">
+                                        ✓
+                                    </span>
+
+                                    Status
+
+                                </span>
+
+
+                                <span class="staff-profile-status-active">
+
+                                    <asp:Label
+                                        ID="lblAccountStatus"
+                                        runat="server">
+                                    </asp:Label>
+
+                                </span>
+
+
+                            </div>
+
+
+                        </section>
+
+
+
+                        <%-- ============================================
                              ACCOUNT SECURITY
-                             ============================================= --%>
+                             ============================================ --%>
 
                         <section class="staff-dashboard-panel staff-profile-small-card">
 
 
                             <div class="staff-profile-small-card-content">
+
 
                                 <div class="staff-profile-security-icon">
 
@@ -751,158 +970,33 @@
                                 </div>
 
 
+
                                 <div>
+
 
                                     <strong>
                                         Account Security
                                     </strong>
 
+
                                     <small>
-                                        Keep your account secure
+                                        Your Cafe101 manager account is password protected.
                                     </small>
 
-                                    <p>
-                                        Last password change: 12 days ago
-                                    </p>
 
                                 </div>
 
+
                             </div>
 
-
-                            <button type="button"
-                                class="staff-security-btn">
-
-                                Change Password
-
-                            </button>
 
                         </section>
 
 
 
-                        <%-- =============================================
-                             WORK INFORMATION
-                             ============================================= --%>
-
-                        <section class="staff-dashboard-panel staff-profile-work-card">
-
-
-                            <div class="staff-profile-section-heading">
-
-                                <h5>
-                                    Work Information
-                                </h5>
-
-                            </div>
-
-
-
-                            <div class="staff-profile-info-row">
-
-                                <span class="staff-profile-info-label">
-
-                                    <span class="staff-profile-small-icon">
-                                        ▣
-                                    </span>
-
-                                    Employee ID
-
-                                </span>
-
-                                <strong>
-                                    MGR1001
-                                </strong>
-
-                            </div>
-
-
-
-                            <div class="staff-profile-info-row">
-
-                                <span class="staff-profile-info-label">
-
-                                    <span class="staff-profile-small-icon">
-                                        ◫
-                                    </span>
-
-                                    Hire Date
-
-                                </span>
-
-                                <strong>
-                                    10 January 2024
-                                </strong>
-
-                            </div>
-
-
-
-                            <div class="staff-profile-info-row">
-
-                                <span class="staff-profile-info-label">
-
-                                    <span class="staff-profile-small-icon">
-                                        ◷
-                                    </span>
-
-                                    Shift / Work Hours
-
-                                </span>
-
-                                <strong>
-                                    Mon - Fri, 08:00 - 17:00
-                                </strong>
-
-                            </div>
-
-
-
-                            <div class="staff-profile-info-row">
-
-                                <span class="staff-profile-info-label">
-
-                                    <span class="staff-profile-small-icon">
-                                        ⌂
-                                    </span>
-
-                                    Branch
-
-                                </span>
-
-                                <strong>
-                                    Cafe101 University Branch
-                                </strong>
-
-                            </div>
-
-
-
-                            <div class="staff-profile-info-row">
-
-                                <span class="staff-profile-info-label">
-
-                                    <span class="staff-profile-small-icon">
-                                        ✓
-                                    </span>
-
-                                    Status
-
-                                </span>
-
-                                <span class="staff-profile-status-active">
-                                    Active
-                                </span>
-
-                            </div>
-
-                        </section>
-
-
-
-                        <%-- =============================================
+                        <%-- ============================================
                              QUICK ACTIONS
-                             ============================================= --%>
+                             ============================================ --%>
 
                         <section class="staff-dashboard-panel staff-profile-quick-card">
 
@@ -920,144 +1014,186 @@
                             <div class="manager-profile-quick-grid">
 
 
-                                <%-- Update Profile --%>
+                                <%-- ORDERS --%>
 
                                 <button type="button"
-                                    class="staff-profile-quick-action">
+                                    class="staff-profile-quick-action"
+                                    onclick="window.location.href='ManagerOrders.aspx';">
 
-                                    <span class="staff-profile-quick-icon icon-purple">
-                                        ✎
-                                    </span>
-
-                                    <span>
-
-                                        <strong>
-                                            Update Profile
-                                        </strong>
-
-                                        <small>
-                                            Edit your information
-                                        </small>
-
-                                    </span>
-
-                                </button>
-
-
-
-                                <%-- Password --%>
-
-                                <button type="button"
-                                    class="staff-profile-quick-action">
 
                                     <span class="staff-profile-quick-icon icon-beige">
-                                        🔒
+                                        ▣
                                     </span>
+
 
                                     <span>
 
+
                                         <strong>
-                                            Change Password
+                                            Manage Orders
                                         </strong>
 
+
                                         <small>
-                                            Update your password
+                                            View customer orders
                                         </small>
 
+
                                     </span>
+
 
                                 </button>
 
 
 
-                                <%-- Reports --%>
+                                <%-- MENU --%>
+
+                                <button type="button"
+                                    class="staff-profile-quick-action"
+                                    onclick="window.location.href='ManagerMenu.aspx';">
+
+
+                                    <span class="staff-profile-quick-icon icon-purple">
+                                        ▤
+                                    </span>
+
+
+                                    <span>
+
+
+                                        <strong>
+                                            Manage Menu
+                                        </strong>
+
+
+                                        <small>
+                                            View and update menu
+                                        </small>
+
+
+                                    </span>
+
+
+                                </button>
+
+
+
+                                <%-- REPORTS --%>
 
                                 <button type="button"
                                     class="staff-profile-quick-action"
                                     onclick="window.location.href='ManagerReports.aspx';">
 
+
                                     <span class="staff-profile-quick-icon icon-blue">
                                         ▥
                                     </span>
 
+
                                     <span>
+
 
                                         <strong>
                                             View Reports
                                         </strong>
 
+
                                         <small>
                                             Sales and performance
                                         </small>
 
+
                                     </span>
+
 
                                 </button>
 
 
 
-                                <%-- Staff --%>
+                                <%-- STAFF --%>
 
                                 <button type="button"
                                     class="staff-profile-quick-action"
                                     onclick="window.location.href='ManagerStaff.aspx';">
 
+
                                     <span class="staff-profile-quick-icon icon-green">
                                         ♙
                                     </span>
 
+
                                     <span>
+
 
                                         <strong>
                                             Manage Staff
                                         </strong>
 
+
                                         <small>
-                                            View and manage staff
+                                            View employee accounts
                                         </small>
+
 
                                     </span>
 
+
                                 </button>
+
 
                             </div>
 
+
                         </section>
+
 
                     </div>
 
+
                 </div>
 
 
 
-                <%-- =================================================
+                <%-- ================================================
                      FOOTER
-                     ================================================= --%>
+                     ================================================ --%>
 
                 <div class="staff-footer">
-                    © 2026 Cafe101. All rights reserved.
+                    © 2026 Cafe101 Manager System
                 </div>
+
 
             </main>
 
+
         </div>
+
 
     </div>
 
 
 
-    <%-- =====================================================
-         SHARED PAGE SCRIPT
-         ===================================================== --%>
+    <%-- ================================================
+         PAGE SCRIPT
+         ================================================ --%>
 
     <script>
 
         document.body.classList.add("staff-page");
 
 
+        // Hide public navbar from Site.Master
+        const publicNavbar =
+            document.querySelector(".navbar");
+
+        if (publicNavbar) {
+            publicNavbar.style.display = "none";
+        }
+
+
+        // Remove normal Site.Master spacing
         const bodyContent =
             document.querySelector(".body-content");
-
 
         if (bodyContent) {
 
@@ -1071,6 +1207,28 @@
         }
 
 
+        // Hide Site.Master footer
+        const masterFooter =
+            document.querySelector(
+                ".body-content > footer"
+            );
+
+        if (masterFooter) {
+            masterFooter.style.display = "none";
+        }
+
+
+        const masterFooterLine =
+            document.querySelector(
+                ".body-content > hr"
+            );
+
+        if (masterFooterLine) {
+            masterFooterLine.style.display = "none";
+        }
+
+
+        // Sidebar collapse
         const sidebarToggle =
             document.getElementById("sidebarToggle");
 
@@ -1080,11 +1238,15 @@
 
         if (sidebarToggle && staffBody) {
 
-            sidebarToggle.addEventListener("click", function () {
+            sidebarToggle.addEventListener(
+                "click",
+                function () {
 
-                staffBody.classList.toggle("sidebar-collapsed");
+                    staffBody.classList.toggle(
+                        "sidebar-collapsed"
+                    );
 
-            });
+                });
 
         }
 

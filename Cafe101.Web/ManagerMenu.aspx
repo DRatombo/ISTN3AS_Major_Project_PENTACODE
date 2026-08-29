@@ -5,58 +5,100 @@
     CodeBehind="ManagerMenu.aspx.cs"
     Inherits="Cafe101.Web.ManagerMenu" %>
 
+
 <asp:Content ID="Content1"
     ContentPlaceHolderID="MainContent"
     runat="server">
 
+
     <div class="staff-shell manager-shell">
 
-        <%-- =================================================
+
+        <%-- ============================================
              TOP HEADER
-             ================================================= --%>
+             ============================================ --%>
 
         <header class="staff-header">
 
+
             <div class="staff-header-left">
+
 
                 <button type="button"
                     id="sidebarToggle"
                     class="staff-header-menu"
                     aria-label="Toggle manager navigation">
+
                     ☰
+
                 </button>
+
 
                 <div class="staff-header-brand">
                     Cafe101
                 </div>
 
+
             </div>
 
 
-            <div class="staff-header-user">
+
+            <a href="ManagerProfile.aspx"
+                class="staff-header-user text-decoration-none">
+
 
                 <div class="staff-header-avatar">
-                    MA
+
+                    <asp:Label
+                        ID="lblTopManagerInitials"
+                        runat="server">
+                    </asp:Label>
+
                 </div>
+
 
                 <div>
-                    <strong>Manager</strong>
-                    <small>Administrator</small>
+
+
+                    <strong>
+
+                        <asp:Label
+                            ID="lblTopManagerName"
+                            runat="server">
+                        </asp:Label>
+
+                    </strong>
+
+
+                    <small>
+
+                        <asp:Label
+                            ID="lblTopManagerRole"
+                            runat="server">
+                        </asp:Label>
+
+                    </small>
+
+
                 </div>
 
-            </div>
+
+            </a>
+
 
         </header>
+
 
 
         <div class="staff-body">
 
 
-            <%-- =================================================
-                 MANAGER SIDEBAR
-                 ================================================= --%>
+            <%-- ============================================
+                 SIDEBAR
+                 ============================================ --%>
 
             <aside class="staff-sidebar">
+
 
                 <div class="staff-sidebar-title">
                     MANAGER SYSTEM
@@ -64,6 +106,7 @@
 
 
                 <nav class="staff-nav">
+
 
                     <a href="ManagerDashboard.aspx">
 
@@ -76,6 +119,7 @@
                         </span>
 
                     </a>
+
 
 
                     <a href="ManagerOrders.aspx">
@@ -105,7 +149,7 @@
                     </a>
 
 
-                    <%-- Menu active --%>
+
                     <a href="ManagerMenu.aspx"
                         class="active">
 
@@ -134,6 +178,7 @@
                     </a>
 
 
+
                     <a href="ManagerStaff.aspx">
 
                         <span class="staff-nav-icon">
@@ -145,11 +190,15 @@
                                 stroke="currentColor"
                                 stroke-width="2">
 
-                                <circle cx="9" cy="8" r="3" />
-                                <circle cx="17" cy="10" r="2" />
+                                <circle cx="9"
+                                    cy="8"
+                                    r="3" />
+
+                                <circle cx="17"
+                                    cy="10"
+                                    r="2" />
 
                                 <path d="M3 20c0-4 2.5-7 6-7s6 3 6 7" />
-                                <path d="M15 15c3 0 5 2 5 5" />
 
                             </svg>
 
@@ -162,7 +211,8 @@
                     </a>
 
 
-                    <a href="#">
+
+                    <a href="ManagerReports.aspx">
 
                         <span class="staff-nav-icon">
 
@@ -189,6 +239,7 @@
                     </a>
 
 
+
                     <a href="ManagerProfile.aspx">
 
                         <span class="staff-nav-icon">
@@ -200,7 +251,10 @@
                                 stroke="currentColor"
                                 stroke-width="2">
 
-                                <circle cx="12" cy="8" r="4" />
+                                <circle cx="12"
+                                    cy="8"
+                                    r="4" />
+
                                 <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" />
 
                             </svg>
@@ -213,13 +267,19 @@
 
                     </a>
 
+
                 </nav>
+
 
 
                 <div class="staff-sidebar-bottom">
 
-                    <a href="#"
-                        class="staff-logout">
+
+                    <asp:LinkButton
+                        ID="lnkLogout"
+                        runat="server"
+                        CssClass="staff-logout"
+                        OnClick="LnkLogout_Click">
 
                         <span class="staff-nav-icon">
                             &#10140;
@@ -229,23 +289,22 @@
                             Logout
                         </span>
 
-                    </a>
+                    </asp:LinkButton>
+
 
                 </div>
+
 
             </aside>
 
 
-            <%-- =================================================
-                 MAIN MENU AREA
-                 ================================================= --%>
+
+            <%-- ============================================
+                 MAIN CONTENT
+                 ============================================ --%>
 
             <main class="staff-main">
 
-
-                <%-- =================================================
-                     PAGE HEADING
-                     ================================================= --%>
 
                 <div class="staff-page-heading">
 
@@ -254,15 +313,25 @@
                     </h3>
 
                     <p>
-                        Manage menu items, categories and availability.
+                        View Cafe101 menu items and monitor
+                        their current inventory availability.
                     </p>
 
                 </div>
 
 
-                <%-- =================================================
-                     MENU TOOLBAR
-                     ================================================= --%>
+
+                <asp:Label
+                    ID="lblMessage"
+                    runat="server"
+                    CssClass="d-none">
+                </asp:Label>
+
+
+
+                <%-- ============================================
+                     TOOLBAR
+                     ============================================ --%>
 
                 <div class="manager-menu-toolbar">
 
@@ -270,8 +339,8 @@
                     <div class="manager-menu-toolbar-left">
 
 
-                        <%-- Search --%>
                         <div class="staff-search-box">
+
 
                             <span class="staff-search-icon">
 
@@ -293,83 +362,80 @@
                             </span>
 
 
-                            <input type="text"
-                                class="form-control"
-                                placeholder="Search by item name or category..." />
+                            <asp:TextBox
+                                ID="txtSearch"
+                                runat="server"
+                                CssClass="form-control"
+                                placeholder="Search by item name or category...">
+                            </asp:TextBox>
+
 
                         </div>
 
 
-                        <%-- Category filter --%>
-                        <select class="form-control manager-menu-filter">
 
-                            <option>
-                                All Categories
-                            </option>
-
-                            <option>
-                                Beverages
-                            </option>
-
-                            <option>
-                                Food
-                            </option>
-
-                            <option>
-                                Bakery
-                            </option>
-
-                            <option>
-                                Sides
-                            </option>
-
-                            <option>
-                                Combos
-                            </option>
-
-                        </select>
+                        <asp:DropDownList
+                            ID="ddlCategory"
+                            runat="server"
+                            CssClass="form-control manager-menu-filter"
+                            AutoPostBack="true"
+                            OnSelectedIndexChanged="DdlCategory_SelectedIndexChanged">
+                        </asp:DropDownList>
 
 
-                        <%-- Status filter --%>
-                        <select class="form-control manager-menu-filter">
 
-                            <option>
-                                All Statuses
-                            </option>
+                        <asp:DropDownList
+                            ID="ddlStatus"
+                            runat="server"
+                            CssClass="form-control manager-menu-filter"
+                            AutoPostBack="true"
+                            OnSelectedIndexChanged="DdlStatus_SelectedIndexChanged">
 
-                            <option>
-                                Available
-                            </option>
+                            <asp:ListItem
+                                Text="All Statuses"
+                                Value="">
+                            </asp:ListItem>
 
-                            <option>
-                                Low Stock
-                            </option>
+                            <asp:ListItem
+                                Text="Available"
+                                Value="Available">
+                            </asp:ListItem>
 
-                            <option>
-                                Unavailable
-                            </option>
+                            <asp:ListItem
+                                Text="Low Stock"
+                                Value="Low Stock">
+                            </asp:ListItem>
 
-                        </select>
+                            <asp:ListItem
+                                Text="Unavailable"
+                                Value="Unavailable">
+                            </asp:ListItem>
+
+                        </asp:DropDownList>
+
 
                     </div>
 
 
+
                     <div class="manager-menu-toolbar-right">
 
-                        <button type="button"
-                            class="btn btn-brand">
 
-                            + Add New Item
+                        <asp:Button
+                            ID="btnSearch"
+                            runat="server"
+                            Text="Search"
+                            CssClass="btn btn-brand"
+                            OnClick="BtnSearch_Click" />
 
-                        </button>
 
+                        <asp:Button
+                            ID="btnRefresh"
+                            runat="server"
+                            Text="↻ Refresh"
+                            CssClass="btn btn-outline-brand"
+                            OnClick="BtnRefresh_Click" />
 
-                        <button type="button"
-                            class="btn btn-outline-brand">
-
-                            ↻ Refresh
-
-                        </button>
 
                     </div>
 
@@ -377,29 +443,22 @@
                 </div>
 
 
-                <%-- =================================================
-                     MENU SUMMARY CARDS
-                     ================================================= --%>
+
+                <%-- ============================================
+                     SUMMARY
+                     ============================================ --%>
 
                 <div class="staff-metric-grid">
 
 
-                    <%-- Total items --%>
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box icon-green">
 
-                            <svg viewBox="0 0 24 24"
-                                width="23"
-                                height="23"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <path d="M5 7h14v12H5z" />
-                                <path d="M8 4h8v3H8z" />
-
-                            </svg>
+                            <span>
+                                ▤
+                            </span>
 
                         </div>
 
@@ -411,37 +470,31 @@
                             </span>
 
                             <h3>
-                                32
+
+                                <asp:Label
+                                    ID="lblTotalItems"
+                                    runat="server">
+                                </asp:Label>
+
                             </h3>
 
                             <p>
-                                All menu items
+                                Menu items in database
                             </p>
 
                         </div>
 
+
                     </div>
 
 
-                    <%-- Available --%>
+
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box icon-blue">
 
-                            <svg viewBox="0 0 24 24"
-                                width="23"
-                                height="23"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <circle cx="12"
-                                    cy="12"
-                                    r="9" />
-
-                                <path d="M8 12l3 3 5-6" />
-
-                            </svg>
+                            ✓
 
                         </div>
 
@@ -453,35 +506,31 @@
                             </span>
 
                             <h3>
-                                24
+
+                                <asp:Label
+                                    ID="lblAvailable"
+                                    runat="server">
+                                </asp:Label>
+
                             </h3>
 
                             <p>
-                                Items available
+                                Sufficient ingredient stock
                             </p>
 
                         </div>
 
+
                     </div>
 
 
-                    <%-- Out of stock --%>
+
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box icon-orange">
 
-                            <svg viewBox="0 0 24 24"
-                                width="23"
-                                height="23"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <path d="M12 3L2 21h20L12 3z" />
-                                <path d="M12 9v5" />
-                                <path d="M12 18h.01" />
-
-                            </svg>
+                            !
 
                         </div>
 
@@ -489,40 +538,35 @@
                         <div>
 
                             <span class="staff-metric-label">
-                                OUT OF STOCK
+                                UNAVAILABLE
                             </span>
 
                             <h3>
-                                3
+
+                                <asp:Label
+                                    ID="lblUnavailable"
+                                    runat="server">
+                                </asp:Label>
+
                             </h3>
 
                             <p>
-                                Currently unavailable
+                                Cannot currently be prepared
                             </p>
 
                         </div>
 
+
                     </div>
 
 
-                    <%-- Categories --%>
+
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box icon-purple">
 
-                            <svg viewBox="0 0 24 24"
-                                width="23"
-                                height="23"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <path d="M4 5h7l9 9-6 6-9-9V5z" />
-                                <circle cx="8"
-                                    cy="8"
-                                    r="1" />
-
-                            </svg>
+                            #
 
                         </div>
 
@@ -534,14 +578,20 @@
                             </span>
 
                             <h3>
-                                8
+
+                                <asp:Label
+                                    ID="lblCategoryCount"
+                                    runat="server">
+                                </asp:Label>
+
                             </h3>
 
                             <p>
-                                Menu categories
+                                Distinct menu categories
                             </p>
 
                         </div>
+
 
                     </div>
 
@@ -549,21 +599,19 @@
                 </div>
 
 
-                <%-- =================================================
-                     MENU TABLE + SELECTED ITEM
-                     ================================================= --%>
+
+                <%-- ============================================
+                     MENU WORKSPACE
+                     ============================================ --%>
 
                 <div class="manager-menu-workspace">
 
-
-                    <%-- =================================================
-                         ALL MENU ITEMS
-                         ================================================= --%>
 
                     <section class="staff-dashboard-panel manager-menu-table-card">
 
 
                         <div class="staff-panel-heading">
+
 
                             <div>
 
@@ -572,12 +620,14 @@
                                 </h5>
 
                                 <small>
-                                    Manage and monitor all menu items
+                                    Live data from MenuItemsTable
                                 </small>
 
                             </div>
 
+
                         </div>
+
 
 
                         <div class="table-responsive">
@@ -585,506 +635,171 @@
 
                             <table class="table staff-orders-table manager-menu-table">
 
+
                                 <thead>
 
                                     <tr>
 
-                                        <th>
-                                            Item
-                                        </th>
-
-                                        <th>
-                                            Category
-                                        </th>
-
-                                        <th>
-                                            Price
-                                        </th>
-
-                                        <th>
-                                            Stock
-                                        </th>
-
-                                        <th>
-                                            Status
-                                        </th>
-
-                                        <th>
-                                            Action
-                                        </th>
+                                        <th>Item</th>
+                                        <th>Category</th>
+                                        <th>Price</th>
+                                        <th>Can Make</th>
+                                        <th>Prep Time</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
 
                                     </tr>
 
                                 </thead>
 
 
+
                                 <tbody>
 
 
-                                    <tr>
+                                    <asp:Repeater
+                                        ID="rptMenuItems"
+                                        runat="server">
 
-                                        <td>
 
-                                            <div class="manager-menu-item-name">
+                                        <ItemTemplate>
 
-                                                <div class="manager-menu-item-thumb">
-                                                    ☕
-                                                </div>
 
-                                                <strong>
-                                                    Cappuccino
-                                                </strong>
+                                            <tr>
 
-                                            </div>
 
-                                        </td>
+                                                <td>
 
-                                        <td>
-                                            Beverages
-                                        </td>
+                                                    <div class="manager-menu-item-name">
 
-                                        <td>
-                                            R42.00
-                                        </td>
 
-                                        <td>
-                                            32
-                                        </td>
+                                                        <div class="manager-menu-item-thumb">
 
-                                        <td>
+                                                            <%#
+                                                                GetCategoryEmoji(
+                                                                    Eval("Category")
+                                                                    .ToString())
+                                                            %>
 
-                                            <span class="manager-menu-status status-available">
-                                                Available
-                                            </span>
+                                                        </div>
 
-                                        </td>
 
-                                        <td>
+                                                        <strong>
 
-                                            <div class="manager-menu-actions">
+                                                            <%#
+                                                                Eval(
+                                                                    "MenuItemName")
+                                                            %>
 
-                                                <button type="button">
-                                                    ✎
-                                                </button>
+                                                        </strong>
 
-                                                <button type="button">
-                                                    ›
-                                                </button>
 
-                                            </div>
+                                                    </div>
 
-                                        </td>
+                                                </td>
 
-                                    </tr>
 
 
+                                                <td>
 
-                                    <tr>
+                                                    <%#
+                                                        Eval(
+                                                            "Category")
+                                                    %>
 
-                                        <td>
+                                                </td>
 
-                                            <div class="manager-menu-item-name">
 
-                                                <div class="manager-menu-item-thumb">
-                                                    🌯
-                                                </div>
 
-                                                <strong>
-                                                    Chicken Wrap
-                                                </strong>
+                                                <td>
 
-                                            </div>
+                                                    R<%#
+                                                        Convert.ToDecimal(
+                                                            Eval(
+                                                                "SellingPrice"))
+                                                        .ToString("N2")
+                                                    %>
 
-                                        </td>
+                                                </td>
 
-                                        <td>
-                                            Food
-                                        </td>
 
-                                        <td>
-                                            R68.00
-                                        </td>
 
-                                        <td>
-                                            21
-                                        </td>
+                                                <td>
 
-                                        <td>
+                                                    <%#
+                                                        Eval(
+                                                            "AvailableQuantity")
+                                                    %>
 
-                                            <span class="manager-menu-status status-available">
-                                                Available
-                                            </span>
+                                                </td>
 
-                                        </td>
 
-                                        <td>
 
-                                            <div class="manager-menu-actions">
+                                                <td>
 
-                                                <button type="button">
-                                                    ✎
-                                                </button>
+                                                    <%#
+                                                        Eval(
+                                                            "PreparationTime")
+                                                    %>
+                                                    min
 
-                                                <button type="button">
-                                                    ›
-                                                </button>
+                                                </td>
 
-                                            </div>
 
-                                        </td>
 
-                                    </tr>
+                                                <td>
 
 
+                                                    <span class='<%#
+                                                        GetStatusCssClass(
+                                                            Eval(
+                                                                "StockStatus")
+                                                            .ToString())
+                                                    %>'>
 
-                                    <tr>
+                                                        <%#
+                                                            Eval(
+                                                                "StockStatus")
+                                                        %>
 
-                                        <td>
+                                                    </span>
 
-                                            <div class="manager-menu-item-name">
 
-                                                <div class="manager-menu-item-thumb">
-                                                    🧁
-                                                </div>
+                                                </td>
 
-                                                <strong>
-                                                    Vanilla Muffin
-                                                </strong>
 
-                                            </div>
 
-                                        </td>
+                                                <td>
 
-                                        <td>
-                                            Bakery
-                                        </td>
 
-                                        <td>
-                                            R35.00
-                                        </td>
+                                                    <asp:LinkButton
+                                                        ID="btnSelectItem"
+                                                        runat="server"
+                                                        CssClass="btn btn-sm btn-outline-brand"
+                                                        CommandArgument='<%#
+                                                            Eval("MenuItemID")
+                                                        %>'
+                                                        OnCommand="SelectMenuItem_Command">
 
-                                        <td>
-                                            14
-                                        </td>
+                                                        View
 
-                                        <td>
+                                                    </asp:LinkButton>
 
-                                            <span class="manager-menu-status status-low-stock">
-                                                Low Stock
-                                            </span>
 
-                                        </td>
+                                                </td>
 
-                                        <td>
 
-                                            <div class="manager-menu-actions">
+                                            </tr>
 
-                                                <button type="button">
-                                                    ✎
-                                                </button>
 
-                                                <button type="button">
-                                                    ›
-                                                </button>
+                                        </ItemTemplate>
 
-                                            </div>
 
-                                        </td>
-
-                                    </tr>
-
-
-
-                                    <tr>
-
-                                        <td>
-
-                                            <div class="manager-menu-item-name">
-
-                                                <div class="manager-menu-item-thumb">
-                                                    🥤
-                                                </div>
-
-                                                <strong>
-                                                    Iced Latte
-                                                </strong>
-
-                                            </div>
-
-                                        </td>
-
-                                        <td>
-                                            Beverages
-                                        </td>
-
-                                        <td>
-                                            R48.00
-                                        </td>
-
-                                        <td>
-                                            6
-                                        </td>
-
-                                        <td>
-
-                                            <span class="manager-menu-status status-low-stock">
-                                                Low Stock
-                                            </span>
-
-                                        </td>
-
-                                        <td>
-
-                                            <div class="manager-menu-actions">
-
-                                                <button type="button">
-                                                    ✎
-                                                </button>
-
-                                                <button type="button">
-                                                    ›
-                                                </button>
-
-                                            </div>
-
-                                        </td>
-
-                                    </tr>
-
-
-
-                                    <tr>
-
-                                        <td>
-
-                                            <div class="manager-menu-item-name">
-
-                                                <div class="manager-menu-item-thumb">
-                                                    🍔
-                                                </div>
-
-                                                <strong>
-                                                    Classic Burger
-                                                </strong>
-
-                                            </div>
-
-                                        </td>
-
-                                        <td>
-                                            Food
-                                        </td>
-
-                                        <td>
-                                            R72.00
-                                        </td>
-
-                                        <td>
-                                            15
-                                        </td>
-
-                                        <td>
-
-                                            <span class="manager-menu-status status-available">
-                                                Available
-                                            </span>
-
-                                        </td>
-
-                                        <td>
-
-                                            <div class="manager-menu-actions">
-
-                                                <button type="button">
-                                                    ✎
-                                                </button>
-
-                                                <button type="button">
-                                                    ›
-                                                </button>
-
-                                            </div>
-
-                                        </td>
-
-                                    </tr>
-
-
-
-                                    <tr>
-
-                                        <td>
-
-                                            <div class="manager-menu-item-name">
-
-                                                <div class="manager-menu-item-thumb">
-                                                    🍞
-                                                </div>
-
-                                                <strong>
-                                                    Brownie
-                                                </strong>
-
-                                            </div>
-
-                                        </td>
-
-                                        <td>
-                                            Bakery
-                                        </td>
-
-                                        <td>
-                                            R28.00
-                                        </td>
-
-                                        <td>
-                                            0
-                                        </td>
-
-                                        <td>
-
-                                            <span class="manager-menu-status status-unavailable">
-                                                Unavailable
-                                            </span>
-
-                                        </td>
-
-                                        <td>
-
-                                            <div class="manager-menu-actions">
-
-                                                <button type="button">
-                                                    ✎
-                                                </button>
-
-                                                <button type="button">
-                                                    ›
-                                                </button>
-
-                                            </div>
-
-                                        </td>
-
-                                    </tr>
-
-
-
-                                    <tr>
-
-                                        <td>
-
-                                            <div class="manager-menu-item-name">
-
-                                                <div class="manager-menu-item-thumb">
-                                                    🍟
-                                                </div>
-
-                                                <strong>
-                                                    Fries
-                                                </strong>
-
-                                            </div>
-
-                                        </td>
-
-                                        <td>
-                                            Sides
-                                        </td>
-
-                                        <td>
-                                            R32.00
-                                        </td>
-
-                                        <td>
-                                            6
-                                        </td>
-
-                                        <td>
-
-                                            <span class="manager-menu-status status-low-stock">
-                                                Low Stock
-                                            </span>
-
-                                        </td>
-
-                                        <td>
-
-                                            <div class="manager-menu-actions">
-
-                                                <button type="button">
-                                                    ✎
-                                                </button>
-
-                                                <button type="button">
-                                                    ›
-                                                </button>
-
-                                            </div>
-
-                                        </td>
-
-                                    </tr>
-
-
-
-                                    <tr>
-
-                                        <td>
-
-                                            <div class="manager-menu-item-name">
-
-                                                <div class="manager-menu-item-thumb">
-                                                    🥪
-                                                </div>
-
-                                                <strong>
-                                                    Breakfast Toastie
-                                                </strong>
-
-                                            </div>
-
-                                        </td>
-
-                                        <td>
-                                            Food
-                                        </td>
-
-                                        <td>
-                                            R45.00
-                                        </td>
-
-                                        <td>
-                                            9
-                                        </td>
-
-                                        <td>
-
-                                            <span class="manager-menu-status status-available">
-                                                Available
-                                            </span>
-
-                                        </td>
-
-                                        <td>
-
-                                            <div class="manager-menu-actions">
-
-                                                <button type="button">
-                                                    ✎
-                                                </button>
-
-                                                <button type="button">
-                                                    ›
-                                                </button>
-
-                                            </div>
-
-                                        </td>
-
-                                    </tr>
+                                    </asp:Repeater>
 
 
                                 </tbody>
+
 
                             </table>
 
@@ -1092,42 +807,19 @@
                         </div>
 
 
-                        <%-- Pagination --%>
+
                         <div class="manager-orders-pagination">
-
-                            <div>
-
-                                <button type="button">
-                                    ‹
-                                </button>
-
-                                <button type="button"
-                                    class="active">
-                                    1
-                                </button>
-
-                                <button type="button">
-                                    2
-                                </button>
-
-                                <button type="button">
-                                    3
-                                </button>
-
-                                <button type="button">
-                                    4
-                                </button>
-
-                                <button type="button">
-                                    ›
-                                </button>
-
-                            </div>
 
 
                             <small>
-                                Showing 1-8 of 32 items
+
+                                <asp:Label
+                                    ID="lblShowingItems"
+                                    runat="server">
+                                </asp:Label>
+
                             </small>
+
 
                         </div>
 
@@ -1135,11 +827,15 @@
                     </section>
 
 
-                    <%-- =================================================
-                         SELECTED ITEM
-                         ================================================= --%>
 
-                    <aside class="staff-dashboard-panel manager-selected-item">
+                    <%-- ============================================
+                         SELECTED ITEM
+                         ============================================ --%>
+
+                    <asp:Panel
+                        ID="pnlSelectedItem"
+                        runat="server"
+                        CssClass="staff-dashboard-panel manager-selected-item">
 
 
                         <div class="manager-selected-item-heading">
@@ -1151,30 +847,46 @@
                         </div>
 
 
-                        <%-- Product image placeholder --%>
+
                         <div class="manager-selected-product">
 
+
                             <div class="manager-selected-product-image">
-                                ☕
+
+                                <asp:Label
+                                    ID="lblSelectedEmoji"
+                                    runat="server">
+                                </asp:Label>
+
                             </div>
 
 
                             <div>
 
+
                                 <h4>
-                                    Cappuccino
+
+                                    <asp:Label
+                                        ID="lblSelectedName"
+                                        runat="server">
+                                    </asp:Label>
+
                                 </h4>
 
-                                <span class="manager-menu-status status-available">
-                                    Available
-                                </span>
+
+                                <asp:Label
+                                    ID="lblSelectedStatus"
+                                    runat="server">
+                                </asp:Label>
+
 
                             </div>
+
 
                         </div>
 
 
-                        <%-- Item information --%>
+
                         <div class="manager-selected-info">
 
 
@@ -1185,47 +897,108 @@
                                 </span>
 
                                 <strong>
-                                    Beverages
+
+                                    <asp:Label
+                                        ID="lblSelectedCategory"
+                                        runat="server">
+                                    </asp:Label>
+
                                 </strong>
 
                             </div>
 
 
+
                             <div class="manager-selected-info-row">
 
                                 <span>
-                                    Price
+                                    Selling Price
                                 </span>
 
                                 <strong>
-                                    R42.00
+
+                                    <asp:Label
+                                        ID="lblSelectedPrice"
+                                        runat="server">
+                                    </asp:Label>
+
                                 </strong>
 
                             </div>
 
 
+
                             <div class="manager-selected-info-row">
 
                                 <span>
-                                    Stock Quantity
+                                    Cost To Make
                                 </span>
 
                                 <strong>
-                                    32
+
+                                    <asp:Label
+                                        ID="lblSelectedCost"
+                                        runat="server">
+                                    </asp:Label>
+
                                 </strong>
 
                             </div>
 
 
+
                             <div class="manager-selected-info-row">
 
                                 <span>
-                                    Status
+                                    Preparation Time
                                 </span>
 
-                                <span class="manager-menu-status status-available">
-                                    Available
+                                <strong>
+
+                                    <asp:Label
+                                        ID="lblSelectedPreparation"
+                                        runat="server">
+                                    </asp:Label>
+
+                                </strong>
+
+                            </div>
+
+
+
+                            <div class="manager-selected-info-row">
+
+                                <span>
+                                    Quantity Available
                                 </span>
+
+                                <strong>
+
+                                    <asp:Label
+                                        ID="lblSelectedQuantity"
+                                        runat="server">
+                                    </asp:Label>
+
+                                </strong>
+
+                            </div>
+
+
+
+                            <div class="manager-selected-info-row">
+
+                                <span>
+                                    Total Quantity Sold
+                                </span>
+
+                                <strong>
+
+                                    <asp:Label
+                                        ID="lblSelectedSold"
+                                        runat="server">
+                                    </asp:Label>
+
+                                </strong>
 
                             </div>
 
@@ -1233,73 +1006,36 @@
                         </div>
 
 
-                        <%-- Description --%>
-                        <div class="manager-selected-description">
 
-                            <small class="staff-detail-label">
-                                DESCRIPTION
-                            </small>
-
-                            <p>
-                                A rich espresso with steamed milk and a smooth layer of foam.
-                            </p>
-
-                        </div>
-
-
-                        <%-- Item actions --%>
                         <div class="manager-selected-actions">
 
 
-                            <button type="button"
-                                class="btn btn-brand">
-
-                                ✎ Edit Item
-
-                            </button>
-
-
-                            <button type="button"
-                                class="manager-selected-action manager-selected-action-beige">
-
-                                Mark Unavailable
-
-                            </button>
-
-
-                            <button type="button"
-                                class="manager-selected-action manager-selected-action-red">
-
-                                Delete Item
-
-                            </button>
-
-
-                            <button type="button"
-                                class="manager-selected-action">
-
-                                View Category
-
-                            </button>
+                            <asp:Button
+                                ID="btnDeleteSelected"
+                                runat="server"
+                                Text="Delete Item"
+                                CssClass="manager-selected-action manager-selected-action-red"
+                                OnClick="BtnDeleteSelected_Click"
+                                OnClientClick="return confirm('Are you sure you want to delete this menu item?');" />
 
 
                         </div>
 
 
-                    </aside>
+                    </asp:Panel>
 
 
                 </div>
 
 
-                <%-- =================================================
+
+                <%-- ============================================
                      LOW STOCK + CATEGORY SUMMARY
-                     ================================================= --%>
+                     ============================================ --%>
 
                 <div class="manager-menu-bottom-grid">
 
 
-                    <%-- LOW STOCK --%>
                     <section class="staff-dashboard-panel">
 
 
@@ -1312,123 +1048,79 @@
                                 </h5>
 
                                 <small>
-                                    Items that need restocking soon
+                                    Menu items affected by ingredients
+                                    at or below their restock level.
                                 </small>
 
                             </div>
 
-
-                            <a href="#"
-                                class="staff-text-link">
-
-                                View All →
-
-                            </a>
-
                         </div>
+
 
 
                         <div class="manager-low-stock-grid">
 
 
-                            <div class="manager-low-stock-card">
-
-                                <span class="manager-low-stock-icon">
-                                    🥤
-                                </span>
-
-                                <div>
-
-                                    <strong>
-                                        Iced Latte
-                                    </strong>
-
-                                    <small>
-                                        6 in stock
-                                    </small>
-
-                                </div>
-
-                                <span class="manager-menu-status status-low-stock">
-                                    Low Stock
-                                </span>
-
-                            </div>
+                            <asp:Repeater
+                                ID="rptLowStock"
+                                runat="server">
 
 
-                            <div class="manager-low-stock-card">
-
-                                <span class="manager-low-stock-icon">
-                                    🍟
-                                </span>
-
-                                <div>
-
-                                    <strong>
-                                        Fries
-                                    </strong>
-
-                                    <small>
-                                        6 in stock
-                                    </small>
-
-                                </div>
-
-                                <span class="manager-menu-status status-low-stock">
-                                    Low Stock
-                                </span>
-
-                            </div>
+                                <ItemTemplate>
 
 
-                            <div class="manager-low-stock-card">
-
-                                <span class="manager-low-stock-icon">
-                                    🧁
-                                </span>
-
-                                <div>
-
-                                    <strong>
-                                        Vanilla Muffin
-                                    </strong>
-
-                                    <small>
-                                        14 in stock
-                                    </small>
-
-                                </div>
-
-                                <span class="manager-menu-status status-low-stock">
-                                    Low Stock
-                                </span>
-
-                            </div>
+                                    <div class="manager-low-stock-card">
 
 
-                            <div class="manager-low-stock-card">
+                                        <span class="manager-low-stock-icon">
 
-                                <span class="manager-low-stock-icon">
-                                    🥪
-                                </span>
+                                            <%#
+                                                GetCategoryEmoji(
+                                                    Eval(
+                                                        "Category")
+                                                    .ToString())
+                                            %>
 
-                                <div>
+                                        </span>
 
-                                    <strong>
-                                        Breakfast Toastie
-                                    </strong>
 
-                                    <small>
-                                        9 in stock
-                                    </small>
+                                        <div>
 
-                                </div>
+                                            <strong>
 
-                                <span class="manager-menu-status status-low-stock">
-                                    Low Stock
-                                </span>
+                                                <%#
+                                                    Eval(
+                                                        "MenuItemName")
+                                                %>
 
-                            </div>
+                                            </strong>
+
+
+                                            <small>
+
+                                                <%#
+                                                    Eval(
+                                                        "AvailableQuantity")
+                                                %>
+                                                can currently be made
+
+                                            </small>
+
+                                        </div>
+
+
+                                        <span class="manager-menu-status status-low-stock">
+                                            Low Stock
+                                        </span>
+
+
+                                    </div>
+
+
+                                </ItemTemplate>
+
+
+                            </asp:Repeater>
 
 
                         </div>
@@ -1437,7 +1129,7 @@
                     </section>
 
 
-                    <%-- CATEGORY SUMMARY --%>
+
                     <section class="staff-dashboard-panel">
 
 
@@ -1450,7 +1142,7 @@
                                 </h5>
 
                                 <small>
-                                    Overview of items by category
+                                    Live item totals by category
                                 </small>
 
                             </div>
@@ -1458,77 +1150,51 @@
                         </div>
 
 
+
                         <div class="manager-category-summary">
 
 
-                            <div class="manager-category-row">
-
-                                <span>
-                                    <i class="manager-category-dot dot-blue"></i>
-                                    Beverages
-                                </span>
-
-                                <strong>
-                                    10 items
-                                </strong>
-
-                            </div>
+                            <asp:Repeater
+                                ID="rptCategories"
+                                runat="server">
 
 
-                            <div class="manager-category-row">
-
-                                <span>
-                                    <i class="manager-category-dot dot-orange"></i>
-                                    Food
-                                </span>
-
-                                <strong>
-                                    9 items
-                                </strong>
-
-                            </div>
+                                <ItemTemplate>
 
 
-                            <div class="manager-category-row">
-
-                                <span>
-                                    <i class="manager-category-dot dot-purple"></i>
-                                    Bakery
-                                </span>
-
-                                <strong>
-                                    6 items
-                                </strong>
-
-                            </div>
+                                    <div class="manager-category-row">
 
 
-                            <div class="manager-category-row">
+                                        <span>
 
-                                <span>
-                                    <i class="manager-category-dot dot-green"></i>
-                                    Sides
-                                </span>
+                                            ●
 
-                                <strong>
-                                    4 items
-                                </strong>
+                                            <%#
+                                                Eval(
+                                                    "Category")
+                                            %>
 
-                            </div>
+                                        </span>
 
 
-                            <div class="manager-category-row">
+                                        <strong>
 
-                                <span>
-                                    <i class="manager-category-dot dot-beige"></i>
-                                    Combos
-                                </span>
+                                            <%#
+                                                Eval(
+                                                    "ItemCount")
+                                            %>
+                                            items
 
-                                <strong>
-                                    3 items
-                                </strong>
+                                        </strong>
 
-                            </div>
+
+                                    </div>
+
+
+                                </ItemTemplate>
+
+
+                            </asp:Repeater>
 
 
                         </div>
@@ -1538,6 +1204,7 @@
 
 
                 </div>
+
 
 
                 <div class="staff-footer">
@@ -1554,46 +1221,99 @@
     </div>
 
 
-    <%-- =================================================
-         MANAGER PAGE JAVASCRIPT
-         ================================================= --%>
 
     <script>
 
-        document.body.classList.add("staff-page");
+        document.body.classList.add(
+            "staff-page");
+
+
+        const publicNavbar =
+            document.querySelector(
+                ".navbar");
+
+
+        if (publicNavbar) {
+            publicNavbar.style.display =
+                "none";
+        }
+
 
 
         const bodyContent =
-            document.querySelector(".body-content");
+            document.querySelector(
+                ".body-content");
 
 
         if (bodyContent) {
 
-            bodyContent.classList.remove("container");
+            bodyContent.classList.remove(
+                "container");
 
-            bodyContent.style.width = "100%";
-            bodyContent.style.maxWidth = "none";
-            bodyContent.style.margin = "0";
-            bodyContent.style.padding = "0";
+            bodyContent.style.width =
+                "100%";
+
+            bodyContent.style.maxWidth =
+                "none";
+
+            bodyContent.style.margin =
+                "0";
+
+            bodyContent.style.padding =
+                "0";
 
         }
 
 
+
+        const masterFooter =
+            document.querySelector(
+                ".body-content > footer");
+
+
+        if (masterFooter) {
+            masterFooter.style.display =
+                "none";
+        }
+
+
+
+        const masterFooterLine =
+            document.querySelector(
+                ".body-content > hr");
+
+
+        if (masterFooterLine) {
+            masterFooterLine.style.display =
+                "none";
+        }
+
+
+
         const sidebarToggle =
-            document.getElementById("sidebarToggle");
+            document.getElementById(
+                "sidebarToggle");
 
 
         const staffBody =
-            document.querySelector(".staff-body");
+            document.querySelector(
+                ".staff-body");
 
 
-        if (sidebarToggle && staffBody) {
+        if (sidebarToggle &&
+            staffBody) {
 
-            sidebarToggle.addEventListener("click", function () {
+            sidebarToggle
+                .addEventListener(
+                    "click",
+                    function () {
 
-                staffBody.classList.toggle("sidebar-collapsed");
+                        staffBody
+                            .classList
+                            .toggle(
+                                "sidebar-collapsed");
 
-            });
+                    });
 
         }
 

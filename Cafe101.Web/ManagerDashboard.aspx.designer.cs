@@ -15,6 +15,15 @@ namespace Cafe101.Web
     {
 
         /// <summary>
+        /// lblTopManagerInitials control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTopManagerInitials;
+
+        /// <summary>
         /// lblTopManagerName control.
         /// </summary>
         /// <remarks>
@@ -22,6 +31,15 @@ namespace Cafe101.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTopManagerName;
+
+        /// <summary>
+        /// lblTopManagerRole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTopManagerRole;
 
         /// <summary>
         /// lnkLogout control.
@@ -40,5 +58,14 @@ namespace Cafe101.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblManagerName;
+
+        /// <summary>
+        /// lblCurrentDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCurrentDate;
     }
 }

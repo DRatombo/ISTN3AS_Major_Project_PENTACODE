@@ -6,14 +6,11 @@
     Inherits="Cafe101.Web.WebForm1" %>
 
 
-<asp:Content ID="Content1"
+<asp:Content
+    ID="Content1"
     ContentPlaceHolderID="MainContent"
     runat="server">
 
-
-    <%-- =================================================
-         STAFF PROFILE PAGE
-         ================================================= --%>
 
     <div class="staff-shell">
 
@@ -26,11 +23,14 @@
 
             <div class="staff-header-left">
 
-                <button type="button"
+                <button
+                    type="button"
                     id="sidebarToggle"
                     class="staff-header-menu"
                     aria-label="Toggle staff navigation">
+
                     ☰
+
                 </button>
 
 
@@ -44,12 +44,36 @@
             <div class="staff-header-user">
 
                 <div class="staff-header-avatar">
-                    SM
+
+                    <asp:Label
+                        ID="lblTopInitials"
+                        runat="server">
+                    </asp:Label>
+
                 </div>
 
+
                 <div>
-                    <strong>Staff Member</strong>
-                    <small>Employee</small>
+
+                    <strong>
+
+                        <asp:Label
+                            ID="lblTopStaffName"
+                            runat="server">
+                        </asp:Label>
+
+                    </strong>
+
+
+                    <small>
+
+                        <asp:Label
+                            ID="lblTopStaffRole"
+                            runat="server">
+                        </asp:Label>
+
+                    </small>
+
                 </div>
 
             </div>
@@ -57,10 +81,6 @@
         </header>
 
 
-
-        <%-- =================================================
-             STAFF BODY
-             ================================================= --%>
 
         <div class="staff-body">
 
@@ -80,7 +100,6 @@
                 <nav class="staff-nav">
 
 
-                    <%-- Dashboard --%>
                     <a href="StaffDashboard.aspx">
 
                         <span class="staff-nav-icon">
@@ -94,12 +113,13 @@
                     </a>
 
 
-                    <%-- Orders --%>
+
                     <a href="StaffOrders.aspx">
 
                         <span class="staff-nav-icon">
 
-                            <svg viewBox="0 0 24 24"
+                            <svg
+                                viewBox="0 0 24 24"
                                 width="19"
                                 height="19"
                                 fill="none"
@@ -122,20 +142,23 @@
                     </a>
 
 
-                    <%-- Profile - active --%>
-                    <a href="StaffProfile.aspx"
+
+                    <a
+                        href="StaffProfile.aspx"
                         class="active">
 
                         <span class="staff-nav-icon">
 
-                            <svg viewBox="0 0 24 24"
+                            <svg
+                                viewBox="0 0 24 24"
                                 width="19"
                                 height="19"
                                 fill="none"
                                 stroke="currentColor"
                                 stroke-width="2">
 
-                                <circle cx="12"
+                                <circle
+                                    cx="12"
                                     cy="8"
                                     r="4" />
 
@@ -151,15 +174,21 @@
 
                     </a>
 
-
                 </nav>
 
 
-                <%-- Logout --%>
+
+                <%-- =================================================
+                     LOGOUT
+                     ================================================= --%>
+
                 <div class="staff-sidebar-bottom">
 
-                    <a href="#"
-                        class="staff-logout">
+                    <asp:LinkButton
+                        ID="lnkLogout"
+                        runat="server"
+                        CssClass="staff-logout"
+                        OnClick="LnkLogout_Click">
 
                         <span class="staff-nav-icon">
                             &#10140;
@@ -169,25 +198,20 @@
                             Logout
                         </span>
 
-                    </a>
+                    </asp:LinkButton>
 
                 </div>
-
 
             </aside>
 
 
 
             <%-- =================================================
-                 MAIN PROFILE CONTENT
+                 MAIN PROFILE
                  ================================================= --%>
 
             <main class="staff-main">
 
-
-                <%-- =================================================
-                     PAGE HEADING
-                     ================================================= --%>
 
                 <div class="staff-page-heading">
 
@@ -196,15 +220,23 @@
                     </h3>
 
                     <p>
-                        View and manage your account information.
+                        View your Cafe101 employee account information.
                     </p>
 
                 </div>
 
 
 
+                <asp:Label
+                    ID="lblProfileMessage"
+                    runat="server"
+                    CssClass="d-none">
+                </asp:Label>
+
+
+
                 <%-- =================================================
-                     PROFILE SUMMARY CARD
+                     PROFILE SUMMARY
                      ================================================= --%>
 
                 <section class="staff-dashboard-panel staff-profile-summary">
@@ -213,47 +245,64 @@
                     <div class="staff-profile-summary-left">
 
 
-                        <%-- Profile avatar --%>
                         <div class="staff-profile-avatar">
-                            SM
+
+                            <asp:Label
+                                ID="lblProfileInitials"
+                                runat="server">
+                            </asp:Label>
+
                         </div>
+
 
 
                         <div class="staff-profile-main-info">
 
 
-                            <%-- Name and role --%>
                             <div class="staff-profile-name-row">
 
                                 <h4>
-                                    Staff Member
+
+                                    <asp:Label
+                                        ID="lblProfileName"
+                                        runat="server">
+                                    </asp:Label>
+
                                 </h4>
 
+
                                 <span class="staff-profile-role-badge">
-                                    Employee
+
+                                    <asp:Label
+                                        ID="lblProfileRole"
+                                        runat="server">
+                                    </asp:Label>
+
                                 </span>
 
                             </div>
 
 
 
-                            <%-- Email, phone and member since --%>
                             <div class="staff-profile-contact-grid">
 
 
                                 <%-- Email --%>
+
                                 <div class="staff-profile-contact-item">
 
                                     <div class="staff-profile-contact-icon">
 
-                                        <svg viewBox="0 0 24 24"
+                                        <svg
+                                            viewBox="0 0 24 24"
                                             width="17"
                                             height="17"
                                             fill="none"
                                             stroke="currentColor"
                                             stroke-width="2">
 
-                                            <rect x="3"
+                                            <rect
+                                                x="3"
                                                 y="5"
                                                 width="18"
                                                 height="14"
@@ -265,12 +314,20 @@
 
                                     </div>
 
+
                                     <div>
 
-                                        <small>Email</small>
+                                        <small>
+                                            Email
+                                        </small>
 
                                         <strong>
-                                            staff.member@cafe101.com
+
+                                            <asp:Label
+                                                ID="lblProfileEmail"
+                                                runat="server">
+                                            </asp:Label>
+
                                         </strong>
 
                                     </div>
@@ -279,51 +336,22 @@
 
 
 
-                                <%-- Phone --%>
+                                <%-- Hire Date --%>
+
                                 <div class="staff-profile-contact-item">
 
                                     <div class="staff-profile-contact-icon">
 
-                                        <svg viewBox="0 0 24 24"
+                                        <svg
+                                            viewBox="0 0 24 24"
                                             width="17"
                                             height="17"
                                             fill="none"
                                             stroke="currentColor"
                                             stroke-width="2">
 
-                                            <path d="M5 4h4l2 5-3 2a16 16 0 0 0 5 5l2-3 5 2v4c0 1-1 2-2 2C10 21 3 14 3 6c0-1 1-2 2-2z" />
-
-                                        </svg>
-
-                                    </div>
-
-                                    <div>
-
-                                        <small>Phone</small>
-
-                                        <strong>
-                                            +27 61 234 5678
-                                        </strong>
-
-                                    </div>
-
-                                </div>
-
-
-
-                                <%-- Member since --%>
-                                <div class="staff-profile-contact-item">
-
-                                    <div class="staff-profile-contact-icon">
-
-                                        <svg viewBox="0 0 24 24"
-                                            width="17"
-                                            height="17"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2">
-
-                                            <rect x="3"
+                                            <rect
+                                                x="3"
                                                 y="5"
                                                 width="18"
                                                 height="16"
@@ -337,56 +365,31 @@
 
                                     </div>
 
+
                                     <div>
 
                                         <small>
-                                            Member Since
+                                            Hire Date
                                         </small>
 
                                         <strong>
-                                            15 March 2024
+
+                                            <asp:Label
+                                                ID="lblProfileHireDate"
+                                                runat="server">
+                                            </asp:Label>
+
                                         </strong>
 
                                     </div>
 
                                 </div>
 
-
                             </div>
 
                         </div>
 
                     </div>
-
-
-
-                    <%-- Edit Profile --%>
-                    <div class="staff-profile-summary-right">
-
-                        <button type="button"
-                            class="btn btn-outline-brand staff-edit-profile-btn">
-
-                            <svg viewBox="0 0 24 24"
-                                width="15"
-                                height="15"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <path d="M12 20h9" />
-
-                                <path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4z" />
-
-                            </svg>
-
-                            <span>
-                                Edit Profile
-                            </span>
-
-                        </button>
-
-                    </div>
-
 
                 </section>
 
@@ -417,20 +420,23 @@
 
 
                         <%-- Full Name --%>
+
                         <div class="staff-profile-info-row">
 
                             <div class="staff-profile-info-label">
 
                                 <span class="staff-profile-small-icon">
 
-                                    <svg viewBox="0 0 24 24"
+                                    <svg
+                                        viewBox="0 0 24 24"
                                         width="15"
                                         height="15"
                                         fill="none"
                                         stroke="currentColor"
                                         stroke-width="2">
 
-                                        <circle cx="12"
+                                        <circle
+                                            cx="12"
                                             cy="8"
                                             r="4" />
 
@@ -446,8 +452,14 @@
 
                             </div>
 
+
                             <strong>
-                                Staff Member
+
+                                <asp:Label
+                                    ID="lblFullName"
+                                    runat="server">
+                                </asp:Label>
+
                             </strong>
 
                         </div>
@@ -455,20 +467,23 @@
 
 
                         <%-- Email --%>
+
                         <div class="staff-profile-info-row">
 
                             <div class="staff-profile-info-label">
 
                                 <span class="staff-profile-small-icon">
 
-                                    <svg viewBox="0 0 24 24"
+                                    <svg
+                                        viewBox="0 0 24 24"
                                         width="15"
                                         height="15"
                                         fill="none"
                                         stroke="currentColor"
                                         stroke-width="2">
 
-                                        <rect x="3"
+                                        <rect
+                                            x="3"
                                             y="5"
                                             width="18"
                                             height="14"
@@ -480,90 +495,21 @@
 
                                 </span>
 
+
                                 <span>
                                     Email Address
                                 </span>
 
                             </div>
 
-                            <strong>
-                                staff.member@cafe101.com
-                            </strong>
-
-                        </div>
-
-
-
-                        <%-- Phone --%>
-                        <div class="staff-profile-info-row">
-
-                            <div class="staff-profile-info-label">
-
-                                <span class="staff-profile-small-icon">
-
-                                    <svg viewBox="0 0 24 24"
-                                        width="15"
-                                        height="15"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2">
-
-                                        <path d="M5 4h4l2 5-3 2a16 16 0 0 0 5 5l2-3 5 2v4c0 1-1 2-2 2C10 21 3 14 3 6c0-1 1-2 2-2z" />
-
-                                    </svg>
-
-                                </span>
-
-                                <span>
-                                    Phone Number
-                                </span>
-
-                            </div>
 
                             <strong>
-                                +27 61 234 5678
-                            </strong>
 
-                        </div>
+                                <asp:Label
+                                    ID="lblPersonalEmail"
+                                    runat="server">
+                                </asp:Label>
 
-
-
-                        <%-- Date of Birth --%>
-                        <div class="staff-profile-info-row">
-
-                            <div class="staff-profile-info-label">
-
-                                <span class="staff-profile-small-icon">
-
-                                    <svg viewBox="0 0 24 24"
-                                        width="15"
-                                        height="15"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2">
-
-                                        <rect x="3"
-                                            y="5"
-                                            width="18"
-                                            height="16"
-                                            rx="2" />
-
-                                        <path d="M8 3v4" />
-                                        <path d="M16 3v4" />
-                                        <path d="M3 10h18" />
-
-                                    </svg>
-
-                                </span>
-
-                                <span>
-                                    Date of Birth
-                                </span>
-
-                            </div>
-
-                            <strong>
-                                12 June 1999
                             </strong>
 
                         </div>
@@ -571,13 +517,15 @@
 
 
                         <%-- Address --%>
+
                         <div class="staff-profile-info-row">
 
                             <div class="staff-profile-info-label">
 
                                 <span class="staff-profile-small-icon">
 
-                                    <svg viewBox="0 0 24 24"
+                                    <svg
+                                        viewBox="0 0 24 24"
                                         width="15"
                                         height="15"
                                         fill="none"
@@ -585,11 +533,16 @@
                                         stroke-width="2">
 
                                         <path d="M12 21s6-5.2 6-11a6 6 0 1 0-12 0c0 5.8 6 11 6 11z" />
-                                        <circle cx="12" cy="10" r="2" />
+
+                                        <circle
+                                            cx="12"
+                                            cy="10"
+                                            r="2" />
 
                                     </svg>
 
                                 </span>
+
 
                                 <span>
                                     Address
@@ -597,8 +550,14 @@
 
                             </div>
 
+
                             <strong>
-                                123 Main Street, Durban, 4001
+
+                                <asp:Label
+                                    ID="lblAddress"
+                                    runat="server">
+                                </asp:Label>
+
                             </strong>
 
                         </div>
@@ -606,20 +565,23 @@
 
 
                         <%-- Role --%>
+
                         <div class="staff-profile-info-row">
 
                             <div class="staff-profile-info-label">
 
                                 <span class="staff-profile-small-icon">
 
-                                    <svg viewBox="0 0 24 24"
+                                    <svg
+                                        viewBox="0 0 24 24"
                                         width="15"
                                         height="15"
                                         fill="none"
                                         stroke="currentColor"
                                         stroke-width="2">
 
-                                        <rect x="4"
+                                        <rect
+                                            x="4"
                                             y="4"
                                             width="16"
                                             height="16"
@@ -632,135 +594,34 @@
 
                                 </span>
 
+
                                 <span>
                                     Role
                                 </span>
 
                             </div>
 
+
                             <strong>
-                                Employee
+
+                                <asp:Label
+                                    ID="lblRole"
+                                    runat="server">
+                                </asp:Label>
+
                             </strong>
 
                         </div>
-
-
-
-                        <%-- Department --%>
-                        <div class="staff-profile-info-row">
-
-                            <div class="staff-profile-info-label">
-
-                                <span class="staff-profile-small-icon">
-
-                                    <svg viewBox="0 0 24 24"
-                                        width="15"
-                                        height="15"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2">
-
-                                        <rect x="3"
-                                            y="4"
-                                            width="18"
-                                            height="16"
-                                            rx="2" />
-
-                                        <path d="M8 8h8" />
-                                        <path d="M8 12h8" />
-                                        <path d="M8 16h5" />
-
-                                    </svg>
-
-                                </span>
-
-                                <span>
-                                    Department
-                                </span>
-
-                            </div>
-
-                            <strong>
-                                Service
-                            </strong>
-
-                        </div>
-
 
                     </section>
 
 
 
                     <%-- =================================================
-                         RIGHT PROFILE COLUMN
+                         RIGHT COLUMN
                          ================================================= --%>
 
                     <div class="staff-profile-right-column">
-
-
-                        <%-- =================================================
-                             ACCOUNT SECURITY
-                             ================================================= --%>
-
-                        <section class="staff-dashboard-panel staff-profile-small-card">
-
-
-                            <div class="staff-profile-small-card-content">
-
-
-                                <div class="staff-profile-security-icon">
-
-                                    <svg viewBox="0 0 24 24"
-                                        width="18"
-                                        height="18"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2">
-
-                                        <rect x="5"
-                                            y="10"
-                                            width="14"
-                                            height="10"
-                                            rx="2" />
-
-                                        <path d="M8 10V7a4 4 0 0 1 8 0v3" />
-
-                                    </svg>
-
-                                </div>
-
-
-                                <div>
-
-                                    <strong>
-                                        Account Security
-                                    </strong>
-
-                                    <small>
-                                        Keep your account secure
-                                    </small>
-
-                                    <p>
-                                        Last password change: 2 months ago
-                                    </p>
-
-                                </div>
-
-
-                            </div>
-
-
-
-                            <button type="button"
-                                class="btn staff-security-btn">
-
-                                Change Password
-
-                            </button>
-
-
-                        </section>
-
 
 
                         <%-- =================================================
@@ -783,262 +644,204 @@
                             <div class="staff-profile-info-row">
 
                                 <div class="staff-profile-info-label">
-                                    <span>Employee ID</span>
+
+                                    <span>
+                                        Employee ID
+                                    </span>
+
                                 </div>
 
+
                                 <strong>
-                                    EMP10123
+
+                                    <asp:Label
+                                        ID="lblEmployeeID"
+                                        runat="server">
+                                    </asp:Label>
+
                                 </strong>
 
                             </div>
 
 
+
                             <div class="staff-profile-info-row">
 
                                 <div class="staff-profile-info-label">
-                                    <span>Hire Date</span>
+
+                                    <span>
+                                        Hire Date
+                                    </span>
+
                                 </div>
 
+
                                 <strong>
-                                    15 March 2024
+
+                                    <asp:Label
+                                        ID="lblHireDate"
+                                        runat="server">
+                                    </asp:Label>
+
                                 </strong>
 
                             </div>
 
 
-                            <div class="staff-profile-info-row">
-
-                                <div class="staff-profile-info-label">
-                                    <span>Shift</span>
-                                </div>
-
-                                <strong>
-                                    Morning Shift (08:00 - 16:00)
-                                </strong>
-
-                            </div>
-
 
                             <div class="staff-profile-info-row">
 
                                 <div class="staff-profile-info-label">
-                                    <span>Status</span>
+
+                                    <span>
+                                        Status
+                                    </span>
+
                                 </div>
 
-                                <span class="staff-profile-status-active">
-                                    Active
-                                </span>
+
+                                <asp:Label
+                                    ID="lblEmployeeStatus"
+                                    runat="server"
+                                    CssClass="staff-profile-status-active">
+                                </asp:Label>
 
                             </div>
-
 
                         </section>
 
 
 
                         <%-- =================================================
-                             QUICK ACTIONS
+                             ACCOUNT INFORMATION
                              ================================================= --%>
 
-                        <section class="staff-dashboard-panel staff-profile-quick-card">
+                        <section class="staff-dashboard-panel staff-profile-small-card">
 
 
-                            <div class="staff-profile-section-heading">
-
-                                <h5>
-                                    Quick Actions
-                                </h5>
-
-                            </div>
+                            <div class="staff-profile-small-card-content">
 
 
+                                <div class="staff-profile-security-icon">
 
-                            <div class="staff-profile-quick-grid">
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        width="18"
+                                        height="18"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="2">
 
+                                        <rect
+                                            x="5"
+                                            y="10"
+                                            width="14"
+                                            height="10"
+                                            rx="2" />
 
-                                <button type="button"
-                                    class="staff-profile-quick-action">
+                                        <path d="M8 10V7a4 4 0 0 1 8 0v3" />
 
-                                    <span class="staff-profile-quick-icon icon-blue">
+                                    </svg>
 
-                                        <svg viewBox="0 0 24 24"
-                                            width="17"
-                                            height="17"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2">
-
-                                            <circle cx="12"
-                                                cy="8"
-                                                r="4" />
-
-                                            <path d="M5 21c0-4 3-7 7-7s7 3 7 7" />
-
-                                        </svg>
-
-                                    </span>
-
-                                    <span>
-
-                                        <strong>
-                                            Update Profile
-                                        </strong>
-
-                                        <small>
-                                            Edit your information
-                                        </small>
-
-                                    </span>
-
-                                </button>
+                                </div>
 
 
+                                <div>
 
-                                <button type="button"
-                                    class="staff-profile-quick-action">
+                                    <strong>
+                                        Account Security
+                                    </strong>
 
-                                    <span class="staff-profile-quick-icon icon-purple">
+                                    <small>
+                                        Keep your Cafe101 account details secure.
+                                    </small>
 
-                                        <svg viewBox="0 0 24 24"
-                                            width="17"
-                                            height="17"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2">
-
-                                            <rect x="5"
-                                                y="10"
-                                                width="14"
-                                                height="10"
-                                                rx="2" />
-
-                                            <path d="M8 10V7a4 4 0 0 1 8 0v3" />
-
-                                        </svg>
-
-                                    </span>
-
-                                    <span>
-
-                                        <strong>
-                                            Change Password
-                                        </strong>
-
-                                        <small>
-                                            Update your password
-                                        </small>
-
-                                    </span>
-
-                                </button>
-
-
-
-                                <button type="button"
-                                    class="staff-profile-quick-action">
-
-                                    <span class="staff-profile-quick-icon icon-beige">
-
-                                        <svg viewBox="0 0 24 24"
-                                            width="17"
-                                            height="17"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2">
-
-                                            <path d="M18 8a6 6 0 1 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
-                                            <path d="M10 21h4" />
-
-                                        </svg>
-
-                                    </span>
-
-                                    <span>
-
-                                        <strong>
-                                            Notification Settings
-                                        </strong>
-
-                                        <small>
-                                            Manage notifications
-                                        </small>
-
-                                    </span>
-
-                                </button>
-
+                                </div>
 
                             </div>
-
 
                         </section>
 
-
                     </div>
-
 
                 </div>
 
 
-                <%-- Staff footer --%>
+
                 <div class="staff-footer">
                     © 2026 Cafe101. All rights reserved.
                 </div>
 
-
             </main>
-            <%-- END OF staff-main --%>
-
 
         </div>
-        <%-- END OF staff-body --%>
-
 
     </div>
-    <%-- END OF staff-shell --%>
 
 
 
     <%-- =================================================
-         STAFF PAGE JAVASCRIPT
+         PAGE SCRIPT
          ================================================= --%>
 
     <script>
 
-        document.body.classList.add("staff-page");
+        document.body.classList.add(
+            "staff-page"
+        );
 
 
         const bodyContent =
-            document.querySelector(".body-content");
+            document.querySelector(
+                ".body-content"
+            );
 
 
         if (bodyContent) {
 
-            bodyContent.classList.remove("container");
+            bodyContent.classList.remove(
+                "container"
+            );
 
-            bodyContent.style.width = "100%";
-            bodyContent.style.maxWidth = "none";
-            bodyContent.style.margin = "0";
-            bodyContent.style.padding = "0";
+            bodyContent.style.width =
+                "100%";
+
+            bodyContent.style.maxWidth =
+                "none";
+
+            bodyContent.style.margin =
+                "0";
+
+            bodyContent.style.padding =
+                "0";
 
         }
 
 
         const sidebarToggle =
-            document.getElementById("sidebarToggle");
+            document.getElementById(
+                "sidebarToggle"
+            );
 
 
         const staffBody =
-            document.querySelector(".staff-body");
+            document.querySelector(
+                ".staff-body"
+            );
 
 
-        if (sidebarToggle && staffBody) {
+        if (sidebarToggle &&
+            staffBody) {
 
-            sidebarToggle.addEventListener("click", function () {
+            sidebarToggle.addEventListener(
+                "click",
+                function () {
 
-                staffBody.classList.toggle("sidebar-collapsed");
+                    staffBody.classList.toggle(
+                        "sidebar-collapsed"
+                    );
 
-            });
+                });
 
         }
 

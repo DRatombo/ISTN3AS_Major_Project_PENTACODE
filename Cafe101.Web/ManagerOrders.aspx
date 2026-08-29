@@ -5,11 +5,14 @@
     CodeBehind="ManagerOrders.aspx.cs"
     Inherits="Cafe101.Web.ManagerOrders" %>
 
+
 <asp:Content ID="Content1"
     ContentPlaceHolderID="MainContent"
     runat="server">
 
+
     <div class="staff-shell manager-shell">
+
 
         <%-- =================================================
              TOP HEADER
@@ -17,56 +20,120 @@
 
         <header class="staff-header">
 
+
             <div class="staff-header-left">
+
 
                 <button type="button"
                     id="sidebarToggle"
                     class="staff-header-menu"
                     aria-label="Toggle manager navigation">
+
                     ☰
+
                 </button>
+
 
                 <div class="staff-header-brand">
                     Cafe101
                 </div>
 
+
             </div>
 
-            <div class="staff-header-user">
+
+
+            <%-- =================================================
+                 LOGGED-IN MANAGER
+                 ================================================= --%>
+
+            <a href="ManagerProfile.aspx"
+                class="staff-header-user text-decoration-none">
+
 
                 <div class="staff-header-avatar">
-                    MA
+
+                    <asp:Label
+                        ID="lblTopManagerInitials"
+                        runat="server">
+                    </asp:Label>
+
                 </div>
+
 
                 <div>
-                    <strong>Manager</strong>
-                    <small>Administrator</small>
+
+
+                    <strong>
+
+                        <asp:Label
+                            ID="lblTopManagerName"
+                            runat="server">
+                        </asp:Label>
+
+                    </strong>
+
+
+                    <small>
+
+                        <asp:Label
+                            ID="lblTopManagerRole"
+                            runat="server">
+                        </asp:Label>
+
+                    </small>
+
+
                 </div>
 
-            </div>
+
+            </a>
+
 
         </header>
 
 
+
+        <%-- =================================================
+             BODY
+             ================================================= --%>
+
         <div class="staff-body">
 
+
             <%-- =================================================
-                 MANAGER SIDEBAR
+                 SIDEBAR
                  ================================================= --%>
 
             <aside class="staff-sidebar">
+
 
                 <div class="staff-sidebar-title">
                     MANAGER SYSTEM
                 </div>
 
+
+
                 <nav class="staff-nav">
 
+
+                    <%-- Dashboard --%>
+
                     <a href="ManagerDashboard.aspx">
-                        <span class="staff-nav-icon">&#8962;</span>
-                        <span class="staff-nav-text">Dashboard</span>
+
+                        <span class="staff-nav-icon">
+                            &#8962;
+                        </span>
+
+                        <span class="staff-nav-text">
+                            Dashboard
+                        </span>
+
                     </a>
 
+
+
+                    <%-- Orders --%>
 
                     <a href="ManagerOrders.aspx"
                         class="active">
@@ -96,7 +163,11 @@
                     </a>
 
 
+
+                    <%-- Menu --%>
+
                     <a href="ManagerMenu.aspx">
+
                         <span class="staff-nav-icon">
 
                             <svg viewBox="0 0 24 24"
@@ -118,10 +189,15 @@
                         <span class="staff-nav-text">
                             Menu
                         </span>
+
                     </a>
 
 
-                    <a href="ManagerStaff.aspx" >
+
+                    <%-- Staff --%>
+
+                    <a href="ManagerStaff.aspx">
+
                         <span class="staff-nav-icon">
 
                             <svg viewBox="0 0 24 24"
@@ -131,8 +207,14 @@
                                 stroke="currentColor"
                                 stroke-width="2">
 
-                                <circle cx="9" cy="8" r="3" />
-                                <circle cx="17" cy="10" r="2" />
+                                <circle cx="9"
+                                    cy="8"
+                                    r="3" />
+
+                                <circle cx="17"
+                                    cy="10"
+                                    r="2" />
+
                                 <path d="M3 20c0-4 2.5-7 6-7s6 3 6 7" />
                                 <path d="M15 15c3 0 5 2 5 5" />
 
@@ -143,10 +225,15 @@
                         <span class="staff-nav-text">
                             Staff
                         </span>
+
                     </a>
 
 
+
+                    <%-- Reports --%>
+
                     <a href="ManagerReports.aspx">
+
                         <span class="staff-nav-icon">
 
                             <svg viewBox="0 0 24 24"
@@ -168,10 +255,15 @@
                         <span class="staff-nav-text">
                             Reports
                         </span>
+
                     </a>
 
 
+
+                    <%-- Profile --%>
+
                     <a href="ManagerProfile.aspx">
+
                         <span class="staff-nav-icon">
 
                             <svg viewBox="0 0 24 24"
@@ -181,7 +273,10 @@
                                 stroke="currentColor"
                                 stroke-width="2">
 
-                                <circle cx="12" cy="8" r="4" />
+                                <circle cx="12"
+                                    cy="8"
+                                    r="4" />
+
                                 <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" />
 
                             </svg>
@@ -191,48 +286,74 @@
                         <span class="staff-nav-text">
                             Profile
                         </span>
+
                     </a>
+
 
                 </nav>
 
 
+
+                <%-- =================================================
+                     LOGOUT
+                     ================================================= --%>
+
                 <div class="staff-sidebar-bottom">
 
-                    <a href="#"
-                        class="staff-logout">
+
+                    <asp:LinkButton
+                        ID="lnkLogout"
+                        runat="server"
+                        CssClass="staff-logout"
+                        OnClick="LnkLogout_Click">
+
 
                         <span class="staff-nav-icon">
                             &#10140;
                         </span>
 
+
                         <span class="staff-nav-text">
                             Logout
                         </span>
 
-                    </a>
+
+                    </asp:LinkButton>
+
 
                 </div>
+
 
             </aside>
 
 
+
             <%-- =================================================
-                 MAIN MANAGER ORDERS AREA
+                 MAIN ORDERS AREA
                  ================================================= --%>
 
             <main class="staff-main">
 
+
+                <%-- =================================================
+                     PAGE HEADING
+                     ================================================= --%>
+
                 <div class="staff-page-heading">
+
 
                     <h3>
                         Orders
                     </h3>
 
+
                     <p>
                         Monitor, manage and review all customer orders.
                     </p>
 
+
                 </div>
+
 
 
                 <%-- =================================================
@@ -241,10 +362,14 @@
 
                 <div class="manager-orders-toolbar">
 
+
                     <div class="manager-orders-toolbar-left">
 
+
                         <%-- Search --%>
+
                         <div class="staff-search-box">
+
 
                             <span class="staff-search-icon">
 
@@ -255,22 +380,30 @@
                                     stroke="currentColor"
                                     stroke-width="2">
 
-                                    <circle cx="10" cy="10" r="6" />
+                                    <circle cx="10"
+                                        cy="10"
+                                        r="6" />
+
                                     <path d="M15 15l5 5" />
 
                                 </svg>
 
                             </span>
 
+
                             <input type="text"
                                 class="form-control"
                                 placeholder="Search by order # or customer name..." />
 
+
                         </div>
 
 
-                        <%-- Status filter --%>
+
+                        <%-- Status Filter --%>
+
                         <div class="staff-filter-box">
+
 
                             <span class="staff-filter-icon">
 
@@ -286,6 +419,7 @@
                                 </svg>
 
                             </span>
+
 
                             <select class="form-control staff-status-filter">
 
@@ -315,11 +449,15 @@
 
                             </select>
 
+
                         </div>
 
 
-                        <%-- Date filter --%>
+
+                        <%-- Date Filter --%>
+
                         <div class="manager-date-filter">
+
 
                             <svg viewBox="0 0 24 24"
                                 width="16"
@@ -339,6 +477,7 @@
                                 <path d="M3 10h18" />
 
                             </svg>
+
 
                             <select class="form-control">
 
@@ -360,12 +499,16 @@
 
                             </select>
 
+
                         </div>
+
 
                     </div>
 
 
+
                     <div class="manager-orders-toolbar-right">
+
 
                         <button type="button"
                             class="btn btn-outline-brand">
@@ -374,6 +517,7 @@
 
                         </button>
 
+
                         <button type="button"
                             class="btn btn-brand">
 
@@ -381,9 +525,12 @@
 
                         </button>
 
+
                     </div>
 
+
                 </div>
+
 
 
                 <%-- =================================================
@@ -392,7 +539,11 @@
 
                 <div class="staff-metric-grid">
 
+
+                    <%-- Total Orders --%>
+
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box icon-blue">
 
@@ -410,13 +561,16 @@
 
                         </div>
 
+
                         <div>
 
                             <span class="staff-metric-label">
                                 TOTAL ORDERS
                             </span>
 
-                            <h3>86</h3>
+                            <h3>
+                                86
+                            </h3>
 
                             <p class="manager-positive-text">
                                 ↑ 14% vs yesterday
@@ -424,10 +578,15 @@
 
                         </div>
 
+
                     </div>
 
 
+
+                    <%-- Pending --%>
+
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box icon-orange">
 
@@ -438,12 +597,16 @@
                                 stroke="currentColor"
                                 stroke-width="2">
 
-                                <circle cx="12" cy="12" r="9" />
+                                <circle cx="12"
+                                    cy="12"
+                                    r="9" />
+
                                 <path d="M12 7v5l3 2" />
 
                             </svg>
 
                         </div>
+
 
                         <div>
 
@@ -451,7 +614,9 @@
                                 PENDING ORDERS
                             </span>
 
-                            <h3>12</h3>
+                            <h3>
+                                12
+                            </h3>
 
                             <p>
                                 Awaiting attention
@@ -459,10 +624,15 @@
 
                         </div>
 
+
                     </div>
 
 
+
+                    <%-- Preparing --%>
+
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box icon-beige">
 
@@ -480,13 +650,16 @@
 
                         </div>
 
+
                         <div>
 
                             <span class="staff-metric-label">
                                 PREPARING ORDERS
                             </span>
 
-                            <h3>19</h3>
+                            <h3>
+                                19
+                            </h3>
 
                             <p>
                                 Being prepared
@@ -494,10 +667,15 @@
 
                         </div>
 
+
                     </div>
 
 
+
+                    <%-- Completed --%>
+
                     <div class="staff-metric-card">
+
 
                         <div class="staff-icon-box icon-green">
 
@@ -508,12 +686,16 @@
                                 stroke="currentColor"
                                 stroke-width="2">
 
-                                <circle cx="12" cy="12" r="9" />
+                                <circle cx="12"
+                                    cy="12"
+                                    r="9" />
+
                                 <path d="M8 12l3 3 5-6" />
 
                             </svg>
 
                         </div>
+
 
                         <div>
 
@@ -521,7 +703,9 @@
                                 COMPLETED TODAY
                             </span>
 
-                            <h3>48</h3>
+                            <h3>
+                                48
+                            </h3>
 
                             <p>
                                 Completed orders
@@ -529,13 +713,16 @@
 
                         </div>
 
+
                     </div>
+
 
                 </div>
 
 
+
                 <%-- =================================================
-                     ORDERS + DETAILS WORKSPACE
+                     ORDERS WORKSPACE
                      ================================================= --%>
 
                 <div class="manager-orders-workspace">
@@ -547,7 +734,9 @@
 
                     <section class="staff-dashboard-panel manager-orders-table-card">
 
+
                         <div class="staff-panel-heading">
+
 
                             <div>
 
@@ -561,12 +750,16 @@
 
                             </div>
 
+
                         </div>
+
 
 
                         <div class="table-responsive">
 
+
                             <table class="table staff-orders-table manager-orders-table">
+
 
                                 <thead>
 
@@ -586,7 +779,9 @@
                                 </thead>
 
 
+
                                 <tbody>
+
 
                                     <tr>
 
@@ -611,9 +806,11 @@
                                         </td>
 
                                         <td>
+
                                             <span class="order-status status-pending">
                                                 Pending
                                             </span>
+
                                         </td>
 
                                         <td>
@@ -625,6 +822,7 @@
                                         </td>
 
                                     </tr>
+
 
 
                                     <tr>
@@ -650,9 +848,11 @@
                                         </td>
 
                                         <td>
+
                                             <span class="order-status status-preparing">
                                                 Preparing
                                             </span>
+
                                         </td>
 
                                         <td>
@@ -664,6 +864,7 @@
                                         </td>
 
                                     </tr>
+
 
 
                                     <tr>
@@ -689,9 +890,11 @@
                                         </td>
 
                                         <td>
+
                                             <span class="order-status status-ready">
                                                 Ready
                                             </span>
+
                                         </td>
 
                                         <td>
@@ -703,6 +906,7 @@
                                         </td>
 
                                     </tr>
+
 
 
                                     <tr>
@@ -728,9 +932,11 @@
                                         </td>
 
                                         <td>
+
                                             <span class="order-status status-completed">
                                                 Completed
                                             </span>
+
                                         </td>
 
                                         <td>
@@ -742,6 +948,7 @@
                                         </td>
 
                                     </tr>
+
 
 
                                     <tr>
@@ -767,9 +974,11 @@
                                         </td>
 
                                         <td>
+
                                             <span class="order-status status-completed">
                                                 Completed
                                             </span>
+
                                         </td>
 
                                         <td>
@@ -781,6 +990,7 @@
                                         </td>
 
                                     </tr>
+
 
 
                                     <tr>
@@ -806,9 +1016,11 @@
                                         </td>
 
                                         <td>
+
                                             <span class="order-status status-preparing">
                                                 Preparing
                                             </span>
+
                                         </td>
 
                                         <td>
@@ -820,6 +1032,7 @@
                                         </td>
 
                                     </tr>
+
 
 
                                     <tr>
@@ -845,9 +1058,11 @@
                                         </td>
 
                                         <td>
+
                                             <span class="order-status manager-status-cancelled">
                                                 Cancelled
                                             </span>
+
                                         </td>
 
                                         <td>
@@ -860,44 +1075,77 @@
 
                                     </tr>
 
+
                                 </tbody>
+
 
                             </table>
 
+
                         </div>
 
 
-                        <%-- Pagination mock --%>
+
+                        <%-- Pagination --%>
+
                         <div class="manager-orders-pagination">
+
 
                             <div>
 
-                                <button type="button">‹</button>
-                                <button type="button" class="active">1</button>
-                                <button type="button">2</button>
-                                <button type="button">3</button>
-                                <button type="button">4</button>
-                                <button type="button">5</button>
-                                <button type="button">›</button>
+                                <button type="button">
+                                    ‹
+                                </button>
+
+                                <button type="button"
+                                    class="active">
+                                    1
+                                </button>
+
+                                <button type="button">
+                                    2
+                                </button>
+
+                                <button type="button">
+                                    3
+                                </button>
+
+                                <button type="button">
+                                    4
+                                </button>
+
+                                <button type="button">
+                                    5
+                                </button>
+
+                                <button type="button">
+                                    ›
+                                </button>
 
                             </div>
 
+
                             <small>
-                                Showing 1-8 of 86 orders
+                                Showing 1-7 of 86 orders
                             </small>
 
+
                         </div>
+
 
                     </section>
 
 
+
                     <%-- =================================================
-                         SELECTED ORDER DETAILS
+                         SELECTED ORDER
                          ================================================= --%>
 
                     <aside class="staff-dashboard-panel manager-order-details">
 
+
                         <div class="manager-order-details-header">
+
 
                             <div>
 
@@ -911,138 +1159,210 @@
 
                             </div>
 
+
                             <span class="order-status status-pending">
                                 Pending
                             </span>
 
+
                         </div>
 
 
+
+                        <%-- Customer --%>
+
                         <div class="manager-order-detail-section">
+
 
                             <small class="staff-detail-label">
                                 CUSTOMER
                             </small>
 
+
                             <strong>
                                 Sarah M.
                             </strong>
+
 
                             <span>
                                 082 555 0187
                             </span>
 
+
                             <span>
                                 sarah.m@email.com
                             </span>
 
+
                         </div>
 
 
+
+                        <%-- Items --%>
+
                         <div class="manager-order-detail-section">
+
 
                             <small class="staff-detail-label">
                                 ORDER ITEMS (3)
                             </small>
 
-                            <div class="manager-detail-item">
-                                <span>1 × Cappuccino</span>
-                                <strong>R42.00</strong>
-                            </div>
 
                             <div class="manager-detail-item">
-                                <span>1 × Classic Wrap</span>
-                                <strong>R68.00</strong>
+
+                                <span>
+                                    1 × Cappuccino
+                                </span>
+
+                                <strong>
+                                    R42.00
+                                </strong>
+
                             </div>
 
+
                             <div class="manager-detail-item">
-                                <span>1 × Vanilla Muffin</span>
-                                <strong>R35.00</strong>
+
+                                <span>
+                                    1 × Classic Wrap
+                                </span>
+
+                                <strong>
+                                    R68.00
+                                </strong>
+
                             </div>
+
+
+                            <div class="manager-detail-item">
+
+                                <span>
+                                    1 × Vanilla Muffin
+                                </span>
+
+                                <strong>
+                                    R35.00
+                                </strong>
+
+                            </div>
+
 
                         </div>
 
 
+
+                        <%-- Totals --%>
+
                         <div class="manager-order-total">
+
 
                             <span>
                                 Subtotal
                             </span>
 
+
                             <strong>
                                 R145.00
                             </strong>
 
+
                         </div>
 
 
+
                         <div class="manager-order-total">
+
 
                             <span>
                                 Total
                             </span>
 
+
                             <strong>
                                 R145.00
                             </strong>
 
+
                         </div>
 
 
+
                         <div class="manager-payment-row">
+
 
                             <span>
                                 Payment Method
                             </span>
 
+
                             <strong>
                                 Card
                             </strong>
 
+
                         </div>
 
 
-                        <%-- Action buttons --%>
+
+                        <%-- Actions --%>
+
                         <div class="manager-order-actions">
+
 
                             <button type="button"
                                 class="manager-order-action manager-action-beige">
+
                                 ↻ Update Status
+
                             </button>
+
 
                             <button type="button"
                                 class="manager-order-action manager-action-blue">
+
                                 Assign Staff
+
                             </button>
+
 
                             <button type="button"
                                 class="manager-order-action">
+
                                 🖨 Print Receipt
+
                             </button>
+
 
                             <button type="button"
                                 class="manager-order-action">
+
                                 ▣ View Receipt
+
                             </button>
+
 
                         </div>
 
+
                     </aside>
+
 
                 </div>
 
 
+
                 <%-- =================================================
-                     FLAGGED ORDERS + RECENT ACTIVITY
+                     FLAGGED ORDERS + ACTIVITY
                      ================================================= --%>
 
                 <div class="manager-orders-bottom-grid">
 
 
-                    <%-- Flagged orders --%>
                     <section class="staff-dashboard-panel">
 
+
                         <div class="staff-panel-heading">
+
 
                             <div>
 
@@ -1056,87 +1376,115 @@
 
                             </div>
 
+
                         </div>
+
 
 
                         <div class="manager-flagged-order">
 
-                            <strong>#1018</strong>
+
+                            <strong>
+                                #1018
+                            </strong>
+
 
                             <span>
                                 Michael L.
                             </span>
 
+
                             <span>
                                 Payment failed
                             </span>
+
 
                             <span>
                                 Retry payment required
                             </span>
 
+
                             <span>
                                 12:45
                             </span>
+
 
                             <button type="button">
                                 View
                             </button>
 
+
                         </div>
+
 
 
                         <div class="manager-flagged-order">
 
-                            <strong>#1015</strong>
+
+                            <strong>
+                                #1015
+                            </strong>
+
 
                             <span>
                                 Emma L.
                             </span>
 
+
                             <span>
                                 Special request
                             </span>
+
 
                             <span>
                                 Requires manager approval
                             </span>
 
+
                             <span>
                                 11:30
                             </span>
+
 
                             <button type="button">
                                 View
                             </button>
 
+
                         </div>
+
 
                     </section>
 
 
-                    <%-- Recent activity --%>
+
+                    <%-- Activity --%>
+
                     <section class="staff-dashboard-panel">
+
 
                         <div class="staff-panel-heading">
 
+
                             <div>
+
                                 <h5>
                                     Recent Activity
                                 </h5>
+
                             </div>
 
-                            <a href="#"
-                                class="staff-text-link">
-                                View All
-                            </a>
 
                         </div>
 
 
+
                         <div class="manager-activity-item">
 
-                            <span class="manager-activity-dot"></span>
+
+                            <span class="manager-activity-dot">
+                            </span>
+
 
                             <div>
 
@@ -1150,12 +1498,17 @@
 
                             </div>
 
+
                         </div>
+
 
 
                         <div class="manager-activity-item">
 
-                            <span class="manager-activity-dot"></span>
+
+                            <span class="manager-activity-dot">
+                            </span>
+
 
                             <div>
 
@@ -1169,28 +1522,55 @@
 
                             </div>
 
+
                         </div>
+
 
                     </section>
 
+
                 </div>
 
+
+
+                <%-- =================================================
+                     FOOTER
+                     ================================================= --%>
 
                 <div class="staff-footer">
                     © 2026 Cafe101 Manager System
                 </div>
 
+
             </main>
+
 
         </div>
 
+
     </div>
 
+
+
+    <%-- =================================================
+         PAGE JAVASCRIPT
+         ================================================= --%>
 
     <script>
 
         document.body.classList.add("staff-page");
 
+
+        // Hide normal public Site.Master navbar
+        const publicNavbar =
+            document.querySelector(".navbar");
+
+        if (publicNavbar) {
+            publicNavbar.style.display = "none";
+        }
+
+
+        // Remove Bootstrap container spacing
         const bodyContent =
             document.querySelector(".body-content");
 
@@ -1206,23 +1586,54 @@
         }
 
 
+        // Hide Site.Master footer
+        const masterFooter =
+            document.querySelector(
+                ".body-content > footer"
+            );
+
+        if (masterFooter) {
+            masterFooter.style.display = "none";
+        }
+
+
+        const masterFooterLine =
+            document.querySelector(
+                ".body-content > hr"
+            );
+
+        if (masterFooterLine) {
+            masterFooterLine.style.display = "none";
+        }
+
+
+        // Sidebar collapse
         const sidebarToggle =
-            document.getElementById("sidebarToggle");
+            document.getElementById(
+                "sidebarToggle"
+            );
 
         const staffBody =
-            document.querySelector(".staff-body");
+            document.querySelector(
+                ".staff-body"
+            );
 
 
         if (sidebarToggle && staffBody) {
 
-            sidebarToggle.addEventListener("click", function () {
+            sidebarToggle.addEventListener(
+                "click",
+                function () {
 
-                staffBody.classList.toggle("sidebar-collapsed");
+                    staffBody.classList.toggle(
+                        "sidebar-collapsed"
+                    );
 
-            });
+                });
 
         }
 
     </script>
+
 
 </asp:Content>

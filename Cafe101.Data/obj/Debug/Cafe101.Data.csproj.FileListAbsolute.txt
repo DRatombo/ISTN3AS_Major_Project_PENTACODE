@@ -1,0 +1,6 @@
+C:\Users\Student\Downloads\ISTN3SI\Cafe101\Cafe101.Data\bin\Debug\Cafe101.Data.dll
+C:\Users\Student\Downloads\ISTN3SI\Cafe101\Cafe101.Data\bin\Debug\Cafe101.Data.pdb
+C:\Users\Student\Downloads\ISTN3SI\Cafe101\Cafe101.Data\obj\Debug\Cafe101.Data.csproj.AssemblyReference.cache
+C:\Users\Student\Downloads\ISTN3SI\Cafe101\Cafe101.Data\obj\Debug\Cafe101.Data.csproj.CoreCompileInputs.cache
+C:\Users\Student\Downloads\ISTN3SI\Cafe101\Cafe101.Data\obj\Debug\Cafe101.Data.dll
+C:\Users\Student\Downloads\ISTN3SI\Cafe101\Cafe101.Data\obj\Debug\Cafe101.Data.pdb

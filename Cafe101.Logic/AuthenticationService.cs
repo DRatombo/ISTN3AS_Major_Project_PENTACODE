@@ -1,5 +1,6 @@
 ﻿using Cafe101.Data;
 using System;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Security.Cryptography;
 using System.Text;
@@ -971,6 +972,74 @@ namespace Cafe101.Logic
 
                 return builder.ToString();
             }
+        }
+
+        // ============================================================
+        // GET CUSTOMER BY EMAIL (for Forgot Password)
+        // ============================================================
+        public CustomerInfo GetCustomerByEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+                return null;
+
+            string query = @"
+        SELECT CustomerID, FirstName, Surname, Email, Status
+        FROM CustomerTable
+        WHERE Email = @Email"
+            ;
+
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@Email", email.Trim());
+                conn.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        return new CustomerInfo
+                        {
+                            CustomerID = Convert.ToInt32(reader["CustomerID"]),
+                            FirstName = reader["FirstName"].ToString(),
+                            Surname = reader["Surname"].ToString(),
+                            Email = reader["Email"].ToString(),
+                            Status = reader["Status"].ToString()
+                        };
+                    }
+                }
+            }
+            return null;
+        }
+
+        // ============================================================
+        // UPDATE CUSTOMER PASSWORD
+        // ============================================================
+        public bool UpdateCustomerPassword(int customerId, string newPassword)
+        {
+            string query = @"
+        UPDATE CustomerTable
+        SET Password = @Password
+        WHERE CustomerID = @CustomerID"
+            ;
+
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@Password", newPassword);
+                cmd.Parameters.AddWithValue("@CustomerID", customerId);
+                conn.Open();
+                int rows = cmd.ExecuteNonQuery();
+                return rows > 0;
+            }
+        }
+        public class CustomerInfo
+        {
+            public int CustomerID { get; set; }
+            public string FirstName { get; set; }
+            public string Surname { get; set; }
+            public string Email { get; set; }
+            public string Status { get; set; }
         }
     }
 }

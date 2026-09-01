@@ -60,7 +60,7 @@ namespace Cafe101.Web
             // Send the email
             bool emailSent = SendTempPasswordEmail(customer.Email, customer.FirstName, tempPassword);
 
-            if (!emailSent)
+           if (!emailSent)
             {
                 // Clear session if email failed
                 Session.Remove("ResetCustomerID");

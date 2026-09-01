@@ -363,7 +363,7 @@
             this.dgvCart.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.dgvCart.Name = "dgvCart";
             this.dgvCart.RowHeadersWidth = 51;
-            this.dgvCart.Size = new System.Drawing.Size(766, 308);
+            this.dgvCart.Size = new System.Drawing.Size(766, 382);
             this.dgvCart.TabIndex = 12;
             // 
             // lblTotalPrice
@@ -395,7 +395,7 @@
             this.btnConfirmOrder.BackColor = System.Drawing.Color.White;
             this.btnConfirmOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmOrder.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(53)))), ((int)(((byte)(87)))));
-            this.btnConfirmOrder.Location = new System.Drawing.Point(322, 749);
+            this.btnConfirmOrder.Location = new System.Drawing.Point(322, 803);
             this.btnConfirmOrder.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.btnConfirmOrder.Name = "btnConfirmOrder";
             this.btnConfirmOrder.Size = new System.Drawing.Size(239, 35);
@@ -868,7 +868,7 @@
             this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(848, 851);
+            this.groupBox3.Size = new System.Drawing.Size(848, 925);
             this.groupBox3.TabIndex = 32;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "STEP 3: CONFIRM YOUR CART AND PLACE YOUR ORDER";

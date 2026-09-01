@@ -1,7 +1,8 @@
 ﻿using Cafe101.Logic;
+using SendGrid;
+using SendGrid.Helpers.Mail;
 using System;
-using System.Net;
-using System.Net.Mail;
+using System.Configuration;
 using System.Web.UI;
 
 namespace Cafe101.Web
@@ -14,14 +15,10 @@ namespace Cafe101.Web
         {
             if (!IsPostBack)
             {
-                // Start on Step 1
                 ShowStep1();
             }
         }
 
-        // ============================================================
-        // STEP 1: SEND TEMPORARY PASSWORD
-        // ============================================================
         protected void BtnSendTempPassword_Click(object sender, EventArgs e)
         {
             lblMessage1.Text = "";
@@ -47,44 +44,30 @@ namespace Cafe101.Web
                 return;
             }
 
-            // Generate temporary password (DO NOT save it to the database)
             string tempPassword = GenerateTempPassword();
 
-            // Store everything needed in Session only
             Session["ResetCustomerID"] = customer.CustomerID;
             Session["ResetEmail"] = customer.Email;
             Session["ResetFirstName"] = customer.FirstName;
             Session["TempPassword"] = tempPassword;
-            Session["TempPasswordExpiry"] = DateTime.Now.AddMinutes(30); // valid for 30 minutes
+            Session["TempPasswordExpiry"] = DateTime.Now.AddMinutes(30);
 
-            // Send the email
-            bool emailSent = SendTempPasswordEmail(customer.Email, customer.FirstName, tempPassword);
+            bool emailSent = SendTempPasswordEmailViaSendGrid(customer.Email, customer.FirstName, tempPassword);
 
-           if (!emailSent)
+            if (!emailSent)
             {
-                // Clear session if email failed
-                Session.Remove("ResetCustomerID");
-                Session.Remove("ResetEmail");
-                Session.Remove("ResetFirstName");
-                Session.Remove("TempPassword");
-                Session.Remove("TempPasswordExpiry");
-
+                ClearResetSession();
                 ShowError1("We could not send the email. Please try again later.");
                 return;
             }
 
-            // Move to Step 2
             ShowStep2();
         }
 
-        // ============================================================
-        // STEP 2: VERIFY TEMP PASSWORD + SET NEW PASSWORD + LOGIN
-        // ============================================================
         protected void BtnChangePassword_Click(object sender, EventArgs e)
         {
             lblMessage2.Text = "";
 
-            // Check if the reset session is still valid
             if (Session["ResetCustomerID"] == null || Session["TempPassword"] == null)
             {
                 ShowError2("Session expired. Please start the process again.");
@@ -92,11 +75,11 @@ namespace Cafe101.Web
                 return;
             }
 
-            // Check if the temporary password has expired
             if (Session["TempPasswordExpiry"] == null ||
                 DateTime.Now > (DateTime)Session["TempPasswordExpiry"])
             {
                 ShowError2("The temporary password has expired. Please request a new one.");
+                ClearResetSession();
                 ShowStep1();
                 return;
             }
@@ -125,7 +108,6 @@ namespace Cafe101.Web
                 return;
             }
 
-            // Verify the temporary password against what is stored in Session
             string correctTempPassword = Session["TempPassword"].ToString();
 
             if (enteredTempPassword != correctTempPassword)
@@ -137,7 +119,6 @@ namespace Cafe101.Web
             int customerId = Convert.ToInt32(Session["ResetCustomerID"]);
             string email = Session["ResetEmail"].ToString();
 
-            // NOW update the real password in the database
             bool updated = authService.UpdateCustomerPassword(customerId, newPassword);
 
             if (!updated)
@@ -146,24 +127,16 @@ namespace Cafe101.Web
                 return;
             }
 
-            // Clear the reset session
-            Session.Remove("ResetCustomerID");
-            Session.Remove("ResetEmail");
-            Session.Remove("ResetFirstName");
-            Session.Remove("TempPassword");
-            Session.Remove("TempPasswordExpiry");
+            ClearResetSession();
 
-            // Log the customer in using the NEW password
             var loginResult = authService.SignIn(email, newPassword);
 
             if (!loginResult.Success)
             {
-                // Password was updated but login failed for some reason
                 ShowError2("Password updated successfully. Please go to Sign In and log in with your new password.");
                 return;
             }
 
-            // Set session the same way as normal Sign In
             Session["UserID"] = loginResult.UserID;
             Session["UserType"] = loginResult.UserType;
             Session["Role"] = loginResult.Role;
@@ -173,13 +146,142 @@ namespace Cafe101.Web
             Session["Address"] = loginResult.Address;
             Session["PhoneNumber"] = loginResult.PhoneNumber;
 
-            // Redirect to Customer Dashboard
             Response.Redirect("~/CustomerDashboard.aspx");
         }
 
-        // ============================================================
-        // HELPERS
-        // ============================================================
+        private bool SendTempPasswordEmailViaSendGrid(string toEmail, string firstName, string tempPassword)
+        {
+            try
+            {
+                string sendGridApiKey = ConfigurationManager.AppSettings["SendGridApiKey"];
+
+                if (string.IsNullOrWhiteSpace(sendGridApiKey))
+                {
+                    LogError("SendGrid API key not configured in Web.config");
+                    return false;
+                }
+
+                var client = new SendGridClient(sendGridApiKey);
+
+                var from = new EmailAddress("mayisesnakhokonke7@gmail.com", "Cafe 101");
+                var subject = "Cafe 101 – Temporary Password";
+                var to = new EmailAddress(toEmail, firstName);
+
+                string htmlContent = BuildEmailHtml(firstName, tempPassword);
+                string plainTextContent = BuildEmailPlainText(firstName, tempPassword);
+
+                var msg = new SendGridMessage()
+                {
+                    From = from,
+                    Subject = subject,
+                    HtmlContent = htmlContent,
+                    PlainTextContent = plainTextContent
+                };
+
+                msg.AddTo(to);
+
+                var response = client.SendEmailAsync(msg).Result;
+
+                if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
+                {
+                    LogInfo($"Email sent successfully to {toEmail}");
+                    return true;
+                }
+                else
+                {
+                    LogError($"SendGrid returned status code: {response.StatusCode}");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                LogError($"Email sending exception: {ex.Message} | Inner: {ex.InnerException?.Message}");
+                return false;
+            }
+        }
+
+        private string BuildEmailHtml(string firstName, string tempPassword)
+        {
+            return $@"
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {{ font-family: Arial, sans-serif; line-height: 1.6; color: #333; }}
+        .container {{ max-width: 600px; margin: 0 auto; padding: 20px; }}
+        .header {{ background-color: #8B4513; color: white; padding: 20px; text-align: center; border-radius: 5px 5px 0 0; }}
+        .content {{ background-color: #f9f9f9; padding: 20px; border: 1px solid #ddd; border-radius: 0 0 5px 5px; }}
+        .temp-password {{ background-color: #fff3cd; padding: 15px; margin: 20px 0; border-left: 4px solid #ffc107; font-family: monospace; font-weight: bold; }}
+        .footer {{ margin-top: 20px; font-size: 12px; color: #666; text-align: center; }}
+        .warning {{ background-color: #ffe0e0; padding: 10px; margin: 10px 0; border-radius: 3px; color: #d32f2f; }}
+    </style>
+</head>
+<body>
+    <div class=""container"">
+        <div class=""header"">
+            <h1>Cafe 101 Password Reset</h1>
+        </div>
+        <div class=""content"">
+            <p>Hi {firstName},</p>
+            
+            <p>You requested a password reset for your Cafe101 account. If you didn't make this request, you can ignore this email.</p>
+            
+            <p>Your temporary password is:</p>
+            <div class=""temp-password"">{tempPassword}</div>
+            
+            <p><strong>Instructions:</strong></p>
+            <ol>
+                <li>Return to the Forgot Password page</li>
+                <li>Enter the temporary password above</li>
+                <li>Enter your new permanent password</li>
+                <li>Click ""Change Password & Sign In""</li>
+            </ol>
+            
+            <div class=""warning"">
+                <strong>⚠️ Important Security Notes:</strong><br>
+                • This temporary password expires in 30 minutes<br>
+                • Do not share this password with anyone<br>
+                • Never reply to this email or share it
+            </div>
+            
+            <p>Questions? Contact our support team at support@cafe101.com</p>
+        </div>
+        <div class=""footer"">
+            <p>© Cafe 101 - This is an automated email. Please do not reply.</p>
+        </div>
+    </div>
+</body>
+</html>";
+        }
+
+        private string BuildEmailPlainText(string firstName, string tempPassword)
+        {
+            return $@"
+Hi {firstName},
+
+You requested a password reset for your Cafe101 account. If you didn't make this request, you can ignore this email.
+
+Your temporary password is:
+
+    {tempPassword}
+
+INSTRUCTIONS:
+1. Return to the Forgot Password page
+2. Enter the temporary password above
+3. Enter your new permanent password
+4. Click 'Change Password & Sign In'
+
+IMPORTANT SECURITY NOTES:
+- This temporary password expires in 30 minutes
+- Do not share this password with anyone
+- Never reply to this email or share it
+
+Questions? Contact our support team at support@cafe101.com
+
+---
+© Cafe 101 - This is an automated email. Please do not reply.";
+        }
+
         private void ShowStep1()
         {
             pnlStep1.Visible = true;
@@ -192,6 +294,15 @@ namespace Cafe101.Web
             pnlStep2.Visible = true;
         }
 
+        private void ClearResetSession()
+        {
+            Session.Remove("ResetCustomerID");
+            Session.Remove("ResetEmail");
+            Session.Remove("ResetFirstName");
+            Session.Remove("TempPassword");
+            Session.Remove("TempPasswordExpiry");
+        }
+
         private string GenerateTempPassword()
         {
             const string chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789!@#$";
@@ -202,42 +313,26 @@ namespace Cafe101.Web
             return new string(password);
         }
 
-        private bool SendTempPasswordEmail(string toEmail, string firstName, string tempPassword)
+        private void LogError(string message)
         {
             try
             {
-                string fromEmail = "mayisesnakhokonke7@gmail.com";
-                string appPassword = "nkwl wept pruf ljyk";
-
-                using (MailMessage mail = new MailMessage())
-                {
-                    mail.From = new MailAddress(fromEmail, "Cafe 101");
-                    mail.To.Add(toEmail);
-                    mail.Subject = "Cafe 101 – Temporary Password";
-                    mail.Body =
-                        $"Hi {firstName},\n\n" +
-                        "You requested a password reset for your Cafe101 account.\n\n" +
-                        $"Your temporary password is:\n\n" +
-                        $"    {tempPassword}\n\n" +
-                        "Please return to the Forgot Password page and enter this temporary password " +
-                        "together with your new permanent password.\n\n" +
-                        "Do not share this password with anyone.\n\n" +
-                        "– Cafe 101 Team\n" +
-                        "(This is an automated do-not-reply email)";
-
-                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
-                    {
-                        smtp.EnableSsl = true;
-                        smtp.Credentials = new NetworkCredential(fromEmail, appPassword);
-                        smtp.Send(mail);
-                    }
-                }
-                return true;
+                System.Diagnostics.EventLog.WriteEntry("Cafe101",
+                    $"[ERROR] {DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}",
+                    System.Diagnostics.EventLogEntryType.Error);
             }
-            catch
+            catch { }
+        }
+
+        private void LogInfo(string message)
+        {
+            try
             {
-                return false;
+                System.Diagnostics.EventLog.WriteEntry("Cafe101",
+                    $"[INFO] {DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}",
+                    System.Diagnostics.EventLogEntryType.Information);
             }
+            catch { }
         }
 
         private void ShowError1(string msg)

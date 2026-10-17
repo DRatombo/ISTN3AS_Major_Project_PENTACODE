@@ -379,26 +379,24 @@
 
                 <%-- Cart --%>
 
-                <a href="CartandPayment.aspx"
-                    class="customer-cart">
+               <!-- Keep the cart icon and load the badge count from the session cart. -->
+                    <a href="CartandPayment.aspx"
+                       class="customer-cart"
+                       aria-label="View your cart"
+                       style="position: relative;">
 
-                    &#128722;
+                        &#128722;
 
-                    <span class="position-absolute
-                                 top-0
-                                 start-100
-                                 translate-middle
-                                 badge
-                                 rounded-pill
-                                 bg-danger"
-                        style="font-size:.6rem;">
+                        <span class="position-absolute top-0 start-100 translate-middle
+                                     badge rounded-pill bg-danger"
+                              style="font-size: .6rem;">
 
-                        2
+                            <asp:Literal
+                                ID="litDashboardCartCount"
+                                runat="server" />
 
-                    </span>
-
-                </a>
-
+                        </span>
+                    </a>
 
             </div>
 
@@ -555,416 +553,143 @@
 
                     </div>
 
+                    <!-- Search the database menu loaded by the logic layer. -->
+<div class="customer-search mb-4">
+    <label for="<%= txtSearch.ClientID %>"
+        class="form-label">
+        Search menu
+    </label>
 
+    <div class="input-group">
+        <asp:TextBox
+            ID="txtSearch"
+            runat="server"
+            CssClass="form-control"
+            MaxLength="100"
+            placeholder="Enter a product name..." />
 
-                    <%-- SEARCH --%>
+        <asp:Button
+            ID="btnSearch"
+            runat="server"
+            Text="Search"
+            CssClass="btn btn-brand"
+            CausesValidation="false"
+            OnClick="btnSearch_Click" />
+    </div>
+</div>
 
-                    <div class="customer-search mb-4">
+<asp:Label
+    ID="lblDashboardMessage"
+    runat="server"
+    CssClass="d-block text-danger mb-3"
+    role="status" />
 
-                        <div class="input-group">
+<!-- Category names come from MenuItemsTable. -->
+<h5 class="customer-section-title mb-3">Categories</h5>
 
-                            <span class="input-group-text bg-white border-end-0">
-                                &#128269;
-                            </span>
+<div class="customer-category-row">
+    <asp:Repeater ID="rptCategories" runat="server">
+        <ItemTemplate>
+            <a href='<%# GetCategoryUrl((string)Container.DataItem) %>'
+                class="customer-category">
 
-                            <asp:TextBox
-                                ID="txtSearch"
-                                runat="server"
-                                CssClass="form-control border-start-0"
-                                placeholder="Search for menu items..." />
+                <div class="customer-category-circle"
+                    style="background: #e4f0fd;"
+                    aria-hidden="true">
+                    &#9776;
+                </div>
 
-                        </div>
+                <small><%#: Container.DataItem %></small>
+            </a>
+        </ItemTemplate>
+    </asp:Repeater>
+</div>
 
-                    </div>
+<!-- Rank products using quantities recorded in OrderItemTable. -->
+<asp:Panel ID="pnlPopularItems" runat="server">
+    <h5 class="customer-section-title mb-3">
+        Popular items
+    </h5>
 
+    <div class="customer-menu-scroll mb-5">
+        <asp:Repeater ID="rptPopularItems" runat="server">
+            <ItemTemplate>
+                <div class="card customer-menu-card">
+                    <div class="card-body">
+                        <h6 class="fw-bold">
+                            <%#: Eval("MenuItemName") %>
+                        </h6>
 
+                        <p class="small text-muted mb-2">
+                            <%#: Eval("Category") %>
+                        </p>
 
-                    <%-- HERO --%>
+                        <p class="fw-bold text-brand mb-2">
+                            R <%# Eval("SellingPrice", "{0:0.00}") %>
+                        </p>
 
-                    <div class="customer-hero">
+                        <p class="small mb-3">
+                            <%#: Eval("StockStatus") %>
+                        </p>
 
-
-                        <img src="~/Content/images/Fish and Chips Combo.jpeg"
-                            runat="server"
-                            alt="Fish and chips promotion" />
-
-
-                        <div class="customer-hero-content">
-
-                            <p class="text-white small mb-1">
-                                Today's Special
-                            </p>
-
-                            <h2 class="text-white fw-bold">
-                                20% Off Combos
-                            </h2>
-
-                            <a href="~/Menu.aspx?cat=combos"
-                                runat="server"
-                                class="btn btn-light btn-sm fw-bold mt-2">
-
-                                Order Now
-
-                            </a>
-
-                        </div>
-
-
-                    </div>
-
-
-
-                    <%-- CATEGORIES --%>
-
-                    <div class="customer-category-row">
-
-
-                        <a href="~/Menu.aspx#tab-drinks"
-                            runat="server"
-                            class="customer-category">
-
-                            <div class="customer-category-circle"
-                                style="background:#fde4e4;">
-
-                                &#129380;
-
-                            </div>
-
-                            <small>
-                                Cool Drinks
-                            </small>
-
+                        <a href="Menu.aspx"
+                            class="btn btn-sm btn-brand w-100">
+                            View menu
                         </a>
-
-
-
-                        <a href="~/Menu.aspx#tab-food"
-                            runat="server"
-                            class="customer-category">
-
-                            <div class="customer-category-circle"
-                                style="background:#e4f0fd;">
-
-                                &#127831;
-
-                            </div>
-
-                            <small>
-                                Food
-                            </small>
-
-                        </a>
-
-
-
-                        <a href="~/Menu.aspx#tab-combos"
-                            runat="server"
-                            class="customer-category">
-
-                            <div class="customer-category-circle"
-                                style="background:#fdf3e4;">
-
-                                &#127828;
-
-                            </div>
-
-                            <small>
-                                Combo Deals
-                            </small>
-
-                        </a>
-
-
-
-                        <a href="~/Menu.aspx#tab-snacks"
-                            runat="server"
-                            class="customer-category">
-
-                            <div class="customer-category-circle"
-                                style="background:#e4fdea;">
-
-                                &#127853;
-
-                            </div>
-
-                            <small>
-                                Snacks
-                            </small>
-
-                        </a>
-
-
                     </div>
+                </div>
+            </ItemTemplate>
+        </asp:Repeater>
+    </div>
+</asp:Panel>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h5 class="customer-section-title mb-0">Menu</h5>
+
+    <a href="Menu.aspx" class="small text-brand">
+        View all &rarr;
+    </a>
+</div>
+
+<!-- Show database products matching the search, or a menu preview. -->
+<div class="customer-menu-scroll mb-4">
+    <asp:Repeater ID="rptMenuPreview" runat="server">
+        <ItemTemplate>
+            <div class="card customer-menu-card">
+                <div class="card-body">
+                    <h6 class="fw-bold">
+                        <%#: Eval("MenuItemName") %>
+                    </h6>
+
+                    <p class="small text-muted mb-2">
+                        <%#: Eval("Category") %>
+                    </p>
+
+                    <p class="fw-bold text-brand mb-2">
+                        R <%# Eval("SellingPrice", "{0:0.00}") %>
+                    </p>
+
+                    <p class="small mb-3">
+                        <%#: Eval("StockStatus") %>
+                    </p>
+
+                    <a href="Menu.aspx"
+                        class="btn btn-sm btn-brand w-100">
+                        View menu
+                    </a>
+                </div>
+            </div>
+        </ItemTemplate>
+    </asp:Repeater>
+</div>
+
+<asp:Label
+    ID="lblNoMenuItems"
+    runat="server"
+    Text="No menu items found."
+    CssClass="d-block text-muted mb-4"
+    Visible="false" />
 
-
-
-                    <%-- POPULAR ITEMS --%>
-
-                    <h5 class="customer-section-title mb-2">
-                        Popular Items
-                    </h5>
-
-
-                    <div id="popularCarousel"
-                        class="carousel slide mb-5"
-                        data-bs-ride="carousel"
-                        data-bs-interval="3000">
-
-
-                        <div class="carousel-inner rounded">
-
-
-                            <div class="carousel-item active">
-
-                                <img src="~/Content/images/Chicken fillet.jpeg"
-                                    runat="server"
-                                    class="d-block w-100"
-                                    alt="Chicken Fillet">
-
-                                <div class="carousel-caption bg-dark bg-opacity-50 rounded py-1">
-
-                                    <p class="mb-0 fw-bold">
-                                        Chicken Fillet — R35.00
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="carousel-item">
-
-                                <img src="~/Content/images/Lamb Sandwich.jpeg"
-                                    runat="server"
-                                    class="d-block w-100"
-                                    alt="Lamb Sandwich">
-
-                                <div class="carousel-caption bg-dark bg-opacity-50 rounded py-1">
-
-                                    <p class="mb-0 fw-bold">
-                                        Lamb Sandwich — R28.00
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-
-                            <div class="carousel-item">
-
-                                <img src="~/Content/images/Wings and Chips.jpeg"
-                                    runat="server"
-                                    class="d-block w-100"
-                                    alt="Wings and Chips">
-
-                                <div class="carousel-caption bg-dark bg-opacity-50 rounded py-1">
-
-                                    <p class="mb-0 fw-bold">
-                                        Wings and Chips — R42.00
-                                    </p>
-
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-
-
-                        <button class="carousel-control-prev"
-                            type="button"
-                            data-bs-target="#popularCarousel"
-                            data-bs-slide="prev">
-
-                            <span class="carousel-control-prev-icon">
-                            </span>
-
-                        </button>
-
-
-
-                        <button class="carousel-control-next"
-                            type="button"
-                            data-bs-target="#popularCarousel"
-                            data-bs-slide="next">
-
-                            <span class="carousel-control-next-icon">
-                            </span>
-
-                        </button>
-
-
-                    </div>
-
-
-
-                    <%-- MENU --%>
-
-                    <div class="d-flex
-                                justify-content-between
-                                align-items-center
-                                mb-2">
-
-
-                        <h5 class="customer-section-title mb-0">
-                            Menu
-                        </h5>
-
-
-                        <a href="~/Menu.aspx"
-                            runat="server"
-                            class="small text-brand">
-
-                            View All →
-
-                        </a>
-
-
-                    </div>
-
-
-
-                    <div class="customer-menu-scroll mb-5">
-
-
-                        <div class="card customer-menu-card">
-
-                            <img src="~/Content/images/Lamb Sandwich.jpeg"
-                                runat="server"
-                                class="card-img-top"
-                                alt="Lamb Sandwich" />
-
-                            <div class="card-body p-2">
-
-                                <p class="mb-0 small fw-bold">
-                                    Lamb Sandwich
-                                </p>
-
-                                <p class="mb-0 small text-brand fw-bold">
-                                    R32.00
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="card customer-menu-card">
-
-                            <img src="~/Content/images/Blueberry muffin .jpeg"
-                                runat="server"
-                                class="card-img-top"
-                                alt="Blueberry Muffin" />
-
-                            <div class="card-body p-2">
-
-                                <p class="mb-0 small fw-bold">
-                                    Blueberry Muffin
-                                </p>
-
-                                <p class="mb-0 small text-brand fw-bold">
-                                    R25.00
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="card customer-menu-card">
-
-                            <img src="~/Content/images/Fish and Chips Combo.jpeg"
-                                runat="server"
-                                class="card-img-top"
-                                alt="Fish and Chips Combo" />
-
-                            <div class="card-body p-2">
-
-                                <p class="mb-0 small fw-bold">
-                                    Fish and Chips Combo
-                                </p>
-
-                                <p class="mb-0 small text-brand fw-bold">
-                                    R65.00
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="card customer-menu-card">
-
-                            <img src="~/Content/images/Reboost.png"
-                                runat="server"
-                                class="card-img-top"
-                                alt="Energy Drink" />
-
-                            <div class="card-body p-2">
-
-                                <p class="mb-0 small fw-bold">
-                                    Energy Drink
-                                </p>
-
-                                <p class="mb-0 small text-brand fw-bold">
-                                    R15.00
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="card customer-menu-card">
-
-                            <img src="~/Content/images/Kingsley.png"
-                                runat="server"
-                                class="card-img-top"
-                                alt="Soft Drink" />
-
-                            <div class="card-body p-2">
-
-                                <p class="mb-0 small fw-bold">
-                                    Soft Drink
-                                </p>
-
-                                <p class="mb-0 small text-brand fw-bold">
-                                    R25.00
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="card customer-menu-card">
-
-                            <img src="~/Content/images/Coke330.png"
-                                runat="server"
-                                class="card-img-top"
-                                alt="Cooldrink" />
-
-                            <div class="card-body p-2">
-
-                                <p class="mb-0 small fw-bold">
-                                    Cooldrink
-                                </p>
-
-                                <p class="mb-0 small text-brand fw-bold">
-                                    R10.00
-                                </p>
-
-                            </div>
-
-                        </div>
 
 
                     </div>

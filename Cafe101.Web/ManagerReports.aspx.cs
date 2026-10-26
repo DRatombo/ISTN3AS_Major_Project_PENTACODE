@@ -1,10 +1,16 @@
 ﻿using System;
+using Cafe101.Logic;
+using System.Globalization;
 
 namespace Cafe101.Web
 {
     public partial class ManagerReports :
         System.Web.UI.Page
     {
+        // REPORT SERVICE
+        private readonly ReportService reportService =
+            new ReportService();
+
         protected void Page_Load(
             object sender,
             EventArgs e)
@@ -18,6 +24,7 @@ namespace Cafe101.Web
             if (!IsPostBack)
             {
                 LoadManagerHeader();
+                LoadReportSummary();
             }
         }
 
@@ -150,6 +157,45 @@ namespace Cafe101.Web
                 : initials;
         }
 
+        // ============================================================
+        // REPORT DATE FILTER
+        // ============================================================
+
+        protected void DdlReportDateRange_SelectedIndexChanged(
+            object sender, EventArgs e)
+        {
+            LoadReportSummary();
+        }
+        // ============================================================
+        // LOAD REPORT SUMMARY FROM DATABASE
+        // ============================================================
+
+        private void LoadReportSummary()
+        {
+            try
+            {
+                ReportSummary summary =
+                    reportService.GetSummaryByDateRange(
+                        ddlReportDateRange.SelectedValue);
+
+                lblTotalRevenue.Text =
+                    "R" + summary.TotalRevenue.ToString("N2");
+
+                lblCompletedOrders.Text =
+                    summary.CompletedOrders.ToString();
+
+                lblAverageOrderValue.Text =
+                    "R" + summary.AverageOrderValue.ToString("N2");
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.WriteLine(ex);
+
+                lblTotalRevenue.Text = "Unavailable";
+                lblCompletedOrders.Text = "Unavailable";
+                lblAverageOrderValue.Text = "Unavailable";
+            }
+        }
 
         // ============================================================
         // LOGOUT

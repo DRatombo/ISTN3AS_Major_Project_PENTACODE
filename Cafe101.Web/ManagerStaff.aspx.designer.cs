@@ -256,5 +256,11 @@ namespace Cafe101.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnToggleStatus;
+
+        protected global::System.Web.UI.WebControls.Button btnPreviousStaff;
+
+        protected global::System.Web.UI.WebControls.Label lblStaffPage;
+
+        protected global::System.Web.UI.WebControls.Button btnNextStaff;
     }
 }

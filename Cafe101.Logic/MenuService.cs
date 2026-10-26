@@ -239,6 +239,67 @@ namespace Cafe101.Logic
 
 
         // ============================================================
+        // UPDATE MENU ITEM
+        // ============================================================
+
+        public string UpdateMenuItem(
+            int menuItemID,
+            string itemName,
+            decimal sellingPrice,
+            decimal costToMake,
+            string category,
+            int preparationTime)
+        {
+            if (menuItemID <= 0 ||
+                string.IsNullOrWhiteSpace(itemName) ||
+                string.IsNullOrWhiteSpace(category))
+            {
+                return "Please enter valid menu item details.";
+            }
+
+            if (sellingPrice <= 0 || costToMake < 0 || preparationTime < 0)
+            {
+                return "Please enter valid prices and preparation time.";
+            }
+
+            using (SqlConnection connection =
+                DatabaseConnection.GetConnection())
+            {
+                string sql = @"
+                    UPDATE MenuItemsTable
+                    SET MenuItemName = @MenuItemName,
+                        SellingPrice = @SellingPrice,
+                        CostToMake = @CostToMake,
+                        Category = @Category,
+                        PreparationTime = @PreparationTime
+                    WHERE MenuItemID = @MenuItemID;";
+
+                using (SqlCommand command =
+                    new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@MenuItemID", menuItemID);
+                    command.Parameters.AddWithValue("@MenuItemName", itemName.Trim());
+                    command.Parameters.AddWithValue("@SellingPrice", sellingPrice);
+                    command.Parameters.AddWithValue("@CostToMake", costToMake);
+                    command.Parameters.AddWithValue("@Category", category.Trim());
+                    command.Parameters.AddWithValue("@PreparationTime", preparationTime);
+
+                    connection.Open();
+
+                    int rows = command.ExecuteNonQuery();
+
+                    if (rows == 0)
+                    {
+                        return "Menu item could not be found.";
+                    }
+                }
+            }
+
+            return "";
+        }
+
+
+        // ============================================================
         // DELETE MENU ITEM
         //
         // Will only delete an item that has never been used
@@ -260,10 +321,14 @@ namespace Cafe101.Logic
                     try
                     {
                         string checkSql = @"
-                            SELECT COUNT(*)
-                            FROM OrderItemTable
-                            WHERE MenuItemID =
-                                  @MenuItemID;";
+                         SELECT
+                         (SELECT COUNT(*)
+                         FROM OrderItemTable
+                            WHERE MenuItemID = @MenuItemID)
+                          +
+                          (SELECT COUNT(*)
+                         FROM ItemOrder
+                          WHERE MenuItemID = @MenuItemID);";
 
 
                         using (SqlCommand checkCommand =
@@ -364,5 +429,150 @@ namespace Cafe101.Logic
                 }
             }
         }
+        // ============================================================
+        // ADD NEW MENU ITEM
+        // ============================================================
+
+        public string AddMenuItem(
+            string itemName,
+            decimal sellingPrice,
+            decimal costToMake,
+            string category,
+            int preparationTime,
+            out int newMenuItemID)
+        {
+            newMenuItemID = 0;
+
+            if (string.IsNullOrWhiteSpace(itemName) ||
+                string.IsNullOrWhiteSpace(category) ||
+                sellingPrice <= 0 ||
+                costToMake < 0 ||
+                preparationTime < 0)
+            {
+                return "Please enter valid menu item details.";
+            }
+
+            using (SqlConnection connection =
+                DatabaseConnection.GetConnection())
+            {
+                string sql = @"
+            INSERT INTO MenuItemsTable
+            (
+                MenuItemName,
+                SellingPrice,
+                CostToMake,
+                Category,
+                PreparationTime
+            )
+            OUTPUT INSERTED.MenuItemID
+            VALUES
+            (
+                @MenuItemName,
+                @SellingPrice,
+                @CostToMake,
+                @Category,
+                @PreparationTime
+            );";
+
+                using (SqlCommand command =
+                    new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue(
+                        "@MenuItemName", itemName.Trim());
+
+                    command.Parameters.AddWithValue(
+                        "@SellingPrice", sellingPrice);
+
+                    command.Parameters.AddWithValue(
+                        "@CostToMake", costToMake);
+
+                    command.Parameters.AddWithValue(
+                        "@Category", category.Trim());
+
+                    command.Parameters.AddWithValue(
+                        "@PreparationTime", preparationTime);
+
+                    connection.Open();
+
+                    newMenuItemID = Convert.ToInt32(
+                        command.ExecuteScalar());
+
+                    return "";
+                }
+            }
+        }
+        // ============================================================
+        // GET INGREDIENTS FOR A MENU ITEM
+        // ============================================================
+
+        public DataTable GetRecipeIngredients(int menuItemID)
+        {
+            DataTable ingredients = new DataTable();
+
+            using (SqlConnection connection =
+                DatabaseConnection.GetConnection())
+            {
+                string sql = @"
+            SELECT
+                r.IngredientID,
+                i.Description AS IngredientName,
+                r.QuantityNeeded,
+                i.QuantityOnHand
+            FROM RecipeTable r
+            INNER JOIN IngredientTable i
+                ON r.IngredientID = i.IngredientID
+            WHERE r.MenuItemID = @MenuItemID
+            ORDER BY i.Description;";
+
+                using (SqlCommand command =
+                    new SqlCommand(sql, connection))
+                {
+                    command.Parameters.Add(
+                        "@MenuItemID", SqlDbType.Int).Value =
+                        menuItemID;
+
+                    using (SqlDataAdapter adapter =
+                        new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(ingredients);
+                    }
+                }
+            }
+
+            return ingredients;
+        }
+        // ============================================================
+        // GET ALL INGREDIENTS
+        // ============================================================
+
+        public DataTable GetAllIngredients()
+        {
+            DataTable ingredients = new DataTable();
+
+            using (SqlConnection connection =
+                DatabaseConnection.GetConnection())
+            {
+                string sql = @"
+            SELECT
+                IngredientID,
+                Description,
+                QuantityOnHand
+            FROM IngredientTable
+            ORDER BY Description;";
+
+                using (SqlCommand command =
+                    new SqlCommand(sql, connection))
+                {
+                    using (SqlDataAdapter adapter =
+                        new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(ingredients);
+                    }
+                }
+            }
+
+            return ingredients;
+        }
     }
+
 }

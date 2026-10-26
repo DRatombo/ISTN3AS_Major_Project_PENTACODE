@@ -12,11 +12,34 @@
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
 
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <webopt:BundleReference runat="server" Path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
+    <style>
+        /* Hide public navbar on staff and manager pages */
+        body.staff-page #mainNavbar {
+            display: none !important;
+        }
+
+        /* Remove public website spacing */
+        body.staff-page .body-content {
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+            /* Hide public footer */
+            body.staff-page .body-content > footer,
+            body.staff-page .body-content > hr {
+                display: none !important;
+            }
+    </style>
+
 </head>
-<body>
+<body class='<%= (Request.AppRelativeCurrentExecutionFilePath.StartsWith("~/Manager", System.StringComparison.OrdinalIgnoreCase) ||
+                  Request.AppRelativeCurrentExecutionFilePath.StartsWith("~/Staff", System.StringComparison.OrdinalIgnoreCase))
+                  ? "staff-page" : "" %>'>
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -37,59 +60,59 @@
             </Scripts>
         </asp:ScriptManager>
         <!-- Navigation bar code, reused on all public pages -->
-<nav id="mainNavbar" class="navbar navbar-expand-lg navbar-dark shadow-sm sticky-top" style="background-color: var(--brand-navy);">
-    <div class="container">
-      <a class="navbar-brand d-flex align-items-center" runat="server" href="~/Default.aspx">
-    <img src="~/Content/images/cafe101 Logo.jpeg" runat="server" alt="Cafe101 Logo" height="60" class="me-2" />
-    <span class="fw-bold text-white">Cafe101</span>
-</a>
+        <nav id="mainNavbar" class="navbar navbar-expand-lg navbar-dark shadow-sm sticky-top" style="background-color: var(--brand-navy);">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center" runat="server" href="~/Default.aspx">
+                    <img src="~/Content/images/cafe101 Logo.jpeg" runat="server" alt="Cafe101 Logo" height="60" class="me-2" />
+                    <span class="fw-bold text-white">Cafe101</span>
+                </a>
 
-        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#mainNav" title="Toggle navigation" aria-controls="mainNav"
-            aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#mainNav" title="Toggle navigation" aria-controls="mainNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <div class="collapse navbar-collapse" id="mainNav">
-            <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-4">
-   <li class="nav-item"><a class="nav-link px-2 text-white fw-bold" runat="server" href="~/Default.aspx">Home</a></li>
-<li class="nav-item"><a class="nav-link px-2 text-white fw-bold" runat="server" href="~/Default.aspx#about">About Us</a></li>
-<li class="nav-item"><a class="nav-link px-2 text-white fw-bold" runat="server" href="~/Contact.aspx">Contact</a></li>
-    <li class="nav-item"><a class="btn btn-outline-light btn-sm fw-bold" runat="server" href="~/SignUp.aspx">Sign Up</a></li>
-<li class="nav-item"><a class="btn btn-nav-signin btn-sm fw-bold ms-lg-2" runat="server" href="~/SignIn.aspx">Sign In</a></li>
-</ul>
-        </div>
-    </div>
-</nav>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-4">
+                        <li class="nav-item"><a class="nav-link px-2 text-white fw-bold" runat="server" href="~/Default.aspx">Home</a></li>
+                        <li class="nav-item"><a class="nav-link px-2 text-white fw-bold" runat="server" href="~/Default.aspx#about">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link px-2 text-white fw-bold" runat="server" href="~/Contact.aspx">Contact</a></li>
+                        <li class="nav-item"><a class="btn btn-outline-light btn-sm fw-bold" runat="server" href="~/SignUp.aspx">Sign Up</a></li>
+                        <li class="nav-item"><a class="btn btn-nav-signin btn-sm fw-bold ms-lg-2" runat="server" href="~/SignIn.aspx">Sign In</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
             <!-- Footer code, show all the relevant details of the company -->
             <footer class="py-4 mt-4 text-white full-bleed" style="background-color: var(--brand-navy); margin-top: 0;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <p class="mb-1 fw-bold">Cafe101</p>
-                <p class="mb-1">Varsity Drive, Westville, Durban, KwaZulu-Natal</p>
-                <p class="mb-1">Phone: 081 332 2130</p>
-                <p class="mb-0">Email: info@cafe101.co.za</p>
-            </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="mb-1 fw-bold">Cafe101</p>
+                            <p class="mb-1">Varsity Drive, Westville, Durban, KwaZulu-Natal</p>
+                            <p class="mb-1">Phone: 081 332 2130</p>
+                            <p class="mb-0">Email: info@cafe101.co.za</p>
+                        </div>
 
-            <div class="col-md-4">
-                <p class="mb-1 fw-bold">Operating Hours (For In-Person Visits)</p>
-                <ul class="list-unstyled mb-0">
-                    <li>Monday to Friday: 10:00 AM – 6:00 PM</li>
-                    <li>Saturday: 10:00 AM – 2:00 PM</li>
-                    <li>Sunday: Closed</li>
-                </ul>
-            </div>
+                        <div class="col-md-4">
+                            <p class="mb-1 fw-bold">Operating Hours (For In-Person Visits)</p>
+                            <ul class="list-unstyled mb-0">
+                                <li>Monday to Friday: 10:00 AM – 6:00 PM</li>
+                                <li>Saturday: 10:00 AM – 2:00 PM</li>
+                                <li>Sunday: Closed</li>
+                            </ul>
+                        </div>
 
-            <div class="col-md-4 text-md-end">
-                <p class="mb-0">&copy; <%: DateTime.Now.Year %> Cafe101. All rights reserved.</p>
-            </div>
-        </div>
-    </div>
-</footer>
+                        <div class="col-md-4 text-md-end">
+                            <p class="mb-0">&copy; <%: DateTime.Now.Year %> Cafe101. All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </form>
     <asp:PlaceHolder runat="server">

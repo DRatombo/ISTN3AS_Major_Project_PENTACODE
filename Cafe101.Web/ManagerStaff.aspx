@@ -1,9 +1,9 @@
-﻿<%@ Page Title="Staff Management"
-    Language="C#"
-    MasterPageFile="~/Site.Master"
-    AutoEventWireup="true"
-    CodeBehind="ManagerStaff.aspx.cs"
-    Inherits="Cafe101.Web.ManagerStaff" %>
+﻿<%@ page title="Staff Management"
+    language="C#"
+    masterpagefile="~/Site.Master"
+    autoeventwireup="true"
+    codebehind="ManagerStaff.aspx.cs"
+    inherits="Cafe101.Web.ManagerStaff" %>
 
 
 <asp:Content ID="Content1"
@@ -28,7 +28,6 @@
                     id="sidebarToggle"
                     class="staff-header-menu"
                     aria-label="Toggle manager navigation">
-
                     ☰
 
                 </button>
@@ -51,8 +50,7 @@
 
                     <asp:Label
                         ID="lblTopManagerInitials"
-                        runat="server">
-                    </asp:Label>
+                        runat="server"></asp:Label>
 
                 </div>
 
@@ -64,8 +62,7 @@
 
                         <asp:Label
                             ID="lblTopManagerName"
-                            runat="server">
-                        </asp:Label>
+                            runat="server"></asp:Label>
 
                     </strong>
 
@@ -74,8 +71,7 @@
 
                         <asp:Label
                             ID="lblTopManagerRole"
-                            runat="server">
-                        </asp:Label>
+                            runat="server"></asp:Label>
 
                     </small>
 
@@ -111,12 +107,10 @@
 
                     <a href="ManagerDashboard.aspx">
 
-                        <span class="staff-nav-icon">
-                            &#8962;
+                        <span class="staff-nav-icon">&#8962;
                         </span>
 
-                        <span class="staff-nav-text">
-                            Dashboard
+                        <span class="staff-nav-text">Dashboard
                         </span>
 
                     </a>
@@ -143,8 +137,7 @@
 
                         </span>
 
-                        <span class="staff-nav-text">
-                            Orders
+                        <span class="staff-nav-text">Orders
                         </span>
 
                     </a>
@@ -171,8 +164,7 @@
 
                         </span>
 
-                        <span class="staff-nav-text">
-                            Menu
+                        <span class="staff-nav-text">Menu
                         </span>
 
                     </a>
@@ -207,8 +199,7 @@
 
                         </span>
 
-                        <span class="staff-nav-text">
-                            Staff
+                        <span class="staff-nav-text">Staff
                         </span>
 
                     </a>
@@ -235,8 +226,7 @@
 
                         </span>
 
-                        <span class="staff-nav-text">
-                            Reports
+                        <span class="staff-nav-text">Reports
                         </span>
 
                     </a>
@@ -264,8 +254,7 @@
 
                         </span>
 
-                        <span class="staff-nav-text">
-                            Profile
+                        <span class="staff-nav-text">Profile
                         </span>
 
                     </a>
@@ -284,12 +273,10 @@
                         CssClass="staff-logout"
                         OnClick="LnkLogout_Click">
 
-                        <span class="staff-nav-icon">
-                            &#10140;
+                        <span class="staff-nav-icon">&#10140;
                         </span>
 
-                        <span class="staff-nav-text">
-                            Logout
+                        <span class="staff-nav-text">Logout
                         </span>
 
                     </asp:LinkButton>
@@ -311,8 +298,7 @@
 
                 <div class="staff-page-heading">
 
-                    <h3>
-                        Staff Management
+                    <h3>Staff Management
                     </h3>
 
                     <p>
@@ -327,8 +313,7 @@
                 <asp:Label
                     ID="lblMessage"
                     runat="server"
-                    CssClass="d-none">
-                </asp:Label>
+                    CssClass="d-none"></asp:Label>
 
 
 
@@ -375,6 +360,12 @@
 
                         </div>
 
+                        <asp:Button
+                            ID="btnSearch"
+                            runat="server"
+                            Text="Search"
+                            CssClass="btn btn-brand"
+                            OnClick="BtnSearch_Click" />
 
 
                         <asp:DropDownList
@@ -424,14 +415,6 @@
 
 
                         <asp:Button
-                            ID="btnSearch"
-                            runat="server"
-                            Text="Search"
-                            CssClass="btn btn-brand"
-                            OnClick="BtnSearch_Click" />
-
-
-                        <asp:Button
                             ID="btnRefresh"
                             runat="server"
                             Text="↻ Refresh"
@@ -463,8 +446,7 @@
 
                         <div>
 
-                            <span class="staff-metric-label">
-                                TOTAL STAFF
+                            <span class="staff-metric-label">TOTAL STAFF
                             </span>
 
 
@@ -472,8 +454,7 @@
 
                                 <asp:Label
                                     ID="lblTotalStaff"
-                                    runat="server">
-                                </asp:Label>
+                                    runat="server"></asp:Label>
 
                             </h3>
 
@@ -499,8 +480,7 @@
 
                         <div>
 
-                            <span class="staff-metric-label">
-                                ACTIVE STAFF
+                            <span class="staff-metric-label">ACTIVE STAFF
                             </span>
 
 
@@ -508,8 +488,7 @@
 
                                 <asp:Label
                                     ID="lblActiveStaff"
-                                    runat="server">
-                                </asp:Label>
+                                    runat="server"></asp:Label>
 
                             </h3>
 
@@ -535,8 +514,7 @@
 
                         <div>
 
-                            <span class="staff-metric-label">
-                                ACTIVE MANAGERS
+                            <span class="staff-metric-label">ACTIVE MANAGERS
                             </span>
 
 
@@ -544,8 +522,7 @@
 
                                 <asp:Label
                                     ID="lblManagers"
-                                    runat="server">
-                                </asp:Label>
+                                    runat="server"></asp:Label>
 
                             </h3>
 
@@ -571,8 +548,7 @@
 
                         <div>
 
-                            <span class="staff-metric-label">
-                                ACTIVE KITCHEN STAFF
+                            <span class="staff-metric-label">ACTIVE KITCHEN STAFF
                             </span>
 
 
@@ -580,8 +556,7 @@
 
                                 <asp:Label
                                     ID="lblKitchenStaff"
-                                    runat="server">
-                                </asp:Label>
+                                    runat="server"></asp:Label>
 
                             </h3>
 
@@ -598,13 +573,16 @@
 
                 </div>
 
-
+                <asp:HiddenField ID="hdnStaffPanelOpen"
+                    runat="server"
+                    ClientIDMode="Static"
+                    Value="0" />
 
                 <%-- =================================================
                      WORKSPACE
                      ================================================= --%>
 
-                <div class="manager-menu-workspace">
+                <div id="staffWorkspace" class="manager-menu-workspace">
 
 
                     <%-- =================================================
@@ -619,12 +597,10 @@
 
                             <div>
 
-                                <h5>
-                                    All Staff Members
+                                <h5>All Staff Members
                                 </h5>
 
-                                <small>
-                                    Live data from EmployeeTable
+                                <small>Live data from EmployeeTable
                                 </small>
 
                             </div>
@@ -666,7 +642,7 @@
                                         runat="server">
 
 
-                                        <ItemTemplate>
+                                        <itemtemplate>
 
 
                                             <tr>
@@ -674,12 +650,10 @@
 
                                                 <td>
 
-                                                    <strong>
-
-                                                        #<%#
+                                                    <strong>#<%#
                                                             Eval(
                                                                 "EmployeeID")
-                                                        %>
+                                                    %>
 
                                                     </strong>
 
@@ -764,14 +738,14 @@
 
                                                     <asp:LinkButton
                                                         ID="btnViewEmployee"
+                                                        OnClientClick="document.getElementById('hdnStaffPanelOpen').value='1';"
                                                         runat="server"
-                                                        CssClass="manager-staff-view-btn"
+                                                        CssClass="btn btn-sm btn-outline-brand"
                                                         CommandArgument='<%#
                                                             Eval("EmployeeID")
                                                         %>'
                                                         OnCommand="SelectEmployee_Command">
-
-                                                        ›
+                                                        View
 
                                                     </asp:LinkButton>
 
@@ -782,7 +756,7 @@
                                             </tr>
 
 
-                                        </ItemTemplate>
+                                        </itemtemplate>
 
 
                                     </asp:Repeater>
@@ -798,20 +772,40 @@
 
 
 
-                        <div class="manager-orders-pagination">
+                       
+<div class="manager-orders-pagination">
 
+    <div class="d-flex align-items-center gap-2">
 
-                            <small>
+        <asp:Button
+            ID="btnPreviousStaff"
+            runat="server"
+            Text="Previous"
+            CssClass="btn btn-outline-brand btn-sm"
+            OnClick="BtnPreviousStaff_Click" />
 
-                                <asp:Label
-                                    ID="lblShowingStaff"
-                                    runat="server">
-                                </asp:Label>
+        <asp:Label
+            ID="lblStaffPage"
+            runat="server"
+            CssClass="small" />
 
-                            </small>
+        <asp:Button
+            ID="btnNextStaff"
+            runat="server"
+            Text="Next"
+            CssClass="btn btn-outline-brand btn-sm"
+            OnClick="BtnNextStaff_Click" />
 
+    </div>
 
-                        </div>
+    <small>
+        <asp:Label
+            ID="lblShowingStaff"
+            runat="server" />
+    </small>
+
+</div>
+
 
 
                     </section>
@@ -825,13 +819,19 @@
                     <asp:Panel
                         ID="pnlSelectedEmployee"
                         runat="server"
-                        CssClass="staff-dashboard-panel manager-selected-item">
+                        ClientIDMode="Static"
+                        CssClass="staff-dashboard-panel manager-selected-item staff-details-panel">
 
-
+                        <button type="button"
+                            id="btnCloseStaffDetails"
+                            class="manager-details-close"
+                            aria-label="Close employee details"
+                            title="Close details">
+                            &times;
+                        </button>
                         <div class="manager-selected-item-heading">
 
-                            <h5>
-                                Selected Employee
+                            <h5>Selected Employee
                             </h5>
 
                         </div>
@@ -845,8 +845,7 @@
 
                                 <asp:Label
                                     ID="lblSelectedInitials"
-                                    runat="server">
-                                </asp:Label>
+                                    runat="server"></asp:Label>
 
                             </div>
 
@@ -859,8 +858,7 @@
 
                                     <asp:Label
                                         ID="lblSelectedName"
-                                        runat="server">
-                                    </asp:Label>
+                                        runat="server"></asp:Label>
 
                                 </h4>
 
@@ -869,8 +867,7 @@
 
                                     <asp:Label
                                         ID="lblSelectedRole"
-                                        runat="server">
-                                    </asp:Label>
+                                        runat="server"></asp:Label>
 
                                 </span>
 
@@ -887,8 +884,7 @@
 
                             <div class="manager-selected-info-row">
 
-                                <span>
-                                    Employee ID
+                                <span>Employee ID
                                 </span>
 
 
@@ -896,8 +892,7 @@
 
                                     <asp:Label
                                         ID="lblSelectedEmployeeID"
-                                        runat="server">
-                                    </asp:Label>
+                                        runat="server"></asp:Label>
 
                                 </strong>
 
@@ -907,8 +902,7 @@
 
                             <div class="manager-selected-info-row">
 
-                                <span>
-                                    Email
+                                <span>Email
                                 </span>
 
 
@@ -916,8 +910,7 @@
 
                                     <asp:Label
                                         ID="lblSelectedEmail"
-                                        runat="server">
-                                    </asp:Label>
+                                        runat="server"></asp:Label>
 
                                 </strong>
 
@@ -927,8 +920,7 @@
 
                             <div class="manager-selected-info-row">
 
-                                <span>
-                                    Role
+                                <span>Role
                                 </span>
 
 
@@ -936,8 +928,7 @@
 
                                     <asp:Label
                                         ID="lblSelectedRoleDetail"
-                                        runat="server">
-                                    </asp:Label>
+                                        runat="server"></asp:Label>
 
                                 </strong>
 
@@ -947,8 +938,7 @@
 
                             <div class="manager-selected-info-row">
 
-                                <span>
-                                    Status
+                                <span>Status
                                 </span>
 
 
@@ -956,8 +946,7 @@
 
                                     <asp:Label
                                         ID="lblSelectedStatus"
-                                        runat="server">
-                                    </asp:Label>
+                                        runat="server"></asp:Label>
 
                                 </strong>
 
@@ -967,8 +956,7 @@
 
                             <div class="manager-selected-info-row">
 
-                                <span>
-                                    Hire Date
+                                <span>Hire Date
                                 </span>
 
 
@@ -976,8 +964,7 @@
 
                                     <asp:Label
                                         ID="lblSelectedHireDate"
-                                        runat="server">
-                                    </asp:Label>
+                                        runat="server"></asp:Label>
 
                                 </strong>
 
@@ -987,8 +974,7 @@
 
                             <div class="manager-selected-description">
 
-                                <small class="staff-detail-label">
-                                    ADDRESS
+                                <small class="staff-detail-label">ADDRESS
                                 </small>
 
 
@@ -996,8 +982,7 @@
 
                                     <asp:Label
                                         ID="lblSelectedAddress"
-                                        runat="server">
-                                    </asp:Label>
+                                        runat="server"></asp:Label>
 
                                 </p>
 
@@ -1148,5 +1133,353 @@
 
     </script>
 
+
+    <style>
+        /* STAFF WORKSPACE - SAME SLIDE STYLE AS ORDERS */
+        #staffWorkspace {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 0px);
+            align-items: start;
+            gap: 0;
+            transition: grid-template-columns .35s ease, gap .35s ease;
+        }
+
+            #staffWorkspace.details-open {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+                gap: 14px;
+            }
+
+            #staffWorkspace .manager-staff-table-card {
+                min-width: 0;
+                width: 100%;
+            }
+
+            #staffWorkspace .table-responsive {
+                overflow-x: auto;
+            }
+
+            #staffWorkspace .manager-staff-table {
+                width: 100%;
+                min-width: 760px;
+                font-size: 13px;
+            }
+
+                #staffWorkspace .manager-staff-table th,
+                #staffWorkspace .manager-staff-table td {
+                    font-size: 13px;
+                    padding: 11px 10px;
+                    vertical-align: middle;
+                }
+
+            /* SELECTED EMPLOYEE SLIDE */
+            #staffWorkspace .staff-details-panel {
+                box-sizing: border-box;
+                position: sticky;
+                top: 90px;
+                width: 100%;
+                min-width: 0;
+                padding: 0 !important;
+                border-width: 0 !important;
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transform: translateX(45px);
+                overflow: hidden;
+                transition: opacity .35s ease, transform .35s ease;
+            }
+
+            #staffWorkspace.details-open .staff-details-panel {
+                padding: 20px !important;
+                border-width: 1px !important;
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+                transform: translateX(0);
+                max-height: calc(100vh - 110px);
+                overflow-y: auto;
+            }
+
+            /* CLOSE BUTTON */
+            #staffWorkspace .manager-details-close {
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                width: 35px;
+                height: 35px;
+                border: 0;
+                border-radius: 8px;
+                background: #ecf0f6;
+                color: #1a2d4c;
+                font-size: 24px;
+                cursor: pointer;
+                z-index: 10;
+            }
+
+            /* FONT SIZES - MATCH ORDERS */
+            #staffWorkspace .manager-selected-item-heading h5 {
+                font-size: 18px;
+            }
+
+            #staffWorkspace .manager-selected-product h4 {
+                font-size: 20px;
+            }
+
+            #staffWorkspace .manager-selected-info-row {
+                font-size: 14px;
+                padding: 10px 0;
+            }
+
+                #staffWorkspace .manager-selected-info-row strong {
+                    font-size: 14px;
+                    overflow-wrap: anywhere;
+                }
+
+            #staffWorkspace .staff-detail-label {
+                font-size: 12px;
+            }
+
+            #staffWorkspace .manager-selected-description p {
+                font-size: 14px;
+            }
+
+            /* STATUS BADGES */
+            #staffWorkspace .manager-staff-status,
+            #staffWorkspace .manager-menu-status {
+                font-size: 12px !important;
+                font-weight: 600;
+            }
+
+            /* ACTION BUTTONS */
+            #staffWorkspace .manager-selected-actions {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                gap: 10px;
+            }
+
+                #staffWorkspace .manager-selected-actions input {
+                    width: 100% !important;
+                    font-size: 13px;
+                    padding: 10px 12px;
+                    text-align: center;
+                }
+
+        /* SEARCH AND FILTERS */
+        .manager-staff-toolbar .form-control,
+        .manager-staff-toolbar .btn {
+            font-family: inherit !important;
+            font-size: 14px !important;
+        }
+
+        /* RESPONSIVE SLIDE */
+        @media (max-width: 960px) {
+            #staffWorkspace.details-open {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            #staffWorkspace .staff-details-panel {
+                position: fixed;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                width: min(420px, 100vw) !important;
+                max-height: 100vh !important;
+                z-index: 3000;
+                background: white;
+            }
+
+            #staffWorkspace.details-open .staff-details-panel {
+                padding: 20px !important;
+                overflow-y: auto;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #staffWorkspace,
+            #staffWorkspace .staff-details-panel {
+                transition: none;
+            }
+        }
+        /* Prevent horizontal scrolling */
+        #staffWorkspace .manager-staff-table {
+            width: 100% !important;
+            min-width: 0 !important;
+            table-layout: fixed;
+        }
+
+        #staffWorkspace .table-responsive {
+            overflow-x: hidden !important;
+        }
+
+        #staffWorkspace .manager-staff-table th,
+        #staffWorkspace .manager-staff-table td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        /* Hide less important columns while details are open */
+        #staffWorkspace.details-open .manager-staff-table th:nth-child(3),
+        #staffWorkspace.details-open .manager-staff-table td:nth-child(3),
+        #staffWorkspace.details-open .manager-staff-table th:nth-child(6),
+        #staffWorkspace.details-open .manager-staff-table td:nth-child(6) {
+            display: none;
+        }
+
+        #staffWorkspace .manager-staff-table-card {
+            min-width: 0 !important;
+        }
+        /* Staff toolbar alignment */
+        .manager-staff-toolbar-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            min-width: 0;
+        }
+
+            .manager-staff-toolbar-left .staff-search-box {
+                flex: 1 1 260px;
+                min-width: 200px;
+            }
+
+            .manager-staff-toolbar-left #btnSearch,
+            .manager-staff-toolbar-left .btn {
+                flex-shrink: 0;
+                margin: 0;
+                font-size: 13px;
+                padding: 10px 16px;
+            }
+
+            .manager-staff-toolbar-left .manager-staff-filter {
+                flex: 0 1 145px;
+                min-width: 130px;
+                font-size: 13px;
+            }
+            
+/* STAFF TABLE - CONSISTENT WITH ORDERS */
+#staffWorkspace .manager-staff-table {
+    width: 100% !important;
+    min-width: 0 !important;
+    table-layout: fixed;
+}
+
+/* Table headings */
+#staffWorkspace .manager-staff-table th {
+    font-size: 12px !important;
+    font-weight: 600;
+    color: #667085;
+    padding: 12px 8px;
+}
+
+/* Table information */
+#staffWorkspace .manager-staff-table td {
+    font-size: 13px !important;
+    padding: 12px 8px;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Column widths - full table */
+#staffWorkspace .manager-staff-table th:nth-child(1) { width: 7%; }
+#staffWorkspace .manager-staff-table th:nth-child(2) { width: 18%; }
+#staffWorkspace .manager-staff-table th:nth-child(3) { width: 28%; }
+#staffWorkspace .manager-staff-table th:nth-child(4) { width: 14%; }
+#staffWorkspace .manager-staff-table th:nth-child(5) { width: 12%; }
+#staffWorkspace .manager-staff-table th:nth-child(6) { width: 13%; }
+#staffWorkspace .manager-staff-table th:nth-child(7) { width: 8%; }
+
+/* Column widths when details slide is open */
+#staffWorkspace.details-open .manager-staff-table th:nth-child(1) { width: 12%; }
+#staffWorkspace.details-open .manager-staff-table th:nth-child(2) { width: 32%; }
+#staffWorkspace.details-open .manager-staff-table th:nth-child(4) { width: 22%; }
+#staffWorkspace.details-open .manager-staff-table th:nth-child(5) { width: 20%; }
+#staffWorkspace.details-open .manager-staff-table th:nth-child(7) { width: 14%; }
+
+/* View buttons */
+#staffWorkspace .manager-staff-table .btn {
+    font-size: 12px !important;
+    padding: 5px 12px;
+    border: 1px solid #1a2d4c;
+    color: #1a2d4c;
+    background: white;
+    font-weight: 500;
+}
+
+#staffWorkspace .manager-staff-table .btn:hover {
+    background: #1a2d4c;
+    color: white;
+}
+
+/* Remove horizontal scrolling */
+#staffWorkspace .table-responsive {
+    overflow-x: hidden !important;
+}
+/* FIX STAFF PAGE HORIZONTAL OVERFLOW */
+.staff-shell {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: clip;
+}
+
+.staff-shell .staff-body {
+    width: 100%;
+    min-width: 0;
+}
+
+.staff-shell .staff-main {
+    flex: 1;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+#staffWorkspace {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+#staffWorkspace .manager-staff-table-card {
+    min-width: 0;
+    max-width: 100%;
+}
+
+#staffWorkspace .manager-staff-table {
+    width: 100%;
+    min-width: 0 !important;
+}
+
+    </style>
+    
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const workspace = document.getElementById("staffWorkspace");
+        const slideState = document.getElementById("hdnStaffPanelOpen");
+        const closeButton = document.getElementById("btnCloseStaffDetails");
+
+        if (!workspace || !slideState) {
+            return;
+        }
+
+        // Open employee details after clicking View
+        if (slideState.value === "1") {
+            workspace.classList.add("details-open");
+        }
+
+        // Close employee details
+        if (closeButton) {
+            closeButton.addEventListener("click", function () {
+                workspace.classList.remove("details-open");
+                slideState.value = "0";
+            });
+        }
+
+    });
+</script>
 
 </asp:Content>

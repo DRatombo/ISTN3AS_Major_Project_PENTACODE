@@ -274,5 +274,28 @@ namespace Cafe101.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptCategories;
+
+        // Edit Menu Item controls
+        protected global::System.Web.UI.WebControls.Panel pnlEditItem;
+
+        protected global::System.Web.UI.WebControls.TextBox txtEditName;
+
+        protected global::System.Web.UI.WebControls.TextBox txtEditPrice;
+
+        protected global::System.Web.UI.WebControls.TextBox txtEditCost;
+
+        protected global::System.Web.UI.WebControls.TextBox txtEditCategory;
+
+        protected global::System.Web.UI.WebControls.TextBox txtEditPreparation;
+
+        // Edit Menu Item buttons
+        protected global::System.Web.UI.WebControls.Button btnEditSelected;
+
+        protected global::System.Web.UI.WebControls.Button btnSaveEdit;
+
+        protected global::System.Web.UI.WebControls.Button btnCancelEdit;
     }
+
+
+
 }

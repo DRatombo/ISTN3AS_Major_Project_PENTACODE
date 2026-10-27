@@ -69,6 +69,15 @@ namespace Cafe101.Web
         protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
+        /// btnSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+
+        /// <summary>
         /// ddlRole control.
         /// </summary>
         /// <remarks>
@@ -85,15 +94,6 @@ namespace Cafe101.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
-
-        /// <summary>
-        /// btnSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSearch;
 
         /// <summary>
         /// btnRefresh control.
@@ -141,6 +141,15 @@ namespace Cafe101.Web
         protected global::System.Web.UI.WebControls.Label lblKitchenStaff;
 
         /// <summary>
+        /// hdnStaffPanelOpen control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnStaffPanelOpen;
+
+        /// <summary>
         /// rptEmployees control.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,33 @@ namespace Cafe101.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater rptEmployees;
+
+        /// <summary>
+        /// btnPreviousStaff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnPreviousStaff;
+
+        /// <summary>
+        /// lblStaffPage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStaffPage;
+
+        /// <summary>
+        /// btnNextStaff control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNextStaff;
 
         /// <summary>
         /// lblShowingStaff control.

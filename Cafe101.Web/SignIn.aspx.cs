@@ -57,6 +57,10 @@ namespace Cafe101.Web
             // CREATE SESSION
             // ========================================================
 
+            // Clear the previous cart so it is not carried over to another customer
+            // signing in through the same browser session.
+            Session.Remove("Cart");
+
             Session["UserID"] =
                 result.UserID;
 

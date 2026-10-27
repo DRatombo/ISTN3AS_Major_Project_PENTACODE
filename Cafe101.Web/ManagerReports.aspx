@@ -1,9 +1,9 @@
-﻿<%@ Page Title="Reports"
-    Language="C#"
-    MasterPageFile="~/Site.Master"
-    AutoEventWireup="true"
-    CodeBehind="ManagerReports.aspx.cs"
-    Inherits="Cafe101.Web.ManagerReports" %>
+﻿<%@ page title="Reports"
+    language="C#"
+    masterpagefile="~/Site.Master"
+    autoeventwireup="true"
+    codebehind="ManagerReports.aspx.cs"
+    inherits="Cafe101.Web.ManagerReports" %>
 
 
 <asp:Content ID="Content1"
@@ -35,14 +35,13 @@
 
 
             <a href="ManagerProfile.aspx"
-               class="staff-header-user text-decoration-none">
+                class="staff-header-user text-decoration-none">
 
                 <div class="staff-header-avatar">
 
                     <asp:Label
                         ID="lblTopManagerInitials"
-                        runat="server">
-                    </asp:Label>
+                        runat="server"></asp:Label>
 
                 </div>
 
@@ -52,8 +51,7 @@
 
                         <asp:Label
                             ID="lblTopManagerName"
-                            runat="server">
-                        </asp:Label>
+                            runat="server"></asp:Label>
 
                     </strong>
 
@@ -61,8 +59,7 @@
 
                         <asp:Label
                             ID="lblTopManagerRole"
-                            runat="server">
-                        </asp:Label>
+                            runat="server"></asp:Label>
 
                     </small>
 
@@ -87,180 +84,87 @@
                 </div>
 
 
-                <nav class="staff-nav">
-
-                    <%-- Dashboard --%>
-
-                    <a href="ManagerDashboard.aspx">
-
-                        <span class="staff-nav-icon">
-
-                            <svg viewBox="0 0 24 24"
-                                width="19"
-                                height="19"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <rect x="3" y="3" width="7" height="7" />
-                                <rect x="14" y="3" width="7" height="7" />
-                                <rect x="3" y="14" width="7" height="7" />
-                                <rect x="14" y="14" width="7" height="7" />
-
+                <nav class="staff-nav" aria-label="Manager navigation">
+                    <%-- Keep all management links available on every manager page. --%>
+                    <a href="ManagerDashboard.aspx" aria-label="Dashboard">
+                        <span class="staff-nav-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="19" height="19"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M3 10l9-7 9 7M5 9v12h14V9M9 21v-8h6v8" />
                             </svg>
-
                         </span>
-
-                        <span class="staff-nav-text">
-                            Dashboard
-                        </span>
-
+                        <span class="staff-nav-text">Dashboard</span>
                     </a>
 
-
-                    <%-- Orders --%>
-
-                    <a href="ManagerOrders.aspx">
-
-                        <span class="staff-nav-icon">
-
-                            <svg viewBox="0 0 24 24"
-                                width="19"
-                                height="19"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <path d="M6 3h12v18H6z" />
-                                <path d="M9 8h6" />
-                                <path d="M9 12h6" />
-                                <path d="M9 16h4" />
-
+                    <a href="ManagerOrders.aspx" aria-label="Orders">
+                        <span class="staff-nav-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="19" height="19"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 3h12v18H6zM9 8h6M9 12h6M9 16h4" />
                             </svg>
-
                         </span>
-
-                        <span class="staff-nav-text">
-                            Orders
-                        </span>
-
+                        <span class="staff-nav-text">Orders</span>
                     </a>
 
-
-                    <%-- Menu --%>
-
-                    <a href="ManagerMenu.aspx">
-
-                        <span class="staff-nav-icon">
-
-                            <svg viewBox="0 0 24 24"
-                                width="19"
-                                height="19"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <path d="M4 4h16v16H4z" />
-                                <path d="M8 8h8" />
-                                <path d="M8 12h8" />
-                                <path d="M8 16h5" />
-
+                    <a href="ManagerMenu.aspx" aria-label="Menu">
+                        <span class="staff-nav-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="19" height="19"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h5" />
                             </svg>
-
                         </span>
-
-                        <span class="staff-nav-text">
-                            Menu
-                        </span>
-
+                        <span class="staff-nav-text">Menu</span>
                     </a>
 
-
-                    <%-- Staff --%>
-
-                    <a href="ManagerStaff.aspx">
-
-                        <span class="staff-nav-icon">
-
-                            <svg viewBox="0 0 24 24"
-                                width="19"
-                                height="19"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <circle cx="9" cy="8" r="3" />
-                                <circle cx="17" cy="10" r="2" />
-                                <path d="M3 20c0-4 2.5-7 6-7s6 3 6 7" />
-                                <path d="M15 15c3 0 5 2 5 5" />
-
+                    <a href="ManageIngredients.aspx" aria-label="Ingredients">
+                        <span class="staff-nav-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="19" height="19"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 7h16v14H4zM3 3h18v4H3zM9 11h6" />
                             </svg>
-
                         </span>
-
-                        <span class="staff-nav-text">
-                            Staff
-                        </span>
-
+                        <span class="staff-nav-text">Ingredients</span>
                     </a>
 
-
-                    <%-- Reports --%>
-
-                    <a href="ManagerReports.aspx"
-                        class="active">
-
-                        <span class="staff-nav-icon">
-
-                            <svg viewBox="0 0 24 24"
-                                width="19"
-                                height="19"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <path d="M4 20V10" />
-                                <path d="M10 20V4" />
-                                <path d="M16 20v-7" />
-                                <path d="M22 20H2" />
-
+                    <a href="ManageRecipes.aspx" aria-label="Recipes">
+                        <span class="staff-nav-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="19" height="19"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 3h14v18H5zM8 7h8M8 11h8M8 15h5" />
                             </svg>
-
                         </span>
-
-                        <span class="staff-nav-text">
-                            Reports
-                        </span>
-
+                        <span class="staff-nav-text">Recipes</span>
                     </a>
 
-
-                    <%-- Profile --%>
-
-                    <a href="ManagerProfile.aspx">
-
-                        <span class="staff-nav-icon">
-
-                            <svg viewBox="0 0 24 24"
-                                width="19"
-                                height="19"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <circle cx="12" cy="8" r="4" />
-                                <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" />
-
+                    <a href="ManagerStaff.aspx" aria-label="Staff">
+                        <span class="staff-nav-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="19" height="19"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="9" cy="8" r="3" /><circle cx="17" cy="10" r="2" /><path d="M3 20c0-4 2.5-7 6-7s6 3 6 7M15 15c3 0 5 2 5 5" />
                             </svg>
-
                         </span>
-
-                        <span class="staff-nav-text">
-                            Profile
-                        </span>
-
+                        <span class="staff-nav-text">Staff</span>
                     </a>
 
+                    <a href="ManagerReports.aspx" class="active" aria-current="page" aria-label="Reports">
+                        <span class="staff-nav-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="19" height="19"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
+                            </svg>
+                        </span>
+                        <span class="staff-nav-text">Reports</span>
+                    </a>
+
+                    <a href="ManagerProfile.aspx" aria-label="Profile">
+                        <span class="staff-nav-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="19" height="19"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" />
+                            </svg>
+                        </span>
+                        <span class="staff-nav-text">Profile</span>
+                    </a>
                 </nav>
 
 
@@ -274,12 +178,10 @@
                         CssClass="staff-logout"
                         OnClick="LnkLogout_Click">
 
-                        <span class="staff-nav-icon">
-                            &#10140;
+                        <span class="staff-nav-icon">&#10140;
                         </span>
 
-                        <span class="staff-nav-text">
-                            Log Out
+                        <span class="staff-nav-text">Log Out
                         </span>
 
                     </asp:LinkButton>
@@ -303,8 +205,7 @@
 
                 <div class="staff-page-heading">
 
-                    <h3>
-                        Reports
+                    <h3>Reports
                     </h3>
 
                     <p>
@@ -348,16 +249,23 @@
                             </svg>
 
 
-                            <select class="form-control">
 
-                                <option>Last 7 Days</option>
-                                <option>Today</option>
-                                <option>Yesterday</option>
-                                <option>Last 30 Days</option>
-                                <option>This Month</option>
-                                <option>Previous Month</option>
+                            <asp:DropDownList
+                                ID="ddlReportDateRange"
+                                runat="server"
+                                CssClass="form-control"
+                                AutoPostBack="true"
+                                OnSelectedIndexChanged="DdlReportDateRange_SelectedIndexChanged">
 
-                            </select>
+                                <asp:ListItem Text="All Time" Value="AllTime" Selected="True" />
+                                <asp:ListItem Text="Today" Value="Today" />
+                                <asp:ListItem Text="Yesterday" Value="Yesterday" />
+                                <asp:ListItem Text="Last 7 Days" Value="Last7Days" />
+                                <asp:ListItem Text="Last 30 Days" Value="Last30Days" />
+                                <asp:ListItem Text="This Month" Value="ThisMonth" />
+                                <asp:ListItem Text="Previous Month" Value="PreviousMonth" />
+
+                            </asp:DropDownList>
 
                         </div>
 
@@ -432,8 +340,7 @@
 
                         <div class="staff-icon-box icon-green">
 
-                            <span class="manager-money-icon">
-                                R
+                            <span class="manager-money-icon">R
                             </span>
 
                         </div>
@@ -441,17 +348,14 @@
 
                         <div>
 
-                            <span class="staff-metric-label">
-                                TOTAL REVENUE
+                            <span class="staff-metric-label">TOTAL REVENUE
                             </span>
 
                             <h3>
-                                R84,200.00
+                                <asp:Label ID="lblTotalRevenue" runat="server" />
                             </h3>
 
-                            <p class="manager-positive-text">
-                                ↑ 18% vs previous 7 days
-                            </p>
+                            <p>All-time completed orders</p>
 
                         </div>
 
@@ -489,17 +393,13 @@
 
                         <div>
 
-                            <span class="staff-metric-label">
-                                ORDERS COMPLETED
+                            <span class="staff-metric-label">ORDERS COMPLETED
                             </span>
 
                             <h3>
-                                386
+                                <asp:Label ID="lblCompletedOrders" runat="server" />
                             </h3>
-
-                            <p class="manager-positive-text">
-                                ↑ 16% vs previous 7 days
-                            </p>
+                                <p>All-time completed orders</p>
 
                         </div>
 
@@ -537,66 +437,52 @@
 
                         <div>
 
-                            <span class="staff-metric-label">
-                                AVERAGE ORDER VALUE
+                            <span class="staff-metric-label">AVERAGE ORDER VALUE
                             </span>
 
                             <h3>
-                                R218.13
+                                <asp:Label ID="lblAverageOrderValue" runat="server" />
                             </h3>
 
-                            <p class="manager-positive-text">
-                                ↑ 8% vs previous 7 days
-                            </p>
+                                <p>Average across all completed orders</p>
 
                         </div>
 
                     </div>
+
 
 
 
                     <%-- Monthly Growth --%>
-
                     <div class="staff-metric-card">
 
                         <div class="staff-icon-box icon-purple">
-
                             <svg viewBox="0 0 24 24"
-                                width="21"
-                                height="21"
+                                width="21" height="21"
                                 fill="none"
                                 stroke="currentColor"
                                 stroke-width="2">
-
                                 <path d="M4 18V12" />
                                 <path d="M9 18V8" />
                                 <path d="M14 18V5" />
                                 <path d="M19 18V2" />
-
                             </svg>
-
                         </div>
 
-
                         <div>
-
-                            <span class="staff-metric-label">
-                                MONTHLY GROWTH
+                            <span class="staff-metric-label">MONTHLY GROWTH
                             </span>
 
-                            <h3>
-                                +12.4%
-                            </h3>
-
-                            <p class="manager-positive-text">
-                                ↑ 12.4% vs last month
-                            </p>
-
+                            <h3>—</h3>
+                            <p>Not yet calculated</p>
                         </div>
 
                     </div>
 
+                    <%-- Close the four summary cards --%>
                 </div>
+
+
 
 
 
@@ -615,12 +501,10 @@
 
                             <div>
 
-                                <h5>
-                                    Revenue Overview
+                                <h5>Revenue Overview
                                 </h5>
 
-                                <small>
-                                    Sales trend over the selected period
+                                <small>Sales trend over the selected period
                                 </small>
 
                             </div>
@@ -628,7 +512,7 @@
 
                             <select class="form-control manager-period-filter">
 
-                                <option>Last 7 Days</option>
+                                <option>All Time</option>
                                 <option>Last 30 Days</option>
                                 <option>This Month</option>
 
@@ -653,8 +537,7 @@
 
                             </svg>
 
-                            <h5>
-                                Power BI Revenue Report
+                            <h5>Power BI Revenue Report
                             </h5>
 
                             <p>
@@ -675,12 +558,10 @@
 
                             <div>
 
-                                <h5>
-                                    Sales by Category
+                                <h5>Sales by Category
                                 </h5>
 
-                                <small>
-                                    Sales distribution across menu categories
+                                <small>Sales distribution across menu categories
                                 </small>
 
                             </div>
@@ -702,8 +583,7 @@
 
                             </svg>
 
-                            <h5>
-                                Power BI Category Report
+                            <h5>Power BI Category Report
                             </h5>
 
                             <p>
@@ -733,12 +613,10 @@
 
                             <div>
 
-                                <h5>
-                                    Top Selling Items
+                                <h5>Top Selling Items
                                 </h5>
 
-                                <small>
-                                    Best performing items in the selected period
+                                <small>Best performing items in the selected period
                                 </small>
 
                             </div>
@@ -771,25 +649,20 @@
                                     <tr>
 
                                         <td>
-                                            <strong>
-                                                Cappuccino
+                                            <strong>Cappuccino
                                             </strong>
                                         </td>
 
-                                        <td>
-                                            Beverages
+                                        <td>Beverages
                                         </td>
 
-                                        <td>
-                                            132
+                                        <td>132
                                         </td>
 
-                                        <td>
-                                            R6,600.00
+                                        <td>R6,600.00
                                         </td>
 
-                                        <td class="manager-positive-text">
-                                            ↑ 15%
+                                        <td class="manager-positive-text">↑ 15%
                                         </td>
 
                                     </tr>
@@ -798,25 +671,20 @@
                                     <tr>
 
                                         <td>
-                                            <strong>
-                                                Chicken Wrap
+                                            <strong>Chicken Wrap
                                             </strong>
                                         </td>
 
-                                        <td>
-                                            Food
+                                        <td>Food
                                         </td>
 
-                                        <td>
-                                            98
+                                        <td>98
                                         </td>
 
-                                        <td>
-                                            R6,664.00
+                                        <td>R6,664.00
                                         </td>
 
-                                        <td class="manager-positive-text">
-                                            ↑ 11%
+                                        <td class="manager-positive-text">↑ 11%
                                         </td>
 
                                     </tr>
@@ -825,25 +693,20 @@
                                     <tr>
 
                                         <td>
-                                            <strong>
-                                                Vanilla Muffin
+                                            <strong>Vanilla Muffin
                                             </strong>
                                         </td>
 
-                                        <td>
-                                            Bakery
+                                        <td>Bakery
                                         </td>
 
-                                        <td>
-                                            86
+                                        <td>86
                                         </td>
 
-                                        <td>
-                                            R2,150.00
+                                        <td>R2,150.00
                                         </td>
 
-                                        <td class="manager-positive-text">
-                                            ↑ 8%
+                                        <td class="manager-positive-text">↑ 8%
                                         </td>
 
                                     </tr>
@@ -852,25 +715,20 @@
                                     <tr>
 
                                         <td>
-                                            <strong>
-                                                Classic Burger
+                                            <strong>Classic Burger
                                             </strong>
                                         </td>
 
-                                        <td>
-                                            Food
+                                        <td>Food
                                         </td>
 
-                                        <td>
-                                            72
+                                        <td>72
                                         </td>
 
-                                        <td>
-                                            R5,760.00
+                                        <td>R5,760.00
                                         </td>
 
-                                        <td class="manager-positive-text">
-                                            ↑ 12%
+                                        <td class="manager-positive-text">↑ 12%
                                         </td>
 
                                     </tr>
@@ -879,25 +737,20 @@
                                     <tr>
 
                                         <td>
-                                            <strong>
-                                                Brownie
+                                            <strong>Brownie
                                             </strong>
                                         </td>
 
-                                        <td>
-                                            Bakery
+                                        <td>Bakery
                                         </td>
 
-                                        <td>
-                                            65
+                                        <td>65
                                         </td>
 
-                                        <td>
-                                            R1,625.00
+                                        <td>R1,625.00
                                         </td>
 
-                                        <td class="manager-positive-text">
-                                            ↑ 9%
+                                        <td class="manager-positive-text">↑ 9%
                                         </td>
 
                                     </tr>
@@ -912,14 +765,11 @@
                         <div class="manager-reports-table-footer">
 
                             <a href="#"
-                                class="staff-text-link">
-
-                                View Full Items Report →
+                                class="staff-text-link">View Full Items Report →
 
                             </a>
 
-                            <small>
-                                Showing 1-5 of 5 items
+                            <small>Showing 1-5 of 5 items
                             </small>
 
                         </div>
@@ -941,12 +791,10 @@
 
                                     <div>
 
-                                        <h5>
-                                            Payment Summary
+                                        <h5>Payment Summary
                                         </h5>
 
-                                        <small>
-                                            Breakdown of payments received
+                                        <small>Breakdown of payments received
                                         </small>
 
                                     </div>
@@ -959,16 +807,13 @@
 
                                     <div class="manager-reports-payment-row">
 
-                                        <span>
-                                            Card
+                                        <span>Card
                                         </span>
 
-                                        <strong>
-                                            R46,120
+                                        <strong>R46,120
                                         </strong>
 
-                                        <span class="order-status status-ready">
-                                            54.7%
+                                        <span class="order-status status-ready">54.7%
                                         </span>
 
                                     </div>
@@ -976,16 +821,13 @@
 
                                     <div class="manager-reports-payment-row">
 
-                                        <span>
-                                            Cash
+                                        <span>Cash
                                         </span>
 
-                                        <strong>
-                                            R26,340
+                                        <strong>R26,340
                                         </strong>
 
-                                        <span class="order-status status-completed">
-                                            31.3%
+                                        <span class="order-status status-completed">31.3%
                                         </span>
 
                                     </div>
@@ -993,16 +835,13 @@
 
                                     <div class="manager-reports-payment-row">
 
-                                        <span>
-                                            Online
+                                        <span>Online
                                         </span>
 
-                                        <strong>
-                                            R11,740
+                                        <strong>R11,740
                                         </strong>
 
-                                        <span class="order-status status-preparing">
-                                            14.0%
+                                        <span class="order-status status-preparing">14.0%
                                         </span>
 
                                     </div>
@@ -1010,12 +849,10 @@
 
                                     <div class="manager-reports-payment-total">
 
-                                        <span>
-                                            Total Payments
+                                        <span>Total Payments
                                         </span>
 
-                                        <strong>
-                                            R84,200.00
+                                        <strong>R84,200.00
                                         </strong>
 
                                     </div>
@@ -1034,12 +871,10 @@
 
                                     <div>
 
-                                        <h5>
-                                            Quick Insights
+                                        <h5>Quick Insights
                                         </h5>
 
-                                        <small>
-                                            Performance highlights
+                                        <small>Performance highlights
                                         </small>
 
                                     </div>
@@ -1055,12 +890,10 @@
 
                                     <div class="staff-alert-text">
 
-                                        <strong>
-                                            Best Selling Product
+                                        <strong>Best Selling Product
                                         </strong>
 
-                                        <small>
-                                            Cappuccino generated the highest revenue.
+                                        <small>Cappuccino generated the highest revenue.
                                         </small>
 
                                     </div>
@@ -1076,12 +909,10 @@
 
                                     <div class="staff-alert-text">
 
-                                        <strong>
-                                            Busiest Day
+                                        <strong>Busiest Day
                                         </strong>
 
-                                        <small>
-                                            Saturday recorded the highest sales.
+                                        <small>Saturday recorded the highest sales.
                                         </small>
 
                                     </div>
@@ -1097,12 +928,10 @@
 
                                     <div class="staff-alert-text">
 
-                                        <strong>
-                                            Lowest Performing Category
+                                        <strong>Lowest Performing Category
                                         </strong>
 
-                                        <small>
-                                            Sides accounted for 10.8% of sales.
+                                        <small>Sides accounted for 10.8% of sales.
                                         </small>
 
                                     </div>
@@ -1123,12 +952,10 @@
 
                                 <div>
 
-                                    <h5>
-                                        Quick Actions
+                                    <h5>Quick Actions
                                     </h5>
 
-                                    <small>
-                                        Download reports and insights
+                                    <small>Download reports and insights
                                     </small>
 
                                 </div>
@@ -1162,12 +989,10 @@
 
                                     <div>
 
-                                        <strong>
-                                            Download Sales Report
+                                        <strong>Download Sales Report
                                         </strong>
 
-                                        <small>
-                                            Detailed sales performance
+                                        <small>Detailed sales performance
                                         </small>
 
                                     </div>
@@ -1200,12 +1025,10 @@
 
                                     <div>
 
-                                        <strong>
-                                            Inventory Report
+                                        <strong>Inventory Report
                                         </strong>
 
-                                        <small>
-                                            Stock levels and usage
+                                        <small>Stock levels and usage
                                         </small>
 
                                     </div>
@@ -1243,12 +1066,10 @@
 
                                     <div>
 
-                                        <strong>
-                                            Staff Performance
+                                        <strong>Staff Performance
                                         </strong>
 
-                                        <small>
-                                            Team performance summary
+                                        <small>Team performance summary
                                         </small>
 
                                     </div>
@@ -1272,7 +1093,6 @@
                 <div class="staff-footer">
                     © 2026 Cafe101 Manager System
                 </div>
-
             </main>
 
         </div>

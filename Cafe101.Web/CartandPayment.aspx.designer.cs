@@ -13,5 +13,32 @@ namespace Cafe101.Web
 
     public partial class CartandPayment
     {
+
+        /// <summary>
+        /// rptCartItems control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptCartItems;
+
+        /// <summary>
+        /// pnlEmptyCart control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlEmptyCart;
+
+        /// <summary>
+        /// lblItemsSubtotal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblItemsSubtotal;
     }
 }

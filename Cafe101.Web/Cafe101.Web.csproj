@@ -148,6 +148,8 @@
     <Content Include="favicon.ico" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="ManageIngredients.aspx" />
+    <Content Include="ManageRecipes.aspx" />
     <Content Include="Menu.aspx" />
     <Content Include="MyAccount.aspx" />
     <Content Include="OrderHistory.aspx" />
@@ -277,6 +279,20 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ManageIngredients.aspx.cs">
+      <DependentUpon>ManageIngredients.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageIngredients.aspx.designer.cs">
+      <DependentUpon>ManageIngredients.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageRecipes.aspx.cs">
+      <DependentUpon>ManageRecipes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageRecipes.aspx.designer.cs">
+      <DependentUpon>ManageRecipes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Menu.aspx.cs">
       <DependentUpon>Menu.aspx</DependentUpon>
@@ -414,6 +430,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cafe101.Data\Cafe101.Data.csproj">
+      <Project>{cc79d5e8-2c41-4ada-96d9-1f2cd93d7296}</Project>
+      <Name>Cafe101.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cafe101.Logic\Cafe101.Logic.csproj">
       <Project>{ac9dc04c-d99f-4be9-a723-41b665690637}</Project>
       <Name>Cafe101.Logic</Name>

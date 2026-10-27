@@ -11,7 +11,22 @@ namespace Cafe101.Web
     {
         private readonly EmployeeManagementService employeeService =
             new EmployeeManagementService();
+        // STAFF PAGINATION
+        private const int StaffPageSize = 6;
 
+        private int StaffPageIndex
+        {
+            get
+            {
+                return ViewState["StaffPageIndex"] == null
+                    ? 0
+                    : Convert.ToInt32(ViewState["StaffPageIndex"]);
+            }
+            set
+            {
+                ViewState["StaffPageIndex"] = value;
+            }
+        }
 
         protected void Page_Load(
             object sender,
@@ -311,10 +326,36 @@ namespace Cafe101.Web
                 // BIND TABLE
                 // ====================================================
 
-                rptEmployees.DataSource =
-                    filteredEmployees;
+                // PAGINATION
+                int totalFiltered = filteredEmployees.Count;
 
+                int totalPages = Math.Max(
+                    1,
+                    (totalFiltered + StaffPageSize - 1) / StaffPageSize
+                );
 
+                if (StaffPageIndex >= totalPages)
+                {
+                    StaffPageIndex = totalPages - 1;
+                }
+
+                // Update pagination controls
+                lblStaffPage.Text =
+                    $"Page {StaffPageIndex + 1} of {totalPages}";
+
+                btnPreviousStaff.Enabled =
+                    StaffPageIndex > 0;
+
+                btnNextStaff.Enabled =
+                    StaffPageIndex < totalPages - 1;
+
+                List<EmployeeAccountDetails> pageEmployees =
+                    filteredEmployees
+                        .Skip(StaffPageIndex * StaffPageSize)
+                        .Take(StaffPageSize)
+                        .ToList();
+
+                rptEmployees.DataSource = pageEmployees;
                 rptEmployees.DataBind();
 
 
@@ -370,16 +411,17 @@ namespace Cafe101.Web
                     .ToString();
 
 
+                int start = totalFiltered == 0
+                    ? 0
+                    : StaffPageIndex * StaffPageSize + 1;
+
+                int end = Math.Min(
+                    (StaffPageIndex + 1) * StaffPageSize,
+                    totalFiltered
+                );
+
                 lblShowingStaff.Text =
-                    "Showing "
-                    +
-                    filteredEmployees.Count
-                    +
-                    " of "
-                    +
-                    allEmployees.Count
-                    +
-                    " staff members";
+                    $"Showing {start}-{end} of {totalFiltered} staff members";
 
 
                 // ====================================================
@@ -438,7 +480,23 @@ namespace Cafe101.Web
             }
         }
 
+        // ============================================================
+        // OPEN / CLOSE STAFF DETAILS SLIDE
+        // ============================================================
 
+        private void SetStaffSlide(bool open)
+        {
+            var mainContent = Master.FindControl("MainContent");
+
+            HiddenField slideField = mainContent == null
+                ? null
+                : mainContent.FindControl("hdnStaffPanelOpen") as HiddenField;
+
+            if (slideField != null)
+            {
+                slideField.Value = open ? "1" : "0";
+            }
+        }
         // ============================================================
         // SELECT EMPLOYEE
         // ============================================================
@@ -466,12 +524,15 @@ namespace Cafe101.Web
 
             LoadSelectedEmployee(
                 employeeID);
+
+            SetStaffSlide(true);
         }
 
 
         private void LoadSelectedEmployee(
             int employeeID)
         {
+
             EmployeeAccountDetails employee =
                 employeeService
                 .GetEmployeeByID(
@@ -594,6 +655,25 @@ namespace Cafe101.Web
             }
         }
 
+        // ============================================================
+        // STAFF PAGINATION
+        // ============================================================
+
+        protected void BtnPreviousStaff_Click(object sender, EventArgs e)
+        {
+            if (StaffPageIndex > 0)
+            {
+                StaffPageIndex--;
+            }
+
+            LoadEmployees();
+        }
+
+        protected void BtnNextStaff_Click(object sender, EventArgs e)
+        {
+            StaffPageIndex++;
+            LoadEmployees();
+        }
 
         // ============================================================
         // SEARCH

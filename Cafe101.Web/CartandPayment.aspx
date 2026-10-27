@@ -20,33 +20,38 @@
             <div class="col-lg-7">
 
                 <h6 class="fw-bold text-uppercase text-muted mb-3">Items in Your Cart</h6>
-                <div class="d-flex align-items-center border-bottom py-3">
-                    <img src="https://placehold.co/100x100/e4f0fd/1a2d4c?text=%E2%98%95" alt="Cappuccino" class="rounded me-3" style="width:64px; height:64px; object-fit:cover;" />
-                    <div class="flex-grow-1">
-                        <p class="fw-bold mb-0">Cappuccino</p>
-                        <p class="text-muted small mb-0">R35.00 each</p>
-                    </div>
-                    <div class="d-flex align-items-center me-3">
-                        <button class="btn btn-sm btn-outline-secondary" type="button">-</button>
-                        <span class="mx-2">2</span>
-                        <button class="btn btn-sm btn-outline-secondary" type="button">+</button>
-                    </div>
-                    <p class="fw-bold text-brand mb-0" style="min-width: 60px; text-align:right;">R70.00</p>
-                </div>
+                
+                    <!-- Display the items selected on the menu page. -->
+                        <asp:Repeater ID="rptCartItems" runat="server">
+                            <ItemTemplate>
+                                <div class="d-flex justify-content-between gap-3 border-bottom py-3">
 
-                <div class="d-flex align-items-center border-bottom py-3">
-                    <img src="https://placehold.co/100x100/fdf3e4/1a2d4c?text=%F0%9F%A5%90" alt="Butter Croissant" class="rounded me-3" style="width:64px; height:64px; object-fit:cover;" />
-                    <div class="flex-grow-1">
-                        <p class="fw-bold mb-0">Butter Croissant</p>
-                        <p class="text-muted small mb-0">R28.00 each</p>
-                    </div>
-                    <div class="d-flex align-items-center me-3">
-                        <button class="btn btn-sm btn-outline-secondary" type="button">-</button>
-                        <span class="mx-2">1</span>
-                        <button class="btn btn-sm btn-outline-secondary" type="button">+</button>
-                    </div>
-                    <p class="fw-bold text-brand mb-0" style="min-width: 60px; text-align:right;">R28.00</p>
-                </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">
+                                            <%#: Eval("MenuItemName") %>
+                                        </h6>
+
+                                        <p class="text-muted small mb-0">
+                                            Quantity: <%# Eval("Quantity") %>
+                                            &times; R <%# Eval("UnitPrice", "{0:0.00}") %> each
+                                        </p>
+                                    </div>
+
+                                    <span class="fw-bold text-nowrap">
+                                        R <%# Eval("LineTotal", "{0:0.00}") %>
+                                    </span>
+
+                                </div>
+                            </ItemTemplate>
+                        </asp:Repeater>
+
+                        <asp:Panel ID="pnlEmptyCart" runat="server" Visible="false">
+                            <p class="text-muted">Your cart is empty.</p>
+
+                            <a href="Menu.aspx" class="btn btn-brand">
+                                Browse menu
+                            </a>
+                        </asp:Panel>
 
                 <h6 class="fw-bold text-uppercase text-muted mb-3 mt-4">Delivery Options</h6>
                 <div class="d-flex gap-3 mb-3">
@@ -79,27 +84,18 @@
             </div>
 
             <!-- RIGHT: Order summary -->
-            <div class="col-lg-5">
-                <div class="p-4 rounded shadow-sm" style="background-color: #f8f9fa;">
-                    <h6 class="fw-bold text-uppercase text-muted mb-3">Order Summary</h6>
+            <div class="d-flex justify-content-between mb-3">
+                <span class="fw-bold">Items subtotal</span>
 
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Subtotal</span>
-                        <span>R98.00</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Delivery Fee</span>
-                        <span>R25.00</span>
-                    </div>
-                    <hr />
-                    <div class="d-flex justify-content-between mb-4">
-                        <span class="fw-bold">Total</span>
-                        <span class="fw-bold text-brand">R123.00</span>
-                    </div>
-
-                    <a href="~/OrderHistory.aspx" runat="server" class="btn btn-brand w-100 py-2">Place Order</a>
-                </div>
+                <asp:Label
+                    ID="lblItemsSubtotal"
+                    runat="server"
+                    CssClass="fw-bold" />
             </div>
+
+            <p class="small text-muted">
+                Delivery charges and the final total will be confirmed at checkout.
+            </p>
 
         </div>
     </div>

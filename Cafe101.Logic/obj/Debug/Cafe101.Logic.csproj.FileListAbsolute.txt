@@ -7,3 +7,12 @@ C:\Users\ratom\source\repos\CAFE101 10_04\Cafe101.Logic\obj\Debug\Cafe101.Logic.
 C:\Users\ratom\source\repos\CAFE101 10_04\Cafe101.Logic\obj\Debug\Cafe101..6C057E6F.Up2Date
 C:\Users\ratom\source\repos\CAFE101 10_04\Cafe101.Logic\obj\Debug\Cafe101.Logic.dll
 C:\Users\ratom\source\repos\CAFE101 10_04\Cafe101.Logic\obj\Debug\Cafe101.Logic.pdb
+C:\Users\ratom\source\repos\26_10 cafe101\Cafe101.Logic\bin\Debug\Cafe101.Logic.dll
+C:\Users\ratom\source\repos\26_10 cafe101\Cafe101.Logic\bin\Debug\Cafe101.Logic.pdb
+C:\Users\ratom\source\repos\26_10 cafe101\Cafe101.Logic\bin\Debug\Cafe101.Data.dll
+C:\Users\ratom\source\repos\26_10 cafe101\Cafe101.Logic\bin\Debug\Cafe101.Data.pdb
+C:\Users\ratom\source\repos\26_10 cafe101\Cafe101.Logic\obj\Debug\Cafe101.Logic.csproj.AssemblyReference.cache
+C:\Users\ratom\source\repos\26_10 cafe101\Cafe101.Logic\obj\Debug\Cafe101.Logic.csproj.CoreCompileInputs.cache
+C:\Users\ratom\source\repos\26_10 cafe101\Cafe101.Logic\obj\Debug\Cafe101..6C057E6F.Up2Date
+C:\Users\ratom\source\repos\26_10 cafe101\Cafe101.Logic\obj\Debug\Cafe101.Logic.dll
+C:\Users\ratom\source\repos\26_10 cafe101\Cafe101.Logic\obj\Debug\Cafe101.Logic.pdb

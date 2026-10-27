@@ -422,6 +422,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cafe101.Data\Cafe101.Data.csproj">
+      <Project>{cc79d5e8-2c41-4ada-96d9-1f2cd93d7296}</Project>
+      <Name>Cafe101.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cafe101.Logic\Cafe101.Logic.csproj">
       <Project>{ac9dc04c-d99f-4be9-a723-41b665690637}</Project>
       <Name>Cafe101.Logic</Name>

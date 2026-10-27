@@ -50,18 +50,40 @@ namespace Cafe101.Web
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lnkLogout;
 
+        /// <summary>
+        /// ddlReportDateRange control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlReportDateRange;
 
-        // ============================================================
-        // REPORT SUMMARY LABELS
-        // ============================================================
-
+        /// <summary>
+        /// lblTotalRevenue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblTotalRevenue;
 
+        /// <summary>
+        /// lblCompletedOrders control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCompletedOrders;
 
+        /// <summary>
+        /// lblAverageOrderValue control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblAverageOrderValue;
-
-
     }
 }

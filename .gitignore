@@ -7,3 +7,17 @@
 /Cafe101/UpgradeLog8.htm
 /.vs/Cafe101 29 AUG/v17/.wsuo
 /.vs/Cafe101 29 AUG/v17/DocumentLayout.json
+*.wsuo
+*.json
+/Cafe101.Data/.vs/Cafe101.Data.csproj.dtbcache.json
+/Cafe101.Logic/obj/Debug/Cafe101.Logic.csproj.AssemblyReference.cache
+/Cafe101.Logic/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/Cafe101.Data/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/Cafe101.Logic/.vs/Cafe101.Logic.csproj.dtbcache.json
+/Cafe101.Web/.vs/Cafe101.Web.csproj.dtbcache.json
+/Cafe101.Web/bin/Cafe101.Web.dll
+/Cafe101.Web/bin/Cafe101.Web.dll.config
+/Cafe101.Web/bin/Cafe101.Web.pdb
+*.dll
+*.pdb
+*.xml

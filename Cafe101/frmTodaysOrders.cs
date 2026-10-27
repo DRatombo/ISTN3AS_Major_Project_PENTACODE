@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Drawing.Printing; // Required for print document rendering
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +21,6 @@ namespace Cafe101
 
         public frmTodaysOrders()
         {
-            
             InitializeComponent();
             this.DoubleBuffered = true;
 
@@ -32,7 +31,15 @@ namespace Cafe101
         private void frmTodaysOrders_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            LoadTodaysOrders();
+            this.Cursor = Cursors.WaitCursor;
+            try
+            {
+                LoadTodaysOrders();
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
         }
 
         private void LoadTodaysOrders()
@@ -71,10 +78,8 @@ namespace Cafe101
                     orderDataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                     orderDataGridView.AllowUserToAddRows = false;
                     orderDataGridView.ReadOnly = true;
-                    numOrders.Text = "Date: " + DateTime.Now.ToString("dd MMM yyyy") +
-                                     "     Total Orders: " + dt.Rows.Count;
 
-                    // Calculate total revenue and output to textBox1
+                    // Calculate total revenue and order count
                     decimal totalRevenue = 0;
                     foreach (DataRow row in dt.Rows)
                     {
@@ -83,7 +88,9 @@ namespace Cafe101
                             totalRevenue += Convert.ToDecimal(row["Total (R)"]);
                         }
                     }
-                    textBox1.Text = "R " + totalRevenue.ToString("N2");
+
+                    // Update Statistics Cards
+                    UpdateStatistics(dt.Rows.Count, totalRevenue);
                 }
             }
             catch (Exception ex)
@@ -93,9 +100,47 @@ namespace Cafe101
             }
         }
 
+        private void UpdateStatistics(int totalOrders, decimal totalRevenue)
+        {
+            try
+            {
+                // Total Orders
+                lblTotalOrdersValue.Text = totalOrders.ToString();
+
+                // Total Revenue
+                lblTotalRevenueValue.Text = totalRevenue.ToString("C2");
+
+                // Average Order Value
+                decimal avgOrder = totalOrders > 0 ? totalRevenue / totalOrders : 0;
+                lblAverageOrderValue.Text = avgOrder.ToString("C2");
+
+                // Handle empty state
+                if (totalOrders == 0)
+                {
+                    lblTotalOrdersValue.Text = "0";
+                    lblTotalRevenueValue.Text = "R0.00";
+                    lblAverageOrderValue.Text = "R0.00";
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Statistics error: {ex.Message}");
+            }
+        }
+
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            LoadTodaysOrders();
+            this.Cursor = Cursors.WaitCursor;
+            try
+            {
+                LoadTodaysOrders();
+                MessageBox.Show("Orders refreshed successfully!",
+                    "Refresh Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            finally
+            {
+                this.Cursor = Cursors.Default;
+            }
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -111,7 +156,8 @@ namespace Cafe101
             // Safeguard against printing empty records
             if (orderDataGridView.Rows.Count == 0)
             {
-                MessageBox.Show("There are no order records available to print today.", "Print Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("There are no order records available to print today.",
+                    "Print Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -122,11 +168,6 @@ namespace Cafe101
             printPreview.Document = printDoc;
             printPreview.WindowState = FormWindowState.Maximized;
             printPreview.ShowDialog();
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         // The document layout formatting block 
@@ -214,8 +255,14 @@ namespace Cafe101
             e.Graphics.DrawLine(Pens.Black, startX, startY + offset, e.PageBounds.Width - startX, startY + offset);
             offset += 15;
 
+            string totalRevenue = lblTotalRevenueValue.Text;
             e.Graphics.DrawString("Total Orders Summary: " + orderDataGridView.Rows.Count, footerFont, Brushes.Black, startX, startY + offset);
-            e.Graphics.DrawString("Total Revenue Summary: " + textBox1.Text, footerFont, Brushes.Black, colTotal - 60, startY + offset);
+            e.Graphics.DrawString("Total Revenue Summary: " + totalRevenue, footerFont, Brushes.Black, colTotal - 60, startY + offset);
+        }
+
+        private void lblTotalRevenueValue_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

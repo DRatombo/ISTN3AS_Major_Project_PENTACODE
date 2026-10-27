@@ -140,6 +140,8 @@
     <Content Include="favicon.ico" />
     <Content Include="ForgotPassword.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="ManageIngredients.aspx" />
+    <Content Include="ManageRecipes.aspx" />
     <Content Include="Menu.aspx" />
     <Content Include="MyAccount.aspx" />
     <Content Include="OrderHistory.aspx" />
@@ -269,6 +271,20 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="ManageIngredients.aspx.cs">
+      <DependentUpon>ManageIngredients.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageIngredients.aspx.designer.cs">
+      <DependentUpon>ManageIngredients.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageRecipes.aspx.cs">
+      <DependentUpon>ManageRecipes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageRecipes.aspx.designer.cs">
+      <DependentUpon>ManageRecipes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Menu.aspx.cs">
       <DependentUpon>Menu.aspx</DependentUpon>

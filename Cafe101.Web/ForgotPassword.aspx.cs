@@ -163,7 +163,7 @@ namespace Cafe101.Web
 
                 var client = new SendGridClient(sendGridApiKey);
 
-                var from = new EmailAddress("mayisesnakhokonke7@gmail.com", "Cafe 101");
+                var from = new EmailAddress("noblemayise@gmail.com", "Cafe 101");
                 var subject = "Cafe 101 – Temporary Password";
                 var to = new EmailAddress(toEmail, firstName);
 

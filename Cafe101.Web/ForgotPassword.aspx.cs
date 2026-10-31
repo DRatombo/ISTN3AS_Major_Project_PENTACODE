@@ -1,6 +1,8 @@
 ﻿using Cafe101.Logic;
-using SendGrid;
-using SendGrid.Helpers.Mail;
+//using SendGrid;
+//using SendGrid.Helpers.Mail;
+using System.Net;
+using System.Net.Mail;
 using System;
 using System.Configuration;
 using System.Web.UI;
@@ -153,49 +155,31 @@ namespace Cafe101.Web
         {
             try
             {
-                string sendGridApiKey = ConfigurationManager.AppSettings["SendGridApiKey"];
+                string user = ConfigurationManager.AppSettings["SmtpUser"];
+                string pass = ConfigurationManager.AppSettings["SmtpPassword"];
 
-                if (string.IsNullOrWhiteSpace(sendGridApiKey))
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                using (var msg = new MailMessage())
                 {
-                    LogError("SendGrid API key not configured in Web.config");
-                    return false;
+                    msg.From = new MailAddress(user, "Cafe 101");
+                    msg.To.Add(new MailAddress(toEmail, firstName));
+                    msg.Subject = "Cafe 101 - Temporary Password";
+                    msg.IsBodyHtml = true;
+                    msg.Body = BuildEmailHtml(firstName, tempPassword);
+
+                    using (var client = new SmtpClient("smtp.gmail.com", 587))
+                    {
+                        client.EnableSsl = true;
+                        client.Credentials = new NetworkCredential(user, pass);
+                        client.Send(msg);
+                    }
                 }
-
-                var client = new SendGridClient(sendGridApiKey);
-
-                var from = new EmailAddress("noblemayise@gmail.com", "Cafe 101");
-                var subject = "Cafe 101 – Temporary Password";
-                var to = new EmailAddress(toEmail, firstName);
-
-                string htmlContent = BuildEmailHtml(firstName, tempPassword);
-                string plainTextContent = BuildEmailPlainText(firstName, tempPassword);
-
-                var msg = new SendGridMessage()
-                {
-                    From = from,
-                    Subject = subject,
-                    HtmlContent = htmlContent,
-                    PlainTextContent = plainTextContent
-                };
-
-                msg.AddTo(to);
-
-                var response = client.SendEmailAsync(msg).Result;
-
-                if (response.StatusCode == System.Net.HttpStatusCode.Accepted)
-                {
-                    LogInfo($"Email sent successfully to {toEmail}");
-                    return true;
-                }
-                else
-                {
-                    LogError($"SendGrid returned status code: {response.StatusCode}");
-                    return false;
-                }
+                return true;
             }
             catch (Exception ex)
             {
-                LogError($"Email sending exception: {ex.Message} | Inner: {ex.InnerException?.Message}");
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
                 return false;
             }
         }

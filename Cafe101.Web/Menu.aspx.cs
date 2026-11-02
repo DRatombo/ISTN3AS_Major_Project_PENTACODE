@@ -380,6 +380,34 @@ namespace Cafe101.Web
             RefreshSearchResults();
         }
 
+        protected string GetMenuItemImage(string menuItemName)
+        {
+            switch (menuItemName?.Trim().ToLowerInvariant())
+            {
+                case "beef burger":
+                    return Cafe101.Web.Helpers.ImagePaths.Burger;
+
+                case "fries":
+                    return Cafe101.Web.Helpers.ImagePaths.Fries;
+
+                case "chicken wings":
+                    return Cafe101.Web.Helpers.ImagePaths.ChickenWings;
+
+                case "chicken burger":
+                    return Cafe101.Web.Helpers.ImagePaths.ChickenBurger;
+
+                case "cooldrink":
+                    return Cafe101.Web.Helpers.ImagePaths.Cooldrink;
+
+                case "combo meal":
+                    return Cafe101.Web.Helpers.ImagePaths.ComboMeal;
+
+                default:
+                    return "";
+            }
+        }
+
+
         private void RefreshSearchResults()
         {
             lblMessage.Text = "";

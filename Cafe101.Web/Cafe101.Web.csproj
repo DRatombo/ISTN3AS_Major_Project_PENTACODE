@@ -134,18 +134,24 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\Images\Aquelle.png" />
     <Content Include="Content\Images\Blueberry muffin .jpeg" />
+    <Content Include="Content\Images\Burger.jpg" />
     <Content Include="Content\Images\Cafe101 Logo.jpeg" />
     <Content Include="Content\Images\Cafe101 Restaurant.png" />
+    <Content Include="Content\Images\Chicken Burger.jpg" />
     <Content Include="Content\Images\Chicken fillet.jpeg" />
     <Content Include="Content\Images\Coke2l.png" />
     <Content Include="Content\Images\Coke330.png" />
     <Content Include="Content\Images\Coke440.png" />
+    <Content Include="Content\Images\Combo Meal.jpg" />
+    <Content Include="Content\Images\Cooldrinks.jpg" />
     <Content Include="Content\Images\Fish and Chips Combo.jpeg" />
+    <Content Include="Content\Images\French Fries.jpg" />
     <Content Include="Content\Images\Kingsley.png" />
     <Content Include="Content\Images\Lamb Sandwich.jpeg" />
     <Content Include="Content\Images\Monster.png" />
     <Content Include="Content\Images\People Cafe101.png" />
     <Content Include="Content\Images\Wings and Chips.jpeg" />
+    <Content Include="Content\Images\Wings.jpg" />
     <Content Include="Content\Images\Wrap.jpeg" />
     <Content Include="Content\Site.css" />
     <Content Include="CustomerDashboard.aspx" />
@@ -195,6 +201,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="StaffProfile.aspx" />
     <Content Include="Receipt.aspx" />
+    <Content Include="Content\Images\Fries.webp" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -287,6 +294,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ImagePaths.cs" />
     <Compile Include="ManageIngredients.aspx.cs">
       <DependentUpon>ManageIngredients.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

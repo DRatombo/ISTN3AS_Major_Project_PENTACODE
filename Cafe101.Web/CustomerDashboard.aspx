@@ -591,12 +591,14 @@
     <asp:Repeater ID="rptCategories" runat="server">
         <ItemTemplate>
             <a href='<%# GetCategoryUrl((string)Container.DataItem) %>'
-                class="customer-category">
+               class="customer-category">
 
                 <div class="customer-category-circle"
-                    style="background: #e4f0fd;"
-                    aria-hidden="true">
-                    &#9776;
+                     style="background: #e4f0fd;"
+                     aria-hidden="true">
+
+                    <%# GetCategoryEmoji((string)Container.DataItem) %>
+
                 </div>
 
                 <small><%#: Container.DataItem %></small>
@@ -612,34 +614,53 @@
     </h5>
 
     <div class="customer-menu-scroll mb-5">
-        <asp:Repeater ID="rptPopularItems" runat="server">
-            <ItemTemplate>
-                <div class="card customer-menu-card">
-                    <div class="card-body">
-                        <h6 class="fw-bold">
-                            <%#: Eval("MenuItemName") %>
-                        </h6>
+        
+<asp:Repeater ID="rptPopularItems" runat="server">
+    <ItemTemplate>
 
-                        <p class="small text-muted mb-2">
-                            <%#: Eval("Category") %>
-                        </p>
+        <div class="card customer-menu-card">
 
-                        <p class="fw-bold text-brand mb-2">
-                            R <%# Eval("SellingPrice", "{0:0.00}") %>
-                        </p>
+        
+<asp:Image
+    ID="imgMenuItem"
+    runat="server"
+    CssClass="card-img-top"
+    Height="150px"
+    ImageUrl='<%# GetMenuItemImage(Convert.ToString(Eval("MenuItemName"))) %>'
+    Visible='<%# !string.IsNullOrEmpty(GetMenuItemImage(Convert.ToString(Eval("MenuItemName")))) %>'
+    AlternateText="Menu item image" />
 
-                        <p class="small mb-3">
-                            <%#: Eval("StockStatus") %>
-                        </p>
 
-                        <a href="Menu.aspx"
-                            class="btn btn-sm btn-brand w-100">
-                            View menu
-                        </a>
-                    </div>
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>
+            <div class="card-body">
+
+                <h6 class="fw-bold">
+                    <%#: Eval("MenuItemName") %>
+                </h6>
+
+                <p class="small text-muted mb-2">
+                    <%#: Eval("Category") %>
+                </p>
+
+                <p class="fw-bold text-brand mb-2">
+                    R <%# Eval("SellingPrice", "{0:0.00}") %>
+                </p>
+
+                <p class="small mb-3">
+                    <%#: Eval("StockStatus") %>
+                </p>
+
+                <a href="Menu.aspx"
+                   class="btn btn-sm btn-brand w-100">
+                    View menu
+                </a>
+
+            </div>
+
+        </div>
+
+    </ItemTemplate>
+</asp:Repeater>
+
     </div>
 </asp:Panel>
 
@@ -656,6 +677,14 @@
     <asp:Repeater ID="rptMenuPreview" runat="server">
         <ItemTemplate>
             <div class="card customer-menu-card">
+             <asp:Image
+            ID="imgMenuPreview"
+            runat="server"
+            CssClass="card-img-top"
+            Height="150px"
+            ImageUrl='<%# GetMenuItemImage(Convert.ToString(Eval("MenuItemName"))) %>'
+            Visible='<%# !string.IsNullOrEmpty(GetMenuItemImage(Convert.ToString(Eval("MenuItemName")))) %>'
+            AlternateText="Menu item image" />
                 <div class="card-body">
                     <h6 class="fw-bold">
                         <%#: Eval("MenuItemName") %>

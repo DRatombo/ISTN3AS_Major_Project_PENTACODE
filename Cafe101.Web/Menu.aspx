@@ -328,62 +328,68 @@
 
             <section class="col-lg-8" aria-label="Menu items">
 
-                <div class="mb-4">
-                    <label for="<%= ddlCategory.ClientID %>"
-                        class="form-label fw-semibold">
-                        Category
-                    </label>
+               
+<!-- Category and Search side by side -->
+<div class="row g-3 mb-4 align-items-end">
 
-                    <asp:DropDownList
-                        ID="ddlCategory"
-                        runat="server"
-                        CssClass="form-select"
-                        AutoPostBack="true"
-                        OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" />
-                </div>
+    <!-- Category dropdown -->
+    <div class="col-md-5">
+        <label for="<%= ddlCategory.ClientID %>"
+               class="form-label fw-semibold">
+            Category
+        </label>
 
-                <div class="row row-cols-2 row-cols-md-3 g-3">
+        <asp:DropDownList
+            ID="ddlCategory"
+            runat="server"
+            CssClass="form-select"
+            AutoPostBack="true"
+            OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" />
+    </div>
 
-                    <!-- Search the menu within the selected category. -->
-<div class="mb-4">
-    <label for="<%= txtMenuSearch.ClientID %>"
-        class="form-label fw-semibold">
-        Search menu
-    </label>
+    <!-- Search field -->
+    <div class="col-md-7">
+       <label class="form-label fw-semibold">
+    Search menu
+</label>
 
-    <asp:Panel
-        ID="pnlMenuSearch"
-        runat="server"
-        DefaultButton="btnMenuSearch">
+        <asp:Panel
+            ID="pnlMenuSearch"
+            runat="server"
+            DefaultButton="btnMenuSearch">
 
-        <div class="input-group">
-            <asp:TextBox
-                ID="txtMenuSearch"
-                runat="server"
-                CssClass="form-control"
-                MaxLength="100"
-                placeholder="Enter an item name..." />
+            <div class="input-group">
+                <asp:TextBox
+                    ID="txtMenuSearch"
+                    runat="server"
+                    CssClass="form-control"
+                    MaxLength="100"
+                    placeholder="Enter an item name..." />
 
-            <asp:Button
-                ID="btnMenuSearch"
-                runat="server"
-                Text="Search"
-                CssClass="btn btn-brand"
-                CausesValidation="false"
-                OnClick="btnMenuSearch_Click" />
+                <asp:Button
+                    ID="btnMenuSearch"
+                    runat="server"
+                    Text="Search"
+                    CssClass="btn btn-brand"
+                    CausesValidation="false"
+                    OnClick="btnMenuSearch_Click" />
 
-            <asp:Button
-                ID="btnClearSearch"
-                runat="server"
-                Text="Clear"
-                CssClass="btn btn-outline-secondary"
-                CausesValidation="false"
-                OnClick="btnClearSearch_Click" />
-        </div>
+                <asp:Button
+                    ID="Button2"
+                    runat="server"
+                    Text="Clear"
+                    CssClass="btn btn-outline-secondary"
+                    CausesValidation="false"
+                    OnClick="btnClearSearch_Click" />
+            </div>
 
-    </asp:Panel>
+        </asp:Panel>
+    </div>
+
 </div>
 
+<!-- Product cards grid -->
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3">
                     <!-- Every product card comes from the database menu. -->
                     <asp:Repeater
                         ID="rptMenu"
@@ -393,6 +399,15 @@
                         <ItemTemplate>
                             <div class="col">
                                 <div class="card menu-card h-100">
+                                      <asp:Image
+            ID="imgMenuItem"
+            runat="server"
+            CssClass="card-img-top"
+            Height="150px"
+            ImageUrl='<%# GetMenuItemImage(Convert.ToString(Eval("MenuItemName"))) %>'
+            Visible='<%# !string.IsNullOrEmpty(GetMenuItemImage(Convert.ToString(Eval("MenuItemName")))) %>'
+            AlternateText="Menu item image" />
+
                                     <div class="card-body d-flex flex-column">
 
                                         <h2 class="h6 card-title">
@@ -422,13 +437,11 @@
                                             CausesValidation="false"
                                             Enabled='<%# CanOrder(Eval("StockStatus"), Eval("AvailableQuantity")) %>' />
 
-                                    </div>
-                                </div>
-                            </div>
+                                                                    </div> <!-- card-body -->
+                                </div> <!-- card -->
+                            </div> <!-- col -->
                         </ItemTemplate>
-
                     </asp:Repeater>
-
                 </div>
 
                 <asp:Label

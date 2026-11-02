@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Cafe101.Web.Helpers;
 
 namespace Cafe101.Web
 {
@@ -162,6 +163,58 @@ namespace Cafe101.Web
                     "The menu could not be loaded. Please try again.";
             }
         }
+        //Displaying the MenuItemImage on the cards 
+
+        protected string GetMenuItemImage(string menuItemName)
+        {
+            switch (menuItemName?.Trim().ToLowerInvariant())
+            {
+                case "beef burger":
+                    return ImagePaths.Burger;
+
+                case "fries":
+                    return ImagePaths.Fries;
+
+                case "chicken wings":
+                    return ImagePaths.ChickenWings;
+
+                case "chicken burger":
+                    return ImagePaths.ChickenBurger;
+
+                case "cooldrink":
+                    return ImagePaths.Cooldrink;
+
+                case "combo meal":
+                    return ImagePaths.ComboMeal;
+
+                default:
+                    return "";
+            }
+        }
+        protected string GetCategoryEmoji(string category)
+        {
+            switch (category?.Trim().ToLowerInvariant())
+            {
+                case "burger":
+                    return "&#127828;"; // Burger
+
+                case "combo":
+                    return "&#127828;&#127839;"; // Burger and fries
+
+                case "drinks":
+                    return "&#129380;"; // Drink
+
+                case "sides":
+                    return "&#127839;"; // Fries
+
+                case "wings":
+                    return "&#127831;"; // Chicken drumstick
+
+                default:
+                    return "&#127860;"; // Plate and cutlery
+            }
+        }
+
 
         protected string GetCategoryUrl(string category)
         {

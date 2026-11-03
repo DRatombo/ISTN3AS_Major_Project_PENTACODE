@@ -123,7 +123,18 @@
                         </span>
                         <span class="staff-nav-text">Orders</span>
                     </a>
-
+                    <a href="ManageCustomers.aspx" aria-label="Customers">
+                        <span class="staff-nav-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="19" height="19"
+                                fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </span>
+                        <span class="staff-nav-text">Customers</span>
+                    </a>
                     <a href="ManagerMenu.aspx" aria-label="Menu">
                         <span class="staff-nav-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="19" height="19"
@@ -336,6 +347,9 @@
 
                     <div class="manager-staff-toolbar-right">
 
+                        <asp:Button ID="btnAddEmployee" runat="server"
+                            Text="+ Add Employee" CssClass="btn btn-brand"
+                            OnClick="BtnAddEmployee_Click" />
 
                         <asp:Button
                             ID="btnRefresh"
@@ -916,6 +930,50 @@
 
 
 
+
+                        <hr />
+                        <div class="manager-selected-item-heading"><h5>
+                            <asp:Label ID="lblEmployeeFormHeading" runat="server" Text="Employee Details" />
+                        </h5></div>
+                        <div class="manager-employee-edit-form">
+                            <label>First name</label>
+                            <asp:TextBox ID="txtEmployeeFirstName" runat="server" CssClass="form-control" MaxLength="50" />
+                            <asp:Label ID="lblFirstNameValidation" runat="server" CssClass="small text-danger" />
+                            <label>Surname</label>
+                            <asp:TextBox ID="txtEmployeeSurname" runat="server" CssClass="form-control" MaxLength="50" />
+                            <asp:Label ID="lblSurnameValidation" runat="server" CssClass="small text-danger" />
+                            <label>Email</label>
+                            <asp:TextBox ID="txtEmployeeEmail" runat="server" CssClass="form-control" TextMode="Email" MaxLength="150" />
+                            <asp:Label ID="lblEmailValidation" runat="server" CssClass="small text-danger" />
+                            <label>Address</label>
+                            <asp:TextBox ID="txtEmployeeAddress" runat="server" CssClass="form-control" MaxLength="250" />
+                            <asp:Label ID="lblAddressValidation" runat="server" CssClass="small text-danger" />
+                            <small class="text-muted">Format: number street, suburb, city</small>
+                            <label>Role</label>
+                            <asp:DropDownList ID="ddlEmployeeRole" runat="server" CssClass="form-control">
+                                <asp:ListItem Text="Select a role" Value="" />
+                                <asp:ListItem Text="Manager" Value="Manager" />
+                                <asp:ListItem Text="Cashier" Value="Cashier" />
+                            </asp:DropDownList>
+                            <asp:Label ID="lblRoleValidation" runat="server" CssClass="small text-danger" />
+                            <label>Password</label>
+                            <asp:TextBox ID="txtEmployeePassword" runat="server" CssClass="form-control" TextMode="Password" MaxLength="100" />
+                            <asp:Label ID="lblPasswordValidation" runat="server" CssClass="small text-danger" />
+                            <small class="text-muted">When editing, leave blank to keep the current password.</small>
+                        </div>
+                        <div class="manager-selected-actions" style="flex-wrap:wrap;">
+                            <asp:Button ID="btnSaveEmployee" runat="server" Text="Save Changes"
+                                CssClass="btn btn-brand" OnClick="BtnSaveEmployee_Click" />
+                            <asp:Button ID="btnClearEmployeeForm" runat="server" Text="Clear"
+                                CssClass="btn btn-outline-brand" CausesValidation="false" OnClick="BtnClearEmployeeForm_Click" />
+                            <asp:Button ID="btnResetEmployeePassword" runat="server" Text="Reset PW"
+                                CssClass="btn btn-outline-brand" CausesValidation="false" OnClick="BtnResetEmployeePassword_Click"
+                                OnClientClick="return confirm('Reset this employee password to temp123?');" />
+                            <asp:Button ID="btnDeleteEmployee" runat="server" Text="Delete Employee"
+                                CssClass="btn btn-danger" CausesValidation="false" OnClick="BtnDeleteEmployee_Click"
+                                OnClientClick="return confirm('Delete this employee? This cannot be undone.');" />
+                        </div>
+
                         <div class="manager-selected-actions">
 
 
@@ -1376,7 +1434,15 @@
     min-width: 0 !important;
 }
 
-    </style>
+    
+        .manager-employee-edit-form label {
+            display:block; margin:8px 0 5px; font-size:13px;
+            font-weight:600; color:#344054;
+        }
+        .manager-employee-edit-form .form-control { width:100%; font-size:13px; }
+        .manager-employee-edit-form .small { display:block; margin-top:3px; }
+
+</style>
     
 <script>
     document.addEventListener("DOMContentLoaded", function () {

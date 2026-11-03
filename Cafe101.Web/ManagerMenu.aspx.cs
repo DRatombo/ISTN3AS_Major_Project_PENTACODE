@@ -1,4 +1,8 @@
 ﻿using Cafe101.Logic;
+using Cafe101.Data;
+using System.Data;
+using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,6 +17,134 @@ namespace Cafe101.Web
         private readonly MenuService menuService = new MenuService();
         private const int PageSize = 6;
 
+        // A newly-created menu item is not considered complete until it has a recipe.
+        private int? PendingMenuItemID
+        {
+            get
+            {
+                int id;
+                return Session["PendingMenuItemID"] != null &&
+                       int.TryParse(Convert.ToString(Session["PendingMenuItemID"]), out id)
+                    ? (int?)id : null;
+            }
+            set
+            {
+                if (value.HasValue) Session["PendingMenuItemID"] = value.Value;
+                else Session.Remove("PendingMenuItemID");
+            }
+        }
+
+        private bool HasRecipe(int menuItemID)
+        {
+            DataTable ingredients = menuService.GetRecipeIngredients(menuItemID);
+            return ingredients != null && ingredients.Rows.Count > 0;
+        }
+
+        private bool IsDuplicateMenuItemName(string name, int? excludeID = null)
+        {
+            using (SqlConnection connection = DatabaseConnection.GetConnection())
+            using (SqlCommand command = connection.CreateCommand())
+            {
+                string sql = "SELECT COUNT(*) FROM MenuItemsTable WHERE LOWER(LTRIM(RTRIM(MenuItemName))) = LOWER(@Name)";
+                if (excludeID.HasValue) sql += " AND MenuItemID <> @ID";
+                command.CommandText = sql;
+                command.Parameters.Add("@Name", SqlDbType.NVarChar, 100).Value = name.Trim();
+                if (excludeID.HasValue) command.Parameters.Add("@ID", SqlDbType.Int).Value = excludeID.Value;
+                connection.Open();
+                return Convert.ToInt32(command.ExecuteScalar()) > 0;
+            }
+        }
+
+        private void LoadRecipeIngredientOptions()
+        {
+            DropDownList ingredients = MenuControl<DropDownList>("ddlRecipeIngredient");
+            ingredients.Items.Clear();
+            ingredients.DataSource = menuService.GetAllIngredients();
+            ingredients.DataTextField = "Description";
+            ingredients.DataValueField = "IngredientID";
+            ingredients.DataBind();
+            ingredients.Items.Insert(0, new ListItem("-- Select Ingredient --", ""));
+            MenuControl<TextBox>("txtRecipeQuantity").Text = "";
+        }
+
+        private void OpenRecipeEditor(int menuItemID, bool pendingNewItem)
+        {
+            SelectedMenuItemID = menuItemID;
+            LoadRecipeIngredientOptions();
+            SetEditMode(false);
+            MenuControl<Panel>("pnlViewItem").Visible = false;
+            pnlEditItem.Visible = false;
+            MenuControl<Panel>("pnlAddItem").Visible = false;
+            MenuControl<Panel>("pnlManageRecipe").Visible = true;
+            pnlSelectedItem.Visible = true;
+            MenuControl<Label>("lblRecipeInstructions").Text = pendingNewItem
+                ? "Add at least one ingredient, then select Finish Recipe to complete this menu item. Cancelling will delete the pending item."
+                : "Add ingredients and quantities required to prepare one menu item.";
+            ClearMessage();
+        }
+
+        private void DeletePendingMenuItem()
+        {
+            if (!PendingMenuItemID.HasValue) return;
+            int id = PendingMenuItemID.Value;
+            // The pending item has not been made available to orders; remove it if its recipe is abandoned.
+            using (SqlConnection connection = DatabaseConnection.GetConnection())
+            {
+                connection.Open();
+                using (SqlTransaction transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        using (SqlCommand deleteRecipe = new SqlCommand(
+                            "DELETE FROM RecipeTable WHERE MenuItemID = @ID", connection, transaction))
+                        {
+                            deleteRecipe.Parameters.Add("@ID", SqlDbType.Int).Value = id;
+                            deleteRecipe.ExecuteNonQuery();
+                        }
+                        using (SqlCommand deleteItem = new SqlCommand(
+                            "DELETE FROM MenuItemsTable WHERE MenuItemID = @ID", connection, transaction))
+                        {
+                            deleteItem.Parameters.Add("@ID", SqlDbType.Int).Value = id;
+                            deleteItem.ExecuteNonQuery();
+                        }
+                        transaction.Commit();
+                    }
+                    catch
+                    {
+                        transaction.Rollback();
+                        throw;
+                    }
+                }
+            }
+            PendingMenuItemID = null;
+        }
+
+        private void CompletePendingMenuItem()
+        {
+            if (!PendingMenuItemID.HasValue) return;
+            int id = PendingMenuItemID.Value;
+            if (!HasRecipe(id))
+            {
+                ShowMessage("Add at least one ingredient before finishing this menu item.", "warning");
+                return;
+            }
+
+            PendingMenuItemID = null;
+            MenuControl<Panel>("pnlManageRecipe").Visible = false;
+            pnlSelectedItem.Visible = false;
+            txtSearch.Text = "";
+            ddlCategory.SelectedIndex = 0;
+            ddlStatus.SelectedIndex = 0;
+            LoadCategoryFilter();
+            List<MenuItemDetails> items = menuService.GetMenuItems();
+            int index = items.FindIndex(x => x.MenuItemID == id);
+            CurrentMenuPage = index < 0 ? 0 : index / PageSize;
+            SelectedMenuItemID = id;
+            LoadMenu();
+            ShowMessage("Menu item added successfully with its recipe.", "success");
+        }
+
+
         // A cleared hidden field means the details drawer is closed.
         private HiddenField SelectedField
         {
@@ -25,7 +157,7 @@ namespace Cafe101.Web
             {
                 int id;
                 return SelectedField != null && int.TryParse(SelectedField.Value, out id)
-                    ? (int?)id : null;
+                ? (int?)id : null;
             }
             set
             {
@@ -56,6 +188,11 @@ namespace Cafe101.Web
                 LoadCategoryFilter();
                 LoadMenu();
             }
+            else if (PendingMenuItemID.HasValue)
+            {
+                // Preserve the required-recipe workflow across UpdatePanel postbacks.
+                SelectedMenuItemID = PendingMenuItemID.Value;
+            }
         }
 
         // Find newly added controls without manual designer.cs edits.
@@ -79,7 +216,7 @@ namespace Cafe101.Web
         private bool ManagerIsLoggedIn()
         {
             if (Session["UserID"] == null || Session["Role"] == null ||
-                !string.Equals(Convert.ToString(Session["Role"]), "Manager", StringComparison.OrdinalIgnoreCase))
+            !string.Equals(Convert.ToString(Session["Role"]), "Manager", StringComparison.OrdinalIgnoreCase))
             {
                 Response.Redirect("~/SignIn.aspx");
                 return false;
@@ -95,7 +232,7 @@ namespace Cafe101.Web
             lblTopManagerName.Text = Server.HtmlEncode(string.IsNullOrWhiteSpace(fullName) ? "Manager" : fullName);
             lblTopManagerRole.Text = "Manager";
             lblTopManagerInitials.Text = (firstName.Length > 0 ? firstName.Substring(0, 1) : "") +
-                (surname.Length > 0 ? surname.Substring(0, 1) : "");
+            (surname.Length > 0 ? surname.Substring(0, 1) : "");
             if (string.IsNullOrWhiteSpace(lblTopManagerInitials.Text)) lblTopManagerInitials.Text = "M";
             lblTopManagerInitials.Text = lblTopManagerInitials.Text.ToUpperInvariant();
         }
@@ -123,9 +260,9 @@ namespace Cafe101.Web
                 if (!string.IsNullOrWhiteSpace(search))
                 {
                     filtered = filtered.Where(item =>
-                        item.MenuItemID.ToString().IndexOf(search.TrimStart('#'), StringComparison.OrdinalIgnoreCase) >= 0 ||
-                        (item.MenuItemName ?? "").IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                        (item.Category ?? "").IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0);
+                    item.MenuItemID.ToString().IndexOf(search.TrimStart('#'), StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    (item.MenuItemName ?? "").IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    (item.Category ?? "").IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0);
                 }
                 if (!string.IsNullOrWhiteSpace(ddlCategory.SelectedValue))
                     filtered = filtered.Where(item => string.Equals(item.Category, ddlCategory.SelectedValue, StringComparison.OrdinalIgnoreCase));
@@ -158,25 +295,25 @@ namespace Cafe101.Web
                 lblAvailable.Text = allItems.Count(item => item.StockStatus == "Available").ToString();
                 lblUnavailable.Text = allItems.Count(item => item.StockStatus == "Unavailable").ToString();
                 lblCategoryCount.Text = allItems.Select(item => item.Category)
-                    .Where(c => !string.IsNullOrWhiteSpace(c))
-                    .Distinct(StringComparer.OrdinalIgnoreCase).Count().ToString();
+                .Where(c => !string.IsNullOrWhiteSpace(c))
+                .Distinct(StringComparer.OrdinalIgnoreCase).Count().ToString();
 
                 List<MenuItemDetails> lowStockItems = allItems.Where(item => item.StockStatus == "Low Stock")
-                    .OrderBy(item => item.AvailableQuantity).Take(4).ToList();
+                .OrderBy(item => item.AvailableQuantity).Take(4).ToList();
                 rptLowStock.DataSource = lowStockItems;
                 rptLowStock.DataBind();
                 Label lowStockEmpty = MenuControl<Label>("lblNoLowStock");
                 if (lowStockEmpty != null) lowStockEmpty.Visible = lowStockItems.Count == 0;
 
                 rptCategories.DataSource = allItems.GroupBy(item => item.Category)
-                    .Select(group => new { Category = group.Key, ItemCount = group.Count() })
-                    .OrderBy(group => group.Category).ToList();
+                .Select(group => new { Category = group.Key, ItemCount = group.Count() })
+                .OrderBy(group => group.Category).ToList();
                 rptCategories.DataBind();
 
                 // Unlike the old layout, no item is auto-selected on page load.
                 // The table fills the page until the user clicks View.
                 if (!SelectedMenuItemID.HasValue ||
-                    !matched.Any(item => item.MenuItemID == SelectedMenuItemID.Value))
+                !matched.Any(item => item.MenuItemID == SelectedMenuItemID.Value))
                 {
                     SelectedMenuItemID = null;
                     pnlSelectedItem.Visible = false;
@@ -214,13 +351,13 @@ namespace Cafe101.Web
             // ============================================================
 
             var recipeIngredients =
-                menuService.GetRecipeIngredients(menuItemID);
+            menuService.GetRecipeIngredients(menuItemID);
 
             Repeater recipeRepeater =
-                MenuControl<Repeater>("rptSelectedRecipe");
+            MenuControl<Repeater>("rptSelectedRecipe");
 
             Label emptyRecipeLabel =
-                MenuControl<Label>("lblRecipeEmpty");
+            MenuControl<Label>("lblRecipeEmpty");
 
             // Display ingredients from SQL Server
             recipeRepeater.DataSource = recipeIngredients;
@@ -228,7 +365,7 @@ namespace Cafe101.Web
 
             // Show message if no ingredients are assigned
             emptyRecipeLabel.Visible =
-                recipeIngredients.Rows.Count == 0;
+            recipeIngredients.Rows.Count == 0;
         }
 
         private void ShowMessage(string message, string kind)
@@ -245,6 +382,12 @@ namespace Cafe101.Web
 
         protected void SelectMenuItem_Command(object sender, CommandEventArgs e)
         {
+            if (PendingMenuItemID.HasValue)
+            {
+                OpenRecipeEditor(PendingMenuItemID.Value, true);
+                ShowMessage("Complete or cancel the pending recipe before selecting another menu item.", "warning");
+                return;
+            }
             int id;
             if (!int.TryParse(Convert.ToString(e.CommandArgument), out id)) return;
             SelectedMenuItemID = id;
@@ -253,9 +396,9 @@ namespace Cafe101.Web
             LoadSelectedItem(id);
         }
 
-        protected void BtnSearch_Click(object sender, EventArgs e) { ResetListing(); }
-        protected void DdlCategory_SelectedIndexChanged(object sender, EventArgs e) { ResetListing(); }
-        protected void DdlStatus_SelectedIndexChanged(object sender, EventArgs e) { ResetListing(); }
+        protected void BtnSearch_Click(object sender, EventArgs e) { if (PendingMenuItemID.HasValue) { OpenRecipeEditor(PendingMenuItemID.Value, true); ShowMessage("Complete or cancel the pending recipe before changing the menu listing.", "warning"); return; } ResetListing(); }
+        protected void DdlCategory_SelectedIndexChanged(object sender, EventArgs e) { if (PendingMenuItemID.HasValue) { OpenRecipeEditor(PendingMenuItemID.Value, true); ShowMessage("Complete or cancel the pending recipe before changing the menu listing.", "warning"); return; } ResetListing(); }
+        protected void DdlStatus_SelectedIndexChanged(object sender, EventArgs e) { if (PendingMenuItemID.HasValue) { OpenRecipeEditor(PendingMenuItemID.Value, true); ShowMessage("Complete or cancel the pending recipe before changing the menu listing.", "warning"); return; } ResetListing(); }
 
         private void ResetListing()
         {
@@ -269,6 +412,7 @@ namespace Cafe101.Web
 
         protected void BtnRefresh_Click(object sender, EventArgs e)
         {
+            if (PendingMenuItemID.HasValue) { OpenRecipeEditor(PendingMenuItemID.Value, true); ShowMessage("Complete or cancel the pending recipe before refreshing.", "warning"); return; }
             txtSearch.Text = "";
             ddlCategory.SelectedIndex = 0;
             ddlStatus.SelectedIndex = 0;
@@ -277,6 +421,7 @@ namespace Cafe101.Web
 
         protected void PreviousMenu_Click(object sender, EventArgs e)
         {
+            if (PendingMenuItemID.HasValue) { OpenRecipeEditor(PendingMenuItemID.Value, true); ShowMessage("Complete or cancel the pending recipe before changing pages.", "warning"); return; }
             if (CurrentMenuPage > 0) CurrentMenuPage--;
             SelectedMenuItemID = null;
             SetEditMode(false);
@@ -285,6 +430,7 @@ namespace Cafe101.Web
 
         protected void NextMenu_Click(object sender, EventArgs e)
         {
+            if (PendingMenuItemID.HasValue) { OpenRecipeEditor(PendingMenuItemID.Value, true); ShowMessage("Complete or cancel the pending recipe before changing pages.", "warning"); return; }
             CurrentMenuPage++;
             SelectedMenuItemID = null;
             SetEditMode(false);
@@ -298,6 +444,12 @@ namespace Cafe101.Web
 
         protected void BtnAddNewItem_Click(object sender, EventArgs e)
         {
+            if (PendingMenuItemID.HasValue)
+            {
+                OpenRecipeEditor(PendingMenuItemID.Value, true);
+                ShowMessage("Complete or cancel the pending recipe before adding another menu item.", "warning");
+                return;
+            }
             MenuControl<TextBox>("txtNewName").Text = "";
             MenuControl<TextBox>("txtNewPrice").Text = "";
             MenuControl<TextBox>("txtNewCost").Text = "";
@@ -327,102 +479,59 @@ namespace Cafe101.Web
             TextBox category = MenuControl<TextBox>("txtNewCategory");
             TextBox prepText = MenuControl<TextBox>("txtNewPreparation");
 
-            decimal price;
-            decimal cost;
+            decimal price, cost;
             int preparation;
+            string itemName = (name.Text ?? "").Trim();
+            string itemCategory = (category.Text ?? "").Trim();
 
-            // Validate fields
-            if (string.IsNullOrWhiteSpace(name.Text) ||
-                string.IsNullOrWhiteSpace(category.Text) ||
-                !decimal.TryParse(
-                    priceText.Text,
-                    NumberStyles.Number,
-                    CultureInfo.InvariantCulture,
-                    out price) ||
-                !decimal.TryParse(
-                    costText.Text,
-                    NumberStyles.Number,
-                    CultureInfo.InvariantCulture,
-                    out cost) ||
+            if (string.IsNullOrWhiteSpace(itemName) || !Regex.IsMatch(itemName, @"^[\p{L} ]+$") ||
+                string.IsNullOrWhiteSpace(itemCategory) ||
+                !decimal.TryParse(priceText.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out price) ||
+                !decimal.TryParse(costText.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out cost) ||
                 !int.TryParse(prepText.Text, out preparation) ||
-                price <= 0 || cost < 0 || preparation < 0)
+                price <= 0 || cost <= 0 || preparation < 1 || preparation > 999)
             {
-                ShowMessage(
-                    "Please enter valid details. Use a dot for decimal prices.",
-                    "warning");
+                ShowMessage("Enter a valid name (letters and spaces), category, positive selling/cost prices, and preparation time between 1 and 999 minutes. Use a dot for decimal prices.", "warning");
+                return;
+            }
+
+            if (IsDuplicateMenuItemName(itemName))
+            {
+                ShowMessage("A menu item with this name already exists. Please use a different name.", "warning");
                 return;
             }
 
             try
             {
                 int newID;
-
-                // Save to SQL Server
-                string result = menuService.AddMenuItem(
-                    name.Text.Trim(),
-                    price,
-                    cost,
-                    category.Text.Trim(),
-                    preparation,
-                    out newID);
-
+                string result = menuService.AddMenuItem(itemName, price, cost, itemCategory, preparation, out newID);
                 if (!string.IsNullOrWhiteSpace(result))
                 {
                     ShowMessage(result, "warning");
                     return;
                 }
+                if (newID <= 0)
+                {
+                    ShowMessage("The menu item could not be created. Please try again.", "danger");
+                    return;
+                }
 
-                // Close Add form
-                MenuControl<Panel>("pnlAddItem").Visible = false;
-
-                // Reset filters
-                txtSearch.Text = "";
-                ddlCategory.SelectedIndex = 0;
-                ddlStatus.SelectedIndex = 0;
-
-                LoadCategoryFilter();
-
-                // Find the page containing the new item
-                List<MenuItemDetails> items =
-                    menuService.GetMenuItems();
-
-                int index = items.FindIndex(
-                    item => item.MenuItemID == newID);
-
-                CurrentMenuPage = index < 0
-                    ? 0
-                    : index / PageSize;
-
-                // Select the newly added item
-                SetEditMode(false);
-                SelectedMenuItemID = newID;
-
-                LoadMenu();
-
-                ShowMessage(
-                    "Menu item added successfully.",
-                    "success");
+                // Save temporarily to obtain its ID, then require a recipe before completion.
+                PendingMenuItemID = newID;
+                OpenRecipeEditor(newID, true);
+                ShowMessage("Menu item created as pending. Add at least one recipe ingredient and finish the recipe to complete it.", "warning");
             }
             catch (Exception)
             {
-                ShowMessage(
-                    "Unable to add menu item. Check the database connection.",
-                    "danger");
+                ShowMessage("Unable to create the menu item. Check the database connection.", "danger");
             }
         }
-
-        // ============================================================
-        // CANCEL ADD MENU ITEM
-        // ============================================================
 
         protected void BtnCancelNew_Click(object sender, EventArgs e)
         {
             MenuControl<Panel>("pnlAddItem").Visible = false;
-
-            // Close the slide-out panel
             SelectedField.Value = "";
             pnlSelectedItem.Visible = false;
-
             ClearMessage();
         }
 
@@ -437,51 +546,122 @@ namespace Cafe101.Web
                 ShowMessage("Please select a menu item first.", "warning");
                 return;
             }
-
             try
             {
-                DropDownList ingredients =
-                    MenuControl<DropDownList>("ddlRecipeIngredient");
-
-                var ingredientData = menuService.GetAllIngredients();
-
-                ingredients.DataSource = ingredientData;
-                ingredients.DataTextField = "Description";
-                ingredients.DataValueField = "IngredientID";
-                ingredients.DataBind();
-
-                ingredients.Items.Insert(
-                    0, new ListItem("-- Select Ingredient --", ""));
-
-                MenuControl<TextBox>("txtRecipeQuantity").Text = "";
-
-                // Show only the recipe form
-                SetEditMode(false);
-                MenuControl<Panel>("pnlViewItem").Visible = false;
-                pnlEditItem.Visible = false;
-
-                MenuControl<Panel>("pnlManageRecipe").Visible = true;
-                pnlSelectedItem.Visible = true;
-
-                ClearMessage();
+                OpenRecipeEditor(SelectedMenuItemID.Value, false);
             }
             catch (Exception)
             {
-                ShowMessage("Unable to load ingredients.", "danger");
+                ShowMessage("Unable to load ingredients. Check the database connection.", "danger");
             }
         }
 
-        // ============================================================
-        // CANCEL MANAGE RECIPE
-        // ============================================================
+        protected void BtnSaveRecipeIngredient_Click(object sender, EventArgs e)
+        {
+            if (!SelectedMenuItemID.HasValue)
+            {
+                ShowMessage("Select a menu item before adding recipe ingredients.", "warning");
+                return;
+            }
+
+            DropDownList ingredient = MenuControl<DropDownList>("ddlRecipeIngredient");
+            TextBox quantityText = MenuControl<TextBox>("txtRecipeQuantity");
+            int ingredientID;
+            decimal quantity;
+            if (!int.TryParse(ingredient.SelectedValue, out ingredientID) || ingredientID <= 0 ||
+                !decimal.TryParse(quantityText.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out quantity) || quantity <= 0)
+            {
+                ShowMessage("Select an ingredient and enter a quantity greater than zero.", "warning");
+                return;
+            }
+
+            try
+            {
+                // RecipeTable stores the ingredient quantity required for one menu item.
+                using (SqlConnection connection = DatabaseConnection.GetConnection())
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = @"
+IF EXISTS (SELECT 1 FROM RecipeTable WHERE MenuItemID = @MenuItemID AND IngredientID = @IngredientID)
+    UPDATE RecipeTable SET QuantityNeeded = @QuantityNeeded
+    WHERE MenuItemID = @MenuItemID AND IngredientID = @IngredientID;
+ELSE
+    INSERT INTO RecipeTable (MenuItemID, IngredientID, QuantityNeeded)
+    VALUES (@MenuItemID, @IngredientID, @QuantityNeeded);";
+                    command.Parameters.Add("@MenuItemID", SqlDbType.Int).Value = SelectedMenuItemID.Value;
+                    command.Parameters.Add("@IngredientID", SqlDbType.Int).Value = ingredientID;
+                    SqlParameter quantityParameter = command.Parameters.Add("@QuantityNeeded", SqlDbType.Decimal);
+                    quantityParameter.Precision = 18;
+                    quantityParameter.Scale = 3;
+                    quantityParameter.Value = quantity;
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+
+                quantityText.Text = "";
+                ingredient.SelectedIndex = 0;
+                LoadSelectedItem(SelectedMenuItemID.Value);
+                // Keep the recipe editor open so the manager can add multiple ingredients.
+                MenuControl<Panel>("pnlViewItem").Visible = false;
+                MenuControl<Panel>("pnlManageRecipe").Visible = true;
+                pnlSelectedItem.Visible = true;
+                ShowMessage("Ingredient added to the recipe. Add another ingredient or finish the recipe.", "success");
+            }
+            catch (Exception)
+            {
+                ShowMessage("Unable to save this recipe ingredient. Verify the RecipeTable column names and database connection.", "danger");
+            }
+        }
+
+        protected void BtnFinishRecipe_Click(object sender, EventArgs e)
+        {
+            if (!SelectedMenuItemID.HasValue)
+            {
+                ShowMessage("Select a menu item first.", "warning");
+                return;
+            }
+
+            if (PendingMenuItemID.HasValue)
+            {
+                CompletePendingMenuItem();
+                return;
+            }
+
+            if (!HasRecipe(SelectedMenuItemID.Value))
+            {
+                ShowMessage("This menu item still has no ingredients. Add at least one ingredient before finishing.", "warning");
+                return;
+            }
+
+            MenuControl<Panel>("pnlManageRecipe").Visible = false;
+            MenuControl<Panel>("pnlViewItem").Visible = true;
+            LoadSelectedItem(SelectedMenuItemID.Value);
+            ShowMessage("Recipe saved successfully.", "success");
+        }
 
         protected void BtnCancelRecipe_Click(object sender, EventArgs e)
         {
-            MenuControl<Panel>("pnlManageRecipe").Visible = false;
+            if (PendingMenuItemID.HasValue)
+            {
+                try
+                {
+                    DeletePendingMenuItem();
+                    SelectedMenuItemID = null;
+                    MenuControl<Panel>("pnlManageRecipe").Visible = false;
+                    pnlSelectedItem.Visible = false;
+                    LoadMenu();
+                    ShowMessage("The menu item was removed because its recipe was cancelled.", "warning");
+                }
+                catch (Exception)
+                {
+                    ShowMessage("The pending menu item could not be removed. Please try again.", "danger");
+                }
+                return;
+            }
 
+            MenuControl<Panel>("pnlManageRecipe").Visible = false;
             SetEditMode(false);
             pnlSelectedItem.Visible = true;
-
             ClearMessage();
         }
 
@@ -518,9 +698,10 @@ namespace Cafe101.Web
             decimal price, cost;
             int prep;
             if (string.IsNullOrWhiteSpace(txtEditName.Text) || string.IsNullOrWhiteSpace(txtEditCategory.Text) ||
-                !decimal.TryParse(txtEditPrice.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out price) ||
-                !decimal.TryParse(txtEditCost.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out cost) ||
-                !int.TryParse(txtEditPreparation.Text, out prep) || price <= 0 || cost < 0 || prep < 0)
+            !decimal.TryParse(txtEditPrice.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out price) ||
+            !decimal.TryParse(txtEditCost.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out cost) ||
+            !int.TryParse(txtEditPreparation.Text, out prep) || price <= 0 || cost <= 0 || prep < 1 || prep > 999 ||
+            !Regex.IsMatch((txtEditName.Text ?? "").Trim(), @"^[\p{L} ]+$"))
             {
                 ShowMessage("Enter valid item details. Use a dot for decimal prices, for example 49.99.", "warning");
                 return;
@@ -528,8 +709,19 @@ namespace Cafe101.Web
             try
             {
                 int id = SelectedMenuItemID.Value;
+                if (IsDuplicateMenuItemName(txtEditName.Text.Trim(), id))
+                {
+                    ShowMessage("Another menu item with this name already exists. Please use a different name.", "warning");
+                    return;
+                }
+                if (!HasRecipe(id))
+                {
+                    ShowMessage("This menu item has no recipe. Add at least one ingredient before updating it.", "warning");
+                    OpenRecipeEditor(id, false);
+                    return;
+                }
                 string result = menuService.UpdateMenuItem(id, txtEditName.Text.Trim(), price,
-                    cost, txtEditCategory.Text.Trim(), prep);
+                cost, txtEditCategory.Text.Trim(), prep);
                 if (!string.IsNullOrWhiteSpace(result)) { ShowMessage(result, "warning"); return; }
                 SetEditMode(false);
                 LoadCategoryFilter();
@@ -598,6 +790,10 @@ namespace Cafe101.Web
 
         protected void LnkLogout_Click(object sender, EventArgs e)
         {
+            if (PendingMenuItemID.HasValue)
+            {
+                try { DeletePendingMenuItem(); } catch { }
+            }
             Session.Clear();
             Session.Abandon();
             Response.Redirect("~/SignIn.aspx");

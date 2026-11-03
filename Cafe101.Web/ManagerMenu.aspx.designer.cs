@@ -447,6 +447,15 @@ namespace Cafe101.Web
         protected global::System.Web.UI.WebControls.Panel pnlManageRecipe;
 
         /// <summary>
+        /// lblRecipeInstructions control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRecipeInstructions;
+
+        /// <summary>
         /// ddlRecipeIngredient control.
         /// </summary>
         /// <remarks>
@@ -463,6 +472,24 @@ namespace Cafe101.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtRecipeQuantity;
+
+        /// <summary>
+        /// btnSaveRecipeIngredient control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSaveRecipeIngredient;
+
+        /// <summary>
+        /// btnFinishRecipe control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnFinishRecipe;
 
         /// <summary>
         /// btnCancelRecipe control.

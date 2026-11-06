@@ -203,6 +203,7 @@
     <Content Include="StaffProfile.aspx" />
     <Content Include="Receipt.aspx" />
     <Content Include="Content\Images\Fries.webp" />
+    <Content Include="ChatHandler.ashx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -241,6 +242,7 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\SmartChatbotHelper.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -256,6 +258,9 @@
     </Compile>
     <Compile Include="CartandPayment.aspx.designer.cs">
       <DependentUpon>CartandPayment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ChatHandler.ashx.cs">
+      <DependentUpon>ChatHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>

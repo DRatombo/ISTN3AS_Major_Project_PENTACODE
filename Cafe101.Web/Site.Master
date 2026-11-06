@@ -115,6 +115,108 @@
             </footer>
         </div>
     </form>
+    <style>
+  #chatBtn {
+    position: fixed; bottom: 20px; right: 20px; z-index: 1000;
+    width: 56px; height: 56px; border-radius: 50%; border: none;
+    background: #0d6efd; color: #fff; font-size: 24px; cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+  }
+  #chatPanel {
+    position: fixed; bottom: 90px; right: 20px; z-index: 1000;
+    width: 320px; height: 420px; display: none; flex-direction: column;
+    background: #fff; border: 1px solid #ccc; border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.2); font-family: Arial, sans-serif; font-size: 14px;
+  }
+  #chatPanel.open { display: flex; }
+  #chatHeader { background: #0d6efd; color: #fff; padding: 10px; border-radius: 8px 8px 0 0; }
+  #chatLog { flex: 1; overflow-y: auto; padding: 10px; }
+  .msg { margin: 6px 0; padding: 6px 10px; border-radius: 10px; max-width: 85%; white-space: pre-wrap; }
+  .msg-user { background: #e7f1ff; margin-left: auto; text-align: right; }
+  .msg-bot  { background: #f1f1f1; }
+  #chatChips { padding: 0 10px 6px; display: flex; flex-wrap: wrap; gap: 4px; }
+  .chip { border: 1px solid #0d6efd; color: #0d6efd; background: #fff;
+          border-radius: 12px; padding: 3px 8px; font-size: 12px; cursor: pointer; }
+  #chatInput { border: none; border-top: 1px solid #ccc; padding: 10px; outline: none; }
+</style>
+
+<button type="button" id="chatBtn" title="Chat with us">💬</button>
+
+<div id="chatPanel">
+  <div id="chatHeader">FAQ Assistant</div>
+  <div id="chatLog"></div>
+  <div id="chatChips"></div>
+  <input type="text" id="chatInput" placeholder="Ask a question..." maxlength="300" />
+</div>
+
+<script>
+(function () {
+  var url   = '<%= ResolveUrl("~/ChatHandler.ashx") %>';
+  var btn   = document.getElementById('chatBtn');
+  var panel = document.getElementById('chatPanel');
+  var log   = document.getElementById('chatLog');
+  var chips = document.getElementById('chatChips');
+  var input = document.getElementById('chatInput');
+  var loaded = false;
+
+  btn.addEventListener('click', function () {
+    panel.classList.toggle('open');
+    if (panel.classList.contains('open') && !loaded) {
+      loaded = true;
+      addMsg('bot', 'Hi! Pick a question below or type your own.');
+      loadChips();
+    }
+    if (panel.classList.contains('open')) input.focus();
+  });
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' || !input.value.trim()) return;
+    var text = input.value.trim();
+    input.value = '';
+    addMsg('user', text);
+    send({ message: text });
+  });
+
+    function loadChips() {
+        var questions = [
+            'What are your opening hours?',
+            'How long does an order take?',
+            'What are the popular items?',
+            'How do I add an employee?',
+            'How do I add a menu item?',
+            'What does low stock mean?'
+        ];
+        questions.forEach(function (q) {
+            var b = document.createElement('button');
+            b.type = 'button'; b.className = 'chip'; b.textContent = q;
+            b.addEventListener('click', function () {
+                addMsg('user', q);
+                send({ message: q });
+            });
+            chips.appendChild(b);
+        });
+    }
+
+  function send(payload) {
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function (r) { return r.json(); })
+    .then(function (d) { addMsg('bot', d.reply); })
+    .catch(function () { addMsg('bot', 'Sorry, something went wrong. Please try again.'); });
+  }
+
+  function addMsg(who, text) {
+    var d = document.createElement('div');
+    d.className = 'msg msg-' + who;
+    d.textContent = text;            // textContent prevents script injection
+    log.appendChild(d);
+    log.scrollTop = log.scrollHeight;
+  }
+})();
+</script>
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/Scripts/bootstrap.js") %>
     </asp:PlaceHolder>

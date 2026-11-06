@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Linq;
 
 namespace Cafe101
@@ -98,22 +99,27 @@ namespace Cafe101
                    "Try asking me a specific question!";
         }
 
+        private static bool ContainsWord(string input, string word)
+        {
+            return Regex.IsMatch(input, @"\b" + Regex.Escape(word) + @"\b");
+        }
+
         private static bool IsGreeting(string input)
         {
             string[] greetings = { "hello", "hi", "hey", "howdy", "good morning", "good afternoon", "good evening", "yo" };
-            return greetings.Any(g => input.Contains(g));
+            return greetings.Any(g => ContainsWord(input, g));
         }
 
         private static bool IsGoodbye(string input)
         {
             string[] goodbyes = { "bye", "goodbye", "see you", "cya", "later", "exit", "quit", "done" };
-            return goodbyes.Any(g => input.Contains(g));
+            return goodbyes.Any(g => ContainsWord(input, g));
         }
 
         private static bool IsThanks(string input)
         {
             string[] thanks = { "thank", "thanks", "thx", "appreciate" };
-            return thanks.Any(t => input.Contains(t));
+            return thanks.Any(t => input.Contains(t));   // fine as-is, "thank" is distinctive
         }
 
         private static string DetectIntent(string input)

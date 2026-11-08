@@ -1,291 +1,69 @@
-﻿<%@ page title="Reports"
-    language="C#"
-    masterpagefile="~/Site.Master"
-    autoeventwireup="true"
-    codebehind="ManagerReports.aspx.cs"
-    inherits="Cafe101.Web.ManagerReports" %>
-
-
-<asp:Content ID="Content1"
-    ContentPlaceHolderID="MainContent"
-    runat="server">
-
+﻿<%@ Page Title="Reports" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManagerReports.aspx.cs" Inherits="Cafe101.Web.ManagerReports" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="staff-shell">
 
-        <%-- =====================================================
-             TOP HEADER
-             ===================================================== --%>
-
+        <!-- TOP HEADER -->
         <header class="staff-header">
-
             <div class="staff-header-left">
-
-                <button type="button"
-                    id="sidebarToggle"
-                    class="staff-header-menu">
-                    ☰
-                </button>
-
-                <div class="staff-header-brand">
-                    Cafe101
-                </div>
-
+                <button type="button" id="sidebarToggle" class="staff-header-menu">☰</button>
+                <div class="staff-header-brand">Cafe101</div>
             </div>
 
-
-            <a href="ManagerProfile.aspx"
-                class="staff-header-user text-decoration-none">
-
+            <a href="ManagerProfile.aspx" class="staff-header-user text-decoration-none">
                 <div class="staff-header-avatar">
-
-                    <asp:Label
-                        ID="lblTopManagerInitials"
-                        runat="server"></asp:Label>
-
+                    <asp:Label ID="lblTopManagerInitials" runat="server"></asp:Label>
                 </div>
-
                 <div>
-
-                    <strong>
-
-                        <asp:Label
-                            ID="lblTopManagerName"
-                            runat="server"></asp:Label>
-
-                    </strong>
-
-                    <small>
-
-                        <asp:Label
-                            ID="lblTopManagerRole"
-                            runat="server"></asp:Label>
-
-                    </small>
-
+                    <strong><asp:Label ID="lblTopManagerName" runat="server"></asp:Label></strong>
+                    <small><asp:Label ID="lblTopManagerRole" runat="server"></asp:Label></small>
                 </div>
-
             </a>
-
         </header>
-
 
         <div class="staff-body">
 
-
-            <%-- =====================================================
-                 MANAGER SIDEBAR
-                 ===================================================== --%>
-
+            <!-- SIDEBAR -->
             <aside class="staff-sidebar">
+                <div class="staff-sidebar-title">MANAGER SYSTEM</div>
 
-                <div class="staff-sidebar-title">
-                    MANAGER SYSTEM
-                </div>
-
-
-                <nav class="staff-nav" aria-label="Manager navigation">
-                    <%-- Keep all management links available on every manager page. --%>
-                    <a href="ManagerDashboard.aspx" aria-label="Dashboard">
-                        <span class="staff-nav-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="19" height="19"
-                                fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M3 10l9-7 9 7M5 9v12h14V9M9 21v-8h6v8" />
-                            </svg>
-                        </span>
-                        <span class="staff-nav-text">Dashboard</span>
-                    </a>
-
-                    <a href="ManagerOrders.aspx" aria-label="Orders">
-                        <span class="staff-nav-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="19" height="19"
-                                fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M6 3h12v18H6zM9 8h6M9 12h6M9 16h4" />
-                            </svg>
-                        </span>
-                        <span class="staff-nav-text">Orders</span>
-                    </a>
-                    <a href="ManageCustomers.aspx" aria-label="Customers">
-                        <span class="staff-nav-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="19" height="19"
-                                fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                                <circle cx="9" cy="7" r="4"></circle>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                            </svg>
-                        </span>
-                        <span class="staff-nav-text">Customers</span>
-                    </a>
-                    <a href="ManagerMenu.aspx" aria-label="Menu">
-                        <span class="staff-nav-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="19" height="19"
-                                fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h5" />
-                            </svg>
-                        </span>
-                        <span class="staff-nav-text">Menu</span>
-                    </a>
-
-                    <a href="ManageIngredients.aspx" aria-label="Ingredients">
-                        <span class="staff-nav-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="19" height="19"
-                                fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 7h16v14H4zM3 3h18v4H3zM9 11h6" />
-                            </svg>
-                        </span>
-                        <span class="staff-nav-text">Ingredients</span>
-                    </a>
-
-                    <a href="ManageRecipes.aspx" aria-label="Recipes">
-                        <span class="staff-nav-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="19" height="19"
-                                fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M5 3h14v18H5zM8 7h8M8 11h8M8 15h5" />
-                            </svg>
-                        </span>
-                        <span class="staff-nav-text">Recipes</span>
-                    </a>
-
-                    <a href="ManagerStaff.aspx" aria-label="Staff">
-                        <span class="staff-nav-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="19" height="19"
-                                fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="9" cy="8" r="3" /><circle cx="17" cy="10" r="2" /><path d="M3 20c0-4 2.5-7 6-7s6 3 6 7M15 15c3 0 5 2 5 5" />
-                            </svg>
-                        </span>
-                        <span class="staff-nav-text">Staff</span>
-                    </a>
-
-                    <a href="ManagerReports.aspx" class="active" aria-current="page" aria-label="Reports">
-                        <span class="staff-nav-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="19" height="19"
-                                fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
-                            </svg>
-                        </span>
-                        <span class="staff-nav-text">Reports</span>
-                    </a>
-
-                    <a href="ManagerProfile.aspx" aria-label="Profile">
-                        <span class="staff-nav-icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" width="19" height="19"
-                                fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" />
-                            </svg>
-                        </span>
-                        <span class="staff-nav-text">Profile</span>
-                    </a>
-                    
-<%-- Help Centre --%>
-<a href="StaffHelp.aspx" aria-label="Help Centre">
-    <span class="staff-nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"
-             width="19"
-             height="19"
-             fill="none"
-             stroke="currentColor"
-             stroke-width="2">
-            <circle cx="12" cy="12" r="9" />
-            <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4" />
-            <path d="M12 17h.01" />
-        </svg>
-    </span>
-    <span class="staff-nav-text">Help Centre</span>
-</a>
-
+                <nav class="staff-nav">
+                    <a href="ManagerDashboard.aspx"><span class="staff-nav-icon">🏠</span><span class="staff-nav-text">Dashboard</span></a>
+                    <a href="ManagerOrders.aspx"><span class="staff-nav-icon">📋</span><span class="staff-nav-text">Orders</span></a>
+                    <a href="ManageCustomers.aspx"><span class="staff-nav-icon">👥</span><span class="staff-nav-text">Customers</span></a>
+                    <a href="ManagerMenu.aspx"><span class="staff-nav-icon">📖</span><span class="staff-nav-text">Menu</span></a>
+                    <a href="ManageIngredients.aspx"><span class="staff-nav-icon">🥕</span><span class="staff-nav-text">Ingredients</span></a>
+                    <a href="ManageRecipes.aspx"><span class="staff-nav-icon">📝</span><span class="staff-nav-text">Recipes</span></a>
+                    <a href="ManagerStaff.aspx"><span class="staff-nav-icon">👨‍💼</span><span class="staff-nav-text">Staff</span></a>
+                    <a href="ManagerReports.aspx" class="active"><span class="staff-nav-icon">📊</span><span class="staff-nav-text">Reports</span></a>
+                    <a href="ManagerProfile.aspx"><span class="staff-nav-icon">👤</span><span class="staff-nav-text">Profile</span></a>
+                    <a href="StaffHelp.aspx"><span class="staff-nav-icon">❓</span><span class="staff-nav-text">Help Centre</span></a>
                 </nav>
 
-
-                <%-- Logout --%>
-
                 <div class="staff-sidebar-bottom">
-
-                    <asp:LinkButton
-                        ID="lnkLogout"
-                        runat="server"
-                        CssClass="staff-logout"
-                        OnClick="LnkLogout_Click">
-
-                        <span class="staff-nav-icon">&#10140;
-                        </span>
-
-                        <span class="staff-nav-text">Log Out
-                        </span>
-
+                    <asp:LinkButton ID="lnkLogout" runat="server" CssClass="staff-logout" OnClick="LnkLogout_Click">
+                        <span class="staff-nav-icon">→</span>
+                        <span class="staff-nav-text">Log Out</span>
                     </asp:LinkButton>
-
                 </div>
-
             </aside>
 
-
-
-            <%-- =====================================================
-                 MAIN PAGE
-                 ===================================================== --%>
-
+            <!-- MAIN CONTENT -->
             <main class="staff-main">
 
-
-                <%-- =================================================
-                     PAGE HEADING
-                     ================================================= --%>
-
                 <div class="staff-page-heading">
-
-                    <h3>Reports
-                    </h3>
-
-                    <p>
-                        View business performance, sales insights and operational summaries.
-                    </p>
-
+                    <h3>Reports</h3>
+                    <p>View business performance, sales insights and operational summaries.</p>
                 </div>
 
-
-
-                <%-- =================================================
-                     REPORT TOOLBAR
-                     ================================================= --%>
-
+                <!-- TOOLBAR -->
                 <div class="manager-orders-toolbar">
-
                     <div class="manager-orders-toolbar-left">
-
-
-                        <%-- Date Range --%>
-
                         <div class="manager-date-filter">
-
-                            <svg viewBox="0 0 24 24"
-                                width="16"
-                                height="16"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <rect x="3"
-                                    y="5"
-                                    width="18"
-                                    height="16"
-                                    rx="2" />
-
-                                <path d="M8 3v4" />
-                                <path d="M16 3v4" />
-                                <path d="M3 10h18" />
-
-                            </svg>
-
-
-
-                            <asp:DropDownList
-                                ID="ddlReportDateRange"
-                                runat="server"
+                            <asp:DropDownList ID="ddlReportDateRange" runat="server"
                                 CssClass="form-control"
                                 AutoPostBack="true"
                                 OnSelectedIndexChanged="DdlReportDateRange_SelectedIndexChanged">
-
                                 <asp:ListItem Text="All Time" Value="AllTime" Selected="True" />
                                 <asp:ListItem Text="Today" Value="Today" />
                                 <asp:ListItem Text="Yesterday" Value="Yesterday" />
@@ -293,890 +71,330 @@
                                 <asp:ListItem Text="Last 30 Days" Value="Last30Days" />
                                 <asp:ListItem Text="This Month" Value="ThisMonth" />
                                 <asp:ListItem Text="Previous Month" Value="PreviousMonth" />
-
                             </asp:DropDownList>
-
                         </div>
-
-
-
-                        <%-- Report Type --%>
-
-                        <div class="staff-filter-box">
-
-                            <span class="staff-filter-icon">
-
-                                <svg viewBox="0 0 24 24"
-                                    width="16"
-                                    height="16"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2">
-
-                                    <path d="M4 5h16l-6 7v5l-4 2v-7L4 5z" />
-
-                                </svg>
-
-                            </span>
-
-
-                            <select class="form-control staff-status-filter">
-
-                                <option>All Report Types</option>
-                                <option>Sales Report</option>
-                                <option>Orders Report</option>
-                                <option>Inventory Report</option>
-                                <option>Staff Performance</option>
-                                <option>Product Performance</option>
-
-                            </select>
-
-                        </div>
-
                     </div>
-
-
 
                     <div class="manager-orders-toolbar-right">
-
-                        <button type="button"
-                            class="btn btn-outline-brand">
-                            ⇩ Export Report
-                        </button>
-
-
-                        <button type="button"
-                            class="btn btn-brand">
-                            ↻ Refresh
-                        </button>
-
+                        <button type="button" class="btn btn-outline-brand">⇩ Export Report</button>
+                        <button type="button" class="btn btn-brand" onclick="loadCharts()">↻ Refresh</button>
                     </div>
-
                 </div>
 
-
-
-                <%-- =================================================
-                     FOUR REPORT METRIC CARDS
-                     ================================================= --%>
-
+                <!-- METRIC CARDS -->
                 <div class="staff-metric-grid">
-
-
-                    <%-- Total Revenue --%>
-
                     <div class="staff-metric-card">
-
-                        <div class="staff-icon-box icon-green">
-
-                            <span class="manager-money-icon">R
-                            </span>
-
-                        </div>
-
-
+                        <div class="staff-icon-box icon-green"><span class="manager-money-icon">R</span></div>
                         <div>
-
-                            <span class="staff-metric-label">TOTAL REVENUE
-                            </span>
-
-                            <h3>
-                                <asp:Label ID="lblTotalRevenue" runat="server" />
-                            </h3>
-
-                            <p>All-time completed orders</p>
-
+                            <span class="staff-metric-label">TOTAL REVENUE</span>
+                            <h3><asp:Label ID="lblTotalRevenue" runat="server" /></h3>
+                            <p>Completed orders</p>
                         </div>
-
                     </div>
 
-
-
-                    <%-- Orders Completed --%>
-
                     <div class="staff-metric-card">
-
-                        <div class="staff-icon-box icon-blue">
-
-                            <svg viewBox="0 0 24 24"
-                                width="21"
-                                height="21"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <rect x="5"
-                                    y="4"
-                                    width="14"
-                                    height="17"
-                                    rx="2" />
-
-                                <path d="M9 9h6" />
-                                <path d="M9 13h6" />
-                                <path d="m9 17 2 2 4-4" />
-
-                            </svg>
-
-                        </div>
-
-
+                        <div class="staff-icon-box icon-blue">📦</div>
                         <div>
-
-                            <span class="staff-metric-label">ORDERS COMPLETED
-                            </span>
-
-                            <h3>
-                                <asp:Label ID="lblCompletedOrders" runat="server" />
-                            </h3>
-                                <p>All-time completed orders</p>
-
+                            <span class="staff-metric-label">ORDERS COMPLETED</span>
+                            <h3><asp:Label ID="lblCompletedOrders" runat="server" /></h3>
+                            <p>Completed orders</p>
                         </div>
-
                     </div>
 
-
-
-                    <%-- Average Order Value --%>
-
                     <div class="staff-metric-card">
-
-                        <div class="staff-icon-box icon-orange">
-
-                            <svg viewBox="0 0 24 24"
-                                width="21"
-                                height="21"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-
-                                <rect x="5"
-                                    y="3"
-                                    width="14"
-                                    height="18"
-                                    rx="2" />
-
-                                <path d="M8 7h8" />
-                                <path d="M8 11h8" />
-                                <path d="M8 15h5" />
-
-                            </svg>
-
-                        </div>
-
-
+                        <div class="staff-icon-box icon-orange">🧾</div>
                         <div>
-
-                            <span class="staff-metric-label">AVERAGE ORDER VALUE
-                            </span>
-
-                            <h3>
-                                <asp:Label ID="lblAverageOrderValue" runat="server" />
-                            </h3>
-
-                                <p>Average across all completed orders</p>
-
+                            <span class="staff-metric-label">AVERAGE ORDER VALUE</span>
+                            <h3><asp:Label ID="lblAverageOrderValue" runat="server" /></h3>
+                            <p>Average across completed orders</p>
                         </div>
-
                     </div>
 
-
-
-
-                    <%-- Monthly Growth --%>
                     <div class="staff-metric-card">
-
-                        <div class="staff-icon-box icon-purple">
-                            <svg viewBox="0 0 24 24"
-                                width="21" height="21"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2">
-                                <path d="M4 18V12" />
-                                <path d="M9 18V8" />
-                                <path d="M14 18V5" />
-                                <path d="M19 18V2" />
-                            </svg>
-                        </div>
-
+                        <div class="staff-icon-box icon-purple">📈</div>
                         <div>
-                            <span class="staff-metric-label">MONTHLY GROWTH
-                            </span>
-
+                            <span class="staff-metric-label">MONTHLY GROWTH</span>
                             <h3>—</h3>
                             <p>Not yet calculated</p>
                         </div>
-
                     </div>
-
-                    <%-- Close the four summary cards --%>
                 </div>
 
-
-
-
-
-                <%-- =================================================
-                     REPORT VISUALS
-                     ================================================= --%>
-
-                <div class="manager-reports-top-grid">
-
-
-                    <%-- Revenue Overview --%>
-
-                    <section class="staff-dashboard-panel">
-
-                        <div class="staff-panel-heading">
-
-                            <div>
-
-                                <h5>Revenue Overview
-                                </h5>
-
-                                <small>Sales trend over the selected period
-                                </small>
-
-                            </div>
-
-
-                            <select class="form-control manager-period-filter">
-
-                                <option>All Time</option>
-                                <option>Last 30 Days</option>
-                                <option>This Month</option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="staff-chart-placeholder">
-
-                            <svg viewBox="0 0 24 24"
-                                width="42"
-                                height="42"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.7">
-
-                                <path d="M5 19V11" />
-                                <path d="M10 19V7" />
-                                <path d="M15 19V4" />
-                                <path d="M20 19V9" />
-
-                            </svg>
-
-                            <h5>Power BI Revenue Report
-                            </h5>
-
-                            <p>
-                                Revenue analytics will be displayed here.
-                            </p>
-
-                        </div>
-
-                    </section>
-
-
-
-                    <%-- Sales by Category --%>
-
-                    <section class="staff-dashboard-panel">
-
-                        <div class="staff-panel-heading">
-
-                            <div>
-
-                                <h5>Sales by Category
-                                </h5>
-
-                                <small>Sales distribution across menu categories
-                                </small>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="staff-chart-placeholder">
-
-                            <svg viewBox="0 0 24 24"
-                                width="42"
-                                height="42"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.7">
-
-                                <circle cx="12" cy="12" r="8" />
-                                <path d="M12 4v8h8" />
-
-                            </svg>
-
-                            <h5>Power BI Category Report
-                            </h5>
-
-                            <p>
-                                Category sales analytics will be displayed here.
-                            </p>
-
-                        </div>
-
-                    </section>
-
-                </div>
-
-
-
-                <%-- =================================================
-                     BOTTOM REPORT ROW
-                     ================================================= --%>
-
-                <div class="manager-reports-bottom-grid">
-
-
-                    <%-- Top Selling Items --%>
-
-                    <section class="staff-dashboard-panel manager-reports-selling">
-
-                        <div class="staff-panel-heading">
-
-                            <div>
-
-                                <h5>Top Selling Items
-                                </h5>
-
-                                <small>Best performing items in the selected period
-                                </small>
-
-                            </div>
-
-                        </div>
-
-
-
-                        <div class="table-responsive">
-
-                            <table class="table staff-orders-table">
-
-                                <thead>
-
-                                    <tr>
-
-                                        <th>Item</th>
-                                        <th>Category</th>
-                                        <th>Quantity Sold</th>
-                                        <th>Revenue</th>
-                                        <th>Trend</th>
-
-                                    </tr>
-
-                                </thead>
-
-
-                                <tbody>
-
-                                    <tr>
-
-                                        <td>
-                                            <strong>Cappuccino
-                                            </strong>
-                                        </td>
-
-                                        <td>Beverages
-                                        </td>
-
-                                        <td>132
-                                        </td>
-
-                                        <td>R6,600.00
-                                        </td>
-
-                                        <td class="manager-positive-text">↑ 15%
-                                        </td>
-
-                                    </tr>
-
-
-                                    <tr>
-
-                                        <td>
-                                            <strong>Chicken Wrap
-                                            </strong>
-                                        </td>
-
-                                        <td>Food
-                                        </td>
-
-                                        <td>98
-                                        </td>
-
-                                        <td>R6,664.00
-                                        </td>
-
-                                        <td class="manager-positive-text">↑ 11%
-                                        </td>
-
-                                    </tr>
-
-
-                                    <tr>
-
-                                        <td>
-                                            <strong>Vanilla Muffin
-                                            </strong>
-                                        </td>
-
-                                        <td>Bakery
-                                        </td>
-
-                                        <td>86
-                                        </td>
-
-                                        <td>R2,150.00
-                                        </td>
-
-                                        <td class="manager-positive-text">↑ 8%
-                                        </td>
-
-                                    </tr>
-
-
-                                    <tr>
-
-                                        <td>
-                                            <strong>Classic Burger
-                                            </strong>
-                                        </td>
-
-                                        <td>Food
-                                        </td>
-
-                                        <td>72
-                                        </td>
-
-                                        <td>R5,760.00
-                                        </td>
-
-                                        <td class="manager-positive-text">↑ 12%
-                                        </td>
-
-                                    </tr>
-
-
-                                    <tr>
-
-                                        <td>
-                                            <strong>Brownie
-                                            </strong>
-                                        </td>
-
-                                        <td>Bakery
-                                        </td>
-
-                                        <td>65
-                                        </td>
-
-                                        <td>R1,625.00
-                                        </td>
-
-                                        <td class="manager-positive-text">↑ 9%
-                                        </td>
-
-                                    </tr>
-
-                                </tbody>
-
-                            </table>
-
-                        </div>
-
-
-                        <div class="manager-reports-table-footer">
-
-                            <a href="#"
-                                class="staff-text-link">View Full Items Report →
-
-                            </a>
-
-                            <small>Showing 1-5 of 5 items
-                            </small>
-
-                        </div>
-
-                    </section>
-
-
-
-                    <div class="manager-reports-right-lower">
-
-                        <div class="manager-reports-summary-column">
-
-
-                            <%-- Payment Summary --%>
-
-                            <section class="staff-dashboard-panel">
-
-                                <div class="staff-panel-heading">
-
-                                    <div>
-
-                                        <h5>Payment Summary
-                                        </h5>
-
-                                        <small>Breakdown of payments received
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="manager-reports-payment-list">
-
-
-                                    <div class="manager-reports-payment-row">
-
-                                        <span>Card
-                                        </span>
-
-                                        <strong>R46,120
-                                        </strong>
-
-                                        <span class="order-status status-ready">54.7%
-                                        </span>
-
-                                    </div>
-
-
-                                    <div class="manager-reports-payment-row">
-
-                                        <span>Cash
-                                        </span>
-
-                                        <strong>R26,340
-                                        </strong>
-
-                                        <span class="order-status status-completed">31.3%
-                                        </span>
-
-                                    </div>
-
-
-                                    <div class="manager-reports-payment-row">
-
-                                        <span>Online
-                                        </span>
-
-                                        <strong>R11,740
-                                        </strong>
-
-                                        <span class="order-status status-preparing">14.0%
-                                        </span>
-
-                                    </div>
-
-
-                                    <div class="manager-reports-payment-total">
-
-                                        <span>Total Payments
-                                        </span>
-
-                                        <strong>R84,200.00
-                                        </strong>
-
-                                    </div>
-
-                                </div>
-
-                            </section>
-
-
-
-                            <%-- Quick Insights --%>
-
-                            <section class="staff-dashboard-panel">
-
-                                <div class="staff-panel-heading">
-
-                                    <div>
-
-                                        <h5>Quick Insights
-                                        </h5>
-
-                                        <small>Performance highlights
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="staff-alert-item">
-
-                                    <div class="staff-alert-icon alert-green">
-                                        ↑
-                                    </div>
-
-                                    <div class="staff-alert-text">
-
-                                        <strong>Best Selling Product
-                                        </strong>
-
-                                        <small>Cappuccino generated the highest revenue.
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="staff-alert-item">
-
-                                    <div class="staff-alert-icon alert-blue">
-                                        ◷
-                                    </div>
-
-                                    <div class="staff-alert-text">
-
-                                        <strong>Busiest Day
-                                        </strong>
-
-                                        <small>Saturday recorded the highest sales.
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-
-                                <div class="staff-alert-item">
-
-                                    <div class="staff-alert-icon alert-orange">
-                                        !
-                                    </div>
-
-                                    <div class="staff-alert-text">
-
-                                        <strong>Lowest Performing Category
-                                        </strong>
-
-                                        <small>Sides accounted for 10.8% of sales.
-                                        </small>
-
-                                    </div>
-
-                                </div>
-
-                            </section>
-
-                        </div>
-
-
-
-                        <%-- Quick Actions --%>
-
-                        <section class="staff-dashboard-panel manager-reports-quick-card">
-
-                            <div class="staff-panel-heading">
-
-                                <div>
-
-                                    <h5>Quick Actions
-                                    </h5>
-
-                                    <small>Download reports and insights
-                                    </small>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="staff-action-grid">
-
-
-                                <a href="#"
-                                    class="staff-action-tile">
-
-                                    <div class="staff-icon-box icon-green">
-
-                                        <svg viewBox="0 0 24 24"
-                                            width="18"
-                                            height="18"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2">
-
-                                            <path d="M12 3v12" />
-                                            <path d="m8 11 4 4 4-4" />
-                                            <path d="M5 20h14" />
-
-                                        </svg>
-
-                                    </div>
-
-
-                                    <div>
-
-                                        <strong>Download Sales Report
-                                        </strong>
-
-                                        <small>Detailed sales performance
-                                        </small>
-
-                                    </div>
-
-                                </a>
-
-
-
-                                <a href="#"
-                                    class="staff-action-tile">
-
-                                    <div class="staff-icon-box icon-blue">
-
-                                        <svg viewBox="0 0 24 24"
-                                            width="18"
-                                            height="18"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2">
-
-                                            <path d="M5 4h14v16H5z" />
-                                            <path d="M8 8h8" />
-                                            <path d="M8 12h8" />
-                                            <path d="M8 16h5" />
-
-                                        </svg>
-
-                                    </div>
-
-
-                                    <div>
-
-                                        <strong>Inventory Report
-                                        </strong>
-
-                                        <small>Stock levels and usage
-                                        </small>
-
-                                    </div>
-
-                                </a>
-
-
-
-                                <a href="#"
-                                    class="staff-action-tile">
-
-                                    <div class="staff-icon-box icon-purple">
-
-                                        <svg viewBox="0 0 24 24"
-                                            width="18"
-                                            height="18"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2">
-
-                                            <circle cx="9"
-                                                cy="8"
-                                                r="3" />
-
-                                            <circle cx="17"
-                                                cy="10"
-                                                r="2" />
-
-                                            <path d="M3 20c0-4 2.5-7 6-7s6 3 6 7" />
-
-                                        </svg>
-
-                                    </div>
-
-
-                                    <div>
-
-                                        <strong>Staff Performance
-                                        </strong>
-
-                                        <small>Team performance summary
-                                        </small>
-
-                                    </div>
-
-                                </a>
-
-                            </div>
-
-                        </section>
-
-                    </div>
-
-                </div>
-
-
-
-                <%-- =================================================
-                     FOOTER
-                     ================================================= --%>
-
-                <div class="staff-footer">
-                    © 2026 Cafe101 Manager System
-                </div>
-            </main>
-
+               <!-- CHARTS -->
+<style>
+    .panel-head-flex { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .panel-head-flex .report-range { width: auto; min-width: 140px; font-size: 0.85rem; }
+    .live-tag { font-size: 0.75rem; color: #10b981; font-weight: 600; }
+    .list-head { display: flex; justify-content: space-between; font-size: 0.75rem; color: #8a94a6; padding: 12px 0 8px; border-bottom: 1px solid #eef0f3; }
+    .pop-row, .stock-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #eef0f3; }
+    .pop-qty { font-weight: 700; }
+    .stock-name { font-weight: 600; }
+    .stock-sub { font-size: 0.8rem; color: #8a94a6; }
+    .level-badge { padding: 4px 12px; border-radius: 8px; font-size: 0.75rem; }
+    .lvl-Critical { background: #fde2e2; color: #9b1c1c; }
+    .lvl-High { background: #ffe4d6; color: #9a3412; }
+    .lvl-Medium { background: #fdecc8; color: #92400e; }
+    .lvl-Low { background: #dbe8fb; color: #1e40af; }
+    .report-empty { padding: 20px; color: #666; }
+</style>
+
+<div class="manager-reports-top-grid">
+    <section class="staff-dashboard-panel">
+        <div class="staff-panel-heading panel-head-flex">
+            <div>
+                <h5>Revenue Overview</h5>
+                <small>Sales trend over the selected period</small>
+            </div>
+            <select class="form-control report-range" data-report="revenue"></select>
         </div>
+        <div id="revenueChart" style="min-height: 340px;"></div>
+    </section>
 
+    <section class="staff-dashboard-panel">
+        <div class="staff-panel-heading panel-head-flex">
+            <div>
+                <h5>Sales by Category</h5>
+                <small>Sales distribution across menu categories</small>
+            </div>
+            <select class="form-control report-range" data-report="category"></select>
+        </div>
+        <div id="categoryChart" style="min-height: 340px;"></div>
+    </section>
+</div>
+
+<div class="manager-reports-top-grid" style="margin-top: 20px;">
+    <section class="staff-dashboard-panel">
+        <div class="staff-panel-heading panel-head-flex">
+            <div>
+                <h5>Popular Items</h5>
+                <small>Top selling menu items</small>
+            </div>
+            <select class="form-control report-range" data-report="popular"></select>
+        </div>
+        <div class="list-head"><span>Item</span><span>Quantity Sold</span></div>
+        <div id="popularList"></div>
+    </section>
+
+    <section class="staff-dashboard-panel">
+        <div class="staff-panel-heading panel-head-flex">
+            <div>
+                <h5>Low Stock Alerts</h5>
+                <small>Items that need restocking</small>
+            </div>
+            <span class="live-tag">● Live</span>
+        </div>
+        <div id="lowStockList"></div>
+    </section>
+</div>
+
+<section class="staff-dashboard-panel" style="margin-top: 20px;">
+    <div class="staff-panel-heading panel-head-flex">
+        <div>
+            <h5>Staff Performance</h5>
+            <small>Completed orders handled per staff member</small>
+        </div>
+        <select class="form-control report-range" data-report="staff"></select>
+    </div>
+    <div id="staffChart" style="min-height: 340px;"></div>
+</section>
+
+                <!-- You can keep your original Top Selling Items + Payment Summary section here -->
+
+                <div class="staff-footer">© 2026 Cafe101 Manager System</div>
+            </main>
+        </div>
     </div>
 
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+<script>
+    let revenueChart = null;
+    let categoryChart = null;
+    let staffChart = null;
 
-    <%-- =====================================================
-         PAGE SCRIPT
-         ===================================================== --%>
+    const RANGES = [
+        ["AllTime", "All Time"], ["Today", "Today"], ["Yesterday", "Yesterday"],
+        ["Last7Days", "Last 7 Days"], ["Last30Days", "Last 30 Days"],
+        ["ThisMonth", "This Month"], ["PreviousMonth", "Previous Month"]
+    ];
 
-    <script>
+    const EMOJI = {
+        "Burger": "🍔", "Wings": "🍗", "Combo": "🍱", "Drinks": "🥤", "Sides": "🍟"
+    };
 
-        document.body.classList.add("staff-page");
+    function esc(text) {
+        return $("<div>").text(text).html();
+    }
 
+    function rangeOf(report) {
+        return $("select[data-report='" + report + "']").val() || "AllTime";
+    }
 
-        const bodyContent =
-            document.querySelector(".body-content");
+    function getData(type) {
+        return $.getJSON("ReportData.ashx", { type: type, dateRange: rangeOf(type) });
+    }
 
+    function showError(selector, xhr) {
+        $(selector).html(
+            "<pre style='color:red;padding:20px;white-space:pre-wrap;'>Error " +
+            xhr.status + "\n" + esc((xhr.responseText || "").substring(0, 600)) + "</pre>");
+    }
 
-        if (bodyContent) {
+    $(document).ready(function () {
+        // Fill every time dropdown
+        $(".report-range").each(function () {
+            const select = $(this);
+            RANGES.forEach(function (r) {
+                select.append($("<option>").val(r[0]).text(r[1]));
+            });
+        });
 
-            bodyContent.classList.remove("container");
+        // Each dropdown reloads ONLY its own report
+        $(".report-range").on("change", function () {
+            const report = $(this).data("report");
+            if (report === "revenue") loadRevenue();
+            if (report === "category") loadCategory();
+            if (report === "popular") loadPopular();
+            if (report === "staff") loadStaff();
+        });
 
-            bodyContent.style.width = "100%";
-            bodyContent.style.maxWidth = "none";
-            bodyContent.style.margin = "0";
-            bodyContent.style.padding = "0";
+        loadCharts();
+    });
 
+    // The Refresh button calls this
+    function loadCharts() {
+        loadRevenue();
+        loadCategory();
+        loadPopular();
+        loadLowStock();
+        loadStaff();
+    }
+
+    function loadRevenue() {
+        getData("revenue").done(renderRevenueChart).fail(function (xhr) { showError("#revenueChart", xhr); });
+    }
+    function loadCategory() {
+        getData("category").done(renderCategoryChart).fail(function (xhr) { showError("#categoryChart", xhr); });
+    }
+    function loadPopular() {
+        getData("popular").done(renderPopular).fail(function (xhr) { showError("#popularList", xhr); });
+    }
+    function loadStaff() {
+        getData("staff").done(renderStaffChart).fail(function (xhr) { showError("#staffChart", xhr); });
+    }
+    function loadLowStock() {
+        $.getJSON("ReportData.ashx", { type: "lowstock" })
+            .done(renderLowStock)
+            .fail(function (xhr) { showError("#lowStockList", xhr); });
+    }
+
+    // ---------- Revenue ----------
+    function renderRevenueChart(data) {
+        if (revenueChart) { revenueChart.destroy(); revenueChart = null; }
+        $("#revenueChart").empty();
+
+        if (!data || !data.labels || data.labels.length === 0) {
+            $("#revenueChart").html("<p class='report-empty'>No revenue data for this period</p>");
+            return;
         }
 
+        const options = {
+            series: [{ name: "Revenue", data: data.values }],
+            chart: { type: "area", height: 340, toolbar: { show: false } },
+            colors: ["#10b981"],
+            dataLabels: { enabled: false },
+            stroke: { curve: "smooth", width: 3 },
+            fill: { type: "gradient", gradient: { opacityFrom: 0.4, opacityTo: 0.05 } },
+            xaxis: { categories: data.labels },
+            yaxis: { labels: { formatter: val => "R" + Number(val).toLocaleString() } }
+        };
 
-        const sidebarToggle =
-            document.getElementById("sidebarToggle");
+        revenueChart = new ApexCharts(document.querySelector("#revenueChart"), options);
+        revenueChart.render();
+    }
 
-        const staffBody =
-            document.querySelector(".staff-body");
+    // ---------- Category ----------
+    function renderCategoryChart(data) {
+        if (categoryChart) { categoryChart.destroy(); categoryChart = null; }
+        $("#categoryChart").empty();
 
-
-        if (sidebarToggle && staffBody) {
-
-            sidebarToggle.addEventListener(
-                "click",
-                function () {
-
-                    staffBody.classList.toggle(
-                        "sidebar-collapsed"
-                    );
-
-                });
-
+        if (!data || !data.labels || data.labels.length === 0) {
+            $("#categoryChart").html("<p class='report-empty'>No category data for this period</p>");
+            return;
         }
 
-    </script>
+        const options = {
+            series: data.values,
+            chart: { type: "donut", height: 340 },
+            labels: data.labels,
+            colors: ["#3b82f6", "#10b981", "#f59e0b", "#8b5cf6", "#ef4444", "#06b6d4"],
+            legend: { position: "bottom" }
+        };
 
+        categoryChart = new ApexCharts(document.querySelector("#categoryChart"), options);
+        categoryChart.render();
+    }
+
+    // ---------- Staff Performance (bar graph) ----------
+    function renderStaffChart(data) {
+        if (staffChart) { staffChart.destroy(); staffChart = null; }
+        $("#staffChart").empty();
+
+        if (!data || !data.labels || data.labels.length === 0) {
+            $("#staffChart").html("<p class='report-empty'>No staff orders for this period</p>");
+            return;
+        }
+
+        const options = {
+            series: [{ name: "Orders handled", data: data.values }],
+            chart: { type: "bar", height: 340, toolbar: { show: false } },
+            colors: ["#3b82f6"],
+            plotOptions: { bar: { borderRadius: 6, columnWidth: "45%" } },
+            dataLabels: { enabled: true },
+            xaxis: { categories: data.labels },
+            yaxis: { title: { text: "Orders handled" }, labels: { formatter: val => Math.round(val) } }
+        };
+
+        staffChart = new ApexCharts(document.querySelector("#staffChart"), options);
+        staffChart.render();
+    }
+
+    // ---------- Popular Items ----------
+    function renderPopular(items) {
+        if (!items || items.length === 0) {
+            $("#popularList").html("<p class='report-empty'>No items sold in this period</p>");
+            return;
+        }
+
+        let html = "";
+        items.forEach(function (item) {
+            const icon = EMOJI[item.Category] || "🍽️";
+            html += "<div class='pop-row'>" +
+                "<span>" + icon + " " + esc(item.Name) + "</span>" +
+                "<span class='pop-qty'>" + item.Quantity + "</span>" +
+                "</div>";
+        });
+        $("#popularList").html(html);
+    }
+
+    // ---------- Low Stock ----------
+    function renderLowStock(items) {
+        if (!items || items.length === 0) {
+            $("#lowStockList").html("<p class='report-empty'>All stock levels are healthy 👍</p>");
+            return;
+        }
+
+        let html = "";
+        items.forEach(function (item) {
+            html += "<div class='stock-row'>" +
+                "<div><div class='stock-name'>" + esc(item.Name) + "</div>" +
+                "<div class='stock-sub'>" + item.Quantity + " " + esc(item.Unit) + " left</div></div>" +
+                "<span class='level-badge lvl-" + esc(item.Level) + "'>" + esc(item.Level) + "</span>" +
+                "</div>";
+        });
+        $("#lowStockList").html(html);
+    }
+</script>
 
 </asp:Content>

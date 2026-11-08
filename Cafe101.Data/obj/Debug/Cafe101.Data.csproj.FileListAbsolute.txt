@@ -43,3 +43,16 @@ C:\Users\ngoba\Downloads\Chatbot\Cafe101.Data\obj\Debug\Cafe101.Data.csproj.Core
 C:\Users\ngoba\Downloads\Chatbot\Cafe101.Data\obj\Debug\Cafe101..5B1A0010.Up2Date
 C:\Users\ngoba\Downloads\Chatbot\Cafe101.Data\obj\Debug\Cafe101.Data.dll
 C:\Users\ngoba\Downloads\Chatbot\Cafe101.Data\obj\Debug\Cafe101.Data.pdb
+D:\Reports\Cafe101.Data\bin\Debug\Cafe101.Data.dll
+D:\Reports\Cafe101.Data\bin\Debug\Cafe101.Data.pdb
+D:\Reports\Cafe101.Data\bin\Debug\Newtonsoft.Json.dll
+D:\Reports\Cafe101.Data\bin\Debug\SendGrid.dll
+D:\Reports\Cafe101.Data\bin\Debug\StarkbankEcdsa.dll
+D:\Reports\Cafe101.Data\bin\Debug\Newtonsoft.Json.xml
+D:\Reports\Cafe101.Data\bin\Debug\SendGrid.pdb
+D:\Reports\Cafe101.Data\bin\Debug\SendGrid.xml
+D:\Reports\Cafe101.Data\obj\Debug\Cafe101.Data.csproj.AssemblyReference.cache
+D:\Reports\Cafe101.Data\obj\Debug\Cafe101.Data.csproj.CoreCompileInputs.cache
+D:\Reports\Cafe101.Data\obj\Debug\Cafe101..5B1A0010.Up2Date
+D:\Reports\Cafe101.Data\obj\Debug\Cafe101.Data.dll
+D:\Reports\Cafe101.Data\obj\Debug\Cafe101.Data.pdb

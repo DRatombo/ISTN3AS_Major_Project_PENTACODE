@@ -187,6 +187,9 @@ namespace Cafe101.Web
                 case "combo meal":
                     return ImagePaths.ComboMeal;
 
+                case "cheese burger":
+                    return ImagePaths.CheeseBurger;
+                
                 default:
                     return "";
             }

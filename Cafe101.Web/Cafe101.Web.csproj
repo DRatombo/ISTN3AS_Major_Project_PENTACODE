@@ -181,6 +181,8 @@
     <Content Include="Content\Images\Burger.jpg" />
     <Content Include="Content\Images\Cafe101 Logo.jpeg" />
     <Content Include="Content\Images\Cafe101 Restaurant.png" />
+    <Content Include="Content\Images\Cheese Burger.jpg" />
+    <Content Include="Content\Images\CheeseBurger.jpg" />
     <Content Include="Content\Images\Chicken Burger.jpg" />
     <Content Include="Content\Images\Chicken fillet.jpeg" />
     <Content Include="Content\Images\Coke2l.png" />

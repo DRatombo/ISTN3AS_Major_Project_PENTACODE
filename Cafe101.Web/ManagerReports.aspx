@@ -27,18 +27,48 @@
             <aside class="staff-sidebar">
                 <div class="staff-sidebar-title">MANAGER SYSTEM</div>
 
-                <nav class="staff-nav">
-                    <a href="ManagerDashboard.aspx"><span class="staff-nav-icon">🏠</span><span class="staff-nav-text">Dashboard</span></a>
-                    <a href="ManagerOrders.aspx"><span class="staff-nav-icon">📋</span><span class="staff-nav-text">Orders</span></a>
-                    <a href="ManageCustomers.aspx"><span class="staff-nav-icon">👥</span><span class="staff-nav-text">Customers</span></a>
-                    <a href="ManagerMenu.aspx"><span class="staff-nav-icon">📖</span><span class="staff-nav-text">Menu</span></a>
-                    <a href="ManageIngredients.aspx"><span class="staff-nav-icon">🥕</span><span class="staff-nav-text">Ingredients</span></a>
-                    <a href="ManageRecipes.aspx"><span class="staff-nav-icon">📝</span><span class="staff-nav-text">Recipes</span></a>
-                    <a href="ManagerStaff.aspx"><span class="staff-nav-icon">👨‍💼</span><span class="staff-nav-text">Staff</span></a>
-                    <a href="ManagerReports.aspx" class="active"><span class="staff-nav-icon">📊</span><span class="staff-nav-text">Reports</span></a>
-                    <a href="ManagerProfile.aspx"><span class="staff-nav-icon">👤</span><span class="staff-nav-text">Profile</span></a>
-                    <a href="StaffHelp.aspx"><span class="staff-nav-icon">❓</span><span class="staff-nav-text">Help Centre</span></a>
-                </nav>
+<nav class="staff-nav" aria-label="Manager navigation">
+    <a href="ManagerDashboard.aspx" aria-label="Dashboard">
+        <span class="staff-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10l9-7 9 7M5 9v12h14V9M9 21v-8h6v8" /></svg></span>
+        <span class="staff-nav-text">Dashboard</span>
+    </a>
+    <a href="ManagerOrders.aspx" aria-label="Orders">
+        <span class="staff-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18H6zM9 8h6M9 12h6M9 16h4" /></svg></span>
+        <span class="staff-nav-text">Orders</span>
+    </a>
+    <a href="ManageCustomers.aspx" aria-label="Customers">
+        <span class="staff-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
+        <span class="staff-nav-text">Customers</span>
+    </a>
+    <a href="ManagerMenu.aspx" aria-label="Menu">
+        <span class="staff-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h5" /></svg></span>
+        <span class="staff-nav-text">Menu</span>
+    </a>
+    <a href="ManageIngredients.aspx" aria-label="Ingredients">
+        <span class="staff-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16v14H4zM3 3h18v4H3zM9 11h6" /></svg></span>
+        <span class="staff-nav-text">Ingredients</span>
+    </a>
+    <a href="ManageRecipes.aspx" aria-label="Recipes">
+        <span class="staff-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 3h14v18H5zM8 7h8M8 11h8M8 15h5" /></svg></span>
+        <span class="staff-nav-text">Recipes</span>
+    </a>
+    <a href="ManagerStaff.aspx" aria-label="Staff">
+        <span class="staff-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3" /><circle cx="17" cy="10" r="2" /><path d="M3 20c0-4 2.5-7 6-7s6 3 6 7M15 15c3 0 5 2 5 5" /></svg></span>
+        <span class="staff-nav-text">Staff</span>
+    </a>
+    <a href="ManagerReports.aspx" class="active" aria-current="page" aria-label="Reports">
+        <span class="staff-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" /></svg></span>
+        <span class="staff-nav-text">Reports</span>
+    </a>
+    <a href="ManagerProfile.aspx" aria-label="Profile">
+        <span class="staff-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" /></svg></span>
+        <span class="staff-nav-text">Profile</span>
+    </a>
+    <a href="StaffHelp.aspx" aria-label="Help Centre">
+        <span class="staff-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9" /><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4" /><path d="M12 17h.01" /></svg></span>
+        <span class="staff-nav-text">Help Centre</span>
+    </a>
+</nav>
 
                 <div class="staff-sidebar-bottom">
                     <asp:LinkButton ID="lnkLogout" runat="server" CssClass="staff-logout" OnClick="LnkLogout_Click">
@@ -76,10 +106,16 @@
                     </div>
 
                     <div class="manager-orders-toolbar-right">
-                        <button type="button" class="btn btn-outline-brand">⇩ Export Report</button>
+                        <%-- NEW: server button that builds the PDF and emails it --%>
+                        <asp:Button ID="btnExport" runat="server" Text="⇩ Export Report"
+                            CssClass="btn btn-outline-brand" OnClick="BtnExport_Click"
+                            OnClientClick="this.value = 'Sending report...';" />
                         <button type="button" class="btn btn-brand" onclick="loadCharts()">↻ Refresh</button>
                     </div>
                 </div>
+
+                <%-- NEW: shows "Report sent" or the error --%>
+                <asp:Label ID="lblExportMessage" runat="server" Visible="false"></asp:Label>
 
                 <!-- METRIC CARDS -->
                 <div class="staff-metric-grid">
@@ -136,6 +172,11 @@
     .lvl-Medium { background: #fdecc8; color: #92400e; }
     .lvl-Low { background: #dbe8fb; color: #1e40af; }
     .report-empty { padding: 20px; color: #666; }
+
+    /* NEW: export message */
+    .export-message { display: block; margin: 0 0 16px; padding: 12px 16px; border-radius: 10px; font-size: 0.9rem; }
+    .export-ok { background: #ecfdf5; color: #065f46; }
+    .export-err { background: #fde2e2; color: #9b1c1c; }
 </style>
 
 <div class="manager-reports-top-grid">

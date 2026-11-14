@@ -62,6 +62,7 @@
         color: #065f46;
         display: inline-block;
     }
+    .navbar { display: none !important; }
 </style>
 
 <div class="container py-5">

@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Data;                      
+using System.Data.SqlClient;            
 using System.Web.Services;
+using Cafe101.Data;                     
 using Cafe101.Logic;
 
 namespace Cafe101.Web
@@ -78,6 +81,65 @@ namespace Cafe101.Web
                 lblCompletedOrders.Text = "Unavailable";
                 lblAverageOrderValue.Text = "Unavailable";
             }
+        }
+
+        // ===================== EXPORT REPORT (PDF BY EMAIL) =====================   NEW
+
+        protected void BtnExport_Click(object sender, EventArgs e)                      // NEW
+        {
+            try
+            {
+                string email = GetManagerEmail();
+                if (string.IsNullOrWhiteSpace(email))
+                {
+                    ShowExportMessage("We couldn't find an email address for your account.", false);
+                    return;
+                }
+
+                string firstName = Session["FirstName"]?.ToString() ?? "";
+                string surname = Session["Surname"]?.ToString() ?? "";
+                string name = (firstName + " " + surname).Trim();
+                if (name == "") name = "Manager";
+
+                string range = ddlReportDateRange.SelectedValue;
+                string rangeLabel = ddlReportDateRange.SelectedItem.Text;
+
+                byte[] pdf = ReportPdfBuilder.Build(range, rangeLabel, name);
+                string fileName = "Cafe101-Report-" + range + "-" + DateTime.Now.ToString("yyyyMMdd") + ".pdf";
+
+                ReportEmailSender.Send(email, name, rangeLabel, pdf, fileName);
+
+                ShowExportMessage("Report (" + rangeLabel + ") was sent to " + email + ".", true);
+            }
+            catch (Exception)
+            {
+                ShowExportMessage("The report could not be sent. Please try again.", false);
+            }
+        }
+
+        private string GetManagerEmail()                                                
+        {
+            string sessionEmail = Session["Email"]?.ToString();
+            if (!string.IsNullOrWhiteSpace(sessionEmail)) return sessionEmail;
+
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            using (SqlCommand cmd = new SqlCommand("SELECT Email FROM EmployeeTable WHERE EmployeeID = @id", conn))
+            {
+                cmd.Parameters.AddWithValue("@id", Convert.ToInt32(Session["UserID"]));
+
+                if (conn.State != ConnectionState.Open)
+                    conn.Open();
+
+                object result = cmd.ExecuteScalar();
+                return (result == null || result == DBNull.Value) ? null : result.ToString();
+            }
+        }
+
+        private void ShowExportMessage(string message, bool success)                    // NEW
+        {
+            lblExportMessage.Text = Server.HtmlEncode(message);
+            lblExportMessage.CssClass = "export-message " + (success ? "export-ok" : "export-err");
+            lblExportMessage.Visible = true;
         }
 
         protected void LnkLogout_Click(object sender, EventArgs e)

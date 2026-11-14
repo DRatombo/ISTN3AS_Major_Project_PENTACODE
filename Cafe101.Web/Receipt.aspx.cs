@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
 using System.Net;
@@ -81,12 +82,19 @@ namespace Cafe101.Web
                 // Order items
                 using (SqlCommand cmd = new SqlCommand(@"
                     SELECT m.MenuItemName, i.QuantityOrdered AS Quantity, i.Subtotal
-                    FROM ItemOrder i
+                    FROM OrderItemTable i
                     INNER JOIN MenuItemsTable m ON m.MenuItemID = i.MenuItemID
                     WHERE i.OrderID = @id", conn))
                 {
                     cmd.Parameters.AddWithValue("@id", orderId);
-                    rptItems.DataSource = cmd.ExecuteReader();
+
+                    System.Data.DataTable itemsTable = new System.Data.DataTable();
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(itemsTable);
+                    }
+
+                    rptItems.DataSource = itemsTable;
                     rptItems.DataBind();
                 }
             }
@@ -94,53 +102,55 @@ namespace Cafe101.Web
 
         private void SendReceiptEmail(int orderId)
         {
+            // Send only once per order, so refreshing the page doesn't send it again
+            string sentKey = "ReceiptEmailed_" + orderId;
+            if (Session[sentKey] != null)
+            {
+                lblEmailStatus.Text = "A PDF receipt was already sent to your email.";
+                return;
+            }
+
             try
             {
                 string customerEmail = GetCustomerEmail();
                 if (string.IsNullOrWhiteSpace(customerEmail))
                 {
                     lblEmailStatus.Text = "Receipt ready (no email address on file).";
-                    lblEmailStatus.CssClass = "text-muted";
                     return;
                 }
 
-                // Generate the PDF
-                byte[] pdfBytes = GenerateReceiptPdf(orderId);
+                string smtpUser = ConfigurationManager.AppSettings["SmtpUser"];
+                string smtpPassword = (ConfigurationManager.AppSettings["SmtpPassword"] ?? "").Replace(" ", "");
 
-                string subject = "Your Cafe101 Receipt - Order #" + orderId;
+                byte[] pdfBytes = GenerateReceiptPdf(orderId);
 
                 using (MailMessage mail = new MailMessage())
                 {
-                    mail.From = new MailAddress("noreply@cafe101.co.za", "Cafe101");
+                    mail.From = new MailAddress(smtpUser, "Cafe101");
                     mail.To.Add(customerEmail);
-                    mail.Subject = subject;
+                    mail.Subject = "Your Cafe101 Receipt - Order #" + orderId;
                     mail.Body = "Thank you for your order! Please find your receipt attached.";
                     mail.IsBodyHtml = false;
 
-                    // Attach the PDF
                     mail.Attachments.Add(new Attachment(
-                        new System.IO.MemoryStream(pdfBytes),
+                        new MemoryStream(pdfBytes),
                         $"Cafe101_Receipt_{orderId}.pdf",
                         "application/pdf"));
 
                     using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                     {
                         smtp.EnableSsl = true;
-                        smtp.Credentials = new NetworkCredential(
-                            "mayisesnakhokonke7@gmail.com",   
-                            "ermv abzb oduj oomg");        
+                        smtp.Credentials = new NetworkCredential(smtpUser, smtpPassword);
                         smtp.Send(mail);
                     }
                 }
 
+                Session[sentKey] = true;
                 lblEmailStatus.Text = "A PDF receipt has been sent to " + customerEmail;
-                lblEmailStatus.CssClass = "text-success";
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                // Temporary debug – remove later
-                lblEmailStatus.Text = "Could not send email: " + ex.Message;
-                lblEmailStatus.CssClass = "text-danger";
+                lblEmailStatus.Text = "Your receipt is ready, but we couldn't email it right now.";
             }
         }
         private byte[] GenerateReceiptPdf(int orderId)
@@ -200,7 +210,7 @@ namespace Cafe101.Web
                     // Line items
                     using (SqlCommand cmd = new SqlCommand(@"
                 SELECT m.MenuItemName, i.QuantityOrdered, i.Subtotal
-                FROM ItemOrder i
+                FROM OrderItemTable i
                 INNER JOIN MenuItemsTable m ON m.MenuItemID = i.MenuItemID
                 WHERE i.OrderID = @id", conn))
                     {

@@ -217,7 +217,7 @@ namespace Cafe101.Web
                         foreach (var line in lines)
                         {
                             using (SqlCommand cmd = new SqlCommand(@"
-                                INSERT INTO ItemOrder (OrderID, MenuItemID, QuantityOrdered, Subtotal)
+                                INSERT INTO OrderItemTable (OrderID, MenuItemID, QuantityOrdered, Subtotal)
                                 VALUES (@oid, @mid, @qty, @sub)", conn, tx))
                             {
                                 cmd.Parameters.AddWithValue("@oid", orderId);

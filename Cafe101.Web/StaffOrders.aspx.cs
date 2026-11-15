@@ -27,6 +27,7 @@ namespace Cafe101.Web
                 role.Equals("Staff", StringComparison.OrdinalIgnoreCase)
                 ||
                 role.Equals("Manager", StringComparison.OrdinalIgnoreCase);
+            
 
             if (!allowed)
             {
@@ -41,6 +42,7 @@ namespace Cafe101.Web
                 // Load the order information when the page first opens
                 LoadOrderCounts();
                 LoadOrders();
+
             }
         }
 
@@ -214,7 +216,7 @@ namespace Cafe101.Web
 
                 ORDER BY o.OrderDateTime DESC;
             ";
-
+           // Response.Redirect("~/Menu.aspx");
             // Get the current search text
             string search = txtOrderSearch.Text.Trim();
 
@@ -280,6 +282,14 @@ namespace Cafe101.Web
                 default:
                     return "";
             }
+        }
+        // -----------------------------------------
+        // NEW ORDER BUTTON
+        // -----------------------------------------
+        protected void btnNewOrder_Click(object sender, EventArgs e)
+        {
+            // Staff place orders through the existing Menu page
+            Response.Redirect("~/Menu.aspx");
         }
 
         // -----------------------------------------

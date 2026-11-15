@@ -49,8 +49,8 @@
 
 .btn-brand {
     background-color: var(--brand-navy);
-    border-color: var(--brand-navy);
     color: #ffffff;
+    width: 164px;
 }
 
 

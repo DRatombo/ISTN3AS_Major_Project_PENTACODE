@@ -322,12 +322,11 @@
                         </button>
 
 
-                        <button type="button"
-                            class="btn btn-brand">
-
-                            + New Order
-
-                        </button>
+                        <asp:Button ID="btnNewOrder" runat="server"
+                                 Text="+ New Order"
+                                 CssClass="btn btn-brand"
+                                 OnClick="btnNewOrder_Click"
+                                 CausesValidation="false" />
 
                     </div>
 

@@ -13,5 +13,6 @@ namespace Cafe101.Web.Helpers
         public const string ChickenBurger = "~/Content/Images/Chicken Burger.jpg";
         public const string Cooldrink =  "~/Content/Images/Cooldrinks.jpg";
         public const string ComboMeal = "~/Content/Images/Combo Meal.jpg";
+        public const string CheeseBurger = "~/Content/Images/Cheese Burger.jpg";
     }
 }

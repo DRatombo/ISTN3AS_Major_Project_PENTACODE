@@ -1,10 +1,10 @@
-﻿using Cafe101.Logic;
-//using SendGrid;
-//using SendGrid.Helpers.Mail;
-using System.Net;
-using System.Net.Mail;
+﻿using Cafe101.Data;
+using Cafe101.Logic;
 using System;
 using System.Configuration;
+using System.Data.SqlClient;
+using System.Net;
+using System.Net.Mail;
 using System.Web.UI;
 
 namespace Cafe101.Web
@@ -13,6 +13,15 @@ namespace Cafe101.Web
     {
         private readonly AuthenticationService authService = new AuthenticationService();
 
+        // Holds an employee found by email
+        private class EmployeeAccount
+        {
+            public int EmployeeID { get; set; }
+            public string FirstName { get; set; }
+            public string Email { get; set; }
+            public string Status { get; set; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -20,6 +29,8 @@ namespace Cafe101.Web
                 ShowStep1();
             }
         }
+
+        // ===================== STEP 1: SEND TEMPORARY PASSWORD =====================
 
         protected void BtnSendTempPassword_Click(object sender, EventArgs e)
         {
@@ -32,29 +43,59 @@ namespace Cafe101.Web
                 return;
             }
 
+            // Look in CustomerTable first, then EmployeeTable
+            string accountType;
+            int accountId;
+            string accountEmail;
+            string accountFirstName;
+
             var customer = authService.GetCustomerByEmail(email);
 
-            if (customer == null)
+            if (customer != null)
             {
-                ShowSuccess1("If an account with that email exists, a temporary password has been sent.");
-                return;
-            }
+                if (!string.Equals(customer.Status, "Active", StringComparison.OrdinalIgnoreCase))
+                {
+                    ShowError1("This account is currently inactive. Please contact Cafe101 support.");
+                    return;
+                }
 
-            if (!string.Equals(customer.Status, "Active", StringComparison.OrdinalIgnoreCase))
+                accountType = "Customer";
+                accountId = customer.CustomerID;
+                accountEmail = customer.Email;
+                accountFirstName = customer.FirstName;
+            }
+            else
             {
-                ShowError1("This account is currently inactive. Please contact Cafe101 support.");
-                return;
+                EmployeeAccount employee = FindEmployeeByEmail(email);
+
+                if (employee == null)
+                {
+                    ShowSuccess1("If an account with that email exists, a temporary password has been sent.");
+                    return;
+                }
+
+                if (!string.Equals(employee.Status, "Active", StringComparison.OrdinalIgnoreCase))
+                {
+                    ShowError1("This account is currently inactive. Please contact Cafe101 support.");
+                    return;
+                }
+
+                accountType = "Employee";
+                accountId = employee.EmployeeID;
+                accountEmail = employee.Email;
+                accountFirstName = employee.FirstName;
             }
 
             string tempPassword = GenerateTempPassword();
 
-            Session["ResetCustomerID"] = customer.CustomerID;
-            Session["ResetEmail"] = customer.Email;
-            Session["ResetFirstName"] = customer.FirstName;
+            Session["ResetAccountType"] = accountType;
+            Session["ResetAccountID"] = accountId;
+            Session["ResetEmail"] = accountEmail;
+            Session["ResetFirstName"] = accountFirstName;
             Session["TempPassword"] = tempPassword;
             Session["TempPasswordExpiry"] = DateTime.Now.AddMinutes(30);
 
-            bool emailSent = SendTempPasswordEmailViaSendGrid(customer.Email, customer.FirstName, tempPassword);
+            bool emailSent = SendTempPasswordEmailViaSendGrid(accountEmail, accountFirstName, tempPassword);
 
             if (!emailSent)
             {
@@ -66,11 +107,13 @@ namespace Cafe101.Web
             ShowStep2();
         }
 
+        // ===================== STEP 2: CHANGE PASSWORD AND SIGN IN =====================
+
         protected void BtnChangePassword_Click(object sender, EventArgs e)
         {
             lblMessage2.Text = "";
 
-            if (Session["ResetCustomerID"] == null || Session["TempPassword"] == null)
+            if (Session["ResetAccountID"] == null || Session["TempPassword"] == null)
             {
                 ShowError2("Session expired. Please start the process again.");
                 ShowStep1();
@@ -118,10 +161,14 @@ namespace Cafe101.Web
                 return;
             }
 
-            int customerId = Convert.ToInt32(Session["ResetCustomerID"]);
+            int accountId = Convert.ToInt32(Session["ResetAccountID"]);
+            string accountType = Session["ResetAccountType"]?.ToString() ?? "Customer";
             string email = Session["ResetEmail"].ToString();
 
-            bool updated = authService.UpdateCustomerPassword(customerId, newPassword);
+            // Update the correct table
+            bool updated = accountType == "Employee"
+                ? UpdateEmployeePassword(accountId, newPassword)
+                : authService.UpdateCustomerPassword(accountId, newPassword);
 
             if (!updated)
             {
@@ -131,6 +178,7 @@ namespace Cafe101.Web
 
             ClearResetSession();
 
+            // Sign the person in automatically (customers and employees alike)
             var loginResult = authService.SignIn(email, newPassword);
 
             if (!loginResult.Success)
@@ -148,15 +196,76 @@ namespace Cafe101.Web
             Session["Address"] = loginResult.Address;
             Session["PhoneNumber"] = loginResult.PhoneNumber;
 
-            Response.Redirect("~/CustomerDashboard.aspx");
+            Response.Redirect(GetDashboardFor(accountType, loginResult.Role));
         }
+
+        // Decides which dashboard to open after the password reset
+        private string GetDashboardFor(string accountType, string role)
+        {
+            if (accountType == "Customer")
+                return "~/CustomerDashboard.aspx";
+
+            switch ((role ?? "").Trim().ToLower())
+            {
+                case "manager":
+                    return "~/ManagerDashboard.aspx";
+
+                // Add your other staff pages here, for example:
+                // case "cashier":        return "~/CashierDashboard.aspx";
+                // case "kitchen staff":  return "~/KitchenDashboard.aspx";
+
+                default:
+                    return "~/SignIn.aspx";
+            }
+        }
+
+        // ===================== EMPLOYEE HELPERS =====================
+
+        private EmployeeAccount FindEmployeeByEmail(string email)
+        {
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            using (SqlCommand cmd = new SqlCommand(
+                "SELECT EmployeeID, FirstName, Email, EmployeeStatus FROM EmployeeTable WHERE Email = @email", conn))
+            {
+                cmd.Parameters.AddWithValue("@email", email);
+                conn.Open();
+
+                using (SqlDataReader r = cmd.ExecuteReader())
+                {
+                    if (!r.Read()) return null;
+
+                    return new EmployeeAccount
+                    {
+                        EmployeeID = Convert.ToInt32(r["EmployeeID"]),
+                        FirstName = r["FirstName"].ToString(),
+                        Email = r["Email"].ToString(),
+                        Status = r["EmployeeStatus"].ToString()
+                    };
+                }
+            }
+        }
+
+        private bool UpdateEmployeePassword(int employeeId, string newPassword)
+        {
+            using (SqlConnection conn = DatabaseConnection.GetConnection())
+            using (SqlCommand cmd = new SqlCommand(
+                "UPDATE EmployeeTable SET Password = @pw WHERE EmployeeID = @id", conn))
+            {
+                cmd.Parameters.AddWithValue("@pw", newPassword);
+                cmd.Parameters.AddWithValue("@id", employeeId);
+                conn.Open();
+                return cmd.ExecuteNonQuery() == 1;
+            }
+        }
+
+        // ===================== EMAIL =====================
 
         private bool SendTempPasswordEmailViaSendGrid(string toEmail, string firstName, string tempPassword)
         {
             try
             {
                 string user = ConfigurationManager.AppSettings["SmtpUser"];
-                string pass = ConfigurationManager.AppSettings["SmtpPassword"];
+                string pass = (ConfigurationManager.AppSettings["SmtpPassword"] ?? "").Replace(" ", "");
 
                 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
@@ -222,7 +331,7 @@ namespace Cafe101.Web
             </ol>
             
             <div class=""warning"">
-                <strong>⚠️ Important Security Notes:</strong><br>
+                <strong>Important Security Notes:</strong><br>
                 • This temporary password expires in 30 minutes<br>
                 • Do not share this password with anyone<br>
                 • Never reply to this email or share it
@@ -238,33 +347,7 @@ namespace Cafe101.Web
 </html>";
         }
 
-        private string BuildEmailPlainText(string firstName, string tempPassword)
-        {
-            return $@"
-Hi {firstName},
-
-You requested a password reset for your Cafe101 account. If you didn't make this request, you can ignore this email.
-
-Your temporary password is:
-
-    {tempPassword}
-
-INSTRUCTIONS:
-1. Return to the Forgot Password page
-2. Enter the temporary password above
-3. Enter your new permanent password
-4. Click 'Change Password & Sign In'
-
-IMPORTANT SECURITY NOTES:
-- This temporary password expires in 30 minutes
-- Do not share this password with anyone
-- Never reply to this email or share it
-
-Questions? Contact our support team at support@cafe101.com
-
----
-© Cafe 101 - This is an automated email. Please do not reply.";
-        }
+        // ===================== PAGE HELPERS =====================
 
         private void ShowStep1()
         {
@@ -280,7 +363,8 @@ Questions? Contact our support team at support@cafe101.com
 
         private void ClearResetSession()
         {
-            Session.Remove("ResetCustomerID");
+            Session.Remove("ResetAccountType");
+            Session.Remove("ResetAccountID");
             Session.Remove("ResetEmail");
             Session.Remove("ResetFirstName");
             Session.Remove("TempPassword");
@@ -295,28 +379,6 @@ Questions? Contact our support team at support@cafe101.com
             for (int i = 0; i < password.Length; i++)
                 password[i] = chars[random.Next(chars.Length)];
             return new string(password);
-        }
-
-        private void LogError(string message)
-        {
-            try
-            {
-                System.Diagnostics.EventLog.WriteEntry("Cafe101",
-                    $"[ERROR] {DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}",
-                    System.Diagnostics.EventLogEntryType.Error);
-            }
-            catch { }
-        }
-
-        private void LogInfo(string message)
-        {
-            try
-            {
-                System.Diagnostics.EventLog.WriteEntry("Cafe101",
-                    $"[INFO] {DateTime.Now:yyyy-MM-dd HH:mm:ss} - {message}",
-                    System.Diagnostics.EventLogEntryType.Information);
-            }
-            catch { }
         }
 
         private void ShowError1(string msg)

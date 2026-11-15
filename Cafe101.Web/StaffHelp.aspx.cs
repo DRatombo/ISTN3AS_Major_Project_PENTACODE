@@ -44,6 +44,10 @@ namespace Cafe101.Web
 
             pnlManagerNavigation.Visible = isManager;
             pnlStaffNavigation.Visible = !isManager;
+            pnlReportsHelp.Visible = isManager;
+            pnlReportsCard.Visible = isManager;
+            pnlAdministrationHelp.Visible = isManager;
+            pnlAdministrationCard.Visible = isManager;
 
             // DISPLAY LOGGED-IN USER'S NAME IN THE HEADER
             string firstName = Convert.ToString(Session["FirstName"]);

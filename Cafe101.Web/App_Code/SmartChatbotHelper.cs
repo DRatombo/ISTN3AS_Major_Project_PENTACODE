@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Cafe101
 {
@@ -11,7 +12,10 @@ namespace Cafe101
         {
             { "order_time", "Most orders are ready within 15-25 minutes, depending on the complexity. Combo meals take about 18 minutes, while individual items like fries take 5-7 minutes." },
             { "delivery", "We currently offer delivery through our partners. Delivery typically takes 30-45 minutes depending on your location." },
-            { "operating_hours", "We are open Monday to Friday from 7:00 AM to 10:00 PM, and weekends from 8:00 AM to 11:00 PM." },
+            { "operating_hours", "We are open 8am to 5pm, Monday to Friday." },
+            { "location", "We are at UKZN Westville Cafeteria." },
+            { "password_help", "Click \"Forgot password\" on the login page and follow the email link." },
+            { "support_contact", "Email support@cafe101.com or call 031 000 0000." },
             { "popular_items", "Our most popular items are the Chicken Burger, Beef Burger, and our signature Combo Meal. The Cooldrink is also a customer favorite." },
             { "payment_methods", "We accept cash, credit/debit cards, and mobile payments (Apple Pay, Google Pay)." },
             { "catering", "Yes! We offer catering for events. Please contact our manager to discuss your requirements." },
@@ -26,21 +30,21 @@ namespace Cafe101
         {
             // General system
             { "system_purpose", "Cafe101 is a restaurant management system that helps you manage employees, ingredients, menu items, recipes, and orders." },
-            
+
             // Employees
             { "add_employee", "To add an employee: Open the Employees form, fill in First Name, Surname, Email, Address, Role, and Password. Click 'Add'. All fields must be valid (green)." },
             { "update_employee", "To update an employee: Click a row in the list, edit the fields, and click 'Update'." },
             { "delete_employee", "To delete an employee: Select the employee, click 'Delete', and confirm the deletion." },
             { "reset_password", "To reset an employee's password: Select the employee, click 'Reset PW', and the password will reset to 'temp123'." },
             { "employee_validation", "First Name and Surname accept letters only. Email must contain '@' and a valid domain. Password must be at least 6 characters. Address format: number street, suburb, city." },
-            
+
             // Ingredients
             { "add_ingredient", "To add an ingredient: Open the Ingredients form, fill in Description, Quantity On Hand, Restock Level, and Cost Price. Click 'Add New'." },
             { "update_ingredient", "To update an ingredient: Click a row, edit the fields, and click 'Update'." },
             { "delete_ingredient", "To delete an ingredient: Select the ingredient, click 'Remove', and confirm." },
             { "low_stock", "Ingredients with Quantity On Hand at or below their Restock Level turn YELLOW. These need to be reordered." },
             { "ingredient_validation", "Description accepts only letters and spaces (no numbers or special characters)." },
-            
+
             // Menu Items
             { "add_menuitem", "To add a menu item: Open the Menu Items form, fill in Name, Selling Price, Cost Price, Category, and Preparation Time. Click 'Add New'. You must then add at least one recipe ingredient." },
             { "update_menuitem", "To update a menu item: Click a row, edit the fields, and click 'Update'." },
@@ -48,22 +52,19 @@ namespace Cafe101
             { "menuitem_validation", "Name accepts only letters and spaces. Prep Time accepts only numbers (1-999 minutes)." },
             { "recipe_required", "A menu item cannot be saved without at least one recipe ingredient. You will be redirected to the Recipes form after adding a menu item." },
             { "categories", "Menu item categories are: Burger, Wings, Sides, Drinks, and Combo." },
-            
+
             // Recipes
             { "add_recipe", "To add a recipe link: Select a Menu Item, select an Ingredient, enter Quantity, and click 'Add'." },
             { "remove_recipe", "To remove a recipe link: Select a menu item and ingredient, then click 'Remove'." },
             { "edit_recipe", "To edit a recipe quantity: Click a row in the recipe list, change the quantity, click 'Remove' then 'Add' with the new quantity." },
             { "recipe_purpose", "Recipes connect menu items to ingredients with specific quantities. This determines what ingredients are needed to make each menu item." },
-            
+
             // General navigation
             { "search", "All forms have a search box. Type any keyword and results filter automatically as you type. Click 'Clear' to reset." },
             { "help", "Each form has a 'Help' button. Click it to see step-by-step instructions specific to that form." },
             { "back", "Use the 'Back' button to return to the main menu." },
             { "refresh", "Use the 'Refresh' button to reload all data and clear any active filters." }
         };
-
-        // User context
-        private static string LastTopic = "";
 
         public static string GetResponse(string userInput)
         {
@@ -84,10 +85,7 @@ namespace Cafe101
             string response = DetectIntent(input);
 
             if (!string.IsNullOrEmpty(response))
-            {
-                LastTopic = input;
                 return response;
-            }
 
             return "🤔 I'm not sure I understand. Here are some things I can help with:\n\n" +
                    "• Orders and delivery\n" +
@@ -98,16 +96,22 @@ namespace Cafe101
                    "Try asking me a specific question!";
         }
 
+        // Whole-word match so "hi" doesn't match "which", "this", "thing", etc.
+        private static bool ContainsWord(string input, string word)
+        {
+            return Regex.IsMatch(input, @"\b" + Regex.Escape(word) + @"\b");
+        }
+
         private static bool IsGreeting(string input)
         {
             string[] greetings = { "hello", "hi", "hey", "howdy", "good morning", "good afternoon", "good evening", "yo" };
-            return greetings.Any(g => input.Contains(g));
+            return greetings.Any(g => ContainsWord(input, g));
         }
 
         private static bool IsGoodbye(string input)
         {
             string[] goodbyes = { "bye", "goodbye", "see you", "cya", "later", "exit", "quit", "done" };
-            return goodbyes.Any(g => input.Contains(g));
+            return goodbyes.Any(g => ContainsWord(input, g));
         }
 
         private static bool IsThanks(string input)
@@ -118,6 +122,19 @@ namespace Cafe101
 
         private static string DetectIntent(string input)
         {
+            // ===== FAQ INTENTS (must come first) =====
+
+            if ((input.Contains("password") || input.Contains("forgot")) &&
+                !input.Contains("employee") && !input.Contains("staff") && !input.Contains("pw"))
+                return GetBusinessInfo("password_help");
+
+            if (input.Contains("where are you") || input.Contains("located") || input.Contains("location") ||
+                input.Contains("address") || input.Contains("directions"))
+                return GetBusinessInfo("location");
+
+            if (input.Contains("support") || input.Contains("customer service"))
+                return GetBusinessInfo("support_contact");
+
             // ===== BUSINESS INTENTS =====
 
             if (input.Contains("order") && (input.Contains("how long") || input.Contains("time") || input.Contains("ready") || input.Contains("take")))

@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CartandPayment.aspx.cs" Inherits="Cafe101.Web.CartandPayment" %>
+﻿
+<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="CartandPayment.aspx.cs" Inherits="Cafe101.Web.CartandPayment" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -60,79 +61,81 @@
                             <asp:TextBox ID="txtOrderTotal" runat="server" ReadOnly="true" CssClass="form-control fw-bold" />
                         </div>
 
+                        <!-- CUSTOMER SELECTION: MANAGER AND CASHIER ONLY -->
+                        <asp:Panel ID="pnlCustomerSelection" runat="server" CssClass="mb-4" Visible="false">
+
+                            <h5 class="mb-2">Customer Details</h5>
+
+                            <p class="text-muted">
+                                Search for an existing customer or select Walk-in Customer.
+                            </p>
+
+                            <div class="mb-3">
+                                <asp:Label ID="lblCustomerSearch" runat="server"
+                                    AssociatedControlID="txtCustomerSearch"
+                                    Text="Search by name or email"
+                                    CssClass="form-label" />
+
+                                <div class="input-group">
+                                    <asp:TextBox ID="txtCustomerSearch" runat="server"
+                                        CssClass="form-control"
+                                        placeholder="Enter customer name or email" />
+
+                                    <asp:Button ID="btnSearchCustomer" runat="server"
+                                        Text="Search"
+                                        CssClass="btn btn-outline-brand"
+                                        CausesValidation="false"
+                                        OnClick="btnSearchCustomer_Click" />
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <asp:Label ID="lblSelectCustomer" runat="server"
+                                    AssociatedControlID="ddlCustomer"
+                                    Text="Select Customer"
+                                    CssClass="form-label" />
+
+                                <asp:DropDownList ID="ddlCustomer" runat="server"
+                                    CssClass="form-select"
+                                    AppendDataBoundItems="false">
+                                </asp:DropDownList>
+                            </div>
+
+                            <asp:Label ID="lblCustomerMessage" runat="server"
+                                CssClass="text-danger"
+                                EnableViewState="false" />
+
+                        </asp:Panel>
+
                         <fieldset class="border rounded p-3 mb-3">
                             <legend class="fs-6 fw-bold w-auto px-2">Payment Method</legend>
-                            <asp:RadioButtonList ID="rblPayment" runat="server" RepeatDirection="Horizontal" CssClass="w-100">
+                            <asp:RadioButtonList ID="rblPayment" runat="server"
+                                RepeatDirection="Horizontal" CssClass="w-100">
                                 <asp:ListItem Value="Cash">&nbsp;Cash&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</asp:ListItem>
                                 <asp:ListItem Value="Card">&nbsp;Card</asp:ListItem>
                             </asp:RadioButtonList>
                         </fieldset>
 
-                        <%-- CUSTOMER SELECTION (STAFF ONLY) --%>
-<asp:Panel ID="pnlCustomerSelection" runat="server"
-    CssClass="mb-4">
-
-    <h5 class="mb-2">Customer Details</h5>
-
-    <p class="text-muted">
-        Search for an existing customer or leave Walk-in Customer selected.
-    </p>
-
-    <div class="mb-3">
-        <asp:Label ID="lblCustomerSearch" runat="server"
-            AssociatedControlID="txtCustomerSearch"
-            Text="Search by name or email"
-            CssClass="form-label" />
-
-        <div class="input-group">
-            <asp:TextBox ID="txtCustomerSearch" runat="server"
-                CssClass="form-control"
-                placeholder="Enter customer name or email" />
-
-            <asp:Button ID="btnSearchCustomer" runat="server"
-                Text="Search"
-                CssClass="btn btn-outline-brand"
-                CausesValidation="false" />
-        </div>
-    </div>
-
-    <div class="mb-3">
-        <asp:Label ID="lblSelectCustomer" runat="server"
-            AssociatedControlID="ddlCustomer"
-            Text="Select Customer"
-            CssClass="form-label" />
-
-        <asp:DropDownList ID="ddlCustomer" runat="server"
-            CssClass="form-select"
-            AppendDataBoundItems="false">
-        </asp:DropDownList>
-    </div>
-
-    <asp:Label ID="lblCustomerMessage" runat="server"
-        CssClass="text-danger"
-        EnableViewState="false" />
-
-</asp:Panel>
-
                         <!-- Cash only -->
                         <div id="divCash" style="display:none;">
                             <div class="mb-2">
                                 <label class="fw-bold">Amount Tendered</label>
-                                <asp:TextBox ID="txtAmountTendered" runat="server" CssClass="form-control"
-                                    MaxLength="10" autocomplete="off" />
+                                <asp:TextBox ID="txtAmountTendered" runat="server"
+                                    CssClass="form-control" MaxLength="10" autocomplete="off" />
                                 <span id="lblAmountMes" class="small fw-bold"></span>
                             </div>
 
                             <div class="d-flex flex-wrap gap-2 mb-3" id="divQuick">
                                 <button type="button" class="btn btn-outline-secondary btn-sm" data-amt="exact" onclick="setAmount('exact')">Exact</button>
-                                <button type="button" class="btn btn-outline-secondary btn-sm" data-amt="50"  onclick="setAmount(50)">R50</button>
+                                <button type="button" class="btn btn-outline-secondary btn-sm" data-amt="50" onclick="setAmount(50)">R50</button>
                                 <button type="button" class="btn btn-outline-secondary btn-sm" data-amt="100" onclick="setAmount(100)">R100</button>
                                 <button type="button" class="btn btn-outline-secondary btn-sm" data-amt="200" onclick="setAmount(200)">R200</button>
                             </div>
 
                             <div class="mb-3">
                                 <label class="fw-bold">Change</label>
-                                <asp:TextBox ID="txtChange" runat="server" ReadOnly="true" CssClass="form-control" Text="R 0.00" />
+                                <asp:TextBox ID="txtChange" runat="server"
+                                    ReadOnly="true" CssClass="form-control" Text="R 0.00" />
                             </div>
                         </div>
 
@@ -142,13 +145,17 @@
                         </div>
 
                         <div class="d-flex gap-2 mt-3">
-                            <asp:Button ID="btnConfirm" runat="server" Text="Confirm Payment"
-                                CssClass="btn btn-brand flex-fill" UseSubmitBehavior="false"
+                            <asp:Button ID="btnConfirm" runat="server"
+                                Text="Confirm Payment"
+                                CssClass="btn btn-brand flex-fill"
+                                UseSubmitBehavior="false"
                                 OnClientClick="if (!validateCheckout()) return false; this.disabled = true; this.value = 'Processing...';"
                                 OnClick="btnConfirm_Click" />
 
                             <a href="Menu.aspx" class="btn btn-outline-secondary flex-fill"
-                               onclick="return confirm('Are you sure you want to cancel this payment?');">Cancel Payment</a>
+                               onclick="return confirm('Are you sure you want to cancel this payment?');">
+                                Cancel Payment
+                            </a>
                         </div>
 
                     </div>
@@ -166,37 +173,48 @@
             var chg = document.getElementById('<%= txtChange.ClientID %>');
             var mes = document.getElementById('lblAmountMes');
 
-            if (!amt) return;   // checkout panel is hidden (empty cart)
+            if (!amt) return;
 
             function method() {
                 var s = document.querySelector('input[name="' + payName + '"]:checked');
                 return s ? s.value : '';
             }
 
-            // Returns an error text, or '' when valid
             function check() {
                 var m = method();
+
                 if (m === '') return 'Please select a payment method.';
                 if (m === 'Card') return '';
 
                 var t = amt.value.trim().replace(',', '.');
+
                 if (t === '') return 'Required';
                 if (!/^\d+(\.\d{1,2})?$/.test(t)) return 'Numbers only';
+
                 var v = parseFloat(t);
+
                 if (v <= 0) return 'Must be greater than 0';
                 if (v < total) return 'Amount too low';
+
                 return '';
             }
 
             function refresh() {
                 var m = method();
-                document.getElementById('divCash').style.display = m === 'Cash' ? 'block' : 'none';
-                document.getElementById('divCard').style.display = m === 'Card' ? 'block' : 'none';
+
+                document.getElementById('divCash').style.display =
+                    m === 'Cash' ? 'block' : 'none';
+
+                document.getElementById('divCard').style.display =
+                    m === 'Card' ? 'block' : 'none';
+
                 if (m !== 'Cash') return;
 
                 var t = amt.value.trim().replace(',', '.');
                 var v = parseFloat(t);
-                chg.value = (!isNaN(v) && v >= total) ? 'R ' + (v - total).toFixed(2)
+
+                chg.value = (!isNaN(v) && v >= total)
+                    ? 'R ' + (v - total).toFixed(2)
                     : (!isNaN(v) && v > 0 ? 'Insufficient' : 'R 0.00');
 
                 if (t === '') {
@@ -204,15 +222,16 @@
                     mes.textContent = '';
                 } else {
                     var e = check();
+
                     amt.style.backgroundColor = e ? '#ffdcdc' : '#dcf5dc';
                     mes.textContent = e ? '⚠ ' + e : '✓';
                     mes.style.color = e ? '#d63c3c' : '#32b464';
                 }
 
-                // Hide quick-cash buttons smaller than the total
                 document.querySelectorAll('#divQuick button').forEach(function (b) {
                     var a = b.getAttribute('data-amt');
-                    b.style.display = (a === 'exact' || parseFloat(a) >= total) ? '' : 'none';
+                    b.style.display =
+                        (a === 'exact' || parseFloat(a) >= total) ? '' : 'none';
                 });
             }
 
@@ -221,10 +240,11 @@
                 refresh();
             };
 
-            // Runs before the Confirm button posts back
             window.validateCheckout = function () {
                 refresh();
+
                 var e = check();
+
                 if (e) {
                     if (method() === 'Cash') {
                         mes.textContent = '⚠ ' + e;
@@ -233,14 +253,17 @@
                     } else {
                         alert(e);
                     }
+
                     return false;
                 }
+
                 return true;
             };
 
             document.querySelectorAll('input[name="' + payName + '"]').forEach(function (r) {
                 r.addEventListener('change', refresh);
             });
+
             amt.addEventListener('input', refresh);
             refresh();
         })();

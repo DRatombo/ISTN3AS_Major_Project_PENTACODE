@@ -69,15 +69,6 @@ namespace Cafe101.Web
         protected global::System.Web.UI.WebControls.TextBox txtOrderTotal;
 
         /// <summary>
-        /// rblPayment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblPayment;
-
-        /// <summary>
         /// pnlCustomerSelection control.
         /// </summary>
         /// <remarks>
@@ -139,6 +130,15 @@ namespace Cafe101.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCustomerMessage;
+
+        /// <summary>
+        /// rblPayment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rblPayment;
 
         /// <summary>
         /// txtAmountTendered control.

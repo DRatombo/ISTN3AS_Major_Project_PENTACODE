@@ -37,7 +37,7 @@
                             <p class="text-muted small mb-0"><%# Eval("ItemSummary") %></p>
                         </div>
                         <div class="text-end">
-                            <p class="fw-bold text-brand mb-1">R<%# Eval("Total") %></p>
+                            <p class="fw-bold text-brand mb-1">RR<%# Eval("Total", "{0:N2}") %></p>
                             <span class="badge bg-light text-dark border"><%# Eval("Status") %></span>
                         </div>
                     </div>

@@ -181,22 +181,6 @@
                         </span>
 
                     </a>
-                
-<%-- Help Centre --%>
-<a href="StaffHelp.aspx" aria-label="Help Centre">
-    <span class="staff-nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"
-             width="19" height="19"
-             fill="none"
-             stroke="currentColor"
-             stroke-width="2">
-            <circle cx="12" cy="12" r="9" />
-            <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4" />
-            <path d="M12 17h.01" />
-        </svg>
-    </span>
-    <span class="staff-nav-text">Help Centre</span>
-</a>
 
 
                 </nav>
@@ -285,9 +269,9 @@
                             </span>
 
 
-                            <input type="text"
-                                class="form-control"
-                                placeholder="Search by order # or customer name..." />
+                            <asp:TextBox ID="txtOrderSearch" runat="server" CssClass="form-control"
+                                placeholder="Search by order # or customer name..."
+                                AutoPostBack="true" OnTextChanged="FilterOrders_Changed" />
 
                         </div>
 
@@ -311,29 +295,15 @@
                             </span>
 
 
-                            <select class="form-control staff-status-filter">
-
-                                <option value="">
-                                    Filter by status
-                                </option>
-
-                                <option value="Pending">
-                                    Pending
-                                </option>
-
-                                <option value="Preparing">
-                                    Preparing
-                                </option>
-
-                                <option value="Ready">
-                                    Ready
-                                </option>
-
-                                <option value="Completed">
-                                    Completed
-                                </option>
-
-                            </select>
+                            <asp:DropDownList ID="ddlStatusFilter" runat="server"
+                                CssClass="form-control staff-status-filter"
+                                AutoPostBack="true" OnSelectedIndexChanged="FilterOrders_Changed">
+                                <asp:ListItem Text="Filter by status" Value="" />
+                                <asp:ListItem Text="Pending" Value="Pending" />
+                                <asp:ListItem Text="Preparing" Value="Preparing" />
+                                <asp:ListItem Text="Ready" Value="Ready" />
+                                <asp:ListItem Text="Completed" Value="Completed" />
+                            </asp:DropDownList>
 
                         </div>
 
@@ -400,9 +370,7 @@
                                 NEW ORDERS
                             </span>
 
-                            <h3>
-                                8
-                            </h3>
+                            <h3><asp:Label ID="lblNewOrdersCount" runat="server" Text="0" /></h3>
 
                             <p>
                                 Waiting to be processed
@@ -444,9 +412,7 @@
                                 PREPARING
                             </span>
 
-                            <h3>
-                                4
-                            </h3>
+                            <h3><asp:Label ID="lblPreparingCount" runat="server" Text="0" /></h3>
 
                             <p>
                                 Currently being prepared
@@ -484,9 +450,7 @@
                                 READY
                             </span>
 
-                            <h3>
-                                3
-                            </h3>
+                            <h3><asp:Label ID="lblReadyCount" runat="server" Text="0" /></h3>
 
                             <p>
                                 Ready for collection
@@ -527,9 +491,7 @@
                                 COMPLETED TODAY
                             </span>
 
-                            <h3>
-                                12
-                            </h3>
+                            <h3><asp:Label ID="lblCompletedTodayCount" runat="server" Text="0" /></h3>
 
                             <p>
                                 Orders completed today
@@ -604,277 +566,29 @@
 
 
                                 <tbody>
-
-
-                                    <%-- 1008 --%>
-
-                                    <tr>
-
-                                        <td>
-                                            <strong>#1008</strong>
-                                        </td>
-
-                                        <td>
-                                            Sarah M.
-                                        </td>
-
-                                        <td>
-                                            3 items
-                                        </td>
-
-                                        <td>
-                                            R145.00
-                                        </td>
-
-                                        <td>
-                                            14:25
-                                        </td>
-
-                                        <td>
-
-                                            <span class="order-status status-pending">
-                                                Pending
-                                            </span>
-
-                                        </td>
-
-
-                                        <td>
-
-                                            <button type="button"
-                                                class="btn btn-sm btn-outline-brand view-order-details"
-                                                data-order="#1008"
-                                                data-customer="Sarah M."
-                                                data-items="1 × Cappuccino~R45.00|1 × Chicken Wrap~R65.00|1 × Chocolate Muffin~R35.00"
-                                                data-total="R145.00"
-                                                data-time="14:25"
-                                                data-status="Pending">
-
-                                                View Details
-
-                                            </button>
-
-                                        </td>
-
-                                    </tr>
-
-
-
-                                    <%-- 1007 --%>
-
-                                    <tr>
-
-                                        <td>
-                                            <strong>#1007</strong>
-                                        </td>
-
-                                        <td>
-                                            John D.
-                                        </td>
-
-                                        <td>
-                                            2 items
-                                        </td>
-
-                                        <td>
-                                            R98.00
-                                        </td>
-
-                                        <td>
-                                            14:18
-                                        </td>
-
-                                        <td>
-
-                                            <span class="order-status status-preparing">
-                                                Preparing
-                                            </span>
-
-                                        </td>
-
-
-                                        <td>
-
-                                            <button type="button"
-                                                class="btn btn-sm btn-outline-brand view-order-details"
-                                                data-order="#1007"
-                                                data-customer="John D."
-                                                data-items="1 × Iced Latte~R53.00|1 × Butter Croissant~R45.00"
-                                                data-total="R98.00"
-                                                data-time="14:18"
-                                                data-status="Preparing">
-
-                                                View Details
-
-                                            </button>
-
-                                        </td>
-
-                                    </tr>
-
-
-
-                                    <%-- 1006 --%>
-
-                                    <tr>
-
-                                        <td>
-                                            <strong>#1006</strong>
-                                        </td>
-
-                                        <td>
-                                            Amanda K.
-                                        </td>
-
-                                        <td>
-                                            4 items
-                                        </td>
-
-                                        <td>
-                                            R210.00
-                                        </td>
-
-                                        <td>
-                                            14:05
-                                        </td>
-
-                                        <td>
-
-                                            <span class="order-status status-ready">
-                                                Ready
-                                            </span>
-
-                                        </td>
-
-
-                                        <td>
-
-                                            <button type="button"
-                                                class="btn btn-sm btn-outline-brand view-order-details"
-                                                data-order="#1006"
-                                                data-customer="Amanda K."
-                                                data-items="1 × Cappuccino~R45.00|1 × Cheese Toastie~R65.00|1 × Muffin~R35.00|1 × Cold Drink~R65.00"
-                                                data-total="R210.00"
-                                                data-time="14:05"
-                                                data-status="Ready">
-
-                                                View Details
-
-                                            </button>
-
-                                        </td>
-
-                                    </tr>
-
-
-
-                                    <%-- 1005 --%>
-
-                                    <tr>
-
-                                        <td>
-                                            <strong>#1005</strong>
-                                        </td>
-
-                                        <td>
-                                            Michael P.
-                                        </td>
-
-                                        <td>
-                                            1 item
-                                        </td>
-
-                                        <td>
-                                            R55.00
-                                        </td>
-
-                                        <td>
-                                            13:52
-                                        </td>
-
-                                        <td>
-
-                                            <span class="order-status status-completed">
-                                                Completed
-                                            </span>
-
-                                        </td>
-
-
-                                        <td>
-
-                                            <button type="button"
-                                                class="btn btn-sm btn-outline-brand view-order-details"
-                                                data-order="#1005"
-                                                data-customer="Michael P."
-                                                data-items="1 × Breakfast Combo~R55.00"
-                                                data-total="R55.00"
-                                                data-time="13:52"
-                                                data-status="Completed">
-
-                                                View Details
-
-                                            </button>
-
-                                        </td>
-
-                                    </tr>
-
-
-
-                                    <%-- 1004 --%>
-
-                                    <tr>
-
-                                        <td>
-                                            <strong>#1004</strong>
-                                        </td>
-
-                                        <td>
-                                            Lerato N.
-                                        </td>
-
-                                        <td>
-                                            5 items
-                                        </td>
-
-                                        <td>
-                                            R275.00
-                                        </td>
-
-                                        <td>
-                                            13:41
-                                        </td>
-
-                                        <td>
-
-                                            <span class="order-status status-preparing">
-                                                Preparing
-                                            </span>
-
-                                        </td>
-
-
-                                        <td>
-
-                                            <button type="button"
-                                                class="btn btn-sm btn-outline-brand view-order-details"
-                                                data-order="#1004"
-                                                data-customer="Lerato N."
-                                                data-items="1 × Cappuccino~R45.00|1 × Toastie~R65.00|1 × Muffin~R35.00|1 × Cold Drink~R55.00|1 × Croissant~R75.00"
-                                                data-total="R275.00"
-                                                data-time="13:41"
-                                                data-status="Preparing">
-
-                                                View Details
-
-                                            </button>
-
-                                        </td>
-
-                                    </tr>
-
-
+                                    <asp:Repeater ID="rptAllOrders" runat="server">
+                                        <ItemTemplate>
+                                            <tr>
+                                                <td><strong>#<%#: Eval("OrderID") %></strong></td>
+                                                <td><%#: Eval("CustomerName") %></td>
+                                                <td><%# Convert.ToInt32(Eval("ItemCount")) == 1 ? "1 item" : Eval("ItemCount") + " items" %></td>
+                                                <td>R<%# Eval("TotalAmountDue", "{0:N2}") %></td>
+                                                <td><%# Eval("OrderDateTime", "{0:HH:mm}") %></td>
+                                                <td><span class='order-status <%# GetStatusCss(Eval("OrderStatus")) %>'><%#: Eval("OrderStatus") %></span></td>
+                                                <td>
+                                                    <button type="button" class="btn btn-sm btn-outline-brand view-order-details"
+                                                        data-order="#<%#: Eval("OrderID") %>"
+                                                        data-customer="<%#: Eval("CustomerName") %>"
+                                                        data-items="<%#: Eval("ItemsSummary") %>"
+                                                        data-total="R<%# Eval("TotalAmountDue", "{0:N2}") %>"
+                                                        data-time="<%# Eval("OrderDateTime", "{0:HH:mm}") %>"
+                                                        data-status="<%#: Eval("OrderStatus") %>">
+                                                        View Details
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        </ItemTemplate>
+                                    </asp:Repeater>
                                 </tbody>
 
 
@@ -902,7 +616,7 @@
                             <div class="staff-order-heading-left">
 
                                 <h4 id="detailOrderNumber">
-                                    Order #1008
+                                    Order Details
                                 </h4>
 
                                 <p class="staff-order-placed">
@@ -910,7 +624,7 @@
                                     Placed at
 
                                     <span id="detailHeaderTime">
-                                        14:25
+                                        --:--
                                     </span>
 
                                 </p>
@@ -922,11 +636,8 @@
                             <div class="staff-order-heading-right">
 
 
-                                <span id="detailStatus"
-                                    class="order-status status-pending">
-
-                                    Pending
-
+                                <span id="detailStatus" class="order-status">
+                                    Select an order
                                 </span>
 
 
@@ -983,7 +694,7 @@
                                 <div>
 
                                     <strong id="detailCustomer">
-                                        Sarah M.
+                                        Select an order
                                     </strong>
 
                                     <small class="staff-customer-number">
@@ -1011,10 +722,7 @@
                                     ORDER ITEMS
                                 </small>
 
-                                <small id="detailItemCount"
-                                    class="staff-order-item-count">
-                                    (3)
-                                </small>
+                                <small id="detailItemCount" class="staff-order-item-count">(0)</small>
 
                             </div>
 
@@ -1031,9 +739,7 @@
                                     Total
                                 </strong>
 
-                                <strong id="detailItemsTotal">
-                                    R145.00
-                                </strong>
+                                <strong id="detailItemsTotal">R0.00</strong>
 
                             </div>
 
@@ -1310,8 +1016,9 @@
                         button.dataset.status;
 
 
-                    const items =
-                        button.dataset.items.split("|");
+                    const items = button.dataset.items
+                        ? button.dataset.items.split("|")
+                        : [];
 
 
 
@@ -1407,6 +1114,10 @@
 
 
 
+                    if (items.length === 0) {
+                        itemsContainer.textContent = "No items found.";
+                    }
+
                     items.forEach(
                         function (item) {
 
@@ -1427,7 +1138,7 @@
 
 
                             const quantityParts =
-                                itemDetails.split("×");
+                                itemDetails.split(/×|x/i);
 
 
                             const quantity =

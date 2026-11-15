@@ -228,6 +228,7 @@
 </a>
 
 
+
                 </nav>
 
 
@@ -416,149 +417,41 @@
 
 
 
-                                <tbody>
-
-
-                                    <%-- Order 1008 --%>
+                                
+                        <tbody>
+                            <asp:Repeater ID="rptRecentOrders" runat="server">
+                                <ItemTemplate>
                                     <tr>
-
                                         <td>
-                                            <strong>#1008</strong>
+                                            <strong>#<%# Eval("OrderID") %></strong>
                                         </td>
 
                                         <td>
-                                            Sarah M.
+                                            <%# Eval("CustomerName") %>
                                         </td>
 
                                         <td>
-                                            3
+                                            <%# Eval("ItemCount") %> items
                                         </td>
 
                                         <td>
-                                            R145.00
+                                            R<%# Eval("TotalAmountDue", "{0:N2}") %>
                                         </td>
 
                                         <td>
-
-                                            <span class="order-status status-pending">
-                                                Pending
+                                            <span class='order-status <%# GetStatusCss(Convert.ToString(Eval("OrderStatus"))) %>'>
+                                                <%# Eval("OrderStatus") %>
                                             </span>
-
                                         </td>
 
                                         <td>
-                                            14:25
+                                            <%# Eval("OrderDateTime", "{0:HH:mm}") %>
                                         </td>
-
                                     </tr>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                        </tbody>
 
-
-
-                                    <%-- Order 1007 --%>
-                                    <tr>
-
-                                        <td>
-                                            <strong>#1007</strong>
-                                        </td>
-
-                                        <td>
-                                            John D.
-                                        </td>
-
-                                        <td>
-                                            2
-                                        </td>
-
-                                        <td>
-                                            R98.00
-                                        </td>
-
-                                        <td>
-
-                                            <span class="order-status status-preparing">
-                                                Preparing
-                                            </span>
-
-                                        </td>
-
-                                        <td>
-                                            14:18
-                                        </td>
-
-                                    </tr>
-
-
-
-                                    <%-- Order 1006 --%>
-                                    <tr>
-
-                                        <td>
-                                            <strong>#1006</strong>
-                                        </td>
-
-                                        <td>
-                                            Amanda K.
-                                        </td>
-
-                                        <td>
-                                            4
-                                        </td>
-
-                                        <td>
-                                            R210.00
-                                        </td>
-
-                                        <td>
-
-                                            <span class="order-status status-ready">
-                                                Ready
-                                            </span>
-
-                                        </td>
-
-                                        <td>
-                                            14:05
-                                        </td>
-
-                                    </tr>
-
-
-
-                                    <%-- Order 1005 --%>
-                                    <tr>
-
-                                        <td>
-                                            <strong>#1005</strong>
-                                        </td>
-
-                                        <td>
-                                            Michael P.
-                                        </td>
-
-                                        <td>
-                                            1
-                                        </td>
-
-                                        <td>
-                                            R55.00
-                                        </td>
-
-                                        <td>
-
-                                            <span class="order-status status-completed">
-                                                Completed
-                                            </span>
-
-                                        </td>
-
-                                        <td>
-                                            13:52
-                                        </td>
-
-                                    </tr>
-
-
-                                </tbody>
 
 
                             </table>
@@ -683,6 +576,24 @@
 
                             </a>
 
+                            <%-- Make New Order --%>
+                            <a href="Menu.aspx?source=staff"
+                               class="staff-action-tile">
+
+                                <div class="staff-icon-box icon-green">
+                                    <span style="font-size:24px;">＋</span>
+                                </div>
+
+                                <div>
+                                    <strong>Make New Order</strong>
+
+                                    <small>
+                                        Take and process a customer order
+                                    </small>
+                                </div>
+
+                            </a>
+
 
                         </div>
 
@@ -791,145 +702,53 @@
 
                         </div>
 
+                        
+                        <asp:Repeater ID="rptRecentAlerts" runat="server">
+                            <ItemTemplate>
+
+                                <div class="staff-alert-item">
+
+                                    <div class="staff-alert-icon alert-blue">
+
+                                        <svg viewBox="0 0 24 24"
+                                             width="19"
+                                             height="19"
+                                             fill="none"
+                                             stroke="currentColor"
+                                             stroke-width="2">
+
+                                            <circle cx="12" cy="12" r="9" />
+                                            <path d="M12 11v5" />
+                                            <path d="M12 8h.01" />
+
+                                        </svg>
+
+                                    </div>
+
+                                    <div class="staff-alert-text">
+
+                                        <strong>
+                                            <%# GetAlertHeading(Convert.ToString(Eval("OrderStatus"))) %>
+                                        </strong>
+
+                                        <small>
+                                            Order #<%# Eval("OrderID") %> is
+                                            <%# Convert.ToString(Eval("OrderStatus")).ToLower() %>.
+                                        </small>
+
+                                    </div>
+
+                                    <span class="staff-alert-time">
+                                        <%# Eval("OrderDateTime", "{0:HH:mm}") %>
+                                    </span>
+
+                                </div>
+
+                            </ItemTemplate>
+                        </asp:Repeater>
 
 
-                        <%-- New Order --%>
-                        <div class="staff-alert-item">
-
-
-                            <div class="staff-alert-icon alert-blue">
-
-                                <svg viewBox="0 0 24 24"
-                                    width="19"
-                                    height="19"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2">
-
-                                    <circle cx="12"
-                                        cy="12"
-                                        r="9" />
-
-                                    <path d="M12 11v5" />
-
-                                    <path d="M12 8h.01" />
-
-                                </svg>
-
-                            </div>
-
-
-                            <div class="staff-alert-text">
-
-                                <strong>
-                                    New Order Received
-                                </strong>
-
-                                <small>
-                                    Order #1008 is waiting to be processed.
-                                </small>
-
-                            </div>
-
-
-                            <span class="staff-alert-time">
-                                14:25
-                            </span>
-
-
-                        </div>
-
-
-
-                        <%-- Preparing --%>
-                        <div class="staff-alert-item">
-
-
-                            <div class="staff-alert-icon alert-orange">
-
-                                <svg viewBox="0 0 24 24"
-                                    width="19"
-                                    height="19"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2">
-
-                                    <circle cx="12"
-                                        cy="12"
-                                        r="9" />
-
-                                    <path d="M12 7v5l3 2" />
-
-                                </svg>
-
-                            </div>
-
-
-                            <div class="staff-alert-text">
-
-                                <strong>
-                                    Order Preparing
-                                </strong>
-
-                                <small>
-                                    Order #1007 is currently being prepared.
-                                </small>
-
-                            </div>
-
-
-                            <span class="staff-alert-time">
-                                14:18
-                            </span>
-
-
-                        </div>
-
-
-
-                        <%-- Ready --%>
-                        <div class="staff-alert-item">
-
-
-                            <div class="staff-alert-icon alert-green">
-
-                                <svg viewBox="0 0 24 24"
-                                    width="19"
-                                    height="19"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2">
-
-                                    <circle cx="12"
-                                        cy="12"
-                                        r="9" />
-
-                                    <path d="M8 12l3 3 5-6" />
-
-                                </svg>
-
-                            </div>
-
-
-                            <div class="staff-alert-text">
-
-                                <strong>
-                                    Order Ready
-                                </strong>
-
-                                <small>
-                                    Order #1006 is ready for collection.
-                                </small>
-
-                            </div>
-
-
-                            <span class="staff-alert-time">
-                                14:05
-                            </span>
-
-
-                        </div>
+                        
 
 
                     </section>

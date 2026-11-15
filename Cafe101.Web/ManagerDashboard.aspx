@@ -70,10 +70,28 @@
                         <span class="staff-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" /></svg></span>
                         <span class="staff-nav-text">Profile</span>
                     </a>
+
                     <a href="StaffHelp.aspx" aria-label="Help Centre">
-                        <span class="staff-nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9" /><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4" /><path d="M12 17h.01" /></svg></span>
+                        <span class="staff-nav-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="9" />
+                                <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4" />
+                                <path d="M12 17h.01" />
+                            </svg>
+                        </span>
                         <span class="staff-nav-text">Help Centre</span>
                     </a>
+
+                    <a href="Menu.aspx?source=manager" class="manager-quick-action">
+                        <span class="staff-icon-box icon-green">
+                            <span style="font-size:20px;">＋</span>
+                        </span>
+                        <div>
+                            <strong>Make New Order</strong>
+                            <small>Create an order for a customer</small>
+                        </div>
+                    </a>
+
                 </nav>
 
                 <div class="staff-sidebar-bottom">

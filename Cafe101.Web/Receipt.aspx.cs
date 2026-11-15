@@ -16,79 +16,138 @@ namespace Cafe101.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserID"] == null)
+            if (!CanAccessReceipt())
             {
-                Response.Redirect("~/SignIn.aspx");
+                Response.Redirect("~/SignIn.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
                 return;
+            }
+
+            if (Session["UserType"] != null &&
+            Session["UserType"].ToString().Equals("Customer",
+            StringComparison.OrdinalIgnoreCase))
+            {
+                lnkBackToDashboard.NavigateUrl = "~/CustomerDashboard.aspx";
+            }
+            else
+            {
+                lnkBackToDashboard.NavigateUrl = "~/StaffDashboard.aspx";
             }
 
             if (!IsPostBack)
             {
                 int orderId;
+
                 if (!int.TryParse(Request.QueryString["orderId"], out orderId))
                 {
-                    // fallback to session
                     if (Session["LastOrderID"] != null)
+                    {
                         orderId = Convert.ToInt32(Session["LastOrderID"]);
+                    }
                     else
                     {
-                        Response.Redirect("~/CustomerDashboard.aspx");
+                        Response.Redirect("~/StaffDashboard.aspx", false);
+                        Context.ApplicationInstance.CompleteRequest();
                         return;
                     }
                 }
 
-                LoadReceipt(orderId);
-                SendReceiptEmail(orderId);
+                // Make sure this is the order the employee just processed.
+                if (Session["LastOrderID"] == null ||
+                    Convert.ToInt32(Session["LastOrderID"]) != orderId)
+                {
+                    Response.Redirect("~/StaffDashboard.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
+                    return;
+                }
+
+                if (LoadReceipt(orderId))
+                {
+                    SendReceiptEmail(orderId);
+                }
+                else
+                {
+                    Response.Redirect("~/StaffDashboard.aspx", false);
+                    Context.ApplicationInstance.CompleteRequest();
+                }
             }
         }
 
-        private void LoadReceipt(int orderId)
+        private bool LoadReceipt(int orderId)
         {
             using (SqlConnection conn = DatabaseConnection.GetConnection())
             {
                 conn.Open();
 
-                // Order header
-                using (SqlCommand cmd = new SqlCommand(@"
-                    SELECT OrderDateTime, PaymentMethod, TotalAmountDue, TotalChangeDue
-                    FROM OrderTable 
-                    WHERE OrderID = @id AND CustomerID = @cust", conn))
+                bool isCustomer = Convert.ToString(Session["UserType"])
+                    .Equals("Customer", StringComparison.OrdinalIgnoreCase);
+
+                string sql = @"
+            SELECT OrderDateTime, PaymentMethod,
+                   TotalAmountDue, TotalChangeDue
+            FROM OrderTable
+            WHERE OrderID = @id";
+
+                if (isCustomer)
+                {
+                    sql += " AND CustomerID = @userId";
+                }
+                else
+                {
+                    sql += " AND EmployeeID = @userId";
+                }
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", orderId);
-                    cmd.Parameters.AddWithValue("@cust", Session["UserID"]);
+                    cmd.Parameters.AddWithValue(
+                        "@userId", Convert.ToInt32(Session["UserID"]));
 
                     using (SqlDataReader r = cmd.ExecuteReader())
                     {
                         if (!r.Read())
                         {
-                            Response.Redirect("~/CustomerDashboard.aspx");
-                            return;
+                            return false;
                         }
 
                         litOrderId.Text = orderId.ToString();
-                        litOrderDate.Text = Convert.ToDateTime(r["OrderDateTime"]).ToString("dd MMM yyyy HH:mm");
-                        litPaymentMethod.Text = r["PaymentMethod"].ToString();
-                        litTotal.Text = Convert.ToDecimal(r["TotalAmountDue"]).ToString("0.00");
 
-                        decimal change = Convert.ToDecimal(r["TotalChangeDue"]);
+                        litOrderDate.Text =
+                            Convert.ToDateTime(r["OrderDateTime"])
+                            .ToString("dd MMM yyyy HH:mm");
+
+                        litPaymentMethod.Text = r["PaymentMethod"].ToString();
+
+                        litTotal.Text =
+                            Convert.ToDecimal(r["TotalAmountDue"])
+                            .ToString("0.00");
+
+                        decimal change =
+                            Convert.ToDecimal(r["TotalChangeDue"]);
+
+                        pnlChange.Visible = change > 0;
+
                         if (change > 0)
                         {
-                            pnlChange.Visible = true;
                             litChange.Text = change.ToString("0.00");
                         }
                     }
                 }
 
-                // Order items
                 using (SqlCommand cmd = new SqlCommand(@"
-                    SELECT m.MenuItemName, i.QuantityOrdered AS Quantity, i.Subtotal
-                    FROM OrderItemTable i
-                    INNER JOIN MenuItemsTable m ON m.MenuItemID = i.MenuItemID
-                    WHERE i.OrderID = @id", conn))
+            SELECT m.MenuItemName,
+                   i.QuantityOrdered AS Quantity,
+                   i.Subtotal
+            FROM OrderItemTable i
+            INNER JOIN MenuItemsTable m
+                ON m.MenuItemID = i.MenuItemID
+            WHERE i.OrderID = @id", conn))
                 {
                     cmd.Parameters.AddWithValue("@id", orderId);
 
-                    System.Data.DataTable itemsTable = new System.Data.DataTable();
+                    System.Data.DataTable itemsTable =
+                        new System.Data.DataTable();
+
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
                         adapter.Fill(itemsTable);
@@ -98,29 +157,46 @@ namespace Cafe101.Web
                     rptItems.DataBind();
                 }
             }
+
+            return true;
         }
 
         private void SendReceiptEmail(int orderId)
         {
-            // Send only once per order, so refreshing the page doesn't send it again
             string sentKey = "ReceiptEmailed_" + orderId;
+
             if (Session[sentKey] != null)
             {
-                lblEmailStatus.Text = "A PDF receipt was already sent to your email.";
+                lblEmailStatus.Text =
+                    "A PDF receipt was already sent to the customer's email.";
                 return;
             }
 
             try
             {
-                string customerEmail = GetCustomerEmail();
+                string customerEmail = GetCustomerEmail(orderId);
+
                 if (string.IsNullOrWhiteSpace(customerEmail))
                 {
-                    lblEmailStatus.Text = "Receipt ready (no email address on file).";
+                    lblEmailStatus.Text =
+                        "Receipt ready. This is a walk-in order, so no email was sent.";
                     return;
                 }
 
-                string smtpUser = ConfigurationManager.AppSettings["SmtpUser"];
-                string smtpPassword = (ConfigurationManager.AppSettings["SmtpPassword"] ?? "").Replace(" ", "");
+                string smtpUser =
+                    ConfigurationManager.AppSettings["SmtpUser"];
+
+                string smtpPassword =
+                    (ConfigurationManager.AppSettings["SmtpPassword"] ?? "")
+                    .Replace(" ", "");
+
+                if (string.IsNullOrWhiteSpace(smtpUser) ||
+                    string.IsNullOrWhiteSpace(smtpPassword))
+                {
+                    lblEmailStatus.Text =
+                        "Receipt ready, but email settings are unavailable.";
+                    return;
+                }
 
                 byte[] pdfBytes = GenerateReceiptPdf(orderId);
 
@@ -129,28 +205,35 @@ namespace Cafe101.Web
                     mail.From = new MailAddress(smtpUser, "Cafe101");
                     mail.To.Add(customerEmail);
                     mail.Subject = "Your Cafe101 Receipt - Order #" + orderId;
-                    mail.Body = "Thank you for your order! Please find your receipt attached.";
+                    mail.Body =
+                        "Thank you for your order! Please find your receipt attached.";
+
                     mail.IsBodyHtml = false;
 
                     mail.Attachments.Add(new Attachment(
                         new MemoryStream(pdfBytes),
-                        $"Cafe101_Receipt_{orderId}.pdf",
+                        "Cafe101_Receipt_" + orderId + ".pdf",
                         "application/pdf"));
 
                     using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
                     {
                         smtp.EnableSsl = true;
-                        smtp.Credentials = new NetworkCredential(smtpUser, smtpPassword);
+                        smtp.Credentials =
+                            new NetworkCredential(smtpUser, smtpPassword);
+
                         smtp.Send(mail);
                     }
                 }
 
                 Session[sentKey] = true;
-                lblEmailStatus.Text = "A PDF receipt has been sent to " + customerEmail;
+
+                lblEmailStatus.Text =
+                    "A PDF receipt has been sent to " + Server.HtmlEncode(customerEmail);
             }
             catch (Exception)
             {
-                lblEmailStatus.Text = "Your receipt is ready, but we couldn't email it right now.";
+                lblEmailStatus.Text =
+                    "Your receipt is ready, but we couldn't email it right now.";
             }
         }
         private byte[] GenerateReceiptPdf(int orderId)
@@ -417,16 +500,30 @@ namespace Cafe101.Web
             };
         }
 
-        private string GetCustomerEmail()
+        private string GetCustomerEmail(int orderId)
         {
             using (SqlConnection conn = DatabaseConnection.GetConnection())
-            using (SqlCommand cmd = new SqlCommand(
-                "SELECT Email FROM CustomerTable WHERE CustomerID = @id", conn))
+            using (SqlCommand cmd = new SqlCommand(@"
+        SELECT c.Email
+        FROM OrderTable o
+        INNER JOIN CustomerTable c
+            ON o.CustomerID = c.CustomerID
+        WHERE o.OrderID = @id
+        AND c.CustomerID <> 3020
+        AND c.Email <> 'walkin@cafe101.local'", conn))
             {
-                cmd.Parameters.AddWithValue("@id", Session["UserID"]);
+                cmd.Parameters.AddWithValue("@id", orderId);
+
                 conn.Open();
+
                 object result = cmd.ExecuteScalar();
-                return result == null || result == DBNull.Value ? null : result.ToString();
+
+                if (result == null || result == DBNull.Value)
+                {
+                    return null;
+                }
+
+                return result.ToString();
             }
         }
 
@@ -440,6 +537,35 @@ namespace Cafe101.Web
                 <p>You can view your full receipt by logging into your account.</p>
                 <br/>
                 <p>Cafe101 Team</p>";
+        }
+
+        private bool CanAccessReceipt()
+        {
+            if (Session["UserID"] == null)
+            {
+                return false;
+            }
+
+            string userType = Convert.ToString(Session["UserType"]);
+            string role = Convert.ToString(Session["Role"]);
+
+            // Customers can access their own receipts.
+            if (userType.Equals(
+                "Customer",
+                StringComparison.OrdinalIgnoreCase))
+            {
+                int customerId;
+
+                return int.TryParse(
+                    Convert.ToString(Session["UserID"]),
+                    out customerId) && customerId > 0;
+            }
+
+            // Employees can access receipts.
+            return
+                role.Equals("Cashier", StringComparison.OrdinalIgnoreCase) ||
+                role.Equals("Staff", StringComparison.OrdinalIgnoreCase) ||
+                role.Equals("Manager", StringComparison.OrdinalIgnoreCase);
         }
     }
 }

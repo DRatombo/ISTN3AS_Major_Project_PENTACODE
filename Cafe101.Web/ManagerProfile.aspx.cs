@@ -1,5 +1,7 @@
-﻿using Cafe101.Logic;
+﻿
+using Cafe101.Logic;
 using System;
+using System.Web;
 
 namespace Cafe101.Web
 {
@@ -11,34 +13,33 @@ namespace Cafe101.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             // =============================================
-            // USER MUST BE LOGGED IN
+            // CHECK THAT THE USER IS LOGGED IN
             // =============================================
 
             if (Session["UserID"] == null ||
                 Session["Role"] == null)
             {
-                Response.Redirect("~/SignIn.aspx");
+                RedirectToSignIn();
                 return;
             }
 
-
             // =============================================
-            // MANAGER ACCESS ONLY
+            // CHECK THAT THE LOGGED-IN USER IS A MANAGER
             // =============================================
 
-            string role = Session["Role"].ToString();
+            string role = Convert.ToString(Session["Role"]);
 
-            if (!role.Equals(
-                "Manager",
+            role = role.Trim();
+
+            if (!role.Equals("Manager",
                 StringComparison.OrdinalIgnoreCase))
             {
-                Response.Redirect("~/SignIn.aspx");
+                RedirectToSignIn();
                 return;
             }
 
-
             // =============================================
-            // LOAD PROFILE
+            // LOAD PROFILE ON FIRST PAGE LOAD
             // =============================================
 
             if (!IsPostBack)
@@ -47,23 +48,33 @@ namespace Cafe101.Web
             }
         }
 
+        // =============================================
+        // REDIRECT TO SIGN IN
+        // =============================================
+
+        private void RedirectToSignIn()
+        {
+            Response.Redirect("~/SignIn.aspx", false);
+            Context.ApplicationInstance.CompleteRequest();
+        }
 
         // =============================================
-        // LOAD MANAGER FROM DATABASE
+        // LOAD MANAGER DETAILS FROM DATABASE
         // =============================================
 
         private void LoadManagerProfile()
         {
             try
             {
+                // Get the logged-in employee ID
                 int employeeID =
                     Convert.ToInt32(Session["UserID"]);
 
-
+                // Retrieve manager information
                 EmployeeAccountDetails manager =
                     accountService.GetEmployeeByID(employeeID);
 
-
+                // Check whether the manager exists
                 if (manager == null)
                 {
                     lblProfileMessage.CssClass =
@@ -75,122 +86,95 @@ namespace Cafe101.Web
                     return;
                 }
 
+                // =============================================
+                // GET MANAGER INFORMATION
+                // =============================================
 
-                string firstName =
-                    manager.FirstName ?? "";
-
-                string surname =
-                    manager.Surname ?? "";
-
-                string email =
-                    manager.Email ?? "";
-
-                string address =
-                    manager.Address ?? "";
-
-                string role =
-                    manager.Role ?? "Manager";
-
+                string firstName = manager.FirstName ?? "";
+                string surname = manager.Surname ?? "";
+                string email = manager.Email ?? "";
+                string address = manager.Address ?? "";
+                string role = manager.Role ?? "Manager";
 
                 string fullName =
                     (firstName + " " + surname).Trim();
-
 
                 if (string.IsNullOrWhiteSpace(fullName))
                 {
                     fullName = "Manager";
                 }
 
-
+                // Create initials for profile avatar
                 string initials =
-                    CreateInitials(
-                        firstName,
-                        surname);
-
+                    CreateInitials(firstName, surname);
 
                 // =============================================
                 // TOP NAVBAR
                 // =============================================
 
-                lblTopManagerInitials.Text =
-                    initials;
-
-                lblTopManagerName.Text =
-                    fullName;
-
-                lblTopManagerRole.Text =
-                    role;
-
+                lblTopManagerInitials.Text = initials;
+                lblTopManagerName.Text = fullName;
+                lblTopManagerRole.Text = role;
 
                 // =============================================
                 // PROFILE SUMMARY
                 // =============================================
 
-                lblProfileInitials.Text =
-                    initials;
-
-                lblProfileName.Text =
-                    fullName;
-
-                lblProfileRole.Text =
-                    role;
+                lblProfileInitials.Text = initials;
+                lblProfileName.Text = fullName;
+                lblProfileRole.Text = role;
 
                 lblProfileEmail.Text =
                     string.IsNullOrWhiteSpace(email)
-                        ? "Not provided"
-                        : email;
-
+                    ? "Not provided"
+                    : email;
 
                 // =============================================
                 // PERSONAL INFORMATION
                 // =============================================
 
-                lblFullName.Text =
-                    fullName;
+                lblFullName.Text = fullName;
 
                 lblEmail.Text =
                     string.IsNullOrWhiteSpace(email)
-                        ? "Not provided"
-                        : email;
+                    ? "Not provided"
+                    : email;
 
                 lblAddress.Text =
                     string.IsNullOrWhiteSpace(address)
-                        ? "Not provided"
-                        : address;
+                    ? "Not provided"
+                    : address;
 
-                lblRole.Text =
-                    role;
-
+                lblRole.Text = role;
 
                 // =============================================
                 // WORK INFORMATION
                 // =============================================
 
-                lblEmployeeID.Text =
-                    employeeID.ToString();
+                lblEmployeeID.Text = employeeID.ToString();
 
-                lblAccountStatus.Text =
-                    "Active";
-
+                lblAccountStatus.Text = "Active";
 
                 // =============================================
-                // KEEP SESSION CONSISTENT
+                // UPDATE SESSION INFORMATION
                 // =============================================
 
-                Session["FirstName"] =
-                    firstName;
+                Session["FirstName"] = firstName;
+                Session["Surname"] = surname;
+                Session["Email"] = email;
 
-                Session["Surname"] =
-                    surname;
-
-                Session["Email"] =
-                    email;
-
-                Session["Role"] =
-                    role;
-
+                // Do not change the authenticated role here.
+                // The role was already checked above.
 
                 lblProfileMessage.Text = "";
+            }
+            catch (FormatException)
+            {
+                lblProfileMessage.CssClass =
+                    "d-block text-danger small mt-3";
+
+                lblProfileMessage.Text =
+                    "Your account session contains an invalid employee ID.";
             }
             catch (Exception)
             {
@@ -198,13 +182,12 @@ namespace Cafe101.Web
                     "d-block text-danger small mt-3";
 
                 lblProfileMessage.Text =
-                    "Unable to load your profile information.";
+                    "Unable to load your profile information. Please try again.";
             }
         }
 
-
         // =============================================
-        // CREATE INITIALS
+        // CREATE PROFILE INITIALS
         // =============================================
 
         private string CreateInitials(
@@ -213,30 +196,23 @@ namespace Cafe101.Web
         {
             string initials = "";
 
-
             if (!string.IsNullOrWhiteSpace(firstName))
             {
-                initials +=
-                    firstName.Substring(0, 1).ToUpper();
+                initials += firstName.Substring(0, 1).ToUpper();
             }
-
 
             if (!string.IsNullOrWhiteSpace(surname))
             {
-                initials +=
-                    surname.Substring(0, 1).ToUpper();
+                initials += surname.Substring(0, 1).ToUpper();
             }
-
 
             if (string.IsNullOrWhiteSpace(initials))
             {
                 initials = "M";
             }
 
-
             return initials;
         }
-
 
         // =============================================
         // LOGOUT
@@ -249,7 +225,8 @@ namespace Cafe101.Web
             Session.Clear();
             Session.Abandon();
 
-            Response.Redirect("~/SignIn.aspx");
+            Response.Redirect("~/SignIn.aspx", false);
+            Context.ApplicationInstance.CompleteRequest();
         }
     }
 }

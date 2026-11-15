@@ -68,6 +68,55 @@
                             </asp:RadioButtonList>
                         </fieldset>
 
+                        <%-- CUSTOMER SELECTION (STAFF ONLY) --%>
+<asp:Panel ID="pnlCustomerSelection" runat="server"
+    CssClass="mb-4">
+
+    <h5 class="mb-2">Customer Details</h5>
+
+    <p class="text-muted">
+        Search for an existing customer or leave Walk-in Customer selected.
+    </p>
+
+    <div class="mb-3">
+        <asp:Label ID="lblCustomerSearch" runat="server"
+            AssociatedControlID="txtCustomerSearch"
+            Text="Search by name or email"
+            CssClass="form-label" />
+
+        <div class="input-group">
+            <asp:TextBox ID="txtCustomerSearch" runat="server"
+                CssClass="form-control"
+                placeholder="Enter customer name or email"
+                AutoPostBack="true"
+                OnTextChanged="txtCustomerSearch_TextChanged" />
+
+            <asp:Button ID="btnSearchCustomer" runat="server"
+                Text="Search"
+                CssClass="btn btn-outline-brand"
+                CausesValidation="false"
+                OnClick="btnSearchCustomer_Click" />
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <asp:Label ID="lblSelectCustomer" runat="server"
+            AssociatedControlID="ddlCustomer"
+            Text="Select Customer"
+            CssClass="form-label" />
+
+        <asp:DropDownList ID="ddlCustomer" runat="server"
+            CssClass="form-select"
+            AppendDataBoundItems="false">
+        </asp:DropDownList>
+    </div>
+
+    <asp:Label ID="lblCustomerMessage" runat="server"
+        CssClass="text-danger"
+        EnableViewState="false" />
+
+</asp:Panel>
+
                         <!-- Cash only -->
                         <div id="divCash" style="display:none;">
                             <div class="mb-2">

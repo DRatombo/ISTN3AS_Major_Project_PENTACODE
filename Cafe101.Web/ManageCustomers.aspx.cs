@@ -137,7 +137,7 @@ namespace Cafe101.Web
             btnAddCustomer.Enabled = true;
             btnUpdateCustomer.Enabled = false;
             btnDeleteCustomer.Enabled = false;
-            btnResetPassword.Enabled = false;
+            //btnResetPassword.Enabled = false;
 
             gvCustomers.SelectedIndex = -1;
             ResetValidationStyles();
@@ -179,6 +179,19 @@ namespace Cafe101.Web
             ShowMessage(
                 "The customer operation could not be completed. Please try again.",
                 true);
+        }
+
+        protected void gvCustomers_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            try
+            {
+                gvCustomers.PageIndex = e.NewPageIndex;
+                LoadCustomers();
+            }
+            catch (Exception ex)
+            {
+                ReportError(ex);
+            }
         }
 
         protected void gvCustomers_SelectedIndexChanged(
@@ -224,7 +237,7 @@ namespace Cafe101.Web
                 btnAddCustomer.Enabled = false;
                 btnUpdateCustomer.Enabled = true;
                 btnDeleteCustomer.Enabled = true;
-                btnResetPassword.Enabled = true;
+                //btnResetPassword.Enabled = true;
 
                 lblCustomerSelection.Text = "Editing selected customer";
                 ShowMessage("Customer selected.", false);
@@ -376,6 +389,7 @@ namespace Cafe101.Web
             try
             {
                 txtSearch.Text = "";
+                gvCustomers.PageIndex = 0;
                 LoadCustomers();
 
                 ShowMessage(
@@ -447,17 +461,20 @@ namespace Cafe101.Web
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            gvCustomers.PageIndex = 0;
             LoadCustomers();
         }
 
         protected void btnClearSearch_Click(object sender, EventArgs e)
         {
             txtSearch.Text = "";
+            gvCustomers.PageIndex = 0;
             LoadCustomers();
         }
 
         protected void btnRefreshCustomers_Click(object sender, EventArgs e)
         {
+            gvCustomers.PageIndex = 0;
             RefreshPage();
         }
 

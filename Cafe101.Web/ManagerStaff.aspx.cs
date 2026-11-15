@@ -42,6 +42,10 @@ namespace Cafe101.Web
                 return;
             }
 
+            // Stop the browser from auto-filling saved passwords into the
+            // employee password box. An auto-filled value would be treated as a
+            // new password and trigger the duplicate-password check.
+            txtEmployeePassword.Attributes["autocomplete"] = "new-password";
 
             if (!IsPostBack)
             {
@@ -944,8 +948,14 @@ namespace Cafe101.Web
             string role = ddlEmployeeRole.SelectedValue;
             string password = txtEmployeePassword.Text;
 
+            // The password is only touched when the manager actually typed one.
+            // When editing, a blank box means "leave the password as it is".
+            bool passwordProvided = !String.IsNullOrWhiteSpace(password);
+
             try
             {
+                // Each check excludes the employee being edited (id), so saving
+                // an employee never clashes with their own existing record.
                 if (IsEmployeeDuplicate(first, surname, id))
                 {
                     lblSurnameValidation.Text = "This employee name already exists.";
@@ -956,7 +966,7 @@ namespace Cafe101.Web
                     lblEmailValidation.Text = "This email is already in use.";
                     ShowStaffMessage("Duplicate email address.", "warning"); SetStaffSlide(true); return;
                 }
-                if (!String.IsNullOrWhiteSpace(password) && IsPasswordDuplicate(password, id))
+                if (passwordProvided && IsPasswordDuplicate(password, id))
                 {
                     lblPasswordValidation.Text = "This password is already in use.";
                     ShowStaffMessage("Duplicate password.", "warning"); SetStaffSlide(true); return;
@@ -977,7 +987,7 @@ namespace Cafe101.Web
                         cmd.CommandText = @"UPDATE EmployeeTable SET FirstName=@FirstName,
                             Surname=@Surname,Address=@Address,Email=@Email,Role=@Role
                             WHERE EmployeeID=@ID";
-                        if (!String.IsNullOrWhiteSpace(password))
+                        if (passwordProvided)
                         {
                             cmd.CommandText = @"UPDATE EmployeeTable SET FirstName=@FirstName,
                                 Surname=@Surname,Address=@Address,Email=@Email,Role=@Role,
@@ -1055,10 +1065,8 @@ namespace Cafe101.Web
             int id = Convert.ToInt32(ViewState["SelectedEmployeeID"]);
             try
             {
-                if (IsPasswordDuplicate(temporaryPassword, id))
-                {
-                    ShowStaffMessage("The temporary password is already used by another employee.", "warning"); return;
-                }
+                // No duplicate-password check here: every reset uses the same
+                // temporary password, so a check would block the second reset.
                 using (SqlConnection conn = DatabaseConnection.GetConnection())
                 using (SqlCommand cmd = new SqlCommand("UPDATE EmployeeTable SET Password=@Password WHERE EmployeeID=@ID", conn))
                 {
@@ -1119,44 +1127,53 @@ namespace Cafe101.Web
             lblPasswordValidation.Text = "";
         }
 
-        private bool IsEmployeeDuplicate(string first, string surname, int? excludeID)
+        // ============================================================
+        // DUPLICATE CHECKS
+        // ============================================================
+
+        // Shared helper: counts employees matching a condition, always
+        // leaving out the employee being edited (excludeID) when there is one.
+        private int CountEmployees(string condition, int? excludeID, params SqlParameter[] parameters)
         {
-            string sql = "SELECT COUNT(*) FROM EmployeeTable WHERE LOWER(FirstName)=LOWER(@F) AND LOWER(Surname)=LOWER(@S)";
-            if (excludeID.HasValue) sql += " AND EmployeeID<>@ID";
+            string sql = "SELECT COUNT(*) FROM EmployeeTable WHERE " + condition;
+            if (excludeID.HasValue) sql += " AND EmployeeID <> @ExcludeID";
+
             using (SqlConnection conn = DatabaseConnection.GetConnection())
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
-                cmd.Parameters.Add("@F", SqlDbType.NVarChar, 50).Value = first;
-                cmd.Parameters.Add("@S", SqlDbType.NVarChar, 50).Value = surname;
-                if (excludeID.HasValue) cmd.Parameters.Add("@ID", SqlDbType.Int).Value = excludeID.Value;
-                conn.Open(); return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
+                cmd.Parameters.AddRange(parameters);
+                if (excludeID.HasValue)
+                    cmd.Parameters.Add("@ExcludeID", SqlDbType.Int).Value = excludeID.Value;
+
+                conn.Open();
+                return Convert.ToInt32(cmd.ExecuteScalar());
             }
+        }
+
+        private bool IsEmployeeDuplicate(string first, string surname, int? excludeID)
+        {
+            return CountEmployees(
+                "LOWER(LTRIM(RTRIM(FirstName))) = LOWER(@F) AND LOWER(LTRIM(RTRIM(Surname))) = LOWER(@S)",
+                excludeID,
+                new SqlParameter("@F", SqlDbType.NVarChar, 50) { Value = first.Trim() },
+                new SqlParameter("@S", SqlDbType.NVarChar, 50) { Value = surname.Trim() }) > 0;
         }
 
         private bool IsEmailDuplicate(string email, int? excludeID)
         {
-            string sql = "SELECT COUNT(*) FROM EmployeeTable WHERE LOWER(Email)=LOWER(@Email)";
-            if (excludeID.HasValue) sql += " AND EmployeeID<>@ID";
-            using (SqlConnection conn = DatabaseConnection.GetConnection())
-            using (SqlCommand cmd = new SqlCommand(sql, conn))
-            {
-                cmd.Parameters.Add("@Email", SqlDbType.NVarChar, 150).Value = email;
-                if (excludeID.HasValue) cmd.Parameters.Add("@ID", SqlDbType.Int).Value = excludeID.Value;
-                conn.Open(); return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
-            }
+            return CountEmployees(
+                "LOWER(LTRIM(RTRIM(Email))) = LOWER(@Email)",
+                excludeID,
+                new SqlParameter("@Email", SqlDbType.NVarChar, 150) { Value = email.Trim() }) > 0;
         }
 
         private bool IsPasswordDuplicate(string password, int? excludeID)
         {
-            string sql = "SELECT COUNT(*) FROM EmployeeTable WHERE Password=@Password";
-            if (excludeID.HasValue) sql += " AND EmployeeID<>@ID";
-            using (SqlConnection conn = DatabaseConnection.GetConnection())
-            using (SqlCommand cmd = new SqlCommand(sql, conn))
-            {
-                cmd.Parameters.Add("@Password", SqlDbType.NVarChar, 100).Value = password;
-                if (excludeID.HasValue) cmd.Parameters.Add("@ID", SqlDbType.Int).Value = excludeID.Value;
-                conn.Open(); return Convert.ToInt32(cmd.ExecuteScalar()) > 0;
-            }
+            // Case-sensitive, so "Temp123" and "temp123" count as different passwords.
+            return CountEmployees(
+                "Password = @Password COLLATE Latin1_General_CS_AS",
+                excludeID,
+                new SqlParameter("@Password", SqlDbType.NVarChar, 100) { Value = password }) > 0;
         }
 
         private void ShowStaffMessage(string message, string type)

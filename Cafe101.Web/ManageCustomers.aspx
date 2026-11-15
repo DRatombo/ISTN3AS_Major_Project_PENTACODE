@@ -289,14 +289,6 @@
                             OnClick="btnDeleteCustomer_Click" />
 
                         <asp:Button
-                            ID="btnResetPassword"
-                            runat="server"
-                            Text="Reset Password"
-                            style="background-color: transparent; color: #f59e0b; border: 1px solid #f59e0b; padding: 6px 16px; border-radius: 4px; font-weight: 500;"
-                            Enabled="false"
-                            OnClick="btnResetPassword_Click" />
-
-                        <asp:Button
                             ID="btnNewCustomer"
                             runat="server"
                             Text="Clear form"
@@ -316,6 +308,7 @@
                             AutoGenerateColumns="False"
                             DataKeyNames="CustomerID"
                             OnSelectedIndexChanged="gvCustomers_SelectedIndexChanged"
+                            OnPageIndexChanging="gvCustomers_PageIndexChanging"
                             AllowPaging="true"
                             PageSize="10">
                             <Columns>

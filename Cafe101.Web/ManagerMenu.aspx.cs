@@ -577,7 +577,6 @@ namespace Cafe101.Web
 
             try
             {
-                // RecipeTable stores the ingredient quantity required for one menu item.
                 using (SqlConnection connection = DatabaseConnection.GetConnection())
                 using (SqlCommand command = connection.CreateCommand())
                 {
@@ -586,10 +585,11 @@ IF EXISTS (SELECT 1 FROM RecipeTable WHERE MenuItemID = @MenuItemID AND Ingredie
     UPDATE RecipeTable SET QuantityNeeded = @QuantityNeeded
     WHERE MenuItemID = @MenuItemID AND IngredientID = @IngredientID;
 ELSE
-    INSERT INTO RecipeTable (MenuItemID, IngredientID, QuantityNeeded)
-    VALUES (@MenuItemID, @IngredientID, @QuantityNeeded);";
+    INSERT INTO RecipeTable (MenuItemID, IngredientID, QuantityNeeded, Description)
+    VALUES (@MenuItemID, @IngredientID, @QuantityNeeded, @Description);";
                     command.Parameters.Add("@MenuItemID", SqlDbType.Int).Value = SelectedMenuItemID.Value;
                     command.Parameters.Add("@IngredientID", SqlDbType.Int).Value = ingredientID;
+                    command.Parameters.Add("@Description", SqlDbType.NVarChar, 200).Value = ingredient.SelectedItem.Text;
                     SqlParameter quantityParameter = command.Parameters.Add("@QuantityNeeded", SqlDbType.Decimal);
                     quantityParameter.Precision = 18;
                     quantityParameter.Scale = 3;
@@ -597,19 +597,10 @@ ELSE
                     connection.Open();
                     command.ExecuteNonQuery();
                 }
-
-                quantityText.Text = "";
-                ingredient.SelectedIndex = 0;
-                LoadSelectedItem(SelectedMenuItemID.Value);
-                // Keep the recipe editor open so the manager can add multiple ingredients.
-                MenuControl<Panel>("pnlViewItem").Visible = false;
-                MenuControl<Panel>("pnlManageRecipe").Visible = true;
-                pnlSelectedItem.Visible = true;
-                ShowMessage("Ingredient added to the recipe. Add another ingredient or finish the recipe.", "success");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                ShowMessage("Unable to save this recipe ingredient. Verify the RecipeTable column names and database connection.", "danger");
+                ShowMessage("Unable to save this recipe ingredient: " + ex.Message, "danger");
             }
         }
 

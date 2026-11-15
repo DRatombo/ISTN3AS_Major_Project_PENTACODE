@@ -182,9 +182,9 @@
             'What are your opening hours?',
             'How long does an order take?',
             'What are the popular items?',
-            'How do I add an employee?',
-            'How do I add a menu item?',
-            'What does low stock mean?'
+            'Where are you located?',
+            'What payment methods do you accept?',
+            'Do you offer delivery?'
         ];
         questions.forEach(function (q) {
             var b = document.createElement('button');

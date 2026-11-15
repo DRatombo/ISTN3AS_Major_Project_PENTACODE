@@ -87,15 +87,12 @@
         <div class="input-group">
             <asp:TextBox ID="txtCustomerSearch" runat="server"
                 CssClass="form-control"
-                placeholder="Enter customer name or email"
-                AutoPostBack="true"
-                OnTextChanged="txtCustomerSearch_TextChanged" />
+                placeholder="Enter customer name or email" />
 
             <asp:Button ID="btnSearchCustomer" runat="server"
                 Text="Search"
                 CssClass="btn btn-outline-brand"
-                CausesValidation="false"
-                OnClick="btnSearchCustomer_Click" />
+                CausesValidation="false" />
         </div>
     </div>
 

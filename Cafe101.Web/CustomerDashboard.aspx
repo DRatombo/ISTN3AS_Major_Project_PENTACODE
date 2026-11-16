@@ -427,7 +427,7 @@
                 <nav class="customer-nav">
 
 
-                    <a href="<%= GetDashboardUrl() %>">
+      <a href="CustomerDashboard.aspx" class="active">
     <span class="customer-nav-icon">&#8962;</span>
     <span class="customer-nav-text">Dashboard</span>
 </a>

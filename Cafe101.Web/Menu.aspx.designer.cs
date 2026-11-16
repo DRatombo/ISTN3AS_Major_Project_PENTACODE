@@ -42,13 +42,22 @@ namespace Cafe101.Web
         protected global::System.Web.UI.WebControls.Literal litHeaderCartCount;
 
         /// <summary>
-        /// lblMessage control.
+        /// lnkDashboard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkDashboard;
+
+        /// <summary>
+        /// lnkLogOut control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lnkLogOut;
 
         /// <summary>
         /// ddlCategory control.
@@ -58,15 +67,6 @@ namespace Cafe101.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
-
-        /// <summary>
-        /// pnlMenuSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlMenuSearch;
 
         /// <summary>
         /// txtMenuSearch control.
@@ -96,6 +96,15 @@ namespace Cafe101.Web
         protected global::System.Web.UI.WebControls.Button btnClearSearch;
 
         /// <summary>
+        /// lblMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMessage;
+
+        /// <summary>
         /// rptMenu control.
         /// </summary>
         /// <remarks>
@@ -114,15 +123,6 @@ namespace Cafe101.Web
         protected global::System.Web.UI.WebControls.Label lblNoItems;
 
         /// <summary>
-        /// lblCartCount control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCartCount;
-
-        /// <summary>
         /// pnlEmptyCart control.
         /// </summary>
         /// <remarks>
@@ -130,6 +130,15 @@ namespace Cafe101.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlEmptyCart;
+
+        /// <summary>
+        /// pnlCartSummary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlCartSummary;
 
         /// <summary>
         /// rptCart control.
@@ -141,13 +150,13 @@ namespace Cafe101.Web
         protected global::System.Web.UI.WebControls.Repeater rptCart;
 
         /// <summary>
-        /// pnlCartSummary control.
+        /// lblCartCount control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlCartSummary;
+        protected global::System.Web.UI.WebControls.Label lblCartCount;
 
         /// <summary>
         /// lblCartSubtotal control.

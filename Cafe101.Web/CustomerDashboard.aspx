@@ -427,18 +427,10 @@
                 <nav class="customer-nav">
 
 
-                    <a href="CustomerDashboard.aspx"
-                        class="active">
-
-                        <span class="customer-nav-icon">
-                            &#8962;
-                        </span>
-
-                        <span class="customer-nav-text">
-                            Dashboard
-                        </span>
-
-                    </a>
+                    <a href="<%= GetDashboardUrl() %>">
+    <span class="customer-nav-icon">&#8962;</span>
+    <span class="customer-nav-text">Dashboard</span>
+</a>
 
 
                     <a href="Menu.aspx">

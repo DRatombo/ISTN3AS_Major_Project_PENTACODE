@@ -9,8 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-//NEW
+using System.Configuration;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
@@ -244,7 +243,7 @@ namespace Cafe101
                 // Create receipt object but NEVER show the form
                 frmReceipt formR = new frmReceipt(_orderID, _orderTotal, amountTendered, change, paymentMethod);
                 formR.PopulateReceiptData();          // necessary because form is never shown
-                
+
                 formR.ShowPrintPreview();             // opens Print Preview (modal)
 
                 // This code only runs AFTER the user closes the Print Preview
@@ -304,26 +303,6 @@ namespace Cafe101
         {
         }
 
-        /* private void button1_Click(object sender, EventArgs e)
-         {
-             frmTodaysOrders orders = new frmTodaysOrders();
-             orders.Show();
-         }
-
-         private void label1_Click(object sender, EventArgs e)
-         {
-         }
-
-         private void button1_Click_1(object sender, EventArgs e)
-         {
-             frmTodaysOrders orders = new frmTodaysOrders();
-             orders.Show();
-         }
-
-         /* private void btnHelp_Click(object sender, EventArgs e)
-          {
-
-          }*/
 
         // ---------------------------------------------------------------
         // GET CUSTOMER EMAIL FROM DATABASE
@@ -473,8 +452,8 @@ namespace Cafe101
             // ===== Send the email =====
             try
             {
-                string fromEmail = "mayisesnakhokonke7@gmail.com";
-                string appPassword = "nkwl wept pruf ljyk";   // ← change to a NEW app password!
+                string fromEmail = "noblemayise@gmail.com";
+                string appPassword = "nzbe txcv tzzw pioy";
 
                 using (MailMessage mail = new MailMessage())
                 {
@@ -577,7 +556,7 @@ namespace Cafe101
                 stepTitle = "📋 Checkout Guide — Step 3 of 3";
                 stepDetail =
                     "Payment Method: " + method + " ✔\r\n" +
-                    "Order Total: " + totalTxt.Text + "\r\n" +       
+                    "Order Total: " + totalTxt.Text + "\r\n" +
                     (rbCash.Checked ? "  |  Change: " + changeTextBox.Text : "") + "\r\n" +
                     "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\r\n\r\n" +
 

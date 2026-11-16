@@ -837,28 +837,6 @@
                             </section>
 
 
-                            <!-- ACCOUNT SECURITY -->
-
-                            <section class="account-card">
-
-                                <h5 class="account-card-title">
-                                    Account Security
-                                </h5>
-
-                                <p class="text-muted small mb-3">
-                                    Your password is securely stored and is
-                                    never displayed on this page.
-                                </p>
-
-                                <button
-                                    type="button"
-                                    class="btn btn-outline-brand w-100">
-
-                                    Change Password
-
-                                </button>
-
-                            </section>
 
                         </div>
 

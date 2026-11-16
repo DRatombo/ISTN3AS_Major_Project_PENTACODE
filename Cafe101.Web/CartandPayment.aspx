@@ -61,7 +61,7 @@
                             <asp:TextBox ID="txtOrderTotal" runat="server" ReadOnly="true" CssClass="form-control fw-bold" />
                         </div>
 
-                        <!-- CUSTOMER SELECTION: MANAGER AND CASHIER ONLY -->
+                        <!-- CUSTOMER SELECTION: MANAGER, CASHIER AND STAFF -->
                         <asp:Panel ID="pnlCustomerSelection" runat="server" CssClass="mb-4" Visible="false">
 
                             <h5 class="mb-2">Customer Details</h5>

@@ -33,12 +33,21 @@ namespace Cafe101.Web
                 string userType = Convert.ToString(Session["UserType"]);
                 string role = Convert.ToString(Session["Role"]);
 
-                return string.Equals(userType, "Employee",
+                return string.Equals(
+                           userType,
+                           "Employee",
                            StringComparison.OrdinalIgnoreCase)
-                    && (string.Equals(role, "Manager",
+                    &&
+                    (
+                        string.Equals(role, "Manager",
                             StringComparison.OrdinalIgnoreCase)
-                        || string.Equals(role, "Cashier",
-                            StringComparison.OrdinalIgnoreCase));
+                        ||
+                        string.Equals(role, "Cashier",
+                            StringComparison.OrdinalIgnoreCase)
+                        ||
+                        string.Equals(role, "Staff",
+                            StringComparison.OrdinalIgnoreCase)
+                    );
             }
         }
 
@@ -55,7 +64,7 @@ namespace Cafe101.Web
                 return;
             }
 
-            // Customers, managers and cashiers may use this checkout.
+            // Customers, managers, cashiers and ordinary staff may use this checkout.
             if (!IsCustomer && !IsStaffAllowed)
             {
                 Response.Redirect("~/SignIn.aspx", false);
@@ -63,7 +72,7 @@ namespace Cafe101.Web
                 return;
             }
 
-            // Customer selection is only available to managers/cashiers.
+            // Customer selection is only available to authorised employees.
             pnlCustomerSelection.Visible = IsStaffAllowed;
 
             if (!IsPostBack && IsStaffAllowed)
@@ -335,7 +344,7 @@ namespace Cafe101.Web
                     return;
                 }
 
-                // The logged-in cashier/manager is the employee processing the order.
+                // The logged-in employee is the person processing the order.
                 employeeId = Convert.ToInt32(Session["UserID"]);
             }
             else

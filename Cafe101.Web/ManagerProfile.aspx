@@ -1,18 +1,26 @@
-﻿<%@ Page Title="Manager Profile"
+﻿
+<%@ Page Title="Manager Profile"
     Language="C#"
     MasterPageFile="~/Site.Master"
     AutoEventWireup="true"
     CodeBehind="ManagerProfile.aspx.cs"
     Inherits="Cafe101.Web.ManagerProfile" %>
 
-
 <asp:Content ID="Content1"
     ContentPlaceHolderID="MainContent"
     runat="server">
 
+    <style>
+        /* Style the logged-in manager's name in the top header. */
+        .staff-header-user strong,
+        .staff-header-user strong span,
+        .staff-header-user .logged-in-user-name {
+            color: #3b82f6 !important;
+            font-weight: 600;
+        }
+    </style>
 
     <div class="staff-shell manager-shell">
-
 
         <%-- ================================================
              TOP HEADER
@@ -20,9 +28,7 @@
 
         <header class="staff-header">
 
-
             <div class="staff-header-left">
-
 
                 <button type="button"
                     id="sidebarToggle"
@@ -33,20 +39,15 @@
 
                 </button>
 
-
                 <div class="staff-header-brand">
                     Cafe101
                 </div>
 
-
             </div>
-
-
 
             <%-- LOGGED-IN MANAGER --%>
 
             <div class="staff-header-user">
-
 
                 <div class="staff-header-avatar">
 
@@ -57,9 +58,7 @@
 
                 </div>
 
-
                 <div>
-
 
                     <strong>
 
@@ -70,7 +69,6 @@
 
                     </strong>
 
-
                     <small>
 
                         <asp:Label
@@ -80,16 +78,11 @@
 
                     </small>
 
-
                 </div>
-
 
             </div>
 
-
         </header>
-
-
 
         <%-- ================================================
              BODY
@@ -97,22 +90,19 @@
 
         <div class="staff-body">
 
-
             <%-- ================================================
                  SIDEBAR
                  ================================================ --%>
 
             <aside class="staff-sidebar">
 
-
                 <div class="staff-sidebar-title">
                     MANAGER SYSTEM
                 </div>
 
-
-
                 <nav class="staff-nav" aria-label="Manager navigation">
-                    <%-- Keep all management links available on every manager page. --%>
+
+                    <%-- Dashboard --%>
                     <a href="ManagerDashboard.aspx" aria-label="Dashboard">
                         <span class="staff-nav-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="19" height="19"
@@ -123,6 +113,7 @@
                         <span class="staff-nav-text">Dashboard</span>
                     </a>
 
+                    <%-- Orders --%>
                     <a href="ManagerOrders.aspx" aria-label="Orders">
                         <span class="staff-nav-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="19" height="19"
@@ -132,6 +123,8 @@
                         </span>
                         <span class="staff-nav-text">Orders</span>
                     </a>
+
+                    <%-- Customers --%>
                     <a href="ManageCustomers.aspx" aria-label="Customers">
                         <span class="staff-nav-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="19" height="19"
@@ -144,6 +137,8 @@
                         </span>
                         <span class="staff-nav-text">Customers</span>
                     </a>
+
+                    <%-- Menu --%>
                     <a href="ManagerMenu.aspx" aria-label="Menu">
                         <span class="staff-nav-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="19" height="19"
@@ -154,6 +149,7 @@
                         <span class="staff-nav-text">Menu</span>
                     </a>
 
+                    <%-- Ingredients --%>
                     <a href="ManageIngredients.aspx" aria-label="Ingredients">
                         <span class="staff-nav-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="19" height="19"
@@ -164,6 +160,7 @@
                         <span class="staff-nav-text">Ingredients</span>
                     </a>
 
+                    <%-- Recipes --%>
                     <a href="ManageRecipes.aspx" aria-label="Recipes">
                         <span class="staff-nav-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="19" height="19"
@@ -174,16 +171,20 @@
                         <span class="staff-nav-text">Recipes</span>
                     </a>
 
+                    <%-- Staff --%>
                     <a href="ManagerStaff.aspx" aria-label="Staff">
                         <span class="staff-nav-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="19" height="19"
                                 fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="9" cy="8" r="3" /><circle cx="17" cy="10" r="2" /><path d="M3 20c0-4 2.5-7 6-7s6 3 6 7M15 15c3 0 5 2 5 5" />
+                                <circle cx="9" cy="8" r="3" />
+                                <circle cx="17" cy="10" r="2" />
+                                <path d="M3 20c0-4 2.5-7 6-7s6 3 6 7M15 15c3 0 5 2 5 5" />
                             </svg>
                         </span>
                         <span class="staff-nav-text">Staff</span>
                     </a>
 
+                    <%-- Reports --%>
                     <a href="ManagerReports.aspx" aria-label="Reports">
                         <span class="staff-nav-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="19" height="19"
@@ -194,50 +195,52 @@
                         <span class="staff-nav-text">Reports</span>
                     </a>
 
-                    <a href="ManagerProfile.aspx" class="active" aria-current="page" aria-label="Profile">
+                    <%-- Profile --%>
+                    <a href="ManagerProfile.aspx"
+                        class="active"
+                        aria-current="page"
+                        aria-label="Profile">
+
                         <span class="staff-nav-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="19" height="19"
                                 fill="none" stroke="currentColor" stroke-width="2">
-                                <circle cx="12" cy="8" r="4" /><path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" />
+                                <circle cx="12" cy="8" r="4" />
+                                <path d="M4 21c0-4 3.5-7 8-7s8 3 8 7" />
                             </svg>
                         </span>
+
                         <span class="staff-nav-text">Profile</span>
                     </a>
-                
-<%-- Help Centre --%>
-<a href="StaffHelp.aspx" aria-label="Help Centre">
 
-    <span class="staff-nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"
-             width="19"
-             height="19"
-             fill="none"
-             stroke="currentColor"
-             stroke-width="2">
+                    <%-- Help Centre --%>
+                    <a href="StaffHelp.aspx" aria-label="Help Centre">
 
-            <circle cx="12" cy="12" r="9" />
-            <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4" />
-            <path d="M12 17h.01" />
+                        <span class="staff-nav-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"
+                                width="19"
+                                height="19"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2">
 
-        </svg>
-    </span>
+                                <circle cx="12" cy="12" r="9" />
+                                <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4" />
+                                <path d="M12 17h.01" />
 
-    <span class="staff-nav-text">
-        Help Centre
-    </span>
+                            </svg>
+                        </span>
 
-</a>
+                        <span class="staff-nav-text">
+                            Help Centre
+                        </span>
+
+                    </a>
 
                 </nav>
 
-
-
-                <%-- ================================================
-                     LOGOUT
-                     ================================================ --%>
+                <%-- LOGOUT --%>
 
                 <div class="staff-sidebar-bottom">
-
 
                     <asp:LinkButton
                         ID="lnkLogout"
@@ -245,26 +248,19 @@
                         CssClass="staff-logout"
                         OnClick="LnkLogout_Click">
 
-
                         <span class="staff-nav-icon">
                             &#10140;
                         </span>
-
 
                         <span class="staff-nav-text">
                             Logout
                         </span>
 
-
                     </asp:LinkButton>
-
 
                 </div>
 
-
             </aside>
-
-
 
             <%-- ================================================
                  MAIN PROFILE AREA
@@ -272,35 +268,25 @@
 
             <main class="staff-main">
 
-
                 <%-- PAGE HEADING --%>
 
                 <div class="staff-page-heading">
-
 
                     <h3>
                         My Profile
                     </h3>
 
-
                     <p>
                         View your manager account information.
                     </p>
 
-
                 </div>
 
-
-
-                <%-- ================================================
-                     PROFILE SUMMARY
-                     ================================================ --%>
+                <%-- PROFILE SUMMARY --%>
 
                 <section class="staff-dashboard-panel staff-profile-summary">
 
-
                     <div class="staff-profile-summary-left">
-
 
                         <%-- INITIALS --%>
 
@@ -313,13 +299,9 @@
 
                         </div>
 
-
-
                         <div class="staff-profile-main-info">
 
-
                             <div class="staff-profile-name-row">
-
 
                                 <h4>
 
@@ -330,7 +312,6 @@
 
                                 </h4>
 
-
                                 <span class="staff-profile-role-badge">
 
                                     <asp:Label
@@ -340,18 +321,13 @@
 
                                 </span>
 
-
                             </div>
 
-
-
                             <div class="staff-profile-contact-grid">
-
 
                                 <%-- EMAIL --%>
 
                                 <div class="staff-profile-contact-item">
-
 
                                     <span class="staff-profile-contact-icon">
 
@@ -374,14 +350,11 @@
 
                                     </span>
 
-
                                     <div>
-
 
                                         <small>
                                             Email
                                         </small>
-
 
                                         <strong>
 
@@ -392,18 +365,13 @@
 
                                         </strong>
 
-
                                     </div>
 
-
                                 </div>
-
-
 
                                 <%-- EMPLOYEE ID --%>
 
                                 <div class="staff-profile-contact-item">
-
 
                                     <span class="staff-profile-contact-icon">
 
@@ -427,14 +395,11 @@
 
                                     </span>
 
-
                                     <div>
-
 
                                         <small>
                                             Employee ID
                                         </small>
-
 
                                         <strong>
 
@@ -445,18 +410,13 @@
 
                                         </strong>
 
-
                                     </div>
 
-
                                 </div>
-
-
 
                                 <%-- STATUS --%>
 
                                 <div class="staff-profile-contact-item">
-
 
                                     <span class="staff-profile-contact-icon">
 
@@ -477,38 +437,27 @@
 
                                     </span>
 
-
                                     <div>
-
 
                                         <small>
                                             Account Status
                                         </small>
 
-
                                         <strong>
                                             Active
                                         </strong>
 
-
                                     </div>
-
 
                                 </div>
 
-
                             </div>
-
 
                         </div>
 
-
                     </div>
 
-
                 </section>
-
-
 
                 <%-- STATUS / ERROR MESSAGE --%>
 
@@ -518,28 +467,17 @@
                     CssClass="d-block small mt-3">
                 </asp:Label>
 
-
-
-                <%-- ================================================
-                     PROFILE CONTENT
-                     ================================================ --%>
+                <%-- PROFILE CONTENT --%>
 
                 <div class="staff-profile-content-grid">
 
-
-                    <%-- ================================================
-                         LEFT COLUMN
-                         ================================================ --%>
+                    <%-- LEFT COLUMN --%>
 
                     <div>
 
-
-                        <%-- ============================================
-                             PERSONAL INFORMATION
-                             ============================================ --%>
+                        <%-- PERSONAL INFORMATION --%>
 
                         <section class="staff-dashboard-panel staff-profile-info-card">
-
 
                             <div class="staff-profile-section-heading">
 
@@ -553,12 +491,9 @@
 
                             </div>
 
-
-
                             <%-- FULL NAME --%>
 
                             <div class="staff-profile-info-row">
-
 
                                 <span class="staff-profile-info-label">
 
@@ -570,7 +505,6 @@
 
                                 </span>
 
-
                                 <strong>
 
                                     <asp:Label
@@ -580,15 +514,11 @@
 
                                 </strong>
 
-
                             </div>
-
-
 
                             <%-- EMAIL --%>
 
                             <div class="staff-profile-info-row">
-
 
                                 <span class="staff-profile-info-label">
 
@@ -600,7 +530,6 @@
 
                                 </span>
 
-
                                 <strong>
 
                                     <asp:Label
@@ -610,15 +539,11 @@
 
                                 </strong>
 
-
                             </div>
-
-
 
                             <%-- ADDRESS --%>
 
                             <div class="staff-profile-info-row">
-
 
                                 <span class="staff-profile-info-label">
 
@@ -630,7 +555,6 @@
 
                                 </span>
 
-
                                 <strong>
 
                                     <asp:Label
@@ -640,15 +564,11 @@
 
                                 </strong>
 
-
                             </div>
-
-
 
                             <%-- ROLE --%>
 
                             <div class="staff-profile-info-row">
-
 
                                 <span class="staff-profile-info-label">
 
@@ -660,7 +580,6 @@
 
                                 </span>
 
-
                                 <strong>
 
                                     <asp:Label
@@ -670,89 +589,61 @@
 
                                 </strong>
 
-
                             </div>
-
 
                         </section>
 
-
-
-                        <%-- ============================================
-                             PERMISSIONS
-                             ============================================ --%>
+                        <%-- PERMISSIONS --%>
 
                         <section class="staff-dashboard-panel manager-profile-permissions">
 
-
                             <div class="staff-profile-section-heading">
-
 
                                 <h5>
                                     Permissions / Access
                                 </h5>
 
-
                                 <small>
                                     Manager access within the Cafe101 system.
                                 </small>
 
-
                             </div>
 
-
-
                             <div class="manager-profile-permission-list">
-
 
                                 <span class="manager-profile-permission">
                                     ✓ Dashboard
                                 </span>
 
-
                                 <span class="manager-profile-permission">
                                     ✓ Orders
                                 </span>
-
 
                                 <span class="manager-profile-permission">
                                     ✓ Menu Management
                                 </span>
 
-
                                 <span class="manager-profile-permission">
                                     ✓ Staff Management
                                 </span>
-
 
                                 <span class="manager-profile-permission">
                                     ✓ Reports
                                 </span>
 
-
                             </div>
-
 
                         </section>
 
-
                     </div>
 
-
-
-                    <%-- ================================================
-                         RIGHT COLUMN
-                         ================================================ --%>
+                    <%-- RIGHT COLUMN --%>
 
                     <div class="staff-profile-right-column">
 
-
-                        <%-- ============================================
-                             WORK INFORMATION
-                             ============================================ --%>
+                        <%-- WORK INFORMATION --%>
 
                         <section class="staff-dashboard-panel staff-profile-work-card">
-
 
                             <div class="staff-profile-section-heading">
 
@@ -762,12 +653,9 @@
 
                             </div>
 
-
-
                             <%-- EMPLOYEE ID --%>
 
                             <div class="staff-profile-info-row">
-
 
                                 <span class="staff-profile-info-label">
 
@@ -779,7 +667,6 @@
 
                                 </span>
 
-
                                 <strong>
 
                                     <asp:Label
@@ -789,15 +676,11 @@
 
                                 </strong>
 
-
                             </div>
-
-
 
                             <%-- ROLE --%>
 
                             <div class="staff-profile-info-row">
-
 
                                 <span class="staff-profile-info-label">
 
@@ -809,7 +692,6 @@
 
                                 </span>
 
-
                                 <strong>
 
                                     <asp:Label
@@ -819,15 +701,11 @@
 
                                 </strong>
 
-
                             </div>
-
-
 
                             <%-- STATUS --%>
 
                             <div class="staff-profile-info-row">
-
 
                                 <span class="staff-profile-info-label">
 
@@ -839,7 +717,6 @@
 
                                 </span>
 
-
                                 <span class="staff-profile-status-active">
 
                                     <asp:Label
@@ -849,23 +726,15 @@
 
                                 </span>
 
-
                             </div>
-
 
                         </section>
 
-
-
-                        <%-- ============================================
-                             ACCOUNT SECURITY
-                             ============================================ --%>
+                        <%-- ACCOUNT SECURITY --%>
 
                         <section class="staff-dashboard-panel staff-profile-small-card">
 
-
                             <div class="staff-profile-small-card-content">
-
 
                                 <div class="staff-profile-security-icon">
 
@@ -888,37 +757,25 @@
 
                                 </div>
 
-
-
                                 <div>
-
 
                                     <strong>
                                         Account Security
                                     </strong>
 
-
                                     <small>
                                         Your Cafe101 manager account is password protected.
                                     </small>
 
-
                                 </div>
-
 
                             </div>
 
-
                         </section>
 
-
-
-                        <%-- ============================================
-                             QUICK ACTIONS
-                             ============================================ --%>
+                        <%-- QUICK ACTIONS --%>
 
                         <section class="staff-dashboard-panel staff-profile-quick-card">
-
 
                             <div class="staff-profile-section-heading">
 
@@ -928,10 +785,7 @@
 
                             </div>
 
-
-
                             <div class="manager-profile-quick-grid">
-
 
                                 <%-- ORDERS --%>
 
@@ -939,31 +793,23 @@
                                     class="staff-profile-quick-action"
                                     onclick="window.location.href='ManagerOrders.aspx';">
 
-
                                     <span class="staff-profile-quick-icon icon-beige">
                                         ▣
                                     </span>
 
-
                                     <span>
-
 
                                         <strong>
                                             Manage Orders
                                         </strong>
 
-
                                         <small>
                                             View customer orders
                                         </small>
 
-
                                     </span>
 
-
                                 </button>
-
-
 
                                 <%-- MENU --%>
 
@@ -971,31 +817,23 @@
                                     class="staff-profile-quick-action"
                                     onclick="window.location.href='ManagerMenu.aspx';">
 
-
                                     <span class="staff-profile-quick-icon icon-purple">
                                         ▤
                                     </span>
 
-
                                     <span>
-
 
                                         <strong>
                                             Manage Menu
                                         </strong>
 
-
                                         <small>
                                             View and update menu
                                         </small>
 
-
                                     </span>
 
-
                                 </button>
-
-
 
                                 <%-- REPORTS --%>
 
@@ -1003,31 +841,23 @@
                                     class="staff-profile-quick-action"
                                     onclick="window.location.href='ManagerReports.aspx';">
 
-
                                     <span class="staff-profile-quick-icon icon-blue">
                                         ▥
                                     </span>
 
-
                                     <span>
-
 
                                         <strong>
                                             View Reports
                                         </strong>
 
-
                                         <small>
                                             Sales and performance
                                         </small>
 
-
                                     </span>
 
-
                                 </button>
-
-
 
                                 <%-- STAFF --%>
 
@@ -1035,71 +865,49 @@
                                     class="staff-profile-quick-action"
                                     onclick="window.location.href='ManagerStaff.aspx';">
 
-
                                     <span class="staff-profile-quick-icon icon-green">
                                         ♙
                                     </span>
 
-
                                     <span>
-
 
                                         <strong>
                                             Manage Staff
                                         </strong>
 
-
                                         <small>
                                             View employee accounts
                                         </small>
 
-
                                     </span>
-
 
                                 </button>
 
-
                             </div>
-
 
                         </section>
 
-
                     </div>
-
 
                 </div>
 
-
-
-                <%-- ================================================
-                     FOOTER
-                     ================================================ --%>
+                <%-- FOOTER --%>
 
                 <div class="staff-footer">
                     © 2026 Cafe101 Manager System
                 </div>
 
-
             </main>
-
 
         </div>
 
-
     </div>
 
-
-
-    <%-- ================================================
-         PAGE SCRIPT
-         ================================================ --%>
+    <%-- PAGE SCRIPT --%>
 
     <script>
 
         document.body.classList.add("staff-page");
-
 
         // Hide public navbar from Site.Master
         const publicNavbar =
@@ -1108,7 +916,6 @@
         if (publicNavbar) {
             publicNavbar.style.display = "none";
         }
-
 
         // Remove normal Site.Master spacing
         const bodyContent =
@@ -1125,27 +932,20 @@
 
         }
 
-
         // Hide Site.Master footer
         const masterFooter =
-            document.querySelector(
-                ".body-content > footer"
-            );
+            document.querySelector(".body-content > footer");
 
         if (masterFooter) {
             masterFooter.style.display = "none";
         }
 
-
         const masterFooterLine =
-            document.querySelector(
-                ".body-content > hr"
-            );
+            document.querySelector(".body-content > hr");
 
         if (masterFooterLine) {
             masterFooterLine.style.display = "none";
         }
-
 
         // Sidebar collapse
         const sidebarToggle =
@@ -1153,7 +953,6 @@
 
         const staffBody =
             document.querySelector(".staff-body");
-
 
         if (sidebarToggle && staffBody) {
 
@@ -1170,6 +969,5 @@
         }
 
     </script>
-
 
 </asp:Content>

@@ -1,14 +1,30 @@
-﻿<%@ Page Title="Menu"
+﻿
+<%@ Page Title="Menu"
     Language="C#"
     MasterPageFile="~/Site.Master"
     AutoEventWireup="true"
     CodeBehind="Menu.aspx.cs"
     Inherits="Cafe101.Web.Menu" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="BodyContent"
+    ContentPlaceHolderID="MainContent"
+    runat="server">
 
     <style>
-        #mainNavbar { display: none; }
+        #mainNavbar {
+            display: none !important;
+        }
+
+        body {
+            padding-top: 0;
+        }
+
+        .body-content {
+            width: 100%;
+            max-width: none;
+            margin: 0;
+            padding: 0;
+        }
 
         .customer-shell {
             min-height: 100vh;
@@ -39,11 +55,14 @@
             background: rgba(255,255,255,.08);
             color: white;
             font-size: 1.3rem;
+            cursor: pointer;
         }
 
         .customer-header-brand {
             font-size: 1.25rem;
             font-weight: 700;
+            color: white;
+            text-decoration: none;
         }
 
         .customer-header-right {
@@ -60,7 +79,9 @@
             text-decoration: none;
         }
 
-        .customer-header-user:hover { color: white; }
+        .customer-header-user:hover {
+            color: white;
+        }
 
         .customer-header-avatar {
             width: 42px;
@@ -72,6 +93,7 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
+            flex-shrink: 0;
         }
 
         .customer-header-user small {
@@ -84,6 +106,20 @@
             color: white;
             text-decoration: none;
             font-size: 1.4rem;
+        }
+
+        .customer-cart-badge {
+            position: absolute;
+            top: -9px;
+            right: -12px;
+            min-width: 20px;
+            padding: 2px 5px;
+            border-radius: 999px;
+            background: #dc3545;
+            color: white;
+            font-size: .65rem;
+            text-align: center;
+            font-weight: 700;
         }
 
         .customer-body {
@@ -99,6 +135,7 @@
             display: flex;
             flex-direction: column;
             flex-shrink: 0;
+            transition: width .2s ease;
         }
 
         .customer-sidebar-title {
@@ -132,6 +169,7 @@
 
         .customer-nav-icon {
             width: 22px;
+            min-width: 22px;
             text-align: center;
         }
 
@@ -148,6 +186,11 @@
             display: flex;
             align-items: center;
             gap: 12px;
+        }
+
+        .customer-logout:hover {
+            color: white;
+            background: rgba(255,255,255,.12);
         }
 
         .customer-main {
@@ -180,7 +223,7 @@
 
         .menu-layout {
             display: grid;
-            grid-template-columns: 1fr 320px;
+            grid-template-columns: minmax(0, 1fr) 320px;
             gap: 28px;
             align-items: start;
         }
@@ -198,6 +241,7 @@
             box-shadow: 0 1px 4px rgba(0,0,0,.06);
             display: flex;
             flex-direction: column;
+            height: 100%;
         }
 
         .menu-card img {
@@ -240,6 +284,13 @@
             margin-top: auto;
         }
 
+        .menu-card .aspNetDisabled {
+            background: #e9ecef !important;
+            border-color: #e9ecef !important;
+            color: #595f65 !important;
+            cursor: not-allowed;
+        }
+
         .cart-panel {
             background: white;
             border-radius: 12px;
@@ -270,14 +321,30 @@
         .cart-summary-row {
             display: flex;
             justify-content: space-between;
+            gap: 10px;
             margin-top: 14px;
             font-weight: 700;
+        }
+
+        .cart-remove {
+            display: inline-block;
+            margin-top: 6px;
+            color: #a52834;
+            font-size: .85rem;
+            text-decoration: underline;
+        }
+
+        .cart-remove:focus-visible,
+        .customer-nav a:focus-visible {
+            outline: 3px solid #d4a53a;
+            outline-offset: 3px;
         }
 
         @media (max-width: 1100px) {
             .menu-layout {
                 grid-template-columns: 1fr;
             }
+
             .cart-panel {
                 position: static;
             }
@@ -287,12 +354,32 @@
             .customer-sidebar {
                 width: 78px;
             }
+
             .customer-nav-text,
             .customer-sidebar-title {
                 display: none;
             }
+
             .customer-main {
                 padding: 20px;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .customer-header {
+                padding: 0 14px;
+            }
+
+            .customer-header-right {
+                gap: 12px;
+            }
+
+            .customer-main {
+                padding: 16px;
+            }
+
+            .menu-filters .form-group {
+                width: 100%;
             }
         }
     </style>
@@ -301,241 +388,502 @@
 
         <!-- TOP HEADER -->
         <header class="customer-header">
+
             <div class="customer-header-left">
+
                 <button type="button"
                     id="customerSidebarToggle"
                     class="customer-menu-button"
-                    aria-label="Toggle customer navigation">
+                    aria-label="Toggle navigation">
                     ☰
                 </button>
-                <div class="customer-header-brand">Cafe101</div>
+
+                <a id="lnkOrderingHome"
+                    runat="server"
+                    class="customer-header-brand"
+                    href="CustomerDashboard.aspx">
+                    Cafe101
+                </a>
+
             </div>
 
             <div class="customer-header-right">
-                <a href="MyAccount.aspx" class="customer-header-user">
+
+                <a id="lnkOrderingAccount"
+                    runat="server"
+                    href="MyAccount.aspx"
+                    class="customer-header-user">
+
                     <div class="customer-header-avatar">
-                        <asp:Literal ID="litCustomerInitials" runat="server" />
+
+                        <asp:Literal
+                            ID="litCustomerInitials"
+                            runat="server"
+                            Mode="Encode" />
+
                     </div>
+
                     <div>
+
                         <strong>
-                            <asp:Literal ID="litCustomerName" runat="server" />
+                            <asp:Literal
+                                ID="litCustomerName"
+                                runat="server"
+                                Mode="Encode" />
                         </strong>
-                        <small>Customer</small>
+
+                        <small>
+                            <asp:Literal
+                                ID="litUserRole"
+                                runat="server"
+                                Mode="Encode" />
+                        </small>
+
                     </div>
+
                 </a>
 
                 <a href="CartandPayment.aspx"
-                   class="customer-cart"
-                   aria-label="View your cart"
-                   style="position: relative;">
+                    class="customer-cart"
+                    aria-label="View your cart">
+
                     &#128722;
-                    <span class="position-absolute top-0 start-100 translate-middle
-                                 badge rounded-pill bg-danger"
-                          style="font-size: .6rem;">
-                        <asp:Literal ID="litHeaderCartCount" runat="server" />
+
+                    <span class="customer-cart-badge">
+                        <asp:Literal
+                            ID="litHeaderCartCount"
+                            runat="server" />
                     </span>
+
                 </a>
+
             </div>
+
         </header>
 
         <div class="customer-body">
 
-            <!-- LEFT SIDEBAR -->
+            <!-- SIDEBAR -->
             <aside class="customer-sidebar">
-                <div class="customer-sidebar-title">CUSTOMER SYSTEM</div>
 
-                <nav class="customer-nav">
-                   <a id="lnkDashboard" runat="server">
-    <span class="customer-nav-icon">&#8962;</span>
-    <span class="customer-nav-text">Dashboard</span>
-</a>
+                <div class="customer-sidebar-title">
+                    CAFE101 SYSTEM
+                </div>
 
-                    <a href="Menu.aspx" class="active">
-                        <span class="customer-nav-icon">☕</span>
-                        <span class="customer-nav-text">Menu</span>
-                    </a>
+                <nav class="customer-nav" aria-label="Customer navigation">
 
-                    <a href="CartandPayment.aspx">
-                        <span class="customer-nav-icon">🛒</span>
-                        <span class="customer-nav-text">Cart</span>
-                    </a>
+                    <!-- CUSTOMER NAVIGATION -->
+                    <asp:Panel ID="pnlCustomerNav" runat="server">
 
-                    <a href="OrderHistory.aspx">
-                        <span class="customer-nav-icon">▤</span>
-                        <span class="customer-nav-text">Order History</span>
-                    </a>
+                        <a id="lnkDashboard"
+                            runat="server"
+                            href="CustomerDashboard.aspx">
 
-                    <a href="MyAccount.aspx">
-                        <span class="customer-nav-icon">♙</span>
-                        <span class="customer-nav-text">My Account</span>
-                    </a>
+                            <span class="customer-nav-icon">&#8962;</span>
+                            <span class="customer-nav-text">Dashboard</span>
+
+                        </a>
+
+                        <a href="Menu.aspx" class="active"
+                            aria-current="page">
+
+                            <span class="customer-nav-icon">☕</span>
+                            <span class="customer-nav-text">Menu</span>
+
+                        </a>
+
+                        <a href="CartandPayment.aspx">
+
+                            <span class="customer-nav-icon">🛒</span>
+                            <span class="customer-nav-text">Cart</span>
+
+                        </a>
+
+                        <a href="OrderHistory.aspx">
+
+                            <span class="customer-nav-icon">▤</span>
+                            <span class="customer-nav-text">Order History</span>
+
+                        </a>
+
+                        <a href="MyAccount.aspx">
+
+                            <span class="customer-nav-icon">♙</span>
+                            <span class="customer-nav-text">My Account</span>
+
+                        </a>
+
+                    </asp:Panel>
+
+                    <!-- STAFF / CASHIER NAVIGATION -->
+                    <asp:Panel ID="pnlStaffNav"
+                        runat="server"
+                        Visible="false">
+
+                        <a id="lnkStaffDashboard"
+                            runat="server"
+                            href="StaffDashboard.aspx">
+
+                            <span class="customer-nav-icon">&#8962;</span>
+                            <span class="customer-nav-text">Dashboard</span>
+
+                        </a>
+
+                        <a href="Menu.aspx?source=staff"
+                            class="active"
+                            aria-current="page">
+
+                            <span class="customer-nav-icon">☕</span>
+                            <span class="customer-nav-text">Menu</span>
+
+                        </a>
+
+                        <a href="CartandPayment.aspx">
+
+                            <span class="customer-nav-icon">🛒</span>
+                            <span class="customer-nav-text">Cart</span>
+
+                        </a>
+
+                        <a href="StaffOrders.aspx">
+
+                            <span class="customer-nav-icon">▤</span>
+                            <span class="customer-nav-text">Orders</span>
+
+                        </a>
+
+                    </asp:Panel>
+
+                    <!-- MANAGER NAVIGATION -->
+                    <asp:Panel ID="pnlManagerNav"
+                        runat="server"
+                        Visible="false">
+
+                        <a id="lnkManagerDashboard"
+                            runat="server"
+                            href="ManagerDashboard.aspx">
+
+                            <span class="customer-nav-icon">&#8962;</span>
+                            <span class="customer-nav-text">Dashboard</span>
+
+                        </a>
+
+                        <a href="Menu.aspx?source=staff"
+                            class="active"
+                            aria-current="page">
+
+                            <span class="customer-nav-icon">☕</span>
+                            <span class="customer-nav-text">Menu</span>
+
+                        </a>
+
+                        <a href="CartandPayment.aspx">
+
+                            <span class="customer-nav-icon">🛒</span>
+                            <span class="customer-nav-text">Cart</span>
+
+                        </a>
+
+                    </asp:Panel>
+
                 </nav>
 
+                <!-- LOGOUT -->
                 <div class="customer-sidebar-bottom">
-                    <asp:LinkButton ID="lnkLogOut" runat="server"
+
+                    <asp:LinkButton
+                        ID="lnkLogOut"
+                        runat="server"
                         CssClass="customer-logout"
                         OnClick="lnkLogOut_Click"
                         CausesValidation="false">
+
                         <span class="customer-nav-icon">&#10140;</span>
                         <span class="customer-nav-text">Logout</span>
+
                     </asp:LinkButton>
+
                 </div>
+
             </aside>
 
             <!-- MAIN CONTENT -->
             <main class="customer-main">
+
                 <div class="customer-main-inner">
 
                     <div class="customer-page-heading">
-                        <h3 class="fw-bold mb-1">Menu</h3>
+
+                        <h3 class="fw-bold mb-1">
+                            Menu
+                        </h3>
+
                         <p class="text-muted mb-0">
                             Choose your items. Your selections will appear in the cart.
                         </p>
+
                     </div>
 
-                    <!-- Filters -->
+                    <!-- CATEGORY AND SEARCH -->
                     <div class="menu-filters">
+
                         <div class="form-group">
-                            <label class="form-label">Category</label>
-                            <asp:DropDownList ID="ddlCategory" runat="server"
+
+                            <label
+                                for="<%= ddlCategory.ClientID %>"
+                                class="form-label">
+                                Category
+                            </label>
+
+                            <asp:DropDownList
+                                ID="ddlCategory"
+                                runat="server"
                                 CssClass="form-select"
                                 AutoPostBack="true"
-                                OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged">
-                                <asp:ListItem Text="Full Menu" Value="" />
-                            </asp:DropDownList>
+                                OnSelectedIndexChanged="ddlCategory_SelectedIndexChanged" />
+
                         </div>
 
-                        <div class="form-group" style="min-width: 280px;">
-                            <label class="form-label">Search menu</label>
-                            <div class="input-group">
-                                <asp:TextBox ID="txtMenuSearch" runat="server"
-                                    CssClass="form-control"
-                                    placeholder="Enter an item name..."
-                                    MaxLength="100" />
-                                <asp:Button ID="btnMenuSearch" runat="server"
-                                    Text="Search"
-                                    CssClass="btn btn-brand"
-                                    OnClick="btnMenuSearch_Click"
-                                    CausesValidation="false" />
-                                <asp:Button ID="btnClearSearch" runat="server"
-                                    Text="Clear"
-                                    CssClass="btn btn-outline-secondary"
-                                    OnClick="btnClearSearch_Click"
-                                    CausesValidation="false" />
-                            </div>
+                        <div class="form-group" style="min-width:280px;">
+
+                            <label
+                                for="<%= txtMenuSearch.ClientID %>"
+                                class="form-label">
+                                Search menu
+                            </label>
+
+                            <asp:Panel
+                                ID="pnlMenuSearch"
+                                runat="server"
+                                DefaultButton="btnMenuSearch">
+
+                                <div class="input-group">
+
+                                    <asp:TextBox
+                                        ID="txtMenuSearch"
+                                        runat="server"
+                                        CssClass="form-control"
+                                        MaxLength="100"
+                                        placeholder="Enter an item name..." />
+
+                                    <asp:Button
+                                        ID="btnMenuSearch"
+                                        runat="server"
+                                        Text="Search"
+                                        CssClass="btn btn-brand"
+                                        CausesValidation="false"
+                                        OnClick="btnMenuSearch_Click" />
+
+                                    <asp:Button
+                                        ID="btnClearSearch"
+                                        runat="server"
+                                        Text="Clear"
+                                        CssClass="btn btn-outline-secondary"
+                                        CausesValidation="false"
+                                        OnClick="btnClearSearch_Click" />
+
+                                </div>
+
+                            </asp:Panel>
+
                         </div>
+
                     </div>
 
-                    <asp:Label ID="lblMessage" runat="server"
+                    <!-- STATUS MESSAGE -->
+                    <asp:Label
+                        ID="lblMessage"
+                        runat="server"
                         CssClass="d-block mb-3"
                         role="status" />
 
                     <div class="menu-layout">
 
-                        <!-- Menu items -->
+                        <!-- MENU ITEMS -->
                         <div>
+
                             <div class="menu-grid">
-                                <asp:Repeater ID="rptMenu" runat="server"
+
+                                <asp:Repeater
+                                    ID="rptMenu"
+                                    runat="server"
                                     OnItemCommand="rptMenu_ItemCommand">
+
                                     <ItemTemplate>
+
                                         <div class="menu-card">
-                                            <asp:Image ID="imgItem" runat="server"
+
+                                            <asp:Image
+                                                ID="imgItem"
+                                                runat="server"
                                                 ImageUrl='<%# GetMenuItemImage(Convert.ToString(Eval("MenuItemName"))) %>'
                                                 Visible='<%# !string.IsNullOrEmpty(GetMenuItemImage(Convert.ToString(Eval("MenuItemName")))) %>'
-                                                AlternateText='<%# Eval("MenuItemName") %>' />
+                                                AlternateText="Menu item image" />
 
                                             <div class="menu-card-body">
-                                                <h6><%#: Eval("MenuItemName") %></h6>
-                                                <div class="category"><%#: Eval("Category") %></div>
+
+                                                <h6>
+                                                    <%#: Eval("MenuItemName") %>
+                                                </h6>
+
+                                                <div class="category">
+                                                    <%#: Eval("Category") %>
+                                                </div>
+
                                                 <div class="price">
                                                     R <%# Eval("SellingPrice", "{0:0.00}") %>
                                                 </div>
-                                                <div class="stock"><%#: Eval("StockStatus") %></div>
 
-                                                <asp:LinkButton ID="btnAddToCart" runat="server"
+                                                <div class="stock">
+                                                    <%#: Eval("StockStatus") %>
+                                                </div>
+
+                                                <asp:LinkButton
+                                                    ID="btnAddToCart"
+                                                    runat="server"
                                                     CssClass="btn btn-brand w-100"
                                                     CommandName="AddToCart"
                                                     CommandArgument='<%# Eval("MenuItemID") %>'
-                                                    Enabled='<%# CanOrder(Eval("StockStatus"), Eval("AvailableQuantity")) %>'>
-                                                    Add to cart
-                                                </asp:LinkButton>
+                                                    CausesValidation="false"
+                                                    Enabled='<%# CanOrder(Eval("StockStatus"), Eval("AvailableQuantity")) %>'
+                                                    Text='<%# CanOrder(Eval("StockStatus"), Eval("AvailableQuantity")) ? "Add to cart" : "Unavailable" %>' />
+
                                             </div>
+
                                         </div>
+
                                     </ItemTemplate>
+
                                 </asp:Repeater>
+
                             </div>
 
-                            <asp:Label ID="lblNoItems" runat="server"
+                            <asp:Label
+                                ID="lblNoItems"
+                                runat="server"
                                 Text="No items match your search and selected category."
                                 CssClass="d-block text-muted mt-4"
                                 Visible="false" />
+
                         </div>
 
-                        <!-- Cart summary (right side) -->
-                        <div class="cart-panel">
-                            <h5>Your Cart</h5>
+                        <!-- CART SUMMARY -->
+                        <aside class="cart-panel"
+                            aria-label="Your cart">
 
-                            <asp:Panel ID="pnlEmptyCart" runat="server" Visible="false">
-                                <p class="text-muted mb-0">Your cart is empty.</p>
+                            <h5>
+                                Your Cart
+                            </h5>
+
+                            <asp:Panel
+                                ID="pnlEmptyCart"
+                                runat="server">
+
+                                <p class="text-muted mb-0">
+                                    Your cart is empty.
+                                </p>
+
                             </asp:Panel>
 
-                            <asp:Panel ID="pnlCartSummary" runat="server" Visible="false">
-                                <asp:Repeater ID="rptCart" runat="server"
+                            <asp:Panel
+                                ID="pnlCartSummary"
+                                runat="server">
+
+                                <asp:Repeater
+                                    ID="rptCart"
+                                    runat="server"
                                     OnItemCommand="rptCart_ItemCommand">
+
                                     <ItemTemplate>
+
                                         <div class="cart-item">
+
                                             <div>
-                                                <strong><%#: Eval("MenuItemName") %></strong>
+
+                                                <strong>
+                                                    <%#: Eval("MenuItemName") %>
+                                                </strong>
+
                                                 <div class="small text-muted">
-                                                    <%# Eval("Quantity") %> × R <%# Eval("UnitPrice", "{0:0.00}") %>
+                                                    <%# Eval("Quantity") %>
+                                                    × R <%# Eval("UnitPrice", "{0:0.00}") %>
                                                 </div>
+
                                             </div>
+
                                             <div class="text-end">
+
                                                 <div class="fw-bold">
                                                     R <%# Eval("LineTotal", "{0:0.00}") %>
                                                 </div>
-                                                <asp:LinkButton ID="btnRemove" runat="server"
+
+                                                <asp:LinkButton
+                                                    ID="btnRemove"
+                                                    runat="server"
                                                     CommandName="RemoveItem"
                                                     CommandArgument='<%# Eval("MenuItemID") %>'
-                                                    CssClass="small text-danger"
+                                                    CssClass="cart-remove"
                                                     CausesValidation="false">
                                                     Remove
                                                 </asp:LinkButton>
+
                                             </div>
+
                                         </div>
+
                                     </ItemTemplate>
+
                                 </asp:Repeater>
 
                                 <div class="cart-summary-row">
+
                                     <span>
-                                        <asp:Label ID="lblCartCount" runat="server" />
+                                        <asp:Label
+                                            ID="lblCartCount"
+                                            runat="server" />
                                     </span>
+
                                     <span>
-                                        <asp:Label ID="lblCartSubtotal" runat="server" />
+                                        <asp:Label
+                                            ID="lblCartSubtotal"
+                                            runat="server" />
                                     </span>
+
                                 </div>
 
                                 <a href="CartandPayment.aspx"
-                                   class="btn btn-brand w-100 mt-3">
-                                    Go to Checkout
+                                    class="btn btn-brand w-100 mt-3">
+                                    Review cart &amp; checkout
                                 </a>
+
                             </asp:Panel>
-                        </div>
+
+                        </aside>
 
                     </div>
 
                 </div>
+
             </main>
+
         </div>
+
     </div>
 
     <script>
+
         document.body.classList.add("customer-page");
 
+        // Hide the public navigation from Site.Master.
         const publicNavbar = document.querySelector(".navbar");
-        if (publicNavbar) publicNavbar.style.display = "none";
 
+        if (publicNavbar) {
+            publicNavbar.style.display = "none";
+        }
+
+        // Remove the default container spacing.
         const bodyContent = document.querySelector(".body-content");
+
         if (bodyContent) {
             bodyContent.classList.remove("container");
             bodyContent.style.width = "100%";
@@ -544,36 +892,73 @@
             bodyContent.style.padding = "0";
         }
 
-        const masterFooter = document.querySelector(".body-content > footer");
-        if (masterFooter) masterFooter.style.display = "none";
+        // Hide the Site.Master footer.
+        const masterFooter =
+            document.querySelector(".body-content > footer");
 
-        const masterFooterLine = document.querySelector(".body-content > hr");
-        if (masterFooterLine) masterFooterLine.style.display = "none";
+        if (masterFooter) {
+            masterFooter.style.display = "none";
+        }
 
-        const toggle = document.getElementById("customerSidebarToggle");
-        const sidebar = document.querySelector(".customer-sidebar");
+        const masterFooterLine =
+            document.querySelector(".body-content > hr");
+
+        if (masterFooterLine) {
+            masterFooterLine.style.display = "none";
+        }
+
+        // Toggle the sidebar on smaller screens.
+        const toggle =
+            document.getElementById("customerSidebarToggle");
+
+        const sidebar =
+            document.querySelector(".customer-sidebar");
 
         if (toggle && sidebar) {
+
             toggle.addEventListener("click", function () {
-                const collapsed = sidebar.style.width === "78px";
+
+                const collapsed =
+                    sidebar.style.width === "78px";
 
                 if (collapsed) {
+
                     sidebar.style.width = "230px";
-                    document.querySelectorAll(".customer-nav-text").forEach(function (item) {
-                        item.style.display = "";
-                    });
-                    const title = document.querySelector(".customer-sidebar-title");
-                    if (title) title.style.display = "";
+
+                    document.querySelectorAll(".customer-nav-text")
+                        .forEach(function (item) {
+                            item.style.display = "";
+                        });
+
+                    const title =
+                        document.querySelector(".customer-sidebar-title");
+
+                    if (title) {
+                        title.style.display = "";
+                    }
+
                 } else {
+
                     sidebar.style.width = "78px";
-                    document.querySelectorAll(".customer-nav-text").forEach(function (item) {
-                        item.style.display = "none";
-                    });
-                    const title = document.querySelector(".customer-sidebar-title");
-                    if (title) title.style.display = "none";
+
+                    document.querySelectorAll(".customer-nav-text")
+                        .forEach(function (item) {
+                            item.style.display = "none";
+                        });
+
+                    const title =
+                        document.querySelector(".customer-sidebar-title");
+
+                    if (title) {
+                        title.style.display = "none";
+                    }
+
                 }
+
             });
+
         }
+
     </script>
 
 </asp:Content>

@@ -9,6 +9,13 @@
     ContentPlaceHolderID="MainContent"
     runat="server">
 
+    <style>
+    .staff-header-user strong,
+    .staff-header-user strong span {
+        color: #3b82f6 !important;
+    }
+</style>
+
     <div class="staff-shell manager-shell">
 
         <%-- TOP HEADER --%>
@@ -357,3 +364,4 @@
     </script>
 
 </asp:Content>
+ManageCustomers.aspx

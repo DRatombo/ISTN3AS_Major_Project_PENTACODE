@@ -1,4 +1,5 @@
-﻿<%@ Page Title="Manage Recipes"
+﻿
+<%@ Page Title="Manage Recipes"
     Language="C#"
     MasterPageFile="~/Site.Master"
     AutoEventWireup="true"
@@ -17,6 +18,14 @@
 
         body {
             padding-top: 0;
+        }
+
+        /* Logged-in manager's name in the top header. */
+        .staff-header-user strong,
+        .staff-header-user strong span,
+        .staff-header-user .logged-in-user-name {
+            color: #3b82f6 !important;
+            font-weight: 600;
         }
 
         .body-content {
@@ -188,7 +197,7 @@
 
                 <div class="staff-sidebar-title">MANAGER SYSTEM</div>
 
-               <!-- The same navigation links are available on both management pages. -->
+                <!-- The same navigation links are available on both management pages. -->
                 <nav id="managerPageNav" class="staff-nav"
                     aria-label="Manager navigation">
 
@@ -211,6 +220,7 @@
                         </span>
                         <span class="staff-nav-text">Orders</span>
                     </a>
+
                     <a href="ManageCustomers.aspx" aria-label="Customers">
                         <span class="staff-nav-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="19" height="19"
@@ -234,7 +244,7 @@
                         <span class="staff-nav-text">Menu</span>
                     </a>
 
-                   <a href="ManageIngredients.aspx" aria-label="Ingredients">
+                    <a href="ManageIngredients.aspx" aria-label="Ingredients">
                         <span class="staff-nav-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="19" height="19"
                                 fill="none" stroke="currentColor" stroke-width="2">
@@ -244,7 +254,8 @@
                         <span class="staff-nav-text">Ingredients</span>
                     </a>
 
-                    <a href="ManageRecipes.aspx" aria-label="Recipes" class="active" aria-current="page">
+                    <a href="ManageRecipes.aspx" aria-label="Recipes"
+                        class="active" aria-current="page">
                         <span class="staff-nav-icon" aria-hidden="true">
                             <svg viewBox="0 0 24 24" width="19" height="19"
                                 fill="none" stroke="currentColor" stroke-width="2">
@@ -286,32 +297,26 @@
                         </span>
                         <span class="staff-nav-text">Profile</span>
                     </a>
-                    
-<%-- Help Centre --%>
-<a href="StaffHelp.aspx" aria-label="Help Centre">
 
-    <span class="staff-nav-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24"
-             width="19"
-             height="19"
-             fill="none"
-             stroke="currentColor"
-             stroke-width="2">
-
-            <circle cx="12" cy="12" r="9" />
-            <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4" />
-            <path d="M12 17h.01" />
-
-        </svg>
-    </span>
-
-    <span class="staff-nav-text">
-        Help Centre
-    </span>
-
-</a>
+                    <%-- Help Centre --%>
+                    <a href="StaffHelp.aspx" aria-label="Help Centre">
+                        <span class="staff-nav-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"
+                                width="19"
+                                height="19"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="12" cy="12" r="9" />
+                                <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4" />
+                                <path d="M12 17h.01" />
+                            </svg>
+                        </span>
+                        <span class="staff-nav-text">Help Centre</span>
+                    </a>
 
                 </nav>
+
                 <div class="staff-sidebar-bottom">
                     <asp:LinkButton ID="lnkLogout" runat="server"
                         CssClass="staff-logout"

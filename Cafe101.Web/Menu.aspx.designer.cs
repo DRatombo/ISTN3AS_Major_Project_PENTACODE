@@ -15,6 +15,24 @@ namespace Cafe101.Web
     {
 
         /// <summary>
+        /// lnkOrderingHome control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkOrderingHome;
+
+        /// <summary>
+        /// lnkOrderingAccount control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkOrderingAccount;
+
+        /// <summary>
         /// litCustomerInitials control.
         /// </summary>
         /// <remarks>
@@ -33,6 +51,15 @@ namespace Cafe101.Web
         protected global::System.Web.UI.WebControls.Literal litCustomerName;
 
         /// <summary>
+        /// litUserRole control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litUserRole;
+
+        /// <summary>
         /// litHeaderCartCount control.
         /// </summary>
         /// <remarks>
@@ -42,6 +69,15 @@ namespace Cafe101.Web
         protected global::System.Web.UI.WebControls.Literal litHeaderCartCount;
 
         /// <summary>
+        /// pnlCustomerNav control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlCustomerNav;
+
+        /// <summary>
         /// lnkDashboard control.
         /// </summary>
         /// <remarks>
@@ -49,6 +85,42 @@ namespace Cafe101.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkDashboard;
+
+        /// <summary>
+        /// pnlStaffNav control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlStaffNav;
+
+        /// <summary>
+        /// lnkStaffDashboard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkStaffDashboard;
+
+        /// <summary>
+        /// pnlManagerNav control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlManagerNav;
+
+        /// <summary>
+        /// lnkManagerDashboard control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor lnkManagerDashboard;
 
         /// <summary>
         /// lnkLogOut control.
@@ -67,6 +139,15 @@ namespace Cafe101.Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
+
+        /// <summary>
+        /// pnlMenuSearch control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlMenuSearch;
 
         /// <summary>
         /// txtMenuSearch control.

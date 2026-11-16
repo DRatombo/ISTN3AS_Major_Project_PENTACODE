@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Cafe101.Web;
+using global::Cafe101.Data;
+using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI.WebControls;
-using global::Cafe101.Data;
 
 namespace Cafe101.Web
 {
@@ -62,6 +63,7 @@ namespace Cafe101.Web
             {
                 RefreshPage();
             }
+            LoadManagerHeader();
         }
 
         private void ShowMessage(string message, bool error)
@@ -73,7 +75,29 @@ namespace Cafe101.Web
                 ? "d-block mb-3 text-danger"
                 : "d-block mb-3 text-success";
         }
+        private void LoadManagerHeader()
+        {
+            string firstName = Convert.ToString(Session["FirstName"]).Trim();
+            string surname = Convert.ToString(Session["Surname"]).Trim();
 
+            string fullName = (firstName + " " + surname).Trim();
+
+            lblTopManagerName.Text =
+                string.IsNullOrEmpty(fullName) ? "Manager" : fullName;
+
+            lblTopManagerRole.Text = "Manager";
+
+            string initials = "";
+
+            if (firstName.Length > 0)
+                initials += firstName.Substring(0, 1);
+
+            if (surname.Length > 0)
+                initials += surname.Substring(0, 1);
+
+            lblTopManagerInitials.Text =
+                initials.Length == 0 ? "M" : initials.ToUpperInvariant();
+        }
         private DataTable ReadTable(string sql, string search = null)
         {
             using (SqlConnection connection =
